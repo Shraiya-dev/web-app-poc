@@ -3,13 +3,20 @@ import { NextPage } from 'next'
 
 //*this is a test page to test out components for theming
 const Index: NextPage = () => {
-
 	return (
 		<Stack spacing={3} alignItems='center'>
 			index
 			<Button>Contained</Button>
 			<TextField placeholder='hello' />
-			{/* <Select
+		</Stack>
+	)
+}
+
+export default Index
+
+//*testing the pages
+{
+	/* <Select
 				labelId='demo-simple-select-helper-label'
 				id='demo-simple-select-helper'
 				value={10}
@@ -36,7 +43,7 @@ const Index: NextPage = () => {
 							pt: 2,
 						},
 					},
-				}}> */}
+				}}> 
 				<MenuItem value=''>
 					<em>None</em>
 				</MenuItem>
@@ -46,10 +53,5 @@ const Index: NextPage = () => {
 				<MenuItem value={20}>Twenty</MenuItem>
 				<MenuItem value={30}>Thirty</MenuItem>
 			</Select>
-		</Stack>
-	)
+			*/
 }
-
-export default Index
-
-//*testing the pages
