@@ -1,15 +1,10 @@
 import { Button, MenuItem, Select, Stack, TextField } from '@mui/material'
 import { NextPage } from 'next'
+import { OnboardingLayout } from '../sdk'
 
 //*this is a test page to test out components for theming
 const Index: NextPage = () => {
-	return (
-		<Stack spacing={3} alignItems='center'>
-			index
-			<Button>Contained</Button>
-			<TextField placeholder='hello' />
-		</Stack>
-	)
+	return <OnboardingLayout>hello</OnboardingLayout>
 }
 
 export default Index
