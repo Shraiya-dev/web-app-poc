@@ -1,10 +1,62 @@
-import { Button, MenuItem, Select, Stack, TextField } from '@mui/material'
+import { Button, Container, InputAdornment, Stack, TextField } from '@mui/material'
+import { useFormik } from 'formik'
 import { NextPage } from 'next'
-import { OnboardingLayout } from '../sdk'
+import { useContractorAuth } from '../sdk'
 
 //*this is a test page to test out components for theming
 const Index: NextPage = () => {
-	return <OnboardingLayout>hello</OnboardingLayout>
+	const { requestOtp, verifyOtp, logOut } = useContractorAuth()
+
+	const form = useFormik({
+		initialValues: {
+			phoneNumber: '',
+			otp: '',
+		},
+		validate: () => {},
+		onSubmit: (values) => {
+			requestOtp(values.phoneNumber)
+		},
+	})
+
+	return (
+		<Container
+			sx={{
+				p: 5,
+			}}>
+			<form onSubmit={form.handleSubmit}>
+				<Stack spacing={4}>
+					<TextField
+						InputProps={{ startAdornment: <InputAdornment position='start'>+91</InputAdornment> }}
+						placeholder=''
+						name='phoneNumber'
+						value={form.values.phoneNumber}
+						onChange={form.handleChange}
+						label='Phone Number'
+					/>
+					<TextField
+						placeholder=''
+						label='otp'
+						name='otp'
+						value={form.values.otp}
+						onChange={form.handleChange}
+					/>
+					<Button type='submit'>Login</Button>
+					<Button
+						onClick={() => {
+							verifyOtp(`+91${form.values.phoneNumber}`, form.values.otp)
+						}}>
+						submit otp
+					</Button>
+					<Button
+						onClick={() => {
+							logOut()
+						}}>
+						logout
+					</Button>
+				</Stack>
+			</form>
+		</Container>
+	)
 }
 
 export default Index

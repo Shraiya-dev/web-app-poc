@@ -1,104 +1,132 @@
 import { useState } from 'react'
 import { useFormik } from 'formik'
-import { TextField, Typography } from '@mui/material'
+import { TextField, Typography, Box, Stack } from '@mui/material'
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos'
 
 import { useRouter } from 'next/router'
 import LoadingButton from '@mui/lab/LoadingButton'
+import { styled } from '@mui/system'
 
-export const BasicDetailsForm = ({ setIsBasicDetails }) => {
+export const BasicDetailsForm = () => {
 	const router = useRouter()
 
 	const [loading, setLoading] = useState(false)
 
 	console.log('router', router)
-	const formik = useFormik({
+	const form = useFormik({
 		initialValues: {
-			phone: '',
+			name: '',
+			company: '',
+			companyEmail: '',
+			phoneNumber: '',
 		},
 		onSubmit: (values) => {
-			// alert(JSON.stringify(values, null, 2))
 			router.push('/booking')
 		},
 	})
 
 	const handlePrev = () => {
-		console.log('Hello')
-		setIsBasicDetails((state) => !state)
+		router.push('/login')
 	}
 
+	const CustomizedBasicDetails = styled(Box)(({ theme }) => ({
+		'.back': {
+			paddingTop: '4em',
+			paddingLeft: '7em',
+		},
+
+		'.cta': {
+			marginTop: '1em',
+			width: '100%',
+			background: '#244CB3',
+			color: 'white',
+			cursor: 'pointer',
+		},
+		'.form-info': {
+			display: 'flex',
+			justifyContent: 'center',
+			paddingTop: '12%',
+		},
+		'.text-field':{
+			width: '36.25ch', marginBottom: '1em', height: '6ch'
+		}
+	}))
+
 	return (
-		<div>
-			<div style={{ paddingTop: '3em', paddingLeft: '7em' }}>
-				<span
-					style={{ cursor: 'pointer', background: 'none', fontFamily: 'Mulish' }}
-					onClick={() => handlePrev()}>
-					{`<Back`}
-				</span>
-			</div>
+		<CustomizedBasicDetails>
+			<Box>
+				<Box className='back'>
+					<Stack
+						display='inline'
+						style={{ cursor: 'pointer', background: 'none', fontFamily: 'Mulish' }}
+						onClick={() => handlePrev()}>
+						<ArrowBackIosIcon style={{ fontSize: '24px', marginRight: '12', verticalAlign: 'middle' }} />
+						<Typography display='inline' style={{ verticalAlign: 'middle' }}>
+							Back
+						</Typography>
+					</Stack>
+				</Box>
 
-			<div style={{ display: 'flex', justifyContent: 'center', paddingTop: '15%' }}>
-				<form onSubmit={formik.handleSubmit} style={{ width: '36.25ch' }}>
-					<Typography variant='h5' style={{ paddingBottom: '0.5em' }}>
-						Basic Details
-					</Typography>
+				<Box className='form-info'>
+					<form onSubmit={form.handleSubmit} style={{ width: '36.25ch' }}>
+						<Typography variant='h5' style={{ paddingBottom: '0.5em' }}>
+							Basic Details
+						</Typography>
 
-					<Typography>Name</Typography>
-					<TextField
-						id=''
-						name=''
-						type=''
-						placeholder=''
-						required={true}
-						style={{ width: '36.25ch', marginBottom: '1em', height: '6ch' }}
-					/>
+						<Typography>Name</Typography>
+						<TextField
+							id='name'
+							name='name'
+							onChange={form.handleChange}
+							value={form.values.name}
+							placeholder='Enter Your Full Name'
+							required={true}
+							className='text-field'
+						/>
 
-					<Typography>Company</Typography>
-					<TextField
-						id=''
-						name=''
-						type=''
-						placeholder=''
-						required={true}
-						style={{ width: '36.25ch', marginBottom: '1em', height: '6ch' }}
-					/>
+						<Typography>Company</Typography>
+						<TextField
+							id='company'
+							name='company'
+							onChange={form.handleChange}
+							value={form.values.company}
+							placeholder='Enter Company Name'
+							required={true}
+							className='text-field'
+						/>
 
-					<Typography>Company Email</Typography>
-					<TextField
-						id=''
-						name=''
-						type=''
-						placeholder=''
-						required={true}
-						style={{ width: '36.25ch', marginBottom: '1em', height: '6ch' }}
-					/>
+						<Typography>Company Email</Typography>
+						<TextField
+							id='companyEmail'
+							name='companyEmail'
+							onChange={form.handleChange}
+							value={form.values.companyEmail}
+							placeholder='Enter Email'
+							required={true}
+							className='text-field'
+						/>
 
-					<Typography>Phone Number</Typography>
-					<TextField
-						id=''
-						name=''
-						type=''
-						placeholder=''
-						required={true}
-						style={{ width: '36.25ch', marginBottom: '1em', height: '6ch' }}
-					/>
-					<LoadingButton
-						type='submit'
-						//   onClick={handleClick}
-						//   endIcon={<SendIcon />}
-						loading={loading}
-						loadingPosition='start'
-						variant='contained'
-						style={{
-							marginTop: '1em',
-							width: '100%',
-							background: '#244CB3',
-							color: 'white',
-							cursor: 'pointer',
-						}}>
-						Next
-					</LoadingButton>
-				</form>
-			</div>
-		</div>
+						<Typography>Phone Number</Typography>
+						<TextField
+							id='phoneNumber'
+							name='phoneNumber'
+							onChange={form.handleChange}
+							value={form.values.phoneNumber}
+							placeholder='9999988888'
+							required={true}
+							className='text-field'
+						/>
+						<LoadingButton
+							type='submit'
+							loading={loading}
+							loadingPosition='start'
+							variant='contained'
+							className='cta'>
+							Next
+						</LoadingButton>
+					</form>
+				</Box>
+			</Box>
+		</CustomizedBasicDetails>
 	)
 }

@@ -2,21 +2,26 @@ import {
 	Typography,
 	Select,
 	MenuItem,
-	Grid,
 	Button,
-	Drawer,
 	TextField,
 	Box,
 	InputLabel,
 	FormControl,
+	Stack,
+	InputAdornment,
 } from '@mui/material'
 import { useState } from 'react'
 import { useFormik } from 'formik'
 
+import FilterDrawer from './filterDrawer'
+import styled from '@emotion/styled'
+import FilterAltIcon from '@mui/icons-material/FilterAlt'
+import SearchIcon from '@mui/icons-material/Search'
+
 export default function BookingFilters() {
 	const [openFilter, setOpenFilter] = useState(false)
 
-	const formik = useFormik({
+	const form = useFormik({
 		initialValues: {
 			phone: '',
 		},
@@ -30,98 +35,29 @@ export default function BookingFilters() {
 		setOpenFilter((state) => !state)
 	}
 
-	const filterDrawer = () => {
-		return (
-			<Drawer anchor={'right'} open={openFilter} onClose={handleFilter}>
-				<Box style={{ padding: 30 }}>
-					<div>
-						<span
-							style={{ cursor: 'pointer', background: 'none', fontFamily: 'Mulish' }}
-							onClick={handleFilter}>
-							{`<Back`}
-						</span>
-					</div>
-					<div>
-						<form onSubmit={formik.handleSubmit}>
-							<Typography variant='h5' style={{ paddingTop: '1em', paddingBottom: '0.5em' }}>
-								Filters
-							</Typography>
+	const CustomizedFilter = styled(Box)(({ theme }) => ({
+		display: 'flex',
+		justifyContent: 'center',
+		verticalAlign: 'middle',
 
-							<Typography>Booking Stage</Typography>
-							<Select
-								style={{ width: '21.5em', marginBottom: '1em' }}
-								// value={age}
-								//label='Age'
-								// onChange={handleChange}
-							>
-								<MenuItem disabled value=''>
-									<em>Choose</em>
-								</MenuItem>
-								<MenuItem value={10}>Ten</MenuItem>
-								<MenuItem value={20}>Twenty</MenuItem>
-								<MenuItem value={30}>Thirty</MenuItem>
-							</Select>
-
-							<Typography>Sort By</Typography>
-							<Select
-								style={{ width: '21.5em', marginBottom: '1em' }}
-								// value={age}
-								//label='Age'
-								// onChange={handleChange}
-							>
-								<MenuItem disabled value=''>
-									<em>Choose</em>
-								</MenuItem>
-								<MenuItem value={10}>Ten</MenuItem>
-								<MenuItem value={20}>Twenty</MenuItem>
-								<MenuItem value={30}>Thirty</MenuItem>
-							</Select>
-
-							<Typography>Location</Typography>
-							<Select
-								style={{ width: '21.5em', marginBottom: '1em' }}
-								// value={age}
-								//label='Age'
-								// onChange={handleChange}
-							>
-								<MenuItem disabled value=''>
-									<em>Choose</em>
-								</MenuItem>
-								<MenuItem value={10}>Ten</MenuItem>
-								<MenuItem value={20}>Twenty</MenuItem>
-								<MenuItem value={30}>Thirty</MenuItem>
-							</Select>
-
-							{/* <Button type='submit'>Submit</Button> */}
-						</form>
-					</div>
-				</Box>
-			</Drawer>
-		)
-	}
+		'.cta': {
+			backgroundColor: 'transparent',
+			boxShadow: 'none',
+			color: 'black',
+			verticalAlign: 'middle',
+			marginLeft: 20,
+		},
+	}))
 
 	return (
-		<div style={{ display: 'flex', justifyContent: 'center' }}>
-			<div>
-				{filterDrawer()}
+		<CustomizedFilter>
+			<Box>
+				<FilterDrawer openFilter={openFilter} setOpenFilter={setOpenFilter} />
 
-				<div>
-					<Typography display={'inline'} style={{ padding: 20 }}>
-						{' '}
+				<Box>
+					<Typography display={'inline'} variant='h4' style={{ marginRight: 100 }}>
 						Booking (20)
 					</Typography>
-
-					<TextField placeholder='Search' />
-
-					{/* <Select
-						value={'Mumbau'}
-						label='Age'
-						// onChange={handleChange}
-					>
-						<MenuItem value={10}>Ten</MenuItem>
-						<MenuItem value={20}>Twenty</MenuItem>
-						<MenuItem value={30}>Thirty</MenuItem>
-					</Select> */}
 
 					<FormControl variant='standard' sx={{ minWidth: 120 }}>
 						<InputLabel>Select Site</InputLabel>
@@ -138,6 +74,18 @@ export default function BookingFilters() {
 						</Select>
 					</FormControl>
 
+					<TextField
+						placeholder='Search'
+						style={{ width: 300, marginLeft: 30, marginRight: 30, maxHeight: 5 }}
+						InputProps={{
+							endAdornment: (
+								<InputAdornment position='end'>
+									<SearchIcon style={{ cursor: 'pointer' }} />
+								</InputAdornment>
+							),
+						}}
+					/>
+
 					<FormControl variant='standard' sx={{ minWidth: 120 }}>
 						<InputLabel>Sort By</InputLabel>
 						<Select
@@ -152,9 +100,11 @@ export default function BookingFilters() {
 							<MenuItem value={30}>Thirty</MenuItem>
 						</Select>
 					</FormControl>
-					<Button onClick={handleFilter}>Filter</Button>
-				</div>
-			</div>
-		</div>
+					<Button className='cta' onClick={handleFilter}>
+						Filter <FilterAltIcon />
+					</Button>
+				</Box>
+			</Box>
+		</CustomizedFilter>
 	)
 }

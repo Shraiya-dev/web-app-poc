@@ -1,11 +1,35 @@
 import * as React from 'react'
-import Box from '@mui/material/Box'
+import { Box, Stack } from '@mui/material'
 import Paper from '@mui/material/Paper'
+import styled from '@emotion/styled'
 
 export default function BookingInfo() {
-	
+	const CustomizedBookingInfo = styled(Box)(({ theme }) => ({
+		display: 'flex',
+		justifyContent: 'center',
+		'.booking': {
+			float: 'left',
+			width: 72,
+			height: 72,
+			background: 'grey',
+			margin: 8,
+			backgroundColor: '#244CB3',
+			opacity: '0.05',
+			borderRadius: '4px',
+		},
+
+		'.text-info': {
+			fontSize: 18,
+			paddingTop: 8,
+		},
+		'.booking-info': {
+			height: 38,
+			fontSize: 30,
+		},
+	}))
+
 	return (
-		<div style={{ display: 'flex', justifyContent: 'center' }}>
+		<CustomizedBookingInfo>
 			<Box
 				sx={{
 					display: 'flex',
@@ -17,63 +41,39 @@ export default function BookingInfo() {
 					},
 				}}>
 				<Paper elevation={3}>
-					<div
-						style={{
-							float: 'left',
-							width: 72,
-							height: 72,
-							background: 'grey',
-							margin: 8,
-							backgroundColor: '#244CB3',
-							opacity: '0.05',
-							borderRadius: '4px',
-						}}>
+					<Box className='booking' style={{ backgroundColor: '#244CB3' }}>
 						A
-					</div>
-					<div style={{ margin: 8 }}>
-						<div style={{ height: 38, color: '#244CB3', fontSize: 30 }}>20</div>
-						<div style={{ fontSize: 18, paddingTop: 8 }}>Total Bookings</div>
-					</div>
+					</Box>
+					<Box style={{ margin: 8 }}>
+						<Stack className='booking-info' style={{ color: '#244CB3' }}>
+							20
+						</Stack>
+						<Stack className='text-info'>Total Bookings</Stack>
+					</Box>
 				</Paper>
 				<Paper elevation={3}>
-					<div
-						style={{
-							float: 'left',
-							width: 72,
-							height: 72,
-							background: 'grey',
-							margin: 8,
-							backgroundColor: '#FF7400',
-							opacity: '0.05',
-							borderRadius: '4px',
-						}}>
+					<Box className='booking' style={{ backgroundColor: '#FF7400' }}>
 						A
-					</div>
-					<div style={{ margin: 8 }}>
-						<div style={{ height: 38, color: '#FF7400', fontSize: 30 }}>20</div>
-						<div style={{ fontSize: 18, paddingTop: 8 }}>In Progress Bookings</div>
-					</div>
+					</Box>
+					<Box style={{ margin: 8 }}>
+						<Stack className='booking-info' style={{ color: '#FF7400' }}>
+							20
+						</Stack>
+						<Stack className='text-info'>In Progress Bookings</Stack>
+					</Box>
 				</Paper>
 				<Paper elevation={3}>
-					<div
-						style={{
-							float: 'left',
-							width: 72,
-							height: 72,
-							background: 'grey',
-							margin: 8,
-							backgroundColor: '#30B12E',
-							opacity: '0.05',
-							borderRadius: '4px',
-						}}>
+					<Box className='booking' style={{ backgroundColor: '#30B12E' }}>
 						A
-					</div>
-					<div style={{ margin: 8 }}>
-						<div style={{ height: 38, color: '#30B12E', fontSize: 30 }}>20</div>
-						<div style={{ fontSize: 18, paddingTop: 8 }}>Heros Hired</div>
-					</div>
+					</Box>
+					<Box style={{ margin: 8 }}>
+						<Stack className='booking-info' style={{ color: '#244CB3' }}>
+							20
+						</Stack>
+						<Stack className='text-info'>Heros Hired</Stack>
+					</Box>
 				</Paper>
 			</Box>
-		</div>
+		</CustomizedBookingInfo>
 	)
 }

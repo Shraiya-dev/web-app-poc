@@ -20,29 +20,6 @@ const intro = [
 		label: '40,000+ Verified Workers',
 	},
 ]
-const CustomizeDashboard = styled(Box)(({ theme }) => ({
-	minHeight: '100vh',
-	display: 'flex',
-	'.left': {
-		backgroundColor: theme.palette.primary.main,
-		flex: 1,
-		justifyContent: 'space-evenly',
-		alignItems: 'center',
-	},
-	'.right': {
-		flex: 1,
-	},
-	'.logoContainer': {
-		display: 'flex',
-		justifyContent: 'center',
-		alignItems: 'center',
-		// margin: '50px',
-	},
-	'.introBox': {
-		minWidth: '80%',
-	},
-}))
-
 export const OnboardingLayout = ({ children, ...props }: any) => {
 	return (
 		<CustomizeDashboard>
@@ -67,6 +44,29 @@ export const OnboardingLayout = ({ children, ...props }: any) => {
 		</CustomizeDashboard>
 	)
 }
+
+const CustomizeDashboard = styled(Box)(({ theme }) => ({
+	minHeight: '100vh',
+	display: 'flex',
+	'.left': {
+		backgroundColor: theme.palette.primary.main,
+		flex: 1,
+		justifyContent: 'space-evenly',
+		alignItems: 'center',
+	},
+	'.right': {
+		flex: 1,
+	},
+	'.logoContainer': {
+		display: 'flex',
+		justifyContent: 'center',
+		alignItems: 'center',
+		// margin: '50px',
+	},
+	'.introBox': {
+		minWidth: '80%',
+	},
+}))
 
 // <Grid container>
 // 	<Grid item xs={5.5} className='left'>

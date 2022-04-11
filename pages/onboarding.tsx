@@ -1,11 +1,12 @@
 import { NextPage } from 'next'
-import { LoginForm } from '../modules/login/components/LoginForm'
+
+import { BasicDetailsForm } from '../modules/login/components/BasicDetailsForm'
 import { OnboardingLayout } from '../sdk'
 
 const Login: NextPage = () => {
 	return (
 		<OnboardingLayout>
-			<LoginForm />
+			<BasicDetailsForm />
 		</OnboardingLayout>
 	)
 }

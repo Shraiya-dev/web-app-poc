@@ -1,7 +1,8 @@
 import { NextPage } from 'next'
 import BookingInfo from '../modules/booking/components/BookingInfo'
 import BookingFilters from '../modules/booking/components/BookingFilters'
-import BookingCards from '../modules/booking/components/BookingCards'
+import BookingCards from '../sdk/components/cards/BookingCards'
+import EmptyBooking from '../modules/booking/components/EmptyBooking'
 
 const Booking: NextPage = () => {
 	return (
@@ -10,6 +11,7 @@ const Booking: NextPage = () => {
 				<BookingInfo />
 				<BookingFilters />
                 <BookingCards />
+				<EmptyBooking />
 			
 		</div>
 	)

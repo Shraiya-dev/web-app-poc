@@ -1,55 +1,61 @@
 import { useFormik } from 'formik'
 import OtpInput from 'react-otp-input'
-import { Button, TextField, Typography } from '@mui/material'
+import { TextField, Typography, Box } from '@mui/material'
 import InputAdornment from '@mui/material/InputAdornment'
 import LoadingButton from '@mui/lab/LoadingButton'
 import { useState } from 'react'
 import { useRouter } from 'next/router'
+import { useContractorAuth } from '../../../sdk'
+import { styled } from '@mui/system'
 
-export const LoginForm = ({ setIsBasicDetails }) => {
+export const LoginForm = () => {
 	const router = useRouter()
+	const { requestOtp, verifyOtp, logOut } = useContractorAuth()
 
-	console.log('router', router)
-	const [otp, setOtp] = useState()
+	const [otp, setOtp] = useState('')
 	const [loading, setLoading] = useState(false)
-	const formik = useFormik({
+
+	const form = useFormik({
 		initialValues: {
-			phone: '',
+			phoneNumber: '',
 		},
 		onSubmit: (values) => {
-			// alert(JSON.stringify(values, null, 2))
+			console.log('values', values)
 			setLoading(true)
-			setIsBasicDetails(true)
+			requestOtp(values.phoneNumber)
+			setLoading(false)
+			router.push('/onboarding')
 		},
 	})
 
-	const handleChange = (e) => {
-		console.log('event', e)
-		setOtp(e)
+	const handleChange = (otpInfo:any) => {
+		setOtp(otpInfo)
 	}
 
 	return (
-		<div style={{ display: 'flex', justifyContent: 'center', paddingTop: '15%' }}>
-			<form onSubmit={formik.handleSubmit}>
-				<Typography variant='h5' style={{ paddingBottom: '0.5em' }}>
+		<Box style={{ display: 'flex', justifyContent: 'center', paddingTop: '15%' }}>
+			<form onSubmit={form.handleSubmit}>
+				<Typography variant='h4' style={{ paddingBottom: '1em' }}>
 					Log In
 				</Typography>
 
 				<Typography>Phone Number</Typography>
 				<TextField
-					id='phone'
-					name='phone'
-					type='phone'
+					id='phoneNumber'
+					name='phoneNumber'
 					placeholder='Enter Phone Number'
-					required={true}
-					sx={{ width: '21.5em', marginBottom: '1em' }}
+					//required={true}
+					sx={{ width: '21.5em', marginBottom: '1.5em' }}
 					InputProps={{
 						startAdornment: <InputAdornment position='start'>+91</InputAdornment>,
 					}}
+					value={form.values.phoneNumber}
+					onChange={form.handleChange}
 				/>
 				<Typography>Enter OTP</Typography>
 				<OtpInput
-					onChange={(otp) => handleChange(otp)}
+					value={otp}
+					onChange={handleChange}
 					numInputs={6}
 					inputStyle={{
 						marginRight: '0.5rem',
@@ -60,18 +66,15 @@ export const LoginForm = ({ setIsBasicDetails }) => {
 					}}
 					focusStyle={{ border: '1px solid #C4C4C4' }}
 					separator={<span> </span>}
-					value={otp}
 				/>
 
 				<LoadingButton
 					type='submit'
-					//   onClick={handleClick}
-					//   endIcon={<SendIcon />}
 					loading={loading}
 					loadingPosition='start'
 					variant='contained'
 					style={{
-						marginTop: '1em',
+						marginTop: '1.5em',
 						width: '100%',
 						background: '#244CB3',
 						color: 'white',
@@ -80,6 +83,6 @@ export const LoginForm = ({ setIsBasicDetails }) => {
 					Submit
 				</LoadingButton>
 			</form>
-		</div>
+		</Box>
 	)
 }
