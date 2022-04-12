@@ -114,7 +114,7 @@ const useOtp = () => {
 		// 	return errors
 		// },
 		onSubmit: (values) => {
-			console.log('values', values)
+			console.log('otp--', values)
 			
 			
 			

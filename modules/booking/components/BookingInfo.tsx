@@ -36,7 +36,7 @@ export default function BookingInfo() {
 					flexWrap: 'wrap',
 					'& > :not(style)': {
 						m: 2,
-						width: 337,
+						width: 400,
 						height: 90,
 					},
 				}}>

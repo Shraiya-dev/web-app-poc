@@ -9,39 +9,43 @@ import { useContractorAuth } from '../../../sdk'
 import { styled } from '@mui/system'
 import * as Yup from 'yup'
 import { checkError } from '../../../sdk'
+import useLogin from '../hooks/useLogin'
 
 export const LoginForm = () => {
-	const router = useRouter()
-	const { requestOtp} = useContractorAuth()
+	const { form, loading, error } = useLogin()
 
-	const [otp, setOtp] = useState('')
-	const [loading, setLoading] = useState(false)
+	//console.log("error",error)
+	// const router = useRouter()
+	// const { requestOtp} = useContractorAuth()
 
-	const form = useFormik({
-		initialValues: {
-			phoneNumber: '',
-		},
+	// const [otp, setOtp] = useState('')
+	// const [loading, setLoading] = useState(false)
 
-		validate: (values) => {
-			const errors = {}
+	// const form = useFormik({
+	// 	initialValues: {
+	// 		phoneNumber: '',
+	// 	},
 
-			if (values.phoneNumber === '' || Number.isNaN(Number(values.phoneNumber))) {
-				errors.phoneNumber = 'Enter Valid phone Number'
-			}
-			return errors
-		},
-		onSubmit: (values) => {
-			console.log('values', values)
-			setLoading(true)
-			requestOtp(values.phoneNumber)
-			setLoading(false)
-			router.push('/verifyOTP')
-		},
-	})
+	// 	validate: (values) => {
+	// 		const errors = {}
 
-	const handleChange = (otpInfo: any) => {
-		setOtp(otpInfo)
-	}
+	// 		if (values.phoneNumber === '' || Number.isNaN(Number(values.phoneNumber))) {
+	// 			errors.phoneNumber = 'Enter Valid phone Number'
+	// 		}
+	// 		return errors
+	// 	},
+	// 	onSubmit: (values) => {
+	// 		console.log('values', values)
+	// 		setLoading(true)
+	// 		requestOtp(values.phoneNumber)
+	// 		setLoading(false)
+	// 		router.push('/verifyOTP')
+	// 	},
+	// })
+
+	// const handleChange = (otpInfo: any) => {
+	// 	setOtp(otpInfo)
+	// }
 
 	return (
 		<Box style={{ display: 'flex', justifyContent: 'center', paddingTop: '15%' }}>
@@ -57,14 +61,14 @@ export const LoginForm = () => {
 					name='phoneNumber'
 					placeholder='Enter Phone Number'
 					//required={true}
-					sx={{ width: '100%', marginBottom: "10" }}
+					helperText={checkError('phoneNumber', form) !== 'valid' ? checkError('phoneNumber', form) : 'll'}
+					sx={{ width: '100%', marginBottom: '10' }}
 					InputProps={{
 						startAdornment: <InputAdornment position='start'>+91</InputAdornment>,
 					}}
 					value={form.values.phoneNumber}
 					onChange={form.handleChange}
-				/>
-				
+				/>{console.log(checkError('phoneNumber', form))}
 				<LoadingButton
 					type='submit'
 					loading={loading}
