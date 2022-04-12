@@ -1,6 +1,6 @@
 import { NextPage } from 'next'
 
-import { BasicDetailsForm } from '../modules/login/components/BasicDetailsForm'
+import { BasicDetailsForm } from '../modules/onboarding/components/BasicDetailsForm'
 import { OnboardingLayout } from '../sdk'
 
 const Login: NextPage = () => {

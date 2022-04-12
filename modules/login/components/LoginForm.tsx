@@ -1,16 +1,18 @@
-import { useFormik } from 'formik'
+import { useFormik, FormikErrors } from 'formik'
 import OtpInput from 'react-otp-input'
-import { TextField, Typography, Box } from '@mui/material'
+import { TextField, Typography, Box, Stack } from '@mui/material'
 import InputAdornment from '@mui/material/InputAdornment'
 import LoadingButton from '@mui/lab/LoadingButton'
 import { useState } from 'react'
 import { useRouter } from 'next/router'
 import { useContractorAuth } from '../../../sdk'
 import { styled } from '@mui/system'
+import * as Yup from 'yup'
+import { checkError } from '../../../sdk'
 
 export const LoginForm = () => {
 	const router = useRouter()
-	const { requestOtp, verifyOtp, logOut } = useContractorAuth()
+	const { requestOtp} = useContractorAuth()
 
 	const [otp, setOtp] = useState('')
 	const [loading, setLoading] = useState(false)
@@ -19,16 +21,25 @@ export const LoginForm = () => {
 		initialValues: {
 			phoneNumber: '',
 		},
+
+		validate: (values) => {
+			const errors = {}
+
+			if (values.phoneNumber === '' || Number.isNaN(Number(values.phoneNumber))) {
+				errors.phoneNumber = 'Enter Valid phone Number'
+			}
+			return errors
+		},
 		onSubmit: (values) => {
 			console.log('values', values)
 			setLoading(true)
 			requestOtp(values.phoneNumber)
 			setLoading(false)
-			router.push('/onboarding')
+			router.push('/verifyOTP')
 		},
 	})
 
-	const handleChange = (otpInfo:any) => {
+	const handleChange = (otpInfo: any) => {
 		setOtp(otpInfo)
 	}
 
@@ -41,33 +52,19 @@ export const LoginForm = () => {
 
 				<Typography>Phone Number</Typography>
 				<TextField
+					error={!!checkError('phoneNumber', form)}
 					id='phoneNumber'
 					name='phoneNumber'
 					placeholder='Enter Phone Number'
 					//required={true}
-					sx={{ width: '21.5em', marginBottom: '1.5em' }}
+					sx={{ width: '100%', marginBottom: "10" }}
 					InputProps={{
 						startAdornment: <InputAdornment position='start'>+91</InputAdornment>,
 					}}
 					value={form.values.phoneNumber}
 					onChange={form.handleChange}
 				/>
-				<Typography>Enter OTP</Typography>
-				<OtpInput
-					value={otp}
-					onChange={handleChange}
-					numInputs={6}
-					inputStyle={{
-						marginRight: '0.5rem',
-						borderRadius: '4px',
-						width: '3.8em',
-						height: '3.8em',
-						border: '1px solid #C4C4C4',
-					}}
-					focusStyle={{ border: '1px solid #C4C4C4' }}
-					separator={<span> </span>}
-				/>
-
+				
 				<LoadingButton
 					type='submit'
 					loading={loading}
