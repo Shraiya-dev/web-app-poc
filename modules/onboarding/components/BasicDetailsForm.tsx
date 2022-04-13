@@ -1,9 +1,6 @@
-import { useState } from 'react'
-import { useFormik } from 'formik'
-import { TextField, Typography, Box, Stack, Button, InputLabel } from '@mui/material'
+import { TextField, Typography, Box, Button, InputLabel, Stack } from '@mui/material'
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos'
 
-import { useRouter } from 'next/router'
 import LoadingButton from '@mui/lab/LoadingButton'
 import { styled } from '@mui/system'
 
@@ -12,64 +9,66 @@ import useOnboarding from '../hooks/useOnboard'
 export const BasicDetailsForm = () => {
 	const { form, loading } = useOnboarding()
 
-	const CustomizedBasicDetails = styled(Box)(({ theme }) => ({
-		'.back': {
-			paddingTop: '4em',
-			paddingLeft: '7em',
-		},
+	// const CustomizedBasicDetails = styled(Box)(({ theme }) => ({
+	// 	'.back': {
+	// 		paddingTop: '4em',
+	// 		paddingLeft: '7em',
+	// 	},
 
-		'.cta': {
-			marginTop: '1em',
-			width: '100%',
-			background: '#244CB3',
-			color: 'white',
-			cursor: 'pointer',
-		},
-		'.form-info': {
-			display: 'flex',
-			justifyContent: 'center',
-			paddingTop: '12%',
-		},
-		'.text-field': {
-			width: '36.25ch',
-			marginBottom: '1em',
-			height: '6ch',
-		},
-	}))
+	// 	'.cta': {
+	// 		marginTop: '1em',
+	// 		width: '100%',
+	// 		background: '#244CB3',
+	// 		color: 'white',
+	// 		cursor: 'pointer',
+	// 	},
+	// 	'.form-info': {
+	// 		display: 'flex',
+	// 		justifyContent: 'center',
+	// 		paddingTop: '12%',
+	// 	},
+	// 	'.text-field': {
+	// 		width: '36.25ch',
+	// 		marginBottom: '1em',
+	// 		height: '6ch',
+	// 	},
+	// }))
 
 	return (
-		<CustomizedBasicDetails>
-			<Box>
-				<Box className='back'>
-					<Button
-						href='/login'
-						startIcon={
-							<ArrowBackIosIcon
-								style={{ fontSize: '24px', marginRight: '12', verticalAlign: 'middle' }}
-							/>
-						}
-						variant='text'>
-						Back
-					</Button>
-				</Box>
+		<Box>
+			<Box style={{ paddingTop: '4em', paddingLeft: '7em' }}>
+				<Button
+					href='/login'
+					startIcon={
+						<ArrowBackIosIcon style={{ fontSize: '24px', marginRight: '12', verticalAlign: 'middle' }} />
+					}
+					variant='text'>
+					Back
+				</Button>
+			</Box>
 
-				<Box className='form-info'>
-					<form onSubmit={form.handleSubmit} style={{ width: '36.25ch' }}>
+			<Box style={{ display: 'flex', justifyContent: 'center', paddingTop: '12%' }}>
+				<form onSubmit={form.handleSubmit} style={{ width: '36.25ch' }}>
+					<Stack>
 						<Typography variant='h5' style={{ paddingBottom: '0.5em' }}>
 							Basic Details
 						</Typography>
-						<InputLabel id='name'>Name</InputLabel>
+						<InputLabel id='name' style={{ paddingTop: 10, paddingBottom: 6 }}>
+							Name
+						</InputLabel>
 						<TextField
 							id='name'
 							name='name'
-							onChange={form.handleChange}
 							value={form.values.name}
+							onChange={form.handleChange}
 							placeholder='Enter Your Full Name'
 							required={true}
-							className='text-field'
+							//className='text-field'
 						/>
 
-						<InputLabel id='company'>Company</InputLabel>
+						<InputLabel id='company' style={{ paddingTop: 10, paddingBottom: 6 }}>
+							Company
+						</InputLabel>
 						<TextField
 							id='company'
 							name='company'
@@ -77,10 +76,12 @@ export const BasicDetailsForm = () => {
 							value={form.values.company}
 							placeholder='Enter Company Name'
 							required={true}
-							className='text-field'
+							//className='text-field'
 						/>
 
-						<InputLabel id='companyEmail'>Company Email</InputLabel>
+						<InputLabel id='companyEmail' style={{ paddingTop: 10, paddingBottom: 6 }}>
+							Company Email
+						</InputLabel>
 						<TextField
 							id='companyEmail'
 							name='companyEmail'
@@ -88,10 +89,12 @@ export const BasicDetailsForm = () => {
 							value={form.values.companyEmail}
 							placeholder='Enter Email'
 							required={true}
-							className='text-field'
+							//className='text-field'
 						/>
 
-						<InputLabel id='phoneNumber'>Phone Number</InputLabel>
+						<InputLabel id='phoneNumber' style={{ paddingTop: 10, paddingBottom: 6 }}>
+							Phone Number
+						</InputLabel>
 						<TextField
 							id='phoneNumber'
 							name='phoneNumber'
@@ -99,19 +102,25 @@ export const BasicDetailsForm = () => {
 							value={form.values.phoneNumber}
 							placeholder='9999988888'
 							required={true}
-							className='text-field'
+							//className='text-field'
 						/>
 						<LoadingButton
 							type='submit'
 							loading={loading}
 							//loadingPosition='start'
 							variant='contained'
-							className='cta'>
+							style={{
+								marginTop: '1em',
+								width: '100%',
+								background: '#244CB3',
+								color: 'white',
+								cursor: 'pointer',
+							}}>
 							Next
 						</LoadingButton>
-					</form>
-				</Box>
+					</Stack>
+				</form>
 			</Box>
-		</CustomizedBasicDetails>
+		</Box>
 	)
 }
