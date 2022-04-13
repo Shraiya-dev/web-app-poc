@@ -17,149 +17,62 @@ const validateOtpField = (otp: any) => {
 }
 
 const useOtp = () => {
-	
 	const router = useRouter()
 	const { phoneNumber, verifyOtp, logOut } = useContractorAuth()
-
 	const [otpState, setOtpState] = useState(initialOtpState)
 	const { status, error } = otpState
-
 	const [otp, setOtp] = useState({ otp: '' })
 
 	const handleChange = (otp: any) => setOtp({ otp })
 
-	//const comingFrom = location?.state?.from;
-
-	const handleOTPSubmit = async () => {
-		console.log('HANDLE OTP SUBMIT', phoneNumber)
-		if (!phoneNumber) {
-			return router.push('/login')
-			//   if (comingFrom === "/login") {
-			//     return navigate("/login");
-			//   }
-
-			//   if (comingFrom === "/register") {
-			//     return navigate("/register");
-			//   }
-		}
-
-		setOtpState((prev) => ({ ...prev, error: '' }))
-
-		const result = validateOtpField(otp)
-
-
-		if (result === 'valid') {
-			const formattedPhoneNumber = `${phoneNumber}`
-
-			setOtpState((prevValues) => ({
-				...prevValues,
-				status: 'loading',
-			}))
-
-            
-			let res;
-
-			//   if (comingFrom === "/register") {
-			//     res = await registerByOtp(formattedPhoneNumber, otp.otp);
-			//   }
-            verifyOtp(formattedPhoneNumber, otp.otp).then((res)=>{
-                console.log("00000",res);
-            })
-
-
-			//res = await verifyOtp(formattedPhoneNumber, otp.otp)
-
-            console.log("----",res)
-
-			//   if (comingFrom === "/login") {
-			//     res = await verifyOtp(formattedPhoneNumber, otp.otp);
-			//   }
-          
-            
-// Todo Change the Routers on fail
-			if (res?.data?.success) {
-				setOtpState((prevValues) => ({
-					...prevValues,
-					status: 'success',
-				}))
-                
-				return router.push('/onboarding');
-			}
-
-			setOtpState((prevValues) => ({
-				...prevValues,
-				otp: '',
-				status: 'failed',
-				error: res?.data?.error,
-			}))
-			return router.push('/onboarding');
-		}
-
-		setOtpState((prev) => ({ ...prev, error: result }))
-	}
-
-    const form = useFormik({
+	const form = useFormik({
 		initialValues: {
 			otp: '',
 		},
 
-	
 		onSubmit: (values) => {
-			console.log('otp--', values)
-			
-			
-			
+			if (validateOtpField(otp) === 'valid') {
+				verifyOtp(`${phoneNumber}`, otp.otp)
+					.then((res) => {
+						console.log('00000', res)
+						if (res?.data?.success) {
+							setOtpState((prevValues) => ({
+								...prevValues,
+								status: 'success',
+							}))
+
+							return router.push('/onboarding')
+						}
+
+						setOtpState((prevValues) => ({
+							...prevValues,
+							otp: '',
+							status: 'failed',
+							error: res?.data?.error,
+						}))
+					})
+					.catch((err) => {
+						console.log('error', err)
+					})
+			} else {
+				setOtpState((prevValues) => ({
+					...prevValues,
+					otp: '',
+					status: 'failed',
+					error: 'Invalid OTP',
+				}))
+			}
+
 			router.push('/verifyOTP')
 		},
 	})
-
-
-	useEffect(() => {
-		if (!phoneNumber) {
-			//   if (comingFrom === "/login") {
-			//     return navigate("/login");
-			//   }
-
-			//   if (comingFrom === "/register") {
-			//     return navigate("/register");
-			//   }
-			return router.push('/login')
-		}
-		if (status === 'success') {
-			setOtpState((prevValues) => ({
-				...prevValues,
-				status: 'idle',
-			}))
-		}
-	}, [status, phoneNumber])
-
-	useEffect(() => {
-		if (!phoneNumber) {
-			//   if (comingFrom === "/login") {
-			//     return navigate("/login");
-			//   }
-
-			//   if (comingFrom === "/register") {
-			//     return navigate("/register");
-			//   }
-
-			return router.push('/login')
-		}
-		if (status === 'success') {
-			setOtpState((prevValues) => ({
-				...prevValues,
-				status: 'idle',
-			}))
-		}
-	}, [status, phoneNumber])
 
 	return {
 		status,
 		error,
 		otp,
-        form,
+		form,
 		handleChange,
-		handleOTPSubmit,
 	}
 }
 

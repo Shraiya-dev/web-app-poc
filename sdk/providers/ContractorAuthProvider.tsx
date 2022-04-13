@@ -52,6 +52,9 @@ const ContractorAuthProvider = ({ children }: any) => {
 	const [state, dispatch] = useReducer(simpleReducer, initialAuthState)
 	const router = useRouter()
 	const requestOtp = useCallback(async (phoneNumber: string) => {
+		dispatch({
+			phoneNumber: phoneNumber,
+		})
 		return await sendOtpService(phoneNumber, USER_TYPE.CONTRACTOR)
 	}, [])
 	const loginUser = useCallback((payload, silent: boolean = false) => {
@@ -74,12 +77,13 @@ const ContractorAuthProvider = ({ children }: any) => {
 	}, [])
 	const verifyOtp = useCallback(
 		async (phoneNumber: string, otp: string) => {
-			const { data } = await loginService(phoneNumber, USER_TYPE.CONTRACTOR, USER_LOGIN_TYPE.OTP, otp)
-			if (data?.success) {
-				loginUser(data?.data)
-			} else {
-				throw data
-			}
+			// const { data } = await loginService(phoneNumber, USER_TYPE.CONTRACTOR, USER_LOGIN_TYPE.OTP, otp)
+			// if (data?.success) {
+			// 	loginUser(data?.data)
+			// } else {
+			// 	throw data
+			// }
+			return await loginService(phoneNumber, USER_TYPE.CONTRACTOR, USER_LOGIN_TYPE.OTP, otp)
 		},
 		[loginUser]
 	)
@@ -110,7 +114,7 @@ const ContractorAuthProvider = ({ children }: any) => {
 			// const payload = data.data
 			localStorage.clear()
 			dispatch(initialAuthState)
-			router.push('/')
+			router.push('/login')
 		} catch (error) {}
 	}, [router])
 

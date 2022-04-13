@@ -12,66 +12,25 @@ const initialLoginState = {
 const useLogin = () => {
 	const router = useRouter()
 
-	const { phoneNumber, requestOtp } = useContractorAuth()
+	const { requestOtp } = useContractorAuth()
 	const [loginState, setLoginState] = useState(initialLoginState)
 	const { status, error } = loginState
-
-	const handlePhoneNumberSubmit = async () => {
-
-        router.push('/verifyOTP')
-		setLoginState((prevValues: any) => ({ ...prevValues, error: null }))
-
-		const result = validatePhoneNumber(phoneNumber)
-		if (result !== 'valid') {
-			return setLoginState((prevValues) => ({
-				...prevValues,
-				error: result,
-			}))
-		}
-
-		try {
-			if (result === 'valid') {
-				const formattedPhoneNumber = `${phoneNumber}`
-				setLoginState((prevValues) => ({
-					...prevValues,
-					status: 'loading',
-				}))
-
-				const res = await requestOtp(formattedPhoneNumber)
-
-				if (res?.data?.success) {
-					setLoginState((prevValues) => ({
-						...prevValues,
-						status: 'success',
-					}))
-					return
-				}
-				setLoginState((prevValues) => ({
-					...prevValues,
-					status: 'failed',
-					error: res?.data?.error || res?.error,
-				}))
-			}
-		} catch (error: any) {
-			setLoginState((prevValues) => ({
-				...prevValues,
-				status: 'failed',
-				error: error.message,
-			}))
-		}
-	}
-
 	const [loading, setLoading] = useState(false)
 
+	
 	const form = useFormik({
 		initialValues: {
 			phoneNumber: '',
 		},
 
 		validate: (values) => {
-			const errors = { }
+			const errors = {}
 
-			if (values.phoneNumber === '' || Number.isNaN(Number(values.phoneNumber)) || values.phoneNumber.length!==10) {
+			if (
+				values.phoneNumber === '' ||
+				Number.isNaN(Number(values.phoneNumber)) ||
+				values.phoneNumber.length !== 10
+			) {
 				errors.phoneNumber = 'Enter Valid phone Number'
 			}
 			return errors
@@ -79,38 +38,35 @@ const useLogin = () => {
 		onSubmit: (values) => {
 			console.log('values')
 
-			//setLoading(true)
-			requestOtp(values.phoneNumber).then((res)=>{
-                console.log("resquest sent", res)
-            })
-			//setLoading(false)
-			router.push('/verifyOTP')
+			setLoading(true)
+			requestOtp(`+91${values?.phoneNumber}`)
+				.then((res) => {
+					console.log('hello', res)
+					if (res?.data?.success) {
+						setLoginState((prevValues) => ({
+							...prevValues,
+							status: 'success',
+						}))
+						return router.push('/verifyOTP')
+					}
+					setLoginState((prevValues) => ({
+						...prevValues,
+						status: 'failed',
+						error: res?.data?.error || res?.error,
+					}))
+					setLoading(false)
+				})
+				.catch((err) => {
+					console.log('error', err)
+				})
 		},
 	})
 
-	useEffect(() => {
-		if (status === 'success') {
-			setLoginState((prevValues) => ({
-				...prevValues,
-				status: 'idle',
-			}))
-
-			router.push('/verifyOTP')
-
-			//   navigate("/otpverification", {
-			//     state: {
-			//       from: "/login",
-			//     },
-			//   });
-		}
-	}, [status, router])
-
 	return {
-		handlePhoneNumberSubmit,
 		status,
 		error,
 		form,
-        loading
+		loading,
 	}
 }
 

@@ -1,33 +1,16 @@
 import { useState } from 'react'
 import { useFormik } from 'formik'
-import { TextField, Typography, Box, Stack } from '@mui/material'
+import { TextField, Typography, Box, Stack, Button, InputLabel } from '@mui/material'
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos'
 
 import { useRouter } from 'next/router'
 import LoadingButton from '@mui/lab/LoadingButton'
 import { styled } from '@mui/system'
 
+import useOnboarding from '../hooks/useOnboard'
+
 export const BasicDetailsForm = () => {
-	const router = useRouter()
-
-	const [loading, setLoading] = useState(false)
-
-	console.log('router', router)
-	const form = useFormik({
-		initialValues: {
-			name: '',
-			company: '',
-			companyEmail: '',
-			phoneNumber: '',
-		},
-		onSubmit: (values) => {
-			router.push('/booking')
-		},
-	})
-
-	const handlePrev = () => {
-		router.push('/login')
-	}
+	const { form, loading } = useOnboarding()
 
 	const CustomizedBasicDetails = styled(Box)(({ theme }) => ({
 		'.back': {
@@ -47,24 +30,27 @@ export const BasicDetailsForm = () => {
 			justifyContent: 'center',
 			paddingTop: '12%',
 		},
-		'.text-field':{
-			width: '36.25ch', marginBottom: '1em', height: '6ch'
-		}
+		'.text-field': {
+			width: '36.25ch',
+			marginBottom: '1em',
+			height: '6ch',
+		},
 	}))
 
 	return (
 		<CustomizedBasicDetails>
 			<Box>
 				<Box className='back'>
-					<Stack
-						display='inline'
-						style={{ cursor: 'pointer', background: 'none', fontFamily: 'Mulish' }}
-						onClick={() => handlePrev()}>
-						<ArrowBackIosIcon style={{ fontSize: '24px', marginRight: '12', verticalAlign: 'middle' }} />
-						<Typography display='inline' style={{ verticalAlign: 'middle' }}>
-							Back
-						</Typography>
-					</Stack>
+					<Button
+						href='/login'
+						startIcon={
+							<ArrowBackIosIcon
+								style={{ fontSize: '24px', marginRight: '12', verticalAlign: 'middle' }}
+							/>
+						}
+						variant='text'>
+						Back
+					</Button>
 				</Box>
 
 				<Box className='form-info'>
@@ -72,8 +58,7 @@ export const BasicDetailsForm = () => {
 						<Typography variant='h5' style={{ paddingBottom: '0.5em' }}>
 							Basic Details
 						</Typography>
-
-						<Typography>Name</Typography>
+						<InputLabel id='name'>Name</InputLabel>
 						<TextField
 							id='name'
 							name='name'
@@ -84,7 +69,7 @@ export const BasicDetailsForm = () => {
 							className='text-field'
 						/>
 
-						<Typography>Company</Typography>
+						<InputLabel id='company'>Company</InputLabel>
 						<TextField
 							id='company'
 							name='company'
@@ -95,7 +80,7 @@ export const BasicDetailsForm = () => {
 							className='text-field'
 						/>
 
-						<Typography>Company Email</Typography>
+						<InputLabel id='companyEmail'>Company Email</InputLabel>
 						<TextField
 							id='companyEmail'
 							name='companyEmail'
@@ -106,7 +91,7 @@ export const BasicDetailsForm = () => {
 							className='text-field'
 						/>
 
-						<Typography>Phone Number</Typography>
+						<InputLabel id='phoneNumber'>Phone Number</InputLabel>
 						<TextField
 							id='phoneNumber'
 							name='phoneNumber'
@@ -119,7 +104,7 @@ export const BasicDetailsForm = () => {
 						<LoadingButton
 							type='submit'
 							loading={loading}
-							loadingPosition='start'
+							//loadingPosition='start'
 							variant='contained'
 							className='cta'>
 							Next

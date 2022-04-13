@@ -5,9 +5,8 @@ import useOtp from '../hooks/useOtp'
 import { CircularProgress } from '@mui/material'
 
 export const OTPVerification = () => {
-	const { otp, form, status, error, handleChange, handleOTPSubmit } = useOtp()
+	const { otp, form, status, error, handleChange } = useOtp()
 
-	console.log('otperror', error)
 	return (
 		<Box style={{ display: 'flex', justifyContent: 'center', paddingTop: '15%' }}>
 			<form onSubmit={form.handleSubmit}>
@@ -42,12 +41,7 @@ export const OTPVerification = () => {
 					Resend OTP
 				</Stack>
 
-				<Button
-					onClick={handleOTPSubmit}
-					variant='contained'
-					color='primary'
-					fullWidth
-					disabled={status === 'loading'}>
+				<Button type='submit' variant='contained' color='primary' fullWidth disabled={status === 'loading'}>
 					{status === 'loading' ? <CircularProgress size={30} /> : `Verify OTP`}
 				</Button>
 			</form>

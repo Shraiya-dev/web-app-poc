@@ -3,7 +3,7 @@ import { NextPage } from 'next'
 import { BasicDetailsForm } from '../modules/onboarding/components/BasicDetailsForm'
 import { OnboardingLayout } from '../sdk'
 
-const Login: NextPage = () => {
+const Onboarding: NextPage = () => {
 	return (
 		<OnboardingLayout>
 			<BasicDetailsForm />
@@ -11,4 +11,4 @@ const Login: NextPage = () => {
 	)
 }
 
-export default Login
+export default Onboarding
