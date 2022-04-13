@@ -5,11 +5,13 @@ import useOtp from '../hooks/useOtp'
 import { CircularProgress } from '@mui/material'
 
 export const OTPVerification = () => {
-	const { otp, form, status, error, handleChange } = useOtp()
+	const { otp, form, status, error, handleChange, resendOTP, otpState } = useOtp()
 
+    console.log("error-----",otpState.error)
 	return (
-		<Box style={{ display: 'flex', justifyContent: 'center', paddingTop: '15%' }}>
-			<form onSubmit={form.handleSubmit}>
+		<Box style={{ display: 'flex', justifyContent: 'center', paddingTop: '37%' }}>
+            <Box>
+            <form onSubmit={form.handleSubmit}>
 				<Typography variant='h4'>Enter OTP</Typography>
 
 				<OtpInput
@@ -27,7 +29,8 @@ export const OTPVerification = () => {
 					focusStyle={{ border: '1px solid #C4C4C4' }}
 					separator={<span> </span>}
 					isInputNum={true}
-					hasErrored={!!error}
+					hasErrored={!!error || !!otpState.error}
+                    
 					errorStyle={{ border: '1px solid #F70000' }}
 				/>
 				<Stack
@@ -37,7 +40,7 @@ export const OTPVerification = () => {
 						marginBottom: 20,
 						marginRight: 15,
 						textAlign: 'center',
-					}}>
+					}} onClick={resendOTP}> 
 					Resend OTP
 				</Stack>
 
@@ -45,6 +48,8 @@ export const OTPVerification = () => {
 					{status === 'loading' ? <CircularProgress size={30} /> : `Verify OTP`}
 				</Button>
 			</form>
+            </Box>
+			
 		</Box>
 	)
 }

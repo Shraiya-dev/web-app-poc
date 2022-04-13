@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react'
-//import { useNavigate, useLocation } from "react-router-dom";
 import { useRouter } from 'next/router'
 import { useContractorAuth } from '../../../sdk'
 import { useFormik } from 'formik'
@@ -18,12 +17,22 @@ const validateOtpField = (otp: any) => {
 
 const useOtp = () => {
 	const router = useRouter()
-	const { phoneNumber, verifyOtp, logOut } = useContractorAuth()
+	const { phoneNumber, verifyOtp, requestOtp } = useContractorAuth()
 	const [otpState, setOtpState] = useState(initialOtpState)
 	const { status, error } = otpState
 	const [otp, setOtp] = useState({ otp: '' })
 
 	const handleChange = (otp: any) => setOtp({ otp })
+
+	const resendOTP = () => {
+		requestOtp(phoneNumber || '')
+			.then((res) => {
+				console.log('res', res)
+			})
+			.catch((err) => {
+				console.log('error', err)
+			})
+	}
 
 	const form = useFormik({
 		initialValues: {
@@ -34,25 +43,31 @@ const useOtp = () => {
 			if (validateOtpField(otp) === 'valid') {
 				verifyOtp(`${phoneNumber}`, otp.otp)
 					.then((res) => {
-						console.log('00000', res)
-						if (res?.data?.success) {
+						console.log('00000', res?.data)
+						if (res?.success) {
 							setOtpState((prevValues) => ({
 								...prevValues,
 								status: 'success',
 							}))
 
 							return router.push('/onboarding')
+						} else {
+							setOtpState((prevValues) => ({
+								...prevValues,
+								otp: '',
+								status: 'failed',
+								error: 'Invalid OTP',
+							}))
 						}
-
+					})
+					.catch((err) => {
+						console.log('error', err)
 						setOtpState((prevValues) => ({
 							...prevValues,
 							otp: '',
 							status: 'failed',
-							error: res?.data?.error,
+							error: 'Invalid OTP',
 						}))
-					})
-					.catch((err) => {
-						console.log('error', err)
 					})
 			} else {
 				setOtpState((prevValues) => ({
@@ -62,8 +77,6 @@ const useOtp = () => {
 					error: 'Invalid OTP',
 				}))
 			}
-
-			router.push('/verifyOTP')
 		},
 	})
 
@@ -73,6 +86,8 @@ const useOtp = () => {
 		otp,
 		form,
 		handleChange,
+		resendOTP,
+		otpState,
 	}
 }
 

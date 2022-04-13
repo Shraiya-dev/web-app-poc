@@ -10,14 +10,14 @@ export default function EmptyBooking() {
 	}
 
 	const CustomEmptyBooking = styled(Box)(({ theme }) => ({
+		display:"flex",
 		justifyContent: 'center',
 		textAlign: 'center',
-		margin: 200,
 		'.info': {
 			margin: 10,
 		},
 		'.cta': {
-			marginTop: 30,
+			marginTop: 10,
 		},
 		'.info-secondary': {
 			margin: 10,

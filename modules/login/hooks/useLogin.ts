@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import { useContractorAuth } from '../../../sdk'
 import { useFormik } from 'formik'
-import { validatePhoneNumber } from '../../../sdk'
 
 const initialLoginState = {
 	status: 'idle',
@@ -17,7 +16,6 @@ const useLogin = () => {
 	const { status, error } = loginState
 	const [loading, setLoading] = useState(false)
 
-	
 	const form = useFormik({
 		initialValues: {
 			phoneNumber: '',
@@ -36,12 +34,9 @@ const useLogin = () => {
 			return errors
 		},
 		onSubmit: (values) => {
-			console.log('values')
-
 			setLoading(true)
 			requestOtp(`+91${values?.phoneNumber}`)
 				.then((res) => {
-					console.log('hello', res)
 					if (res?.data?.success) {
 						setLoginState((prevValues) => ({
 							...prevValues,

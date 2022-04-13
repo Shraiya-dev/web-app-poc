@@ -8,8 +8,10 @@ import useLogin from '../hooks/useLogin'
 export const LoginForm = () => {
 	const { form, loading, error } = useLogin()
 
+	console.log("loading",loading)
+
 	return (
-		<Box style={{ display: 'flex', justifyContent: 'center', paddingTop: '15%' }}>
+		<Box style={{ display: 'flex', justifyContent: 'center', paddingTop: '37%' }}>
 			<form onSubmit={form.handleSubmit}>
 				<Typography variant='h4' style={{ paddingBottom: '1em' }}>
 					Log In
@@ -33,8 +35,7 @@ export const LoginForm = () => {
 				{console.log(checkError('phoneNumber', form))}
 				<LoadingButton
 					type='submit'
-					loading={loading}
-					loadingPosition='start'
+					loading={!!loading}
 					variant='contained'
 					style={{
 						marginTop: '1.5em',

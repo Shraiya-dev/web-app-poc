@@ -77,13 +77,14 @@ const ContractorAuthProvider = ({ children }: any) => {
 	}, [])
 	const verifyOtp = useCallback(
 		async (phoneNumber: string, otp: string) => {
-			// const { data } = await loginService(phoneNumber, USER_TYPE.CONTRACTOR, USER_LOGIN_TYPE.OTP, otp)
-			// if (data?.success) {
-			// 	loginUser(data?.data)
-			// } else {
-			// 	throw data
-			// }
-			return await loginService(phoneNumber, USER_TYPE.CONTRACTOR, USER_LOGIN_TYPE.OTP, otp)
+			const { data } = await loginService(phoneNumber, USER_TYPE.CONTRACTOR, USER_LOGIN_TYPE.OTP, otp)
+			if (data?.success) {
+				loginUser(data?.data)
+				return data;
+			} else {
+				throw data
+			}
+			//return await loginService(phoneNumber, USER_TYPE.CONTRACTOR, USER_LOGIN_TYPE.OTP, otp)
 		},
 		[loginUser]
 	)
