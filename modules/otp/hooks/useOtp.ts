@@ -17,9 +17,7 @@ const validateOtpField = (otp: any) => {
 }
 
 const useOtp = () => {
-	//   const navigate = useNavigate();
-	//   const location = useLocation();
-
+	
 	const router = useRouter()
 	const { phoneNumber, verifyOtp, logOut } = useContractorAuth()
 
@@ -102,17 +100,10 @@ const useOtp = () => {
 
     const form = useFormik({
 		initialValues: {
-			phoneNumber: '',
+			otp: '',
 		},
 
-		// validate: (values) => {
-		// 	const errors = {}
-
-		// 	if (values.phoneNumber === '' || Number.isNaN(Number(values.phoneNumber))) {
-		// 		errors.phoneNumber = 'Enter Valid phone Number'
-		// 	}
-		// 	return errors
-		// },
+	
 		onSubmit: (values) => {
 			console.log('otp--', values)
 			

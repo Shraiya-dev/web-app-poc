@@ -86,7 +86,7 @@ export default function BookingCards() {
 				alignItems='flex-start'>
 				{items?.map((index) => {
 					return (
-						<Grid item xs={12} sm={12} md={9} key={index}>
+						<Grid item xs={12} sm={12} md={9} >
 							<Box>
 								<Box
 									sx={{

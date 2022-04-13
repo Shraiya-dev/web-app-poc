@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react'
-//import { useNavigate, useLocation } from "react-router-dom";
-import { Router, useRouter } from 'next/router'
+import { useRouter } from 'next/router'
 import { useContractorAuth } from '../../../sdk'
 import { useFormik } from 'formik'
 import { validatePhoneNumber } from '../../../sdk'
@@ -16,8 +15,6 @@ const useLogin = () => {
 	const { phoneNumber, requestOtp } = useContractorAuth()
 	const [loginState, setLoginState] = useState(initialLoginState)
 	const { status, error } = loginState
-
-	//const navigate = useNavigate();
 
 	const handlePhoneNumberSubmit = async () => {
 
