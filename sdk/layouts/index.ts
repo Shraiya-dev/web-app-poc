@@ -1,2 +1,2 @@
 export * from './OnboardingLayout'
-export * from './DashbardLayout'
+export * from './DashboardLayout'
