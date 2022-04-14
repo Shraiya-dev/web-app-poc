@@ -1,16 +1,21 @@
 import { Paper, Stack, Box, Typography } from '@mui/material'
+import { styled } from '@mui/system';
 import Image from 'next/image'
 
 interface StatisticsCardProps {
 	stat: { src: string; value: string; bgColor: string; color: string; text: string }
 }
+const CustomPaper = styled(Paper)(({ theme }) => ({
+	flex: 1,
+	'.iconImage': {
+
+	}
+}))
 export const StatisticsCard = ({ stat }: StatisticsCardProps) => {
 	return (
-		<Paper elevation={4} sx={{ flex: 1 }}>
+		<CustomPaper elevation={4}>
 			<Stack spacing={2} p={2} direction={'row'}>
-				<Box sx={{ background: stat.bgColor, padding: '15px', borderRadius: '6px' }}>
-					<Image src={stat.src} alt='' />
-				</Box>
+				<Image src={stat.src} className='iconImage' alt='stat.text' />
 				<Stack direction='column' justifyContent='flex-end'>
 					<Typography variant='h6' fontWeight={900} color={stat.color}>
 						{stat.value}
@@ -20,6 +25,6 @@ export const StatisticsCard = ({ stat }: StatisticsCardProps) => {
 					</Typography>
 				</Stack>
 			</Stack>
-		</Paper>
+		</CustomPaper>
 	)
 }

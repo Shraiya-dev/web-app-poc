@@ -1,4 +1,3 @@
-import axios from 'axios'
 import { useRouter } from 'next/router'
 import { createContext, useCallback, useContext, useEffect, useMemo, useReducer } from 'react'
 import { loginService, sendOtpService } from '../apis'
@@ -42,11 +41,7 @@ const ContractorAuthContext = createContext<AuthProviderValue>({
 	verifyOtp: () => Promise.resolve(null),
 })
 const { Provider, Consumer } = ContractorAuthContext
-/**
- * authAxios  instance of axios with pre attached authorization token.
- * if first try of authenticated request returns "unauthorized" status will retry after refreshing the auth token once
- * then logout user automatically
- */
+
 
 const ContractorAuthProvider = ({ children }: any) => {
 	const [state, dispatch] = useReducer(simpleReducer, initialAuthState)
@@ -109,14 +104,10 @@ const ContractorAuthProvider = ({ children }: any) => {
 	)
 
 	const logOut = useCallback(async () => {
-		try {
-			// ! ask aman why logout doesn't work
-			// const { data } = await axios.post('/auth/logout', { ut: USER_TYPE.CONTRACTOR })
-			// const payload = data.data
-			localStorage.clear()
-			dispatch(initialAuthState)
-			router.push('/login')
-		} catch (error) {}
+
+		localStorage.clear()
+		dispatch(initialAuthState)
+		router.push('/login')
 	}, [router])
 
 	useEffect(() => {
@@ -130,9 +121,7 @@ const ContractorAuthProvider = ({ children }: any) => {
 			phoneNumber: phoneNumber,
 		})
 	}, [])
-	useEffect(() => {
-		console.log(state)
-	}, [state])
+
 
 	//logic for redirect based on state and update userInfo
 	useEffect(() => {
@@ -149,15 +138,17 @@ const ContractorAuthProvider = ({ children }: any) => {
 		}
 
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [state.accessToken, state.phoneNumber, state.phoneNumber])
+	}, [state.accessToken, state.phoneNumber, state.refreshToken])
 	useEffect(() => {
 		if (state.user) {
 			if (state.user.isFirstLogin) {
 				//todo redirect to onboarding flow
 			} else {
-				//todo redirect to dashboard
+				router.push('/dashboard')
 			}
 		}
+		
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [state.user])
 
 	const authProviderValue: AuthProviderValue = useMemo(

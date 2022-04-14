@@ -67,7 +67,9 @@ export const BookingCard = ({ booking }: BookingCardProps) => {
 						&nbsp;More than 90 Days
 					</Typography>
 				</Stack>
-				<Stack></Stack>
+				<Stack>
+					
+				</Stack>
 			</Stack>
 		</CustomPaper>
 	)

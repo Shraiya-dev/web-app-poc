@@ -3,6 +3,8 @@ import { styled } from '@mui/system'
 import Image from 'next/image'
 import React from 'react'
 import { SvgBrandLogo } from '../components'
+import brandLogo from '../../public/assets/icons/BrandLogo.svg'
+
 const intro = [
 	{
 		label: 'Book trained workers online',
@@ -25,9 +27,10 @@ export const OnboardingLayout = ({ children, ...props }: any) => {
 		<CustomizeDashboard>
 			<Stack className='left'>
 				<Box className='logoContainer'>
-					<SvgBrandLogo />
+					{/* <SvgBrandLogo height={50} width={150} /> */}
+					<Image src={brandLogo} alt="" className='brandLogo' />
 				</Box>
-				<Stack width='fit-content'>
+				<Stack width='fit-content' className='instruction'>
 					{intro.map((x, index) => {
 						return (
 							<Stack direction='row' spacing={4} width={'100%'} key={index} mb={1.5}>
@@ -48,6 +51,7 @@ export const OnboardingLayout = ({ children, ...props }: any) => {
 const CustomizeDashboard = styled(Box)(({ theme }) => ({
 	minHeight: '100vh',
 	display: 'flex',
+
 	'.left': {
 		backgroundColor: theme.palette.primary.main,
 		flex: 1,
@@ -61,10 +65,35 @@ const CustomizeDashboard = styled(Box)(({ theme }) => ({
 		display: 'flex',
 		justifyContent: 'center',
 		alignItems: 'center',
-		// margin: '50px',
+	},
+	'.brandLogo': {
+		height: 85,
+		width: 218,
 	},
 	'.introBox': {
 		minWidth: '80%',
+	},
+	//mobile view styles
+	[theme.breakpoints.down('md')]: {
+		flexDirection: "column",
+		'.instruction': {
+			display: "none"
+		},
+		'.logoContainer':{
+			display:"flex",
+			justifyContent:"start",
+			width: "33.06%"
+		},
+		'.brandLogo': {
+			height: 44,
+			width: 112,
+		},
+		'.left': {
+			padding: "10px",
+			display: "flex",
+			maxHeight: 124,
+			alignItems: "start",
+		}
 	},
 }))
 
