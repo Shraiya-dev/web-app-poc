@@ -1,5 +1,5 @@
 import { AccessTime, ArrowRightAlt, CalendarToday, LocationOn } from '@mui/icons-material'
-import { Box, Button, Paper, Stack, Typography } from '@mui/material'
+import { Paper, Stack, Typography } from '@mui/material'
 import { styled } from '@mui/system'
 import Link from 'next/link'
 import { detailsData } from '../../constants'
@@ -38,18 +38,21 @@ export const BookingCard = ({ booking }: BookingCardProps) => {
 					<Typography variant='h6' fontWeight={700}>
 						Bar Bender (10)
 					</Typography>
-					<Stack direction='row' spacing={1.5}>
-						<Typography>Helper (5)</Typography>
-						<Typography>Technician (5)</Typography>
+					<Stack direction='row' flexWrap='wrap'>
+						<Typography mr={1}>Helper (5)</Typography>
+						<Typography mr={1}>Technician (5)</Typography>
 						<Typography>Supervisor (5)</Typography>
 					</Stack>
 					<Typography variant='body2'>ID: OADSKTUQSIQC</Typography>
 				</Stack>
-				<Stack alignSelf='center'>
-					<Link href=''>
-						<Button variant='text' endIcon={<ArrowRightAlt fontSize='inherit' />}>
-							View Details
-						</Button>
+				<Stack alignItems='center' direction='row'>
+					<Link href='' passHref>
+						<Typography variant='body1' component='a' color={'primary.main'}>
+							<Stack alignItems='center' direction='row'>
+								<>View Details</>
+								<ArrowRightAlt fontSize='large' />
+							</Stack>
+						</Typography>
 					</Link>
 				</Stack>
 			</Stack>
@@ -68,12 +71,16 @@ export const BookingCard = ({ booking }: BookingCardProps) => {
 						&nbsp;More than 90 Days
 					</Typography>
 				</Stack>
-				<Stack mt={2} direction={"row"} spacing={3}>
-					{detailsData.map((value , index)=>{
-						return(
-							<Stack direction={"column"} key={index}>
-								<Typography variant='body1' fontWeight={500} lineHeight={2.5} color={"inherit"} >{value.label}</Typography>
-								<Typography variant='h5' fontWeight={700} lineHeight={2} color={"primary"} >{value.value}</Typography>
+				<Stack mt={2} direction={'row'} spacing={3}>
+					{detailsData.map((value, index) => {
+						return (
+							<Stack direction={'column'} key={index}>
+								<Typography variant='body1' fontWeight={500} lineHeight={2.5} color={'inherit'}>
+									{value.label}
+								</Typography>
+								<Typography variant='h5' fontWeight={700} lineHeight={2} color={'primary'}>
+									{value.value}
+								</Typography>
 							</Stack>
 						)
 					})}
