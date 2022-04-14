@@ -5,6 +5,7 @@ import React from 'react'
 import award from '../../public/assets/icons/award.svg'
 import calender from '../../public/assets/icons/calender.svg'
 import watch from '../../public/assets/icons/watch.svg'
+import { BookingCard, StatisticsCard } from '../../sdk'
 import BookingCards from '../../sdk/components/cards/BookingCards'
 import { useDashboard } from './hooks'
 const boxData = [
@@ -34,25 +35,11 @@ export const Dashboard = () => {
 	const { bookings } = useDashboard()
 	return (
 		<>
-			<Grid container spacing={2}>
+			<Grid container spacing={2} alignItems={'stretch'}>
 				{boxData.map((stat, index) => {
 					return (
 						<Grid item sm={6} md={4} key={index}>
-							<Paper elevation={4}>
-								<Stack spacing={2} p={2} direction={'row'}>
-									<Box sx={{ background: stat.bgColor, padding: '15px', borderRadius: '6px' }}>
-										<Image src={stat.src} alt='' />
-									</Box>
-									<Stack direction='column'>
-										<Typography variant='h6' fontWeight={900} color={stat.color}>
-											{stat.value}
-										</Typography>
-										<Typography variant='h6' color={stat.color}>
-											{stat.text}
-										</Typography>
-									</Stack>
-								</Stack>
-							</Paper>
+							<StatisticsCard stat={stat} />
 						</Grid>
 					)
 				})}
@@ -86,11 +73,11 @@ export const Dashboard = () => {
 					<Button>Book Workers</Button>
 				</Stack>
 			) : (
-				<Grid container>
+				<Grid container spacing={2}>
 					{bookings.map((booking, index) => {
 						return (
-							<Grid item md={6} spacing={2} key={index}>
-								<BookingCards />
+							<Grid item md={6} key={index}>
+								<BookingCard booking={{}} />
 							</Grid>
 						)
 					})}
