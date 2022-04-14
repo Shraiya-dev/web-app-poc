@@ -1,5 +1,6 @@
 import { FilterAlt, Search } from '@mui/icons-material'
-import { Button, Grid, InputAdornment, Stack, TextField, Typography } from '@mui/material'
+import { Box, Button, Grid, InputAdornment, Stack, TextField, Typography } from '@mui/material'
+import { styled } from '@mui/system'
 import React from 'react'
 import award from '../../public/assets/icons/award.svg'
 import calender from '../../public/assets/icons/calender.svg'
@@ -9,30 +10,46 @@ import { useDashboard } from './hooks'
 const boxData = [
 	{
 		src: calender,
-		value: '-',
+		value: 0,
 		bgColor: '#244CB30D',
 		color: '#244CB3',
 		text: 'Total Bookings',
 	},
 	{
 		src: watch,
-		value: '-',
+		value: 0,
 		bgColor: '#FF74000D',
 		color: '#FF7400',
 		text: 'In Progress Bookings',
 	},
 	{
 		src: award,
-		value: '-',
+		value: 0,
 		bgColor: '#30B12E0D',
 		color: '#30B12E',
 		text: 'Heros Hired',
 	},
 ]
+
+const CustomizeDashboard = styled(Box)(({ theme }) => ({
+	'.bookingTyppo': {
+		fontSize: "24px",
+		fontWeight: 800,
+	},
+	[theme.breakpoints.down('md')]: {
+		'.bookingTyppo': {
+			fontSize: "16px",
+			fontWeight: 400,
+		},
+
+	},
+}))
+
+
 export const Dashboard = () => {
 	const { bookings } = useDashboard()
 	return (
-		<>
+		<CustomizeDashboard>
 			<Grid container spacing={2} alignItems={'stretch'}>
 				{boxData.map((stat, index) => {
 					return (
@@ -42,13 +59,17 @@ export const Dashboard = () => {
 					)
 				})}
 			</Grid>
-			<Stack direction='row' mt={6} justifyContent={'space-between'}>
-				<Typography variant='h4'>Your Bookings</Typography>
-				<Stack direction={'row'} spacing={2} alignItems='center'>
-					<Button color='inherit' endIcon={<FilterAlt />} variant='text'>
+			<Grid mt={6} container>
+				<Grid item xs={12} md={8} justifyContent='space-between' alignItems='center'>
+					<Typography className='bookingTyppo' variant='h4'>Your Bookings</Typography>
+
+					<Button className='filter' color='inherit' endIcon={<FilterAlt />} variant='text'>
 						Filter
 					</Button>
+				</Grid>
+				<Grid item xs={12} md={4} alignItems='center'>
 					<TextField
+						fullWidth
 						placeholder='Search'
 						size='small'
 						InputProps={{
@@ -59,9 +80,22 @@ export const Dashboard = () => {
 							),
 						}}
 					/>
+				</Grid>
 
-				</Stack>
-			</Stack>
+
+			</Grid>
+			{/* <TextField
+				fullWidth
+				placeholder='Search'
+				size='small'
+				InputProps={{
+					endAdornment: (
+						<InputAdornment position='end'>
+							<Search color='inherit' />
+						</InputAdornment>
+					),
+				}}
+			/> */}
 			<Stack mt={6}>
 				{bookings.length === 0 ? (
 					<Stack flex={1} mt={20} direction={'column'} spacing={4} alignItems='center'>
@@ -75,7 +109,7 @@ export const Dashboard = () => {
 					<Grid container spacing={2}>
 						{bookings.map((booking, index) => {
 							return (
-								<Grid item md={6} key={index}>
+								<Grid item xs={12} md={6} key={index}>
 									<BookingCard booking={{}} />
 								</Grid>
 							)
@@ -83,6 +117,6 @@ export const Dashboard = () => {
 					</Grid>
 				)}
 			</Stack>
-		</>
+		</CustomizeDashboard>
 	)
 }

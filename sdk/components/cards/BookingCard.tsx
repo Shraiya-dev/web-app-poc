@@ -2,6 +2,7 @@ import { AccessTime, ArrowRightAlt, CalendarToday, LocationOn } from '@mui/icons
 import { Box, Button, Paper, Stack, Typography } from '@mui/material'
 import { styled } from '@mui/system'
 import Link from 'next/link'
+import { detailsData } from '../../constants'
 
 interface BookingCardProps {
 	booking: any //todo replace with booking interface
@@ -67,8 +68,15 @@ export const BookingCard = ({ booking }: BookingCardProps) => {
 						&nbsp;More than 90 Days
 					</Typography>
 				</Stack>
-				<Stack>
-					
+				<Stack mt={2} direction={"row"} spacing={3}>
+					{detailsData.map((value , index)=>{
+						return(
+							<Stack direction={"column"} key={index}>
+								<Typography variant='body1' fontWeight={500} lineHeight={2.5} color={"inherit"} >{value.label}</Typography>
+								<Typography variant='h5' fontWeight={700} lineHeight={2} color={"primary"} >{value.value}</Typography>
+							</Stack>
+						)
+					})}
 				</Stack>
 			</Stack>
 		</CustomPaper>
