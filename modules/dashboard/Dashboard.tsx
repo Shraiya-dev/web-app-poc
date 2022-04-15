@@ -106,7 +106,7 @@ export const Dashboard = () => {
 						<Button>Book Workers</Button>
 					</Stack>
 				) : (
-					<Grid container spacing={2}>
+					<Grid container spacing={3}>
 						{bookings.map((booking, index) => {
 							return (
 								<Grid item xs={12} md={6} key={index}>

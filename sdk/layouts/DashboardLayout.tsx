@@ -1,25 +1,26 @@
+import DashboardIcon from '@mui/icons-material/Dashboard'
+import LogoutIcon from '@mui/icons-material/Logout'
+import PersonIcon from '@mui/icons-material/Person'
 import {
 	AppBar,
 	Box,
 	Button,
-	Container,
-	Divider,
-	Drawer,
+	Container, Drawer,
 	IconButton,
-	Menu,
-	Stack,
+	List,
+	ListItem,
+	ListItemIcon,
+	ListItemText, Stack,
 	styled,
-	Toolbar,
-	Typography,
+	Toolbar
 } from '@mui/material'
 import Image from 'next/image'
+import Link from 'next/link'
 import React, { useState } from 'react'
 import logo from '../../public/assets/icons/BrandLogo.svg'
-import { useMobile } from '../hooks/useMobile'
 import MenuIcon from '../../public/assets/icons/MenuIcon.svg'
-import DashboardIcon from '@mui/icons-material/Dashboard'
-import PersonIcon from '@mui/icons-material/Person'
-import Link from 'next/link'
+import { useMobile } from '../hooks/useMobile'
+import { useContractorAuth } from '../providers'
 
 //always update when you change the app bar height into the onlyCssWeNeed file
 const APP_BAR_HEIGHT = 84
@@ -45,6 +46,7 @@ const CustomContainer = styled(Container)(({ theme }) => ({
 }))
 
 const DashboardLayout = ({ children, ...props }: any) => {
+	const { logOut } = useContractorAuth()
 	const isMobile = useMobile()
 	const [drawerOpen, setDrawerOpen] = useState<boolean>(false)
 	const toggleDrawer = () => {
@@ -57,7 +59,7 @@ const DashboardLayout = ({ children, ...props }: any) => {
 				<Container className='container'>
 					<Toolbar className='toolbar'>
 						{isMobile ? (
-							<IconButton key={'left'} onClick={toggleDrawer}>
+							<IconButton onClick={toggleDrawer}>
 								<Image src={MenuIcon} alt='menu' color='black' />
 							</IconButton>
 						) : (
@@ -69,7 +71,7 @@ const DashboardLayout = ({ children, ...props }: any) => {
 						)}
 
 						<Stack direction='row' spacing={2}>
-							{isMobile ? null : (
+							{!isMobile && (
 								<>
 									<Button variant='text'>Dashboard</Button>
 									<Button variant='text'>My Profile</Button>
@@ -83,17 +85,31 @@ const DashboardLayout = ({ children, ...props }: any) => {
 			</CustomAppBar>
 			<CustomContainer>{children}</CustomContainer>
 			<Drawer anchor={'left'} open={drawerOpen} onClose={toggleDrawer}>
-				<Box width={250} mt={4}>
-					<Container>
+				<Box width={250} py={4}>
+					<Stack direction={'row'} justifyContent={'center'} alignItems={'center'}>
 						<Image alt='logo' src={logo} />
-						<Button variant='text'>
-							<DashboardIcon /> &nbsp; Dashboard
-						</Button>
-						<Divider />
-						<Button variant='text'>
-							<PersonIcon /> &nbsp; My Profile
-						</Button>
-					</Container>
+					</Stack>
+					<List>
+						<ListItem button>
+							<ListItemIcon>
+								<DashboardIcon />
+							</ListItemIcon>
+							<ListItemText>Dashboard</ListItemText>
+						</ListItem>
+
+						<ListItem button>
+							<ListItemIcon>
+								<PersonIcon />
+							</ListItemIcon>
+							<ListItemText>Profile</ListItemText>
+						</ListItem>
+						<ListItem button onClick={logOut}>
+							<ListItemIcon>
+								<LogoutIcon />
+							</ListItemIcon>
+							<ListItemText>LogOut</ListItemText>
+						</ListItem>
+					</List>
 				</Box>
 			</Drawer>
 		</>

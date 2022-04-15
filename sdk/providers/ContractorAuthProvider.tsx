@@ -143,12 +143,12 @@ const ContractorAuthProvider = ({ children }: any) => {
 		if (state.user) {
 			if (state.user.isFirstLogin) {
 				//todo redirect to onboarding flow
-			} else {
+			} else if (!router.pathname.includes('/dashboard')) {
 				router.push('/dashboard')
 			}
 		}
-		
-	// eslint-disable-next-line react-hooks/exhaustive-deps
+
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [state.user])
 
 	const authProviderValue: AuthProviderValue = useMemo(

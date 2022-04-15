@@ -1,5 +1,6 @@
 import { AccessTime, ArrowRightAlt, CalendarToday, LocationOn } from '@mui/icons-material'
 import { Paper, Stack, Typography } from '@mui/material'
+import { red } from '@mui/material/colors'
 import { styled } from '@mui/system'
 import Link from 'next/link'
 import { detailsData } from '../../constants'
@@ -32,7 +33,7 @@ const CustomPaper = styled(Paper)(({ theme }) => ({
 }))
 export const BookingCard = ({ booking }: BookingCardProps) => {
 	return (
-		<CustomPaper elevation={10}>
+		<CustomPaper elevation={3}>
 			<Stack className='cardHeader'>
 				<Stack flex={1} spacing={1}>
 					<Typography variant='h6' fontWeight={700}>
@@ -49,7 +50,7 @@ export const BookingCard = ({ booking }: BookingCardProps) => {
 					<Link href='' passHref>
 						<Typography variant='body1' component='a' color={'primary.main'}>
 							<Stack alignItems='center' direction='row'>
-								<>View Details</>
+								<>View</>
 								<ArrowRightAlt fontSize='large' />
 							</Stack>
 						</Typography>
@@ -57,17 +58,17 @@ export const BookingCard = ({ booking }: BookingCardProps) => {
 				</Stack>
 			</Stack>
 			<Stack className='cardBody'>
-				<Stack direction='row' spacing={2}>
-					<Typography className='vAlignCenter' variant='body2'>
-						<LocationOn fontSize='inherit' />
+				<Stack direction='row' flexWrap='wrap'>
+					<Typography mr={1} className='vAlignCenter' variant='body2'>
+						<LocationOn fontSize='inherit' sx={{color: red[600]}} />
 						&nbsp;Nagpur, Maharashtra
 					</Typography>
-					<Typography className='vAlignCenter' variant='body2'>
-						<CalendarToday fontSize='inherit' />
+					<Typography mr={1} className='vAlignCenter' variant='body2'>
+						<CalendarToday fontSize='inherit' sx={{ color: red[600] }} />
 						&nbsp;2nd March Onwards
 					</Typography>
 					<Typography className='vAlignCenter' variant='body2'>
-						<AccessTime fontSize='inherit' />
+						<AccessTime fontSize='inherit' sx={{ color: red[600] }} />
 						&nbsp;More than 90 Days
 					</Typography>
 				</Stack>

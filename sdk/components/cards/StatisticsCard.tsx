@@ -9,13 +9,14 @@ const CustomPaper = styled(Paper)(({ theme }) => ({
 	flex: 1,
 	display: 'flex',
 	padding: theme.spacing(2),
+	borderRadius:8,
 
 	'.statText': {
 		fontSize: "24px",
 	},
-	
+
 	[theme.breakpoints.down('md')]: {
-		
+
 
 		'.statText': {
 			fontSize: "14px"
@@ -28,12 +29,12 @@ export const StatisticsCard = ({ stat }: StatisticsCardProps) => {
 			<Box className='imageContainer'>
 				<Image src={stat.src} alt='stat.text' width={66} height={66} />
 			</Box>
-			
+
 			<Stack pl={2} direction='column' justifyContent='flex-end'>
-				<Typography variant='h6' fontWeight={900} color={stat.color}>
+				<Typography variant='h4' fontWeight={900} color={stat.color}>
 					{stat.value}
 				</Typography>
-				<Typography color={stat.color} className="statText">
+				<Typography className="statText">
 					{stat.text}
 				</Typography>
 			</Stack>

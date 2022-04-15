@@ -1,10 +1,11 @@
 import { createTheme } from '@mui/material/styles'
+import { createBreakpoints } from '@mui/system'
 
 export const primary = {
 	main: '#244CB3',
 	light: '#224ab526',
 }
-
+const breakpoints = createBreakpoints({})
 export const theme = createTheme({
 	palette: {
 		primary: primary,
@@ -36,7 +37,17 @@ export const theme = createTheme({
 		'0px 11px 14px -7px rgba(0,0,0,0.1),0px 23px 36px 3px rgba(0,0,0,0.1),0px 9px 44px 8px rgba(0,0,0,0.1)',
 		'0px 11px 15px -7px rgba(0,0,0,0.1),0px 24px 38px 3px rgba(0,0,0,0.1),0px 9px 46px 8px rgba(0,0,0,0.1)',
 	],
+
 	components: {
+		MuiTypography: {
+			styleOverrides: {
+				root: {
+					[breakpoints.down('md')]: {
+						fontSize: 12,
+					},
+				},
+			},
+		},
 		MuiGrid: {
 			defaultProps: {
 				display: 'flex',
@@ -61,6 +72,7 @@ export const theme = createTheme({
 				variant: 'outlined',
 			},
 		},
+
 		MuiOutlinedInput: {
 			styleOverrides: {
 				root: {
