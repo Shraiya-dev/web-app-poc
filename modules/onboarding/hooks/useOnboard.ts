@@ -16,7 +16,7 @@ const useOnboarding = () => {
 			phoneNumber: '',
 		},
 		onSubmit: (values) => {
-			router.push('/booking')
+			router.push('/dashboard')
 		},
 	})
 

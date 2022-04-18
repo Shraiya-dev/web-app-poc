@@ -58,13 +58,94 @@ export const WorkerProfileInfo = () => {
 	return (
 		<Box>
 			<Grid container spacing={1}>
-				<Grid item xs={12} sm={12} md={3} lg={2.5}>
-					<Box>
-						<Paper elevation={3} style={{ width: 345, height: 711, margin: 20 }}>
-							<Box style={{ backgroundColor: 'rgba(36, 76, 179, 0.15)', height: 117 }}>
-								<Stack style={{ left: 113, top: 57, position: 'absolute' }}>
-									<img
-										style={{
+				<Grid item lg={4}>
+					<Paper elevation={3} style={{ width: 345, height: 711, margin: 20 }}>
+						<Box style={{ backgroundColor: 'rgba(36, 76, 179, 0.15)', height: 117 }}>
+							<Stack style={{ left: 100, top: 57, position: 'relative' }}>
+								<img
+									style={{
+										borderRadius: '50%',
+										display: 'block',
+										width: 150,
+										//height: 50,
+										textAlign: 'center',
+									}}
+									src='http://bluegalaxy.info/images/sea_captain.jpg'
+								/>
+							</Stack>
+						</Box>
+						<Box style={{ paddingTop: 80, paddingLeft: 20, paddingRight: 20 }}>
+							<Typography style={{ textAlign: 'center', overflow: 'hidden', fontSize: 24, margin: 8 }}>
+								Deepak Kushwaha
+							</Typography>
+
+							<Typography style={{ textAlign: 'center', overflow: 'hidden', fontSize: 12, margin: 8 }}>
+								<LocationOnIcon style={{ fontSize: 14, color: '#CC2C49', verticalAlign: 'middle' }} />{' '}
+								Nagpur, Maharashtra
+							</Typography>
+
+							<Stack
+								direction='row'
+								spacing={1}
+								style={{ textAlign: 'center', display: 'flex', justifyContent: 'center' }}
+								//style={{ textAlign: 'center', overflow: 'hidden', fontSize: 24, margin: 8 }}
+							>
+								<Chip icon={<VerifiedUserIcon />} color='success' label='Vaccinated' />
+								<Chip label='Technitian' />
+							</Stack>
+
+							<Stack style={{ padding: 20 }}>
+								<Typography style={{ fontSize: 18 }}>About</Typography>
+								<Typography style={{ fontSize: 12, opacity: 0.5, paddingTop: 8 }}>
+									Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+									incididunt ut labore et dolore magna aliqua.
+								</Typography>
+							</Stack>
+
+							<Stack
+								direction='row'
+								sx={{
+									display: 'flex',
+									flexWrap: 'wrap',
+								}}>
+								<Chip color='primary' label='Text1' style={{ margin: 4 }} />
+								<Chip color='primary' label='Text2' style={{ margin: 4 }} />
+								<Chip color='primary' label='Text1' style={{ margin: 4 }} />
+								<Chip color='primary' label='Text2' style={{ margin: 4 }} />
+								<Chip color='primary' label='Text1' style={{ margin: 4 }} />
+								<Chip color='primary' label='Text2' style={{ margin: 4 }} />
+							</Stack>
+
+							<Stack style={{ padding: 20 }}>
+								<Typography style={{ fontSize: 18 }}>Contact</Typography>
+								<Typography style={{ fontSize: 12, opacity: 0.5, paddingTop: 8 }}>
+									<LocationOnIcon
+										style={{ fontSize: 14, color: '#CC2C49', verticalAlign: 'middle' }}
+									/>{' '}
+									+91 12345678
+								</Typography>
+								<Typography style={{ fontSize: 12, opacity: 0.5, paddingTop: 8 }}>
+									<LocationOnIcon
+										style={{ fontSize: 14, color: '#CC2C49', verticalAlign: 'middle' }}
+									/>{' '}
+									RamBabuKewati@gmail.com
+								</Typography>
+							</Stack>
+						</Box>
+					</Paper>
+				</Grid>
+
+				<Grid item lg={8} >
+					<Paper>
+						
+                    <div><BasicDetails /></div>
+                       
+					</Paper>
+				</Grid>
+			</Grid>
+		</Box>
+
+		/* tyle={{
 											borderRadius: '50%',
 											display: 'block',
 											width: 150,
@@ -173,7 +254,6 @@ export const WorkerProfileInfo = () => {
 						</Paper>
 					</Box>
 				</Grid>
-			</Grid>
-		</Box>
+			</Grid> */
 	)
 }

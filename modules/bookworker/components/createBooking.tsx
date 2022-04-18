@@ -23,6 +23,8 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
 import { DatePicker } from '@mui/x-date-pickers/DatePicker'
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns'
 
+import Link from 'next/link'
+
 export const CreateBooking = () => {
 	const { form } = useCreateBooking()
 
@@ -43,12 +45,15 @@ export const CreateBooking = () => {
 				<form onSubmit={form.handleSubmit}>
 					<Stack spacing={1} direction='column' style={{ padding: 20 }}>
 						<Box>
-							<Button
-								href='/booking'
-								startIcon={<ArrowBackIosIcon style={{ fontSize: '24px' }} />}
-								variant='text'>
-								Back
-							</Button>
+							<Link href='/dashboard' passHref>
+								<a>
+									<Button
+										startIcon={<ArrowBackIosIcon style={{ fontSize: '24px' }} />}
+										variant='text'>
+										Back
+									</Button>
+								</a>
+							</Link>
 
 							<Typography variant='h4'>Booking Details</Typography>
 						</Box>
@@ -67,7 +72,7 @@ export const CreateBooking = () => {
 						</Box>
 
 						<Box>
-							<Grid container spacing={2}>
+							<Grid container spacing={2} direction='column'>
 								<Grid item xs={12} sm={12} md={6} lg={6}>
 									<InputLabel htmlFor='ChooseSpecific'>Choose Specifics</InputLabel>
 									<TextField
