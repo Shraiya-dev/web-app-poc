@@ -1,8 +1,24 @@
-import { Box } from '@mui/system'
-import { Paper, Typography, Button } from '@mui/material'
+import { Paper, Typography, Button, Box, Chip } from '@mui/material'
 
 import { styled } from '@mui/material'
+
+
+
+import { useRouter } from 'next/router'
+
+
+
 export const WorkerBookingInfo = () => {
+
+	const router = useRouter();
+
+
+	const handleClick = ()=>{
+
+		router.push('/workerprofile')
+
+	}
+
 	const CustomWorkerBookInfo = styled(Box)(({ theme }) => ({
 		'.id': {
 			fontSize: 12,
@@ -31,13 +47,14 @@ export const WorkerBookingInfo = () => {
 							<Typography display='inline' className='id'>
 								ID: OADSKTUQSIQC
 							</Typography>
-							<Typography className='status' display='inline'>
-								Recieved
-							</Typography>
+							<Chip label="Recieved" color="success" />
 						</Box>
 					</Box>
 					<Box style={{ height: 317 }}>Hello</Box>
 				</Paper>
+
+			<Button onClick={handleClick}>Cilck me</Button>
+				
 			</Box>
 		</CustomWorkerBookInfo>
 	)

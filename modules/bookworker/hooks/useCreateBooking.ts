@@ -6,6 +6,7 @@ const useCreateBooking = () => {
 			otherSpecific: '',
 			ChooseSpecific: '',
 			BookingDuration: '',
+			StartDate:'',
 
 			helper: '',
 			supervisor: '',
