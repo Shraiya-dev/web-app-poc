@@ -1,16 +1,26 @@
 import { useFormik } from 'formik'
+import { useState } from 'react'
 const useCreateBooking = () => {
 	const form = useFormik({
 		initialValues: {
-			jobType:'',
+			jobType: '',
 			otherSpecific: '',
 			ChooseSpecific: '',
 			BookingDuration: '',
-			StartDate:'',
+			StartDate: '',
 
 			helper: '',
 			supervisor: '',
 			technician: '',
+
+			helperWages: '',
+			supervisorWages: '',
+			technicianWages: '',
+
+			overTimeFactor:'',
+			overTimeBuffer:'',
+			overTime:'',
+
 
 			projectName: '',
 			projectType: '',
@@ -18,6 +28,12 @@ const useCreateBooking = () => {
 			state: '',
 			city: '',
 			siteAddress: '',
+
+			name:'',
+			company:'',
+			companyEmail:'',
+			phoneNumber:''
+
 		},
 		validate: () => {},
 		onSubmit: (values) => {},

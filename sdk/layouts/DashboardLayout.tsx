@@ -5,14 +5,17 @@ import {
 	AppBar,
 	Box,
 	Button,
-	Container, Drawer,
+	Container,
+	Drawer,
 	IconButton,
 	List,
 	ListItem,
 	ListItemIcon,
-	ListItemText, Stack,
+	ListItemText,
+	Stack,
 	styled,
-	Toolbar
+	Toolbar,
+	Dialog,
 } from '@mui/material'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -21,6 +24,9 @@ import logo from '../../public/assets/icons/BrandLogo.svg'
 import MenuIcon from '../../public/assets/icons/MenuIcon.svg'
 import { useMobile } from '../hooks/useMobile'
 import { useContractorAuth } from '../providers'
+import CloseIcon from '@mui/icons-material/Close'
+
+import { CreateBooking } from '../../modules/bookworker/components/createBooking'
 
 //always update when you change the app bar height into the onlyCssWeNeed file
 const APP_BAR_HEIGHT = 84
@@ -49,8 +55,14 @@ const DashboardLayout = ({ children, ...props }: any) => {
 	const { logOut } = useContractorAuth()
 	const isMobile = useMobile()
 	const [drawerOpen, setDrawerOpen] = useState<boolean>(false)
+
+	const [bookingFormOpen, setBookingFormOpen] = useState<boolean>(false)
 	const toggleDrawer = () => {
 		setDrawerOpen(!drawerOpen)
+	}
+
+	const toggleBookingForm = () => {
+		setBookingFormOpen((state) => !state)
 	}
 
 	return (
@@ -74,13 +86,16 @@ const DashboardLayout = ({ children, ...props }: any) => {
 							{!isMobile && (
 								<>
 									<Button variant='text'>Dashboard</Button>
-									<Button variant='text'>My Profile</Button>
+									<Link href='/profile' passHref>
+										<a>
+											<Button variant='text'>My Profile</Button>
+										</a>
+									</Link>
 								</>
 							)}
-						<Link href='/book-worker' passHref>
-								<a>
-							<Button variant='contained'>Book Worker</Button>
-							</a></Link>
+							<Button variant='contained' onClick={toggleBookingForm}>
+								Book Worker
+							</Button>{' '}
 						</Stack>
 					</Toolbar>
 				</Container>
@@ -114,6 +129,14 @@ const DashboardLayout = ({ children, ...props }: any) => {
 					</List>
 				</Box>
 			</Drawer>
+
+			<Dialog onClose={toggleBookingForm} open={bookingFormOpen} fullScreen>
+				<IconButton edge='end' color='inherit' onClick={toggleBookingForm} aria-label='Close'>
+					<CloseIcon />
+				</IconButton>
+
+				<CreateBooking toggleBookingForm={toggleBookingForm} />
+			</Dialog>
 		</>
 	)
 }

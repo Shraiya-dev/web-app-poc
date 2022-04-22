@@ -17,7 +17,7 @@ const workerDetails: NextPage = () => {
 		<DashboardLayout>
 			<Grid container alignItems={"flex-start"}>
 				<Grid item xs={12} md={4}>
-					<BookingCard />
+					<WorkerBookingInfo />
 				</Grid>
 
 				<Grid item container xs={12} md={8}>

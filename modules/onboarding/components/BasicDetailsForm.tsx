@@ -6,8 +6,15 @@ import { styled } from '@mui/system'
 
 import useOnboarding from '../hooks/useOnboard'
 
+import { useRouter } from 'next/router'
+import EditIcon from '@mui/icons-material/Edit'
+
 export const BasicDetailsForm = () => {
 	const { form, loading } = useOnboarding()
+
+	const router = useRouter()
+
+	console.log('--', router)
 
 	// const CustomizedBasicDetails = styled(Box)(({ theme }) => ({
 	// 	'.back': {
@@ -36,23 +43,18 @@ export const BasicDetailsForm = () => {
 
 	return (
 		<Box>
-			<Box style={{ paddingTop: '4em', paddingLeft: '7em' }}>
-				<Button
-					href='/login'
-					startIcon={
-						<ArrowBackIosIcon style={{ fontSize: '24px', marginRight: '12', verticalAlign: 'middle' }} />
-					}
-					variant='text'>
-					Back
-				</Button>
-			</Box>
-
 			<Box style={{ display: 'flex', justifyContent: 'center', paddingTop: '12%' }}>
 				<form onSubmit={form.handleSubmit} style={{ width: '36.25ch' }}>
 					<Stack>
-						<Typography variant='h5' style={{ paddingBottom: '0.5em' }}>
+						<Typography variant='h5' display='inline' style={{ paddingBottom: '0.5em' }}>
 							Basic Details
+							{router.asPath === '/profile' && (
+								<Button variant='text' style={{ float: 'right' }} endIcon={<EditIcon />}>
+									Edit
+								</Button>
+							)}
 						</Typography>
+
 						<InputLabel id='name' style={{ paddingTop: 10, paddingBottom: 6 }}>
 							Name
 						</InputLabel>
@@ -116,7 +118,7 @@ export const BasicDetailsForm = () => {
 								color: 'white',
 								cursor: 'pointer',
 							}}>
-							Next
+							{router.asPath === '/profile' ? 'Save' : 'Next'}
 						</LoadingButton>
 					</Stack>
 				</form>

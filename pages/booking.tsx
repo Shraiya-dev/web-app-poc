@@ -3,7 +3,6 @@ import BookingInfo from '../modules/booking/components/BookingInfo'
 import BookingFilters from '../modules/booking/components/BookingFilters'
 import BookingCards from '../sdk/components/cards/BookingCards'
 import EmptyBooking from '../modules/booking/components/EmptyBooking'
-
 const Booking: NextPage = () => {
 	
 	
@@ -15,6 +14,7 @@ const Booking: NextPage = () => {
 
                <BookingCards/>
 				<EmptyBooking />
+
 			
 		</div>
 	)
