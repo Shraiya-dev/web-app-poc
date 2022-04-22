@@ -3,10 +3,11 @@ import { Box, Button } from '@mui/material'
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos'
 
 import { BasicDetailsForm } from '../modules/onboarding/components/BasicDetailsForm'
+import DashboardLayout from '../sdk/layouts/DashboardLayout'
 
 const Profile: NextPage = () => {
 	return (
-		<Box>
+		<DashboardLayout>
 			<Box style={{ paddingTop: '4em', paddingLeft: '7em' }}>
 				<Button
 					href='/dashboard'
@@ -18,7 +19,7 @@ const Profile: NextPage = () => {
 				</Button>
 			</Box>
 			<BasicDetailsForm />
-		</Box>
+		</DashboardLayout>
 	)
 }
 

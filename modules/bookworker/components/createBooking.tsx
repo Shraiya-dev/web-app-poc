@@ -31,13 +31,13 @@ import { theme } from '../../../sdk'
 import BookingSuccess from './bookingsuccess'
 import ConfirmCancel from './confirmCancel'
 
-export const CreateBooking = ({ toggleBookingForm }) => {
+export const CreateBooking = ({ toggleBookingForm
+}) => {
 	const { form } = useCreateBooking()
 
 	const [step, setStep] = useState(1)
 	const [isMore, setIsmore] = useState(false)
-	const [onCloseDialog, setOncloseDialog] = useState(true)
-
+	
 	// const [openDialog, setOpenDialog] = useState(false)
 	// const [helper, setHelper] = useState(0)
 	// const [supervisor, setSupervisor] = useState(0)
@@ -45,6 +45,18 @@ export const CreateBooking = ({ toggleBookingForm }) => {
 
 	const handleMoreJobType = () => {
 		setIsmore((state) => !state)
+	}
+
+	const handleNext = () => {
+		if (step < 3) {
+			setStep((state) => state + 1)
+		}
+	}
+
+	const handlePrev = () => {
+		if (step > 1) {
+			setStep((state) => state - 1)
+		}
 	}
 
 	const jobTypeInfo = [
@@ -88,7 +100,7 @@ export const CreateBooking = ({ toggleBookingForm }) => {
 
 			borderRadius: 2,
 			margin: 4,
-			background: theme.palette.primary.main,
+			background: theme.palette.primary.light,
 		},
 
 		'.viewcta': {
@@ -111,294 +123,313 @@ export const CreateBooking = ({ toggleBookingForm }) => {
 
 	return (
 		<CustomizeDashboard>
-			<ConfirmCancel
+			{/* <ConfirmCancel
 				onCloseDialog={onCloseDialog}
 				setOncloseDialog={setOncloseDialog}
 				toggleBookingForm={toggleBookingForm}
-			/>
+			/> */}
 			<Box>
 				<Box>
 					<Typography variant='h4' style={{ fontSize: 24 }}>
 						Book Workers
 					</Typography>
-					<Box display='flex'>
-						<Grid container justifyContent='flex-start'>
-							<Typography variant='h4' style={{ fontSize: 14 }}>
-								Add Workers Details
-							</Typography>
-						</Grid>
+				</Box>
+				<Box display='flex'>
+					<Grid container justifyContent='flex-start'>
+						<Typography variant='h4' style={{ fontSize: 16, marginTop: 20 }}>
+							{step === 1
+								? 'Add Workers Details'
+								: step === 2
+								? 'Project Details'
+								: 'Add Contact Details'}
+						</Typography>
+					</Grid>
 
-						<Grid container justifyContent='flex-end'>
-							<Stack className='stepper' />
-							<Stack className='stepper' />
-							<Stack className='stepper' />
-						</Grid>
-					</Box>
+					<Grid container justifyContent='flex-end' style={{ marginTop: 20 }}>
+						<Stack
+							className='stepper'
+							style={{ background: `${step === 1 && theme.palette.primary.main}` }}
+						/>
+						<Stack
+							className='stepper'
+							style={{ background: `${step === 2 && theme.palette.primary.main}` }}
+						/>
+						<Stack
+							className='stepper'
+							style={{ background: `${step === 3 && theme.palette.primary.main}` }}
+						/>
+					</Grid>
 				</Box>
 
 				<Box>
 					<form onSubmit={form.handleSubmit}>
-						<Stack>
-							<Box>
-								<InputLabel htmlFor='jobType' className='inputLabel'>
-									Trade
-								</InputLabel>
-								<Grid container item rowSpacing={2} columnSpacing={2} style={{ marginBottom: 10 }}>
-									{jobTypeInfo.map((info) => {
-										return <JobType icon={info.icon} jobName={info.value} />
+						{step === 1 && (
+							<Stack>
+								<Box>
+									<InputLabel htmlFor='jobType' className='inputLabel'>
+										Trade
+									</InputLabel>
+									<Grid container item rowSpacing={2} columnSpacing={2} style={{ marginBottom: 10 }}>
+										{jobTypeInfo.map((info) => {
+											return <JobType icon={info.icon} jobName={info.value} />
+										})}
+									</Grid>
+
+									{isMore && (
+										<Box>
+											<Grid container item rowSpacing={2} columnSpacing={2}>
+												{jobTypeInfo.map((info) => {
+													return <JobType icon={info.icon} jobName={info.value} />
+												})}
+											</Grid>
+										</Box>
+									)}
+									<Grid
+										container
+										spacing={0}
+										direction='column'
+										alignItems='center'
+										justifyContent='center'
+										style={{ marginBottom: 10 }}>
+										<Button className='viewcta' onClick={handleMoreJobType}>
+											View More
+										</Button>
+									</Grid>
+								</Box>
+
+								<Box>
+									<InputLabel htmlFor='jobType' className='inputLabel'>
+										Skills
+									</InputLabel>
+									<Stack display='inline'>
+										<Chip
+											label='Custom delete icon'
+											//   onClick={handleClick}
+											//   onDelete={handleDelete}
+										/>
+										<Chip
+											label='Custom delete icon'
+											//   onClick={handleClick}
+											//   onDelete={handleDelete}
+
+											variant='outlined'
+										/>
+									</Stack>
+								</Box>
+
+								<Box>
+									<InputLabel htmlFor='jobType' className='inputLabel'>
+										Workers Required & Daily Wage
+									</InputLabel>
+
+									{workerType.map((info) => {
+										return (
+											<Grid
+												container
+												alignItems={'flex-start'}
+												spacing={2}
+												style={{ marginBottom: 10 }}>
+												<Grid item xs={4} sm={4} md={4}>
+													<Typography>
+														<ArrowBackIosIcon style={{ fontSize: '12px' }} /> {info?.label}
+													</Typography>
+												</Grid>
+												<Grid item xs={4} sm={4} md={4}>
+													<TextField
+														placeholder={`${info?.label} Required`}
+														id={info?.name}
+														name={info?.name}
+														value={form.values.technician}
+														onChange={form.handleChange}
+														fullWidth
+													/>
+												</Grid>
+												<Grid item xs={4} sm={4} md={4}>
+													<TextField
+														placeholder='Daily wage (Rs.)'
+														id={info?.wage}
+														name={info?.wage}
+														value={form.values.technicianWages}
+														onChange={form.handleChange}
+														fullWidth
+													/>
+												</Grid>
+											</Grid>
+										)
 									})}
-								</Grid>
 
-								{isMore && (
 									<Box>
-										<Grid container item rowSpacing={2} columnSpacing={2}>
-											{jobTypeInfo.map((info) => {
-												return <JobType icon={info.icon} jobName={info.value} />
-											})}
-										</Grid>
-									</Box>
-								)}
-								<Grid
-									container
-									spacing={0}
-									direction='column'
-									alignItems='center'
-									justifyContent='center'
-									style={{ marginBottom: 10 }}>
-									<Button className='viewcta' onClick={handleMoreJobType}>
-										View More
-									</Button>
-								</Grid>
-							</Box>
-
-							<Box>
-								<InputLabel htmlFor='jobType' className='inputLabel'>
-									Skills
-								</InputLabel>
-								<Stack display='inline'>
-									<Chip
-										label='Custom delete icon'
-										//   onClick={handleClick}
-										//   onDelete={handleDelete}
-									/>
-									<Chip
-										label='Custom delete icon'
-										//   onClick={handleClick}
-										//   onDelete={handleDelete}
-
-										variant='outlined'
-									/>
-								</Stack>
-							</Box>
-
-							<Box>
-								<InputLabel htmlFor='jobType' className='inputLabel'>
-									Workers Required & Daily Wage
-								</InputLabel>
-
-								{workerType.map((info) => {
-									return (
+										<InputLabel htmlFor='overtime' className='inputLabel'>
+											Overtime Details
+										</InputLabel>
 										<Grid
 											container
 											alignItems={'flex-start'}
 											spacing={2}
 											style={{ marginBottom: 10 }}>
 											<Grid item xs={4} sm={4} md={4}>
-												<Typography>
-													<ArrowBackIosIcon style={{ fontSize: '12px' }} /> {info?.label}
-												</Typography>
+												<FormControl fullWidth>
+													<InputLabel id='overTimeBuffer'>Overtime Buffer</InputLabel>
+													<Select
+														labelId='overTimeBuffer'
+														id='overTimeBuffer'
+														value={form.values.projectType}
+														label='Overtime Buffer'
+														onChange={form.handleChange}>
+														<MenuItem value={10}>Ten</MenuItem>
+														<MenuItem value={20}>Twenty</MenuItem>
+														<MenuItem value={30}>Thirty</MenuItem>
+													</Select>
+												</FormControl>
 											</Grid>
+
 											<Grid item xs={4} sm={4} md={4}>
-												<TextField
-													placeholder={`${info?.label} Required`}
-													id={info?.name}
-													name={info?.name}
-													value={form.values.technician}
-													onChange={form.handleChange}
-													fullWidth
-												/>
+												<FormControl fullWidth>
+													<InputLabel id='overTimeFactor'>Overtime Buffer</InputLabel>
+													<Select
+														labelId='overTimeFactor'
+														id='overTimeFactor'
+														value={form.values.projectType}
+														label='Overtime Factor'
+														onChange={form.handleChange}>
+														<MenuItem value={10}>Ten</MenuItem>
+														<MenuItem value={20}>Twenty</MenuItem>
+														<MenuItem value={30}>Thirty</MenuItem>
+													</Select>
+												</FormControl>
 											</Grid>
+
 											<Grid item xs={4} sm={4} md={4}>
-												<TextField
-													placeholder='Daily wage (Rs.)'
-													id={info?.wage}
-													name={info?.wage}
-													value={form.values.technicianWages}
-													onChange={form.handleChange}
-													fullWidth
-												/>
+												<FormControl fullWidth>
+													<InputLabel id='overTime'>Minutes</InputLabel>
+													<Select
+														labelId='overTime'
+														id='overTime'
+														value={form.values.projectType}
+														label='Minutes'
+														onChange={form.handleChange}>
+														<MenuItem value={10}>Ten</MenuItem>
+														<MenuItem value={20}>Twenty</MenuItem>
+														<MenuItem value={30}>Thirty</MenuItem>
+													</Select>
+												</FormControl>
 											</Grid>
 										</Grid>
-									)
-								})}
+									</Box>
+								</Box>
+							</Stack>
+						)}
 
+						{/* Project Details */}
+						{step === 2 && (
+							<Stack>
 								<Box>
-									<InputLabel htmlFor='overtime' className='inputLabel'>
-										Overtime Details
+									<InputLabel htmlFor='projectName' className='inputLabel'>
+										Enter Project Name
 									</InputLabel>
-									<Grid container alignItems={'flex-start'} spacing={2} style={{ marginBottom: 10 }}>
-										<Grid item xs={4} sm={4} md={4}>
-											<FormControl fullWidth>
-												<InputLabel id='overTimeBuffer'>Overtime Buffer</InputLabel>
-												<Select
-													labelId='overTimeBuffer'
-													id='overTimeBuffer'
-													value={form.values.projectType}
-													label='Overtime Buffer'
-													onChange={form.handleChange}>
-													<MenuItem value={10}>Ten</MenuItem>
-													<MenuItem value={20}>Twenty</MenuItem>
-													<MenuItem value={30}>Thirty</MenuItem>
-												</Select>
-											</FormControl>
-										</Grid>
-
-										<Grid item xs={4} sm={4} md={4}>
-											<FormControl fullWidth>
-												<InputLabel id='overTimeFactor'>Overtime Buffer</InputLabel>
-												<Select
-													labelId='overTimeFactor'
-													id='overTimeFactor'
-													value={form.values.projectType}
-													label='Overtime Factor'
-													onChange={form.handleChange}>
-													<MenuItem value={10}>Ten</MenuItem>
-													<MenuItem value={20}>Twenty</MenuItem>
-													<MenuItem value={30}>Thirty</MenuItem>
-												</Select>
-											</FormControl>
-										</Grid>
-
-										<Grid item xs={4} sm={4} md={4}>
-											<FormControl fullWidth>
-												<InputLabel id='overTime'>Minutes</InputLabel>
-												<Select
-													labelId='overTime'
-													id='overTime'
-													value={form.values.projectType}
-													label='Minutes'
-													onChange={form.handleChange}>
-													<MenuItem value={10}>Ten</MenuItem>
-													<MenuItem value={20}>Twenty</MenuItem>
-													<MenuItem value={30}>Thirty</MenuItem>
-												</Select>
-											</FormControl>
+									<Grid container>
+										<Grid item xs={12} sm={12} md={6} lg={6}>
+											<TextField
+												placeholder='Enter Here'
+												id='projectName'
+												name='projectName'
+												value={form.values.projectName}
+												onChange={form.handleChange}
+												fullWidth
+											/>
 										</Grid>
 									</Grid>
 								</Box>
-							</Box>
-						</Stack>
 
-						<Box>
-							<Typography>Project Details</Typography>
+								<Box>
+									<InputLabel htmlFor='projectType' className='inputLabel'>
+										Choose Project Type
+									</InputLabel>
 
-							<Box>
-								<InputLabel htmlFor='projectName' className='inputLabel'>
-									Enter Project Name
-								</InputLabel>
-								<Grid container>
-									<Grid item xs={12} sm={12} md={6} lg={6}>
-										<TextField
-											placeholder='Enter Here'
-											id='projectName'
-											name='projectName'
-											value={form.values.projectName}
-											onChange={form.handleChange}
-											fullWidth
-										/>
+									<Grid container>
+										<Grid item xs={12} sm={12} md={6} lg={6}>
+											<Select
+												labelId='projectType'
+												id='projectType'
+												value={form.values.projectType}
+												onChange={form.handleChange}
+												fullWidth>
+												<MenuItem value={10}>Ten</MenuItem>
+												<MenuItem value={20}>Twenty</MenuItem>
+												<MenuItem value={30}>Thirty</MenuItem>
+											</Select>
+										</Grid>
 									</Grid>
-								</Grid>
-							</Box>
+								</Box>
 
-							<Box>
-								<InputLabel htmlFor='projectType' className='inputLabel'>
-									Choose Project Type
-								</InputLabel>
+								<Box>
+									<InputLabel htmlFor='shiftTiming' className='inputLabel'>
+										Shift Timing
+									</InputLabel>
 
-								<Grid container>
-									<Grid item xs={12} sm={12} md={6} lg={6}>
-										<Select
-											labelId='projectType'
-											id='projectType'
-											value={form.values.projectType}
-											onChange={form.handleChange}
-											fullWidth>
-											<MenuItem value={10}>Ten</MenuItem>
-											<MenuItem value={20}>Twenty</MenuItem>
-											<MenuItem value={30}>Thirty</MenuItem>
-										</Select>
+									<Grid container spacing={4}>
+										<Grid item xs={12} sm={12} md={8} lg={8}>
+											<Button
+												style={{
+													borderRadius: 4,
+													padding: 4,
+													background: 'white',
+
+													height: 35,
+													width: 100,
+													color: '#244CB3',
+													marginRight: 10,
+												}}>
+												9am-6pm
+											</Button>
+
+											<Button
+												style={{
+													borderRadius: 4,
+													padding: 4,
+													background: 'white',
+
+													height: 35,
+													width: 100,
+													color: '#244CB3',
+													marginRight: 10,
+												}}>
+												6pm-5am
+											</Button>
+
+											<Button
+												style={{
+													borderRadius: 4,
+													padding: 4,
+													background: 'white',
+
+													height: 35,
+													width: 100,
+													color: '#244CB3',
+												}}>
+												Custom
+											</Button>
+										</Grid>
 									</Grid>
-								</Grid>
-							</Box>
+								</Box>
 
-							<Box>
-								<InputLabel htmlFor='shiftTiming' className='inputLabel'>
-									Shift Timing
-								</InputLabel>
-
-								<Grid container spacing={4}>
-									<Grid item xs={12} sm={12} md={8} lg={8}>
-										<Button
-											style={{
-												borderRadius: 4,
-												padding: 4,
-												background: 'white',
-
-												height: 35,
-												width: 100,
-												color: '#244CB3',
-												marginRight: 10,
-											}}>
-											9am-6pm
-										</Button>
-
-										<Button
-											style={{
-												borderRadius: 4,
-												padding: 4,
-												background: 'white',
-
-												height: 35,
-												width: 100,
-												color: '#244CB3',
-												marginRight: 10,
-											}}>
-											6pm-5am
-										</Button>
-
-										<Button
-											style={{
-												borderRadius: 4,
-												padding: 4,
-												background: 'white',
-
-												height: 35,
-												width: 100,
-												color: '#244CB3',
-											}}>
-											Custom
-										</Button>
-									</Grid>
-								</Grid>
-							</Box>
-
-							<Box>
-								<Grid container spacing={2}>
-									<Grid item xs={12} sm={12} md={6} lg={6} display='block'>
-										<InputLabel id='projectType' className='inputLabel'>
-											State
-										</InputLabel>
-										<Select
-											labelId='projectType'
-											id='projectType'
-											value={form.values.projectType}
-											onChange={form.handleChange}
-											fullWidth>
-											<MenuItem value={10}>Ten</MenuItem>
-											<MenuItem value={20}>Twenty</MenuItem>
-											<MenuItem value={30}>Thirty</MenuItem>
-										</Select>
-										{/* <Select
+								<Box>
+									<Grid container spacing={2}>
+										<Grid item xs={12} sm={12} md={6} lg={6} display='block'>
+											<InputLabel id='projectType' className='inputLabel'>
+												State
+											</InputLabel>
+											<Select
+												labelId='projectType'
+												id='projectType'
+												value={form.values.projectType}
+												onChange={form.handleChange}
+												fullWidth>
+												<MenuItem value={10}>Ten</MenuItem>
+												<MenuItem value={20}>Twenty</MenuItem>
+												<MenuItem value={30}>Thirty</MenuItem>
+											</Select>
+											{/* <Select
 												labelId='state'
 												id='state'
 												value={form.values.state}
@@ -408,45 +439,47 @@ export const CreateBooking = ({ toggleBookingForm }) => {
 												<MenuItem value={20}>Twenty</MenuItem>
 												<MenuItem value={30}>Thirty</MenuItem>
 											</Select> */}
+										</Grid>
+										<Grid item xs={12} sm={12} md={6} lg={6} display='block'>
+											<InputLabel className='inputLabel'>City</InputLabel>
+											<Select
+												labelId='city'
+												id='city'
+												value={form.values.city}
+												onChange={form.handleChange}
+												fullWidth>
+												<MenuItem value={10}>Ten</MenuItem>
+												<MenuItem value={20}>Twenty</MenuItem>
+												<MenuItem value={30}>Thirty</MenuItem>
+											</Select>
+										</Grid>
 									</Grid>
-									<Grid item xs={12} sm={12} md={6} lg={6} display='block'>
-										<InputLabel className='inputLabel'>City</InputLabel>
-										<Select
-											labelId='city'
-											id='city'
-											value={form.values.city}
-											onChange={form.handleChange}
-											fullWidth>
-											<MenuItem value={10}>Ten</MenuItem>
-											<MenuItem value={20}>Twenty</MenuItem>
-											<MenuItem value={30}>Thirty</MenuItem>
-										</Select>
-									</Grid>
-								</Grid>
-							</Box>
+								</Box>
 
+								<Box>
+									<InputLabel className='inputLabel'>Site Address</InputLabel>
+
+									<Grid container spacing={2}>
+										<Grid item xs={12} sm={12} md={12} lg={12}>
+											<TextField
+												placeholder='Enter Here'
+												id='siteAddress'
+												name='siteAddress'
+												value={form.values.siteAddress}
+												onChange={form.handleChange}
+												rows={4}
+												multiline
+												fullWidth
+											/>
+										</Grid>
+									</Grid>
+								</Box>
+							</Stack>
+						)}
+						{/* Contact Details */}
+
+						{step === 3 && (
 							<Box>
-								<InputLabel className='inputLabel'>Site Address</InputLabel>
-
-								<Grid container spacing={2}>
-									<Grid item xs={12} sm={12} md={12} lg={12}>
-										<TextField
-											placeholder='Enter Here'
-											id='siteAddress'
-											name='siteAddress'
-											value={form.values.siteAddress}
-											onChange={form.handleChange}
-											rows={4}
-											multiline
-											fullWidth
-										/>
-									</Grid>
-								</Grid>
-							</Box>
-
-							<Box>
-								<Typography>Add Contact Details</Typography>
-
 								<Box>
 									<InputLabel className='inputLabel'>Name</InputLabel>
 
@@ -521,17 +554,25 @@ export const CreateBooking = ({ toggleBookingForm }) => {
 									</Grid>
 								</Box>
 							</Box>
-						</Box>
+						)}
 					</form>
 				</Box>
 
+				{/* Submit/prev/Next */}
+
 				<Box style={{ position: 'sticky', textAlign: 'center', bottom: 0, padding: 30, background: 'white' }}>
-					<Grid container spacing={30}>
-						<Grid item alignItems={'flex-start'} xs={6} sm={6} md={6}>
-							<Button fullWidth>Previous</Button>
+					<Grid container spacing={10}>
+						<Grid item alignItems={'flex-start'} xs={6} sm={6} md={6} lg={6}>
+							{(step === 2 || step === 3) && (
+								<Button fullWidth onClick={handlePrev}>
+									Previous
+								</Button>
+							)}
 						</Grid>
-						<Grid item alignItems={'flex-end'} xs={6} sm={6} md={6}>
-							<Button fullWidth>Next</Button>
+						<Grid item alignItems={'flex-end'} xs={6} sm={6} md={6} lg={6}>
+							<Button fullWidth onClick={handleNext}>
+								{step === 3 ? 'Finish Booking' : 'Next'}
+							</Button>
 						</Grid>
 					</Grid>
 				</Box>
