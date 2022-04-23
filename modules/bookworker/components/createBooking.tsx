@@ -30,6 +30,17 @@ import { theme } from '../../../sdk'
 
 import BookingSuccess from './bookingsuccess'
 import ConfirmCancel from './confirmCancel'
+import Image from 'next/image'
+
+
+
+import Mason from '../../../public/assets/icons/mason.svg'
+import Barbender from '../../../public/assets/icons/barbender.svg'
+import Plumber from '../../../public/assets/icons/plumber.svg'
+import Electrician from '../../../public/assets/icons/electrician.svg'
+import Carpenter from '../../../public/assets/icons/carpenter.svg'
+import Others from '../../../public/assets/icons/Others.svg'
+
 
 export const CreateBooking = ({ ...props }) => {
 	const { toggleBookingForm, onCloseDialog, setOncloseDialog, bookingFormOpen, setBookingFormOpen } = props
@@ -60,12 +71,12 @@ export const CreateBooking = ({ ...props }) => {
 	}
 
 	const jobTypeInfo = [
-		{ icon: <ArrowBackIosIcon style={{ fontSize: '24px' }} />, value: 'general helper' },
-		{ icon: <ArrowBackIosIcon style={{ fontSize: '24px' }} />, value: 'carpenter' },
-		{ icon: <ArrowBackIosIcon style={{ fontSize: '24px' }} />, value: 'painter' },
-		{ icon: <ArrowBackIosIcon style={{ fontSize: '24px' }} />, value: '4' },
-		{ icon: <ArrowBackIosIcon style={{ fontSize: '24px' }} />, value: '5' },
-		{ icon: <ArrowBackIosIcon style={{ fontSize: '24px' }} />, value: '6' },
+		{ icon: Mason, value: 'Mason' },
+		{ icon: Barbender, value: 'Barbender' },
+		{ icon: Carpenter, value: 'Carpenter' },
+		{ icon: Plumber, value: 'Plumber' },
+		{ icon: Electrician, value: 'Electrician' },
+		{ icon: Others, value: 'Other' },
 	]
 
 	const workerType = [

@@ -1,5 +1,7 @@
 import { Grid, Button, Stack, Box } from '@mui/material'
 import { useState, useEffect } from 'react';
+import Image from 'next/image';
+import { theme } from '../../../sdk';
 
 export const JobType = ({ ...props }) => {
 	const { icon, jobName } = props
@@ -18,20 +20,22 @@ export const JobType = ({ ...props }) => {
 				style={{
 					borderRadius: 8,
 					padding: 8,
-					background: selectedJob===jobName?'white':'red',
+					background: selectedJob===jobName?theme.palette.primary.light:'white',
 					color: 'black',
 					height: 100,
 					width: 100,
+					textTransform: 'none'
 				}}>
 				<Box>
-					<Stack
+					<Image src={icon}/>
+					{/* <Stack
 					
 						direction='column'
 						alignItems='center'
 						justifyContent='center'
 						style={{ textAlign: 'center' }} >
 						{icon}
-					</Stack>
+					</Stack> */}
 					<Stack>{jobName}</Stack>
 				</Box>
 			</Button>
