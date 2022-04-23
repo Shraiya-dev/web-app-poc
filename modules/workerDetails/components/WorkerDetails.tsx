@@ -12,6 +12,7 @@ import { Rating } from './Rating'
 import { BasicDetails } from './BasicDetails'
 import { BankDetails } from './BankDetails'
 import { DocInfo } from './Documentation'
+import { theme } from '../../../sdk'
 
 export const WorkerProfileInfo = () => {
 	const CustomWorkerProfile = styled(Box)(({ theme }) => ({
@@ -58,8 +59,8 @@ export const WorkerProfileInfo = () => {
 	return (
 		<Box>
 			<Grid container spacing={1}>
-				<Grid item lg={4}>
-					<Paper elevation={3} style={{ width: 345, height: 711, margin: 20 }}>
+				<Grid item xs={12} md={4}>
+					<Paper elevation={4} style={{ width: 345, height: 711, margin: 20 }}>
 						<Box style={{ backgroundColor: 'rgba(36, 76, 179, 0.15)', height: 117 }}>
 							<Stack style={{ left: 100, top: 57, position: 'relative' }}>
 								<img
@@ -74,7 +75,7 @@ export const WorkerProfileInfo = () => {
 								/>
 							</Stack>
 						</Box>
-						<Box style={{ paddingTop: 80, paddingLeft: 20, paddingRight: 20 }}>
+						<Box style={{ paddingTop: 90, paddingLeft: 20, paddingRight: 20 }}>
 							<Typography style={{ textAlign: 'center', overflow: 'hidden', fontSize: 24, margin: 8 }}>
 								Deepak Kushwaha
 							</Typography>
@@ -90,33 +91,10 @@ export const WorkerProfileInfo = () => {
 								style={{ textAlign: 'center', display: 'flex', justifyContent: 'center' }}
 								//style={{ textAlign: 'center', overflow: 'hidden', fontSize: 24, margin: 8 }}
 							>
-								<Chip icon={<VerifiedUserIcon />} color='success' label='Vaccinated' />
 								<Chip label='Technitian' />
 							</Stack>
 
-							<Stack style={{ padding: 20 }}>
-								<Typography style={{ fontSize: 18 }}>About</Typography>
-								<Typography style={{ fontSize: 12, opacity: 0.5, paddingTop: 8 }}>
-									Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-									incididunt ut labore et dolore magna aliqua.
-								</Typography>
-							</Stack>
-
-							<Stack
-								direction='row'
-								sx={{
-									display: 'flex',
-									flexWrap: 'wrap',
-								}}>
-								<Chip color='primary' label='Text1' style={{ margin: 4 }} />
-								<Chip color='primary' label='Text2' style={{ margin: 4 }} />
-								<Chip color='primary' label='Text1' style={{ margin: 4 }} />
-								<Chip color='primary' label='Text2' style={{ margin: 4 }} />
-								<Chip color='primary' label='Text1' style={{ margin: 4 }} />
-								<Chip color='primary' label='Text2' style={{ margin: 4 }} />
-							</Stack>
-
-							<Stack style={{ padding: 20 }}>
+							<Stack style={{ padding: 10, marginTop:30 }}>
 								<Typography style={{ fontSize: 18 }}>Contact</Typography>
 								<Typography style={{ fontSize: 12, opacity: 0.5, paddingTop: 8 }}>
 									<LocationOnIcon
@@ -135,11 +113,12 @@ export const WorkerProfileInfo = () => {
 					</Paper>
 				</Grid>
 
-				<Grid item lg={8} >
-					<Paper>
-						
-                    <div><BasicDetails /></div>
-                       
+				<Grid item xs={12} md ={8} >
+					<Paper  elevation={4} style={{ width:716, height: 711, margin: 20 }}>
+						<Box>
+							<Typography variant="h5" style={{color:theme.palette.primary.main, padding:10}}>Basic Details</Typography>
+							<BasicDetails />
+						</Box>
 					</Paper>
 				</Grid>
 			</Grid>
