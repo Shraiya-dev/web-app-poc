@@ -8,7 +8,7 @@ import DashboardLayout from '../sdk/layouts/DashboardLayout'
 const Profile: NextPage = () => {
 	return (
 		<DashboardLayout>
-			<Box style={{ paddingTop: '4em', paddingLeft: '7em' }}>
+			<Box style={{ paddingTop: '1em', paddingLeft: '7em' }}>
 				<Button
 					href='/dashboard'
 					startIcon={

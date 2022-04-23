@@ -27,6 +27,7 @@ import { useContractorAuth } from '../providers'
 import CloseIcon from '@mui/icons-material/Close'
 
 import { CreateBooking } from '../../modules/bookworker/components/createBooking'
+import { boolean } from 'yup'
 
 //always update when you change the app bar height into the onlyCssWeNeed file
 const APP_BAR_HEIGHT = 84
@@ -57,12 +58,22 @@ const DashboardLayout = ({ children, ...props }: any) => {
 	const [drawerOpen, setDrawerOpen] = useState<boolean>(false)
 
 	const [bookingFormOpen, setBookingFormOpen] = useState<boolean>(false)
+
+	const [onCloseDialog, setOncloseDialog] = useState<boolean>(false)
+
+	
 	const toggleDrawer = () => {
 		setDrawerOpen(!drawerOpen)
 	}
 
 	const toggleBookingForm = () => {
-		setBookingFormOpen((state) => !state)
+
+		setOncloseDialog((state)=>!state);
+		
+	}
+
+	const handleBookingForm = ()=>{
+		setBookingFormOpen((state)=>!state)
 	}
 
 	return (
@@ -93,7 +104,7 @@ const DashboardLayout = ({ children, ...props }: any) => {
 									</Link>
 								</>
 							)}
-							<Button variant='contained' onClick={toggleBookingForm}>
+							<Button variant='contained' onClick={handleBookingForm}>
 								Book Worker
 							</Button>{' '}
 						</Stack>
@@ -135,7 +146,8 @@ const DashboardLayout = ({ children, ...props }: any) => {
 					<CloseIcon />
 				</IconButton>
 
-				<CreateBooking toggleBookingForm={toggleBookingForm} />
+				<CreateBooking toggleBookingForm={toggleBookingForm}  onCloseDialog={onCloseDialog}
+				setOncloseDialog={setOncloseDialog} bookingFormOpen={bookingFormOpen} setBookingFormOpen ={setBookingFormOpen}/>
 			</Dialog>
 		</>
 	)

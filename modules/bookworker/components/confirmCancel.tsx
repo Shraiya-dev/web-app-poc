@@ -3,8 +3,10 @@ import React, { useState } from "react";
 // Material UI
 import { Dialog, DialogContent, Button, Typography, Stack } from "@mui/material";
 
-const ConfirmCancel = ({ onCloseDialog, setOncloseDialog, toggleBookingForm }) => {
+const ConfirmCancel = ({ ...props }) => {
   const [selectedValue, setSelectedValue] = useState("");
+
+  const {onCloseDialog, setOncloseDialog, toggleBookingForm, bookingFormOpen,setBookingFormOpen } = props;
 
   const handleCancel = ()=>{
     setOncloseDialog(false)
@@ -12,7 +14,7 @@ const ConfirmCancel = ({ onCloseDialog, setOncloseDialog, toggleBookingForm }) =
 
   const handleConfirm = ()=>{
     setOncloseDialog(false);
-    toggleBookingForm(false);
+    setBookingFormOpen(false);
 
   }
   return (

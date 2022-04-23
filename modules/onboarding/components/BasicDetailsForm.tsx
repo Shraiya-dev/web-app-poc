@@ -9,10 +9,15 @@ import useOnboarding from '../hooks/useOnboard'
 import { useRouter } from 'next/router'
 import EditIcon from '@mui/icons-material/Edit'
 
+import { useState } from 'react'
+
 export const BasicDetailsForm = () => {
 	const { form, loading } = useOnboarding()
 
 	const router = useRouter()
+	const [editInfo, setEditInfo] = useState(true);
+
+
 
 	console.log('--', router)
 
@@ -41,6 +46,10 @@ export const BasicDetailsForm = () => {
 	// 	},
 	// }))
 
+	const handleEdit = ()=>{
+		setEditInfo((state)=>!state)
+	}
+
 	return (
 		<Box>
 			<Box style={{ display: 'flex', justifyContent: 'center', paddingTop: '12%' }}>
@@ -49,7 +58,7 @@ export const BasicDetailsForm = () => {
 						<Typography variant='h5' display='inline' style={{ paddingBottom: '0.5em' }}>
 							Basic Details
 							{router.asPath === '/profile' && (
-								<Button variant='text' style={{ float: 'right' }} endIcon={<EditIcon />}>
+								<Button variant='text' style={{ float: 'right' }} endIcon={<EditIcon />} onClick={handleEdit}>
 									Edit
 								</Button>
 							)}
@@ -65,6 +74,7 @@ export const BasicDetailsForm = () => {
 							onChange={form.handleChange}
 							placeholder='Enter Your Full Name'
 							required={true}
+							disabled =  {router.asPath === '/profile' && editInfo}
 							//className='text-field'
 						/>
 
@@ -78,6 +88,7 @@ export const BasicDetailsForm = () => {
 							value={form.values.company}
 							placeholder='Enter Company Name'
 							required={true}
+							disabled ={router.asPath === '/profile' && editInfo}
 							//className='text-field'
 						/>
 
@@ -91,6 +102,7 @@ export const BasicDetailsForm = () => {
 							value={form.values.companyEmail}
 							placeholder='Enter Email'
 							required={true}
+							disabled ={router.asPath === '/profile' && editInfo}
 							//className='text-field'
 						/>
 
@@ -104,6 +116,7 @@ export const BasicDetailsForm = () => {
 							value={form.values.phoneNumber}
 							placeholder='9999988888'
 							required={true}
+							disabled ={router.asPath === '/profile' && editInfo}
 							//className='text-field'
 						/>
 						<LoadingButton

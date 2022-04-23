@@ -6,7 +6,7 @@ import { useRouter } from 'next/router'
 import DashboardLayout from '../sdk/layouts/DashboardLayout'
 import { useWorkerBookingInfo } from '../modules/workerBooking/hooks/useWorkerBookinInfo'
 import { BookingCard } from '../sdk'
-const workerDetails: NextPage = () => {
+const WorkerDetails: NextPage = () => {
 	const router = useRouter()
 	const { workersData } = useWorkerBookingInfo()
 
@@ -34,4 +34,4 @@ const workerDetails: NextPage = () => {
 	)
 }
 
-export default workerDetails
+export default WorkerDetails

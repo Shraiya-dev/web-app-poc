@@ -31,13 +31,13 @@ import { theme } from '../../../sdk'
 import BookingSuccess from './bookingsuccess'
 import ConfirmCancel from './confirmCancel'
 
-export const CreateBooking = ({ toggleBookingForm
-}) => {
+export const CreateBooking = ({ ...props }) => {
+	const { toggleBookingForm, onCloseDialog, setOncloseDialog, bookingFormOpen, setBookingFormOpen } = props
 	const { form } = useCreateBooking()
 
 	const [step, setStep] = useState(1)
-	const [isMore, setIsmore] = useState(false)
-	
+	const [isMore, setIsmore] = useState(true)
+
 	// const [openDialog, setOpenDialog] = useState(false)
 	// const [helper, setHelper] = useState(0)
 	// const [supervisor, setSupervisor] = useState(0)
@@ -60,9 +60,9 @@ export const CreateBooking = ({ toggleBookingForm
 	}
 
 	const jobTypeInfo = [
-		{ icon: <ArrowBackIosIcon style={{ fontSize: '24px' }} />, value: '1' },
-		{ icon: <ArrowBackIosIcon style={{ fontSize: '24px' }} />, value: '2' },
-		{ icon: <ArrowBackIosIcon style={{ fontSize: '24px' }} />, value: '3' },
+		{ icon: <ArrowBackIosIcon style={{ fontSize: '24px' }} />, value: 'general helper' },
+		{ icon: <ArrowBackIosIcon style={{ fontSize: '24px' }} />, value: 'carpenter' },
+		{ icon: <ArrowBackIosIcon style={{ fontSize: '24px' }} />, value: 'painter' },
 		{ icon: <ArrowBackIosIcon style={{ fontSize: '24px' }} />, value: '4' },
 		{ icon: <ArrowBackIosIcon style={{ fontSize: '24px' }} />, value: '5' },
 		{ icon: <ArrowBackIosIcon style={{ fontSize: '24px' }} />, value: '6' },
@@ -123,11 +123,13 @@ export const CreateBooking = ({ toggleBookingForm
 
 	return (
 		<CustomizeDashboard>
-			{/* <ConfirmCancel
+			<ConfirmCancel
 				onCloseDialog={onCloseDialog}
 				setOncloseDialog={setOncloseDialog}
 				toggleBookingForm={toggleBookingForm}
-			/> */}
+				bookingFormOpen = {bookingFormOpen}
+				 setBookingFormOpen={setBookingFormOpen}
+			/>
 			<Box>
 				<Box>
 					<Typography variant='h4' style={{ fontSize: 24 }}>
@@ -201,7 +203,7 @@ export const CreateBooking = ({ toggleBookingForm
 									<InputLabel htmlFor='jobType' className='inputLabel'>
 										Skills
 									</InputLabel>
-									<Stack display='inline'>
+									<Stack display='inline' columnGap={9}>
 										<Chip
 											label='Custom delete icon'
 											//   onClick={handleClick}
@@ -560,8 +562,9 @@ export const CreateBooking = ({ toggleBookingForm
 
 				{/* Submit/prev/Next */}
 
-				<Box style={{ position: 'sticky', textAlign: 'center', bottom: 0, padding: 30, background: 'white' }}>
-					<Grid container spacing={10}>
+				<Box
+					style={{ position: 'sticky', textAlign: 'center', bottom: 0, paddingTop: 20, background: 'white' }}>
+					<Grid container columnSpacing={55}>
 						<Grid item alignItems={'flex-start'} xs={6} sm={6} md={6} lg={6}>
 							{(step === 2 || step === 3) && (
 								<Button fullWidth onClick={handlePrev}>
