@@ -33,18 +33,16 @@ const boxData = [
 
 const CustomizeDashboard = styled(Box)(({ theme }) => ({
 	'.bookingTyppo': {
-		fontSize: "24px",
+		fontSize: '24px',
 		fontWeight: 800,
 	},
 	[theme.breakpoints.down('md')]: {
 		'.bookingTyppo': {
-			fontSize: "16px",
+			fontSize: '16px',
 			fontWeight: 400,
 		},
-
 	},
 }))
-
 
 export const Dashboard = () => {
 	const { bookings } = useDashboard()
@@ -61,7 +59,9 @@ export const Dashboard = () => {
 			</Grid>
 			<Grid mt={6} container>
 				<Grid item xs={12} md={8} justifyContent='space-between' alignItems='center'>
-					<Typography className='bookingTyppo' variant='h4'>Your Bookings</Typography>
+					<Typography className='bookingTyppo' variant='h4'>
+						Your Bookings
+					</Typography>
 
 					<Button className='filter' color='inherit' endIcon={<FilterAlt />} variant='text'>
 						Filter
@@ -81,8 +81,6 @@ export const Dashboard = () => {
 						}}
 					/>
 				</Grid>
-
-
 			</Grid>
 			{/* <TextField
 				fullWidth
@@ -110,7 +108,7 @@ export const Dashboard = () => {
 						{bookings.map((booking, index) => {
 							return (
 								<Grid item xs={12} md={6} key={index}>
-									<BookingCard booking={{}} />
+									<BookingCard booking={booking} />
 								</Grid>
 							)
 						})}

@@ -6,9 +6,28 @@ export const primary = {
 	light: '#224ab526',
 }
 const breakpoints = createBreakpoints({})
+
 export const theme = createTheme({
 	palette: {
 		primary: primary,
+		secondary: {
+			main: '#061e45b3',
+			dark: '#061F48',
+			light: '#061F4866',
+		},
+		success: {
+			main: '#0FAF7F',
+		},
+		info: {
+			main: '#4676F5',
+		},
+		warning: {
+			main: '#D85B00',
+		},
+		error: {
+			main: '#F13625',
+		},
+		tonalOffset: 0.3,
 	},
 	shadows: [
 		'none',
@@ -82,3 +101,4 @@ export const theme = createTheme({
 		},
 	},
 })
+
