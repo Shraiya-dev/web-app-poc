@@ -1,9 +1,7 @@
 import { TextField, Typography, Box, Button, InputLabel, Stack, Input } from '@mui/material'
 
 import LoadingButton from '@mui/lab/LoadingButton'
-import { styled } from '@mui/system'
-
-import useOnboarding from '../hooks/useOnboard'
+import useBasicForm from '../hooks/useBasicForm'
 
 import { useRouter } from 'next/router'
 import EditIcon from '@mui/icons-material/Edit'
@@ -14,7 +12,7 @@ import { checkError } from '../../../sdk'
 import { getCustomerDetails } from '../../../sdk/apis'
 
 export const BasicDetailsForm = () => {
-	const { form, loading } = useOnboarding()
+	const { form, loading } = useBasicForm()
 
 	const router = useRouter()
 	const [editInfo, setEditInfo] = useState(false)

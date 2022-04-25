@@ -6,7 +6,7 @@ import { validateEmail } from '../../../sdk/utils/validationHelpers'
 
 import { updateProfile } from '../../../sdk/apis'
 
-const useOnboarding = () => {
+const useBasicForm = () => {
 	const router = useRouter()
 
 	const [loading, setLoading] = useState(false)
@@ -75,4 +75,4 @@ const useOnboarding = () => {
 	}
 }
 
-export default useOnboarding
+export default useBasicForm

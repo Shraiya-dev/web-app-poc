@@ -672,7 +672,9 @@ export const CreateBooking = ({ ...props }) => {
 												onChange={form.handleChange}
 												fullWidth>
 												<MenuItem value={'none'}>Select city</MenuItem>
-												{getSelectOptions(CitiesOptions[form.values.state.toLowerCase()])}
+												{/* {CitiesOptions[form.values.state].map((item:any)=>{
+													return <MenuItem>{item.label}</MenuItem>
+												})} */}
 											</Select>
 										</Grid>
 									</Grid>
