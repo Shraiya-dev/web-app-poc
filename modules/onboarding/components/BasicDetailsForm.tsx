@@ -1,5 +1,4 @@
-import { TextField, Typography, Box, Button, InputLabel, Stack } from '@mui/material'
-import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos'
+import { TextField, Typography, Box, Button, InputLabel, Stack, Input } from '@mui/material'
 
 import LoadingButton from '@mui/lab/LoadingButton'
 import { styled } from '@mui/system'
@@ -15,39 +14,10 @@ export const BasicDetailsForm = () => {
 	const { form, loading } = useOnboarding()
 
 	const router = useRouter()
-	const [editInfo, setEditInfo] = useState(true);
+	const [editInfo, setEditInfo] = useState(false)
 
-
-
-	console.log('--', router)
-
-	// const CustomizedBasicDetails = styled(Box)(({ theme }) => ({
-	// 	'.back': {
-	// 		paddingTop: '4em',
-	// 		paddingLeft: '7em',
-	// 	},
-
-	// 	'.cta': {
-	// 		marginTop: '1em',
-	// 		width: '100%',
-	// 		background: '#244CB3',
-	// 		color: 'white',
-	// 		cursor: 'pointer',
-	// 	},
-	// 	'.form-info': {
-	// 		display: 'flex',
-	// 		justifyContent: 'center',
-	// 		paddingTop: '12%',
-	// 	},
-	// 	'.text-field': {
-	// 		width: '36.25ch',
-	// 		marginBottom: '1em',
-	// 		height: '6ch',
-	// 	},
-	// }))
-
-	const handleEdit = ()=>{
-		setEditInfo((state)=>!state)
+	const handleEdit = () => {
+		setEditInfo((state) => !state)
 	}
 
 	return (
@@ -58,7 +28,11 @@ export const BasicDetailsForm = () => {
 						<Typography variant='h5' display='inline' style={{ paddingBottom: '0.5em' }}>
 							Basic Details
 							{router.asPath === '/profile' && (
-								<Button variant='text' style={{ float: 'right' }} endIcon={<EditIcon />} onClick={handleEdit}>
+								<Button
+									variant='text'
+									style={{ float: 'right' }}
+									endIcon={<EditIcon />}
+									onClick={handleEdit}>
 									Edit
 								</Button>
 							)}
@@ -74,8 +48,11 @@ export const BasicDetailsForm = () => {
 							onChange={form.handleChange}
 							placeholder='Enter Your Full Name'
 							required={true}
-							disabled =  {router.asPath === '/profile' && editInfo}
-							//className='text-field'
+							variant={router.asPath === '/profile' && editInfo ? 'outlined' : 'standard'}
+							disabled={!(router.asPath === '/profile' && editInfo)}
+							InputProps={{
+								disableUnderline: !(router.asPath === '/profile' && editInfo),
+							}}
 						/>
 
 						<InputLabel id='company' style={{ paddingTop: 10, paddingBottom: 6 }}>
@@ -88,8 +65,11 @@ export const BasicDetailsForm = () => {
 							value={form.values.company}
 							placeholder='Enter Company Name'
 							required={true}
-							disabled ={router.asPath === '/profile' && editInfo}
-							//className='text-field'
+							variant={router.asPath === '/profile' && editInfo ? 'outlined' : 'standard'}
+							disabled={!(router.asPath === '/profile' && editInfo)}
+							InputProps={{
+								disableUnderline: !(router.asPath === '/profile' && editInfo),
+							}}
 						/>
 
 						<InputLabel id='companyEmail' style={{ paddingTop: 10, paddingBottom: 6 }}>
@@ -102,13 +82,17 @@ export const BasicDetailsForm = () => {
 							value={form.values.companyEmail}
 							placeholder='Enter Email'
 							required={true}
-							disabled ={router.asPath === '/profile' && editInfo}
-							//className='text-field'
+							variant={router.asPath === '/profile' && editInfo ? 'outlined' : 'standard'}
+							disabled={!(router.asPath === '/profile' && editInfo)}
+							InputProps={{
+								disableUnderline: !(router.asPath === '/profile' && editInfo),
+							}}
 						/>
 
 						<InputLabel id='phoneNumber' style={{ paddingTop: 10, paddingBottom: 6 }}>
 							Phone Number
 						</InputLabel>
+
 						<TextField
 							id='phoneNumber'
 							name='phoneNumber'
@@ -116,8 +100,11 @@ export const BasicDetailsForm = () => {
 							value={form.values.phoneNumber}
 							placeholder='9999988888'
 							required={true}
-							disabled ={router.asPath === '/profile' && editInfo}
-							//className='text-field'
+							variant={router.asPath === '/profile' && editInfo ? 'outlined' : 'standard'}
+							disabled={!(router.asPath === '/profile' && editInfo)}
+							InputProps={{
+								disableUnderline: !(router.asPath === '/profile' && editInfo),
+							}}
 						/>
 						<LoadingButton
 							type='submit'

@@ -1,8 +1,10 @@
 import { Typography, Select, MenuItem, Drawer, Box, Stack } from '@mui/material'
 
 import { useFormik } from 'formik'
-import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos'
+import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
+
 import styled from '@emotion/styled'
+import { theme } from '../../../sdk';
 
 export default function filterDrawer({ openFilter, setOpenFilter }: any) {
 	const form = useFormik({
@@ -25,7 +27,7 @@ export default function filterDrawer({ openFilter, setOpenFilter }: any) {
 						display='inline'
 						style={{ cursor: 'pointer', background: 'none', fontFamily: 'Mulish' }}
 						onClick={() => setOpenFilter((state: any) => !state)}>
-						<ArrowBackIosIcon style={{ fontSize: '24px', marginRight: '12', verticalAlign: 'middle' }} />
+						<KeyboardBackspaceIcon style={{ fontSize: '24px' , color:theme.palette.primary.main }} />
 						<Typography display='inline' style={{ verticalAlign: 'middle' }}>
 							Back
 						</Typography>

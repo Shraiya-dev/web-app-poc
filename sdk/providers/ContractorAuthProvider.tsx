@@ -85,20 +85,26 @@ const ContractorAuthProvider = ({ children }: any) => {
 	)
 	const silentLogin = useCallback(
 		async (phoneNumber, accessToken) => {
-			const { data } = await loginService(
-				phoneNumber,
-				USER_TYPE.CONTRACTOR,
-				USER_LOGIN_TYPE.SILENT,
-				undefined,
-				accessToken
-			)
-			if (data.success) {
-				//login success update the use state
-				loginUser(data?.data, true)
-			} else {
-				//login failure let the requestor handel the error
-				throw data
+
+			try{
+				const { data } = await loginService(
+					phoneNumber,
+					USER_TYPE.CONTRACTOR,
+					USER_LOGIN_TYPE.SILENT,
+					undefined,
+					accessToken
+				)
+				if (data.success) {
+					//login success update the use state
+					loginUser(data?.data, true)
+				} else {
+					//login failure let the requestor handel the error
+					throw data
+				}
+			} catch(e){
+				console.log(e)
 			}
+			
 		},
 		[loginUser]
 	)
@@ -111,6 +117,7 @@ const ContractorAuthProvider = ({ children }: any) => {
 	}, [router])
 
 	useEffect(() => {
+		console.log("hey2")
 		const accessToken = localStorage.getItem('accessToken')
 		const refreshToken = localStorage.getItem('refreshToken')
 		const phoneNumber = localStorage.getItem('phoneNumber')
@@ -125,6 +132,7 @@ const ContractorAuthProvider = ({ children }: any) => {
 
 	//logic for redirect based on state and update userInfo
 	useEffect(() => {
+		console.log("hey1")
 		if (state.accessToken === null || state.refreshToken === null || state.phoneNumber === null) {
 			logOut()
 			return
@@ -134,8 +142,10 @@ const ContractorAuthProvider = ({ children }: any) => {
 			state.phoneNumber !== LoadingUniqueString &&
 			state.user === null
 		) {
-			silentLogin(state.phoneNumber, state.accessToken)
+		  silentLogin(state.phoneNumber, state.accessToken)
 		}
+
+	
 
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [state.accessToken, state.phoneNumber, state.refreshToken])
@@ -148,6 +158,8 @@ const ContractorAuthProvider = ({ children }: any) => {
 			}
 		}
 
+
+		console.log("hey")
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [state.user])
 

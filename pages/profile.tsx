@@ -1,6 +1,7 @@
 import { NextPage } from 'next'
 import { Box, Button } from '@mui/material'
-import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos'
+import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
+import { theme } from '../sdk';
 
 import { BasicDetailsForm } from '../modules/onboarding/components/BasicDetailsForm'
 import DashboardLayout from '../sdk/layouts/DashboardLayout'
@@ -8,11 +9,11 @@ import DashboardLayout from '../sdk/layouts/DashboardLayout'
 const Profile: NextPage = () => {
 	return (
 		<DashboardLayout>
-			<Box style={{ paddingTop: '1em', paddingLeft: '7em' }}>
+			<Box style={{ paddingTop: '1em' }}>
 				<Button
 					href='/dashboard'
 					startIcon={
-						<ArrowBackIosIcon style={{ fontSize: '24px', marginRight: '12', verticalAlign: 'middle' }} />
+						<KeyboardBackspaceIcon style={{ fontSize: '24px', color:theme.palette.primary.main }} />
 					}
 					variant='text'>
 					Back
