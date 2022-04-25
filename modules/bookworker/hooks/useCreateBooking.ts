@@ -2,14 +2,49 @@ import { useFormik } from 'formik'
 import { useState } from 'react'
 
 import { validateEmail } from '../../../sdk'
+interface CreateBookingForm {
+	jobType: string
+
+	BookingDuration: string
+	StartDate: Date
+
+	helper: Number
+	supervisor: Number
+	technician: Number
+
+	helperWages: Number
+	supervisorWages: Number
+	technicianWages: Number
+
+	overTimeFactor: string
+	overTimeBuffer: string
+	overTime: string
+
+	skills: Array<String>
+	tags: Array<String>
+	startTime: Date
+	endTime: Date
+	shiftTime: string
+	// projectName: string
+	// projectType: string
+
+	state: string
+	city: string
+	siteAddress: string
+
+	name: string
+	company: string
+	companyEmail: string
+	phoneNumber: string
+}
 const useCreateBooking = () => {
 	const [step, setStep] = useState(1)
-	const form = useFormik({
+	const form = useFormik<CreateBookingForm>({
 		initialValues: {
 			jobType: '',
 
 			BookingDuration: '',
-			StartDate:  new Date(),
+			StartDate: new Date(),
 
 			helper: 0,
 			supervisor: 0,
@@ -47,12 +82,11 @@ const useCreateBooking = () => {
 				if (!values.jobType) {
 					errors.jobType = 'Required'
 				}
-				if (!values.helper  && !values.supervisor && !values.technician) {
+				if (!values.helper && !values.supervisor && !values.technician) {
 					errors.helper = 'Required'
 					errors.supervisor = 'Required'
 					errors.technician = 'Required'
 				}
-				
 			}
 
 			if (step === 2) {

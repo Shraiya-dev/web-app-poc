@@ -1,44 +1,36 @@
-import {
-	Stack,
-	TextField,
-	Button,
-	InputLabel,
-	Typography,
-	Select,
-	MenuItem,
-	Box,
-	Grid,
-	FormControl,
-	Chip,
-	Container,
-} from '@mui/material'
-import { theme } from '../../../sdk'
-import { makeStyles } from '@mui/styles'
-import { useEffect, useState } from 'react'
-import useCreateBooking from '../hooks/useCreateBooking'
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
-import { DatePicker } from '@mui/x-date-pickers/DatePicker'
-import { TimePicker } from '@mui/x-date-pickers/TimePicker'
-
-import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns'
-
-import BookingSuccess from './bookingsuccess'
-import ConfirmCancel from './confirmCancel'
-import Image from 'next/image'
-
-import _without from 'lodash/without'
-
-import { checkError } from '../../../sdk'
-
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp'
-import { tags, StatesOptions, CitiesOptions, jobTypeInfo, moreJobType, projectDuration } from '../utils/helperData'
-
-import Technician from '../../../public/assets/icons/technician.svg'
+import {
+	Box,
+	Button,
+	Chip,
+	Container,
+	FormControl,
+	Grid,
+	InputLabel,
+	makeStyles,
+	MenuItem,
+	Select,
+	Stack,
+	TextField,
+	Typography,
+} from '@mui/material'
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns'
+import { DatePicker } from '@mui/x-date-pickers/DatePicker'
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
+import { TimePicker } from '@mui/x-date-pickers/TimePicker'
+import Image from 'next/image'
+import { useEffect, useState } from 'react'
 import Helper from '../../../public/assets/icons/helper.svg'
 import Supervisor from '../../../public/assets/icons/supervisor.svg'
+import Technician from '../../../public/assets/icons/technician.svg'
+import { checkError, theme } from '../../../sdk'
+import useCreateBooking from '../hooks/useCreateBooking'
+import { CitiesOptions, jobTypeInfo, moreJobType, projectDuration, StatesOptions, tags } from '../utils/helperData'
+import BookingSuccess from './bookingsuccess'
+import ConfirmCancel from './confirmCancel'
 
-const useStyles = makeStyles({
+const useStyles = makeStyles(() => ({
 	main: {
 		justifyContent: 'center',
 		display: 'flex',
@@ -66,7 +58,7 @@ const useStyles = makeStyles({
 		marginTop: 20,
 		marginBottom: 10,
 	},
-})
+}))
 
 export const CreateBooking = ({ ...props }) => {
 	const { toggleBookingForm, onCloseDialog, setOncloseDialog, bookingFormOpen, setBookingFormOpen } = props
@@ -237,9 +229,9 @@ export const CreateBooking = ({ ...props }) => {
 										Trade
 									</InputLabel>
 									<Grid container item rowSpacing={2} columnSpacing={2} style={{ marginBottom: 10 }}>
-										{jobTypeInfo.map((info) => {
+										{jobTypeInfo.map((info, index) => {
 											return (
-												<Grid item xs={4} sm={4} md={2} lg={2}>
+												<Grid key={index} item xs={4} sm={4} md={2} lg={2}>
 													<Button
 														onClick={() => handleJobClick(info?.value)}
 														style={{
@@ -269,9 +261,9 @@ export const CreateBooking = ({ ...props }) => {
 									{isMore && (
 										<Box>
 											<Grid container item rowSpacing={2} columnSpacing={2}>
-												{moreJobType.map((info) => {
+												{moreJobType.map((info, index) => {
 													return (
-														<Grid item xs={4} sm={4} md={2} lg={2}>
+														<Grid key={index} item xs={4} sm={4} md={2} lg={2}>
 															<Button
 																onClick={() => handleJobClick(info?.value)}
 																style={{
@@ -341,13 +333,13 @@ export const CreateBooking = ({ ...props }) => {
 									</InputLabel>
 									<Grid item xs={12} md={12}>
 										<Stack direction='row' flexWrap='wrap'>
-											{tags[form.values.jobType]?.map((item:any) => {
+											{tags[form.values.jobType]?.map((item: any) => {
 												return (
 													<Chip
 														sx={{
 															m: 1,
 														}}
-														color={form?.values?.tags?.includes(item) ? 'primary' : undefined}
+														color={form.values.tags.includes(item) ? 'primary' : undefined}
 														key={item}
 														label={item}
 														clickable
@@ -384,9 +376,10 @@ export const CreateBooking = ({ ...props }) => {
 										{`Workers Required & Daily Wage`}
 									</InputLabel>
 
-									{workerType.map((info) => {
+									{workerType.map((info, index) => {
 										return (
 											<Grid
+												key={index}
 												container
 												alignItems={'flex-start'}
 												spacing={2}
@@ -531,9 +524,10 @@ export const CreateBooking = ({ ...props }) => {
 
 									<Grid container spacing={4}>
 										<Grid item xs={12} sm={12} md={8} lg={8}>
-											{projectDuration.map((info) => {
+											{projectDuration.map((info, index) => {
 												return (
 													<Button
+														key={index}
 														style={{
 															borderRadius: 4,
 															padding: 8,
