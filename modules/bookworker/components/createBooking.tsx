@@ -77,7 +77,7 @@ export const CreateBooking = ({ ...props }) => {
 	const [selectedJob, setSelectedjob] = useState('')
 	const [shiftTiming, setShiftTiming] = useState('')
 
-	const [isSubmittable, setIsSubmittable] = useState(false)
+	const [isSubmittable, setIsSubmittable] = useState<boolean>(false)
 
 	const workerType = [
 		{
@@ -111,8 +111,8 @@ export const CreateBooking = ({ ...props }) => {
 
 	useEffect(() => {
 		if (step === 1) {
-			var canSubmit =
-				!form.values.jobType || (!form.values.technician && !form.values.helper && !form.values.supervisor)
+			var canSubmit:boolean =
+				!form.values.jobType || (!form.values.technician &&  !form.values.helper && !form.values.supervisor)
 
 			setIsSubmittable(canSubmit)
 		}

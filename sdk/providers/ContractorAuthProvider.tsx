@@ -154,6 +154,7 @@ const ContractorAuthProvider = ({ children }: any) => {
 		if (state.user) {
 			if (state.user.isFirstLogin) {
 				//todo redirect to onboarding flow
+				router.push('/onboarding')
 			} else if (!router.pathname.includes('/dashboard')) {
 				router.push('/dashboard')
 			}

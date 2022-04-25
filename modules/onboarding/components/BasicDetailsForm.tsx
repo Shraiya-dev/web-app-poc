@@ -2,13 +2,10 @@ import { TextField, Typography, Box, Button, InputLabel, Stack, Input } from '@m
 
 import LoadingButton from '@mui/lab/LoadingButton'
 import useBasicForm from '../hooks/useBasicForm'
-
 import { useRouter } from 'next/router'
 import EditIcon from '@mui/icons-material/Edit'
-
 import { useEffect, useState } from 'react'
 import { checkError } from '../../../sdk'
-
 import { getCustomerDetails } from '../../../sdk/apis'
 
 export const BasicDetailsForm = () => {
@@ -60,8 +57,8 @@ export const BasicDetailsForm = () => {
 								disableUnderline: !(router.asPath === '/profile' && editInfo),
 							}}
 							placeholder='Enter Your Full Name'
-							variant={router.asPath === '/profile' && editInfo ? 'outlined' : 'standard'}
-							disabled={!(router.asPath === '/profile' && editInfo)}
+							variant={router.asPath === '/profile'  ? editInfo? 'outlined' : 'standard':'outlined'}
+							disabled={(router.asPath === '/profile' ? !editInfo:false)}
 							error={!!checkError('name', form)}
 							helperText={checkError('name', form)}
 						/>
@@ -76,8 +73,8 @@ export const BasicDetailsForm = () => {
 							onBlur={form.handleBlur}
 							value={form.values.company}
 							placeholder='Enter Company Name'
-							variant={router.asPath === '/profile' && editInfo ? 'outlined' : 'standard'}
-							disabled={!(router.asPath === '/profile' && editInfo)}
+							variant={router.asPath === '/profile'  ? editInfo? 'outlined' : 'standard':'outlined'}
+							disabled={(router.asPath === '/profile' ? !editInfo:false)}
 							InputProps={{
 								disableUnderline: !(router.asPath === '/profile' && editInfo),
 							}}
@@ -95,8 +92,8 @@ export const BasicDetailsForm = () => {
 							onBlur={form.handleBlur}
 							value={form.values.companyEmail}
 							placeholder='Enter Email'
-							variant={router.asPath === '/profile' && editInfo ? 'outlined' : 'standard'}
-							disabled={!(router.asPath === '/profile' && editInfo)}
+							variant={router.asPath === '/profile'  ? editInfo? 'outlined' : 'standard':'outlined'}
+							disabled={(router.asPath === '/profile' ? !editInfo:false)}
 							InputProps={{
 								disableUnderline: !(router.asPath === '/profile' && editInfo),
 							}}
@@ -115,8 +112,8 @@ export const BasicDetailsForm = () => {
 							onBlur={form.handleBlur}
 							value={form.values.phoneNumber}
 							placeholder='9999988888'
-							variant={router.asPath === '/profile' && editInfo ? 'outlined' : 'standard'}
-							disabled={!(router.asPath === '/profile' && editInfo)}
+							variant={router.asPath === '/profile'  ? editInfo? 'outlined' : 'standard':'outlined'}
+							disabled={(router.asPath === '/profile' ? !editInfo:false)}
 							InputProps={{
 								disableUnderline: !(router.asPath === '/profile' && editInfo),
 							}}
@@ -127,7 +124,6 @@ export const BasicDetailsForm = () => {
 							<LoadingButton
 								type='submit'
 								loading={loading}
-								//loadingPosition='start'
 								variant='contained'
 								style={{
 									marginTop: '1em',
