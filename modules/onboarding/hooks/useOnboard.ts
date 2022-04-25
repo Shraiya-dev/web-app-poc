@@ -4,6 +4,8 @@ import { useFormik } from 'formik'
 
 import { validateEmail } from '../../../sdk/utils/validationHelpers'
 
+import { updateProfile } from '../../../sdk/apis'
+
 const useOnboarding = () => {
 	const router = useRouter()
 
@@ -20,20 +22,20 @@ const useOnboarding = () => {
 		validate: (values) => {
 			const errors = <any>{}
 
-			if(!values.name){
-				errors.name="Required"
+			if (!values.name) {
+				errors.name = 'Required'
 			}
 
-			if(!values.company){
-				errors.company="Required"
+			if (!values.company) {
+				errors.company = 'Required'
 			}
 
-			if(!values.companyEmail){
-				errors.companyEmail="Required"
+			if (!values.companyEmail) {
+				errors.companyEmail = 'Required'
 			}
 
-			if(!values.phoneNumber){
-				errors.phoneNumber="Required"
+			if (!values.phoneNumber) {
+				errors.phoneNumber = 'Required'
 			}
 
 			if (
@@ -50,8 +52,20 @@ const useOnboarding = () => {
 			return errors
 		},
 		onSubmit: (values) => {
-			
-			router.push('/dashboard')
+			const payload = {
+				name: values.name,
+				company: values.company,
+				companyemail: values.companyEmail,
+			}
+			updateProfile(payload)
+				.then((status: any) => {
+					if (status === 200) {
+						router.push('/dashboard')
+					}
+				})
+				.catch((error) => {
+					console.log(error)
+				})
 		},
 	})
 

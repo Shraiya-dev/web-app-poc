@@ -9,9 +9,7 @@ import {
 	Box,
 	Grid,
 	FormControl,
-	Autocomplete,
 	Chip,
-	Paper,
 	Container,
 } from '@mui/material'
 import { theme } from '../../../sdk'
@@ -24,36 +22,21 @@ import { TimePicker } from '@mui/x-date-pickers/TimePicker'
 
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns'
 
-import { fontWeight, styled } from '@mui/system'
-
 import BookingSuccess from './bookingsuccess'
 import ConfirmCancel from './confirmCancel'
 import Image from 'next/image'
 
-import Mason from '../../../public/assets/icons/mason.svg'
-import Barbender from '../../../public/assets/icons/barbender.svg'
-import Plumber from '../../../public/assets/icons/plumber.svg'
-import Electrician from '../../../public/assets/icons/electrical.svg'
-import Carpenter from '../../../public/assets/icons/carpenter.svg'
-
-import Gypsum from '../../../public/assets/icons/gypsum.svg'
-import GeneralWorker from '../../../public/assets/icons/generalworker.svg'
-import Painter from '../../../public/assets/icons/painter.svg'
-import Stone from '../../../public/assets/icons/stone.svg'
-import Hvac from '../../../public/assets/icons/hvac.svg'
-import Welderfitter from '../../../public/assets/icons/welderfitter.svg'
-import Shuttering from '../../../public/assets/icons/shuttering.svg'
-
-import Technician from '../../../public/assets/icons/technician.svg'
-import Helper from '../../../public/assets/icons/helper.svg'
-import Supervisor from '../../../public/assets/icons/supervisor.svg'
 import _without from 'lodash/without'
 
 import { checkError } from '../../../sdk'
 
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp'
-import { tags, StatesOptions, CitiesOptions } from '../../../sdk'
+import { tags, StatesOptions, CitiesOptions, jobTypeInfo, moreJobType, projectDuration } from '../utils/helperData'
+
+import Technician from '../../../public/assets/icons/technician.svg'
+import Helper from '../../../public/assets/icons/helper.svg'
+import Supervisor from '../../../public/assets/icons/supervisor.svg'
 
 const useStyles = makeStyles({
 	main: {
@@ -95,6 +78,36 @@ export const CreateBooking = ({ ...props }) => {
 	const [shiftTiming, setShiftTiming] = useState('')
 
 	const [isSubmittable, setIsSubmittable] = useState(false)
+
+	const workerType = [
+		{
+			label: 'Technician',
+			icon: Technician,
+			name: 'technician',
+			wage: 'technicianWages',
+			formvalue: form.values.technician,
+			wageformvalue: form.values.technicianWages,
+			error: form.errors.technician,
+		},
+		{
+			label: 'Helper',
+			icon: Helper,
+			name: 'helper',
+			wage: 'helperWages',
+			formvalue: form.values.helper,
+			wageformvalue: form.values.helperWages,
+			error: form.errors.helper,
+		},
+		{
+			label: 'Supervisor',
+			icon: Supervisor,
+			name: 'supervisor',
+			wage: 'supervisorWages',
+			formvalue: form.values.supervisor,
+			wageformvalue: form.values.supervisorWages,
+			error: form.errors.supervisor,
+		},
+	]
 
 	useEffect(() => {
 		if (step === 1) {
@@ -141,64 +154,6 @@ export const CreateBooking = ({ ...props }) => {
 		))
 	}
 
-	const jobTypeInfo = [
-		{ icon: Mason, label: 'Mason', value: 'MASON' },
-		{ icon: Barbender, label: 'Barbender', value: 'BAR_BENDER' },
-		{ icon: Carpenter, label: 'Carpenter', value: 'CARPENTER' },
-		{ icon: Plumber, label: 'Plumber', value: 'PLUMBING' },
-		{ icon: Electrician, label: 'Electrical', value: 'ELECTRICAL' },
-
-		{ icon: Gypsum, label: 'Gypsum', value: 'GYPSUM' },
-	]
-
-	const moreJobType = [
-		{ icon: GeneralWorker, label: 'General Worker', value: 'GENERAL_HELPER' },
-		{ icon: Painter, label: 'Painter', value: 'PAINTER' },
-		{ icon: Stone, label: 'Stone', value: 'STONE_TILE_MARBLE_LAYER' },
-		{ icon: Hvac, label: 'Hvac', value: 'HVAC' },
-
-		{ icon: Welderfitter, label: 'Welder fitter', value: 'WELDER_FITTER' },
-		{ icon: Shuttering, label: 'Shuttering', value: 'SHUTTERING_CARPENTER' },
-	]
-
-	const workerType = [
-		{
-			label: 'Technician',
-			icon: Technician,
-			name: 'technician',
-			wage: 'technicianWages',
-			formvalue: form.values.technician,
-			wageformvalue: form.values.technicianWages,
-			error: form.errors.technician,
-		},
-		{
-			label: 'Helper',
-			icon: Helper,
-			name: 'helper',
-			wage: 'helperWages',
-			formvalue: form.values.helper,
-			wageformvalue: form.values.helperWages,
-			error: form.errors.helper,
-		},
-		{
-			label: 'Supervisor',
-			icon: Supervisor,
-			name: 'supervisor',
-			wage: 'supervisorWages',
-			formvalue: form.values.supervisor,
-			wageformvalue: form.values.supervisorWages,
-			error: form.errors.supervisor,
-		},
-	]
-
-	const projectDuration = [
-		{ label: 'less than 7 days' },
-
-		{ label: '7-45 days' },
-		{ label: '45-90 days' },
-		{ label: '90+ days' },
-	]
-
 	const classes = useStyles()
 
 	const handleProjectDuration = (info: any) => {
@@ -224,40 +179,54 @@ export const CreateBooking = ({ ...props }) => {
 				setBookingFormOpen={setBookingFormOpen}
 			/>
 			<Box width={'100%'}>
-				<Box>
+				{step !== 4 && (
 					<Box>
-						<Typography variant='h4' style={{ fontSize: 36 }}>
-							Book Workers
-						</Typography>
-					</Box>
-
-					<Box display='flex'>
-						<Grid container justifyContent='flex-start'>
-							<Typography variant='h4' style={{ fontSize: 18, marginTop: 20 }}>
-								{step === 1
-									? 'Add Workers Details'
-									: step === 2
-									? 'Project Details'
-									: 'Add Contact Details'}
+						<Box>
+							<Typography variant='h4' style={{ fontSize: 36 }}>
+								Book Workers
 							</Typography>
-						</Grid>
+						</Box>
 
-						<Grid container justifyContent='flex-end' style={{ marginTop: 20 }}>
-							<Stack
-								className={classes.stepper}
-								style={{ background: `${step === 1 ? theme.palette.primary.main:theme.palette.primary.light}` }}
-							/>
-							<Stack
-								className={classes.stepper}
-								style={{ background: `${step === 2 ? theme.palette.primary.main:theme.palette.primary.light}` }}
-							/>
-							<Stack
-								className={classes.stepper}
-								style={{ background: `${step === 3 ? theme.palette.primary.main:theme.palette.primary.light}` }}
-							/>
-						</Grid>
+						<Box display='flex'>
+							<Grid container justifyContent='flex-start'>
+								<Typography variant='h4' style={{ fontSize: 18, marginTop: 20 }}>
+									{step === 1
+										? 'Add Workers Details'
+										: step === 2
+										? 'Project Details'
+										: 'Add Contact Details'}
+								</Typography>
+							</Grid>
+
+							<Grid container justifyContent='flex-end' style={{ marginTop: 20 }}>
+								<Stack
+									className={classes.stepper}
+									style={{
+										background: `${
+											step === 1 ? theme.palette.primary.main : theme.palette.primary.light
+										}`,
+									}}
+								/>
+								<Stack
+									className={classes.stepper}
+									style={{
+										background: `${
+											step === 2 ? theme.palette.primary.main : theme.palette.primary.light
+										}`,
+									}}
+								/>
+								<Stack
+									className={classes.stepper}
+									style={{
+										background: `${
+											step === 3 ? theme.palette.primary.main : theme.palette.primary.light
+										}`,
+									}}
+								/>
+							</Grid>
+						</Box>
 					</Box>
-				</Box>
+				)}
 
 				<Box>
 					<form onSubmit={form.handleSubmit}>
@@ -606,7 +575,7 @@ export const CreateBooking = ({ ...props }) => {
 
 													height: 35,
 													width: 100,
-													color: "black",
+													color: 'black',
 													marginRight: 10,
 												}}
 												onClick={() => handleShiftTiming('9am-6pm')}>
@@ -624,7 +593,7 @@ export const CreateBooking = ({ ...props }) => {
 
 													height: 35,
 													width: 100,
-													color: "black",
+													color: 'black',
 												}}
 												onClick={() => handleShiftTiming('Custom')}>
 												Custom
@@ -637,16 +606,12 @@ export const CreateBooking = ({ ...props }) => {
 											<Grid item xs={12} sm={12} md={6} lg={6}>
 												<LocalizationProvider dateAdapter={AdapterDateFns}>
 													<TimePicker
-														
-														
-													
 														value={form.values.startTime}
 														onChange={(value) => form.setFieldValue('startTime', value)}
 														//onChange={form.handleChange}
 														renderInput={(params) => (
 															<TextField
 																{...params}
-																format="HH:mm:ss"
 																placeholder='Select Start Time'
 																fullWidth
 															/>
@@ -707,7 +672,7 @@ export const CreateBooking = ({ ...props }) => {
 												onChange={form.handleChange}
 												fullWidth>
 												<MenuItem value={'none'}>Select city</MenuItem>
-												{/* {getSelectOptions(CitiesOptions[form.values.state.toLowerCase()])} */}
+												{getSelectOptions(CitiesOptions[form.values.state.toLowerCase()])}
 											</Select>
 										</Grid>
 									</Grid>

@@ -22,8 +22,8 @@ export const OTPVerification = () => {
 						marginTop: 20,
 						marginRight: '1rem',
 						borderRadius: '4px',
-						width: '3.8em',
-						height: '3.8em',
+						width: '3em',
+						height: '3em',
 						border: '1px solid #C4C4C4',
 					}}
 					focusStyle={{ border: '1px solid #C4C4C4' }}

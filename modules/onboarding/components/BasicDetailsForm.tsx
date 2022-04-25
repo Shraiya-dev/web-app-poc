@@ -8,8 +8,10 @@ import useOnboarding from '../hooks/useOnboard'
 import { useRouter } from 'next/router'
 import EditIcon from '@mui/icons-material/Edit'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { checkError } from '../../../sdk'
+
+import { getCustomerDetails } from '../../../sdk/apis'
 
 export const BasicDetailsForm = () => {
 	const { form, loading } = useOnboarding()
@@ -20,6 +22,14 @@ export const BasicDetailsForm = () => {
 	const handleEdit = () => {
 		setEditInfo((state) => !state)
 	}
+
+	useEffect(() => {
+		getCustomerDetails()
+			.then((data) => {})
+			.catch((error) => {
+				console.log(error)
+			})
+	}, [])
 
 	return (
 		<Box>
@@ -48,12 +58,12 @@ export const BasicDetailsForm = () => {
 							value={form.values.name}
 							onChange={form.handleChange}
 							onBlur={form.handleBlur}
-							placeholder='Enter Your Full Name'
-							variant={router.asPath === '/profile' && editInfo ? 'outlined' : 'standard'}
-							disabled={!(router.asPath === '/profile' && editInfo)}
 							InputProps={{
 								disableUnderline: !(router.asPath === '/profile' && editInfo),
 							}}
+							placeholder='Enter Your Full Name'
+							variant={router.asPath === '/profile' && editInfo ? 'outlined' : 'standard'}
+							disabled={!(router.asPath === '/profile' && editInfo)}
 							error={!!checkError('name', form)}
 							helperText={checkError('name', form)}
 						/>
@@ -73,8 +83,8 @@ export const BasicDetailsForm = () => {
 							InputProps={{
 								disableUnderline: !(router.asPath === '/profile' && editInfo),
 							}}
-							error={!!checkError('name', form)}
-							helperText={checkError('name', form)}
+							error={!!checkError('company', form)}
+							helperText={checkError('company', form)}
 						/>
 
 						<InputLabel id='companyEmail' style={{ paddingTop: 10, paddingBottom: 6 }}>
@@ -92,8 +102,8 @@ export const BasicDetailsForm = () => {
 							InputProps={{
 								disableUnderline: !(router.asPath === '/profile' && editInfo),
 							}}
-							error={!!checkError('name', form)}
-							helperText={checkError('name', form)}
+							error={!!checkError('companyEmail', form)}
+							helperText={checkError('companyEmail', form)}
 						/>
 
 						<InputLabel id='phoneNumber' style={{ paddingTop: 10, paddingBottom: 6 }}>
@@ -112,23 +122,25 @@ export const BasicDetailsForm = () => {
 							InputProps={{
 								disableUnderline: !(router.asPath === '/profile' && editInfo),
 							}}
-							error={!!checkError('name', form)}
-							helperText={checkError('name', form)}
+							error={!!checkError('phoneNumber', form)}
+							helperText={checkError('phoneNumber', form)}
 						/>
-						<LoadingButton
-							type='submit'
-							loading={loading}
-							//loadingPosition='start'
-							variant='contained'
-							style={{
-								marginTop: '1em',
-								width: '100%',
-								background: '#244CB3',
-								color: 'white',
-								cursor: 'pointer',
-							}}>
-							{router.asPath === '/profile' ? 'Save' : 'Next'}
-						</LoadingButton>
+						{editInfo && (
+							<LoadingButton
+								type='submit'
+								loading={loading}
+								//loadingPosition='start'
+								variant='contained'
+								style={{
+									marginTop: '1em',
+									width: '100%',
+									background: '#244CB3',
+									color: 'white',
+									cursor: 'pointer',
+								}}>
+								{router.asPath === '/profile' ? 'Save' : 'Next'}
+							</LoadingButton>
+						)}
 					</Stack>
 				</form>
 			</Box>

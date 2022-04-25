@@ -44,7 +44,7 @@ export const JobCardCard = ({ jobCard }: JobCardCardProps) => {
 				<Stack flex={1} p={2}>
 					<Stack direction='row' justifyContent='space-between'>
 						<Typography color='primary.main'>{jobCard.workerName}</Typography>
-						<Link href='' passHref>
+						<Link href={`/worker/${jobCard.workerId}`} passHref>
 							<Typography component={'a'} color='primary.main'>
 								View
 							</Typography>

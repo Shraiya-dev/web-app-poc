@@ -93,7 +93,12 @@ const DashboardLayout = ({ children, ...props }: any) => {
 						<Stack direction='row' spacing={2}>
 							{!isMobile && (
 								<>
-									<Button variant='text'>Dashboard</Button>
+									<Link href='/dashboard' passHref>
+										<a>
+											<Button variant='text'>Dashboard</Button>
+										</a>
+									</Link>
+
 									<Link href='/profile' passHref>
 										<a>
 											<Button variant='text'>My Profile</Button>
@@ -115,19 +120,27 @@ const DashboardLayout = ({ children, ...props }: any) => {
 						<Image alt='logo' src={logo} />
 					</Stack>
 					<List>
-						<ListItem button>
-							<ListItemIcon>
-								<DashboardIcon />
-							</ListItemIcon>
-							<ListItemText>Dashboard</ListItemText>
-						</ListItem>
+						<Link href='/dashboard' passHref>
+							<a>
+								<ListItem button>
+									<ListItemIcon>
+										<DashboardIcon />
+									</ListItemIcon>
+									<ListItemText>Dashboard</ListItemText>
+								</ListItem>
+							</a>
+						</Link>
 
-						<ListItem button>
-							<ListItemIcon>
-								<PersonIcon />
-							</ListItemIcon>
-							<ListItemText>Profile</ListItemText>
-						</ListItem>
+						<Link href='/profile' passHref>
+							<a>
+								<ListItem button>
+									<ListItemIcon>
+										<PersonIcon />
+									</ListItemIcon>
+									<ListItemText>Profile</ListItemText>
+								</ListItem>
+							</a>
+						</Link>
 						<ListItem button onClick={logOut}>
 							<ListItemIcon>
 								<LogoutIcon />
