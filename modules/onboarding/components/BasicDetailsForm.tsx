@@ -18,6 +18,12 @@ export const BasicDetailsForm = () => {
 		setEditInfo((state) => !state)
 	}
 
+	const data = {
+		name:"Deepak",
+		company:"projecthero",
+		companyName:"deepak.kushwaha@projecthero.in",
+		phoneNumber:"9901549150"
+	}
 	useEffect(() => {
 		getCustomerDetails()
 			.then((data) => {})
@@ -50,7 +56,7 @@ export const BasicDetailsForm = () => {
 						<TextField
 							id='name'
 							name='name'
-							value={form.values.name}
+							value={form.values.name || data.name}
 							onChange={form.handleChange}
 							onBlur={form.handleBlur}
 							InputProps={{
@@ -61,6 +67,7 @@ export const BasicDetailsForm = () => {
 							disabled={(router.asPath === '/profile' ? !editInfo:false)}
 							error={!!checkError('name', form)}
 							helperText={checkError('name', form)}
+							style={{fontSize:"18px"}}
 						/>
 
 						<InputLabel id='company' style={{ paddingTop: 10, paddingBottom: 6 }}>
@@ -71,7 +78,7 @@ export const BasicDetailsForm = () => {
 							name='company'
 							onChange={form.handleChange}
 							onBlur={form.handleBlur}
-							value={form.values.company}
+							value={form.values.company  || data.company}
 							placeholder='Enter Company Name'
 							variant={router.asPath === '/profile'  ? editInfo? 'outlined' : 'standard':'outlined'}
 							disabled={(router.asPath === '/profile' ? !editInfo:false)}
@@ -90,7 +97,7 @@ export const BasicDetailsForm = () => {
 							name='companyEmail'
 							onChange={form.handleChange}
 							onBlur={form.handleBlur}
-							value={form.values.companyEmail}
+							value={form.values.companyEmail ||data.companyName}
 							placeholder='Enter Email'
 							variant={router.asPath === '/profile'  ? editInfo? 'outlined' : 'standard':'outlined'}
 							disabled={(router.asPath === '/profile' ? !editInfo:false)}
@@ -110,7 +117,7 @@ export const BasicDetailsForm = () => {
 							name='phoneNumber'
 							onChange={form.handleChange}
 							onBlur={form.handleBlur}
-							value={form.values.phoneNumber}
+							value={form.values.phoneNumber || data.phoneNumber}
 							placeholder='9999988888'
 							variant={router.asPath === '/profile'  ? editInfo? 'outlined' : 'standard':'outlined'}
 							disabled={(router.asPath === '/profile' ? !editInfo:false)}
