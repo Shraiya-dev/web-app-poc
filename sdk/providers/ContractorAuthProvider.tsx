@@ -1,3 +1,4 @@
+import { log } from 'console'
 import { useRouter } from 'next/router'
 import { createContext, useCallback, useContext, useEffect, useMemo, useReducer } from 'react'
 import { loginService, sendOtpService } from '../apis'
@@ -80,7 +81,7 @@ const ContractorAuthProvider = ({ children }: any) => {
 					throw data
 				}
 			} catch (error) {
-				throw error
+				console.log(error)
 			}
 			//return await loginService(phoneNumber, USER_TYPE.CONTRACTOR, USER_LOGIN_TYPE.OTP, otp)
 		},
@@ -100,7 +101,7 @@ const ContractorAuthProvider = ({ children }: any) => {
 					//login success update the use state
 					loginUser(data?.data, true)
 				} else {
-					//login failure let the requestor handel the error
+					//login failure let the requester handel the error
 					throw data
 				}
 			} catch (error) {
@@ -113,7 +114,7 @@ const ContractorAuthProvider = ({ children }: any) => {
 	const logOut = useCallback(async () => {
 		localStorage.clear()
 		dispatch(initialAuthState)
-		router.push('/login')
+		await router.push('/login')
 	}, [router])
 
 	useEffect(() => {

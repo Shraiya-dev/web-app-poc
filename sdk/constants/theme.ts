@@ -1,13 +1,12 @@
-import { createTheme } from '@mui/material/styles'
+import { createTheme, responsiveFontSizes } from '@mui/material/styles'
 import { createBreakpoints } from '@mui/system'
-
 export const primary = {
 	main: '#244CB3',
 	light: '#224ab526',
 }
 const breakpoints = createBreakpoints({})
 
-export const theme = createTheme({
+let themeDef = createTheme({
 	palette: {
 		primary: primary,
 		secondary: {
@@ -58,15 +57,6 @@ export const theme = createTheme({
 	],
 
 	components: {
-		MuiTypography: {
-			styleOverrides: {
-				root: {
-					[breakpoints.down('md')]: {
-						fontSize: 12,
-					},
-				},
-			},
-		},
 		MuiGrid: {
 			defaultProps: {
 				display: 'flex',
@@ -80,6 +70,7 @@ export const theme = createTheme({
 			styleOverrides: {
 				root: {
 					borderRadius: 30,
+					textTransform: 'inherit',
 				},
 				sizeMedium: {
 					padding: '12px 22px',
@@ -102,3 +93,5 @@ export const theme = createTheme({
 	},
 })
 
+export const theme = responsiveFontSizes(themeDef)
+// export const theme = themeDef

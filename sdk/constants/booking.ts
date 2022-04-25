@@ -1,6 +1,6 @@
 import { BOOKING_STATES } from '../types'
 
-export const BookingLabel: Partial<{
+export const BookingStateLabel: Partial<{
 	[key in BOOKING_STATES]: string
 }> = {
 	RECEIVED: 'Created',

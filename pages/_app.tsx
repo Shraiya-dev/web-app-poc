@@ -30,7 +30,7 @@ axios.interceptors.response.use(
 	async (error: AxiosError) => {
 		const originalRequest = error.config
 		const refreshToken = localStorage.getItem('refreshToken')
-		if (refreshToken && error?.response?.status === 401) {
+		if (error?.response?.status === 401) {
 			//todo add retry logic here to retry login before logout
 			localStorage.clear()
 		}

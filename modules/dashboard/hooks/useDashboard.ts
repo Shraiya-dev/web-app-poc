@@ -1,14 +1,16 @@
 import { useFormik } from 'formik'
-import { useState } from 'react'
+import { useRouter } from 'next/router'
+import { useEffect, useState } from 'react'
 import { BookingPreview, BOOKING_STATES, JOB_TYPES } from '../../../sdk'
 
 export const useDashboard = () => {
-	//todo define interface for proper usage
+	const router = useRouter()
 	const [bookings, setBookings] = useState<Array<BookingPreview>>(
-		Array(6).fill({
+		Array(50).fill({
 			bookingId: 'ABCDEF',
 			city: 'Noida',
-			status: 'READY_TO_DEPLOY' as BOOKING_STATES,
+			status: 'RECEIVED' as BOOKING_STATES,
+
 			state: 'Uttar Pradesh',
 			jobType: 'BAR_BENDER' as JOB_TYPES,
 			peopleRequired: {
@@ -22,11 +24,15 @@ export const useDashboard = () => {
 			},
 			jobCardDetails: {
 				ACCEPTED: 5,
-				READY_TO_DEPLOY: 10,
+				READY_TO_DEPLOY: 7,
 				DEPLOYMENT_COMPLETE: 10,
 			},
 		})
 	)
+	useEffect(() => {
+		const sp = new URLSearchParams(router.query as any)
+		console.log('fetching booking for ?', sp.toString())
+	}, [router.query])
 
 	return {
 		bookings: bookings,

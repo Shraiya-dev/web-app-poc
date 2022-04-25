@@ -1,9 +1,9 @@
 import { Chip, ChipProps } from '@mui/material'
 import { BOOKING_STATES } from '../../types'
-import { BookingLabel } from '../../constants'
+import { BookingStateLabel } from '../../constants'
 
 interface StatusChipProps extends ChipProps {
-	bookingState: BOOKING_STATES
+	bookingState?: BOOKING_STATES
 }
 
 const chipColor: Partial<{
@@ -18,14 +18,14 @@ const chipColor: Partial<{
 }
 
 export const StatusChip = ({ bookingState, ...props }: StatusChipProps) => {
-	return (
+	return bookingState ? (
 		<Chip
 			sx={{
 				backgroundColor: chipColor[bookingState],
 				color: 'common.white',
 			}}
-			label={BookingLabel[bookingState]}
+			label={BookingStateLabel[bookingState]}
 			{...props}
 		/>
-	)
+	) : null
 }

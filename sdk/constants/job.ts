@@ -1,6 +1,6 @@
 import { JOB_TYPES } from '../types'
 
-export const JobLabel: Partial<{
+export const JobTypeLabel: Partial<{
 	[key in JOB_TYPES]: string
 }> = {
 	GYPSUM: 'Gypsum',

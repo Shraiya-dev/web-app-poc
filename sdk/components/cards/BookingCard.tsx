@@ -1,11 +1,11 @@
 import { AccessTime, ArrowRightAlt, CalendarToday, LocationOn } from '@mui/icons-material'
-import { Paper, Stack, Typography } from '@mui/material'
-import { red } from '@mui/material/colors'
+import { Button, Paper, Stack, Typography } from '@mui/material'
 import { styled } from '@mui/system'
+import { format } from 'date-fns'
 import Link from 'next/link'
 import { useMemo } from 'react'
-import { detailsData, JobLabel } from '../../constants'
-import { BOOKING_STATES, BookingPreview } from '../../types'
+import { JobCardStateLabel, JobTypeLabel } from '../../constants'
+import { BookingPreview, BOOKING_STATES, JobCardState } from '../../types'
 import { StatusChip } from '../chips'
 
 interface BookingCardProps {
@@ -38,16 +38,17 @@ export const BookingCard = ({ booking }: BookingCardProps) => {
 		const total = HELPER + SUPERVISOR + TECHNICIAN
 		return { totalCount: total, helperCount: HELPER, technicianCount: TECHNICIAN, supervisorCount: SUPERVISOR }
 	}, [booking])
+
 	return (
 		<CustomPaper elevation={3}>
 			<Stack className='cardHeader'>
 				<Stack direction='row' justifyContent='space-between'>
 					<Typography variant='h6' fontWeight={700}>
-						{JobLabel[booking.jobType]} ({totalCount})
+						{JobTypeLabel[booking.jobType]} ({totalCount})
 					</Typography>
 					<Stack alignItems='center' direction='row' spacing={2}>
-						<Typography variant='body2'>ID: OADSKTUQSIQC</Typography>
-						<StatusChip bookingState={BOOKING_STATES.CONFIRMED} />
+						<Typography variant='body2'>ID: {booking.bookingId}</Typography>
+						<StatusChip bookingState={booking.status} />
 					</Stack>
 				</Stack>
 				<Stack direction='row' flexWrap='wrap'>
@@ -57,44 +58,76 @@ export const BookingCard = ({ booking }: BookingCardProps) => {
 				</Stack>
 				<Stack direction='row' flexWrap='wrap' mt={2}>
 					<Typography mr={1} className='vAlignCenter' variant='body2'>
-						<LocationOn fontSize='inherit' sx={{ color: red[600] }} />
-						&nbsp;Nagpur, Maharashtra
+						<LocationOn fontSize='inherit' color='error' />
+						&nbsp;{booking.city}, {booking.state}
 					</Typography>
 					<Typography mr={1} className='vAlignCenter' variant='body2'>
-						<CalendarToday fontSize='inherit' sx={{ color: red[600] }} />
-						&nbsp;2nd March Onwards
+						<CalendarToday fontSize='inherit' color='error' />
+						&nbsp;{format(booking.schedule.startDate, 'do MMMM')} Onwards
 					</Typography>
 					<Typography className='vAlignCenter' variant='body2'>
-						<AccessTime fontSize='inherit' sx={{ color: red[600] }} />
-						&nbsp;More than 90 Days
+						<AccessTime fontSize='inherit' color='error' />
+						&nbsp;{booking.schedule.bookingDuration}
 					</Typography>
 				</Stack>
 			</Stack>
 			<Stack className='cardBody'>
-				<Typography color='secondary.main'>
-					WORKER ALLOCATION
-				</Typography>
+				<Typography color='secondary.main'>WORKER ALLOCATION</Typography>
 				<Stack direction={'row'} justifyContent='space-between' alignItems='flex-end'>
 					<Stack direction={'row'} spacing={3}>
-						{detailsData.map((value, index) => {
-							return (
-								<Stack direction={'column'} key={index}>
-									<Typography variant='body1' fontWeight={500} lineHeight={2.5} color={'inherit'}>
-										{value.label}
-									</Typography>
-									<Typography variant='h5' fontWeight={700} lineHeight={2} color={'primary'}>
-										{value.value}
-									</Typography>
-								</Stack>
-							)
-						})}
+						<Stack>
+							<Typography variant='body1' fontWeight={500} lineHeight={2.5} color={'inherit'}>
+								{JobCardStateLabel[JobCardState.ACCEPTED]}
+							</Typography>
+							<Typography variant='h5' fontWeight={700} lineHeight={2} color={'primary'}>
+								{booking?.jobCardDetails ? booking?.jobCardDetails[JobCardState.ACCEPTED] : 0}
+							</Typography>
+						</Stack>
+						<Stack>
+							<Typography variant='body1' fontWeight={500} lineHeight={2.5} color={'inherit'}>
+								{JobCardStateLabel[JobCardState.READY_TO_DEPLOY]}
+							</Typography>
+							<Typography variant='h5' fontWeight={700} lineHeight={2} color={'primary'}>
+								{booking?.jobCardDetails ? booking?.jobCardDetails[JobCardState.READY_TO_DEPLOY] : 0}
+							</Typography>
+						</Stack>
+						<Stack>
+							<Typography variant='body1' fontWeight={500} lineHeight={2.5} color={'inherit'}>
+								{JobCardStateLabel[JobCardState.DEPLOYMENT_COMPLETE]}
+							</Typography>
+							<Typography variant='h5' fontWeight={700} lineHeight={2} color={'primary'}>
+								{booking?.jobCardDetails
+									? booking?.jobCardDetails[JobCardState.DEPLOYMENT_COMPLETE]
+									: 0}
+							</Typography>
+						</Stack>
 					</Stack>
-					<Link href='' passHref >
-						<Typography fontWeight='bold' className='vAlignCenter' variant='body1' component='a' color={'primary.main'}>
-							<>View Details</>
-							<ArrowRightAlt fontSize='large' />
-						</Typography>
-					</Link>
+					{booking.status === BOOKING_STATES.READY_TO_DEPLOY ? (
+						<Stack spacing={1}>
+							<Typography className='vAlignCenter' sx={{ alignItems: 'flex-end' }}>
+								<CalendarToday fontSize='small' color='error' />
+								<Typography variant='button' fontWeight='bold' color='primary.main'>
+									&nbsp;&#8377;12000
+								</Typography>
+								&nbsp;due on {format(new Date(), 'dd/MM/yy')}
+							</Typography>
+							<Button color='warning' endIcon={<ArrowRightAlt />}>
+								Complete Payment
+							</Button>
+						</Stack>
+					) : (
+						<Link href={`/dashboard/bookings/${booking.bookingId}/WORKER_APPLIED`} passHref>
+							<Typography
+								fontWeight='bold'
+								className='vAlignCenter'
+								variant='body1'
+								component='a'
+								color={'primary.main'}>
+								<>View Details</>
+								<ArrowRightAlt fontSize='large' />
+							</Typography>
+						</Link>
+					)}
 				</Stack>
 			</Stack>
 		</CustomPaper>
