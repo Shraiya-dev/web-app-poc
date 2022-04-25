@@ -2,6 +2,23 @@ import { Box, Typography, Button, styled, Icon } from '@mui/material'
 import { useRouter } from 'next/router'
 import CheckCircleIcon from '@mui/icons-material/CheckCircle'
 
+const CustomEmptyBooking = styled(Box)(({ theme }) => ({
+	display: 'flex',
+	justifyContent: 'center',
+	textAlign: 'center',
+	//marginTop:100,
+	'.info': {
+		margin: 10,
+	},
+	'.cta': {
+		marginTop: 10,
+	},
+	'.info-secondary': {
+		margin: 10,
+		color: '#6A7991',
+	},
+}))
+
 export default function BookingSuccess({ ...props }) {
 	const router = useRouter()
 
@@ -11,22 +28,6 @@ export default function BookingSuccess({ ...props }) {
 		setBookingFormOpen(false)
 	}
 
-	const CustomEmptyBooking = styled(Box)(({ theme }) => ({
-		display: 'flex',
-		justifyContent: 'center',
-		textAlign: 'center',
-		//marginTop:100,
-		'.info': {
-			margin: 10,
-		},
-		'.cta': {
-			marginTop: 10,
-		},
-		'.info-secondary': {
-			margin: 10,
-			color: '#6A7991',
-		},
-	}))
 	return (
 		<CustomEmptyBooking>
 			<Box>
