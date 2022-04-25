@@ -41,10 +41,3 @@ export const validateEmail = (email:any) => {
 };
 
 
-// export const getSelectOptions = (opt:any, index:any) => {
-//   return opt.map((item:any) => (
-//       <MenuItem key={item.label + '-' + index} value={item.value}>
-//           {item.label}
-//       </MenuItem>
-//   ))
-// }

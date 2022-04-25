@@ -20,6 +20,22 @@ const useOnboarding = () => {
 		validate: (values) => {
 			const errors = <any>{}
 
+			if(!values.name){
+				errors.name="Required"
+			}
+
+			if(!values.company){
+				errors.company="Required"
+			}
+
+			if(!values.companyEmail){
+				errors.companyEmail="Required"
+			}
+
+			if(!values.phoneNumber){
+				errors.phoneNumber="Required"
+			}
+
 			if (
 				values.phoneNumber === '' ||
 				Number.isNaN(Number(values.phoneNumber)) ||
@@ -34,6 +50,7 @@ const useOnboarding = () => {
 			return errors
 		},
 		onSubmit: (values) => {
+			
 			router.push('/dashboard')
 		},
 	})

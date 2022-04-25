@@ -12,6 +12,7 @@ import {
 	Autocomplete,
 	Chip,
 	Paper,
+	Container,
 } from '@mui/material'
 import { theme } from '../../../sdk'
 import { makeStyles } from '@mui/styles'
@@ -52,7 +53,7 @@ import { checkError } from '../../../sdk'
 
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp'
-import { tags } from '../../../sdk'
+import { tags, StatesOptions, CitiesOptions } from '../../../sdk'
 
 const useStyles = makeStyles({
 	main: {
@@ -86,9 +87,8 @@ const useStyles = makeStyles({
 
 export const CreateBooking = ({ ...props }) => {
 	const { toggleBookingForm, onCloseDialog, setOncloseDialog, bookingFormOpen, setBookingFormOpen } = props
-	const { form } = useCreateBooking()
+	const { form, step, setStep } = useCreateBooking()
 
-	const [step, setStep] = useState(1)
 	const [isMore, setIsmore] = useState(false)
 	const [projectDur, setProjectDuration] = useState<string>('less than 7 days')
 	const [selectedJob, setSelectedjob] = useState('')
@@ -131,6 +131,14 @@ export const CreateBooking = ({ ...props }) => {
 		if (step > 1) {
 			setStep((state) => state - 1)
 		}
+	}
+
+	const getSelectOptions = (opt: any) => {
+		return opt.map((item: any) => (
+			<MenuItem key={item.label} value={item.value}>
+				{item.label}
+			</MenuItem>
+		))
 	}
 
 	const jobTypeInfo = [
@@ -183,10 +191,6 @@ export const CreateBooking = ({ ...props }) => {
 		},
 	]
 
-	const skillsType = {
-		Mason: ['Manual Barbending', 'Barbending Machine Operator', 'Other'],
-	}
-
 	const projectDuration = [
 		{ label: 'less than 7 days' },
 
@@ -211,7 +215,7 @@ export const CreateBooking = ({ ...props }) => {
 	}
 
 	return (
-		<Box className={classes.main}>
+		<Container className={classes.main} maxWidth={'md'}>
 			<ConfirmCancel
 				onCloseDialog={onCloseDialog}
 				setOncloseDialog={setOncloseDialog}
@@ -219,7 +223,7 @@ export const CreateBooking = ({ ...props }) => {
 				bookingFormOpen={bookingFormOpen}
 				setBookingFormOpen={setBookingFormOpen}
 			/>
-			<Box>
+			<Box width={'100%'}>
 				<Box>
 					<Box>
 						<Typography variant='h4' style={{ fontSize: 36 }}>
@@ -408,7 +412,7 @@ export const CreateBooking = ({ ...props }) => {
 
 								<Box>
 									<InputLabel htmlFor='jobType' className={classes.inputLabel}>
-										Workers Required & Daily Wage
+										{`Workers Required & Daily Wage`}
 									</InputLabel>
 
 									{workerType.map((info) => {
@@ -431,15 +435,19 @@ export const CreateBooking = ({ ...props }) => {
 												</Grid>
 												<Grid item xs={4} sm={4} md={4}>
 													<TextField
-														error={!!checkError(`${info?.name}`, form)}
 														placeholder={`${info?.label} Required`}
 														id={info?.name}
 														name={info?.name}
 														value={info?.formvalue}
-														onChange={form.handleChange}
+														onChange={(e: any) => {
+															if (e.target.value >= 0) {
+																form.handleChange(e)
+															}
+														}}
 														fullWidth
-														helperText={info?.error}
-														required={true}
+														onBlur={form.handleBlur}
+														error={!!checkError(`${info?.name}`, form)}
+														helperText={checkError(`${info?.name}`, form)}
 													/>
 												</Grid>
 												<Grid item xs={4} sm={4} md={4}>
@@ -448,8 +456,15 @@ export const CreateBooking = ({ ...props }) => {
 														id={info?.wage}
 														name={info?.wage}
 														value={info?.wageformvalue}
-														onChange={form.handleChange}
+														onChange={(e: any) => {
+															if (e.target.value >= 0) {
+																form.handleChange(e)
+															}
+														}}
 														fullWidth
+														onBlur={form.handleBlur}
+														error={!!checkError(`${info?.wage}`, form)}
+														helperText={checkError(`${info?.wage}`, form)}
 													/>
 												</Grid>
 											</Grid>
@@ -667,12 +682,14 @@ export const CreateBooking = ({ ...props }) => {
 												id='state'
 												name='state'
 												value={form.values.state}
-												onChange={form.handleChange}
+												onChange={(e) => {
+													form.handleChange(e)
+													form.setFieldValue('city', 'none')
+												}}
 												required={true}
 												fullWidth>
-												<MenuItem value={10}>Ten</MenuItem>
-												<MenuItem value={20}>Twenty</MenuItem>
-												<MenuItem value={30}>Thirty</MenuItem>
+												<MenuItem value={'none'}>Select State</MenuItem>
+												{getSelectOptions(StatesOptions)}
 											</Select>
 										</Grid>
 										<Grid item xs={12} sm={12} md={6} lg={6} display='block'>
@@ -685,9 +702,8 @@ export const CreateBooking = ({ ...props }) => {
 												value={form.values.city}
 												onChange={form.handleChange}
 												fullWidth>
-												<MenuItem value={10}>Ten</MenuItem>
-												<MenuItem value={20}>Twenty</MenuItem>
-												<MenuItem value={30}>Thirty</MenuItem>
+												<MenuItem value={'none'}>Select city</MenuItem>
+												{/* {getSelectOptions(CitiesOptions[form.values.state.toLowerCase()])} */}
 											</Select>
 										</Grid>
 									</Grid>
@@ -702,13 +718,14 @@ export const CreateBooking = ({ ...props }) => {
 												placeholder='Enter Here'
 												id='siteAddress'
 												name='siteAddress'
-												error={!!checkError('siteAddress', form)}
-												helperText={form.errors.siteAddress}
 												value={form.values.siteAddress}
 												onChange={form.handleChange}
 												rows={4}
 												multiline
 												fullWidth
+												onBlur={form.handleBlur}
+												error={!!checkError(`siteAddress`, form)}
+												helperText={checkError(`siteAddress`, form)}
 											/>
 										</Grid>
 									</Grid>
@@ -725,14 +742,15 @@ export const CreateBooking = ({ ...props }) => {
 									<Grid container>
 										<Grid item xs={12} sm={12} md={6} lg={6}>
 											<TextField
-												error={!!checkError(`name`, form)}
-												helperText={form.errors.name}
 												id='name'
 												name='name'
 												value={form.values.name}
 												onChange={form.handleChange}
 												placeholder='Enter Your Full Name'
 												fullWidth
+												onBlur={form.handleBlur}
+												error={!!checkError(`name`, form)}
+												helperText={checkError(`name`, form)}
 											/>
 										</Grid>
 									</Grid>
@@ -746,14 +764,15 @@ export const CreateBooking = ({ ...props }) => {
 									<Grid container>
 										<Grid item xs={12} sm={12} md={6} lg={6}>
 											<TextField
-												error={!!checkError(`company`, form)}
-												helperText={form.errors.company}
 												id='company'
 												name='company'
 												onChange={form.handleChange}
 												value={form.values.company}
 												placeholder='Enter Company Name'
 												fullWidth
+												onBlur={form.handleBlur}
+												error={!!checkError(`company`, form)}
+												helperText={checkError(`company`, form)}
 											/>
 										</Grid>
 									</Grid>
@@ -767,14 +786,15 @@ export const CreateBooking = ({ ...props }) => {
 									<Grid container>
 										<Grid item xs={12} sm={12} md={6} lg={6}>
 											<TextField
-												error={!!checkError(`companyEmail`, form)}
-												helperText={form.errors.companyEmail}
 												id='companyEmail'
 												name='companyEmail'
 												onChange={form.handleChange}
 												value={form.values.companyEmail}
 												placeholder='Enter Email'
 												fullWidth
+												onBlur={form.handleBlur}
+												error={!!checkError(`companyEmail`, form)}
+												helperText={checkError(`companyEmail`, form)}
 											/>
 										</Grid>
 									</Grid>
@@ -788,14 +808,15 @@ export const CreateBooking = ({ ...props }) => {
 									<Grid container>
 										<Grid item xs={12} sm={12} md={6} lg={6}>
 											<TextField
-												error={!!checkError(`phoneNumber`, form)}
-												helperText={form.errors.phoneNumber}
 												id='phoneNumber'
 												name='phoneNumber'
 												onChange={form.handleChange}
 												value={form.values.phoneNumber}
 												placeholder='9999988888'
 												fullWidth
+												onBlur={form.handleBlur}
+												error={!!checkError(`phoneNumber`, form)}
+												helperText={checkError(`phoneNumber`, form)}
 											/>
 										</Grid>
 									</Grid>
@@ -811,25 +832,22 @@ export const CreateBooking = ({ ...props }) => {
 								paddingTop: 20,
 								background: 'white',
 							}}>
-							<Grid container columnSpacing={40}>
-								<Grid item xs={0} sm={0} md={0} lg={0}></Grid>
-								<Grid item xs={12} sm={12} md={12} lg={12}>
-									{(step === 2 || step === 3) && (
-										<Button onClick={handlePrev} style={{ width: '10rem' }}>
-											Previous
-										</Button>
-									)}
-									{step !== 4 && (
-										<Button
-											type='submit'
-											disabled={isSubmittable}
-											onClick={handleNext}
-											style={{ width: '10rem', marginLeft: 20 }}>
-											{step === 3 ? 'Finish Booking' : 'Next'}
-										</Button>
-									)}
-								</Grid>
-							</Grid>
+							<Stack direction={'row'} spacing={2} justifyContent={'flex-end'}>
+								{(step === 2 || step === 3) && (
+									<Button onClick={handlePrev} style={{ width: '10rem' }}>
+										Previous
+									</Button>
+								)}
+								{step !== 4 && (
+									<Button
+										//type='submit'
+										disabled={isSubmittable}
+										onClick={handleNext}
+										style={{ width: '10rem', marginLeft: 20 }}>
+										{step === 3 ? 'Finish Booking' : 'Next'}
+									</Button>
+								)}
+							</Stack>
 						</Box>
 					</form>
 				</Box>
@@ -840,6 +858,6 @@ export const CreateBooking = ({ ...props }) => {
 					</Box>
 				)}
 			</Box>
-		</Box>
+		</Container>
 	)
 }
