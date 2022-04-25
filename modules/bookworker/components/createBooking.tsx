@@ -99,7 +99,7 @@ export const CreateBooking = ({ ...props }) => {
 	useEffect(() => {
 		if (step === 1) {
 			var canSubmit =
-				!form.values.jobType || !form.values.technician || !form.values.helper || !form.values.supervisor
+				!form.values.jobType || (!form.values.technician && !form.values.helper && !form.values.supervisor)
 
 			setIsSubmittable(canSubmit)
 		}
@@ -245,15 +245,15 @@ export const CreateBooking = ({ ...props }) => {
 						<Grid container justifyContent='flex-end' style={{ marginTop: 20 }}>
 							<Stack
 								className={classes.stepper}
-								style={{ background: `${step === 1 && theme.palette.primary.main}` }}
+								style={{ background: `${step === 1 ? theme.palette.primary.main:theme.palette.primary.light}` }}
 							/>
 							<Stack
 								className={classes.stepper}
-								style={{ background: `${step === 2 && theme.palette.primary.main}` }}
+								style={{ background: `${step === 2 ? theme.palette.primary.main:theme.palette.primary.light}` }}
 							/>
 							<Stack
 								className={classes.stepper}
-								style={{ background: `${step === 3 && theme.palette.primary.main}` }}
+								style={{ background: `${step === 3 ? theme.palette.primary.main:theme.palette.primary.light}` }}
 							/>
 						</Grid>
 					</Box>
@@ -546,7 +546,7 @@ export const CreateBooking = ({ ...props }) => {
 										<Grid item xs={12} sm={12} md={6} lg={6}>
 											<LocalizationProvider dateAdapter={AdapterDateFns}>
 												<DatePicker
-													value={form.values.StartDate || new Date()}
+													value={form.values.StartDate}
 													onChange={(value) => form.setFieldValue('StartDate', value)}
 													renderInput={(params) => <TextField {...params} fullWidth />}
 												/>
@@ -606,7 +606,7 @@ export const CreateBooking = ({ ...props }) => {
 
 													height: 35,
 													width: 100,
-													color: '#244CB3',
+													color: "black",
 													marginRight: 10,
 												}}
 												onClick={() => handleShiftTiming('9am-6pm')}>
@@ -624,7 +624,7 @@ export const CreateBooking = ({ ...props }) => {
 
 													height: 35,
 													width: 100,
-													color: '#244CB3',
+													color: "black",
 												}}
 												onClick={() => handleShiftTiming('Custom')}>
 												Custom
@@ -637,12 +637,16 @@ export const CreateBooking = ({ ...props }) => {
 											<Grid item xs={12} sm={12} md={6} lg={6}>
 												<LocalizationProvider dateAdapter={AdapterDateFns}>
 													<TimePicker
+														
+														
+													
 														value={form.values.startTime}
 														onChange={(value) => form.setFieldValue('startTime', value)}
 														//onChange={form.handleChange}
 														renderInput={(params) => (
 															<TextField
 																{...params}
+																format="HH:mm:ss"
 																placeholder='Select Start Time'
 																fullWidth
 															/>

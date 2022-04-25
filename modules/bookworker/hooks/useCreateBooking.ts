@@ -9,7 +9,7 @@ const useCreateBooking = () => {
 			jobType: '',
 
 			BookingDuration: '',
-			StartDate: '',
+			StartDate:  new Date(),
 
 			helper: 0,
 			supervisor: 0,
@@ -25,8 +25,8 @@ const useCreateBooking = () => {
 
 			skills: [],
 			tags: [],
-			startTime: '',
-			endTime: '',
+			startTime: new Date(),
+			endTime: new Date(),
 			shiftTime: '',
 			// projectName: '',
 			// projectType: '',
@@ -47,15 +47,12 @@ const useCreateBooking = () => {
 				if (!values.jobType) {
 					errors.jobType = 'Required'
 				}
-				if (!values.helper) {
+				if (!values.helper  && !values.supervisor && !values.technician) {
 					errors.helper = 'Required'
-				}
-				if (!values.supervisor) {
 					errors.supervisor = 'Required'
-				}
-				if (!values.technician) {
 					errors.technician = 'Required'
 				}
+				
 			}
 
 			if (step === 2) {

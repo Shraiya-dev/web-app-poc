@@ -1,7 +1,8 @@
+import { log } from 'console'
 import { useRouter } from 'next/router'
 import { createContext, useCallback, useContext, useEffect, useMemo, useReducer } from 'react'
 import { loginService, sendOtpService } from '../apis'
-import { USER_LOGIN_TYPE, USER_TYPE } from '../types/auth'
+import { USER_LOGIN_TYPE, USER_TYPE } from '../types'
 
 const LoadingUniqueString = 'loading...'
 interface User {
@@ -42,7 +43,6 @@ const ContractorAuthContext = createContext<AuthProviderValue>({
 })
 const { Provider, Consumer } = ContractorAuthContext
 
-
 const ContractorAuthProvider = ({ children }: any) => {
 	const [state, dispatch] = useReducer(simpleReducer, initialAuthState)
 	const router = useRouter()
@@ -72,12 +72,16 @@ const ContractorAuthProvider = ({ children }: any) => {
 	}, [])
 	const verifyOtp = useCallback(
 		async (phoneNumber: string, otp: string) => {
-			const { data } = await loginService(phoneNumber, USER_TYPE.CONTRACTOR, USER_LOGIN_TYPE.OTP, otp)
-			if (data?.success) {
-				loginUser(data?.data)
-				return data;
-			} else {
-				throw data
+			try {
+				const { data } = await loginService(phoneNumber, USER_TYPE.CONTRACTOR, USER_LOGIN_TYPE.OTP, otp)
+				if (data?.success) {
+					loginUser(data?.data)
+					return data
+				} else {
+					throw data
+				}
+			} catch (error) {
+				console.log(error)
 			}
 			//return await loginService(phoneNumber, USER_TYPE.CONTRACTOR, USER_LOGIN_TYPE.OTP, otp)
 		},
@@ -85,8 +89,7 @@ const ContractorAuthProvider = ({ children }: any) => {
 	)
 	const silentLogin = useCallback(
 		async (phoneNumber, accessToken) => {
-
-			try{
+			try {
 				const { data } = await loginService(
 					phoneNumber,
 					USER_TYPE.CONTRACTOR,
@@ -98,11 +101,11 @@ const ContractorAuthProvider = ({ children }: any) => {
 					//login success update the use state
 					loginUser(data?.data, true)
 				} else {
-					//login failure let the requestor handel the error
+					//login failure let the requester handel the error
 					throw data
 				}
-			} catch(e){
-				console.log(e)
+			} catch (error) {
+				throw error
 			}
 			
 		},
@@ -110,14 +113,13 @@ const ContractorAuthProvider = ({ children }: any) => {
 	)
 
 	const logOut = useCallback(async () => {
-
 		localStorage.clear()
 		dispatch(initialAuthState)
-		router.push('/login')
+		await router.push('/login')
 	}, [router])
 
 	useEffect(() => {
-		console.log("hey2")
+	
 		const accessToken = localStorage.getItem('accessToken')
 		const refreshToken = localStorage.getItem('refreshToken')
 		const phoneNumber = localStorage.getItem('phoneNumber')
@@ -129,10 +131,9 @@ const ContractorAuthProvider = ({ children }: any) => {
 		})
 	}, [])
 
-
 	//logic for redirect based on state and update userInfo
 	useEffect(() => {
-		console.log("hey1")
+		
 		if (state.accessToken === null || state.refreshToken === null || state.phoneNumber === null) {
 			logOut()
 			return

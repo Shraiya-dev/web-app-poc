@@ -1,10 +1,9 @@
 import React, { useState } from 'react'
 
 // Material UI
-import { Dialog, DialogContent, Button, Typography, Stack } from '@mui/material'
+import { Dialog, DialogContent, Button, Typography, Stack , Box} from '@mui/material'
 
 const ConfirmCancel = ({ ...props }) => {
-	const [selectedValue, setSelectedValue] = useState('')
 
 	const { onCloseDialog, setOncloseDialog, toggleBookingForm, bookingFormOpen, setBookingFormOpen } = props
 
@@ -24,11 +23,11 @@ const ConfirmCancel = ({ ...props }) => {
 			onClose={handleCancel}
 			aria-labelledby='alert-dialog-slide-title'
 			aria-describedby='alert-dialog-slide-description'>
-			<div>
+			<Box >
 				<DialogContent >
-					<Typography style={{fontSize:"20"}}>Leave Booking Workers?</Typography>
-					<Typography style={{ marginBottom: 30, marginTop:10 }}>There’re unsaved changes</Typography>
-					<Stack display={'inline'} style={{ float: 'right' }}>
+					<Typography style={{fontSize:20}}>Leave Booking Workers?</Typography>
+					<Typography style={{ marginBottom: 30, marginTop:10 ,fontSize:14 }}>There’re unsaved changes</Typography>
+					<Stack direction={"row"} spacing={2} justifyContent={'flex-end'} >
 						<Button variant='outlined' onClick={handleCancel} style={{ marginRight: 10 }}>
 							{' '}
 							Continue Booking
@@ -36,7 +35,7 @@ const ConfirmCancel = ({ ...props }) => {
 						<Button onClick={handleConfirm}> Leave</Button>
 					</Stack>
 				</DialogContent>
-			</div>
+			</Box>
 		</Dialog>
 	)
 }

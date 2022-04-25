@@ -1,12 +1,15 @@
 import { AccessTime, ArrowRightAlt, CalendarToday, LocationOn } from '@mui/icons-material'
-import { Paper, Stack, Typography } from '@mui/material'
-import { red } from '@mui/material/colors'
+import { Button, Paper, Stack, Typography } from '@mui/material'
 import { styled } from '@mui/system'
+import { format } from 'date-fns'
 import Link from 'next/link'
-import { detailsData } from '../../constants'
+import { useMemo } from 'react'
+import { JobCardStateLabel, JobTypeLabel } from '../../constants'
+import { BookingPreview, BOOKING_STATES, JobCardState } from '../../types'
+import { StatusChip } from '../chips'
 
 interface BookingCardProps {
-	booking: any //todo replace with booking interface
+	booking: BookingPreview
 }
 
 const CustomPaper = styled(Paper)(({ theme }) => ({
@@ -16,8 +19,6 @@ const CustomPaper = styled(Paper)(({ theme }) => ({
 	overflow: 'hidden',
 	'.cardHeader': {
 		flex: 1,
-		justifyContent: 'space-between',
-		flexDirection: 'row',
 		padding: `${theme.spacing(3)} ${theme.spacing(2)} ${theme.spacing(2)}`,
 		backgroundColor: theme.palette.primary.light,
 	},
@@ -32,62 +33,101 @@ const CustomPaper = styled(Paper)(({ theme }) => ({
 	},
 }))
 export const BookingCard = ({ booking }: BookingCardProps) => {
+	const { totalCount, supervisorCount, technicianCount, helperCount } = useMemo(() => {
+		const { SUPERVISOR = 0, HELPER = 0, TECHNICIAN = 0 } = booking.peopleRequired
+		const total = HELPER + SUPERVISOR + TECHNICIAN
+		return { totalCount: total, helperCount: HELPER, technicianCount: TECHNICIAN, supervisorCount: SUPERVISOR }
+	}, [booking])
+
 	return (
 		<CustomPaper elevation={3}>
 			<Stack className='cardHeader'>
-				<Stack flex={1} spacing={1}>
+				<Stack direction='row' justifyContent='space-between'>
 					<Typography variant='h6' fontWeight={700}>
-						Bar Bender (10)
+						{JobTypeLabel[booking.jobType]} ({totalCount})
 					</Typography>
-					<Stack direction='row' flexWrap='wrap'>
-						<Typography mr={1}>Helper (5)</Typography>
-						<Typography mr={1}>Technician (5)</Typography>
-						<Typography>Supervisor (5)</Typography>
+					<Stack alignItems='center' direction='row' spacing={2}>
+						<Typography variant='body2'>ID: {booking.bookingId}</Typography>
+						<StatusChip bookingState={booking.status} />
 					</Stack>
-					<Typography variant='body2'>ID: OADSKTUQSIQC</Typography>
 				</Stack>
-				<Stack alignItems='center' direction='row'>
-					<Link href='' passHref>
-						<Typography variant='body1' component='a' color={'primary.main'}>
-						<Link href='/worker-details' passHref>
-								<a>
-							<Stack alignItems='center' direction='row'>
-								<>View</>
-								<ArrowRightAlt fontSize='large' />
-							</Stack>
-							</a></Link>
-						</Typography>
-					</Link>
+				<Stack direction='row' flexWrap='wrap'>
+					{helperCount !== 0 && <Typography mr={1}>Helper ({helperCount})</Typography>}
+					{technicianCount !== 0 && <Typography mr={1}>Technician ({technicianCount})</Typography>}
+					{supervisorCount !== 0 && <Typography>Supervisor ({supervisorCount})</Typography>}
+				</Stack>
+				<Stack direction='row' flexWrap='wrap' mt={2}>
+					<Typography mr={1} className='vAlignCenter' variant='body2'>
+						<LocationOn fontSize='inherit' color='error' />
+						&nbsp;{booking.city}, {booking.state}
+					</Typography>
+					<Typography mr={1} className='vAlignCenter' variant='body2'>
+						<CalendarToday fontSize='inherit' color='error' />
+						&nbsp;{format(booking.schedule.startDate, 'do MMMM')} Onwards
+					</Typography>
+					<Typography className='vAlignCenter' variant='body2'>
+						<AccessTime fontSize='inherit' color='error' />
+						&nbsp;{booking.schedule.bookingDuration}
+					</Typography>
 				</Stack>
 			</Stack>
 			<Stack className='cardBody'>
-				<Stack direction='row' flexWrap='wrap'>
-					<Typography mr={1} className='vAlignCenter' variant='body2'>
-						<LocationOn fontSize='inherit' sx={{color: red[600]}} />
-						&nbsp;Nagpur, Maharashtra
-					</Typography>
-					<Typography mr={1} className='vAlignCenter' variant='body2'>
-						<CalendarToday fontSize='inherit' sx={{ color: red[600] }} />
-						&nbsp;2nd March Onwards
-					</Typography>
-					<Typography className='vAlignCenter' variant='body2'>
-						<AccessTime fontSize='inherit' sx={{ color: red[600] }} />
-						&nbsp;More than 90 Days
-					</Typography>
-				</Stack>
-				<Stack mt={2} direction={'row'} spacing={3}>
-					{detailsData.map((value, index) => {
-						return (
-							<Stack direction={'column'} key={index}>
-								<Typography variant='body1' fontWeight={500} lineHeight={2.5} color={'inherit'}>
-									{value.label}
+				<Typography color='secondary.main'>WORKER ALLOCATION</Typography>
+				<Stack direction={'row'} justifyContent='space-between' alignItems='flex-end'>
+					<Stack direction={'row'} spacing={3}>
+						<Stack>
+							<Typography variant='body1' fontWeight={500} lineHeight={2.5} color={'inherit'}>
+								{JobCardStateLabel[JobCardState.ACCEPTED]}
+							</Typography>
+							<Typography variant='h5' fontWeight={700} lineHeight={2} color={'primary'}>
+								{booking?.jobCardDetails ? booking?.jobCardDetails[JobCardState.ACCEPTED] : 0}
+							</Typography>
+						</Stack>
+						<Stack>
+							<Typography variant='body1' fontWeight={500} lineHeight={2.5} color={'inherit'}>
+								{JobCardStateLabel[JobCardState.READY_TO_DEPLOY]}
+							</Typography>
+							<Typography variant='h5' fontWeight={700} lineHeight={2} color={'primary'}>
+								{booking?.jobCardDetails ? booking?.jobCardDetails[JobCardState.READY_TO_DEPLOY] : 0}
+							</Typography>
+						</Stack>
+						<Stack>
+							<Typography variant='body1' fontWeight={500} lineHeight={2.5} color={'inherit'}>
+								{JobCardStateLabel[JobCardState.DEPLOYMENT_COMPLETE]}
+							</Typography>
+							<Typography variant='h5' fontWeight={700} lineHeight={2} color={'primary'}>
+								{booking?.jobCardDetails
+									? booking?.jobCardDetails[JobCardState.DEPLOYMENT_COMPLETE]
+									: 0}
+							</Typography>
+						</Stack>
+					</Stack>
+					{booking.status === BOOKING_STATES.READY_TO_DEPLOY ? (
+						<Stack spacing={1}>
+							<Typography className='vAlignCenter' sx={{ alignItems: 'flex-end' }}>
+								<CalendarToday fontSize='small' color='error' />
+								<Typography variant='button' fontWeight='bold' color='primary.main'>
+									&nbsp;&#8377;12000
 								</Typography>
-								<Typography variant='h5' fontWeight={700} lineHeight={2} color={'primary'}>
-									{value.value}
-								</Typography>
-							</Stack>
-						)
-					})}
+								&nbsp;due on {format(new Date(), 'dd/MM/yy')}
+							</Typography>
+							<Button color='warning' endIcon={<ArrowRightAlt />}>
+								Complete Payment
+							</Button>
+						</Stack>
+					) : (
+						<Link href={`/dashboard/bookings/${booking.bookingId}/WORKER_APPLIED`} passHref>
+							<Typography
+								fontWeight='bold'
+								className='vAlignCenter'
+								variant='body1'
+								component='a'
+								color={'primary.main'}>
+								<>View Details</>
+								<ArrowRightAlt fontSize='large' />
+							</Typography>
+						</Link>
+					)}
 				</Stack>
 			</Stack>
 		</CustomPaper>

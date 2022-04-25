@@ -1,11 +1,11 @@
 import { FilterAlt, Search } from '@mui/icons-material'
-import { Box, Button, Grid, InputAdornment, Stack, TextField, Typography } from '@mui/material'
-import { styled } from '@mui/system'
-import React from 'react'
+import { Button, Grid, InputAdornment, Stack, TextField, Typography } from '@mui/material'
+import React, { useCallback, useState } from 'react'
 import award from '../../public/assets/icons/award.svg'
 import calender from '../../public/assets/icons/calender.svg'
 import watch from '../../public/assets/icons/watch.svg'
 import { BookingCard, StatisticsCard } from '../../sdk'
+import { FilterDrawer } from './components'
 import { useDashboard } from './hooks'
 const boxData = [
 	{
@@ -31,25 +31,15 @@ const boxData = [
 	},
 ]
 
-const CustomizeDashboard = styled(Box)(({ theme }) => ({
-	'.bookingTyppo': {
-		fontSize: "24px",
-		fontWeight: 800,
-	},
-	[theme.breakpoints.down('md')]: {
-		'.bookingTyppo': {
-			fontSize: "16px",
-			fontWeight: 400,
-		},
-
-	},
-}))
-
-
 export const Dashboard = () => {
 	const { bookings } = useDashboard()
+	const [openFilterDrawer, setFilterDrawer] = useState(false)
+	const handelDrawerToggle = useCallback(() => {
+		setFilterDrawer((prev) => !prev)
+	}, [setFilterDrawer])
+
 	return (
-		<CustomizeDashboard>
+		<Stack>
 			<Grid container spacing={2} alignItems={'stretch'}>
 				{boxData.map((stat, index) => {
 					return (
@@ -61,9 +51,9 @@ export const Dashboard = () => {
 			</Grid>
 			<Grid mt={6} container>
 				<Grid item xs={12} md={8} justifyContent='space-between' alignItems='center'>
-					<Typography className='bookingTyppo' variant='h4'>Your Bookings</Typography>
+					<Typography variant='h4'>Your Bookings</Typography>
 
-					<Button className='filter' color='inherit' endIcon={<FilterAlt />} variant='text'>
+					<Button onClick={handelDrawerToggle} color='inherit' endIcon={<FilterAlt />} variant='text'>
 						Filter
 					</Button>
 				</Grid>
@@ -81,21 +71,8 @@ export const Dashboard = () => {
 						}}
 					/>
 				</Grid>
-
-
 			</Grid>
-			{/* <TextField
-				fullWidth
-				placeholder='Search'
-				size='small'
-				InputProps={{
-					endAdornment: (
-						<InputAdornment position='end'>
-							<Search color='inherit' />
-						</InputAdornment>
-					),
-				}}
-			/> */}
+
 			<Stack mt={6}>
 				{bookings.length === 0 ? (
 					<Stack flex={1} mt={20} direction={'column'} spacing={4} alignItems='center'>
@@ -110,13 +87,14 @@ export const Dashboard = () => {
 						{bookings.map((booking, index) => {
 							return (
 								<Grid item xs={12} md={6} key={index}>
-									<BookingCard booking={{}} />
+									<BookingCard booking={booking} />
 								</Grid>
 							)
 						})}
 					</Grid>
 				)}
 			</Stack>
-		</CustomizeDashboard>
+			<FilterDrawer open={openFilterDrawer} onClose={handelDrawerToggle} />
+		</Stack>
 	)
 }

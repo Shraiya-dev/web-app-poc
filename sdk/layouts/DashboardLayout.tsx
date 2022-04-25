@@ -61,19 +61,16 @@ const DashboardLayout = ({ children, ...props }: any) => {
 
 	const [onCloseDialog, setOncloseDialog] = useState<boolean>(false)
 
-	
 	const toggleDrawer = () => {
 		setDrawerOpen(!drawerOpen)
 	}
 
 	const toggleBookingForm = () => {
-
-		setOncloseDialog((state)=>!state);
-		
+		setOncloseDialog((state) => !state)
 	}
 
-	const handleBookingForm = ()=>{
-		setBookingFormOpen((state)=>!state)
+	const handleBookingForm = () => {
+		setBookingFormOpen((state) => !state)
 	}
 
 	return (
@@ -142,12 +139,22 @@ const DashboardLayout = ({ children, ...props }: any) => {
 			</Drawer>
 
 			<Dialog onClose={toggleBookingForm} open={bookingFormOpen} fullScreen>
-				<IconButton edge='end' color='inherit' onClick={toggleBookingForm} aria-label='Close'>
-					<CloseIcon />
-				</IconButton>
+				<Box display='flex' alignItems='center'>
+					<Box flexGrow={1}></Box>
+					<Box style={{ margin: 20 }}>
+						<IconButton onClick={toggleBookingForm}>
+							<CloseIcon />
+						</IconButton>
+					</Box>
+				</Box>
 
-				<CreateBooking toggleBookingForm={toggleBookingForm}  onCloseDialog={onCloseDialog}
-				setOncloseDialog={setOncloseDialog} bookingFormOpen={bookingFormOpen} setBookingFormOpen ={setBookingFormOpen}/>
+				<CreateBooking
+					toggleBookingForm={toggleBookingForm}
+					onCloseDialog={onCloseDialog}
+					setOncloseDialog={setOncloseDialog}
+					bookingFormOpen={bookingFormOpen}
+					setBookingFormOpen={setBookingFormOpen}
+				/>
 			</Dialog>
 		</>
 	)
