@@ -22,7 +22,7 @@ const useLogin = () => {
 		},
 
 		validate: (values) => {
-			const errors = {}
+			const errors: any = {}
 
 			if (
 				values.phoneNumber === '' ||
