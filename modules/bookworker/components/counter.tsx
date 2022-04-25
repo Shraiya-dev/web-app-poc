@@ -2,7 +2,6 @@ import { Box, Button, IconButton, Paper, Stack } from '@mui/material'
 import AddIcon from '@mui/icons-material/Add'
 import RemoveIcon from '@mui/icons-material/Remove'
 const Counter = ({ ...props }) => {
-	// const {hello, grop}= {...props};
 
 	const { info, setInfo } = props
 	console.log('hey', info, setInfo)

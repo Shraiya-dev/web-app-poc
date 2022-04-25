@@ -25,8 +25,6 @@ interface CreateBookingForm {
 	startTime: Date
 	endTime: Date
 	shiftTime: string
-	// projectName: string
-	// projectType: string
 
 	state: string
 	city: string
@@ -39,6 +37,7 @@ interface CreateBookingForm {
 }
 const useCreateBooking = () => {
 	const [step, setStep] = useState(1)
+
 	const form = useFormik<CreateBookingForm>({
 		initialValues: {
 			jobType: '',
@@ -63,9 +62,7 @@ const useCreateBooking = () => {
 			startTime: new Date(),
 			endTime: new Date(),
 			shiftTime: '',
-			// projectName: '',
-			// projectType: '',
-
+			
 			state: '',
 			city: '',
 			siteAddress: '',

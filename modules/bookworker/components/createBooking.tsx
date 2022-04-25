@@ -8,12 +8,12 @@ import {
 	FormControl,
 	Grid,
 	InputLabel,
-	makeStyles,
 	MenuItem,
 	Select,
 	Stack,
 	TextField,
 	Typography,
+	styled
 } from '@mui/material'
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns'
 import { DatePicker } from '@mui/x-date-pickers/DatePicker'
@@ -30,13 +30,16 @@ import { CitiesOptions, jobTypeInfo, moreJobType, projectDuration, StatesOptions
 import BookingSuccess from './bookingsuccess'
 import ConfirmCancel from './confirmCancel'
 
-const useStyles = makeStyles(() => ({
-	main: {
+
+const CustomBookingStyle = styled(Box)(({ theme }) => ({
+	'.main': {
+
 		justifyContent: 'center',
 		display: 'flex',
 		padding: 10,
 	},
-	stepper: {
+
+	'.stepper': {
 		height: 6,
 		width: 36,
 
@@ -45,7 +48,7 @@ const useStyles = makeStyles(() => ({
 		background: theme.palette.primary.light,
 	},
 
-	viewcta: {
+	'.viewcta': {
 		cursor: 'pointer',
 		display: 'flex',
 		justifyContent: 'center',
@@ -54,7 +57,7 @@ const useStyles = makeStyles(() => ({
 		padding: 10,
 	},
 
-	inputLabel: {
+	'.inputLabel': {
 		marginTop: 20,
 		marginBottom: 10,
 	},
@@ -146,7 +149,7 @@ export const CreateBooking = ({ ...props }) => {
 		))
 	}
 
-	const classes = useStyles()
+	//const classes = useStyles()
 
 	const handleProjectDuration = (info: any) => {
 		setProjectDuration(info)
@@ -162,7 +165,8 @@ export const CreateBooking = ({ ...props }) => {
 	}
 
 	return (
-		<Container className={classes.main} maxWidth={'md'}>
+		<CustomBookingStyle>
+		<Container className="main" maxWidth={'md'}>
 			<ConfirmCancel
 				onCloseDialog={onCloseDialog}
 				setOncloseDialog={setOncloseDialog}
@@ -192,7 +196,7 @@ export const CreateBooking = ({ ...props }) => {
 
 							<Grid container justifyContent='flex-end' style={{ marginTop: 20 }}>
 								<Stack
-									className={classes.stepper}
+									className="stepper"
 									style={{
 										background: `${
 											step === 1 ? theme.palette.primary.main : theme.palette.primary.light
@@ -200,7 +204,7 @@ export const CreateBooking = ({ ...props }) => {
 									}}
 								/>
 								<Stack
-									className={classes.stepper}
+									className="stepper"
 									style={{
 										background: `${
 											step === 2 ? theme.palette.primary.main : theme.palette.primary.light
@@ -208,7 +212,7 @@ export const CreateBooking = ({ ...props }) => {
 									}}
 								/>
 								<Stack
-									className={classes.stepper}
+									className="stepper"
 									style={{
 										background: `${
 											step === 3 ? theme.palette.primary.main : theme.palette.primary.light
@@ -225,7 +229,7 @@ export const CreateBooking = ({ ...props }) => {
 						{step === 1 && (
 							<Stack>
 								<Box>
-									<InputLabel htmlFor='jobType' className={classes.inputLabel}>
+									<InputLabel htmlFor='jobType' className="inputLabel">
 										Trade
 									</InputLabel>
 									<Grid container item rowSpacing={2} columnSpacing={2} style={{ marginBottom: 10 }}>
@@ -303,7 +307,7 @@ export const CreateBooking = ({ ...props }) => {
 											</Typography>
 										)}
 										<Stack
-											className={classes.viewcta}
+											className="viewcta"
 											onClick={handleMoreJobType}
 											style={{ textTransform: 'none' }}>
 											{isMore ? (
@@ -328,7 +332,7 @@ export const CreateBooking = ({ ...props }) => {
 								</Box>
 
 								<Box>
-									<InputLabel htmlFor='skills' className={classes.inputLabel}>
+									<InputLabel htmlFor='skills' className="inputLabel">
 										Skills
 									</InputLabel>
 									<Grid item xs={12} md={12}>
@@ -372,7 +376,7 @@ export const CreateBooking = ({ ...props }) => {
 								</Box>
 
 								<Box>
-									<InputLabel htmlFor='jobType' className={classes.inputLabel}>
+									<InputLabel htmlFor='jobType' className="inputLabel">
 										{`Workers Required & Daily Wage`}
 									</InputLabel>
 
@@ -434,7 +438,7 @@ export const CreateBooking = ({ ...props }) => {
 									})}
 
 									<Box>
-										<InputLabel htmlFor='overtime' className={classes.inputLabel}>
+										<InputLabel htmlFor='overtime' className="inputLabel">
 											Overtime Details
 										</InputLabel>
 										<Grid
@@ -501,7 +505,7 @@ export const CreateBooking = ({ ...props }) => {
 						{step === 2 && (
 							<Stack>
 								<Box>
-									<InputLabel htmlFor='startdate' className={classes.inputLabel}>
+									<InputLabel htmlFor='startdate' className="inputLabel">
 										Start Date
 									</InputLabel>
 									<Grid container spacing={4}>
@@ -518,7 +522,7 @@ export const CreateBooking = ({ ...props }) => {
 								</Box>
 
 								<Box>
-									<InputLabel htmlFor='shiftTiming' className={classes.inputLabel}>
+									<InputLabel htmlFor='shiftTiming' className="inputLabel">
 										Project Duration
 									</InputLabel>
 
@@ -552,7 +556,7 @@ export const CreateBooking = ({ ...props }) => {
 								</Box>
 
 								<Box>
-									<InputLabel htmlFor='shiftTiming' className={classes.inputLabel}>
+									<InputLabel htmlFor='shiftTiming' className="inputLabel">
 										Shift Timing
 									</InputLabel>
 
@@ -635,7 +639,7 @@ export const CreateBooking = ({ ...props }) => {
 								<Box>
 									<Grid container spacing={2}>
 										<Grid item xs={12} sm={12} md={6} lg={6} display='block'>
-											<InputLabel id='state' className={classes.inputLabel}>
+											<InputLabel id='state' className="inputLabel">
 												State
 											</InputLabel>
 
@@ -655,7 +659,7 @@ export const CreateBooking = ({ ...props }) => {
 											</Select>
 										</Grid>
 										<Grid item xs={12} sm={12} md={6} lg={6} display='block'>
-											<InputLabel className={classes.inputLabel}>City</InputLabel>
+											<InputLabel className="inputLabel">City</InputLabel>
 											<Select
 												labelId='city'
 												id='city'
@@ -680,7 +684,7 @@ export const CreateBooking = ({ ...props }) => {
 								</Box>
 
 								<Box>
-									<InputLabel className={classes.inputLabel}>Site Address</InputLabel>
+									<InputLabel className="inputLabel">Site Address</InputLabel>
 
 									<Grid container spacing={2}>
 										<Grid item xs={12} sm={12} md={12} lg={12}>
@@ -707,7 +711,7 @@ export const CreateBooking = ({ ...props }) => {
 						{step === 3 && (
 							<Box>
 								<Box>
-									<InputLabel className={classes.inputLabel}>Name</InputLabel>
+									<InputLabel className="inputLabel">Name</InputLabel>
 
 									<Grid container>
 										<Grid item xs={12} sm={12} md={6} lg={6}>
@@ -727,7 +731,7 @@ export const CreateBooking = ({ ...props }) => {
 								</Box>
 
 								<Box>
-									<InputLabel id='company' className={classes.inputLabel}>
+									<InputLabel id='company' className="inputLabel">
 										Company
 									</InputLabel>
 
@@ -749,7 +753,7 @@ export const CreateBooking = ({ ...props }) => {
 								</Box>
 
 								<Box>
-									<InputLabel id='companyEmail' className={classes.inputLabel}>
+									<InputLabel id='companyEmail' className="inputLabel">
 										Company Email
 									</InputLabel>
 
@@ -771,7 +775,7 @@ export const CreateBooking = ({ ...props }) => {
 								</Box>
 
 								<Box>
-									<InputLabel id='phoneNumber' className={classes.inputLabel}>
+									<InputLabel id='phoneNumber' className="inputLabel">
 										Phone Number
 									</InputLabel>
 
@@ -828,6 +832,6 @@ export const CreateBooking = ({ ...props }) => {
 					</Box>
 				)}
 			</Box>
-		</Container>
+		</Container></CustomBookingStyle>
 	)
 }
