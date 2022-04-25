@@ -107,6 +107,7 @@ const ContractorAuthProvider = ({ children }: any) => {
 			} catch (error) {
 				throw error
 			}
+			
 		},
 		[loginUser]
 	)
@@ -118,6 +119,7 @@ const ContractorAuthProvider = ({ children }: any) => {
 	}, [router])
 
 	useEffect(() => {
+	
 		const accessToken = localStorage.getItem('accessToken')
 		const refreshToken = localStorage.getItem('refreshToken')
 		const phoneNumber = localStorage.getItem('phoneNumber')
@@ -131,6 +133,7 @@ const ContractorAuthProvider = ({ children }: any) => {
 
 	//logic for redirect based on state and update userInfo
 	useEffect(() => {
+		
 		if (state.accessToken === null || state.refreshToken === null || state.phoneNumber === null) {
 			logOut()
 			return
@@ -140,8 +143,10 @@ const ContractorAuthProvider = ({ children }: any) => {
 			state.phoneNumber !== LoadingUniqueString &&
 			state.user === null
 		) {
-			silentLogin(state.phoneNumber, state.accessToken)
+		  silentLogin(state.phoneNumber, state.accessToken)
 		}
+
+	
 
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [state.accessToken, state.phoneNumber, state.refreshToken])
@@ -149,11 +154,14 @@ const ContractorAuthProvider = ({ children }: any) => {
 		if (state.user) {
 			if (state.user.isFirstLogin) {
 				//todo redirect to onboarding flow
+				router.push('/onboarding')
 			} else if (!router.pathname.includes('/dashboard')) {
 				router.push('/dashboard')
 			}
 		}
 
+
+		console.log("hey")
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [state.user])
 

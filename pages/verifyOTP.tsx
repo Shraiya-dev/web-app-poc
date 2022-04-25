@@ -3,7 +3,7 @@ import { NextPage } from 'next'
 import { OTPVerification } from '../modules/otp/components/OtpVerification'
 import { OnboardingLayout } from '../sdk'
 
-const Onboarding: NextPage = () => {
+const verifyOTP: NextPage = () => {
 	return (
 		<OnboardingLayout>
 			<OTPVerification />
@@ -11,4 +11,4 @@ const Onboarding: NextPage = () => {
 	)
 }
 
-export default Onboarding
+export default verifyOTP

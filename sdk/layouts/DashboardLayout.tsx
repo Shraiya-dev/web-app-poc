@@ -15,6 +15,7 @@ import {
 	Stack,
 	styled,
 	Toolbar,
+	Dialog,
 } from '@mui/material'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -23,6 +24,10 @@ import logo from '../../public/assets/icons/BrandLogo.svg'
 import MenuIcon from '../../public/assets/icons/MenuIcon.svg'
 import { useMobile } from '../hooks/useMobile'
 import { useContractorAuth } from '../providers'
+import CloseIcon from '@mui/icons-material/Close'
+
+import { CreateBooking } from '../../modules/bookworker/components/createBooking'
+import { boolean } from 'yup'
 
 //always update when you change the app bar height into the onlyCssWeNeed file
 const APP_BAR_HEIGHT = 84
@@ -51,8 +56,21 @@ const DashboardLayout = ({ children, ...props }: any) => {
 	const { logOut } = useContractorAuth()
 	const isMobile = useMobile()
 	const [drawerOpen, setDrawerOpen] = useState<boolean>(false)
+
+	const [bookingFormOpen, setBookingFormOpen] = useState<boolean>(false)
+
+	const [onCloseDialog, setOncloseDialog] = useState<boolean>(false)
+
 	const toggleDrawer = () => {
 		setDrawerOpen(!drawerOpen)
+	}
+
+	const toggleBookingForm = () => {
+		setOncloseDialog((state) => !state)
+	}
+
+	const handleBookingForm = () => {
+		setBookingFormOpen((state) => !state)
 	}
 
 	return (
@@ -75,12 +93,22 @@ const DashboardLayout = ({ children, ...props }: any) => {
 						<Stack direction='row' spacing={2}>
 							{!isMobile && (
 								<>
-									<Button variant='text'>Dashboard</Button>
-									<Button variant='text'>My Profile</Button>
+									<Link href='/dashboard' passHref>
+										<a>
+											<Button variant='text'>Dashboard</Button>
+										</a>
+									</Link>
+
+									<Link href='/profile' passHref>
+										<a>
+											<Button variant='text'>My Profile</Button>
+										</a>
+									</Link>
 								</>
 							)}
-
-							<Button variant='contained'>Book Worker</Button>
+							<Button variant='contained' onClick={handleBookingForm}>
+								Book Worker
+							</Button>{' '}
 						</Stack>
 					</Toolbar>
 				</Container>
@@ -92,19 +120,27 @@ const DashboardLayout = ({ children, ...props }: any) => {
 						<Image alt='logo' src={logo} />
 					</Stack>
 					<List>
-						<ListItem button>
-							<ListItemIcon>
-								<DashboardIcon />
-							</ListItemIcon>
-							<ListItemText>Dashboard</ListItemText>
-						</ListItem>
+						<Link href='/dashboard' passHref>
+							<a>
+								<ListItem button>
+									<ListItemIcon>
+										<DashboardIcon />
+									</ListItemIcon>
+									<ListItemText>Dashboard</ListItemText>
+								</ListItem>
+							</a>
+						</Link>
 
-						<ListItem button>
-							<ListItemIcon>
-								<PersonIcon />
-							</ListItemIcon>
-							<ListItemText>Profile</ListItemText>
-						</ListItem>
+						<Link href='/profile' passHref>
+							<a>
+								<ListItem button>
+									<ListItemIcon>
+										<PersonIcon />
+									</ListItemIcon>
+									<ListItemText>Profile</ListItemText>
+								</ListItem>
+							</a>
+						</Link>
 						<ListItem button onClick={logOut}>
 							<ListItemIcon>
 								<LogoutIcon />
@@ -114,6 +150,25 @@ const DashboardLayout = ({ children, ...props }: any) => {
 					</List>
 				</Box>
 			</Drawer>
+
+			<Dialog onClose={toggleBookingForm} open={bookingFormOpen} fullScreen>
+				<Box display='flex' alignItems='center'>
+					<Box flexGrow={1}></Box>
+					<Box style={{ margin: 20 }}>
+						<IconButton onClick={toggleBookingForm}>
+							<CloseIcon />
+						</IconButton>
+					</Box>
+				</Box>
+
+				<CreateBooking
+					toggleBookingForm={toggleBookingForm}
+					onCloseDialog={onCloseDialog}
+					setOncloseDialog={setOncloseDialog}
+					bookingFormOpen={bookingFormOpen}
+					setBookingFormOpen={setBookingFormOpen}
+				/>
+			</Dialog>
 		</>
 	)
 }
