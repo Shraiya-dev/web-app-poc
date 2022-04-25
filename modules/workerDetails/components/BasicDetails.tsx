@@ -1,4 +1,4 @@
-import { Grid, Box, Typography, Stack, Chip } from '@mui/material'
+import { Grid, Box, Typography, Stack } from '@mui/material'
 
 export const BasicDetails = () => {
 	return (
@@ -6,7 +6,7 @@ export const BasicDetails = () => {
 			<Grid container margin={2}>
 				<Grid item sm={12} xs={12} md={6} lg={6} direction='column'>
 					<Stack spacing={1} style={{ paddingBottom: 20 }}>
-						<Typography variant='h5' fontSize={18}>
+						<Typography  fontSize={18}>
 							Gender
 						</Typography>
 						<Typography style={{ opacity: 0.5 }}>Male</Typography>

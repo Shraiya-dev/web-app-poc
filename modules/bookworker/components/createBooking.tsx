@@ -653,7 +653,6 @@ export const CreateBooking = ({ ...props }) => {
 												value={form.values.state}
 												onChange={(e) => {
 													form.handleChange(e)
-													form.setFieldValue('city', 'none')
 												}}
 												required={true}
 												fullWidth>
@@ -669,12 +668,18 @@ export const CreateBooking = ({ ...props }) => {
 												name='city'
 												error={!!checkError('city', form)}
 												value={form.values.city}
-												onChange={form.handleChange}
+												onChange={(e) => {
+													form.handleChange(e)
+												}}
 												fullWidth>
 												<MenuItem value={'none'}>Select city</MenuItem>
-												{/* {CitiesOptions[form.values.state].map((item:any)=>{
-													return <MenuItem>{item.label}</MenuItem>
-												})} */}
+												{CitiesOptions[form.values.state || 'none'].map((item: any) => {
+													return (
+														<MenuItem key={item.label} value={item.value}>
+															{item?.label}
+														</MenuItem>
+													)
+												})}
 											</Select>
 										</Grid>
 									</Grid>
