@@ -1,5 +1,4 @@
 import axios from 'axios'
-import { SERVER_URL } from '../constants'
 import { USER_LOGIN_TYPE, USER_TYPE } from '../types/auth'
 
 export const sendOtpService = async (phoneNumber: string, ut: USER_TYPE) => {

@@ -111,8 +111,8 @@ export const CreateBooking = ({ ...props }) => {
 
 	useEffect(() => {
 		if (step === 1) {
-			var canSubmit:boolean =
-				!form.values.jobType || (!form.values.technician &&  !form.values.helper && !form.values.supervisor)
+			var canSubmit: boolean =
+				!form.values.jobType || (!form.values.technician && !form.values.helper && !form.values.supervisor)
 
 			setIsSubmittable(canSubmit)
 		}
@@ -341,13 +341,13 @@ export const CreateBooking = ({ ...props }) => {
 									</InputLabel>
 									<Grid item xs={12} md={12}>
 										<Stack direction='row' flexWrap='wrap'>
-											{tags[form.values.jobType]?.map((item: any) => {
+											{tags[form.values.jobType]?.map((item:any) => {
 												return (
 													<Chip
 														sx={{
 															m: 1,
 														}}
-														color={form.values.tags.includes(item) ? 'primary' : undefined}
+														color={form?.values?.tags?.includes(item) ? 'primary' : undefined}
 														key={item}
 														label={item}
 														clickable

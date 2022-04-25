@@ -63,7 +63,7 @@ export const BasicDetailsForm = () => {
 								disableUnderline: !(router.asPath === '/profile' && editInfo),
 							}}
 							placeholder='Enter Your Full Name'
-							variant={router.asPath === '/profile'  ? editInfo? 'outlined' : 'standard':'outlined'}
+							//variant={router.asPath === '/profile'  ? editInfo? 'outlined' : 'standard':'outlined'}
 							disabled={(router.asPath === '/profile' ? !editInfo:false)}
 							error={!!checkError('name', form)}
 							helperText={checkError('name', form)}
@@ -80,7 +80,7 @@ export const BasicDetailsForm = () => {
 							onBlur={form.handleBlur}
 							value={form.values.company  || data.company}
 							placeholder='Enter Company Name'
-							variant={router.asPath === '/profile'  ? editInfo? 'outlined' : 'standard':'outlined'}
+							//variant={router.asPath === '/profile'  ? editInfo? 'outlined' : 'standard':'outlined'}
 							disabled={(router.asPath === '/profile' ? !editInfo:false)}
 							InputProps={{
 								disableUnderline: !(router.asPath === '/profile' && editInfo),
@@ -99,7 +99,7 @@ export const BasicDetailsForm = () => {
 							onBlur={form.handleBlur}
 							value={form.values.companyEmail ||data.companyName}
 							placeholder='Enter Email'
-							variant={router.asPath === '/profile'  ? editInfo? 'outlined' : 'standard':'outlined'}
+							//variant={router.asPath === '/profile'  ? editInfo? 'outlined' : 'standard':'outlined'}
 							disabled={(router.asPath === '/profile' ? !editInfo:false)}
 							InputProps={{
 								disableUnderline: !(router.asPath === '/profile' && editInfo),
@@ -119,7 +119,7 @@ export const BasicDetailsForm = () => {
 							onBlur={form.handleBlur}
 							value={form.values.phoneNumber || data.phoneNumber}
 							placeholder='9999988888'
-							variant={router.asPath === '/profile'  ? editInfo? 'outlined' : 'standard':'outlined'}
+							//variant={router.asPath === '/profile'  ? editInfo? 'outlined' : 'standard':'outlined'}
 							disabled={(router.asPath === '/profile' ? !editInfo:false)}
 							InputProps={{
 								disableUnderline: !(router.asPath === '/profile' && editInfo),
