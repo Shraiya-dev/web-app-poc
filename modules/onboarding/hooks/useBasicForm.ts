@@ -5,19 +5,45 @@ import { useFormik } from 'formik'
 import { validateEmail } from '../../../sdk/utils/validationHelpers'
 
 import { updateProfile } from '../../../sdk/apis'
+import { useContractorAuth } from '../../../sdk'
+
+
+
+interface CreateBasicForm {
+	name: string
+	company: string
+	companyEmail: string
+	phoneNumber: string
+}
 
 const useBasicForm = () => {
 	const router = useRouter()
+	const { phoneNumber } = useContractorAuth()
+
 
 	const [loading, setLoading] = useState(false)
+	const [initialData, setInitialData] = useState()
+
+	const [editInfo, setEditInfo] = useState(false)
+
+	const handleEdit = () => {
+		setEditInfo((state) => !state)
+	}
+
+	const data = {
+		name: 'Deepak',
+		company: 'projecthero',
+		companyName: 'deepak.kushwaha@projecthero.in',
+		phoneNumber: '9901549150',
+	}
 
 	console.log('router', router)
-	const form = useFormik({
+	const form = useFormik<CreateBasicForm>({
 		initialValues: {
-			name: '',
-			company: '',
-			companyEmail: '',
-			phoneNumber: '',
+			name: data?.name,
+			company: data?.company,
+			companyEmail: data?.companyName,
+			phoneNumber: phoneNumber||'',
 		},
 		validate: (values) => {
 			const errors = <any>{}
@@ -54,14 +80,12 @@ const useBasicForm = () => {
 		onSubmit: (values) => {
 			const payload = {
 				name: values.name,
-				company: values.company,
-				companyemail: values.companyEmail,
+				companyName: values.company,
+				email: values.companyEmail,
 			}
 			updateProfile(payload)
 				.then((status: any) => {
-					if (status === 200) {
-						router.push('/dashboard')
-					}
+					router.push('/dashboard')
 				})
 				.catch((error) => {
 					console.log(error)
@@ -72,6 +96,9 @@ const useBasicForm = () => {
 	return {
 		form,
 		loading,
+		initialData,
+		setInitialData,
+		editInfo, setEditInfo,handleEdit
 	}
 }
 

@@ -1,35 +1,45 @@
-import { Grid, Box, Typography, Stack } from '@mui/material'
+import { Grid, Box, Typography, Stack, styled } from '@mui/material'
 
-export const BasicDetails = () => {
+const BasicDetailsStyle = styled(Box)(({ theme }) => ({
+	'.stack': {
+		paddingBottom: 20,
+	},
+	'.textInfo': {
+		color: theme.palette.secondary.main,
+	},
+}))
+
+export const BasicDetails = ({ ...props }) => {
+	const { workerData } = props
 	return (
-		<Box>
-			<Grid container margin={2}>
-				<Grid item sm={12} xs={12} md={6} lg={6} direction='column'>
-					<Stack spacing={1} style={{ paddingBottom: 20 }}>
-						<Typography  fontSize={18}>
-							Gender
-						</Typography>
-						<Typography style={{ opacity: 0.5 }}>Male</Typography>
-					</Stack>
+		<BasicDetailsStyle>
+			<Box>
+				<Grid container margin={2}>
+					<Grid item sm={12} xs={12} md={6} lg={6} direction='column'>
+						<Stack spacing={1} className='stack'>
+							<Typography fontSize={18}>Gender</Typography>
+							<Typography className='textInfo'>{workerData?.gender}</Typography>
+						</Stack>
 
-					<Stack spacing={1} style={{ paddingBottom: 20 }}>
-						<Typography fontSize={18}>Marital Status</Typography>
-						<Typography style={{ opacity: 0.5 }}>Single</Typography>
-					</Stack>
+						<Stack spacing={1} className='stack'>
+							<Typography fontSize={18}>Marital Status</Typography>
+							<Typography className='textInfo'>{workerData?.maritalStatus}</Typography>
+						</Stack>
 
-					<Stack spacing={1} style={{ paddingBottom: 20 }}>
-						<Typography fontSize={18}>Experience</Typography>
-						<Typography style={{ opacity: 0.5 }}>4 years 8 months</Typography>
-					</Stack>
+						<Stack spacing={1} className='stack'>
+							<Typography fontSize={18}>Experience</Typography>
+							<Typography className='textInfo'>{workerData?.experience}</Typography>
+						</Stack>
+					</Grid>
+
+					<Grid item sm={12} xs={12} md={6} lg={6} direction='column'>
+						<Stack spacing={1} className='stack'>
+							<Typography fontSize={18}>Projects completed</Typography>
+							<Typography className='textInfo'>{workerData?.projectCompleted}</Typography>
+						</Stack>
+					</Grid>
 				</Grid>
-
-				<Grid item sm={12} xs={12} md={6} lg={6} direction='column'>
-					<Stack spacing={1} style={{ paddingBottom: 20 }}>
-						<Typography fontSize={18}>Projects completed</Typography>
-						<Typography style={{ opacity: 0.5 }}>5</Typography>
-					</Stack>
-				</Grid>
-			</Grid>
-		</Box>
+			</Box>
+		</BasicDetailsStyle>
 	)
 }

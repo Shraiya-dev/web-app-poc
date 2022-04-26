@@ -9,7 +9,6 @@ export const JobType = ({ ...props }) => {
 	const [selectedJob, setSelectedjob] = useState('')
 
 	const handleJobClick = () => {
-		console.log('hello', jobName)
 		setSelectedjob(jobName)
 	}
 

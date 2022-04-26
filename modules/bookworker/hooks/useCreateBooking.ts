@@ -38,6 +38,7 @@ interface CreateBookingForm {
 const useCreateBooking = () => {
 	const [step, setStep] = useState(1)
 
+	
 	const form = useFormik<CreateBookingForm>({
 		initialValues: {
 			jobType: '',
