@@ -1,3 +1,4 @@
+import { WORKER_TYPES } from './booking'
 import { JOB_TYPES } from './Job'
 
 export enum JobCardState {
@@ -18,4 +19,5 @@ export interface JobCard {
 	state: string
 	experience: string
 	workerId: string
+	skillType: WORKER_TYPES
 }

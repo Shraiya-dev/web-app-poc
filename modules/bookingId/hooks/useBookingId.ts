@@ -1,27 +1,74 @@
+import axios from 'axios'
 import { useRouter } from 'next/router'
-import { useEffect, useState } from 'react'
-import { JobCard, JOB_TYPES } from '../../../sdk'
+import { useCallback, useEffect, useState } from 'react'
+import { BookingPreview, JobCard, JOB_TYPES, useSnackbar } from '../../../sdk'
 
 export const useBookingId = () => {
 	const router = useRouter()
-	const [jobCards, setJobCards] = useState<Array<JobCard>>(
-		Array(10).fill({
-			workerName: 'Lalit Tyagi',
-			jobType: JOB_TYPES.BAR_BENDER,
-			dob: new Date(),
-			projectCount: 15,
-			city: 'Noida',
-			state: 'Uttar Pradesh',
-			experience: '2-5',
-			workerId: 'lhbnklhgvbnmkgvb',
-		})
-	)
-	useEffect(() => {
-		const sp = new URLSearchParams(router.query as any)
-		console.log('fetching booking for ?', sp.toString())
+	const { showSnackbar } = useSnackbar()
+	const [bookingSummary, setBookingSummary] = useState<BookingPreview>()
+	const [jobCards, setJobCards] = useState<Array<JobCard>>([])
+
+	const getJobCards = useCallback(async () => {
+		const { bookingId, ...rest } = router.query
+		if (!bookingId) return
+		try {
+			const queryParams = new URLSearchParams(rest as any)
+			const { data } = await axios.get(`/gateway/customer-api/bookings/${bookingId}?` + queryParams.toString())
+			const booking = data.payload.bookings
+			const jobCards = data.payload.workers ?? []
+
+			setBookingSummary({
+				bookingId: booking.bookingId,
+				city: booking.city,
+				status: booking.status,
+				state: booking.state,
+				jobType: booking.jobType,
+				peopleRequired: {
+					HELPER: booking.peopleRequired.HELPER,
+					SUPERVISOR: booking.peopleRequired.SUPERVISOR,
+					TECHNICIAN: booking.peopleRequired.TECHNICIAN,
+				},
+				schedule: {
+					bookingDuration: booking.schedule.bookingDuration,
+					shiftTime: booking.schedule.shiftTime,
+					startDate: new Date(booking.schedule.startDate),
+				},
+				jobCardDetails: {
+					ACCEPTED: booking.jobCardDetails?.ACCEPTED ?? 0,
+					READY_TO_DEPLOY: booking.jobCardDetails?.READY_TO_DEPLOY ?? 0,
+					DEPLOYMENT_COMPLETE: booking.jobCardDetails?.DEPLOYMENT_COMPLETE ?? 0,
+				},
+			})
+			setJobCards(
+				jobCards.map((item: JobCard) => {
+					const jobCard: JobCard = {
+						workerId: item.workerId,
+						workerName: item.workerName,
+						jobType: item.jobType,
+						experience: item.experience,
+						projectCount: item.projectCount,
+						city: item.city,
+						state: item.state,
+						dob: item.dob,
+						skillType: item.skillType,
+					}
+					return jobCard
+				})
+			)
+		} catch (error: any) {
+			showSnackbar(error?.response?.data?.developerInfo, 'error')
+		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [router.query])
+
+	useEffect(() => {
+		getJobCards()
+	}, [getJobCards])
 
 	return {
 		jobCards: jobCards,
+		bookingSummary: bookingSummary,
+		getJobCards: getJobCards,
 	}
 }
