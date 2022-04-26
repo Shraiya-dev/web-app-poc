@@ -77,6 +77,11 @@ const ContractorAuthProvider = ({ children }: any) => {
 		//return await loginService(phoneNumber, USER_TYPE.CONTRACTOR, USER_LOGIN_TYPE.OTP, otp)
 	}, [])
 
+	const logOut = useCallback(async () => {
+		localStorage.clear()
+		dispatch(initialAuthState)
+		await router.push('/login')
+	}, [router])
 	const getContactorUserInfo = useCallback(async () => {
 		try {
 			const { data } = await axios.get('/gateway/customer-api')
@@ -90,14 +95,11 @@ const ContractorAuthProvider = ({ children }: any) => {
 					customerStatus: data.payload?.customerStatus ?? CUSTOMER_STATUS.REGISTERED,
 				},
 			})
-		} catch (error) {}
+		} catch (error: any) {
+			//todo show error in snackbar
+			console.log(error)
+		}
 	}, [])
-
-	const logOut = useCallback(async () => {
-		localStorage.clear()
-		dispatch(initialAuthState)
-		await router.push('/login')
-	}, [router])
 
 	useEffect(() => {
 		const accessToken = localStorage.getItem('accessToken')
@@ -146,8 +148,9 @@ const ContractorAuthProvider = ({ children }: any) => {
 			requestOtp: requestOtp,
 			verifyOtp: verifyOtp,
 			logOut: logOut,
+			getContactorUserInfo: getContactorUserInfo,
 		}),
-		[state, requestOtp, verifyOtp, logOut]
+		[state, requestOtp, verifyOtp, logOut, getContactorUserInfo]
 	)
 	return <Provider value={authProviderValue}>{children}</Provider>
 }
