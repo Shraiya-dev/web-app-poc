@@ -12,6 +12,7 @@ env:
   GKE_CLUSTER: ph-staging
   GAR_LOCATION: asia-south1
   DEPLOYMENT_NAME: ph-web
+  CONTAINER_NAME: ph-web
 
 jobs:
   setup-build-publish-deploy:
