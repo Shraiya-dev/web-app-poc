@@ -11,9 +11,10 @@ import { Button } from '@mui/material'
 import { getWorkerInfo } from '../../../sdk/apis'
 
 interface WorkerData {
-	workerName: string
-	address: string
-	phone: string
+	name: string
+	city: string
+	state: string
+	phoneNumber:string
 	skills: string[]
 	email: string
 	gender: string
@@ -92,16 +93,16 @@ export const WorkerProfileInfo = () => {
 
 	useEffect(() => {
 		let id = router.query.workerId
-		setWorkerData(data)
-
-		// getWorkerInfo(id)
-		// 	.then((data:any) => {
-		// 		setWorkerData(data)
-		// 		console.log(data)
-		// 	})
-		// 	.catch((error) => {
-		// 		console.log(error)
-		// 	})
+		//619a1f5e40d3b50016379e08
+		getWorkerInfo(id)
+			.then((data:any) => {
+				console.log(data)
+				setWorkerData(data?.data?.payload)
+			
+			})
+			.catch((error) => {
+				console.log(error)
+			})
 	}, [])
 
 	return (
@@ -121,11 +122,11 @@ export const WorkerProfileInfo = () => {
 								</Stack>
 							</Box>
 							<Box className='secondaryBox'>
-								<Typography className='workerText'>{workerData?.workerName}</Typography>
+								<Typography className='workerText'>{workerData?.name||''}</Typography>
 
 								<Typography className='locationText'>
 									<LocationOnIcon className='locationIcon' />
-									{workerData?.address}
+									{`${workerData?.city||''}, ${workerData?.state||''}`}
 								</Typography>
 
 								<Stack direction='row' spacing={1} justifyContent='center'>
@@ -139,10 +140,10 @@ export const WorkerProfileInfo = () => {
 								<Stack className='contactInfo'>
 									<Typography className='contactText'>Contact</Typography>
 									<Typography className='locationInfo'>
-										<LocationOnIcon className='locationIcon' /> {workerData?.phone}
+										<LocationOnIcon className='locationIcon' /> {workerData?.phoneNumber||''}
 									</Typography>
 									<Typography className='locationInfo'>
-										<LocationOnIcon className='locationIcon' /> {workerData?.email}
+										<LocationOnIcon className='locationIcon' /> {workerData?.email||''}
 									</Typography>
 								</Stack>
 							</Box>

@@ -1,11 +1,11 @@
 import { useRouter } from 'next/router'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useFormik } from 'formik'
 
-import { validateEmail , freeEmailChecker} from '../../../sdk/utils/validationHelpers'
+import { validateEmail, freeEmailChecker } from '../../../sdk/utils/validationHelpers'
 
 import { updateProfile } from '../../../sdk/apis'
-import { useContractorAuth } from '../../../sdk'
+import { getCustomerDetails } from '../../../sdk/apis'
 
 interface CreateBasicForm {
 	name: string
@@ -14,12 +14,18 @@ interface CreateBasicForm {
 	phoneNumber: string
 }
 
+interface initialData {
+	name: string
+	companyName: string
+	email: string
+	phoneNumber: string
+	customerStatus: string
+}
+
 const useBasicForm = () => {
 	const router = useRouter()
-	const { phoneNumber } = useContractorAuth()
-
 	const [loading, setLoading] = useState(false)
-	const [initialData, setInitialData] = useState<CreateBasicForm>()
+	const [initialData, setInitialData] = useState<initialData>()
 
 	const [editInfo, setEditInfo] = useState(false)
 
@@ -27,20 +33,25 @@ const useBasicForm = () => {
 		setEditInfo((state) => !state)
 	}
 
-	const data = {
-		name: 'Deepak',
-		company: 'projecthero',
-		companyName: 'deepak.kushwaha@projecthero.in',
-		phoneNumber: '9901549150',
-	}
+	useEffect(() => {
+		getCustomerDetails()
+			.then((data: any) => {
+				setInitialData(data?.data?.payload)
+			})
+			.catch((error) => {
+				console.log(error)
+			})
+	}, [router])
+
+	console.log('initiald', initialData)
 
 	console.log('router', router)
 	const form = useFormik<CreateBasicForm>({
 		initialValues: {
-			name: data?.name,
-			company: data?.company,
-			companyEmail: data?.companyName,
-			phoneNumber: phoneNumber || '',
+			name: initialData?.name || '',
+			company: initialData?.companyName || '',
+			companyEmail: initialData?.email || '',
+			phoneNumber: initialData?.phoneNumber || '',
 		},
 		validate: (values) => {
 			const errors = <any>{}
@@ -61,17 +72,24 @@ const useBasicForm = () => {
 				errors.phoneNumber = 'Required'
 			}
 
-			if (
-				values.phoneNumber === '' ||
-				Number.isNaN(Number(values.phoneNumber)) ||
-				values.phoneNumber.length !== 10
-			) {
-				errors.phoneNumber = 'Enter Valid phone Number'
+			// if (
+			// 	values.phoneNumber === '' ||
+			// 	Number.isNaN(Number(values.phoneNumber)) ||
+			// 	values.phoneNumber.length !== 10
+			// ) {
+			// 	errors.phoneNumber = 'Enter Valid phone Number'
+			// }
+
+			if (initialData?.customerStatus === 'REGISTERED') {
+				if (!freeEmailChecker(values.companyEmail)) {
+					errors.companyEmail = 'Enter Valid Company Email'
+				}
+			} else {
+				if (!validateEmail(values.companyEmail)) {
+					errors.companyEmail = 'Enter Valid Company Email'
+				}
 			}
 
-			if (!freeEmailChecker(values.companyEmail)) {
-				errors.companyEmail = 'Enter Valid Company Email'
-			}
 			return errors
 		},
 		onSubmit: (values) => {

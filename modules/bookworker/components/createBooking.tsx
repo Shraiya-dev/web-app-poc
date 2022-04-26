@@ -282,7 +282,7 @@ export const CreateBooking = ({ ...props }) => {
 											})}
 										</Grid>
 
-										{isMore && (
+										{/* {isMore && (
 											<Box>
 												<Grid container item rowSpacing={2} columnSpacing={2}>
 													{moreJobType.map((info, index) => {
@@ -313,8 +313,8 @@ export const CreateBooking = ({ ...props }) => {
 													})}
 												</Grid>
 											</Box>
-										)}
-										<Grid
+										)} */}
+										{/* <Grid
 											container
 											spacing={0}
 											direction='column'
@@ -348,7 +348,7 @@ export const CreateBooking = ({ ...props }) => {
 													</Box>
 												)}
 											</Stack>
-										</Grid>
+										</Grid> */}
 									</Box>
 
 									<Box>
@@ -413,11 +413,15 @@ export const CreateBooking = ({ ...props }) => {
 											return (
 												<Grid
 													key={index}
-													container
+													container item
 													alignItems={'flex-start'}
+													display="flex"
 													spacing={2}
-													style={{ marginBottom: 10 }}>
-													<Grid item xs={4} sm={4} md={4}>
+													
+												    
+													style={{ marginBottom: 20 }}
+													>
+													<Grid item xs={4} sm={4} md={4} >
 														<Image src={info?.icon} />
 														<Typography
 															style={{
@@ -430,10 +434,11 @@ export const CreateBooking = ({ ...props }) => {
 													</Grid>
 													<Grid item xs={4} sm={4} md={4}>
 														<TextField
-															placeholder={`${info?.label} Required`}
+															label={`${info?.label} Required`}
 															id={info?.name}
 															name={info?.name}
 															value={info?.formvalue}
+															type="number"
 															onChange={(e: any) => {
 																if (e.target.value >= 0) {
 																	form.handleChange(e)
@@ -447,10 +452,11 @@ export const CreateBooking = ({ ...props }) => {
 													</Grid>
 													<Grid item xs={4} sm={4} md={4}>
 														<TextField
-															placeholder='Daily wage (Rs.)'
+															label='Daily wage (Rs.)'
 															id={info?.wage}
 															name={info?.wage}
 															value={info?.wageformvalue}
+															type="number"
 															onChange={(e: any) => {
 																if (e.target.value >= 0) {
 																	form.handleChange(e)

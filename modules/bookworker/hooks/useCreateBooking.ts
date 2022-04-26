@@ -1,9 +1,8 @@
 import { useFormik } from 'formik'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 import { validateEmail } from '../../../sdk'
-
-import { useContractorAuth } from '../../../sdk'
+import { getCustomerDetails } from '../../../sdk/apis'
 
 interface CreateBookingForm {
 	jobType: string
@@ -41,15 +40,30 @@ interface CreateBookingForm {
 
 interface userInitialInfo {
 	name: string
-	company: string
-	companyEmail: string
+	companyName: string
+	email: string
 	phoneNumber: string
+	customerStatus: string
 }
 
 const useCreateBooking = () => {
 	const [step, setStep] = useState(1)
-	const [userInitialInfo, setUserInitialInfo] = useState<userInitialInfo>();
-	const {phoneNumber} = useContractorAuth();
+	const [userInitialInfo, setUserInitialInfo] = useState<userInitialInfo>()
+
+	useEffect(() => {
+		getCustomerDetails()
+			.then((data: any) => {
+				form.values.name = data?.data?.payload?.name
+				form.values.company = data?.data?.payload?.companyName
+				form.values.companyEmail = data?.data?.payload?.email
+				form.values.phoneNumber = data?.data?.payload?.phoneNumber
+			})
+			.catch((error) => {
+				console.log(error)
+			})
+	}, [step])
+
+	console.log('userInitialInfo', userInitialInfo)
 
 	const form = useFormik<CreateBookingForm>({
 		initialValues: {
@@ -80,10 +94,10 @@ const useCreateBooking = () => {
 			city: '',
 			siteAddress: '',
 
-			name: userInitialInfo?.name ||'',
-			company: userInitialInfo?.company ||'',
-			companyEmail: userInitialInfo?.companyEmail ||'',
-			phoneNumber: phoneNumber||'',
+			name: userInitialInfo?.name || '',
+			company: userInitialInfo?.companyName || '',
+			companyEmail: userInitialInfo?.email || '',
+			phoneNumber: userInitialInfo?.phoneNumber || '',
 		},
 		validate: (values) => {
 			const errors = <any>{}
@@ -165,7 +179,8 @@ const useCreateBooking = () => {
 		form,
 		step,
 		setStep,
-		userInitialInfo, setUserInitialInfo
+		userInitialInfo,
+		setUserInitialInfo,
 	}
 }
 
