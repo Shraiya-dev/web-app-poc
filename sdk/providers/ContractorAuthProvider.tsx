@@ -1,20 +1,21 @@
+import axios from 'axios'
 import { log } from 'console'
 import { useRouter } from 'next/router'
 import { createContext, useCallback, useContext, useEffect, useMemo, useReducer } from 'react'
 import { loginService, sendOtpService } from '../apis'
-import { USER_LOGIN_TYPE, USER_TYPE } from '../types'
+import { CustomerDetails, CUSTOMER_STATUS, USER_LOGIN_TYPE, USER_TYPE } from '../types'
 
 const LoadingUniqueString = 'loading...'
-interface User {
-	name?: string
-	phoneNumber?: string
-	isFirstLogin?: boolean
-	userId?: string
-	email?: string
-}
+// interface User {
+// 	name?: string
+// 	phoneNumber?: string
+// 	isFirstLogin?: boolean
+// 	userId?: string
+// 	email?: string
+// }
 
 interface AuthState {
-	user: null | User
+	user: null | CustomerDetails
 	phoneNumber: null | string
 	accessToken: null | string
 	refreshToken: null | string
@@ -46,71 +47,51 @@ const { Provider, Consumer } = ContractorAuthContext
 const ContractorAuthProvider = ({ children }: any) => {
 	const [state, dispatch] = useReducer(simpleReducer, initialAuthState)
 	const router = useRouter()
+
 	const requestOtp = useCallback(async (phoneNumber: string) => {
 		dispatch({
 			phoneNumber: phoneNumber,
 		})
 		return await sendOtpService(phoneNumber, USER_TYPE.CONTRACTOR)
 	}, [])
-	const loginUser = useCallback((payload, silent: boolean = false) => {
-		localStorage.setItem('accessToken', payload?.accessToken)
-		localStorage.setItem('phoneNumber', payload?.phoneNumber)
 
-		if (!silent) {
-			localStorage.setItem('refreshToken', payload?.refreshToken)
+	const verifyOtp = useCallback(async (phoneNumber: string, otp: string) => {
+		try {
+			const { data } = await loginService(phoneNumber, USER_TYPE.CONTRACTOR, USER_LOGIN_TYPE.OTP, otp)
+			if (data?.success) {
+				localStorage.setItem('accessToken', data.data?.accessToken)
+				localStorage.setItem('phoneNumber', data.data?.phoneNumber)
+				localStorage.setItem('refreshToken', data.data?.refreshToken)
+				dispatch({
+					accessToken: data.data?.accessToken,
+					phoneNumber: data.data?.phoneNumber,
+					refreshToken: data.data?.refreshToken,
+				})
+				return data
+			} else {
+				throw data
+			}
+		} catch (error) {
+			console.log(error)
 		}
-
-		dispatch({
-			user: {
-				userId: payload?._id,
-				email: payload?.email,
-				name: payload?.userName,
-				phoneNumber: payload?.phoneNumber,
-				isFirstLogin: payload?.isFirstLogin,
-			},
-		})
+		//return await loginService(phoneNumber, USER_TYPE.CONTRACTOR, USER_LOGIN_TYPE.OTP, otp)
 	}, [])
-	const verifyOtp = useCallback(
-		async (phoneNumber: string, otp: string) => {
-			try {
-				const { data } = await loginService(phoneNumber, USER_TYPE.CONTRACTOR, USER_LOGIN_TYPE.OTP, otp)
-				if (data?.success) {
-					loginUser(data?.data)
-					return data
-				} else {
-					throw data
-				}
-			} catch (error) {
-				console.log(error)
-			}
-			//return await loginService(phoneNumber, USER_TYPE.CONTRACTOR, USER_LOGIN_TYPE.OTP, otp)
-		},
-		[loginUser]
-	)
-	const silentLogin = useCallback(
-		async (phoneNumber, accessToken) => {
-			try {
-				const { data } = await loginService(
-					phoneNumber,
-					USER_TYPE.CONTRACTOR,
-					USER_LOGIN_TYPE.SILENT,
-					undefined,
-					accessToken
-				)
-				if (data.success) {
-					//login success update the use state
-					loginUser(data?.data, true)
-				} else {
-					//login failure let the requester handel the error
-					throw data
-				}
-			} catch (error) {
-				throw error
-			}
-			
-		},
-		[loginUser]
-	)
+
+	const getContactorUserInfo = useCallback(async () => {
+		try {
+			const { data } = await axios.get('/gateway/customer-api')
+			dispatch({
+				user: {
+					customerId: data.payload?._id ?? '',
+					email: data.payload?.email ?? '',
+					name: data.payload?.userName ?? '',
+					phoneNumber: data.payload?.phoneNumber ?? '',
+					companyName: data.payload.companyName ?? '',
+					customerStatus: data.payload?.customerStatus ?? CUSTOMER_STATUS.REGISTERED,
+				},
+			})
+		} catch (error) {}
+	}, [])
 
 	const logOut = useCallback(async () => {
 		localStorage.clear()
@@ -119,7 +100,6 @@ const ContractorAuthProvider = ({ children }: any) => {
 	}, [router])
 
 	useEffect(() => {
-	
 		const accessToken = localStorage.getItem('accessToken')
 		const refreshToken = localStorage.getItem('refreshToken')
 		const phoneNumber = localStorage.getItem('phoneNumber')
@@ -131,10 +111,11 @@ const ContractorAuthProvider = ({ children }: any) => {
 		})
 	}, [])
 
+	console.log(state)
+
 	//logic for redirect based on state and update userInfo
 	useEffect(() => {
-		
-		if (state.accessToken === null || state.refreshToken === null || state.phoneNumber === null) {
+		if (!(state.accessToken || state.refreshToken || state.phoneNumber)) {
 			logOut()
 			return
 		}
@@ -143,25 +124,19 @@ const ContractorAuthProvider = ({ children }: any) => {
 			state.phoneNumber !== LoadingUniqueString &&
 			state.user === null
 		) {
-		  silentLogin(state.phoneNumber, state.accessToken)
+			getContactorUserInfo()
 		}
-
-	
 
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [state.accessToken, state.phoneNumber, state.refreshToken])
 	useEffect(() => {
 		if (state.user) {
-			if (state.user.isFirstLogin) {
-				//todo redirect to onboarding flow
+			if ([CUSTOMER_STATUS.REGISTERED, CUSTOMER_STATUS.UPDATE_PROFILE].includes(state.user.customerStatus)) {
 				router.push('/onboarding')
 			} else if (!router.pathname.includes('/dashboard')) {
 				router.push('/dashboard')
 			}
 		}
-
-
-		console.log("hey")
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [state.user])
 
