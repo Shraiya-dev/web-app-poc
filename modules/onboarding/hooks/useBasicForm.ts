@@ -2,12 +2,10 @@ import { useRouter } from 'next/router'
 import { useState } from 'react'
 import { useFormik } from 'formik'
 
-import { validateEmail } from '../../../sdk/utils/validationHelpers'
+import { validateEmail , freeEmailChecker} from '../../../sdk/utils/validationHelpers'
 
 import { updateProfile } from '../../../sdk/apis'
 import { useContractorAuth } from '../../../sdk'
-
-
 
 interface CreateBasicForm {
 	name: string
@@ -20,9 +18,8 @@ const useBasicForm = () => {
 	const router = useRouter()
 	const { phoneNumber } = useContractorAuth()
 
-
 	const [loading, setLoading] = useState(false)
-	const [initialData, setInitialData] = useState()
+	const [initialData, setInitialData] = useState<CreateBasicForm>()
 
 	const [editInfo, setEditInfo] = useState(false)
 
@@ -43,7 +40,7 @@ const useBasicForm = () => {
 			name: data?.name,
 			company: data?.company,
 			companyEmail: data?.companyName,
-			phoneNumber: phoneNumber||'',
+			phoneNumber: phoneNumber || '',
 		},
 		validate: (values) => {
 			const errors = <any>{}
@@ -72,7 +69,7 @@ const useBasicForm = () => {
 				errors.phoneNumber = 'Enter Valid phone Number'
 			}
 
-			if (!validateEmail(values.companyEmail)) {
+			if (!freeEmailChecker(values.companyEmail)) {
 				errors.companyEmail = 'Enter Valid Company Email'
 			}
 			return errors
@@ -98,7 +95,9 @@ const useBasicForm = () => {
 		loading,
 		initialData,
 		setInitialData,
-		editInfo, setEditInfo,handleEdit
+		editInfo,
+		setEditInfo,
+		handleEdit,
 	}
 }
 

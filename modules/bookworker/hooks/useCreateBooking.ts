@@ -2,6 +2,9 @@ import { useFormik } from 'formik'
 import { useState } from 'react'
 
 import { validateEmail } from '../../../sdk'
+
+import { useContractorAuth } from '../../../sdk'
+
 interface CreateBookingForm {
 	jobType: string
 
@@ -35,10 +38,19 @@ interface CreateBookingForm {
 	companyEmail: string
 	phoneNumber: string
 }
+
+interface userInitialInfo {
+	name: string
+	company: string
+	companyEmail: string
+	phoneNumber: string
+}
+
 const useCreateBooking = () => {
 	const [step, setStep] = useState(1)
+	const [userInitialInfo, setUserInitialInfo] = useState<userInitialInfo>();
+	const {phoneNumber} = useContractorAuth();
 
-	
 	const form = useFormik<CreateBookingForm>({
 		initialValues: {
 			jobType: '',
@@ -63,15 +75,15 @@ const useCreateBooking = () => {
 			startTime: new Date(),
 			endTime: new Date(),
 			shiftTime: '',
-			
+
 			state: '',
 			city: '',
 			siteAddress: '',
 
-			name: '',
-			company: '',
-			companyEmail: '',
-			phoneNumber: '',
+			name: userInitialInfo?.name ||'',
+			company: userInitialInfo?.company ||'',
+			companyEmail: userInitialInfo?.companyEmail ||'',
+			phoneNumber: phoneNumber||'',
 		},
 		validate: (values) => {
 			const errors = <any>{}
@@ -153,6 +165,7 @@ const useCreateBooking = () => {
 		form,
 		step,
 		setStep,
+		userInitialInfo, setUserInitialInfo
 	}
 }
 

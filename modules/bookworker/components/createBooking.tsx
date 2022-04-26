@@ -29,6 +29,7 @@ import useCreateBooking from '../hooks/useCreateBooking'
 import { CitiesOptions, jobTypeInfo, moreJobType, projectDuration, StatesOptions, tags } from '../utils/helperData'
 import BookingSuccess from './bookingsuccess'
 import ConfirmCancel from './confirmCancel'
+import { getCustomerDetails } from '../../../sdk/apis'
 
 const CustomBookingStyle = styled(Box)(({ theme }) => ({
 	'.main': {
@@ -65,13 +66,13 @@ const CustomBookingStyle = styled(Box)(({ theme }) => ({
 		bottom: 0,
 		paddingTop: 20,
 		background: 'white',
-		overflow:''
+		overflow: '',
 	},
 }))
 
 export const CreateBooking = ({ ...props }) => {
 	const { toggleBookingForm, onCloseDialog, setOncloseDialog, bookingFormOpen, setBookingFormOpen } = props
-	const { form, step, setStep } = useCreateBooking()
+	const { form, step, setStep, userInitialInfo, setUserInitialInfo } = useCreateBooking()
 
 	const [isMore, setIsmore] = useState(false)
 	const [projectDur, setProjectDuration] = useState<string>('less than 7 days')
@@ -110,6 +111,16 @@ export const CreateBooking = ({ ...props }) => {
 		},
 	]
 
+	useEffect(() => {
+		getCustomerDetails()
+			.then((data: any) => {
+				console.log('basic', data)
+				setUserInitialInfo(data?.data?.payload)
+			})
+			.catch((error) => {
+				console.log(error)
+			})
+	}, [])
 	useEffect(() => {
 		if (step === 1) {
 			var canSubmit: boolean =
