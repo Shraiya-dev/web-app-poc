@@ -5,7 +5,7 @@ import { format } from 'date-fns'
 import { useRouter } from 'next/router'
 import { useCallback, useMemo } from 'react'
 import { JobTypeLabel } from '../../constants'
-import { BookingPreview } from '../../types'
+import { BookingPreview, JobCardState } from '../../types'
 import { StatusChip } from '../chips'
 
 interface BookingSummaryCardProps {
@@ -17,24 +17,38 @@ const CustomPaper = styled(Paper)(({ theme }) => ({
 	flex: 1,
 	flexDirection: 'column',
 	overflow: 'hidden',
+	paddingBottom: theme.spacing(4),
 	'.cardHeader': {
 		flex: 1,
-		padding: `${theme.spacing(3)} ${theme.spacing(2)} ${theme.spacing(2)}`,
+		padding: theme.spacing(2),
 		backgroundColor: theme.palette.primary.light,
 	},
 	'.cardBody': {
 		flex: 1,
 		flexDirection: 'column',
-		padding: `${theme.spacing(2)} ${theme.spacing(2)} ${theme.spacing(3)}`,
+		padding: theme.spacing(2),
 		button: {
 			borderRadius: 4,
 			borderColor: theme.palette.secondary.light,
 			color: theme.palette.common.black,
 			justifyContent: 'space-between',
+			margin: `${theme.spacing(1)} 0`,
 			'&.selected': {
 				backgroundColor: alpha(theme.palette.primary.main, 0.05),
 				borderColor: theme.palette.primary.main,
 				color: theme.palette.primary.main,
+			},
+		},
+		[theme.breakpoints.down('md')]: {
+			flex: 1,
+			flexDirection: 'row',
+			button: {
+				flex: 1,
+				padding: theme.spacing(1),
+				margin: `0 ${theme.spacing(1)}`,
+				flexDirection: 'column',
+				alignItems: 'flex-start',
+				justifyContent: 'space-between',
 			},
 		},
 	},
@@ -52,16 +66,14 @@ export const BookingSummaryCard = ({ booking }: BookingSummaryCardProps) => {
 	}, [booking])
 	const handelTabChange = useCallback(
 		(newState) => {
-			console.log(newState)
-
-			router.query.status = newState
-			router.push(router)
+			router.query.jobCardState = newState
+			router.replace(router)
 		},
 		[router]
 	)
 
 	return (
-		<CustomPaper>
+		<CustomPaper elevation={5}>
 			<Stack className='cardHeader'>
 				<Typography variant='h4' fontWeight={700}>
 					{JobTypeLabel[booking.jobType]} ({totalCount})
@@ -90,32 +102,39 @@ export const BookingSummaryCard = ({ booking }: BookingSummaryCardProps) => {
 					</Typography>
 				</Stack>
 			</Stack>
-			<Stack className='cardBody' spacing={2}>
+			<Stack className='cardBody'>
 				<Button
-					className={router.query.status === 'WORKER_APPLIED' ? 'selected' : ''}
+					className={router.query.jobCardState === JobCardState.WORKER_APPLIED ? 'selected' : ''}
 					variant='outlined'
 					onClick={() => {
-						handelTabChange('WORKER_APPLIED')
+						handelTabChange(JobCardState.WORKER_APPLIED)
 					}}>
-					<>Applied</> <Typography variant='h5'>40</Typography>
+					<Typography variant='caption' align='left'>
+						Applied
+					</Typography>
+					<Typography variant='h5'>{booking.jobCardDetails?.ACCEPTED}</Typography>
 				</Button>
 				<Button
 					variant='outlined'
-					className={router.query.status === 'READY_TO_DEPLOY' ? 'selected' : ''}
+					className={router.query.jobCardState === JobCardState.READY_TO_DEPLOY ? 'selected' : ''}
 					onClick={() => {
-						handelTabChange('READY_TO_DEPLOY')
+						handelTabChange(JobCardState.READY_TO_DEPLOY)
 					}}>
-					Ready to Deploy
-					<Typography variant='h5'>10</Typography>
+					<Typography variant='caption' align='left'>
+						Ready to Deploy
+					</Typography>
+					<Typography variant='h5'>{booking.jobCardDetails?.READY_TO_DEPLOY}</Typography>
 				</Button>
 				<Button
 					variant='outlined'
-					className={router.query.status === 'DEPLOYED' ? 'selected' : ''}
+					className={router.query.jobCardState === JobCardState.DEPLOYMENT_COMPLETE ? 'selected' : ''}
 					onClick={() => {
-						handelTabChange('DEPLOYED')
+						handelTabChange(JobCardState.DEPLOYMENT_COMPLETE)
 					}}>
-					Deployed
-					<Typography variant='h5'>4</Typography>
+					<Typography variant='caption' align='left'>
+						Deployed
+					</Typography>
+					<Typography variant='h5'>{booking.jobCardDetails?.DEPLOYMENT_COMPLETE}</Typography>
 				</Button>
 			</Stack>
 		</CustomPaper>

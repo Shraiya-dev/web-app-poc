@@ -27,7 +27,7 @@ const CustomPaper = styled(Paper)(({ theme }) => ({
 
 export const StatisticsCard = ({ label, icon, count, color }: StatisticsCardProps) => {
 	return (
-		<CustomPaper elevation={4}>
+		<CustomPaper elevation={5}>
 			<Box className='imageContainer'>
 				<Image src={icon} alt='stat.text' width={66} height={66} />
 			</Box>

@@ -27,8 +27,8 @@ export const useDashboard = () => {
 	}, [showSnackbar])
 	const getBookings = useCallback(async () => {
 		try {
-			const sp = new URLSearchParams(router.query as any)
-			const { data } = await axios.get('/gateway/customer-api/bookings?' + sp.toString())
+			const queryParams = new URLSearchParams(router.query as any)
+			const { data } = await axios.get('/gateway/customer-api/bookings?' + queryParams.toString())
 			const bookings = data.payload.bookings.map((item: any) => {
 				const booking: BookingPreview = {
 					bookingId: item.bookingId,
@@ -56,7 +56,6 @@ export const useDashboard = () => {
 			})
 
 			setBookings(bookings)
-			showSnackbar('success', 'success')
 		} catch (error: any) {
 			showSnackbar(error?.response?.data?.developerInfo, 'error')
 		}
@@ -69,7 +68,7 @@ export const useDashboard = () => {
 	useEffect(() => {
 		getBookings()
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [router.query])
+	}, [getBookings])
 
 	return {
 		bookings: bookings,
