@@ -80,7 +80,7 @@ const useCreateBooking = () => {
 			supervisorWages: 0,
 			technicianWages: 0,
 
-			overTimeFactor: '',
+			overTimeFactor: 'none',
 			overTimeBuffer: '',
 			overTime: '',
 
@@ -90,8 +90,8 @@ const useCreateBooking = () => {
 			endTime: new Date(),
 			shiftTime: '',
 
-			state: '',
-			city: '',
+			state: 'none',
+			city: 'none',
 			siteAddress: '',
 
 			name: userInitialInfo?.name || '',

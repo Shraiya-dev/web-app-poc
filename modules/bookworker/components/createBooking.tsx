@@ -57,7 +57,9 @@ const CustomBookingStyle = styled(Box)(({ theme }) => ({
 	},
 
 	'.inputLabel': {
-		marginTop: 20,
+		fontSize:16,
+		fontWeight:700,
+		marginTop: 40,
 		marginBottom: 10,
 	},
 	'.stickyBottomBox': {
@@ -68,14 +70,20 @@ const CustomBookingStyle = styled(Box)(({ theme }) => ({
 		background: 'white',
 		overflow: '',
 	},
+	'.subHeader':{
+		fontSize: 20, fontWeight:700, marginTop: 20
+	},
+	'.subInfo':{
+
+	}
 }))
 
 export const CreateBooking = ({ ...props }) => {
 	const { toggleBookingForm, onCloseDialog, setOncloseDialog, bookingFormOpen, setBookingFormOpen } = props
 	const { form, step, setStep, userInitialInfo, setUserInitialInfo } = useCreateBooking()
 
-	const [isMore, setIsmore] = useState(false)
-	const [projectDur, setProjectDuration] = useState<string>('less than 7 days')
+	// const [isMore, setIsmore] = useState(false)
+	const [projectDurationInfo, setProjectDuration] = useState<string>()
 	const [selectedJob, setSelectedjob] = useState('')
 	const [shiftTiming, setShiftTiming] = useState('')
 
@@ -130,7 +138,7 @@ export const CreateBooking = ({ ...props }) => {
 		}
 
 		if (step === 2) {
-			var canSubmit = !form.values.city || !form.values.state || !form.values.siteAddress
+			var canSubmit = !form.values.city || !form.values.state || !form.values.siteAddress || !form.values.shiftTime || !form.values.startTime || !form.values.BookingDuration
 
 			setIsSubmittable(canSubmit)
 		}
@@ -142,9 +150,9 @@ export const CreateBooking = ({ ...props }) => {
 		}
 	}, [form])
 
-	const handleMoreJobType = () => {
-		setIsmore((state) => !state)
-	}
+	// const handleMoreJobType = () => {
+	// 	setIsmore((state) => !state)
+	// }
 
 	const handleNext = () => {
 		if (step < 4) {
@@ -168,6 +176,7 @@ export const CreateBooking = ({ ...props }) => {
 
 	const handleProjectDuration = (info: any) => {
 		setProjectDuration(info)
+		form.setFieldValue('BookingDuration',info);
 	}
 
 	const handleJobClick = (info: any) => {
@@ -176,6 +185,7 @@ export const CreateBooking = ({ ...props }) => {
 	}
 
 	const handleShiftTiming = (info: any) => {
+		form.setFieldValue('shiftTime',info)
 		setShiftTiming(info)
 	}
 
@@ -193,14 +203,14 @@ export const CreateBooking = ({ ...props }) => {
 					{step !== 4 && (
 						<Box>
 							<Box>
-								<Typography variant='h4' style={{ fontSize: 36 }}>
+								<Typography variant='h4' style={{ fontSize: 36,fontWeight:700 }}>
 									Book Workers
 								</Typography>
 							</Box>
 
 							<Box display='flex'>
 								<Grid container justifyContent='flex-start'>
-									<Typography variant='h4' style={{ fontSize: 18, marginTop: 20 }}>
+									<Typography className='subHeader'>
 										{step === 1
 											? 'Add Workers Details'
 											: step === 2
@@ -483,14 +493,15 @@ export const CreateBooking = ({ ...props }) => {
 												style={{ marginBottom: 10 }}>
 												<Grid item xs={12} sm={12} md={6}>
 													<FormControl fullWidth>
-														<InputLabel id='overTimeFactor'>Overtime Factor</InputLabel>
+														{/* <InputLabel id='overTimeFactor'>Overtime Factor</InputLabel> */}
 														<Select
 															labelId='overTimeFactor'
 															id='overTimeFactor'
 															name='overTimeFactor'
 															value={form.values.overTimeFactor}
-															label='Overtime Factor'
+															//label='Overtime Factor'
 															onChange={form.handleChange}>
+																<MenuItem value={'none'}>Select Overtime Factor</MenuItem>
 															<MenuItem value={10}>1</MenuItem>
 															<MenuItem value={20}>1.5</MenuItem>
 															<MenuItem value={30}>2</MenuItem>
@@ -557,7 +568,7 @@ export const CreateBooking = ({ ...props }) => {
 									</Box>
 
 									<Box>
-										<InputLabel htmlFor='shiftTiming' className='inputLabel'>
+										<InputLabel htmlFor='projectDuration' className='inputLabel'>
 											Project Duration
 										</InputLabel>
 
@@ -571,7 +582,7 @@ export const CreateBooking = ({ ...props }) => {
 																borderRadius: 4,
 																padding: 8,
 																background:
-																	projectDur === info?.label
+																	projectDurationInfo === info?.label
 																		? theme.palette.primary.light
 																		: 'white',
 
