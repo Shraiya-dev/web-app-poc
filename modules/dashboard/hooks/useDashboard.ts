@@ -1,6 +1,7 @@
+import axios from 'axios'
 import { useFormik } from 'formik'
 import { useRouter } from 'next/router'
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { BookingPreview, BOOKING_STATES, JOB_TYPES } from '../../../sdk'
 
 export const useDashboard = () => {
@@ -29,6 +30,12 @@ export const useDashboard = () => {
 			},
 		})
 	)
+	const getBookings = useCallback(() => {
+		try {
+			const { status, data } = await axios.get('')
+		} catch (error) {}
+	}, [])
+
 	useEffect(() => {
 		const sp = new URLSearchParams(router.query as any)
 		console.log('fetching booking for ?', sp.toString())
