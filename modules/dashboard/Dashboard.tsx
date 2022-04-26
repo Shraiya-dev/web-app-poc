@@ -7,32 +7,9 @@ import watch from '../../public/assets/icons/watch.svg'
 import { BookingCard, StatisticsCard } from '../../sdk'
 import { FilterDrawer } from './components'
 import { useDashboard } from './hooks'
-const boxData = [
-	{
-		src: calender,
-		value: 0,
-		bgColor: '#244CB30D',
-		color: '#244CB3',
-		text: 'Total Bookings',
-	},
-	{
-		src: watch,
-		value: 0,
-		bgColor: '#FF74000D',
-		color: '#FF7400',
-		text: 'In Progress Bookings',
-	},
-	{
-		src: award,
-		value: 0,
-		bgColor: '#30B12E0D',
-		color: '#30B12E',
-		text: 'Heros Hired',
-	},
-]
 
 export const Dashboard = () => {
-	const { bookings } = useDashboard()
+	const { bookings, bookingStats } = useDashboard()
 	const [openFilterDrawer, setFilterDrawer] = useState(false)
 	const handelDrawerToggle = useCallback(() => {
 		setFilterDrawer((prev) => !prev)
@@ -41,13 +18,30 @@ export const Dashboard = () => {
 	return (
 		<Stack>
 			<Grid container spacing={2} alignItems={'stretch'}>
-				{boxData.map((stat, index) => {
-					return (
-						<Grid item xs={6} sm={6} md={4} key={index}>
-							<StatisticsCard stat={stat} />
-						</Grid>
-					)
-				})}
+				<Grid item xs={6} sm={6} md={4}>
+					<StatisticsCard
+						label='Total Bookings'
+						color='primary.main'
+						count={bookingStats.bookingsCount}
+						icon={calender}
+					/>
+				</Grid>
+				<Grid item xs={6} sm={6} md={4}>
+					<StatisticsCard
+						label='In Progress Bookings'
+						color='warning.main'
+						count={bookingStats.progressBookingsCount}
+						icon={watch}
+					/>
+				</Grid>
+				<Grid item xs={6} sm={6} md={4}>
+					<StatisticsCard
+						label='Heros Hired'
+						color='success.main'
+						count={bookingStats.heroesHired}
+						icon={award}
+					/>
+				</Grid>
 			</Grid>
 			<Grid mt={6} container>
 				<Grid item xs={12} md={8} justifyContent='space-between' alignItems='center'>

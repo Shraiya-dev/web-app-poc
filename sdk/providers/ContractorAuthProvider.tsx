@@ -1,19 +1,11 @@
 import axios from 'axios'
-import { log } from 'console'
 import { useRouter } from 'next/router'
 import { createContext, useCallback, useContext, useEffect, useMemo, useReducer } from 'react'
 import { loginService, sendOtpService } from '../apis'
 import { CustomerDetails, CUSTOMER_STATUS, USER_LOGIN_TYPE, USER_TYPE } from '../types'
+import { useSnackbar } from './SnackbarProvider'
 
 const LoadingUniqueString = 'loading...'
-// interface User {
-// 	name?: string
-// 	phoneNumber?: string
-// 	isFirstLogin?: boolean
-// 	userId?: string
-// 	email?: string
-// }
-
 interface AuthState {
 	user: null | CustomerDetails
 	phoneNumber: null | string
@@ -47,41 +39,13 @@ const { Provider, Consumer } = ContractorAuthContext
 const ContractorAuthProvider = ({ children }: any) => {
 	const [state, dispatch] = useReducer(simpleReducer, initialAuthState)
 	const router = useRouter()
-
+	const { showSnackbar } = useSnackbar()
 	const requestOtp = useCallback(async (phoneNumber: string) => {
 		dispatch({
 			phoneNumber: phoneNumber,
 		})
 		return await sendOtpService(phoneNumber, USER_TYPE.CONTRACTOR)
 	}, [])
-
-	const verifyOtp = useCallback(async (phoneNumber: string, otp: string) => {
-		try {
-			const { data } = await loginService(phoneNumber, USER_TYPE.CONTRACTOR, USER_LOGIN_TYPE.OTP, otp)
-			if (data?.success) {
-				localStorage.setItem('accessToken', data.data?.accessToken)
-				localStorage.setItem('phoneNumber', data.data?.phoneNumber)
-				localStorage.setItem('refreshToken', data.data?.refreshToken)
-				dispatch({
-					accessToken: data.data?.accessToken,
-					phoneNumber: data.data?.phoneNumber,
-					refreshToken: data.data?.refreshToken,
-				})
-				return data
-			} else {
-				throw data
-			}
-		} catch (error) {
-			console.log(error)
-		}
-		//return await loginService(phoneNumber, USER_TYPE.CONTRACTOR, USER_LOGIN_TYPE.OTP, otp)
-	}, [])
-
-	const logOut = useCallback(async () => {
-		localStorage.clear()
-		dispatch(initialAuthState)
-		await router.push('/login')
-	}, [router])
 	const getContactorUserInfo = useCallback(async () => {
 		try {
 			const { data } = await axios.get('/gateway/customer-api')
@@ -100,24 +64,70 @@ const ContractorAuthProvider = ({ children }: any) => {
 			console.log(error)
 		}
 	}, [])
+	const verifyOtp = useCallback(
+		async (phoneNumber: string, otp: string) => {
+			try {
+				const { data } = await loginService(phoneNumber, USER_TYPE.CONTRACTOR, USER_LOGIN_TYPE.OTP, otp)
+				if (data?.success) {
+					localStorage.setItem('accessToken', data.data?.accessToken)
+					localStorage.setItem('phoneNumber', data.data?.phoneNumber)
+					localStorage.setItem('refreshToken', data.data?.refreshToken)
+					dispatch({
+						accessToken: data.data?.accessToken,
+						phoneNumber: data.data?.phoneNumber,
+						refreshToken: data.data?.refreshToken,
+					})
+					return data
+				} else {
+					throw data
+				}
+			} catch (error: any) {
+				showSnackbar(error?.response?.data?.developerInfo, 'error')
+			}
+			//return await loginService(phoneNumber, USER_TYPE.CONTRACTOR, USER_LOGIN_TYPE.OTP, otp)
+		},
+		[showSnackbar]
+	)
 
+	const logOut = useCallback(async () => {
+		localStorage.clear()
+		dispatch(initialAuthState)
+		await router.push('/login')
+	}, [router])
 	useEffect(() => {
-		const accessToken = localStorage.getItem('accessToken')
-		const refreshToken = localStorage.getItem('refreshToken')
-		const phoneNumber = localStorage.getItem('phoneNumber')
+		;(async () => {
+			const accessToken = localStorage.getItem('accessToken')
+			const refreshToken = localStorage.getItem('refreshToken')
+			const phoneNumber = localStorage.getItem('phoneNumber')
+			if (!(accessToken || refreshToken || phoneNumber)) {
+				logOut()
+			}
+			try {
+				const { data } = await axios.get('/gateway/customer-api')
 
-		dispatch({
-			accessToken: accessToken,
-			refreshToken: refreshToken,
-			phoneNumber: phoneNumber,
-		})
+				dispatch({
+					accessToken: accessToken,
+					refreshToken: refreshToken,
+					phoneNumber: phoneNumber,
+					user: {
+						customerId: data.payload?.customerId ?? '',
+						email: data.payload?.email ?? '',
+						name: data.payload?.userName ?? '',
+						phoneNumber: data.payload?.phoneNumber ?? '',
+						companyName: data.payload.companyName ?? '',
+						customerStatus: data.payload?.customerStatus ?? CUSTOMER_STATUS.REGISTERED,
+					},
+				})
+			} catch (error: any) {
+				showSnackbar(error?.response?.data?.developerInfo, 'error')
+			}
+		})()
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [])
-
-	console.log(state)
 
 	//logic for redirect based on state and update userInfo
 	useEffect(() => {
-		if (!(state.accessToken || state.refreshToken || state.phoneNumber)) {
+		if (!(state.accessToken && state.refreshToken && state.phoneNumber)) {
 			logOut()
 			return
 		}

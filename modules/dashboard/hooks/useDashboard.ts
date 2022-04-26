@@ -1,47 +1,78 @@
 import axios from 'axios'
-import { useFormik } from 'formik'
 import { useRouter } from 'next/router'
+import { ParsedUrlQuery } from 'querystring'
 import { useCallback, useEffect, useState } from 'react'
-import { BookingPreview, BOOKING_STATES, JOB_TYPES } from '../../../sdk'
+import { BookingPreview, BookingStats, useSnackbar } from '../../../sdk'
 
 export const useDashboard = () => {
 	const router = useRouter()
-	const [bookings, setBookings] = useState<Array<BookingPreview>>(
-		Array(50).fill({
-			bookingId: 'ABCDEF',
-			city: 'Noida',
-			status: 'RECEIVED' as BOOKING_STATES,
-
-			state: 'Uttar Pradesh',
-			jobType: 'BAR_BENDER' as JOB_TYPES,
-			peopleRequired: {
-				HELPER: 5,
-				SUPERVISOR: 2,
-			},
-			schedule: {
-				bookingDuration: '45 to 90 days',
-				shiftTime: '9am to 6pm',
-				startDate: new Date(),
-			},
-			jobCardDetails: {
-				ACCEPTED: 5,
-				READY_TO_DEPLOY: 7,
-				DEPLOYMENT_COMPLETE: 10,
-			},
-		})
-	)
-	const getBookings = useCallback(() => {
+	const [bookingStats, setBookingStats] = useState<BookingStats>({
+		bookingsCount: 0,
+		heroesHired: 0,
+		progressBookingsCount: 0,
+	})
+	const [bookings, setBookings] = useState<Array<BookingPreview>>([])
+	const { showSnackbar } = useSnackbar()
+	const getBookingStats = useCallback(async () => {
 		try {
-			const { status, data } = await axios.get('')
-		} catch (error) {}
+			const { data } = await axios.get('/gateway/customer-api/bookingSummary')
+			setBookingStats({
+				bookingsCount: data.payload.bookingsCount,
+				heroesHired: data.payload.heroesHired,
+				progressBookingsCount: data.payload.progressBookingsCount,
+			})
+		} catch (error: any) {
+			showSnackbar(error?.response?.data?.developerInfo, 'error')
+		}
+	}, [showSnackbar])
+	const getBookings = useCallback(async () => {
+		try {
+			const sp = new URLSearchParams(router.query as any)
+			const { data } = await axios.get('/gateway/customer-api/bookings?' + sp.toString())
+			const bookings = data.payload.bookings.map((item: any) => {
+				const booking: BookingPreview = {
+					bookingId: item.bookingId,
+					city: item.city,
+					status: item.status,
+					state: item.state,
+					jobType: item.jobType,
+					peopleRequired: {
+						HELPER: item.peopleRequired.HELPER,
+						SUPERVISOR: item.peopleRequired.SUPERVISOR,
+						TECHNICIAN: item.peopleRequired.TECHNICIAN,
+					},
+					schedule: {
+						bookingDuration: item.schedule.bookingDuration,
+						shiftTime: item.schedule.shiftTime,
+						startDate: new Date(item.schedule.startDate),
+					},
+					jobCardDetails: {
+						ACCEPTED: item.jobCardDetails?.ACCEPTED ?? 0,
+						READY_TO_DEPLOY: item.jobCardDetails?.READY_TO_DEPLOY ?? 0,
+						DEPLOYMENT_COMPLETE: item.jobCardDetails?.DEPLOYMENT_COMPLETE ?? 0,
+					},
+				}
+				return booking
+			})
+
+			setBookings(bookings)
+			showSnackbar('success', 'success')
+		} catch (error: any) {
+			showSnackbar(error?.response?.data?.developerInfo, 'error')
+		}
+	}, [router.query, showSnackbar])
+	useEffect(() => {
+		getBookingStats()
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [])
 
 	useEffect(() => {
-		const sp = new URLSearchParams(router.query as any)
-		console.log('fetching booking for ?', sp.toString())
+		getBookings()
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [router.query])
 
 	return {
 		bookings: bookings,
+		bookingStats: bookingStats,
 	}
 }
