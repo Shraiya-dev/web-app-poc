@@ -2,7 +2,7 @@ import { ArrowBack } from '@mui/icons-material'
 import { Button, Grid, Select, Stack, Typography } from '@mui/material'
 import { useRouter } from 'next/router'
 import { useCallback } from 'react'
-import { BookingSummaryCard, getSelectOptionsFromObject, JobCardCard } from '../../sdk'
+import { BookingSummaryCard, getSelectOptionsFromObject, JobCardCard, JobCardState, JobCardStateLabel } from '../../sdk'
 import { useBookingId } from './hooks'
 
 export const BookingId = () => {
@@ -33,7 +33,9 @@ export const BookingId = () => {
 			<Grid container item xs={12} md={8} spacing={2}>
 				<Grid item xs={12}>
 					<Stack direction='row' spacing={2}>
-						<Typography variant='h5'>Applied</Typography>
+						<Typography variant='h5'>
+							{JobCardStateLabel[router.query.jobCardState as JobCardState]}
+						</Typography>
 						<Select
 							onChange={handelSkillFilter}
 							value={router.query.skillType ?? 'none'}
