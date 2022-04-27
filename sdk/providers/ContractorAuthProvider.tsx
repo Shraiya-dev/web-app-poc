@@ -17,6 +17,7 @@ interface AuthProviderValue extends AuthState {
 	requestOtp: (phoneNumber: string) => Promise<any>
 	verifyOtp: (phoneNumber: string, otp: string) => Promise<any>
 	logOut: () => Promise<any>
+	getContactorUserInfo: () => Promise<any>
 }
 const simpleReducer = (state: AuthState, payload: Partial<AuthState>) => ({
 	...state,
@@ -33,6 +34,7 @@ const ContractorAuthContext = createContext<AuthProviderValue>({
 	logOut: () => Promise.resolve(null),
 	requestOtp: () => Promise.resolve(null),
 	verifyOtp: () => Promise.resolve(null),
+	getContactorUserInfo: () => Promise.resolve(null),
 })
 const { Provider, Consumer } = ContractorAuthContext
 
@@ -145,7 +147,11 @@ const ContractorAuthProvider = ({ children }: any) => {
 		if (state.user) {
 			if ([CUSTOMER_STATUS.REGISTERED, CUSTOMER_STATUS.UPDATE_PROFILE].includes(state.user.customerStatus)) {
 				router.push('/onboarding')
-			} else if (!router.pathname.includes('/dashboard')) {
+			} else if (
+				!router.pathname.includes('/dashboard') ||
+				!router.pathname.includes('/profile') ||
+				!router.pathname.includes('/worker')
+			) {
 				router.push('/dashboard')
 			}
 		}
