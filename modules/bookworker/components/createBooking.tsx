@@ -81,6 +81,7 @@ const CustomBookingStyle = styled(Box)(({ theme }) => ({
 		paddingTop: 20,
 		background: 'white',
 		overflow: '',
+		
 	},
 	'.header': {
 		fontSize: 36,
@@ -171,8 +172,8 @@ export const CreateBooking = ({ ...props }) => {
 
 		if (step === 2) {
 			var canSubmit =
-				!form.values.city ||
-				!form.values.state ||
+				form.values.city==='none' ||
+				form.values.state==='none' ||
 				!form.values.siteAddress ||
 				!form.values.shiftTime ||
 				!form.values.startTime ||
@@ -188,29 +189,17 @@ export const CreateBooking = ({ ...props }) => {
 		}
 	}, [form])
 
-	useEffect(() => {
-		// var shiftTime = timeConvert(form.values.startTime)+'-'+timeConvert(form.values.startTime)
-		// 	console.log("shiftTime",shiftTime)
-
-		if (shiftTiming === 'Custom') {
-			var ConvertedshiftTime = timeConvert(form.values.startTime) + '-' + timeConvert(form.values.startTime)
-			form.setFieldValue('shiftTime', ConvertedshiftTime)
-		}
-	}, [shiftTiming])
-
 	// const handleMoreJobType = () => {
 	// 	setIsmore((state) => !state)
 	// }
 
 	const handleNext = (e: any) => {
 
-		console.log("form.values.startTime",form.values.startTime)
-
 		var ConvertedshiftTime = form.values.shiftTime
 		if (shiftTiming === 'Custom') {
 			ConvertedshiftTime = timeConvert(form.values.startTime) + '-' + timeConvert(form.values.endTime)
 			form.setFieldValue('shiftTime', ConvertedshiftTime)
-			console.log("ConvertedshiftTime",ConvertedshiftTime,form.values.shiftTime)
+			
 		}
 		const payload = {
 			city: form.values.city,
@@ -223,7 +212,7 @@ export const CreateBooking = ({ ...props }) => {
 			schedule: {
 				bookingDuration: form.values.BookingDuration,
 				startDate: form.values.StartDate,
-				shiftTime: ConvertedshiftTime//form.values.shiftTime,
+				shiftTime: ConvertedshiftTime
 			},
 			peopleRequired: {
 				SUPERVISOR: form.values.supervisor,
