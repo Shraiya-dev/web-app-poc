@@ -63,23 +63,20 @@ const useCreateBooking = () => {
 			})
 	}, [step])
 
-	
-
-	function timeConvert (time:any) {
+	function timeConvert(time: any) {
 		// Check correct time format and split into components
 
-		time = time.getHours()+':'+time.getMinutes();
-		time = time.toString ().match (/^([01]\d|2[0-3])(:)([0-5]\d)(:[0-5]\d)?$/) || [time];
-	  
-		if (time.length > 1) { // If time format correct
-		  time = time.slice (1);  // Remove full string match value
-		  time[5] = +time[0] < 12 ? 'AM' : 'PM'; // Set AM/PM
-		  time[0] = +time[0] % 12 || 12; // Adjust hours
+		time = time.getHours() + ':' + time.getMinutes()
+		time = time.toString().match(/^([01]\d|2[0-3])(:)([0-5]\d)(:[0-5]\d)?$/) || [time]
+
+		if (time.length > 1) {
+			// If time format correct
+			time = time.slice(1) // Remove full string match value
+			time[5] = +time[0] < 12 ? 'AM' : 'PM' // Set AM/PM
+			time[0] = +time[0] % 12 || 12 // Adjust hours
 		}
-		return time.join (''); // return adjusted time or original string
-	  }
-	  
-	
+		return time.join('') // return adjusted time or original string
+	}
 
 	const form = useFormik<CreateBookingForm>({
 		initialValues: {
@@ -128,14 +125,13 @@ const useCreateBooking = () => {
 					errors.technician = 'Required'
 				}
 
-			//helper 
-				if(!values.helper && values.helperWages){
+				//helper
+				if (!values.helper && values.helperWages) {
 					errors.helper = 'Required'
 				}
-				if(values.helper && !values.helperWages){
-					errors.helperWages='Required'
+				if (values.helper && !values.helperWages) {
+					errors.helperWages = 'Required'
 				}
-				
 			}
 
 			if (step === 2) {
@@ -196,42 +192,36 @@ const useCreateBooking = () => {
 			return errors
 		},
 		onSubmit: (values) => {
-
 			const payload = {
-				city: "sarni",
-				state: "madhya pradesh",
-			companyName: "test",
-				email: "aman.choudhury1995@gmail.com",
-				"name": "test",
-				"phoneNumber": "+918249288640",
-				"siteAddress": "test",
-				"schedule": {
-					"bookingDuration": "45 days to 90 days",
-					"startDate": "2022-04-26T00:00:00.000Z",
-					"shiftTime": "9am-6pm"
+				city: values.city,
+				state: values.state,
+				companyName: values.company,
+				email: values.companyEmail,
+				name: values.name,
+				phoneNumber: values.phoneNumber,
+				siteAddress: values.siteAddress,
+				schedule: {
+					bookingDuration: values.BookingDuration,
+					startDate: values.StartDate,
+					shiftTime: values.shiftTime,
 				},
-				"peopleRequired": {
-					"SUPERVISOR": 0,
-					"HELPER": 10,
-					"TECHNICIAN": 10
+				peopleRequired: {
+					SUPERVISOR: values.supervisor,
+					HELPER: values.helper,
+					TECHNICIAN: values.technician,
 				},
-				"overTime": {
-					"rate": 1.5,
+				overTime: {
+					rate: values.overTimeFactor,
 				},
-				"earning": {
-						 "HELPER": 1,
-						 "TECHNICIAN": 1,
-						 "SUPERVISOR": 0,
+				earning: {
+					HELPER: values.helperWages,
+					TECHNICIAN: values.technicianWages,
+					SUPERVISOR: values.supervisorWages,
 				},
-				tags: ["Modular Furniture"],
-				jobType: "CARPENTER",
+				tags: values.tags,
+				jobType: values.jobType,
 			}
-
-			
-			
 		},
-
-		
 	})
 
 	return {
@@ -240,7 +230,7 @@ const useCreateBooking = () => {
 		setStep,
 		userInitialInfo,
 		setUserInitialInfo,
-		timeConvert
+		timeConvert,
 	}
 }
 
