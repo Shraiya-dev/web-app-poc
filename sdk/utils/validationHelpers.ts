@@ -40,4 +40,11 @@ export const validateEmail = (email:any) => {
     );
 };
 
+export const freeEmailChecker=(email:any)=>{
+
+  var freeRegex = /^[\w-\.]+@([hotmail+\.]|[yahoo+\.]|[gmail+\.])+[\w-]{2,4}$/;
+  
+  return (validateEmail(email) && !email.match(freeRegex))
+}
+
 
