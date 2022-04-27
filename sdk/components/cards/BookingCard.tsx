@@ -6,6 +6,7 @@ import Link from 'next/link'
 import { useMemo } from 'react'
 import { JobCardStateLabel, JobTypeLabel } from '../../constants'
 import { BookingPreview, BOOKING_STATES, JobCardState } from '../../types'
+import { capitalize } from '../../utils'
 import { StatusChip } from '../chips'
 
 interface BookingCardProps {
@@ -40,7 +41,7 @@ export const BookingCard = ({ booking }: BookingCardProps) => {
 	}, [booking])
 
 	return (
-		<CustomPaper elevation={3}>
+		<CustomPaper elevation={5}>
 			<Stack className='cardHeader'>
 				<Stack direction='row' justifyContent='space-between'>
 					<Typography variant='h6' fontWeight={700}>
@@ -59,7 +60,7 @@ export const BookingCard = ({ booking }: BookingCardProps) => {
 				<Stack direction='row' flexWrap='wrap' mt={2}>
 					<Typography mr={1} className='vAlignCenter' variant='body2'>
 						<LocationOn fontSize='inherit' color='error' />
-						&nbsp;{booking.city}, {booking.state}
+						&nbsp;{capitalize(booking.city)}, {capitalize(booking.state)}
 					</Typography>
 					<Typography mr={1} className='vAlignCenter' variant='body2'>
 						<CalendarToday fontSize='inherit' color='error' />
@@ -67,13 +68,13 @@ export const BookingCard = ({ booking }: BookingCardProps) => {
 					</Typography>
 					<Typography className='vAlignCenter' variant='body2'>
 						<AccessTime fontSize='inherit' color='error' />
-						&nbsp;{booking.schedule.bookingDuration}
+						&nbsp;{capitalize(booking.schedule.bookingDuration)}
 					</Typography>
 				</Stack>
 			</Stack>
 			<Stack className='cardBody'>
 				<Typography color='secondary.main'>WORKER ALLOCATION</Typography>
-				<Stack direction={'row'} justifyContent='space-between' alignItems='flex-end'>
+				<Stack direction={'row'} justifyContent='space-between' alignItems='flex-end' flexWrap='wrap'>
 					<Stack direction={'row'} spacing={3}>
 						<Stack>
 							<Typography variant='body1' fontWeight={500} lineHeight={2.5} color={'inherit'}>
@@ -102,6 +103,9 @@ export const BookingCard = ({ booking }: BookingCardProps) => {
 							</Typography>
 						</Stack>
 					</Stack>
+
+					{/* 
+					//Payment buttons
 					{booking.status === BOOKING_STATES.READY_TO_DEPLOY ? (
 						<Stack spacing={1}>
 							<Typography className='vAlignCenter' sx={{ alignItems: 'flex-end' }}>
@@ -115,7 +119,8 @@ export const BookingCard = ({ booking }: BookingCardProps) => {
 								Complete Payment
 							</Button>
 						</Stack>
-					) : (
+					) : ( */}
+					<Stack flex={1} alignItems='flex-end'>
 						<Link href={`/dashboard/bookings/${booking.bookingId}/WORKER_APPLIED`} passHref>
 							<Typography
 								fontWeight='bold'
@@ -127,7 +132,8 @@ export const BookingCard = ({ booking }: BookingCardProps) => {
 								<ArrowRightAlt fontSize='large' />
 							</Typography>
 						</Link>
-					)}
+					</Stack>
+					{/* )} */}
 				</Stack>
 			</Stack>
 		</CustomPaper>
