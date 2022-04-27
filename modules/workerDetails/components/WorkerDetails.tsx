@@ -17,13 +17,17 @@ interface WorkerData {
 	city: string
 	state: string
 	phoneNumber:string
-	skills: string[]
-	email: string
+	jobType:string
 	gender: string
 	maritalStatus: string
 	experience: string
+	projectCompleted:string
+	
+	skills: string[]
+	email: string
+	
 	pastProjects: {}
-
+	
 	workDetails: {
 		workerType:string
 		experience:string,
@@ -139,7 +143,7 @@ export const WorkerProfileInfo = () => {
 
 								<Stack direction='row' spacing={1} justifyContent='center'>
 
-								<Chip label={workerData?.workDetails?.workerType} />
+								<Chip label={workerData?.jobType} />
 								
 
 									

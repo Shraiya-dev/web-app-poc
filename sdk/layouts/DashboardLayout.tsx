@@ -155,9 +155,9 @@ const DashboardLayout = ({ children, ...props }: any) => {
 			<Dialog onClose={toggleBookingForm} open={bookingFormOpen} fullScreen>
 				<Box display='flex' alignItems='center'>
 					<Box flexGrow={1}></Box>
-					<Box style={{ margin: 20 }}>
+					<Box style={{ marginTop: 30,marginRight:30 }}>
 						<IconButton onClick={toggleBookingForm}>
-							<CloseIcon />
+							<CloseIcon style={{fontSize:32}}/>
 						</IconButton>
 					</Box>
 				</Box>
