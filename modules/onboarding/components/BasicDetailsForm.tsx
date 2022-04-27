@@ -27,18 +27,18 @@ export const BasicDetailsForm = () => {
 
 	const router = useRouter()
 
-	useEffect(() => {
-		getCustomerDetails()
-			.then((data: any) => {
-				form.initialValues.name = data?.data?.payload?.name
-				form.initialValues.company = data?.data?.payload?.companyName
-				form.initialValues.companyEmail = data?.data?.payload?.email
-				form.initialValues.phoneNumber = data?.data?.payload?.phoneNumber
-			})
-			.catch((error) => {
-				console.log(error)
-			})
-	}, [form])
+	// useEffect(() => {
+	// 	getCustomerDetails()
+	// 		.then((data: any) => {
+	// 			form.initialValues.name = data?.data?.payload?.name
+	// 			form.initialValues.company = data?.data?.payload?.companyName
+	// 			form.initialValues.companyEmail = data?.data?.payload?.email
+	// 			form.initialValues.phoneNumber = data?.data?.payload?.phoneNumber
+	// 		})
+	// 		.catch((error) => {
+	// 			console.log(error)
+	// 		})
+	// }, [form])
 
 	return (
 		<BasicFormStyle>

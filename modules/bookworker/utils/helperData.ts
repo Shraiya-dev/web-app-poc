@@ -20,14 +20,7 @@ export const jobTypeInfo = [
 	{ icon: Plumber, label: 'Plumber', value: 'PLUMBING' },
 	{ icon: Electrician, label: 'Electrical', value: 'ELECTRICAL' },
 	{ icon: Gypsum, label: 'Gypsum', value: 'GYPSUM' },
-	{ icon: AluminiumFabricator, label: 'Aluminium fabricator', value: 'ALUMINIUM_FABRICATOR' },
-	{ icon: GeneralWorker, label: 'General Worker', value: 'GENERAL_HELPER' },
-	{ icon: Painter, label: 'Painter', value: 'PAINTER' },
-	{ icon: Stone, label: 'Stone', value: 'STONE_TILE_MARBLE_LAYER' },
-	{ icon: Hvac, label: 'Hvac', value: 'HVAC' },
-
-	{ icon: Welderfitter, label: 'Welder fitter', value: 'WELDER_FITTER' },
-	{ icon: Shuttering, label: 'Shuttering', value: 'SHUTTERING_CARPENTER' },
+	
 ]
 
 export const moreJobType = [

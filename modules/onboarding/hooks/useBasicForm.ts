@@ -38,6 +38,10 @@ const useBasicForm = () => {
 		getCustomerDetails()
 			.then((data: any) => {
 				setInitialData(data?.data?.payload)
+				form.initialValues.name = data?.data?.payload?.name
+				form.initialValues.company = data?.data?.payload?.companyName
+				form.initialValues.companyEmail = data?.data?.payload?.email
+				form.initialValues.phoneNumber = data?.data?.payload?.phoneNumber
 			})
 			.catch((error: any) => {
 				showSnackbar(error?.response?.data?.developerInfo, 'error')
@@ -92,10 +96,15 @@ const useBasicForm = () => {
 				email: values.companyEmail,
 			}
 			updateProfile(payload)
-				.then((status: any) => {
-					router.push('/dashboard')
+				.then((data: any) => {
+					if (data?.data?.payload?.customerId) {
+						router.push('/dashboard')
+					} else {
+						showSnackbar(data?.data?.developerInfo, 'error')
+					}
 				})
-				.catch((error) => {
+				.catch((error: any) => {
+					showSnackbar(error?.response?.data?.developerInfo, 'error')
 					console.log(error)
 				})
 		},

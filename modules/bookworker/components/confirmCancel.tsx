@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 
 // Material UI
-import { Dialog, DialogContent, Button, Typography, Stack, Box } from '@mui/material'
+import { Dialog, DialogContent, Button, Typography, Stack, Box,Grid } from '@mui/material'
 
 const ConfirmCancel = ({ ...props }) => {
 	const { onCloseDialog, setOncloseDialog, toggleBookingForm, bookingFormOpen, setBookingFormOpen } = props
@@ -22,7 +22,9 @@ const ConfirmCancel = ({ ...props }) => {
 					<Typography style={{ marginBottom: 30, marginTop: 10, fontSize: 14 }}>
 						There’re unsaved changes
 					</Typography>
-					<Stack direction={'row'} spacing={2} justifyContent={'flex-end'}>
+					<Stack direction={'row'} justifyContent={'flex-end'} style={{width:"100%", paddingLeft:40}} >
+
+						
 						<Button variant='outlined' onClick={handleCancel} style={{ marginRight: 10 }}>
 							{' '}
 							Continue Booking

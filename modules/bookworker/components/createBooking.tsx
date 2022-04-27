@@ -14,7 +14,10 @@ import {
 	TextField,
 	Typography,
 	styled,
+	BottomNavigation,
+	Paper,
 } from '@mui/material'
+import { LoadingButton } from '@mui/lab'
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns'
 import { DatePicker } from '@mui/x-date-pickers/DatePicker'
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
@@ -42,12 +45,12 @@ import { getCustomerDetails } from '../../../sdk/apis'
 import { createBooking } from '../apis/apis'
 import { useSnackbar } from '../../../sdk'
 
-
 const CustomBookingStyle = styled(Box)(({ theme }) => ({
 	'.main': {
 		justifyContent: 'center',
 		display: 'flex',
-		padding: 10,
+		padding: 24,
+		marginBottom: 40,
 	},
 
 	'.stepper': {
@@ -79,9 +82,8 @@ const CustomBookingStyle = styled(Box)(({ theme }) => ({
 
 		bottom: 0,
 		paddingTop: 20,
-		background: 'white',
-		overflow: '',
-		
+
+		overflowY: 'none',
 	},
 	'.header': {
 		fontSize: 36,
@@ -90,7 +92,7 @@ const CustomBookingStyle = styled(Box)(({ theme }) => ({
 	},
 	'.subHeader': {
 		fontSize: 20,
-		fontWeight: 700,
+		fontWeight: 500,
 		marginTop: 20,
 		color: theme.palette.secondary.main,
 	},
@@ -100,19 +102,38 @@ const CustomBookingStyle = styled(Box)(({ theme }) => ({
 		color: theme.palette.secondary.main,
 		paddingBottom: 8,
 	},
+	'.bottomButton': {
+		position: 'fixed',
+		bottom: 0,
+		left: 0,
+		right: 0,
+		width: '100%',
+		paddingRight: '10%',
+		paddingBottom: 20,
+		paddingTop: 10,
+		background: 'white',
+		overflow: 'hidden',
+	},
+	'.loadingcta': {
+		borderRadius: 30,
+		textTransform: 'inherit',
+		padding: '12px 22px',
+		background: theme.palette.primary.main,
+	},
 }))
 
 export const CreateBooking = ({ ...props }) => {
 	const { toggleBookingForm, onCloseDialog, setOncloseDialog, bookingFormOpen, setBookingFormOpen } = props
 	const { form, step, setStep, userInitialInfo, setUserInitialInfo, timeConvert } = useCreateBooking()
 
-	// const [isMore, setIsmore] = useState(false)
+	const [isMore, setIsmore] = useState(false)
 	const [projectDurationInfo, setProjectDuration] = useState<string>()
 	const [selectedJob, setSelectedjob] = useState('')
 	const [shiftTiming, setShiftTiming] = useState('')
 
 	const [isSubmittable, setIsSubmittable] = useState<boolean>(false)
-	const {showSnackbar} = useSnackbar();
+	const [loading, setLoading] = useState<boolean>(false)
+	const { showSnackbar } = useSnackbar()
 
 	const workerType = [
 		{
@@ -172,8 +193,8 @@ export const CreateBooking = ({ ...props }) => {
 
 		if (step === 2) {
 			var canSubmit =
-				form.values.city==='none' ||
-				form.values.state==='none' ||
+				form.values.city === 'none' ||
+				form.values.state === 'none' ||
 				!form.values.siteAddress ||
 				!form.values.shiftTime ||
 				!form.values.startTime ||
@@ -189,17 +210,15 @@ export const CreateBooking = ({ ...props }) => {
 		}
 	}, [form])
 
-	// const handleMoreJobType = () => {
-	// 	setIsmore((state) => !state)
-	// }
+	const handleMoreJobType = () => {
+		setIsmore((state) => !state)
+	}
 
 	const handleNext = (e: any) => {
-
 		var ConvertedshiftTime = form.values.shiftTime
 		if (shiftTiming === 'Custom') {
 			ConvertedshiftTime = timeConvert(form.values.startTime) + '-' + timeConvert(form.values.endTime)
 			form.setFieldValue('shiftTime', ConvertedshiftTime)
-			
 		}
 		const payload = {
 			city: form.values.city,
@@ -212,7 +231,7 @@ export const CreateBooking = ({ ...props }) => {
 			schedule: {
 				bookingDuration: form.values.BookingDuration,
 				startDate: form.values.StartDate,
-				shiftTime: ConvertedshiftTime
+				shiftTime: ConvertedshiftTime,
 			},
 			peopleRequired: {
 				SUPERVISOR: form.values.supervisor,
@@ -229,20 +248,24 @@ export const CreateBooking = ({ ...props }) => {
 			},
 			tags: form.values.tags,
 			jobType: form.values.jobType,
-			userName: form.initialValues.name
+			userName: form.initialValues.name,
 		}
 
 		if (step < 4) {
 			if (step === 3) {
-				console.log("payload",payload);
-				createBooking(payload).then((respone)=>{
-					console.log("res",respone);
-					setStep((state) => state + 1)
-				}).catch((error:any)=>{
-					showSnackbar(error?.response?.data?.developerInfo, 'error')
-				console.log(error)
-				})
-				
+				console.log('payload', payload)
+				setLoading(true)
+				createBooking(payload)
+					.then((respone) => {
+						console.log('res', respone)
+						setStep((state) => state + 1)
+						setLoading(false)
+					})
+					.catch((error: any) => {
+						showSnackbar(error?.response?.data?.developerInfo, 'error')
+						console.log(error)
+						setLoading(false)
+					})
 			} else {
 				setStep((state) => state + 1)
 			}
@@ -379,7 +402,7 @@ export const CreateBooking = ({ ...props }) => {
 											})}
 										</Grid>
 
-										{/* {isMore && (
+										{isMore && (
 											<Box>
 												<Grid container item rowSpacing={2} columnSpacing={2}>
 													{moreJobType.map((info, index) => {
@@ -410,8 +433,8 @@ export const CreateBooking = ({ ...props }) => {
 													})}
 												</Grid>
 											</Box>
-										)} */}
-										{/* <Grid
+										)}
+										<Grid
 											container
 											spacing={0}
 											direction='column'
@@ -445,7 +468,7 @@ export const CreateBooking = ({ ...props }) => {
 													</Box>
 												)}
 											</Stack>
-										</Grid> */}
+										</Grid>
 									</Box>
 
 									<Box>
@@ -468,7 +491,8 @@ export const CreateBooking = ({ ...props }) => {
 																color: theme.palette.secondary.main,
 															}}
 															sx={{
-																m: 1,
+																mr: 1,
+																mb: 1,
 															}}
 															// color={
 															// 	form.values.tags.includes(item) ? 'primary' : undefined
@@ -508,67 +532,69 @@ export const CreateBooking = ({ ...props }) => {
 										<InputLabel htmlFor='jobType' className='inputLabel'>
 											{`Workers Required & Daily Wage`}
 										</InputLabel>
+										<Grid container spacing={4}>
+											{workerType.map((info, index) => {
+												return (
+													<Grid
+														key={index}
+														container
+														item
+														alignItems={'flex-start'}
+														display='flex'
+														spacing={2}>
+														<Grid container item xs={12} sm={12} md={4}>
+															<Image src={info?.icon} style={{ float: 'left' }} />
 
-										{workerType.map((info, index) => {
-											return (
-												<Grid
-													key={index}
-													container
-													item
-													alignItems={'flex-start'}
-													display='flex'
-													spacing={2}
-													style={{ marginBottom: 20 }}>
-													<Grid item xs={4} sm={4} md={4}>
-														<Image src={info?.icon} />
-														<Typography
-															style={{
-																textAlign: 'center',
-																margin: 8,
-																color: 'rgba(6, 31, 72, 0.7)',
-															}}>
-															{info?.label}
-														</Typography>
+															<Typography
+																style={{
+																	float: 'right',
+																	margin: 16,
+																	fontSize: 16,
+																	color: 'rgba(6, 31, 72, 0.7)',
+																}}>
+																{info?.label}
+															</Typography>
+														</Grid>
+														<Grid item xs={12} sm={12} md={4}>
+															<TextField
+																label={`${info?.label} Required`}
+																id={info?.name}
+																name={info?.name}
+																value={info?.formvalue}
+																type='tel'
+																onChange={(e: any) => {
+																	if (e.target.value >= 0) {
+																		form.handleChange(e)
+																	}
+																}}
+																fullWidth
+																onBlur={form.handleBlur}
+																error={!!checkError(`${info?.name}`, form)}
+																helperText={checkError(`${info?.name}`, form)}
+															/>
+														</Grid>
+														<Grid item xs={12} sm={12} md={4}>
+															<TextField
+																label='Daily wage (Rs.)'
+																id={info?.wage}
+																name={info?.wage}
+																value={info?.wageformvalue}
+																type='tel'
+																onChange={(e: any) => {
+																	if (e.target.value >= 0) {
+																		form.handleChange(e)
+																	}
+																}}
+																fullWidth
+																onBlur={form.handleBlur}
+																error={!!checkError(`${info?.wage}`, form)}
+																helperText={checkError(`${info?.wage}`, form)}
+															/>
+														</Grid>
 													</Grid>
-													<Grid item xs={4} sm={4} md={4}>
-														<TextField
-															label={`${info?.label} Required`}
-															id={info?.name}
-															name={info?.name}
-															value={info?.formvalue}
-															type='number'
-															onChange={(e: any) => {
-																if (e.target.value >= 0) {
-																	form.handleChange(e)
-																}
-															}}
-															fullWidth
-															onBlur={form.handleBlur}
-															error={!!checkError(`${info?.name}`, form)}
-															helperText={checkError(`${info?.name}`, form)}
-														/>
-													</Grid>
-													<Grid item xs={4} sm={4} md={4}>
-														<TextField
-															label='Daily wage (Rs.)'
-															id={info?.wage}
-															name={info?.wage}
-															value={info?.wageformvalue}
-															type='number'
-															onChange={(e: any) => {
-																if (e.target.value >= 0) {
-																	form.handleChange(e)
-																}
-															}}
-															fullWidth
-															onBlur={form.handleBlur}
-															error={!!checkError(`${info?.wage}`, form)}
-															helperText={checkError(`${info?.wage}`, form)}
-														/>
-													</Grid>
-												</Grid>
-											)
-										})}
+												)
+											})}
+										</Grid>
 
 										<Box>
 											<InputLabel htmlFor='overtime' className='inputLabel'>
@@ -591,6 +617,7 @@ export const CreateBooking = ({ ...props }) => {
 															id='overTimeFactor'
 															name='overTimeFactor'
 															value={form.values.overTimeFactor}
+															autoWidth={true}
 															//label='Overtime Factor'
 															onChange={form.handleChange}>
 															<MenuItem value={'none'}>Select Overtime Factor</MenuItem>
@@ -758,7 +785,10 @@ export const CreateBooking = ({ ...props }) => {
 												<Grid item xs={12} sm={12} md={6} lg={6}>
 													<LocalizationProvider dateAdapter={AdapterDateFns}>
 														<TimePicker
-															onChange={(value) => {form.setFieldValue('endTime', value), console.log("endTime",value)}}
+															onChange={(value) => {
+																form.setFieldValue('endTime', value),
+																	console.log('endTime', value)
+															}}
 															value={form.values.endTime}
 															renderInput={(params) => (
 																<TextField
@@ -791,6 +821,7 @@ export const CreateBooking = ({ ...props }) => {
 													id='state'
 													name='state'
 													value={form.values.state}
+													autoWidth={true}
 													onChange={(e) => {
 														form.handleChange(e)
 													}}
@@ -808,6 +839,7 @@ export const CreateBooking = ({ ...props }) => {
 													name='city'
 													error={!!checkError('city', form)}
 													value={form.values.city}
+													autoWidth={true}
 													onChange={(e) => {
 														form.handleChange(e)
 													}}
@@ -941,21 +973,27 @@ export const CreateBooking = ({ ...props }) => {
 							)}
 
 							<Box className='stickyBottomBox'>
-								<Stack direction={'row'} spacing={2} justifyContent={'flex-end'}>
-									{(step === 2 || step === 3) && (
-										<Button onClick={handlePrev} style={{ width: '10rem' }}>
-											Previous
-										</Button>
-									)}
-									{step !== 4 && (
-										<Button
-											disabled={isSubmittable}
-											onClick={(e) => handleNext(e)}
-											style={{ width: '10rem', marginLeft: 20 }}>
-											{step === 3 ? 'Finish Booking' : 'Next'}
-										</Button>
-									)}
-								</Stack>
+								<Paper elevation={0} className='bottomButton'>
+									<Stack direction={'row'} justifyContent={'flex-end'} spacing={2}>
+										{(step === 2 || step === 3) && (
+											<Button onClick={handlePrev} style={{ width: '10rem' }}>
+												Previous
+											</Button>
+										)}
+										{step !== 4 && (
+											<LoadingButton
+												className='loadingcta'
+												variant='contained'
+												loading={loading}
+												loadingPosition={'end'}
+												disabled={isSubmittable}
+												onClick={(e) => handleNext(e)}
+												style={{ width: '10rem' }}>
+												{step === 3 ? 'Finish Booking' : 'Next'}
+											</LoadingButton>
+										)}
+									</Stack>
+								</Paper>
 							</Box>
 						</form>
 					</Box>
