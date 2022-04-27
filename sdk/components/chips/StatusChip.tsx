@@ -15,6 +15,7 @@ const chipColor: Partial<{
 	ALLOCATION_IN_PROGRESS: 'info.main',
 	ALLOCATION_CLOSED: 'info.main',
 	READY_TO_DEPLOY: 'success.main',
+	DEPLOYED: 'primary.main',
 }
 
 export const StatusChip = ({ bookingState, ...props }: StatusChipProps) => {

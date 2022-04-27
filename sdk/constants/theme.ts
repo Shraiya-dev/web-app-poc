@@ -83,6 +83,16 @@ let themeDef = createTheme({
 			},
 		},
 
+		MuiSelect: {
+			defaultProps: {
+				MenuProps: {
+					style: {
+						maxHeight: 400,
+					},
+				},
+			},
+		},
+
 		MuiOutlinedInput: {
 			styleOverrides: {
 				root: {

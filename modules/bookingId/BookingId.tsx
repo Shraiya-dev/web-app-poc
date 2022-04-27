@@ -2,20 +2,23 @@ import { ArrowBack } from '@mui/icons-material'
 import { Button, Grid, Select, Stack, Typography } from '@mui/material'
 import { useRouter } from 'next/router'
 import { useCallback } from 'react'
-import { BookingSummaryCard, BOOKING_STATES, getSelectOptionsFromObject, JobCardCard, JOB_TYPES } from '../../sdk'
+import { BookingSummaryCard, getSelectOptionsFromObject, JobCardCard, JobCardState, JobCardStateLabel } from '../../sdk'
 import { useBookingId } from './hooks'
 
 export const BookingId = () => {
 	const router = useRouter()
-	const { jobCards } = useBookingId()
-	const handelSkillFilter = useCallback((e) => {
-		if (e.target.value !== 'none') {
-			router.query.skillType = e.target.value
-		} else {
-			delete router.query.skillType
-		}
-		router.push(router)
-	}, [])
+	const { jobCards, bookingSummary } = useBookingId()
+	const handelSkillFilter = useCallback(
+		(e) => {
+			if (e.target.value !== 'none') {
+				router.query.skillType = e.target.value
+			} else {
+				delete router.query.skillType
+			}
+			router.replace(router)
+		},
+		[router]
+	)
 
 	return (
 		<Grid container spacing={2} alignItems='flex-start'>
@@ -25,35 +28,14 @@ export const BookingId = () => {
 				</Button>
 			</Grid>
 			<Grid item xs={12} md={4}>
-				<BookingSummaryCard
-					booking={{
-						bookingId: 'ABCDEF',
-						city: 'Noida',
-						status: 'ALLOCATION_PENDING' as BOOKING_STATES,
-
-						state: 'Uttar Pradesh',
-						jobType: 'BAR_BENDER' as JOB_TYPES,
-						peopleRequired: {
-							HELPER: 5,
-							SUPERVISOR: 2,
-						},
-						schedule: {
-							bookingDuration: '45 to 90 days',
-							shiftTime: '9am to 6pm',
-							startDate: new Date(),
-						},
-						jobCardDetails: {
-							ACCEPTED: 5,
-							READY_TO_DEPLOY: 7,
-							DEPLOYMENT_COMPLETE: 10,
-						},
-					}}
-				/>
+				{bookingSummary && <BookingSummaryCard booking={bookingSummary} />}
 			</Grid>
 			<Grid container item xs={12} md={8} spacing={2}>
 				<Grid item xs={12}>
 					<Stack direction='row' spacing={2}>
-						<Typography variant='h5'>Applied</Typography>
+						<Typography variant='h5'>
+							{JobCardStateLabel[router.query.jobCardState as JobCardState]}
+						</Typography>
 						<Select
 							onChange={handelSkillFilter}
 							value={router.query.skillType ?? 'none'}

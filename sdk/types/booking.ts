@@ -38,3 +38,9 @@ export interface BookingPreview {
 	}
 	status?: BOOKING_STATES
 }
+
+export interface BookingStats {
+	bookingsCount: number
+	progressBookingsCount: number
+	heroesHired: number
+}
