@@ -96,10 +96,15 @@ const useBasicForm = () => {
 				email: values.companyEmail,
 			}
 			updateProfile(payload)
-				.then((status: any) => {
-					router.push('/dashboard')
+				.then((data: any) => {
+					if (data?.data?.payload?.customerId) {
+						router.push('/dashboard')
+					} else {
+						showSnackbar(data?.data?.developerInfo, 'error')
+					}
 				})
-				.catch((error) => {
+				.catch((error: any) => {
+					showSnackbar(error?.response?.data?.developerInfo, 'error')
 					console.log(error)
 				})
 		},

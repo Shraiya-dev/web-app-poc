@@ -17,6 +17,7 @@ import {
 	BottomNavigation,
 	Paper,
 } from '@mui/material'
+import { LoadingButton } from '@mui/lab'
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns'
 import { DatePicker } from '@mui/x-date-pickers/DatePicker'
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
@@ -113,6 +114,12 @@ const CustomBookingStyle = styled(Box)(({ theme }) => ({
 		background: 'white',
 		overflow: 'hidden',
 	},
+	'.loadingcta': {
+		borderRadius: 30,
+		textTransform: 'inherit',
+		padding: '12px 22px',
+		background: theme.palette.primary.main,
+	},
 }))
 
 export const CreateBooking = ({ ...props }) => {
@@ -125,6 +132,7 @@ export const CreateBooking = ({ ...props }) => {
 	const [shiftTiming, setShiftTiming] = useState('')
 
 	const [isSubmittable, setIsSubmittable] = useState<boolean>(false)
+	const [loading, setLoading] = useState<boolean>(false)
 	const { showSnackbar } = useSnackbar()
 
 	const workerType = [
@@ -246,14 +254,17 @@ export const CreateBooking = ({ ...props }) => {
 		if (step < 4) {
 			if (step === 3) {
 				console.log('payload', payload)
+				setLoading(true)
 				createBooking(payload)
 					.then((respone) => {
 						console.log('res', respone)
 						setStep((state) => state + 1)
+						setLoading(false)
 					})
 					.catch((error: any) => {
 						showSnackbar(error?.response?.data?.developerInfo, 'error')
 						console.log(error)
+						setLoading(false)
 					})
 			} else {
 				setStep((state) => state + 1)
@@ -481,7 +492,7 @@ export const CreateBooking = ({ ...props }) => {
 															}}
 															sx={{
 																mr: 1,
-																mb:1
+																mb: 1,
 															}}
 															// color={
 															// 	form.values.tags.includes(item) ? 'primary' : undefined
@@ -970,12 +981,16 @@ export const CreateBooking = ({ ...props }) => {
 											</Button>
 										)}
 										{step !== 4 && (
-											<Button
+											<LoadingButton
+												className='loadingcta'
+												variant='contained'
+												loading={loading}
+												loadingPosition={'end'}
 												disabled={isSubmittable}
 												onClick={(e) => handleNext(e)}
 												style={{ width: '10rem' }}>
 												{step === 3 ? 'Finish Booking' : 'Next'}
-											</Button>
+											</LoadingButton>
 										)}
 									</Stack>
 								</Paper>
