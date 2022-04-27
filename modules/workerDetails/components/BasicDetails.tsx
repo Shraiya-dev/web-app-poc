@@ -11,6 +11,8 @@ const BasicDetailsStyle = styled(Box)(({ theme }) => ({
 
 export const BasicDetails = ({ ...props }) => {
 	const { workerData } = props
+
+	console.log("workerData",workerData)
 	return (
 		<BasicDetailsStyle>
 			<Box>
@@ -21,10 +23,10 @@ export const BasicDetails = ({ ...props }) => {
 							<Typography className='textInfo'>{workerData?.gender || ''}</Typography>
 						</Stack>
 
-						{/* <Stack spacing={1} className='stack'>
+						<Stack spacing={1} className='stack'>
 							<Typography fontSize={18}>Marital Status</Typography>
 							<Typography className='textInfo'>{workerData?.maritalStatus || ''}</Typography>
-						</Stack> */}
+						</Stack>
 
 						<Stack spacing={1} className='stack'>
 							<Typography fontSize={18}>Experience</Typography>
@@ -35,7 +37,7 @@ export const BasicDetails = ({ ...props }) => {
 					<Grid item sm={12} xs={12} md={6} lg={6} direction='column'>
 						<Stack spacing={1} className='stack'>
 							<Typography fontSize={18}>Projects completed</Typography>
-							<Typography className='textInfo'>{workerData?.pastProjects.length() || ''}</Typography>
+							<Typography className='textInfo'>{workerData?.pastProjects || ''}</Typography>
 						</Stack>
 					</Grid>
 				</Grid>

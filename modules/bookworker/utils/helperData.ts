@@ -41,13 +41,7 @@ export const moreJobType = [
 	{ icon: Shuttering, label: 'Shuttering', value: 'SHUTTERING_CARPENTER' },
 ]
 
-export const projectDuration = [
-	{ label: 'less than 7 days' },
 
-	{ label: '7-45 days' },
-	{ label: '45-90 days' },
-	{ label: '90+ days' },
-]
 
 export const BookingStatusOptions = [
 	{
@@ -6507,7 +6501,7 @@ export const CitiesOptions: any = {
 	],
 }
 
-export const bookingDuration = [
+export const projectDuration = [
 	{ label: 'less than 7 days', value: 'less than 7 days' },
 	{ label: '7 days to 45 days', value: '7 days to 45 days' },
 	{ label: '45 days to 90 days', value: '45 days to 90 days' },

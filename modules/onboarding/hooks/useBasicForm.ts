@@ -79,14 +79,8 @@ const useBasicForm = () => {
 			// 	errors.phoneNumber = 'Enter Valid phone Number'
 			// }
 
-			if (initialData?.customerStatus === 'REGISTERED') {
-				if (!freeEmailChecker(values.companyEmail)) {
-					errors.companyEmail = 'Enter Valid Company Email'
-				}
-			} else {
-				if (!validateEmail(values.companyEmail)) {
-					errors.companyEmail = 'Enter Valid Company Email'
-				}
+			if (!validateEmail(values.companyEmail)) {
+				errors.companyEmail = 'Enter Valid Company Email'
 			}
 
 			return errors

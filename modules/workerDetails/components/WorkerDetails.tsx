@@ -100,7 +100,7 @@ export const WorkerProfileInfo = () => {
 
 	useEffect(() => {
 		let id = router.query.workerId
-		//619a1f5e40d3b50016379e08
+		
 		getWorkerInfo(id)
 			.then((data:any) => {
 				console.log(data)
@@ -139,12 +139,10 @@ export const WorkerProfileInfo = () => {
 
 								<Stack direction='row' spacing={1} justifyContent='center'>
 
-								(<Chip label={workerData?.workDetails?.workerType} />
-									{/* {workerData?.skills?.map(info)=>{
-									return (<Chip label={info} />)
-								}} */}
+								<Chip label={workerData?.workDetails?.workerType} />
+								
 
-									<Chip label='Technician' />
+									
 								</Stack>
 
 								<Stack className='contactInfo'>

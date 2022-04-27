@@ -203,6 +203,15 @@ export const CreateBooking = ({ ...props }) => {
 	// }
 
 	const handleNext = (e: any) => {
+
+		console.log("form.values.startTime",form.values.startTime)
+
+		var ConvertedshiftTime = form.values.shiftTime
+		if (shiftTiming === 'Custom') {
+			ConvertedshiftTime = timeConvert(form.values.startTime) + '-' + timeConvert(form.values.endTime)
+			form.setFieldValue('shiftTime', ConvertedshiftTime)
+			console.log("ConvertedshiftTime",ConvertedshiftTime,form.values.shiftTime)
+		}
 		const payload = {
 			city: form.values.city,
 			state: form.values.state,
@@ -214,7 +223,7 @@ export const CreateBooking = ({ ...props }) => {
 			schedule: {
 				bookingDuration: form.values.BookingDuration,
 				startDate: form.values.StartDate,
-				shiftTime: form.values.shiftTime,
+				shiftTime: ConvertedshiftTime//form.values.shiftTime,
 			},
 			peopleRequired: {
 				SUPERVISOR: form.values.supervisor,
@@ -760,15 +769,15 @@ export const CreateBooking = ({ ...props }) => {
 												<Grid item xs={12} sm={12} md={6} lg={6}>
 													<LocalizationProvider dateAdapter={AdapterDateFns}>
 														<TimePicker
-															onChange={(value) => form.setFieldValue('endTime', value)}
+															onChange={(value) => {form.setFieldValue('endTime', value), console.log("endTime",value)}}
 															value={form.values.endTime}
 															renderInput={(params) => (
 																<TextField
 																	{...params}
-																	onChange={(value) =>
-																		form.setFieldValue('endTime', value)
-																	}
-																	value={form.values.endTime}
+																	// onChange={(value) =>
+																	// 	form.setFieldValue('endTime', value)
+																	// }
+																	//value={form.values.endTime}
 																	placeholder='Select End Time'
 																	fullWidth
 																/>

@@ -4,7 +4,6 @@ import { useState, useEffect } from 'react'
 import { useContractorAuth, useSnackbar, validateEmail } from '../../../sdk'
 import { getCustomerDetails } from '../../../sdk/apis'
 
-
 interface CreateBookingForm {
 	jobType: string
 
@@ -50,8 +49,8 @@ interface userInitialInfo {
 const useCreateBooking = () => {
 	const [step, setStep] = useState(1)
 	const [userInitialInfo, setUserInitialInfo] = useState<userInitialInfo>()
-	const {showSnackbar} = useSnackbar();
-	const {getContactorUserInfo,user} = useContractorAuth();
+	const { showSnackbar } = useSnackbar()
+	const { getContactorUserInfo, user } = useContractorAuth()
 	useEffect(() => {
 		//getContactorUserInfo();
 		getCustomerDetails()
@@ -67,7 +66,7 @@ const useCreateBooking = () => {
 			})
 	}, [])
 
-	console.log("user",user)
+	console.log('user', user)
 
 	function timeConvert(time: any) {
 		// Check correct time format and split into components
@@ -77,9 +76,13 @@ const useCreateBooking = () => {
 
 		if (time.length > 1) {
 			// If time format correct
+
+			//console.log("time",time)
 			time = time.slice(1) // Remove full string match value
 			time[5] = +time[0] < 12 ? 'AM' : 'PM' // Set AM/PM
 			time[0] = +time[0] % 12 || 12 // Adjust hours
+		} else {
+			time[0] = time[0] + 'AM'
 		}
 		return time.join('') // return adjusted time or original string
 	}
@@ -203,40 +206,36 @@ const useCreateBooking = () => {
 			return errors
 		},
 		onSubmit: (values) => {
-			console.log("hello",values)
-			const payload = {
-				city: values.city,
-				state: values.state,
-				companyName: values.company,
-				email: values.companyEmail,
-				name: values.name,
-				phoneNumber: values.phoneNumber,
-				siteAddress: values.siteAddress,
-				schedule: {
-					bookingDuration: values.BookingDuration,
-					startDate: values.StartDate,
-					shiftTime: values.shiftTime,
-				},
-				peopleRequired: {
-					SUPERVISOR: values.supervisor,
-					HELPER: values.helper,
-					TECHNICIAN: values.technician,
-				},
-				overTime: {
-					rate: values.overTimeFactor,
-				},
-				earning: {
-					HELPER: values.helperWages,
-					TECHNICIAN: values.technicianWages,
-					SUPERVISOR: values.supervisorWages,
-				},
-				tags: values.tags,
-				jobType: values.jobType,
-			}
-
-		
-			
-			
+			console.log('hello', values)
+			// const payload = {
+			// 	city: values.city,
+			// 	state: values.state,
+			// 	companyName: values.company,
+			// 	email: values.companyEmail,
+			// 	name: values.name,
+			// 	phoneNumber: values.phoneNumber,
+			// 	siteAddress: values.siteAddress,
+			// 	schedule: {
+			// 		bookingDuration: values.BookingDuration,
+			// 		startDate: values.StartDate,
+			// 		shiftTime: values.shiftTime,
+			// 	},
+			// 	peopleRequired: {
+			// 		SUPERVISOR: values.supervisor,
+			// 		HELPER: values.helper,
+			// 		TECHNICIAN: values.technician,
+			// 	},
+			// 	overTime: {
+			// 		rate: values.overTimeFactor,
+			// 	},
+			// 	earning: {
+			// 		HELPER: values.helperWages,
+			// 		TECHNICIAN: values.technicianWages,
+			// 		SUPERVISOR: values.supervisorWages,
+			// 	},
+			// 	tags: values.tags,
+			// 	jobType: values.jobType,
+			// }
 		},
 	})
 
