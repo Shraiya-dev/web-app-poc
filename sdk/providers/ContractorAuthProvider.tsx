@@ -103,6 +103,7 @@ const ContractorAuthProvider = ({ children }: any) => {
 			const phoneNumber = localStorage.getItem('phoneNumber')
 			if (!(accessToken || refreshToken || phoneNumber)) {
 				logOut()
+				return
 			}
 			try {
 				const { data } = await axios.get('/gateway/customer-api')
@@ -121,7 +122,9 @@ const ContractorAuthProvider = ({ children }: any) => {
 					},
 				})
 			} catch (error: any) {
-				showSnackbar(error?.response?.data?.developerInfo, 'error')
+				if (error?.response?.status !== 401) {
+					showSnackbar(error?.response?.data?.developerInfo, 'error')
+				}
 			}
 		})()
 		// eslint-disable-next-line react-hooks/exhaustive-deps
@@ -148,9 +151,11 @@ const ContractorAuthProvider = ({ children }: any) => {
 			if ([CUSTOMER_STATUS.REGISTERED, CUSTOMER_STATUS.UPDATE_PROFILE].includes(state.user.customerStatus)) {
 				router.push('/onboarding')
 			} else if (
-				!router.pathname.includes('/dashboard') ||
-				!router.pathname.includes('/profile') ||
-				!router.pathname.includes('/worker')
+				!(
+					router.pathname.includes('/dashboard') ||
+					router.pathname.includes('/profile') ||
+					router.pathname.includes('/worker')
+				)
 			) {
 				router.push('/dashboard')
 			}
