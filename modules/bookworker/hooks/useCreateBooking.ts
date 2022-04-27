@@ -197,6 +197,36 @@ const useCreateBooking = () => {
 		},
 		onSubmit: (values) => {
 
+			const payload = {
+				city: "sarni",
+				state: "madhya pradesh",
+			companyName: "test",
+				email: "aman.choudhury1995@gmail.com",
+				"name": "test",
+				"phoneNumber": "+918249288640",
+				"siteAddress": "test",
+				"schedule": {
+					"bookingDuration": "45 days to 90 days",
+					"startDate": "2022-04-26T00:00:00.000Z",
+					"shiftTime": "9am-6pm"
+				},
+				"peopleRequired": {
+					"SUPERVISOR": 0,
+					"HELPER": 10,
+					"TECHNICIAN": 10
+				},
+				"overTime": {
+					"rate": 1.5,
+				},
+				"earning": {
+						 "HELPER": 1,
+						 "TECHNICIAN": 1,
+						 "SUPERVISOR": 0,
+				},
+				tags: ["Modular Furniture"],
+				jobType: "CARPENTER",
+			}
+
 			
 			
 		},

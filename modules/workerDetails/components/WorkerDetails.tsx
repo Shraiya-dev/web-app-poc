@@ -20,7 +20,12 @@ interface WorkerData {
 	gender: string
 	maritalStatus: string
 	experience: string
-	projectCompleted: Number
+	pastProjects: {}
+
+	workDetails: {
+		workerType:string
+		experience:string,
+	  },
 }
 
 const WorkerProfileStyle = styled(Box)(({ theme }) => ({
@@ -130,6 +135,8 @@ export const WorkerProfileInfo = () => {
 								</Typography>
 
 								<Stack direction='row' spacing={1} justifyContent='center'>
+
+								(<Chip label={workerData?.workDetails?.workerType} />
 									{/* {workerData?.skills?.map(info)=>{
 									return (<Chip label={info} />)
 								}} */}
