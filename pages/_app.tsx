@@ -32,7 +32,7 @@ axios.interceptors.response.use(
 		if (error?.response?.status === 401) {
 			//todo add retry logic here to retry login before logout
 			localStorage.clear()
-			window.location.href = `${SERVER_URL}/login`
+			window.location.href = `/login`
 		}
 		return Promise.reject(error)
 	}
