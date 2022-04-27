@@ -43,9 +43,7 @@ const useBasicForm = () => {
 			})
 	}, [router])
 
-	console.log('initiald', initialData)
-
-	console.log('router', router)
+	
 	const form = useFormik<CreateBasicForm>({
 		initialValues: {
 			name: initialData?.name || '',

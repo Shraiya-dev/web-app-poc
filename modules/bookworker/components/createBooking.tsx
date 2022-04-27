@@ -57,8 +57,8 @@ const CustomBookingStyle = styled(Box)(({ theme }) => ({
 	},
 
 	'.inputLabel': {
-		fontSize:16,
-		fontWeight:700,
+		fontSize: 16,
+		fontWeight: 700,
 		marginTop: 40,
 		marginBottom: 10,
 	},
@@ -70,17 +70,28 @@ const CustomBookingStyle = styled(Box)(({ theme }) => ({
 		background: 'white',
 		overflow: '',
 	},
-	'.subHeader':{
-		fontSize: 20, fontWeight:700, marginTop: 20
+	'.header': {
+		fontSize: 36,
+		fontWeight: 700,
+		color: theme.palette.secondary.main,
 	},
-	'.subInfo':{
-
-	}
+	'.subHeader': {
+		fontSize: 20,
+		fontWeight: 700,
+		marginTop: 20,
+		color: theme.palette.secondary.main,
+	},
+	'.subInfo': {
+		fontSize: 13,
+		fontWeight: 500,
+		color: theme.palette.secondary.main,
+		paddingBottom: 8,
+	},
 }))
 
 export const CreateBooking = ({ ...props }) => {
 	const { toggleBookingForm, onCloseDialog, setOncloseDialog, bookingFormOpen, setBookingFormOpen } = props
-	const { form, step, setStep, userInitialInfo, setUserInitialInfo } = useCreateBooking()
+	const { form, step, setStep, userInitialInfo, setUserInitialInfo, timeConvert } = useCreateBooking()
 
 	// const [isMore, setIsmore] = useState(false)
 	const [projectDurationInfo, setProjectDuration] = useState<string>()
@@ -120,6 +131,8 @@ export const CreateBooking = ({ ...props }) => {
 	]
 
 	useEffect(() => {
+		// var shiftTime = timeConvert(form.values.startTime)+'-'+timeConvert(form.values.startTime)
+		// 	console.log("shiftTime",shiftTime)
 		getCustomerDetails()
 			.then((data: any) => {
 				console.log('basic', data)
@@ -132,13 +145,27 @@ export const CreateBooking = ({ ...props }) => {
 	useEffect(() => {
 		if (step === 1) {
 			var canSubmit: boolean =
-				!form.values.jobType || (!form.values.technician && !form.values.helper && !form.values.supervisor)
+				!form.values.jobType ||
+				form.values.overTimeFactor === 'none' ||
+				(!form.values.technician && !form.values.helper && !form.values.supervisor) ||
+				(!!form.values.technician && !form.values.technicianWages) ||
+				(!form.values.technician && !!form.values.technicianWages) ||
+				(!!form.values.helper && !form.values.helperWages) ||
+				(!form.values.helper && !!form.values.helperWages) ||
+				(!!form.values.supervisor && !form.values.supervisorWages) ||
+				(!form.values.supervisor && !!form.values.supervisorWages)
 
 			setIsSubmittable(canSubmit)
 		}
 
 		if (step === 2) {
-			var canSubmit = !form.values.city || !form.values.state || !form.values.siteAddress || !form.values.shiftTime || !form.values.startTime || !form.values.BookingDuration
+			var canSubmit =
+				!form.values.city ||
+				!form.values.state ||
+				!form.values.siteAddress ||
+				!form.values.shiftTime ||
+				!form.values.startTime ||
+				!form.values.BookingDuration
 
 			setIsSubmittable(canSubmit)
 		}
@@ -176,7 +203,7 @@ export const CreateBooking = ({ ...props }) => {
 
 	const handleProjectDuration = (info: any) => {
 		setProjectDuration(info)
-		form.setFieldValue('BookingDuration',info);
+		form.setFieldValue('BookingDuration', info)
 	}
 
 	const handleJobClick = (info: any) => {
@@ -185,7 +212,7 @@ export const CreateBooking = ({ ...props }) => {
 	}
 
 	const handleShiftTiming = (info: any) => {
-		form.setFieldValue('shiftTime',info)
+		form.setFieldValue('shiftTime', info)
 		setShiftTiming(info)
 	}
 
@@ -203,9 +230,7 @@ export const CreateBooking = ({ ...props }) => {
 					{step !== 4 && (
 						<Box>
 							<Box>
-								<Typography variant='h4' style={{ fontSize: 36,fontWeight:700 }}>
-									Book Workers
-								</Typography>
+								<Typography className='header'>Book Workers</Typography>
 							</Box>
 
 							<Box display='flex'>
@@ -365,6 +390,9 @@ export const CreateBooking = ({ ...props }) => {
 										<InputLabel htmlFor='skills' className='inputLabel'>
 											Skills
 										</InputLabel>
+										<Typography className='subInfo'>
+											Skills you are looking for the selected trade
+										</Typography>
 										<Grid item xs={12} md={12}>
 											<Stack direction='row' flexWrap='wrap'>
 												{tags[form.values.jobType]?.map((item: any) => {
@@ -423,15 +451,13 @@ export const CreateBooking = ({ ...props }) => {
 											return (
 												<Grid
 													key={index}
-													container item
+													container
+													item
 													alignItems={'flex-start'}
-													display="flex"
+													display='flex'
 													spacing={2}
-													
-												    
-													style={{ marginBottom: 20 }}
-													>
-													<Grid item xs={4} sm={4} md={4} >
+													style={{ marginBottom: 20 }}>
+													<Grid item xs={4} sm={4} md={4}>
 														<Image src={info?.icon} />
 														<Typography
 															style={{
@@ -448,7 +474,7 @@ export const CreateBooking = ({ ...props }) => {
 															id={info?.name}
 															name={info?.name}
 															value={info?.formvalue}
-															type="number"
+															type='number'
 															onChange={(e: any) => {
 																if (e.target.value >= 0) {
 																	form.handleChange(e)
@@ -466,7 +492,7 @@ export const CreateBooking = ({ ...props }) => {
 															id={info?.wage}
 															name={info?.wage}
 															value={info?.wageformvalue}
-															type="number"
+															type='number'
 															onChange={(e: any) => {
 																if (e.target.value >= 0) {
 																	form.handleChange(e)
@@ -486,6 +512,10 @@ export const CreateBooking = ({ ...props }) => {
 											<InputLabel htmlFor='overtime' className='inputLabel'>
 												Overtime Details
 											</InputLabel>
+											<Typography className='subInfo'>
+												This factor will be multiplied with daily wage to calculate overtime
+												wage
+											</Typography>
 											<Grid
 												container
 												alignItems={'flex-start'}
@@ -501,7 +531,7 @@ export const CreateBooking = ({ ...props }) => {
 															value={form.values.overTimeFactor}
 															//label='Overtime Factor'
 															onChange={form.handleChange}>
-																<MenuItem value={'none'}>Select Overtime Factor</MenuItem>
+															<MenuItem value={'none'}>Select Overtime Factor</MenuItem>
 															<MenuItem value={10}>1</MenuItem>
 															<MenuItem value={20}>1.5</MenuItem>
 															<MenuItem value={30}>2</MenuItem>
@@ -666,11 +696,15 @@ export const CreateBooking = ({ ...props }) => {
 												<Grid item xs={12} sm={12} md={6} lg={6}>
 													<LocalizationProvider dateAdapter={AdapterDateFns}>
 														<TimePicker
-															value={form.values.endTime}
 															onChange={(value) => form.setFieldValue('endTime', value)}
+															value={form.values.endTime}
 															renderInput={(params) => (
 																<TextField
 																	{...params}
+																	onChange={(value) =>
+																		form.setFieldValue('endTime', value)
+																	}
+																	value={form.values.endTime}
 																	placeholder='Select End Time'
 																	fullWidth
 																/>
