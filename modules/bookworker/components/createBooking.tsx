@@ -26,10 +26,22 @@ import Supervisor from '../../../public/assets/icons/supervisor.svg'
 import Technician from '../../../public/assets/icons/technician.svg'
 import { checkError, theme } from '../../../sdk'
 import useCreateBooking from '../hooks/useCreateBooking'
-import { CitiesOptions, jobTypeInfo, moreJobType, projectDuration, StatesOptions, tags } from '../utils/helperData'
+import {
+	CitiesOptions,
+	jobTypeInfo,
+	moreJobType,
+	projectDuration,
+	ShiftTime,
+	StatesOptions,
+	tags,
+} from '../utils/helperData'
 import BookingSuccess from './bookingsuccess'
 import ConfirmCancel from './confirmCancel'
 import { getCustomerDetails } from '../../../sdk/apis'
+
+import { createBooking } from '../apis/apis'
+import { useSnackbar } from '../../../sdk'
+
 
 const CustomBookingStyle = styled(Box)(({ theme }) => ({
 	'.main': {
@@ -99,6 +111,7 @@ export const CreateBooking = ({ ...props }) => {
 	const [shiftTiming, setShiftTiming] = useState('')
 
 	const [isSubmittable, setIsSubmittable] = useState<boolean>(false)
+	const {showSnackbar} = useSnackbar();
 
 	const workerType = [
 		{
@@ -131,8 +144,6 @@ export const CreateBooking = ({ ...props }) => {
 	]
 
 	useEffect(() => {
-		// var shiftTime = timeConvert(form.values.startTime)+'-'+timeConvert(form.values.startTime)
-		// 	console.log("shiftTime",shiftTime)
 		getCustomerDetails()
 			.then((data: any) => {
 				console.log('basic', data)
@@ -177,13 +188,66 @@ export const CreateBooking = ({ ...props }) => {
 		}
 	}, [form])
 
+	useEffect(() => {
+		// var shiftTime = timeConvert(form.values.startTime)+'-'+timeConvert(form.values.startTime)
+		// 	console.log("shiftTime",shiftTime)
+
+		if (shiftTiming === 'Custom') {
+			var ConvertedshiftTime = timeConvert(form.values.startTime) + '-' + timeConvert(form.values.startTime)
+			form.setFieldValue('shiftTime', ConvertedshiftTime)
+		}
+	}, [shiftTiming])
+
 	// const handleMoreJobType = () => {
 	// 	setIsmore((state) => !state)
 	// }
 
-	const handleNext = () => {
+	const handleNext = (e: any) => {
+		const payload = {
+			city: form.values.city,
+			state: form.values.state,
+			companyName: form.values.company,
+			email: form.values.companyEmail,
+			name: form.values.name,
+			phoneNumber: form.values.phoneNumber,
+			siteAddress: form.values.siteAddress,
+			schedule: {
+				bookingDuration: form.values.BookingDuration,
+				startDate: form.values.StartDate,
+				shiftTime: form.values.shiftTime,
+			},
+			peopleRequired: {
+				SUPERVISOR: form.values.supervisor,
+				HELPER: form.values.helper,
+				TECHNICIAN: form.values.technician,
+			},
+			overTime: {
+				rate: form.values.overTimeFactor,
+			},
+			earning: {
+				HELPER: form.values.helperWages,
+				TECHNICIAN: form.values.technicianWages,
+				SUPERVISOR: form.values.supervisorWages,
+			},
+			tags: form.values.tags,
+			jobType: form.values.jobType,
+			userName: form.initialValues.name
+		}
+
 		if (step < 4) {
-			setStep((state) => state + 1)
+			if (step === 3) {
+				console.log("payload",payload);
+				createBooking(payload).then((respone)=>{
+					console.log("res",respone);
+					setStep((state) => state + 1)
+				}).catch((error:any)=>{
+					showSnackbar(error?.response?.data?.developerInfo, 'error')
+				console.log(error)
+				})
+				
+			} else {
+				setStep((state) => state + 1)
+			}
 		}
 	}
 
@@ -887,9 +951,8 @@ export const CreateBooking = ({ ...props }) => {
 									)}
 									{step !== 4 && (
 										<Button
-											//type='submit'
 											disabled={isSubmittable}
-											onClick={handleNext}
+											onClick={(e) => handleNext(e)}
 											style={{ width: '10rem', marginLeft: 20 }}>
 											{step === 3 ? 'Finish Booking' : 'Next'}
 										</Button>

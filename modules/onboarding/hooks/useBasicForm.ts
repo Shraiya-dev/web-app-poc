@@ -6,7 +6,7 @@ import { validateEmail, freeEmailChecker } from '../../../sdk/utils/validationHe
 
 import { updateProfile } from '../../../sdk/apis'
 import { getCustomerDetails } from '../../../sdk/apis'
-
+import { useSnackbar } from '../../../sdk'
 interface CreateBasicForm {
 	name: string
 	company: string
@@ -25,6 +25,7 @@ interface initialData {
 const useBasicForm = () => {
 	const router = useRouter()
 	const [loading, setLoading] = useState(false)
+	const { showSnackbar } = useSnackbar()
 	const [initialData, setInitialData] = useState<initialData>()
 
 	const [editInfo, setEditInfo] = useState(false)
@@ -38,12 +39,12 @@ const useBasicForm = () => {
 			.then((data: any) => {
 				setInitialData(data?.data?.payload)
 			})
-			.catch((error) => {
+			.catch((error: any) => {
+				showSnackbar(error?.response?.data?.developerInfo, 'error')
 				console.log(error)
 			})
 	}, [router])
 
-	
 	const form = useFormik<CreateBasicForm>({
 		initialValues: {
 			name: initialData?.name || '',

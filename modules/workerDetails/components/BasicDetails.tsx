@@ -21,10 +21,10 @@ export const BasicDetails = ({ ...props }) => {
 							<Typography className='textInfo'>{workerData?.gender || ''}</Typography>
 						</Stack>
 
-						<Stack spacing={1} className='stack'>
+						{/* <Stack spacing={1} className='stack'>
 							<Typography fontSize={18}>Marital Status</Typography>
 							<Typography className='textInfo'>{workerData?.maritalStatus || ''}</Typography>
-						</Stack>
+						</Stack> */}
 
 						<Stack spacing={1} className='stack'>
 							<Typography fontSize={18}>Experience</Typography>

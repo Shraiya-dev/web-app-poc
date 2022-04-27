@@ -8,7 +8,9 @@ import { useRouter } from 'next/router'
 import { ArrowBack } from '@mui/icons-material'
 import { Button } from '@mui/material'
 
-import { getWorkerInfo } from '../../../sdk/apis'
+import { getWorkerInfo, } from '../../../sdk/apis'
+
+import { useSnackbar } from '../../../sdk'
 
 interface WorkerData {
 	name: string
@@ -83,7 +85,7 @@ const WorkerProfileStyle = styled(Box)(({ theme }) => ({
 export const WorkerProfileInfo = () => {
 	const [workerData, setWorkerData] = useState<WorkerData>()
 	const router = useRouter()
-
+	const { showSnackbar } = useSnackbar()
 	const data = {
 		workerName: 'Smith',
 		address: 'Nagpur, Maharashtra',
@@ -105,7 +107,8 @@ export const WorkerProfileInfo = () => {
 				setWorkerData(data?.data?.payload)
 			
 			})
-			.catch((error) => {
+			.catch((error:any) => {
+				showSnackbar(error?.response?.data?.developerInfo, 'error')
 				console.log(error)
 			})
 	}, [])
@@ -149,9 +152,7 @@ export const WorkerProfileInfo = () => {
 									<Typography className='locationInfo'>
 										<LocationOnIcon className='locationIcon' /> {workerData?.phoneNumber||''}
 									</Typography>
-									<Typography className='locationInfo'>
-										<LocationOnIcon className='locationIcon' /> {workerData?.email||''}
-									</Typography>
+									
 								</Stack>
 							</Box>
 						</Paper>

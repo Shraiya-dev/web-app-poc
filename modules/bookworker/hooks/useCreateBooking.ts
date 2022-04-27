@@ -1,8 +1,9 @@
 import { useFormik } from 'formik'
 import { useState, useEffect } from 'react'
 
-import { validateEmail } from '../../../sdk'
+import { useContractorAuth, useSnackbar, validateEmail } from '../../../sdk'
 import { getCustomerDetails } from '../../../sdk/apis'
+
 
 interface CreateBookingForm {
 	jobType: string
@@ -49,8 +50,10 @@ interface userInitialInfo {
 const useCreateBooking = () => {
 	const [step, setStep] = useState(1)
 	const [userInitialInfo, setUserInitialInfo] = useState<userInitialInfo>()
-
+	const {showSnackbar} = useSnackbar();
+	const {getContactorUserInfo,user} = useContractorAuth();
 	useEffect(() => {
+		//getContactorUserInfo();
 		getCustomerDetails()
 			.then((data: any) => {
 				form.values.name = data?.data?.payload?.name
@@ -59,9 +62,12 @@ const useCreateBooking = () => {
 				form.values.phoneNumber = data?.data?.payload?.phoneNumber
 			})
 			.catch((error) => {
+				showSnackbar(error?.response?.data?.developerInfo, 'error')
 				console.log(error)
 			})
-	}, [step])
+	}, [])
+
+	console.log("user",user)
 
 	function timeConvert(time: any) {
 		// Check correct time format and split into components
@@ -111,6 +117,11 @@ const useCreateBooking = () => {
 			company: userInitialInfo?.companyName || '',
 			companyEmail: userInitialInfo?.email || '',
 			phoneNumber: userInitialInfo?.phoneNumber || '',
+
+			// name: user?.name || '',
+			// company: user?.companyName || '',
+			// companyEmail: user?.email || '',
+			// phoneNumber: user?.phoneNumber || '',
 		},
 		validate: (values) => {
 			const errors = <any>{}
@@ -192,6 +203,7 @@ const useCreateBooking = () => {
 			return errors
 		},
 		onSubmit: (values) => {
+			console.log("hello",values)
 			const payload = {
 				city: values.city,
 				state: values.state,
@@ -221,6 +233,10 @@ const useCreateBooking = () => {
 				tags: values.tags,
 				jobType: values.jobType,
 			}
+
+		
+			
+			
 		},
 	})
 
