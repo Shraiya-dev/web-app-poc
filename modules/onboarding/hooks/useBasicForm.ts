@@ -6,7 +6,7 @@ import { validateEmail, freeEmailChecker } from '../../../sdk/utils/validationHe
 
 import { updateProfile } from '../../../sdk/apis'
 import { getCustomerDetails } from '../../../sdk/apis'
-import { useSnackbar } from '../../../sdk'
+import { useContractorAuth, useSnackbar } from '../../../sdk'
 interface CreateBasicForm {
 	name: string
 	company: string
@@ -27,27 +27,27 @@ const useBasicForm = () => {
 	const [loading, setLoading] = useState(false)
 	const { showSnackbar } = useSnackbar()
 	const [initialData, setInitialData] = useState<initialData>()
-
+	const { user, getContactorUserInfo } = useContractorAuth()
 	const [editInfo, setEditInfo] = useState(false)
 
 	const handleEdit = () => {
 		setEditInfo((state) => !state)
 	}
 
-	useEffect(() => {
-		getCustomerDetails()
-			.then((data: any) => {
-				setInitialData(data?.data?.payload)
-				form.initialValues.name = data?.data?.payload?.name
-				form.initialValues.company = data?.data?.payload?.companyName
-				form.initialValues.companyEmail = data?.data?.payload?.email
-				form.initialValues.phoneNumber = data?.data?.payload?.phoneNumber
-			})
-			.catch((error: any) => {
-				showSnackbar(error?.response?.data?.developerInfo, 'error')
-				console.log(error)
-			})
-	}, [router])
+	// useEffect(() => {
+	// 	getCustomerDetails()
+	// 		.then((data: any) => {
+	// 			setInitialData(data?.data?.payload)
+	// 			form.initialValues.name = data?.data?.payload?.name
+	// 			form.initialValues.company = data?.data?.payload?.companyName
+	// 			form.initialValues.companyEmail = data?.data?.payload?.email
+	// 			form.initialValues.phoneNumber = data?.data?.payload?.phoneNumber
+	// 		})
+	// 		.catch((error: any) => {
+	// 			showSnackbar(error?.response?.data?.developerInfo, 'error')
+	// 			console.log(error)
+	// 		})
+	// }, [router])
 
 	const form = useFormik<CreateBasicForm>({
 		initialValues: {
@@ -102,6 +102,7 @@ const useBasicForm = () => {
 					} else {
 						showSnackbar(data?.data?.developerInfo, 'error')
 					}
+					getContactorUserInfo()
 				})
 				.catch((error: any) => {
 					showSnackbar(error?.response?.data?.developerInfo, 'error')
@@ -109,6 +110,15 @@ const useBasicForm = () => {
 				})
 		},
 	})
+	useEffect(() => {
+		form.setValues({
+			company: user?.companyName ?? '',
+			companyEmail: user?.email ?? '',
+			name: user?.name ?? '',
+			phoneNumber: user?.phoneNumber ?? '',
+		})
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [user])
 
 	return {
 		form,
