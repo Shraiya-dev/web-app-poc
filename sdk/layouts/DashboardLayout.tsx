@@ -96,13 +96,17 @@ const DashboardLayout = ({ children, ...props }: any) => {
 								<>
 									<Link href='/dashboard' passHref>
 										<a>
-											<Button variant='text'>Dashboard</Button>
+											<Button sx={{ px: 1 }} variant='text'>
+												Dashboard
+											</Button>
 										</a>
 									</Link>
 
 									<Link href='/profile' passHref>
 										<a>
-											<Button variant='text'>My Profile</Button>
+											<Button sx={{ px: 1 }} variant='text'>
+												My Profile
+											</Button>
 										</a>
 									</Link>
 								</>
@@ -155,9 +159,9 @@ const DashboardLayout = ({ children, ...props }: any) => {
 			<Dialog onClose={toggleBookingForm} open={bookingFormOpen} fullScreen>
 				<Box display='flex' alignItems='center'>
 					<Box flexGrow={1}></Box>
-					<Box style={{ marginTop: 30,marginRight:30 }}>
+					<Box style={{ marginTop: 30, marginRight: 30 }}>
 						<IconButton onClick={toggleBookingForm}>
-							<CloseIcon style={{fontSize:32}}/>
+							<CloseIcon style={{ fontSize: 32 }} />
 						</IconButton>
 					</Box>
 				</Box>

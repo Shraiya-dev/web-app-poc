@@ -28,10 +28,6 @@ const CustomPaper = styled(Paper)(({ theme }) => ({
 		flexDirection: 'column',
 		padding: `${theme.spacing(2)} ${theme.spacing(2)} ${theme.spacing(3)}`,
 	},
-	'.vAlignCenter': {
-		display: 'flex',
-		alignItems: 'center',
-	},
 }))
 export const BookingCard = ({ booking }: BookingCardProps) => {
 	const { totalCount, supervisorCount, technicianCount, helperCount } = useMemo(() => {
@@ -43,8 +39,8 @@ export const BookingCard = ({ booking }: BookingCardProps) => {
 	return (
 		<CustomPaper elevation={5}>
 			<Stack className='cardHeader'>
-				<Stack direction='row' justifyContent='space-between'>
-					<Typography variant='h6' fontWeight={700}>
+				<Stack direction='row' justifyContent='space-between' flexWrap='wrap'>
+					<Typography variant='h5' fontWeight={700}>
 						{JobTypeLabel[booking.jobType]} ({totalCount})
 					</Typography>
 					<Stack alignItems='center' direction='row' spacing={2}>

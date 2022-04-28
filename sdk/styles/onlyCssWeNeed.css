@@ -1,11 +1,14 @@
+@font-face {
+  font-family: Mulish;
+  src: url('/public/fonts/Mulish-VariableFont_wght.ttf');
+}
 html,
 body {
   padding: 0;
   margin: 0;
   background-color: '#FFFFFF';
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-    width: 100vw;
+  font-family: 'Mulish',Roboto, Oxygen, sans-serif;  
+  width: 100vw;
   /* always update according tpp bar height  */
     min-height: calc(100vh - 84px);
 }
@@ -17,4 +20,9 @@ a {
 
 * {
   box-sizing: border-box;
+}
+
+.vAlignCenter{
+  display: flex;
+  align-items: center;
 }
