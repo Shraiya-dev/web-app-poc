@@ -52,20 +52,7 @@ const useCreateBooking = () => {
 	const { showSnackbar } = useSnackbar()
 
 	const { getContactorUserInfo, user } = useContractorAuth()
-	useEffect(() => {
-		//getContactorUserInfo();
-		getCustomerDetails()
-			.then((data: any) => {
-				form.values.name = data?.data?.payload?.name
-				form.values.company = data?.data?.payload?.companyName
-				form.values.companyEmail = data?.data?.payload?.email
-				form.values.phoneNumber = data?.data?.payload?.phoneNumber
-			})
-			.catch((error) => {
-				showSnackbar(error?.response?.data?.developerInfo, 'error')
-				console.log(error)
-			})
-	}, [])
+	
 
 	const handlePrev = () => {
 		if (step > 1) {
@@ -121,10 +108,10 @@ const useCreateBooking = () => {
 			city: 'none',
 			siteAddress: '',
 
-			name: userInitialInfo?.name || '',
-			company: userInitialInfo?.companyName || '',
-			companyEmail: userInitialInfo?.email || '',
-			phoneNumber: userInitialInfo?.phoneNumber || '',
+			name: user?.name || '',
+			company: user?.companyName || '',
+			companyEmail: user?.email || '',
+			phoneNumber: user?.phoneNumber || '',
 
 			// name: user?.name || '',
 			// company: user?.companyName || '',

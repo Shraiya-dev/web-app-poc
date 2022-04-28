@@ -4,9 +4,7 @@ import LoadingButton from '@mui/lab/LoadingButton'
 import useBasicForm from '../hooks/useBasicForm'
 import { useRouter } from 'next/router'
 import EditIcon from '@mui/icons-material/Edit'
-import { useEffect, useState } from 'react'
 import { checkError } from '../../../sdk'
-import { getCustomerDetails } from '../../../sdk/apis'
 
 const BasicFormStyle = styled(Box)(({ theme }) => ({
 	'.cta': {
@@ -26,19 +24,6 @@ export const BasicDetailsForm = () => {
 	const { form, loading, editInfo, setEditInfo, handleEdit } = useBasicForm()
 
 	const router = useRouter()
-
-	// useEffect(() => {
-	// 	getCustomerDetails()
-	// 		.then((data: any) => {
-	// 			form.initialValues.name = data?.data?.payload?.name
-	// 			form.initialValues.company = data?.data?.payload?.companyName
-	// 			form.initialValues.companyEmail = data?.data?.payload?.email
-	// 			form.initialValues.phoneNumber = data?.data?.payload?.phoneNumber
-	// 		})
-	// 		.catch((error) => {
-	// 			console.log(error)
-	// 		})
-	// }, [form])
 
 	return (
 		<BasicFormStyle>
