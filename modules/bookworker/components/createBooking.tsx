@@ -44,8 +44,9 @@ import ConfirmCancel from './confirmCancel'
 import { getCustomerDetails } from '../../../sdk/apis'
 
 import { createBooking } from '../apis/apis'
-import { useSnackbar,useContractorAuth } from '../../../sdk'
+import { useSnackbar, useContractorAuth } from '../../../sdk'
 import { useMobile } from '../../../sdk/hooks/useMobile'
+import shadows from '@mui/material/styles/shadows'
 
 const CustomBookingStyle = styled(Box)(({ theme }) => ({
 	'.main': {
@@ -75,7 +76,7 @@ const CustomBookingStyle = styled(Box)(({ theme }) => ({
 
 	'.inputLabel': {
 		fontSize: 16,
-		fontWeight: 700,
+		fontWeight: 600,
 		marginTop: 40,
 		marginBottom: 10,
 	},
@@ -86,11 +87,11 @@ const CustomBookingStyle = styled(Box)(({ theme }) => ({
 		marginTop: 50,
 
 		overflowY: 'none',
-		zIndex:1
+		zIndex: 1,
 	},
 	'.header': {
 		fontSize: 36,
-		fontWeight: 700,
+		fontWeight: 600,
 		color: theme.palette.secondary.main,
 	},
 	'.subHeader': {
@@ -135,6 +136,8 @@ const CustomBookingStyle = styled(Box)(({ theme }) => ({
 		height: 100,
 		width: 100,
 		textTransform: 'none',
+		border:'1px solid #C2C9D2',
+		boxShadow:'none'
 	},
 	'.view': {
 		verticalAlign: 'middle',
@@ -308,6 +311,7 @@ export const CreateBooking = ({ ...props }) => {
 
 	const handleJobClick = (info: any) => {
 		form.setFieldValue('jobType', info)
+		form.setFieldValue('tags', [])
 		setSelectedjob(info)
 	}
 
@@ -393,6 +397,7 @@ export const CreateBooking = ({ ...props }) => {
 													<Grid key={index} item xs={4} sm={4} md={2} lg={2}>
 														<Button
 															className='jobType'
+															variant= 'outlined'
 															onClick={() => handleJobClick(info?.value)}
 															style={{
 																background:
@@ -976,7 +981,7 @@ export const CreateBooking = ({ ...props }) => {
 							)}
 
 							<Box className='stickyBottomBox'>
-								<Paper  className='bottomButton'>
+								<Paper className='bottomButton'>
 									<Stack direction={'row'} justifyContent={'flex-end'} spacing={2}>
 										{(step === 2 || step === 3) && (
 											<Button className='prevCta' onClick={handlePrev}>
@@ -988,7 +993,6 @@ export const CreateBooking = ({ ...props }) => {
 												className='loadingcta'
 												variant='contained'
 												loading={loading}
-												
 												disabled={isSubmittable}
 												onClick={(e) => handleNext(e)}
 												style={{ minWidth: '10rem', marginRight: isMobile ? '' : '14%' }}>

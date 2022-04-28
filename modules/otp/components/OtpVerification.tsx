@@ -14,7 +14,7 @@ const CustomOTPStyles = styled(Box)(({ theme }) => ({
 	'.headerInfo': {
 		paddingBottom: '0.5em',
 		fontSize: 36,
-		fontWeight: 700,
+		fontWeight: 600,
 	},
 	'.subHeader': {
 		cursor: 'pointer',
@@ -22,7 +22,7 @@ const CustomOTPStyles = styled(Box)(({ theme }) => ({
 		marginBottom: 20,
 		marginRight: 15,
 		textAlign: 'center',
-		fontSize: 12,
+		fontSize: 14,
 	},
 	'.cta': {
 		marginTop: '1.5em',
