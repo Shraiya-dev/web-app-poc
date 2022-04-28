@@ -1,6 +1,6 @@
 @font-face {
   font-family: Mulish;
-  src: url('/public/fonts/Mulish-VariableFont_wght.ttf');
+  src: url('/fonts/Mulish-VariableFont_wght.ttf');
 }
 html,
 body {
@@ -9,6 +9,7 @@ body {
   background-color: '#FFFFFF';
   font-family: 'Mulish',Roboto, Oxygen, sans-serif;  
   width: 100vw;
+  overflow-x: hidden;
   /* always update according tpp bar height  */
     min-height: calc(100vh - 84px);
 }

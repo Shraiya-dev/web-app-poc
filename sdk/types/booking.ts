@@ -36,6 +36,7 @@ export interface BookingPreview {
 	jobCardDetails?: {
 		[key in JobCardState]?: number
 	}
+	createdAt: Date
 	status?: BOOKING_STATES
 }
 

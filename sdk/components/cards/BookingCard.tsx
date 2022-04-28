@@ -48,6 +48,9 @@ export const BookingCard = ({ booking }: BookingCardProps) => {
 						<StatusChip bookingState={booking.status} />
 					</Stack>
 				</Stack>
+				<Typography variant='body2'>
+					Created On: {booking.createdAt && format(booking.createdAt, 'dd/MM/yy')}
+				</Typography>
 				<Stack direction='row' flexWrap='wrap'>
 					{helperCount !== 0 && <Typography mr={1}>Helper ({helperCount})</Typography>}
 					{technicianCount !== 0 && <Typography mr={1}>Technician ({technicianCount})</Typography>}
