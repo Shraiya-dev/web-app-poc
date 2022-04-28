@@ -125,7 +125,7 @@ const CustomBookingStyle = styled(Box)(({ theme }) => ({
 	},
 	'.prevCta': {
 		width: '10rem',
-		marginLeft: '14%',
+		marginLeft: '12%',
 	},
 	'.jobType': {
 		borderRadius: 8,
@@ -214,7 +214,7 @@ export const CreateBooking = ({ ...props }) => {
 	}, [])
 	useEffect(() => {
 		if (step === 1) {
-			var canSubmit: boolean =
+			const canSubmit: boolean =
 				!form.values.jobType || form.values.overTimeFactor === 'none' || !validateWorkerRequired()
 
 			setIsSubmittable(canSubmit)
@@ -999,7 +999,7 @@ export const CreateBooking = ({ ...props }) => {
 												//loadingPosition={'end'}
 												disabled={isSubmittable}
 												onClick={(e) => handleNext(e)}
-												style={{ width: '10rem', marginRight: isMobile ? '' : '14%' }}>
+												style={{ width: '10rem', marginRight: isMobile ? '' : '12%' }}>
 												{step === 3 ? 'Finish Booking' : 'Next'}
 											</LoadingButton>
 										)}

@@ -9,6 +9,7 @@ import { checkError } from '../../../sdk'
 import { getCustomerDetails } from '../../../sdk/apis'
 
 const BasicFormStyle = styled(Box)(({ theme }) => ({
+	padding:20,
 	'.cta': {
 		marginTop: '1em',
 		width: '100%',
