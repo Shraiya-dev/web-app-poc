@@ -1,3 +1,4 @@
+import { KeyboardArrowDownRounded } from '@mui/icons-material'
 import { createTheme, responsiveFontSizes } from '@mui/material/styles'
 import { createBreakpoints } from '@mui/system'
 export const primary = {
@@ -72,6 +73,11 @@ let themeDef = createTheme({
 				variant: 'outlined',
 			},
 		},
+		MuiInput: {
+			defaultProps: {
+				disableUnderline: true,
+			},
+		},
 		MuiGrid: {
 			defaultProps: {
 				display: 'flex',
@@ -105,6 +111,7 @@ let themeDef = createTheme({
 						maxHeight: 400,
 					},
 				},
+				IconComponent: KeyboardArrowDownRounded,
 			},
 		},
 

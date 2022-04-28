@@ -25,7 +25,7 @@ export default function BookingSuccess({ ...props }) {
 	const { setBookingFormOpen, bookingFormOpen } = props
 	const handleSuccessBooking = () => {
 		router.push(`/dashboard`)
-		router.reload()
+		//router.reload()
 		setBookingFormOpen(false)
 	}
 

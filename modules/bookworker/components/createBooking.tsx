@@ -29,6 +29,7 @@ import Supervisor from '../../../public/assets/icons/supervisor.svg'
 import Technician from '../../../public/assets/icons/technician.svg'
 import { checkError, theme } from '../../../sdk'
 import useCreateBooking from '../hooks/useCreateBooking'
+
 import {
 	CitiesOptions,
 	jobTypeInfo,
@@ -43,7 +44,9 @@ import ConfirmCancel from './confirmCancel'
 import { getCustomerDetails } from '../../../sdk/apis'
 
 import { createBooking } from '../apis/apis'
-import { useSnackbar } from '../../../sdk'
+import { useSnackbar, useContractorAuth } from '../../../sdk'
+import { useMobile } from '../../../sdk/hooks/useMobile'
+import shadows from '@mui/material/styles/shadows'
 
 const CustomBookingStyle = styled(Box)(({ theme }) => ({
 	'.main': {
@@ -73,7 +76,7 @@ const CustomBookingStyle = styled(Box)(({ theme }) => ({
 
 	'.inputLabel': {
 		fontSize: 16,
-		fontWeight: 700,
+		fontWeight: 600,
 		marginTop: 40,
 		marginBottom: 10,
 	},
@@ -81,18 +84,19 @@ const CustomBookingStyle = styled(Box)(({ theme }) => ({
 		position: 'sticky',
 
 		bottom: 0,
-		paddingTop: 20,
+		marginTop: 50,
 
 		overflowY: 'none',
+		zIndex: 1,
 	},
 	'.header': {
 		fontSize: 36,
-		fontWeight: 700,
+		fontWeight: 600,
 		color: theme.palette.secondary.main,
 	},
 	'.subHeader': {
 		fontSize: 20,
-		fontWeight: 500,
+		fontWeight: 600,
 		marginTop: 20,
 		color: theme.palette.secondary.main,
 	},
@@ -110,7 +114,7 @@ const CustomBookingStyle = styled(Box)(({ theme }) => ({
 		width: '100%',
 		paddingRight: '10%',
 		paddingBottom: 20,
-		paddingTop: 10,
+		paddingTop: 20,
 		background: 'white',
 		overflow: 'hidden',
 	},
@@ -119,12 +123,31 @@ const CustomBookingStyle = styled(Box)(({ theme }) => ({
 		textTransform: 'inherit',
 		padding: '12px 22px',
 		background: theme.palette.primary.main,
+		color: 'white',
+	},
+	'.prevCta': {
+		width: '10rem',
+		marginLeft: '14%',
+	},
+	'.jobType': {
+		borderRadius: 8,
+		padding: 8,
+		color: 'rgba(6, 31, 72, 0.7)',
+		height: 100,
+		width: 100,
+		textTransform: 'none',
+		border:'1px solid #C2C9D2',
+		boxShadow:'none'
+	},
+	'.view': {
+		verticalAlign: 'middle',
+		display: 'flex',
 	},
 }))
 
 export const CreateBooking = ({ ...props }) => {
 	const { toggleBookingForm, onCloseDialog, setOncloseDialog, bookingFormOpen, setBookingFormOpen } = props
-	const { form, step, setStep, userInitialInfo, setUserInitialInfo, timeConvert } = useCreateBooking()
+	const { form, step, setStep, userInitialInfo, setUserInitialInfo, timeConvert, handlePrev } = useCreateBooking()
 
 	const [isMore, setIsmore] = useState(false)
 	const [projectDurationInfo, setProjectDuration] = useState<string>()
@@ -134,6 +157,9 @@ export const CreateBooking = ({ ...props }) => {
 	const [isSubmittable, setIsSubmittable] = useState<boolean>(false)
 	const [loading, setLoading] = useState<boolean>(false)
 	const { showSnackbar } = useSnackbar()
+	const { getContactorUserInfo, user } = useContractorAuth()
+
+	const isMobile = useMobile()
 
 	const workerType = [
 		{
@@ -165,28 +191,26 @@ export const CreateBooking = ({ ...props }) => {
 		},
 	]
 
-	useEffect(() => {
-		getCustomerDetails()
-			.then((data: any) => {
-				console.log('basic', data)
-				setUserInitialInfo(data?.data?.payload)
-			})
-			.catch((error) => {
-				console.log(error)
-			})
-	}, [])
+	const validateWorkerRequired = () => {
+		if (form.values.technician > 0 || form.values.technicianWages > 0) {
+			return form.values.technician > 0 && form.values.technicianWages > 0
+		}
+
+		if (form.values.helper > 0 || form.values.helperWages > 0) {
+			return form.values.helper > 0 && form.values.helperWages > 0
+		}
+
+		if (form.values.supervisor > 0 || form.values.supervisorWages > 0) {
+			return form.values.supervisor > 0 && form.values.supervisorWages > 0
+		}
+
+		return false
+	}
+
 	useEffect(() => {
 		if (step === 1) {
-			var canSubmit: boolean =
-				!form.values.jobType ||
-				form.values.overTimeFactor === 'none' ||
-				(!form.values.technician && !form.values.helper && !form.values.supervisor) ||
-				(!!form.values.technician && !form.values.technicianWages) ||
-				(!form.values.technician && !!form.values.technicianWages) ||
-				(!!form.values.helper && !form.values.helperWages) ||
-				(!form.values.helper && !!form.values.helperWages) ||
-				(!!form.values.supervisor && !form.values.supervisorWages) ||
-				(!form.values.supervisor && !!form.values.supervisorWages)
+			const canSubmit: boolean =
+				!form.values.jobType || form.values.overTimeFactor === 'none' || !validateWorkerRequired()
 
 			setIsSubmittable(canSubmit)
 		}
@@ -272,12 +296,6 @@ export const CreateBooking = ({ ...props }) => {
 		}
 	}
 
-	const handlePrev = () => {
-		if (step > 1) {
-			setStep((state) => state - 1)
-		}
-	}
-
 	const getSelectOptions = (opt: any) => {
 		return opt.map((item: any) => (
 			<MenuItem key={item.label} value={item.value}>
@@ -293,6 +311,7 @@ export const CreateBooking = ({ ...props }) => {
 
 	const handleJobClick = (info: any) => {
 		form.setFieldValue('jobType', info)
+		form.setFieldValue('tags', [])
 		setSelectedjob(info)
 	}
 
@@ -377,18 +396,15 @@ export const CreateBooking = ({ ...props }) => {
 												return (
 													<Grid key={index} item xs={4} sm={4} md={2} lg={2}>
 														<Button
+															className='jobType'
+															variant= 'outlined'
 															onClick={() => handleJobClick(info?.value)}
 															style={{
-																borderRadius: 8,
-																padding: 8,
 																background:
 																	selectedJob === info?.value
 																		? theme.palette.primary.light
 																		: 'white',
-																color: 'rgba(6, 31, 72, 0.7)',
-																height: 100,
-																width: 100,
-																textTransform: 'none',
+
 																border: !!checkError(`jobType`, form) ? 'red' : '',
 															}}>
 															<Box>
@@ -409,18 +425,13 @@ export const CreateBooking = ({ ...props }) => {
 														return (
 															<Grid key={index} item xs={4} sm={4} md={2} lg={2}>
 																<Button
+																	className='jobType'
 																	onClick={() => handleJobClick(info?.value)}
 																	style={{
-																		borderRadius: 8,
-																		padding: 8,
 																		background:
 																			selectedJob === info?.value
 																				? theme.palette.primary.light
 																				: 'white',
-																		color: 'rgba(6, 31, 72, 0.7)',
-																		height: 100,
-																		width: 100,
-																		textTransform: 'none',
 																	}}>
 																	<Box>
 																		<Image src={info?.icon} />
@@ -452,17 +463,13 @@ export const CreateBooking = ({ ...props }) => {
 												style={{ textTransform: 'none' }}>
 												{isMore ? (
 													<Box>
-														<Typography
-															display='inline'
-															style={{ verticalAlign: 'middle', display: 'flex' }}>
+														<Typography className='view' display='inline'>
 															View Less <KeyboardArrowUpIcon />
 														</Typography>
 													</Box>
 												) : (
 													<Box>
-														<Typography
-															display='inline'
-															style={{ verticalAlign: 'middle', display: 'flex' }}>
+														<Typography className='view' display='inline'>
 															View More <KeyboardArrowDownIcon />
 														</Typography>
 													</Box>
@@ -677,6 +684,7 @@ export const CreateBooking = ({ ...props }) => {
 											<Grid item xs={12} sm={12} md={6} lg={6}>
 												<LocalizationProvider dateAdapter={AdapterDateFns}>
 													<DatePicker
+														minDate={form.initialValues.StartDate}
 														value={form.values.StartDate}
 														onChange={(value) => form.setFieldValue('StartDate', value)}
 														renderInput={(params) => <TextField {...params} fullWidth />}
@@ -973,10 +981,10 @@ export const CreateBooking = ({ ...props }) => {
 							)}
 
 							<Box className='stickyBottomBox'>
-								<Paper elevation={0} className='bottomButton'>
+								<Paper className='bottomButton'>
 									<Stack direction={'row'} justifyContent={'flex-end'} spacing={2}>
 										{(step === 2 || step === 3) && (
-											<Button onClick={handlePrev} style={{ width: '10rem' }}>
+											<Button className='prevCta' onClick={handlePrev}>
 												Previous
 											</Button>
 										)}
@@ -985,10 +993,9 @@ export const CreateBooking = ({ ...props }) => {
 												className='loadingcta'
 												variant='contained'
 												loading={loading}
-												loadingPosition={'end'}
 												disabled={isSubmittable}
 												onClick={(e) => handleNext(e)}
-												style={{ width: '10rem' }}>
+												style={{ minWidth: '10rem', marginRight: isMobile ? '' : '14%' }}>
 												{step === 3 ? 'Finish Booking' : 'Next'}
 											</LoadingButton>
 										)}

@@ -52,10 +52,6 @@ const CustomPaper = styled(Paper)(({ theme }) => ({
 			},
 		},
 	},
-	'.vAlignCenter': {
-		display: 'flex',
-		alignItems: 'center',
-	},
 }))
 export const BookingSummaryCard = ({ booking }: BookingSummaryCardProps) => {
 	const router = useRouter()
@@ -78,6 +74,10 @@ export const BookingSummaryCard = ({ booking }: BookingSummaryCardProps) => {
 				<Typography variant='h4' fontWeight={700}>
 					{JobTypeLabel[booking.jobType]} ({totalCount})
 				</Typography>
+				<Typography variant='body2'>
+					Created On: {booking.createdAt && format(booking.createdAt, 'dd/MM/yy')}
+				</Typography>
+
 				<Stack direction='row' justifyContent='space-between'>
 					<Typography variant='body2'>ID: {booking.bookingId}</Typography>
 					<StatusChip bookingState={booking.status} />
