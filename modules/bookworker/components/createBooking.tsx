@@ -29,6 +29,7 @@ import Supervisor from '../../../public/assets/icons/supervisor.svg'
 import Technician from '../../../public/assets/icons/technician.svg'
 import { checkError, theme } from '../../../sdk'
 import useCreateBooking from '../hooks/useCreateBooking'
+
 import {
 	CitiesOptions,
 	jobTypeInfo,
@@ -44,6 +45,7 @@ import { getCustomerDetails } from '../../../sdk/apis'
 
 import { createBooking } from '../apis/apis'
 import { useSnackbar } from '../../../sdk'
+import { useMobile } from '../../../sdk/hooks/useMobile'
 
 const CustomBookingStyle = styled(Box)(({ theme }) => ({
 	'.main': {
@@ -123,7 +125,7 @@ const CustomBookingStyle = styled(Box)(({ theme }) => ({
 	},
 	'.prevCta': {
 		width: '10rem',
-		marginLeft: '10%',
+		marginLeft: '14%',
 	},
 	'.jobType': {
 		borderRadius: 8,
@@ -151,6 +153,8 @@ export const CreateBooking = ({ ...props }) => {
 	const [isSubmittable, setIsSubmittable] = useState<boolean>(false)
 	const [loading, setLoading] = useState<boolean>(false)
 	const { showSnackbar } = useSnackbar()
+
+	const isMobile = useMobile()
 
 	const workerType = [
 		{
@@ -683,6 +687,7 @@ export const CreateBooking = ({ ...props }) => {
 											<Grid item xs={12} sm={12} md={6} lg={6}>
 												<LocalizationProvider dateAdapter={AdapterDateFns}>
 													<DatePicker
+														minDate={form.initialValues.StartDate}
 														value={form.values.StartDate}
 														onChange={(value) => form.setFieldValue('StartDate', value)}
 														renderInput={(params) => <TextField {...params} fullWidth />}
@@ -994,7 +999,7 @@ export const CreateBooking = ({ ...props }) => {
 												//loadingPosition={'end'}
 												disabled={isSubmittable}
 												onClick={(e) => handleNext(e)}
-												style={{ width: '10rem' }}>
+												style={{ width: '10rem', marginRight: isMobile ? '' : '14%' }}>
 												{step === 3 ? 'Finish Booking' : 'Next'}
 											</LoadingButton>
 										)}

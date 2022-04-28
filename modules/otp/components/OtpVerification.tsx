@@ -3,6 +3,7 @@ import { Typography, Box, Stack, Button, styled } from '@mui/material'
 import OtpInput from 'react-otp-input'
 import useOtp from '../hooks/useOtp'
 import { CircularProgress } from '@mui/material'
+import { theme } from '../../../sdk'
 
 const CustomOTPStyles = styled(Box)(({ theme }) => ({
 	display: 'flex',
@@ -21,7 +22,7 @@ const CustomOTPStyles = styled(Box)(({ theme }) => ({
 		marginBottom: 20,
 		marginRight: 15,
 		textAlign: 'center',
-		fontSize:12
+		fontSize: 12,
 	},
 	'.cta': {
 		marginTop: '1.5em',
@@ -52,18 +53,16 @@ export const OTPVerification = () => {
 							width: '3em',
 							height: '3em',
 							border: '1px solid #C4C4C4',
-							display:"flex",
-							justifyContent:"center"
+							display: 'flex',
+							justifyContent: 'center',
 						}}
-						focusStyle={{ border: '1px solid #C4C4C4' }}
+						shouldAutoFocus={true}
 						separator={<span> </span>}
 						isInputNum={true}
 						hasErrored={!!error || !!otpState.error}
 						errorStyle={{ border: '1px solid #F70000' }}
 					/>
-					<Stack
-						className='subHeader'
-						onClick={resendOTP}>
+					<Stack className='subHeader' onClick={resendOTP}>
 						Resend OTP
 					</Stack>
 
