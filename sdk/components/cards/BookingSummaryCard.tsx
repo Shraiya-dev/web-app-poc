@@ -29,7 +29,7 @@ const CustomPaper = styled(Paper)(({ theme }) => ({
 		padding: theme.spacing(2),
 		button: {
 			borderRadius: 4,
-			borderColor: theme.palette.secondary.light,
+			borderColor: theme.palette.grey[300],
 			color: theme.palette.common.black,
 			justifyContent: 'space-between',
 			margin: `${theme.spacing(1)} 0`,

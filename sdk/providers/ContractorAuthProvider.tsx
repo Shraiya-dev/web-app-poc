@@ -55,7 +55,7 @@ const ContractorAuthProvider = ({ children }: any) => {
 				user: {
 					customerId: data.payload?._id ?? '',
 					email: data.payload?.email ?? '',
-					name: data.payload?.userName ?? '',
+					name: data.payload?.name ?? '',
 					phoneNumber: data.payload?.phoneNumber ?? '',
 					companyName: data.payload.companyName ?? '',
 					customerStatus: data.payload?.customerStatus ?? CUSTOMER_STATUS.REGISTERED,
@@ -81,6 +81,7 @@ const ContractorAuthProvider = ({ children }: any) => {
 					})
 					return data
 				} else {
+					showSnackbar(data?.error, 'error')
 					throw data
 				}
 			} catch (error: any) {
@@ -115,7 +116,7 @@ const ContractorAuthProvider = ({ children }: any) => {
 					user: {
 						customerId: data.payload?.customerId ?? '',
 						email: data.payload?.email ?? '',
-						name: data.payload?.userName ?? '',
+						name: data.payload?.name ?? '',
 						phoneNumber: data.payload?.phoneNumber ?? '',
 						companyName: data.payload.companyName ?? '',
 						customerStatus: data.payload?.customerStatus ?? CUSTOMER_STATUS.REGISTERED,

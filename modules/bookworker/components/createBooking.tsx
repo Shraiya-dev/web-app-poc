@@ -44,7 +44,7 @@ import ConfirmCancel from './confirmCancel'
 import { getCustomerDetails } from '../../../sdk/apis'
 
 import { createBooking } from '../apis/apis'
-import { useSnackbar } from '../../../sdk'
+import { useSnackbar,useContractorAuth } from '../../../sdk'
 import { useMobile } from '../../../sdk/hooks/useMobile'
 
 const CustomBookingStyle = styled(Box)(({ theme }) => ({
@@ -83,9 +83,10 @@ const CustomBookingStyle = styled(Box)(({ theme }) => ({
 		position: 'sticky',
 
 		bottom: 0,
-		paddingTop: 20,
+		marginTop: 50,
 
 		overflowY: 'none',
+		zIndex:1
 	},
 	'.header': {
 		fontSize: 36,
@@ -125,7 +126,7 @@ const CustomBookingStyle = styled(Box)(({ theme }) => ({
 	},
 	'.prevCta': {
 		width: '10rem',
-		marginLeft: '12%',
+		marginLeft: '14%',
 	},
 	'.jobType': {
 		borderRadius: 8,
@@ -153,6 +154,7 @@ export const CreateBooking = ({ ...props }) => {
 	const [isSubmittable, setIsSubmittable] = useState<boolean>(false)
 	const [loading, setLoading] = useState<boolean>(false)
 	const { showSnackbar } = useSnackbar()
+	const { getContactorUserInfo, user } = useContractorAuth()
 
 	const isMobile = useMobile()
 
@@ -202,16 +204,6 @@ export const CreateBooking = ({ ...props }) => {
 		return false
 	}
 
-	useEffect(() => {
-		getCustomerDetails()
-			.then((data: any) => {
-				console.log('basic', data)
-				setUserInitialInfo(data?.data?.payload)
-			})
-			.catch((error) => {
-				console.log(error)
-			})
-	}, [])
 	useEffect(() => {
 		if (step === 1) {
 			const canSubmit: boolean =
@@ -996,10 +988,10 @@ export const CreateBooking = ({ ...props }) => {
 												className='loadingcta'
 												variant='contained'
 												loading={loading}
-												//loadingPosition={'end'}
+												
 												disabled={isSubmittable}
 												onClick={(e) => handleNext(e)}
-												style={{ width: '10rem', marginRight: isMobile ? '' : '12%' }}>
+												style={{ minWidth: '10rem', marginRight: isMobile ? '' : '14%' }}>
 												{step === 3 ? 'Finish Booking' : 'Next'}
 											</LoadingButton>
 										)}
