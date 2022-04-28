@@ -137,12 +137,11 @@ const CustomBookingStyle = styled(Box)(({ theme }) => ({
 		verticalAlign: 'middle',
 		display: 'flex',
 	},
-	
 }))
 
 export const CreateBooking = ({ ...props }) => {
 	const { toggleBookingForm, onCloseDialog, setOncloseDialog, bookingFormOpen, setBookingFormOpen } = props
-	const { form, step, setStep, userInitialInfo, setUserInitialInfo, timeConvert,handlePrev,  } = useCreateBooking()
+	const { form, step, setStep, userInitialInfo, setUserInitialInfo, timeConvert, handlePrev } = useCreateBooking()
 
 	const [isMore, setIsmore] = useState(false)
 	const [projectDurationInfo, setProjectDuration] = useState<string>()
@@ -183,6 +182,22 @@ export const CreateBooking = ({ ...props }) => {
 		},
 	]
 
+	const validateWorkerRequired = () => {
+		if (form.values.technician > 0 || form.values.technicianWages > 0) {
+			return form.values.technician > 0 && form.values.technicianWages > 0
+		}
+
+		if (form.values.helper > 0 || form.values.helperWages > 0) {
+			return form.values.helper > 0 && form.values.helperWages > 0
+		}
+
+		if (form.values.supervisor > 0 || form.values.supervisorWages > 0) {
+			return form.values.supervisor > 0 && form.values.supervisorWages > 0
+		}
+
+		return false
+	}
+
 	useEffect(() => {
 		getCustomerDetails()
 			.then((data: any) => {
@@ -196,15 +211,7 @@ export const CreateBooking = ({ ...props }) => {
 	useEffect(() => {
 		if (step === 1) {
 			var canSubmit: boolean =
-				!form.values.jobType ||
-				form.values.overTimeFactor === 'none' ||
-				(!form.values.technician && !form.values.helper && !form.values.supervisor) ||
-				(!!form.values.technician && !form.values.technicianWages) ||
-				(!form.values.technician && !!form.values.technicianWages) ||
-				(!!form.values.helper && !form.values.helperWages) ||
-				(!form.values.helper && !!form.values.helperWages) ||
-				(!!form.values.supervisor && !form.values.supervisorWages) ||
-				(!form.values.supervisor && !!form.values.supervisorWages)
+				!form.values.jobType || form.values.overTimeFactor === 'none' || !validateWorkerRequired()
 
 			setIsSubmittable(canSubmit)
 		}
@@ -289,7 +296,6 @@ export const CreateBooking = ({ ...props }) => {
 			}
 		}
 	}
-
 
 	const getSelectOptions = (opt: any) => {
 		return opt.map((item: any) => (
