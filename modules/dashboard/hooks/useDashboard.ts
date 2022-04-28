@@ -57,7 +57,7 @@ export const useDashboard = () => {
 						READY_TO_DEPLOY: item.jobCardDetails?.READY_TO_DEPLOY ?? 0,
 						DEPLOYMENT_COMPLETE: item.jobCardDetails?.DEPLOYMENT_COMPLETE ?? 0,
 					},
-					createdAt: item.createdAt,
+					createdAt: new Date(item.createdAt),
 				}
 				return booking
 			})

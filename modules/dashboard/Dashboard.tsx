@@ -97,7 +97,7 @@ export const Dashboard = () => {
 								overlap='circular'
 								anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
 								badgeContent={
-									Object.keys(router.query).length !== 0 && (
+									router.query.status && (
 										<svg height='10' width='10'>
 											<circle cx='5' cy='5' r='5' fill='red' />
 										</svg>

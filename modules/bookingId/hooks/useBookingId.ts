@@ -42,7 +42,7 @@ export const useBookingId = () => {
 					READY_TO_DEPLOY: booking.jobCardDetails?.READY_TO_DEPLOY ?? 0,
 					DEPLOYMENT_COMPLETE: booking.jobCardDetails?.DEPLOYMENT_COMPLETE ?? 0,
 				},
-				createdAt: booking.createdAt,
+				createdAt: new Date(booking.createdAt),
 			})
 			setJobCards(
 				jobCards.map((item: JobCard) => {
