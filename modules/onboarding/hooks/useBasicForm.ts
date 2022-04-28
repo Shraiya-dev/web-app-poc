@@ -14,7 +14,6 @@ interface CreateBasicForm {
 }
 
 const useBasicForm = () => {
-	
 	const [loading, setLoading] = useState(false)
 	const { showSnackbar } = useSnackbar()
 	const { user, getContactorUserInfo } = useContractorAuth()
@@ -83,7 +82,6 @@ const useBasicForm = () => {
 				.then((data: any) => {
 					setLoading(true)
 					if (data?.data?.payload?.customerId) {
-					
 					} else {
 						showSnackbar(data?.data?.developerInfo, 'error')
 					}
@@ -95,7 +93,6 @@ const useBasicForm = () => {
 					showSnackbar(error?.response?.data?.developerInfo, 'error')
 					console.log(error)
 				})
-			
 		},
 	})
 

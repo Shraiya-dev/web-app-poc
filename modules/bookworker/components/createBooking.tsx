@@ -113,7 +113,7 @@ const CustomBookingStyle = styled(Box)(({ theme }) => ({
 		width: '100%',
 		paddingRight: '10%',
 		paddingBottom: 20,
-		paddingTop: 10,
+		paddingTop: 20,
 		background: 'white',
 		overflow: 'hidden',
 	},
@@ -976,7 +976,7 @@ export const CreateBooking = ({ ...props }) => {
 							)}
 
 							<Box className='stickyBottomBox'>
-								<Paper elevation={0} className='bottomButton'>
+								<Paper  className='bottomButton'>
 									<Stack direction={'row'} justifyContent={'flex-end'} spacing={2}>
 										{(step === 2 || step === 3) && (
 											<Button className='prevCta' onClick={handlePrev}>
