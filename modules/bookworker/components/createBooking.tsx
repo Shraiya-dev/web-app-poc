@@ -92,7 +92,7 @@ const CustomBookingStyle = styled(Box)(({ theme }) => ({
 	},
 	'.subHeader': {
 		fontSize: 20,
-		fontWeight: 500,
+		fontWeight: 600,
 		marginTop: 20,
 		color: theme.palette.secondary.main,
 	},
@@ -119,12 +119,30 @@ const CustomBookingStyle = styled(Box)(({ theme }) => ({
 		textTransform: 'inherit',
 		padding: '12px 22px',
 		background: theme.palette.primary.main,
+		color: 'white',
 	},
+	'.prevCta': {
+		width: '10rem',
+		marginLeft: '10%',
+	},
+	'.jobType': {
+		borderRadius: 8,
+		padding: 8,
+		color: 'rgba(6, 31, 72, 0.7)',
+		height: 100,
+		width: 100,
+		textTransform: 'none',
+	},
+	'.view': {
+		verticalAlign: 'middle',
+		display: 'flex',
+	},
+	
 }))
 
 export const CreateBooking = ({ ...props }) => {
 	const { toggleBookingForm, onCloseDialog, setOncloseDialog, bookingFormOpen, setBookingFormOpen } = props
-	const { form, step, setStep, userInitialInfo, setUserInitialInfo, timeConvert } = useCreateBooking()
+	const { form, step, setStep, userInitialInfo, setUserInitialInfo, timeConvert,handlePrev,  } = useCreateBooking()
 
 	const [isMore, setIsmore] = useState(false)
 	const [projectDurationInfo, setProjectDuration] = useState<string>()
@@ -272,11 +290,6 @@ export const CreateBooking = ({ ...props }) => {
 		}
 	}
 
-	const handlePrev = () => {
-		if (step > 1) {
-			setStep((state) => state - 1)
-		}
-	}
 
 	const getSelectOptions = (opt: any) => {
 		return opt.map((item: any) => (
@@ -377,18 +390,14 @@ export const CreateBooking = ({ ...props }) => {
 												return (
 													<Grid key={index} item xs={4} sm={4} md={2} lg={2}>
 														<Button
+															className='jobType'
 															onClick={() => handleJobClick(info?.value)}
 															style={{
-																borderRadius: 8,
-																padding: 8,
 																background:
 																	selectedJob === info?.value
 																		? theme.palette.primary.light
 																		: 'white',
-																color: 'rgba(6, 31, 72, 0.7)',
-																height: 100,
-																width: 100,
-																textTransform: 'none',
+
 																border: !!checkError(`jobType`, form) ? 'red' : '',
 															}}>
 															<Box>
@@ -409,18 +418,13 @@ export const CreateBooking = ({ ...props }) => {
 														return (
 															<Grid key={index} item xs={4} sm={4} md={2} lg={2}>
 																<Button
+																	className='jobType'
 																	onClick={() => handleJobClick(info?.value)}
 																	style={{
-																		borderRadius: 8,
-																		padding: 8,
 																		background:
 																			selectedJob === info?.value
 																				? theme.palette.primary.light
 																				: 'white',
-																		color: 'rgba(6, 31, 72, 0.7)',
-																		height: 100,
-																		width: 100,
-																		textTransform: 'none',
 																	}}>
 																	<Box>
 																		<Image src={info?.icon} />
@@ -452,17 +456,13 @@ export const CreateBooking = ({ ...props }) => {
 												style={{ textTransform: 'none' }}>
 												{isMore ? (
 													<Box>
-														<Typography
-															display='inline'
-															style={{ verticalAlign: 'middle', display: 'flex' }}>
+														<Typography className='view' display='inline'>
 															View Less <KeyboardArrowUpIcon />
 														</Typography>
 													</Box>
 												) : (
 													<Box>
-														<Typography
-															display='inline'
-															style={{ verticalAlign: 'middle', display: 'flex' }}>
+														<Typography className='view' display='inline'>
 															View More <KeyboardArrowDownIcon />
 														</Typography>
 													</Box>
@@ -976,7 +976,7 @@ export const CreateBooking = ({ ...props }) => {
 								<Paper elevation={0} className='bottomButton'>
 									<Stack direction={'row'} justifyContent={'flex-end'} spacing={2}>
 										{(step === 2 || step === 3) && (
-											<Button onClick={handlePrev} style={{ width: '10rem' }}>
+											<Button className='prevCta' onClick={handlePrev}>
 												Previous
 											</Button>
 										)}
@@ -985,7 +985,7 @@ export const CreateBooking = ({ ...props }) => {
 												className='loadingcta'
 												variant='contained'
 												loading={loading}
-												loadingPosition={'end'}
+												//loadingPosition={'end'}
 												disabled={isSubmittable}
 												onClick={(e) => handleNext(e)}
 												style={{ width: '10rem' }}>
