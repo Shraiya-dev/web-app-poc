@@ -1,11 +1,25 @@
 import { FilterAlt } from '@mui/icons-material'
-import { Badge, Button, CircularProgress, Grid, Pagination, Stack, Typography } from '@mui/material'
+import CloseIcon from '@mui/icons-material/Close'
+import {
+	Badge,
+	Box,
+	Button,
+	CircularProgress,
+	Dialog,
+	Grid,
+	IconButton,
+	Pagination,
+	Stack,
+	Typography,
+} from '@mui/material'
 import { useRouter } from 'next/router'
 import React, { useCallback, useState } from 'react'
 import award from '../../public/assets/icons/award.svg'
 import calender from '../../public/assets/icons/calender.svg'
 import watch from '../../public/assets/icons/watch.svg'
 import { BookingCard, SearchField, StatisticsCard } from '../../sdk'
+import { CreateBooking } from '../bookworker/components/createBooking'
+import { useBooking } from '../bookworker/hooks/useBooking'
 import { FilterDrawer } from './components'
 import { useDashboard } from './hooks'
 
@@ -13,11 +27,38 @@ export const Dashboard = () => {
 	const { bookings, bookingStats, isLoading } = useDashboard()
 	const router = useRouter()
 	const [openFilterDrawer, setFilterDrawer] = useState(false)
+	const {
+		bookingFormOpen,
+		setBookingFormOpen,
+		onCloseDialog,
+		setOncloseDialog,
+		toggleBookingForm,
+		handleBookingForm,
+	} = useBooking()
+
 	const handelDrawerToggle = useCallback(() => {
 		setFilterDrawer((prev) => !prev)
 	}, [setFilterDrawer])
 	return (
 		<Stack>
+			<Dialog onClose={toggleBookingForm} open={bookingFormOpen} fullScreen>
+				<Box display='flex' alignItems='center'>
+					<Box flexGrow={1}></Box>
+					<Box style={{ marginTop: 30, marginRight: 30 }}>
+						<IconButton onClick={toggleBookingForm}>
+							<CloseIcon style={{ fontSize: 32 }} />
+						</IconButton>
+					</Box>
+				</Box>
+
+				<CreateBooking
+					toggleBookingForm={toggleBookingForm}
+					onCloseDialog={onCloseDialog}
+					setOncloseDialog={setOncloseDialog}
+					bookingFormOpen={bookingFormOpen}
+					setBookingFormOpen={setBookingFormOpen}
+				/>
+			</Dialog>
 			<Grid container spacing={2} alignItems={'stretch'}>
 				<Grid item xs={6} sm={6} md={4}>
 					<StatisticsCard

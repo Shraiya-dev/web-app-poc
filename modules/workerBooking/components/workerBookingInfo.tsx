@@ -36,7 +36,7 @@ export const WorkerBookingInfo = () => {
 		<CustomPaper elevation={3}>
 			<Stack className='cardHeader'>
 				<Stack flex={1} spacing={1}>
-					<Typography variant='h6' fontWeight={700}>
+					<Typography variant='h6' fontWeight={600}>
 						Bar Bender (10)
 					</Typography>
 					<Stack direction='row' flexWrap='wrap'>

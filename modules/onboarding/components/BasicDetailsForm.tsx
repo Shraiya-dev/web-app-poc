@@ -4,11 +4,10 @@ import LoadingButton from '@mui/lab/LoadingButton'
 import useBasicForm from '../hooks/useBasicForm'
 import { useRouter } from 'next/router'
 import EditIcon from '@mui/icons-material/Edit'
-import { useEffect, useState } from 'react'
 import { checkError } from '../../../sdk'
-import { getCustomerDetails } from '../../../sdk/apis'
 
 const BasicFormStyle = styled(Box)(({ theme }) => ({
+	padding:20,
 	'.cta': {
 		marginTop: '1em',
 		width: '100%',
@@ -27,19 +26,6 @@ export const BasicDetailsForm = () => {
 
 	const router = useRouter()
 
-	// useEffect(() => {
-	// 	getCustomerDetails()
-	// 		.then((data: any) => {
-	// 			form.initialValues.name = data?.data?.payload?.name
-	// 			form.initialValues.company = data?.data?.payload?.companyName
-	// 			form.initialValues.companyEmail = data?.data?.payload?.email
-	// 			form.initialValues.phoneNumber = data?.data?.payload?.phoneNumber
-	// 		})
-	// 		.catch((error) => {
-	// 			console.log(error)
-	// 		})
-	// }, [form])
-
 	return (
 		<BasicFormStyle>
 			<Box>
@@ -51,7 +37,7 @@ export const BasicDetailsForm = () => {
 					}}>
 					<form onSubmit={form.handleSubmit} style={{ width: '36.25ch' }}>
 						<Stack>
-							<Typography variant='h5' display='inline' style={{ paddingBottom: '0.5em' }}>
+							<Typography  display='inline' style={{ paddingBottom: '0.5em', fontSize:36 }}>
 								Basic Details
 								{router.asPath === '/profile' && (
 									<Button

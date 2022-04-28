@@ -79,7 +79,7 @@ export const BookingCard = ({ booking }: BookingCardProps) => {
 							<Typography variant='body1' fontWeight={500} lineHeight={2.5} color={'inherit'}>
 								{JobCardStateLabel[JobCardState.ACCEPTED]}
 							</Typography>
-							<Typography variant='h5' fontWeight={700} lineHeight={2} color={'primary'}>
+							<Typography variant='h5' fontWeight={600} lineHeight={2} color={'primary'}>
 								{booking?.jobCardDetails ? booking?.jobCardDetails[JobCardState.ACCEPTED] : 0}
 							</Typography>
 						</Stack>
@@ -87,7 +87,7 @@ export const BookingCard = ({ booking }: BookingCardProps) => {
 							<Typography variant='body1' fontWeight={500} lineHeight={2.5} color={'inherit'}>
 								{JobCardStateLabel[JobCardState.READY_TO_DEPLOY]}
 							</Typography>
-							<Typography variant='h5' fontWeight={700} lineHeight={2} color={'primary'}>
+							<Typography variant='h5' fontWeight={600} lineHeight={2} color={'primary'}>
 								{booking?.jobCardDetails ? booking?.jobCardDetails[JobCardState.READY_TO_DEPLOY] : 0}
 							</Typography>
 						</Stack>
@@ -95,7 +95,7 @@ export const BookingCard = ({ booking }: BookingCardProps) => {
 							<Typography variant='body1' fontWeight={500} lineHeight={2.5} color={'inherit'}>
 								{JobCardStateLabel[JobCardState.DEPLOYMENT_COMPLETE]}
 							</Typography>
-							<Typography variant='h5' fontWeight={700} lineHeight={2} color={'primary'}>
+							<Typography variant='h5' fontWeight={600} lineHeight={2} color={'primary'}>
 								{booking?.jobCardDetails
 									? booking?.jobCardDetails[JobCardState.DEPLOYMENT_COMPLETE]
 									: 0}
