@@ -17,7 +17,6 @@ const CustomLoginStyles = styled(Box)(({ theme }) => ({
 	'.headerInfo': {
 		paddingBottom: '0.5em',
 		fontSize: 36,
-		fontWeight: 600,
 	},
 	'.subHeader': {
 		fontSize: 14,

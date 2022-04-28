@@ -37,7 +37,7 @@ export const BasicDetailsForm = () => {
 					}}>
 					<form onSubmit={form.handleSubmit} style={{ width: '36.25ch' }}>
 						<Stack>
-							<Typography  display='inline' style={{ paddingBottom: '0.5em', fontSize:36, fontWeight:700 }}>
+							<Typography  display='inline' style={{ paddingBottom: '0.5em', fontSize:36 }}>
 								Basic Details
 								{router.asPath === '/profile' && (
 									<Button
