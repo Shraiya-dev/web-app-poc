@@ -4,9 +4,19 @@ export const primary = {
 	main: '#244CB3',
 	light: '#224ab526',
 }
+
 const breakpoints = createBreakpoints({})
 
 let themeDef = createTheme({
+	typography: {
+		fontFamily: `'Mulish' , sans-serif`,
+		allVariants: {
+			color: '#061F48',
+		},
+		button: {
+			fontSize: 16,
+		},
+	},
 	palette: {
 		primary: primary,
 		secondary: {
@@ -57,6 +67,11 @@ let themeDef = createTheme({
 	],
 
 	components: {
+		MuiPaper: {
+			defaultProps: {
+				variant: 'outlined',
+			},
+		},
 		MuiGrid: {
 			defaultProps: {
 				display: 'flex',

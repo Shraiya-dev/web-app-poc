@@ -81,6 +81,7 @@ const ContractorAuthProvider = ({ children }: any) => {
 					})
 					return data
 				} else {
+					showSnackbar(data?.error, 'error')
 					throw data
 				}
 			} catch (error: any) {
