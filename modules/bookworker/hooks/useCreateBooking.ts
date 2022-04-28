@@ -50,6 +50,7 @@ const useCreateBooking = () => {
 	const [step, setStep] = useState(1)
 	const [userInitialInfo, setUserInitialInfo] = useState<userInitialInfo>()
 	const { showSnackbar } = useSnackbar()
+
 	const { getContactorUserInfo, user } = useContractorAuth()
 	useEffect(() => {
 		//getContactorUserInfo();
@@ -66,7 +67,11 @@ const useCreateBooking = () => {
 			})
 	}, [])
 
-	console.log('user', user)
+	const handlePrev = () => {
+		if (step > 1) {
+			setStep((state) => state - 1)
+		}
+	}
 
 	function timeConvert(time: any) {
 		// Check correct time format and split into components
@@ -207,35 +212,6 @@ const useCreateBooking = () => {
 		},
 		onSubmit: (values) => {
 			console.log('hello', values)
-			// const payload = {
-			// 	city: values.city,
-			// 	state: values.state,
-			// 	companyName: values.company,
-			// 	email: values.companyEmail,
-			// 	name: values.name,
-			// 	phoneNumber: values.phoneNumber,
-			// 	siteAddress: values.siteAddress,
-			// 	schedule: {
-			// 		bookingDuration: values.BookingDuration,
-			// 		startDate: values.StartDate,
-			// 		shiftTime: values.shiftTime,
-			// 	},
-			// 	peopleRequired: {
-			// 		SUPERVISOR: values.supervisor,
-			// 		HELPER: values.helper,
-			// 		TECHNICIAN: values.technician,
-			// 	},
-			// 	overTime: {
-			// 		rate: values.overTimeFactor,
-			// 	},
-			// 	earning: {
-			// 		HELPER: values.helperWages,
-			// 		TECHNICIAN: values.technicianWages,
-			// 		SUPERVISOR: values.supervisorWages,
-			// 	},
-			// 	tags: values.tags,
-			// 	jobType: values.jobType,
-			// }
 		},
 	})
 
@@ -246,6 +222,7 @@ const useCreateBooking = () => {
 		userInitialInfo,
 		setUserInitialInfo,
 		timeConvert,
+		handlePrev,
 	}
 }
 
