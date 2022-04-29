@@ -33,7 +33,6 @@ export const Dashboard = () => {
 		onCloseDialog,
 		setOncloseDialog,
 		toggleBookingForm,
-		handleBookingForm,
 	} = useBooking()
 
 	const handelDrawerToggle = useCallback(() => {
@@ -42,14 +41,6 @@ export const Dashboard = () => {
 	return (
 		<Stack>
 			<Dialog onClose={toggleBookingForm} open={bookingFormOpen} fullScreen>
-				<Box display='flex' alignItems='center'>
-					<Box flexGrow={1}></Box>
-					<Box style={{ marginTop: 30, marginRight: 30 }}>
-						<IconButton onClick={toggleBookingForm}>
-							<CloseIcon style={{ fontSize: 32 }} />
-						</IconButton>
-					</Box>
-				</Box>
 
 				<CreateBooking
 					toggleBookingForm={toggleBookingForm}
