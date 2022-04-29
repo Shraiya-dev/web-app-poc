@@ -81,10 +81,6 @@ const useBasicForm = () => {
 			updateProfile(payload)
 				.then((data: any) => {
 					setLoading(true)
-					if (data?.data?.payload?.customerId) {
-					} else {
-						showSnackbar(data?.data?.developerInfo, 'error')
-					}
 					getContactorUserInfo()
 					setLoading(false)
 					setEditInfo(false)
