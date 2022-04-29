@@ -23,8 +23,8 @@ interface CreateBookingForm {
 
 	skills: Array<String>
 	tags: Array<String>
-	startTime: Date
-	endTime: Date
+	startTime: string
+	endTime: string
 	shiftTime: string
 
 	state: string
@@ -97,8 +97,8 @@ const useCreateBooking = () => {
 
 			skills: [],
 			tags: [],
-			startTime: new Date(),
-			endTime: new Date(),
+			startTime: '09:00am',
+			endTime: '06:00pm',
 			shiftTime: '',
 
 			state: 'none',

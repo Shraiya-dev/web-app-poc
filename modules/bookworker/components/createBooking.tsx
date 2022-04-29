@@ -40,6 +40,9 @@ import { useMobile } from '../../../sdk/hooks/useMobile'
 import CloseIcon from '@mui/icons-material/Close'
 import { format } from 'date-fns'
 
+import { CustomTimePicker } from '../../../sdk/components/timepicker/customTimePicker'
+import { timeDataAM, timeDataPM } from '../utils/helperData'
+
 const CustomBookingStyle = styled(Box)(({ theme }) => ({
 	'.main': {
 		justifyContent: 'center',
@@ -212,9 +215,11 @@ export const CreateBooking = ({ ...props }) => {
 				form.values.city === 'none' ||
 				form.values.state === 'none' ||
 				!form.values.siteAddress ||
-				!form.values.shiftTime ||
 				!form.values.startTime ||
-				!form.values.BookingDuration
+				!form.values.BookingDuration ||
+				(shiftTiming === 'Custom'
+					? form.values.startTime === 'none' || form.values.endTime === 'none'
+					: !form.values.shiftTime)
 
 			setIsSubmittable(canSubmit)
 		}
@@ -233,8 +238,7 @@ export const CreateBooking = ({ ...props }) => {
 	const handleNext = (e: any) => {
 		let ConvertedshiftTime = form.values.shiftTime
 		if (shiftTiming === 'Custom') {
-			ConvertedshiftTime =
-				format(form.values.startTime, 'hh:mma') + ` - ` + format(form.values.endTime, 'hh:mma')
+			ConvertedshiftTime = form.values.startTime + '-' + form.values.endTime
 
 			form.setFieldValue('shiftTime', ConvertedshiftTime)
 		}
@@ -680,6 +684,7 @@ export const CreateBooking = ({ ...props }) => {
 							)}
 
 							{/* Project Details */}
+
 							{step === 2 && (
 								<Stack>
 									<Box>
@@ -746,7 +751,7 @@ export const CreateBooking = ({ ...props }) => {
 														borderRadius: 4,
 														padding: 4,
 														background:
-															shiftTiming === '9am-6pm'
+															shiftTiming === '09:00am-06:00pm'
 																? theme.palette.primary.light
 																: 'white',
 
@@ -755,7 +760,7 @@ export const CreateBooking = ({ ...props }) => {
 														color: 'black',
 														marginRight: 10,
 													}}
-													onClick={() => handleShiftTiming('9am-6pm')}>
+													onClick={() => handleShiftTiming('09:00am-06:00pm')}>
 													9am-6pm
 												</Button>
 
@@ -781,7 +786,20 @@ export const CreateBooking = ({ ...props }) => {
 										{shiftTiming === 'Custom' && (
 											<Grid container spacing={4} style={{ marginTop: 10 }}>
 												<Grid item xs={12} sm={12} md={6} lg={6}>
-													<LocalizationProvider dateAdapter={AdapterDateFns}>
+													<CustomTimePicker
+														form={form}
+														error={!!checkError('startTime', form)}
+														labelId={'startTime'}
+														id={'startTime'}
+														name={'startTime'}
+														value={form.values.startTime}
+														timeOptions={timeDataAM}
+														onChange={(e: any) => {
+															form.handleChange(e)
+														}}
+													/>
+
+													{/* <LocalizationProvider dateAdapter={AdapterDateFns}>
 														<TimePicker
 															value={form.values.startTime}
 															onChange={(value) => form.setFieldValue('startTime', value)}
@@ -794,10 +812,22 @@ export const CreateBooking = ({ ...props }) => {
 																/>
 															)}
 														/>
-													</LocalizationProvider>
+													</LocalizationProvider> */}
 												</Grid>
 												<Grid item xs={12} sm={12} md={6} lg={6}>
-													<LocalizationProvider dateAdapter={AdapterDateFns}>
+													<CustomTimePicker
+														form={form}
+														error={!!checkError('endTime', form)}
+														labelId={'endTime'}
+														id={'endTime'}
+														name={'endTime'}
+														value={form.values.endTime}
+														timeOptions={timeDataPM}
+														onChange={(e: any) => {
+															form.handleChange(e)
+														}}
+													/>
+													{/* <LocalizationProvider dateAdapter={AdapterDateFns}>
 														<TimePicker
 															onChange={(value) => {
 																form.setFieldValue('endTime', value),
@@ -816,7 +846,7 @@ export const CreateBooking = ({ ...props }) => {
 																/>
 															)}
 														/>
-													</LocalizationProvider>
+													</LocalizationProvider> */}
 												</Grid>
 											</Grid>
 										)}
