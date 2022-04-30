@@ -36,11 +36,10 @@ export const refreshTokenService = async (refreshToken: string, accessToken: Str
 	return axios.post('/refresh-token', payload)
 }
 
-export const getCustomerDetails = async()=>{
-
-	return axios.get(`/gateway/customer-api/`);
+export const getCustomerDetails = async () => {
+	return axios.get(`/gateway/customer-api/`)
 }
 
-export const updateProfile = async(payload:any)=>{
+export const updateProfile = async (payload: any) => {
 	return axios.post('/gateway/customer-api/profile', payload)
 }

@@ -15,8 +15,7 @@ export const CustomTimePicker = ({ ...props }) => {
 			style={style}
 			fullWidth>
 			<MenuItem value={'none'}>Select Time</MenuItem>
-            {getSelectOptionsFromArray(timeOptions)}
-		
+			{getSelectOptionsFromArray(timeOptions)}
 		</Select>
 	)
 }

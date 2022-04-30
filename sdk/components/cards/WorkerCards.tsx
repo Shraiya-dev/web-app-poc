@@ -8,9 +8,8 @@ import { Stack } from '@mui/material'
 import LocationOnIcon from '@mui/icons-material/LocationOn'
 import styled from '@emotion/styled'
 
-export default function WorkerCard({...props}) {
-
-	const {handleView} = props;
+export default function WorkerCard({ ...props }) {
+	const { handleView } = props
 	const CustomWorkerCard = styled(Box)(({ theme }) => ({
 		'.card-content-info': {
 			color: '#244CB3',
@@ -66,7 +65,9 @@ export default function WorkerCard({...props}) {
 				<CardContent>
 					<Box className='card-content-info'>
 						<Typography className='worker-name'></Typography> Rambabu Kewat
-						<Stack className='view' onClick={handleView}>View</Stack>
+						<Stack className='view' onClick={handleView}>
+							View
+						</Stack>
 					</Box>
 					<Typography className='profile'>Technician</Typography>
 					<Typography className='age'>45 Years</Typography>

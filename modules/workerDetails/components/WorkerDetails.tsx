@@ -61,8 +61,8 @@ const WorkerProfileStyle = styled(Box)(({ theme }) => ({
 		fontSize: 14,
 		color: '#CC2C49',
 		verticalAlign: 'middle',
-		textAlign:"right",
-		marginRight:4,
+		textAlign: 'right',
+		marginRight: 4,
 	},
 	'.contactInfo': {
 		padding: 10,

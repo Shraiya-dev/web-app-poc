@@ -30,7 +30,7 @@ import { CreateBooking } from '../../modules/bookworker/components/createBooking
 import { boolean } from 'yup'
 import useCreateBooking from '../../modules/bookworker/hooks/useCreateBooking'
 
-import {useBooking }from '../../modules/bookworker/hooks/useBooking'
+import { useBooking } from '../../modules/bookworker/hooks/useBooking'
 
 //always update when you change the app bar height into the onlyCssWeNeed file
 const APP_BAR_HEIGHT = 84
@@ -56,8 +56,8 @@ const CustomContainer = styled(Container)(({ theme }) => ({
 }))
 
 const DashboardLayout = ({ children, ...props }: any) => {
-
-	const {drawerOpen, setDrawerOpen,bookingFormOpen, setBookingFormOpen,onCloseDialog, setOncloseDialog}= useBooking()
+	const { drawerOpen, setDrawerOpen, bookingFormOpen, setBookingFormOpen, onCloseDialog, setOncloseDialog } =
+		useBooking()
 	const { logOut } = useContractorAuth()
 	const isMobile = useMobile()
 	//const [drawerOpen, setDrawerOpen] = useState<boolean>(false)
@@ -161,8 +161,6 @@ const DashboardLayout = ({ children, ...props }: any) => {
 			</Drawer>
 
 			<Dialog onClose={toggleBookingForm} open={bookingFormOpen} fullScreen>
-				
-
 				<CreateBooking
 					toggleBookingForm={toggleBookingForm}
 					onCloseDialog={onCloseDialog}
