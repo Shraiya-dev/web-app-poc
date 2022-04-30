@@ -14,23 +14,22 @@ import Shuttering from '../../../public/assets/icons/shuttering.svg'
 import AluminiumFabricator from '../../../public/assets/icons/aluminiumfabricator.svg'
 
 export const jobTypeInfo = [
+	{ icon: Painter, label: 'Painter', value: 'PAINTER' },
+	{ icon: Electrician, label: 'Electrical', value: 'ELECTRICAL' },
 	{ icon: Mason, label: 'Mason', value: 'MASON' },
 	{ icon: Barbender, label: 'Barbender', value: 'BAR_BENDER' },
 	{ icon: Carpenter, label: 'Carpenter', value: 'CARPENTER' },
-	{ icon: Plumber, label: 'Plumber', value: 'PLUMBING' },
-	{ icon: Electrician, label: 'Electrical', value: 'ELECTRICAL' },
-	{ icon: Gypsum, label: 'Gypsum', value: 'GYPSUM' },
+	{ icon: Shuttering, label: 'Shuttering Carpenter', value: 'SHUTTERING_CARPENTER' },
 ]
 
 export const moreJobType = [
+	{ icon: Plumber, label: 'Plumber', value: 'PLUMBING' },
+	{ icon: Stone, label: 'Stone', value: 'STONE_TILE_MARBLE_LAYER' },
+	{ icon: Gypsum, label: 'Gypsum', value: 'GYPSUM' },
 	{ icon: AluminiumFabricator, label: 'Aluminium fabricator', value: 'ALUMINIUM_FABRICATOR' },
 	{ icon: GeneralWorker, label: 'General Worker', value: 'GENERAL_HELPER' },
-	{ icon: Painter, label: 'Painter', value: 'PAINTER' },
-	{ icon: Stone, label: 'Stone', value: 'STONE_TILE_MARBLE_LAYER' },
 	{ icon: Hvac, label: 'Hvac', value: 'HVAC' },
-
 	{ icon: Welderfitter, label: 'Welder fitter', value: 'WELDER_FITTER' },
-	{ icon: Shuttering, label: 'Shuttering', value: 'SHUTTERING_CARPENTER' },
 ]
 
 export const BookingStatusOptions = [

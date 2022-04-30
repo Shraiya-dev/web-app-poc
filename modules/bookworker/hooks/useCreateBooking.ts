@@ -117,11 +117,11 @@ const useCreateBooking = () => {
 				if (!values.jobType) {
 					errors.jobType = 'Required'
 				}
-				if (!values.helper && !values.supervisor && !values.technician) {
-					errors.helper = 'Required'
-					errors.supervisor = 'Required'
-					errors.technician = 'Required'
-				}
+				// if (!values.helper && !values.supervisor && !values.technician) {
+				// 	errors.helper = 'Required'
+				// 	errors.supervisor = 'Required'
+				// 	errors.technician = 'Required'
+				// }
 
 				//helper
 				if (!values.helper && values.helperWages) {
@@ -129,6 +129,20 @@ const useCreateBooking = () => {
 				}
 				if (values.helper && !values.helperWages) {
 					errors.helperWages = 'Required'
+				}
+
+				if (!values.technician && values.technicianWages) {
+					errors.technician = 'Required'
+				}
+				if (values.technician && !values.technicianWages) {
+					errors.technicianWages = 'Required'
+				}
+
+				if (!values.supervisor && values.supervisorWages) {
+					errors.supervisor = 'Required'
+				}
+				if (values.supervisorWages && !values.supervisorWages) {
+					errors.supervisorWages = 'Required'
 				}
 			}
 
