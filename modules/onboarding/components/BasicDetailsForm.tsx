@@ -5,6 +5,7 @@ import useBasicForm from '../hooks/useBasicForm'
 import { useRouter } from 'next/router'
 import EditIcon from '@mui/icons-material/Edit'
 import { checkError } from '../../../sdk'
+import { Cancel } from '@mui/icons-material'
 
 const BasicFormStyle = styled(Box)(({ theme }) => ({
 	padding:20,
@@ -37,15 +38,17 @@ export const BasicDetailsForm = () => {
 					}}>
 					<form onSubmit={form.handleSubmit} style={{ width: '36.25ch' }}>
 						<Stack>
-							<Typography  display='inline' style={{ paddingBottom: '0.5em', fontSize:36 }}>
+							<Typography  display='inline' style={{ paddingBottom: '0.5em', fontSize:36,width:'100%' }}>
 								Basic Details
 								{router.asPath === '/profile' && (
 									<Button
 										variant='text'
-										style={{ float: 'right' }}
-										endIcon={<EditIcon />}
+										style={{ float: 'right', }}
+										endIcon={editInfo?<Cancel />:<EditIcon />}
 										onClick={handleEdit}>
-										Edit
+
+											{editInfo?'Cancel':'Edit'}
+										
 									</Button>
 								)}
 							</Typography>
