@@ -1,4 +1,3 @@
-import { useContractorAuth } from '../../../sdk'
 import { useState } from 'react'
 
 export const useBooking = () => {

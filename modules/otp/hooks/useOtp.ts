@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { useRouter } from 'next/router'
 import { useContractorAuth } from '../../../sdk'
 import { useFormik } from 'formik'
@@ -43,8 +43,7 @@ const useOtp = () => {
 			if (validateOtpField(otp) === 'valid') {
 				verifyOtp(`${phoneNumber}`, otp.otp)
 					.then((res) => {
-						console.log('00000', res?.data)
-						if (res?.success) {
+						if (res?.success === 'success') {
 							setOtpState((prevValues) => ({
 								...prevValues,
 								status: 'success',
@@ -61,7 +60,7 @@ const useOtp = () => {
 						}
 					})
 					.catch((err) => {
-						console.log('error', err)
+						console.log('error', error)
 						setOtpState((prevValues) => ({
 							...prevValues,
 							otp: '',

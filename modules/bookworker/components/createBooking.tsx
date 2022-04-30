@@ -101,6 +101,12 @@ const CustomBookingStyle = styled(Box)(({ theme }) => ({
 		color: theme.palette.secondary.main,
 		paddingBottom: 8,
 	},
+	'.subInfoError': {
+		fontSize: 13,
+		fontWeight: 500,
+		color: theme.palette.error.main,
+		paddingBottom: 20,
+	},
 	'.bottomButton': {
 		position: 'fixed',
 		bottom: 0,
@@ -134,6 +140,7 @@ const CustomBookingStyle = styled(Box)(({ theme }) => ({
 		textTransform: 'none',
 		border: '1px solid #C2C9D2',
 		boxShadow: 'none',
+		lineHeight: 1.4,
 	},
 	'.view': {
 		verticalAlign: 'middle',
@@ -320,6 +327,20 @@ export const CreateBooking = ({ ...props }) => {
 		setShiftTiming(info)
 	}
 
+	const getErrorString = () => {
+		return form.errors.helper ||
+			form.errors.technician ||
+			form.errors.supervisor ||
+			form.errors.helperWages ||
+			form.errors.technicianWages ||
+			form.errors.supervisorWages ? (
+			<Typography className='subInfoError'>
+				At least 1 technician, helper or supervisor is required with wages
+			</Typography>
+		) : (
+			''
+		)
+	}
 	return (
 		<CustomBookingStyle>
 			{step !== 4 && (
@@ -443,11 +464,11 @@ export const CreateBooking = ({ ...props }) => {
 																				? theme.palette.primary.light
 																				: 'white',
 																	}}>
-																	<Box>
+																	<Stack>
 																		<Image src={info?.icon} />
 
 																		<Stack>{info?.label}</Stack>
-																	</Box>
+																	</Stack>
 																</Button>
 															</Grid>
 														)
@@ -549,6 +570,7 @@ export const CreateBooking = ({ ...props }) => {
 										<InputLabel htmlFor='jobType' className='inputLabel'>
 											{`Workers Required & Daily Wage`}
 										</InputLabel>
+										{getErrorString()}
 										<Grid container spacing={4}>
 											{workerType.map((info, index) => {
 												return (
@@ -587,7 +609,7 @@ export const CreateBooking = ({ ...props }) => {
 																fullWidth
 																onBlur={form.handleBlur}
 																error={!!checkError(`${info?.name}`, form)}
-																helperText={checkError(`${info?.name}`, form)}
+																//helperText={checkError(`${info?.name}`, form)}
 															/>
 														</Grid>
 														<Grid item xs={12} sm={12} md={4}>
@@ -605,7 +627,7 @@ export const CreateBooking = ({ ...props }) => {
 																fullWidth
 																onBlur={form.handleBlur}
 																error={!!checkError(`${info?.wage}`, form)}
-																helperText={checkError(`${info?.wage}`, form)}
+																//helperText={checkError(`${info?.wage}`, form)}
 															/>
 														</Grid>
 													</Grid>
@@ -634,7 +656,7 @@ export const CreateBooking = ({ ...props }) => {
 															id='overTimeFactor'
 															name='overTimeFactor'
 															value={form.values.overTimeFactor}
-															autoWidth={true}
+															//autoWidth={true}
 															//label='Overtime Factor'
 															onChange={form.handleChange}>
 															<MenuItem value={'none'}>Select Overtime Factor</MenuItem>
@@ -865,7 +887,7 @@ export const CreateBooking = ({ ...props }) => {
 													id='state'
 													name='state'
 													value={form.values.state}
-													autoWidth={true}
+													//autoWidth={true}
 													onChange={(e) => {
 														form.handleChange(e)
 													}}
@@ -883,7 +905,7 @@ export const CreateBooking = ({ ...props }) => {
 													name='city'
 													error={!!checkError('city', form)}
 													value={form.values.city}
-													autoWidth={true}
+													//	autoWidth={true}
 													onChange={(e) => {
 														form.handleChange(e)
 													}}

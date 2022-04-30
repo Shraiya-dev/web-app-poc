@@ -85,7 +85,10 @@ const ContractorAuthProvider = ({ children }: any) => {
 					throw data
 				}
 			} catch (error: any) {
-				showSnackbar(error?.response?.data?.developerInfo, 'error')
+				console.log('inerror', error)
+				showSnackbar(error?.error, 'error')
+				//TODO: Need to fix in response also
+				//showSnackbar(error?.response?.data?.developerInfo, 'error')
 			}
 			//return await loginService(phoneNumber, USER_TYPE.CONTRACTOR, USER_LOGIN_TYPE.OTP, otp)
 		},
