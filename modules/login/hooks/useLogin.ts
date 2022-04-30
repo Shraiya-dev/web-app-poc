@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
-import { useContractorAuth } from '../../../sdk'
+import { useContractorAuth,useSnackbar } from '../../../sdk'
 import { useFormik } from 'formik'
 
 const initialLoginState = {
@@ -15,6 +15,8 @@ const useLogin = () => {
 	const [loginState, setLoginState] = useState(initialLoginState)
 	const { status, error } = loginState
 	const [loading, setLoading] = useState(false)
+
+	const {showSnackbar} =useSnackbar()
 
 	const form = useFormik({
 		initialValues: {
@@ -51,8 +53,10 @@ const useLogin = () => {
 					}))
 					setLoading(false)
 				})
-				.catch((err) => {
-					console.log('error', err)
+				.catch((error) => {
+					showSnackbar(error?.response?.data?.developerInfo, 'error')
+					console.log('error', error)
+
 				})
 		},
 	})

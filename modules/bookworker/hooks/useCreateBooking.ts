@@ -131,6 +131,20 @@ const useCreateBooking = () => {
 					errors.helperWages = 'Required'
 				}
 
+				if (!values.technician && values.technicianWages) {
+					errors.technician = 'Required'
+				}
+				if (values.technician && !values.technicianWages) {
+					errors.technicianWages = 'Required'
+				}
+
+				if (!values.supervisor && values.supervisorWages) {
+					errors.supervisor = 'Required'
+				}
+				if (values.supervisorWages && !values.supervisorWages) {
+					errors.supervisorWages = 'Required'
+				}
+
 			}
 
 			if (step === 2) {
