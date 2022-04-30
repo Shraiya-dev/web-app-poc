@@ -27,13 +27,7 @@ export const Dashboard = () => {
 	const { bookings, bookingStats, isLoading } = useDashboard()
 	const router = useRouter()
 	const [openFilterDrawer, setFilterDrawer] = useState(false)
-	const {
-		bookingFormOpen,
-		setBookingFormOpen,
-		onCloseDialog,
-		setOncloseDialog,
-		toggleBookingForm,
-	} = useBooking()
+	const { bookingFormOpen, setBookingFormOpen, onCloseDialog, setOncloseDialog, toggleBookingForm } = useBooking()
 
 	const handelDrawerToggle = useCallback(() => {
 		setFilterDrawer((prev) => !prev)
@@ -41,7 +35,6 @@ export const Dashboard = () => {
 	return (
 		<Stack>
 			<Dialog onClose={toggleBookingForm} open={bookingFormOpen} fullScreen>
-
 				<CreateBooking
 					toggleBookingForm={toggleBookingForm}
 					onCloseDialog={onCloseDialog}

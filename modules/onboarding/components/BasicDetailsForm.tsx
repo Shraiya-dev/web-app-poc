@@ -8,7 +8,7 @@ import { checkError } from '../../../sdk'
 import { Cancel } from '@mui/icons-material'
 
 const BasicFormStyle = styled(Box)(({ theme }) => ({
-	padding:20,
+	padding: 20,
 	'.cta': {
 		marginTop: '1em',
 		width: '100%',
@@ -38,17 +38,17 @@ export const BasicDetailsForm = () => {
 					}}>
 					<form onSubmit={form.handleSubmit} style={{ width: '36.25ch' }}>
 						<Stack>
-							<Typography  display='inline' style={{ paddingBottom: '0.5em', fontSize:36,width:'100%' }}>
+							<Typography
+								display='inline'
+								style={{ paddingBottom: '0.5em', fontSize: 36, width: '100%' }}>
 								Basic Details
 								{router.asPath === '/profile' && (
 									<Button
 										variant='text'
-										style={{ float: 'right', }}
-										endIcon={editInfo?<Cancel />:<EditIcon />}
+										style={{ float: 'right' }}
+										endIcon={editInfo ? <Cancel /> : <EditIcon />}
 										onClick={handleEdit}>
-
-											{editInfo?'Cancel':'Edit'}
-										
+										{editInfo ? 'Cancel' : 'Edit'}
 									</Button>
 								)}
 							</Typography>

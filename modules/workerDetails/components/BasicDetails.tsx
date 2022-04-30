@@ -12,7 +12,7 @@ const BasicDetailsStyle = styled(Box)(({ theme }) => ({
 export const BasicDetails = ({ ...props }) => {
 	const { workerData } = props
 
-	console.log("workerData",workerData)
+	console.log('workerData', workerData)
 	return (
 		<BasicDetailsStyle>
 			<Box>

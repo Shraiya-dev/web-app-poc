@@ -130,7 +130,6 @@ const useCreateBooking = () => {
 				if (values.helper && !values.helperWages) {
 					errors.helperWages = 'Required'
 				}
-
 			}
 
 			if (step === 2) {

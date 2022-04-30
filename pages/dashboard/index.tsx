@@ -3,11 +3,18 @@ import React from 'react'
 import { Dashboard } from '../../modules/dashboard'
 import DashboardLayout from '../../sdk/layouts/DashboardLayout'
 
+import Head from 'next/head'
 const DashboardPage: NextPage = () => {
 	return (
-		<DashboardLayout>
-			<Dashboard />
-		</DashboardLayout>
+		<>
+			<Head>
+				<title>Dashboard | Project Hero</title>
+				<meta name='description' content='' />
+			</Head>
+			<DashboardLayout>
+				<Dashboard />
+			</DashboardLayout>
+		</>
 	)
 }
 

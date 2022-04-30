@@ -5,5 +5,3 @@ export * from './helperData'
 export * from './booking'
 export * from './job'
 export * from './jobCard'
-
-

@@ -6,7 +6,7 @@ const CustomEmptyBooking = styled(Box)(({ theme }) => ({
 	display: 'flex',
 	justifyContent: 'center',
 	textAlign: 'center',
-	marginTop:"20%",
+	marginTop: '20%',
 	'.info': {
 		margin: 10,
 	},
