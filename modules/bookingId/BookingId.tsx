@@ -2,7 +2,7 @@ import { ArrowBack } from '@mui/icons-material'
 import { Button, CircularProgress, Grid, Select, Stack, Typography } from '@mui/material'
 import { useRouter } from 'next/router'
 import { useCallback } from 'react'
-import { BookingSummaryCard, getSelectOptionsFromObject, JobCardCard, JobCardState, JobCardStateLabel } from '../../sdk'
+import { BookingCard, getSelectOptionsFromObject, JobCardCard, JobCardState, JobCardStateLabel } from '../../sdk'
 import { useBookingId } from './hooks'
 
 export const BookingId = () => {
@@ -28,7 +28,7 @@ export const BookingId = () => {
 				</Button>
 			</Grid>
 			<Grid item xs={12} md={4}>
-				{bookingSummary && <BookingSummaryCard booking={bookingSummary} />}
+				{bookingSummary && <BookingCard booking={bookingSummary} />}
 			</Grid>
 			<Grid container item xs={12} md={8} spacing={2}>
 				<Grid item xs={12}>
