@@ -61,7 +61,7 @@ export const BookingId = () => {
 					<Grid xs={12}>
 						<Stack flex={1} alignItems={'center'} py={25}>
 							<Typography variant='h4' color='secondary.light'>
-								No Workers in this state
+								No Workers.
 							</Typography>
 						</Stack>
 					</Grid>

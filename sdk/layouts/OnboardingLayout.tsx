@@ -31,10 +31,11 @@ export const OnboardingLayout = ({ children, ...props }: any) => {
 						{/* <SvgBrandLogo height={50} width={150} /> */}
 						<Image src={Banner} alt='' className='brandLogo' width={300} height={200} />
 					</Box>
-					<Stack mt={8} width='fit-content' className='instruction' spacing={5}>
+					<Stack mt={8} width='fit-content' className='instruction'>
 						{intro.map((x, index) => {
 							return (
 								<Stack
+									mt={2}
 									direction='row'
 									spacing={5}
 									width={'100%'}

@@ -14,7 +14,7 @@ export const FilterDrawer = ({ open, onClose }: FilterDrawerProps) => {
 	return (
 		<Drawer anchor='right' open={open} onClose={onClose}>
 			<Stack flex={1} minWidth={drawerWidth} p={2} alignItems='flex-start'>
-				<Button color='inherit' onClick={onClose} variant='text' startIcon={<ArrowBackIos fontSize='large' />}>
+				<Button color='primary' onClick={onClose} variant='text' startIcon={<ArrowBackIos fontSize='large' />}>
 					Back
 				</Button>
 				<Stack flex={1} px={2} width={'100%'}>

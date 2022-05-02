@@ -6,7 +6,15 @@ interface InputWrapperProps extends InputLabelProps {
 export const InputWrapper = ({ label, children, ...props }: InputWrapperProps) => {
 	return (
 		<Stack>
-			{label && <InputLabel {...props}>{label}</InputLabel>}
+			{label && (
+				<InputLabel
+					sx={{
+						mb: 1,
+					}}
+					{...props}>
+					{label}
+				</InputLabel>
+			)}
 			{children}
 		</Stack>
 	)

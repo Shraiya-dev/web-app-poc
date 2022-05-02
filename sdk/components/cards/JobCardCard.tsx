@@ -43,7 +43,7 @@ export const JobCardCard = ({ jobCard }: JobCardCardProps) => {
 				/> */}
 				</Stack>
 				<Stack flex={1} p={2}>
-					<Stack mb={2} direction='row' justifyContent='space-between'>
+					<Stack mb={1} direction='row' justifyContent='space-between'>
 						<Typography variant='h6' fontWeight={600}>
 							{jobCard.workerName ?? 'Lalit'}
 						</Typography>

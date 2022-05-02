@@ -28,27 +28,28 @@ const CustomPaper = styled(Paper)(({ theme }) => ({
 		flex: 1,
 		flexDirection: 'column',
 		padding: theme.spacing(2.5),
-		a: {
-			display: 'flex',
-			padding: `0 ${theme.spacing(1)}`,
-			margin: `${theme.spacing(0.5)}`,
-			cursor: 'pointer',
-			borderRadius: 4,
-			border: 'none',
-			flexDirection: 'column',
-			justifyContent: 'space-between',
-			alignItems: 'flex-start',
-			'&:hover': {
-				backgroundColor: alpha(theme.palette.primary.main, 0.05),
-				border: 1,
-				borderColor: theme.palette.primary.main,
-				color: theme.palette.primary.main,
-			},
-			'&.selected': {
-				backgroundColor: alpha(theme.palette.primary.main, 0.05),
-				border: `1px solid`,
-				borderColor: theme.palette.primary.main,
-				color: theme.palette.primary.main,
+		'.links': {
+			a: {
+				display: 'flex',
+				padding: theme.spacing(1),
+				cursor: 'pointer',
+				borderRadius: 4,
+				border: `1px solid transparent`,
+				flexDirection: 'column',
+				justifyContent: 'space-between',
+				alignItems: 'flex-start',
+				marginRight: theme.spacing(0.5),
+				'&:hover': {
+					backgroundColor: alpha(theme.palette.primary.main, 0.05),
+					borderColor: theme.palette.primary.main,
+					color: theme.palette.primary.main,
+				},
+				'&.selected': {
+					backgroundColor: alpha(theme.palette.primary.main, 0.05),
+					border: `1px solid`,
+					borderColor: theme.palette.primary.main,
+					color: theme.palette.primary.main,
+				},
 			},
 		},
 	},
@@ -82,7 +83,7 @@ export const BookingCard = ({ booking }: BookingCardProps) => {
 					{supervisorCount !== 0 && <Typography>Supervisor ({supervisorCount})</Typography>}
 				</Stack>
 				<Stack direction='row' flexWrap='wrap' mt={1}>
-					<Typography mr={1} className='vAlignCenter' variant='body2'>
+					<Typography mr={1} className='vAlignCenter' variant='body2' width={'50ch'}>
 						<LocationOn fontSize='inherit' color='error' />
 						&nbsp;{capitalize(booking.city)}, {capitalize(booking.state)}
 					</Typography>
@@ -100,7 +101,7 @@ export const BookingCard = ({ booking }: BookingCardProps) => {
 				<Typography color='secondary.main'>WORKER ALLOCATION</Typography>
 				<Grid container xs={12}>
 					<Grid item xs={12} md={router.query.bookingId ? 12 : 8}>
-						<Stack flex={1} direction='row'>
+						<Stack className='links' flex={1} direction='row'>
 							<Link
 								href={`/dashboard/bookings/${booking.bookingId}/WORKER_APPLIED`}
 								passHref
