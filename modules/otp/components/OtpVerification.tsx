@@ -4,6 +4,7 @@ import OtpInput from 'react-otp-input'
 import useOtp from '../hooks/useOtp'
 import { CircularProgress } from '@mui/material'
 import { theme } from '../../../sdk'
+import Link from 'next/link'
 
 const CustomOTPStyles = styled(Box)(({ theme }) => ({
 	display: 'flex',
@@ -69,6 +70,18 @@ export const OTPVerification = () => {
 					<Button type='submit' variant='contained' color='primary' fullWidth disabled={status === 'loading'}>
 						{status === 'loading' ? <CircularProgress size={30} /> : `Verify OTP`}
 					</Button>
+
+					<Link href='/login' passHref>
+						<a>
+							<Typography
+								sx={{ textDecoration: 'underline' }}
+								color='primary.main'
+								mt={'16px'}
+								>
+								Change Number
+							</Typography>
+						</a>
+					</Link>
 				</form>
 			</Box>
 		</CustomOTPStyles>

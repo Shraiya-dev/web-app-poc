@@ -70,8 +70,8 @@ const CustomBookingStyle = styled(Box)(({ theme }) => ({
 	},
 
 	'.inputLabel': {
-		fontSize: 16,
-		fontWeight: 800,
+		fontSize: 18,
+		fontWeight: 600,
 		marginTop: 40,
 		marginBottom: 10,
 	},
@@ -145,6 +145,16 @@ const CustomBookingStyle = styled(Box)(({ theme }) => ({
 	'.view': {
 		verticalAlign: 'middle',
 		display: 'flex',
+	},
+	'.borderCta': {
+		borderRadius: 8,
+		padding: 8,
+		color: 'rgba(6, 31, 72, 0.7)',
+
+		textTransform: 'none',
+		border: '1px solid #C2C9D2',
+		boxShadow: 'none',
+		lineHeight: 1.4,
 	},
 }))
 
@@ -733,24 +743,22 @@ export const CreateBooking = ({ ...props }) => {
 										</InputLabel>
 
 										<Grid container spacing={4}>
-											<Grid item xs={12} sm={12} md={8} lg={8}>
+											<Grid container item rowGap={1}>
 												{projectDuration.map((info, index) => {
 													return (
 														<Button
+															className='borderCta'
 															key={index}
 															style={{
-																borderRadius: 4,
-																padding: 8,
 																background:
 																	projectDurationInfo === info?.label
 																		? theme.palette.primary.light
 																		: 'white',
 
-																// height: 35,
-
 																color: '#061F48',
 																marginRight: 10,
 																textTransform: 'none',
+																minWidth: 50,
 															}}
 															onClick={() => handleProjectDuration(info?.label)}>
 															{info?.label}
@@ -769,6 +777,7 @@ export const CreateBooking = ({ ...props }) => {
 										<Grid container spacing={4}>
 											<Grid item xs={12} sm={12} md={8} lg={8}>
 												<Button
+													className='borderCta'
 													style={{
 														borderRadius: 4,
 														padding: 4,
@@ -787,9 +796,8 @@ export const CreateBooking = ({ ...props }) => {
 												</Button>
 
 												<Button
+													className='borderCta'
 													style={{
-														borderRadius: 4,
-														padding: 4,
 														background:
 															shiftTiming === 'Custom'
 																? theme.palette.primary.light

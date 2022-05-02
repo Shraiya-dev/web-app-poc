@@ -11,12 +11,17 @@ const initialLoginState = {
 const useLogin = () => {
 	const router = useRouter()
 
-	const { requestOtp } = useContractorAuth()
+	const { requestOtp, isRegister, updateIsRegUser } = useContractorAuth()
 	const [loginState, setLoginState] = useState(initialLoginState)
 	const { status, error } = loginState
 	const [loading, setLoading] = useState(false)
+	//const [isRegister, setIsRegister] = useState(false);
 
 	const { showSnackbar } = useSnackbar()
+
+	const handleLogin = () => {
+		updateIsRegUser(!isRegister)
+	}
 
 	const form = useFormik({
 		initialValues: {
@@ -65,6 +70,8 @@ const useLogin = () => {
 		error,
 		form,
 		loading,
+		isRegister,
+		handleLogin,
 	}
 }
 
