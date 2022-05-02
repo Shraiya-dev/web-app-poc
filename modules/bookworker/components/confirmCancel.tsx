@@ -1,19 +1,17 @@
 import React, { useState } from 'react'
+import { useRouter } from 'next/router'
 
 // Material UI
 import { Dialog, DialogContent, Button, Typography, Stack, Box, Grid } from '@mui/material'
 
 const ConfirmCancel = ({ ...props }) => {
-	const { onCloseDialog, setOncloseDialog, toggleBookingForm, bookingFormOpen, setBookingFormOpen } = props
+	const { onCloseDialog, setOncloseDialog } = props
 
+	const router = useRouter()
 	const handleCancel = () => {
 		setOncloseDialog(false)
 	}
 
-	const handleConfirm = () => {
-		setOncloseDialog(false)
-		setBookingFormOpen(false)
-	}
 	return (
 		<Dialog style={{ zIndex: 1800 }} open={onCloseDialog} keepMounted onClose={handleCancel}>
 			<Box>
@@ -27,7 +25,7 @@ const ConfirmCancel = ({ ...props }) => {
 							{' '}
 							Continue Booking
 						</Button>
-						<Button onClick={handleConfirm}> Leave</Button>
+						<Button onClick={()=>router.back()}> Leave</Button>
 					</Stack>
 				</DialogContent>
 			</Box>

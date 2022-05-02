@@ -108,7 +108,7 @@ const useCreateBooking = () => {
 			name: user?.name || '',
 			company: user?.companyName || '',
 			companyEmail: user?.email || '',
-			phoneNumber: user?.phoneNumber || '',
+			phoneNumber: user?.phoneNumber.slice(3) || '',
 		},
 		validate: (values) => {
 			const errors = <any>{}

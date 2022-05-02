@@ -22,6 +22,7 @@ import { CreateBooking } from '../bookworker/components/createBooking'
 import { useBooking } from '../bookworker/hooks/useBooking'
 import { FilterDrawer } from './components'
 import { useDashboard } from './hooks'
+import Link from 'next/link'
 
 export const Dashboard = () => {
 	const { bookings, bookingStats, isLoading } = useDashboard()
@@ -117,7 +118,12 @@ export const Dashboard = () => {
 					{bookings.bookings.length === 0 ? (
 						<Stack flex={1} mt={20} direction={'column'} spacing={4} alignItems='center'>
 							<Typography variant='h4'>No booking. Create a booking to hire workers.</Typography>
-							<Button onClick={handleBookingForm}>Book Workers</Button>
+							{/* <Button onClick={handleBookingForm}>Book Workers</Button> */}
+							<Link href='/dashboard/bookings/create' passHref>
+								<a>
+									<Button variant='contained'>Book Workers</Button>
+								</a>
+							</Link>
 						</Stack>
 					) : (
 						<Grid container spacing={3}>

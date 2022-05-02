@@ -16,12 +16,12 @@ import {
 	styled,
 	Paper,
 	IconButton,
+	InputAdornment,
 } from '@mui/material'
 import { LoadingButton } from '@mui/lab'
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns'
 import { DatePicker } from '@mui/x-date-pickers/DatePicker'
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
-import { TimePicker } from '@mui/x-date-pickers/TimePicker'
 import Image from 'next/image'
 import { useEffect, useState } from 'react'
 import Helper from '../../../public/assets/icons/helper.svg'
@@ -38,10 +38,11 @@ import { createBooking } from '../apis/apis'
 import { useSnackbar } from '../../../sdk'
 import { useMobile } from '../../../sdk/hooks/useMobile'
 import CloseIcon from '@mui/icons-material/Close'
-import { format } from 'date-fns'
 
 import { CustomTimePicker } from '../../../sdk/components/timepicker/customTimePicker'
 import { timeDataAM, timeDataPM } from '../utils/helperData'
+
+import { ArrowBack } from '@mui/icons-material'
 
 const CustomBookingStyle = styled(Box)(({ theme }) => ({
 	'.main': {
@@ -159,7 +160,7 @@ const CustomBookingStyle = styled(Box)(({ theme }) => ({
 }))
 
 export const CreateBooking = ({ ...props }) => {
-	const { toggleBookingForm, onCloseDialog, setOncloseDialog, bookingFormOpen, setBookingFormOpen } = props
+	const { bookingFormOpen, setBookingFormOpen } = props
 	const { form, step, setStep, handlePrev } = useCreateBooking()
 
 	const [isMore, setIsmore] = useState(false)
@@ -170,6 +171,8 @@ export const CreateBooking = ({ ...props }) => {
 	const [isSubmittable, setIsSubmittable] = useState<boolean>(false)
 	const [loading, setLoading] = useState<boolean>(false)
 	const { showSnackbar } = useSnackbar()
+
+	const [onCloseDialog, setOncloseDialog] = useState(false)
 
 	const isMobile = useMobile()
 
@@ -356,22 +359,18 @@ export const CreateBooking = ({ ...props }) => {
 		<CustomBookingStyle>
 			{step !== 4 && (
 				<Box display='flex' alignItems='center'>
-					<Box flexGrow={1}></Box>
-					<Box style={{ marginTop: 30, marginRight: 30 }}>
-						<IconButton onClick={toggleBookingForm}>
-							<CloseIcon style={{ fontSize: 32 }} />
-						</IconButton>
-					</Box>
+					<Button
+						startIcon={<ArrowBack />}
+						onClick={() => setOncloseDialog(true)}
+						variant='text'
+						color='primary'>
+						Go Back
+					</Button>
 				</Box>
 			)}
 			<Container className='main' maxWidth={'md'}>
-				<ConfirmCancel
-					onCloseDialog={onCloseDialog}
-					setOncloseDialog={setOncloseDialog}
-					toggleBookingForm={toggleBookingForm}
-					bookingFormOpen={bookingFormOpen}
-					setBookingFormOpen={setBookingFormOpen}
-				/>
+				<ConfirmCancel onCloseDialog={onCloseDialog} setOncloseDialog={setOncloseDialog} />
+
 				<Box width={'100%'}>
 					{step !== 4 && (
 						<Box>
@@ -608,9 +607,11 @@ export const CreateBooking = ({ ...props }) => {
 														<Grid item xs={12} sm={12} md={4}>
 															<TextField
 																label={`${info?.label} Required`}
+																placeholder={`Enter ${info?.label}`}
+																defaultValue=''
 																id={info?.name}
 																name={info?.name}
-																value={info?.formvalue}
+																value={info?.formvalue > 0 ? info?.formvalue : ''}
 																type='tel'
 																onChange={(e: any) => {
 																	if (e.target.value >= 0) {
@@ -626,9 +627,13 @@ export const CreateBooking = ({ ...props }) => {
 														<Grid item xs={12} sm={12} md={4}>
 															<TextField
 																label='Daily wage (Rs.)'
+																placeholder='Enter wage'
+																defaultValue=''
 																id={info?.wage}
 																name={info?.wage}
-																value={info?.wageformvalue}
+																value={
+																	info?.wageformvalue > 0 ? info?.wageformvalue : ''
+																}
 																type='tel'
 																onChange={(e: any) => {
 																	if (e.target.value >= 0) {
@@ -775,7 +780,7 @@ export const CreateBooking = ({ ...props }) => {
 										</InputLabel>
 
 										<Grid container spacing={4}>
-											<Grid item xs={12} sm={12} md={8} lg={8}>
+											<Grid item container>
 												<Button
 													className='borderCta'
 													style={{
@@ -786,13 +791,12 @@ export const CreateBooking = ({ ...props }) => {
 																? theme.palette.primary.light
 																: 'white',
 
-														height: 35,
-														width: 100,
 														color: 'black',
 														marginRight: 10,
+														minWidth: 50,
 													}}
 													onClick={() => handleShiftTiming('09:00am-06:00pm')}>
-													9am-6pm
+													09:00am-06:00pm
 												</Button>
 
 												<Button
@@ -980,7 +984,7 @@ export const CreateBooking = ({ ...props }) => {
 										</Grid>
 									</Box>
 
-									<Box>
+									{/* <Box>
 										<InputLabel id='company' className='inputLabel'>
 											Company
 										</InputLabel>
@@ -1000,11 +1004,11 @@ export const CreateBooking = ({ ...props }) => {
 												/>
 											</Grid>
 										</Grid>
-									</Box>
+									</Box> */}
 
 									<Box>
 										<InputLabel id='companyEmail' className='inputLabel'>
-											Company Email
+											Email
 										</InputLabel>
 
 										<Grid container>
@@ -1034,13 +1038,22 @@ export const CreateBooking = ({ ...props }) => {
 												<TextField
 													id='phoneNumber'
 													name='phoneNumber'
-													onChange={form.handleChange}
+													onChange={(e: any) => {
+														if (e.target.value.length <= 10) {
+															form.handleChange(e)
+														}
+													}}
 													value={form.values.phoneNumber}
 													placeholder='9999988888'
 													fullWidth
 													onBlur={form.handleBlur}
 													error={!!checkError(`phoneNumber`, form)}
 													helperText={checkError(`phoneNumber`, form)}
+													InputProps={{
+														startAdornment: (
+															<InputAdornment position='start'>+91</InputAdornment>
+														),
+													}}
 												/>
 											</Grid>
 										</Grid>

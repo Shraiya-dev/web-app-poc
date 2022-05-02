@@ -4,7 +4,7 @@ import LoadingButton from '@mui/lab/LoadingButton'
 import useBasicForm from '../hooks/useBasicForm'
 import { useRouter } from 'next/router'
 import EditIcon from '@mui/icons-material/Edit'
-import { checkError } from '../../../sdk'
+import { checkError, InputWrapper } from '../../../sdk'
 import { Cancel } from '@mui/icons-material'
 
 const BasicFormStyle = styled(Box)(({ theme }) => ({
@@ -62,11 +62,13 @@ export const BasicDetailsForm = () => {
 								value={form.values.name}
 								onChange={form.handleChange}
 								onBlur={form.handleBlur}
-								InputProps={{
-									disableUnderline: !(router.asPath === '/profile' && editInfo),
-								}}
+								// InputProps={{
+								// 	disableUnderline: !(router.asPath === '/profile' && editInfo),
+								// }}
 								placeholder='Enter Your Full Name'
-								//variant={router.asPath === '/profile'  ? editInfo? 'outlined' : 'standard':'outlined'}
+								variant={
+									router.asPath === '/profile' ? (editInfo ? 'outlined' : 'standard') : 'outlined'
+								}
 								disabled={router.asPath === '/profile' ? !editInfo : false}
 								error={!!checkError('name', form)}
 								helperText={checkError('name', form)}
@@ -83,11 +85,13 @@ export const BasicDetailsForm = () => {
 								onBlur={form.handleBlur}
 								value={form.values.company}
 								placeholder='Enter Company Name'
-								//variant={router.asPath === '/profile'  ? editInfo? 'outlined' : 'standard':'outlined'}
+								variant={
+									router.asPath === '/profile' ? (editInfo ? 'outlined' : 'standard') : 'outlined'
+								}
 								disabled={router.asPath === '/profile' ? !editInfo : false}
-								InputProps={{
-									disableUnderline: !(router.asPath === '/profile' && editInfo),
-								}}
+								// InputProps={{
+								// 	disableUnderline: !(router.asPath === '/profile' && editInfo),
+								// }}
 								error={!!checkError('company', form)}
 								helperText={checkError('company', form)}
 							/>
@@ -102,34 +106,37 @@ export const BasicDetailsForm = () => {
 								onBlur={form.handleBlur}
 								value={form.values.companyEmail}
 								placeholder='Enter Email'
-								//variant={router.asPath === '/profile'  ? editInfo? 'outlined' : 'standard':'outlined'}
+								variant={
+									router.asPath === '/profile' ? (editInfo ? 'outlined' : 'standard') : 'outlined'
+								}
 								disabled={router.asPath === '/profile' ? !editInfo : false}
-								InputProps={{
-									disableUnderline: !(router.asPath === '/profile' && editInfo),
-								}}
+								// InputProps={{
+								// 	disableUnderline: !(router.asPath === '/profile' && editInfo),
+								// }}
 								error={!!checkError('companyEmail', form)}
 								helperText={checkError('companyEmail', form)}
 							/>
 
-							<InputLabel id='phoneNumber' className='inputLabel'>
-								Phone Number
-							</InputLabel>
+							<InputWrapper id='phoneNumber' label='Phone Number'>
+								<TextField
+									id='phoneNumber'
+									name='phoneNumber'
+									onChange={form.handleChange}
+									onBlur={form.handleBlur}
+									value={form.values.phoneNumber}
+									placeholder='9999988888'
+									variant={
+										router.asPath === '/profile' ? (editInfo ? 'outlined' : 'standard') : 'outlined'
+									}
+									disabled={true}
+									// InputProps={{
+									// 	disableUnderline: !(router.asPath === '/profile' && editInfo),
+									// }}
+									error={!!checkError('phoneNumber', form)}
+									helperText={checkError('phoneNumber', form)}
+								/>
+							</InputWrapper>
 
-							<TextField
-								id='phoneNumber'
-								name='phoneNumber'
-								onChange={form.handleChange}
-								onBlur={form.handleBlur}
-								value={form.values.phoneNumber}
-								placeholder='9999988888'
-								//variant={router.asPath === '/profile'  ? editInfo? 'outlined' : 'standard':'outlined'}
-								disabled={true}
-								InputProps={{
-									disableUnderline: !(router.asPath === '/profile' && editInfo),
-								}}
-								error={!!checkError('phoneNumber', form)}
-								helperText={checkError('phoneNumber', form)}
-							/>
 							{((editInfo && router.asPath === '/profile') || router.asPath === '/onboarding') && (
 								<LoadingButton type='submit' loading={loading} variant='contained' className='cta'>
 									{router.asPath === '/profile' ? 'Save' : 'Next'}
