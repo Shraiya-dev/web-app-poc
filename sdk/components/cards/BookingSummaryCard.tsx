@@ -71,7 +71,7 @@ export const BookingSummaryCard = ({ booking }: BookingSummaryCardProps) => {
 	return (
 		<CustomPaper elevation={5}>
 			<Stack className='cardHeader'>
-				<Typography variant='h4' fontWeight={700}>
+				<Typography variant='h5' fontWeight={700}>
 					{JobTypeLabel[booking.jobType]} ({totalCount})
 				</Typography>
 
@@ -109,7 +109,7 @@ export const BookingSummaryCard = ({ booking }: BookingSummaryCardProps) => {
 					onClick={() => {
 						handelTabChange(JobCardState.WORKER_APPLIED)
 					}}>
-					<Typography variant='caption' align='left'>
+					<Typography variant='body1' align='left'>
 						Applied
 					</Typography>
 					<Typography variant='h5'>{booking.jobCardDetails?.ACCEPTED}</Typography>
@@ -120,7 +120,7 @@ export const BookingSummaryCard = ({ booking }: BookingSummaryCardProps) => {
 					onClick={() => {
 						handelTabChange(JobCardState.READY_TO_DEPLOY)
 					}}>
-					<Typography variant='caption' align='left'>
+					<Typography variant='body1' align='left'>
 						Ready to Deploy
 					</Typography>
 					<Typography variant='h5'>{booking.jobCardDetails?.READY_TO_DEPLOY}</Typography>
@@ -131,7 +131,7 @@ export const BookingSummaryCard = ({ booking }: BookingSummaryCardProps) => {
 					onClick={() => {
 						handelTabChange(JobCardState.DEPLOYMENT_COMPLETE)
 					}}>
-					<Typography variant='caption' align='left'>
+					<Typography variant='body1' align='left'>
 						Deployed
 					</Typography>
 					<Typography variant='h5'>{booking.jobCardDetails?.DEPLOYMENT_COMPLETE}</Typography>

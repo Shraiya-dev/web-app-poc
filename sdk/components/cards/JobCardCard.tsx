@@ -44,7 +44,7 @@ export const JobCardCard = ({ jobCard }: JobCardCardProps) => {
 				</Stack>
 				<Stack flex={1} p={2}>
 					<Stack mb={2} direction='row' justifyContent='space-between'>
-						<Typography variant='h6' fontWeight={600} color='primary.main'>
+						<Typography variant='h6' fontWeight={600}>
 							{jobCard.workerName ?? 'Lalit'}
 						</Typography>
 						{/* <Link href={`/worker/${jobCard.workerId}`} passHref>
@@ -55,10 +55,10 @@ export const JobCardCard = ({ jobCard }: JobCardCardProps) => {
 					</Stack>
 					<Stack flex={1} alignItems='flex-start' spacing={1}>
 						<Chip variant='outlined' color='primary' label={jobCard?.skillType} />
-						<Typography className='vAlignCenter' variant='body2'>
+						{/* <Typography className='vAlignCenter' variant='body2'>
 							<Engineering fontSize='inherit' color='error' />
 							&nbsp;{jobCard.projectCount} Projects
-						</Typography>
+						</Typography> */}
 						<Typography className='vAlignCenter' variant='body2'>
 							<LocationOn fontSize='inherit' color='error' />
 							&nbsp;{jobCard.city}, {jobCard.state}

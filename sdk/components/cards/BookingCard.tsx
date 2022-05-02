@@ -20,13 +20,13 @@ const CustomPaper = styled(Paper)(({ theme }) => ({
 	overflow: 'hidden',
 	'.cardHeader': {
 		flex: 1,
-		padding: `${theme.spacing(3)} ${theme.spacing(2)} ${theme.spacing(2)}`,
+		padding: theme.spacing(2.5),
 		backgroundColor: theme.palette.primary.light,
 	},
 	'.cardBody': {
 		flex: 1,
 		flexDirection: 'column',
-		padding: `${theme.spacing(2)} ${theme.spacing(2)} ${theme.spacing(3)}`,
+		padding: theme.spacing(2.5),
 	},
 }))
 export const BookingCard = ({ booking }: BookingCardProps) => {
@@ -43,20 +43,20 @@ export const BookingCard = ({ booking }: BookingCardProps) => {
 					<Typography variant='h5' fontWeight={700}>
 						{JobTypeLabel[booking.jobType]} ({totalCount})
 					</Typography>
-					<Stack alignItems='center' direction='row' spacing={2}>
-						<Typography variant='body2'>ID: {booking.bookingId}</Typography>
-						<StatusChip bookingState={booking.status} />
-					</Stack>
+					<StatusChip bookingState={booking.status} />
 				</Stack>
-				<Typography variant='body2'>
-					Created On: {booking.createdAt && format(booking.createdAt, 'dd/MM/yy')}
-				</Typography>
-				<Stack direction='row' flexWrap='wrap'>
+				<Stack alignItems='center' direction='row' spacing={2}>
+					<Typography variant='caption'>ID: {booking.bookingId}</Typography>
+					<Typography variant='caption'>
+						Created On: {booking.createdAt && format(booking.createdAt, 'dd/MM/yy')}
+					</Typography>
+				</Stack>
+				<Stack direction='row' flexWrap='wrap' mt={2}>
 					{helperCount !== 0 && <Typography mr={1}>Helper ({helperCount})</Typography>}
 					{technicianCount !== 0 && <Typography mr={1}>Technician ({technicianCount})</Typography>}
 					{supervisorCount !== 0 && <Typography>Supervisor ({supervisorCount})</Typography>}
 				</Stack>
-				<Stack direction='row' flexWrap='wrap' mt={2}>
+				<Stack direction='row' flexWrap='wrap' mt={1}>
 					<Typography mr={1} className='vAlignCenter' variant='body2'>
 						<LocationOn fontSize='inherit' color='error' />
 						&nbsp;{capitalize(booking.city)}, {capitalize(booking.state)}
@@ -76,29 +76,29 @@ export const BookingCard = ({ booking }: BookingCardProps) => {
 				<Stack direction={'row'} justifyContent='space-between' alignItems='flex-end' flexWrap='wrap'>
 					<Stack direction={'row'} spacing={3}>
 						<Stack>
-							<Typography variant='body1' fontWeight={500} lineHeight={2.5} color={'inherit'}>
-								{JobCardStateLabel[JobCardState.ACCEPTED]}
-							</Typography>
-							<Typography variant='h5' fontWeight={600} lineHeight={2} color={'primary'}>
+							<Typography variant='h5' fontWeight={500} lineHeight={2} color={'inherit'}>
 								{booking?.jobCardDetails ? booking?.jobCardDetails[JobCardState.ACCEPTED] : 0}
 							</Typography>
+							<Typography variant='body1' fontWeight={500} lineHeight={0.8} color={'inherit'}>
+								{JobCardStateLabel[JobCardState.ACCEPTED]}
+							</Typography>
 						</Stack>
 						<Stack>
-							<Typography variant='body1' fontWeight={500} lineHeight={2.5} color={'inherit'}>
-								{JobCardStateLabel[JobCardState.READY_TO_DEPLOY]}
-							</Typography>
-							<Typography variant='h5' fontWeight={600} lineHeight={2} color={'primary'}>
+							<Typography variant='h5' fontWeight={500} lineHeight={2} color={'inherit'}>
 								{booking?.jobCardDetails ? booking?.jobCardDetails[JobCardState.READY_TO_DEPLOY] : 0}
 							</Typography>
+							<Typography variant='body1' fontWeight={500} lineHeight={0.8} color={'inherit'}>
+								{JobCardStateLabel[JobCardState.READY_TO_DEPLOY]}
+							</Typography>
 						</Stack>
 						<Stack>
-							<Typography variant='body1' fontWeight={500} lineHeight={2.5} color={'inherit'}>
-								{JobCardStateLabel[JobCardState.DEPLOYMENT_COMPLETE]}
-							</Typography>
-							<Typography variant='h5' fontWeight={600} lineHeight={2} color={'primary'}>
+							<Typography variant='h5' fontWeight={500} lineHeight={2} color={'inherit'}>
 								{booking?.jobCardDetails
 									? booking?.jobCardDetails[JobCardState.DEPLOYMENT_COMPLETE]
 									: 0}
+							</Typography>
+							<Typography variant='body1' fontWeight={500} lineHeight={0.8} color={'inherit'}>
+								{JobCardStateLabel[JobCardState.DEPLOYMENT_COMPLETE]}
 							</Typography>
 						</Stack>
 					</Stack>
@@ -122,13 +122,13 @@ export const BookingCard = ({ booking }: BookingCardProps) => {
 					<Stack flex={1} alignItems='flex-end'>
 						<Link href={`/dashboard/bookings/${booking.bookingId}/WORKER_APPLIED`} passHref>
 							<Typography
+								lineHeight={0.5}
 								fontWeight='bold'
 								className='vAlignCenter'
 								variant='body1'
 								component='a'
 								color={'primary.main'}>
-								<>View Details</>
-								<ArrowRightAlt fontSize='large' />
+								<>View Booking</>
 							</Typography>
 						</Link>
 					</Stack>

@@ -3,7 +3,7 @@ import { createTheme, responsiveFontSizes } from '@mui/material/styles'
 import { createBreakpoints } from '@mui/system'
 export const primary = {
 	main: '#244CB3',
-	light: '#224ab526',
+	light: '#224ab50d',
 }
 
 const breakpoints = createBreakpoints({})

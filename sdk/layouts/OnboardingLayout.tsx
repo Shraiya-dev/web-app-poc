@@ -26,21 +26,32 @@ export const OnboardingLayout = ({ children, ...props }: any) => {
 	return (
 		<CustomizeDashboard>
 			<Stack className='left'>
-				<Box className='logoContainer'>
-					{/* <SvgBrandLogo height={50} width={150} /> */}
-					<Image src={Banner} alt='' className='brandLogo' />
-				</Box>
-				<Stack width='fit-content' className='instruction'>
-					{intro.map((x, index) => {
-						return (
-							<Stack direction='row' spacing={10} width={'100%'} key={index} mb={2}>
-								{/* <Image src={Circle} alt='' height={15} width={25} /> */}
-								<Typography variant='h4' color={'white'} fontSize={24} fontWeight={600}>
-									{x.label}
-								</Typography>
-							</Stack>
-						)
-					})}
+				<Stack alignItems='flex-start'>
+					<Box className='logoContainer'>
+						{/* <SvgBrandLogo height={50} width={150} /> */}
+						<Image src={Banner} alt='' className='brandLogo' width={300} height={200} />
+					</Box>
+					<Stack mt={8} width='fit-content' className='instruction' spacing={5}>
+						{intro.map((x, index) => {
+							return (
+								<Stack
+									direction='row'
+									spacing={5}
+									width={'100%'}
+									key={index}
+									mb={2}
+									alignItems='center'>
+									{/* <Image src={Circle} alt='' height={15} width={25} /> */}
+									<svg height='20' width='20'>
+										<circle cx='10' cy='10' r='10' fill='#ffffff' />
+									</svg>
+									<Typography variant='h4' color={'white'} fontSize={24} fontWeight={600}>
+										{x.label}
+									</Typography>
+								</Stack>
+							)
+						})}
+					</Stack>
 				</Stack>
 			</Stack>
 			<Stack className='right'>{children}</Stack>

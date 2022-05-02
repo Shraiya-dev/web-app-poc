@@ -43,7 +43,7 @@ export const Dashboard = () => {
 					setBookingFormOpen={setBookingFormOpen}
 				/>
 			</Dialog>
-			<Grid container spacing={2} alignItems={'stretch'}>
+			<Grid mt={1} container spacing={2} alignItems={'stretch'}>
 				<Grid item xs={6} sm={6} md={4}>
 					<StatisticsCard
 						label='Total Bookings'
@@ -70,12 +70,13 @@ export const Dashboard = () => {
 				</Grid>
 			</Grid>
 			<Grid mt={6} container>
-				<Grid item xs={12} md={8} justifyContent='space-between' alignItems='center'>
+				<Grid item xs={12} md={9} justifyContent='space-between' alignItems='center'>
 					<Typography variant='h4'>Your Bookings</Typography>
 
 					<Button
 						onClick={handelDrawerToggle}
 						color='inherit'
+						disabled={bookingStats.bookingsCount <= 0}
 						endIcon={
 							<Badge
 								overlap='circular'
@@ -95,7 +96,7 @@ export const Dashboard = () => {
 						Filter
 					</Button>
 				</Grid>
-				<Grid item xs={12} md={4} alignItems='center'>
+				<Grid item xs={12} md={3} alignItems='center'>
 					<SearchField name='bookingId' fullWidth placeholder='Search by booking ID' size='small' />
 				</Grid>
 			</Grid>
@@ -105,13 +106,13 @@ export const Dashboard = () => {
 					<CircularProgress size={50} />
 				</Stack>
 			) : (
-				<Stack mt={6}>
+				<Stack mt={4}>
 					{bookings.bookings.length === 0 ? (
 						<Stack flex={1} mt={20} direction={'column'} spacing={4} alignItems='center'>
-							<Typography variant='h3'>You don&apos;t have any bookings</Typography>
-							<Typography variant='h5' color={'GrayText'}>
+							<Typography variant='h4'>No booking. Create a booking to hire workers.</Typography>
+							{/* <Typography variant='h5' color={'GrayText'}>
 								Press on Book worker to create bookings
-							</Typography>
+							</Typography> */}
 							<Button>Book Workers</Button>
 						</Stack>
 					) : (
