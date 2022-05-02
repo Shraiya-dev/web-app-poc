@@ -102,7 +102,7 @@ export const Dashboard = () => {
 					</Button>
 				</Grid>
 				<Grid item xs={12} md={4} alignItems='center'>
-					<SearchField name='bookingId' fullWidth placeholder='Search' size='small' />
+					<SearchField name='bookingId' fullWidth placeholder='Search by Booking ID' size='small' />
 				</Grid>
 			</Grid>
 
