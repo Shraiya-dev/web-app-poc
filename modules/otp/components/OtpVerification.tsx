@@ -73,11 +73,7 @@ export const OTPVerification = () => {
 
 					<Link href='/login' passHref>
 						<a>
-							<Typography
-								sx={{ textDecoration: 'underline' }}
-								color='primary.main'
-								mt={'16px'}
-								>
+							<Typography sx={{ textDecoration: 'underline' }} color='primary.main' mt={'16px'}>
 								Change Number
 							</Typography>
 						</a>

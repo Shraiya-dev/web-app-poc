@@ -70,7 +70,7 @@ export const LoginForm = () => {
 						}}
 					/>
 					{console.log(checkError('phoneNumber', form))}
-					<LoadingButton className='cta' type='submit' loading={!!loading} variant='contained'>
+					<LoadingButton className='cta' type='submit' loading={!!loading} variant='contained' >
 						{isRegister ? 'Register' : 'Login'}
 					</LoadingButton>
 
@@ -82,7 +82,8 @@ export const LoginForm = () => {
 								onClick={handleLogin}
 								color='primary.main'
 								component={'span'}
-								ml={'8px'}>
+								ml={'8px'}
+								style={{cursor:'pointer'}}>
 								{isRegister ? 'Login' : 'Register'}
 							</Typography>
 						</a>
