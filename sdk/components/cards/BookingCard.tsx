@@ -111,7 +111,7 @@ export const BookingCard = ({ booking }: BookingCardProps) => {
 										router.query.jobCardState === JobCardState.WORKER_APPLIED ? 'selected' : ''
 									}>
 									<Typography variant='h5'>{booking.jobCardDetails?.ACCEPTED}</Typography>
-									<Typography variant='body1' align='left'>
+									<Typography variant='body2' align='left'>
 										Applied
 									</Typography>
 								</Typography>
@@ -126,7 +126,7 @@ export const BookingCard = ({ booking }: BookingCardProps) => {
 										router.query.jobCardState === JobCardState.READY_TO_DEPLOY ? 'selected' : ''
 									}>
 									<Typography variant='h5'>{booking.jobCardDetails?.READY_TO_DEPLOY}</Typography>
-									<Typography variant='body1' align='left'>
+									<Typography variant='body2' align='left'>
 										Ready to Deploy
 									</Typography>
 								</Typography>
@@ -141,7 +141,7 @@ export const BookingCard = ({ booking }: BookingCardProps) => {
 										router.query.jobCardState === JobCardState.DEPLOYMENT_COMPLETE ? 'selected' : ''
 									}>
 									<Typography variant='h5'>{booking.jobCardDetails?.DEPLOYMENT_COMPLETE}</Typography>
-									<Typography variant='body1' align='left'>
+									<Typography variant='body2' align='left'>
 										Deployed
 									</Typography>
 								</Typography>
