@@ -103,7 +103,7 @@ const CustomizeDashboard = styled(Box)(({ theme }) => ({
 		'.left': {
 			padding: '10px',
 			display: 'flex',
-			// maxHeight: 124,
+			maxHeight: 124,
 			alignItems: 'start',
 		},
 	},

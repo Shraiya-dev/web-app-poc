@@ -83,17 +83,24 @@ const DashboardLayout = ({ children, ...props }: any) => {
 			<CustomAppBar elevation={0}>
 				<Container className='container'>
 					<Toolbar className='toolbar'>
-						{isMobile ? (
-							<IconButton onClick={toggleDrawer}>
-								<Image src={MenuIcon} alt='menu' color='black' />
-							</IconButton>
-						) : (
+						<Stack direction='row'>
+							{isMobile && (
+								<IconButton onClick={toggleDrawer}>
+									<Image src={MenuIcon} alt='menu' color='black' />
+								</IconButton>
+							)}
 							<Link href='/dashboard' passHref>
 								<a>
-									<Image priority src={logo} alt='' height={52} width={162} />
+									<Image
+										priority
+										src={logo}
+										alt=''
+										height={isMobile ? 34 : 52}
+										width={isMobile ? 100 : 162}
+									/>
 								</a>
 							</Link>
-						)}
+						</Stack>
 
 						<Stack direction='row' spacing={2}>
 							{!isMobile && (
