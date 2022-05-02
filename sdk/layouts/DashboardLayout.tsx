@@ -116,8 +116,8 @@ const DashboardLayout = ({ children, ...props }: any) => {
 								</>
 							)}
 							<Button variant='contained' onClick={handleBookingForm}>
-								Book Worker
-							</Button>{' '}
+								Book Workers
+							</Button>
 						</Stack>
 					</Toolbar>
 				</Container>

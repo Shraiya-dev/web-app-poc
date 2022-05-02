@@ -50,7 +50,7 @@ export const Dashboard = () => {
 					setBookingFormOpen={setBookingFormOpen}
 				/>
 			</Dialog>
-			<Grid container spacing={2} alignItems={'stretch'}>
+			<Grid mt={1} container spacing={2} alignItems={'stretch'}>
 				<Grid item xs={6} sm={6} md={4}>
 					<StatisticsCard
 						label='Total Bookings'
@@ -77,18 +77,20 @@ export const Dashboard = () => {
 				</Grid>
 			</Grid>
 			<Grid mt={6} container>
-				<Grid item xs={12} md={8} justifyContent='space-between' alignItems='center'>
+				<Grid item xs={12} md={9} justifyContent='space-between' alignItems='center'>
 					<Typography variant='h4'>Your Bookings</Typography>
 
 					<Button
 						onClick={handelDrawerToggle}
 						color='inherit'
+						disabled={bookingStats.bookingsCount <= 0}
 						endIcon={
 							<Badge
 								overlap='circular'
 								anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
 								badgeContent={
 									router.query.status && (
+										//simple svg to show dot on filter text
 										<svg height='10' width='10'>
 											<circle cx='5' cy='5' r='5' fill='red' />
 										</svg>
@@ -101,6 +103,8 @@ export const Dashboard = () => {
 						Filter
 					</Button>
 				</Grid>
+				<Grid item xs={12} md={3} alignItems='center'>
+					<SearchField name='bookingId' fullWidth placeholder='Search by booking ID' size='small' />
 				<Grid item xs={12} md={4} alignItems='center'>
 					<SearchField name='bookingId' fullWidth placeholder='Search by Booking ID' size='small' />
 				</Grid>
@@ -111,12 +115,10 @@ export const Dashboard = () => {
 					<CircularProgress size={50} />
 				</Stack>
 			) : (
-				<Stack mt={6}>
+				<Stack mt={4}>
 					{bookings.bookings.length === 0 ? (
 						<Stack flex={1} mt={20} direction={'column'} spacing={4} alignItems='center'>
-							<Typography variant='h3'>You don&apos;t have any bookings</Typography>
-							<Typography variant='h5' color={'GrayText'}>
-								Press on Book worker to create bookings
+							<Typography variant='h4'>No booking. Create a booking to hire workers.</Typography>
 							</Typography>
 							<Button onClick={handleBookingForm}>Book Workers</Button>
 						</Stack>
@@ -131,17 +133,19 @@ export const Dashboard = () => {
 							})}
 						</Grid>
 					)}
-					<Stack p={4} alignItems='center'>
-						<Pagination
-							color='primary'
-							page={Number(router.query.pageNumber ?? 0) + 1}
-							onChange={(e, page) => {
-								router.query.pageNumber = page - 1 + ''
-								router.push(router)
-							}}
-							count={Math.ceil(bookings.totalBookings / 10)}
-						/>
-					</Stack>
+					{bookings.bookings.length > 0 && (
+						<Stack p={4} alignItems='center'>
+							<Pagination
+								color='primary'
+								page={Number(router.query.pageNumber ?? 0) + 1}
+								onChange={(e, page) => {
+									router.query.pageNumber = page - 1 + ''
+									router.push(router)
+								}}
+								count={Math.ceil(bookings.totalBookings / 10)}
+							/>
+						</Stack>
+					)}
 				</Stack>
 			)}
 			<FilterDrawer open={openFilterDrawer} onClose={handelDrawerToggle} />

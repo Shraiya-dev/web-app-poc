@@ -2,6 +2,7 @@ import axios from 'axios'
 import { useRouter } from 'next/router'
 import { useCallback, useEffect, useState } from 'react'
 import { BookingPreview, BookingStats, useSnackbar } from '../../../sdk'
+import { getBookingsService, getBookingsSummaryService } from '../apis'
 
 export const useDashboard = () => {
 	const router = useRouter()
@@ -20,7 +21,7 @@ export const useDashboard = () => {
 	const { showSnackbar } = useSnackbar()
 	const getBookingStats = useCallback(async () => {
 		try {
-			const { data } = await axios.get('/gateway/customer-api/bookingSummary')
+			const { data } = await getBookingsSummaryService()
 			setBookingStats({
 				bookingsCount: data.payload.bookingsCount,
 				heroesHired: data.payload.heroesHired,
@@ -34,7 +35,7 @@ export const useDashboard = () => {
 		setIsLoading(true)
 		try {
 			const queryParams = new URLSearchParams(router.query as any)
-			const { data } = await axios.get('/gateway/customer-api/bookings?' + queryParams.toString())
+			const { data } = await getBookingsService(queryParams)
 			const bookings = data.payload.bookings.map((item: any) => {
 				const booking: BookingPreview = {
 					bookingId: item.bookingId,

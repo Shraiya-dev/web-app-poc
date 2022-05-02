@@ -37,9 +37,9 @@ export const refreshTokenService = async (refreshToken: string, accessToken: Str
 }
 
 export const getCustomerDetails = async () => {
-	return axios.get(`/gateway/customer-api/`)
+	return axios.get(`/gateway/customer-api/customers/profile`)
 }
 
 export const updateProfile = async (payload: any) => {
-	return axios.post('/gateway/customer-api/profile', payload)
+	return axios.put('/gateway/customer-api/customers/profile', payload)
 }

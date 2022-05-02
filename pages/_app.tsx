@@ -5,7 +5,7 @@ import { useRouter } from 'next/router'
 import { useEffect } from 'react'
 import { ContractorAuthProvider, SERVER_URL, SnackbarProvider, theme } from '../sdk'
 import '../sdk/styles/onlyCssWeNeed.css'
-
+import Head from 'next/head'
 //=====================initializing axios interceptor=======================
 axios.defaults.baseURL = SERVER_URL
 axios.interceptors.request.use(
@@ -49,20 +49,37 @@ function MyApp({ Component, pageProps }: AppProps) {
 	//if route begin with /admin redirect to admin node
 	if (router.pathname.includes('/admin')) {
 		return (
-			<ThemeProvider theme={theme}>
-				<Component {...pageProps} />
-			</ThemeProvider>
+			<>
+				<Head>
+					<title>Project Hero</title>
+					<link rel='apple-touch-icon' sizes='180x180' href='/apple-touch-icon.png' />
+					<link rel='icon' type='image/png' sizes='32x32' href='/favicon-32x32.png' />
+					<link rel='icon' type='image/png' sizes='16x16' href='/favicon-16x16.png' />
+					<link rel='manifest' href='/site.webmanifest' />
+					<link rel='mask-icon' href='/safari-pinned-tab.svg' color='#5bbad5' />
+					<meta name='msapplication-TileColor' content='#da532c' />
+					<meta name='theme-color' content='#333333' />
+				</Head>
+				<ThemeProvider theme={theme}>
+					<Component {...pageProps} />
+				</ThemeProvider>
+			</>
 		)
 	}
 	// else contractor node
 	return (
-		<ThemeProvider theme={theme}>
-			<SnackbarProvider>
-				<ContractorAuthProvider>
-					<Component {...pageProps} />
-				</ContractorAuthProvider>
-			</SnackbarProvider>
-		</ThemeProvider>
+		<>
+			<Head>
+				<title></title>
+			</Head>
+			<ThemeProvider theme={theme}>
+				<SnackbarProvider>
+					<ContractorAuthProvider>
+						<Component {...pageProps} />
+					</ContractorAuthProvider>
+				</SnackbarProvider>
+			</ThemeProvider>
+		</>
 	)
 }
 

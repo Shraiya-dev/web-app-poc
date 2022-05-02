@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { useRouter } from 'next/router'
 import { createContext, useCallback, useContext, useEffect, useMemo, useReducer } from 'react'
-import { loginService, sendOtpService } from '../apis'
+import { getCustomerDetails, loginService, sendOtpService } from '../apis'
 import { CustomerDetails, CUSTOMER_STATUS, USER_LOGIN_TYPE, USER_TYPE } from '../types'
 import { useSnackbar } from './SnackbarProvider'
 
@@ -54,7 +54,7 @@ const ContractorAuthProvider = ({ children }: any) => {
 	}, [])
 	const getContactorUserInfo = useCallback(async () => {
 		try {
-			const { data } = await axios.get('/gateway/customer-api')
+			const { data } = await getCustomerDetails()
 			dispatch({
 				user: {
 					customerId: data.payload?._id ?? '',
@@ -89,7 +89,6 @@ const ContractorAuthProvider = ({ children }: any) => {
 					return data
 				}
 			} catch (error: any) {
-				console.log('inerror', error)
 				showSnackbar(error?.error, 'error')
 				return error
 				//TODO: Need to fix in response also
@@ -121,7 +120,7 @@ const ContractorAuthProvider = ({ children }: any) => {
 				return
 			}
 			try {
-				const { data } = await axios.get('/gateway/customer-api')
+				const { data } = await getCustomerDetails()
 
 				dispatch({
 					accessToken: accessToken,
