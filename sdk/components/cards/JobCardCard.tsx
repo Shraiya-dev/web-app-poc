@@ -14,6 +14,7 @@ const CustomPaper = styled(Paper)(({ theme }) => ({
 		width: 125,
 		backgroundPosition: 'center',
 		backgroundFit: 'cover',
+		backgroundRepeat: 'no-repeat',
 	},
 
 	'.vAlignCenter': {
@@ -32,8 +33,7 @@ export const JobCardCard = ({ jobCard }: JobCardCardProps) => {
 				<Stack
 					className='profileImage'
 					sx={{
-						backgroundImage:
-							'url(https://images.unsplash.com/photo-1473090928358-00fcead4f08c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1094&q=80)',
+						backgroundImage: 'url(/assets/icons/worker.svg)',
 					}}>
 					{/* <img
 					className='profileImage'

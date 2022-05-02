@@ -82,6 +82,7 @@ export const Dashboard = () => {
 								anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
 								badgeContent={
 									router.query.status && (
+										//simple svg to show dot on filter text
 										<svg height='10' width='10'>
 											<circle cx='5' cy='5' r='5' fill='red' />
 										</svg>
@@ -95,7 +96,7 @@ export const Dashboard = () => {
 					</Button>
 				</Grid>
 				<Grid item xs={12} md={4} alignItems='center'>
-					<SearchField name='bookingId' fullWidth placeholder='Search' size='small' />
+					<SearchField name='bookingId' fullWidth placeholder='Search by booking ID' size='small' />
 				</Grid>
 			</Grid>
 
@@ -124,17 +125,19 @@ export const Dashboard = () => {
 							})}
 						</Grid>
 					)}
-					<Stack p={4} alignItems='center'>
-						<Pagination
-							color='primary'
-							page={Number(router.query.pageNumber ?? 0) + 1}
-							onChange={(e, page) => {
-								router.query.pageNumber = page - 1 + ''
-								router.push(router)
-							}}
-							count={Math.ceil(bookings.totalBookings / 10)}
-						/>
-					</Stack>
+					{bookings.bookings.length > 0 && (
+						<Stack p={4} alignItems='center'>
+							<Pagination
+								color='primary'
+								page={Number(router.query.pageNumber ?? 0) + 1}
+								onChange={(e, page) => {
+									router.query.pageNumber = page - 1 + ''
+									router.push(router)
+								}}
+								count={Math.ceil(bookings.totalBookings / 10)}
+							/>
+						</Stack>
+					)}
 				</Stack>
 			)}
 			<FilterDrawer open={openFilterDrawer} onClose={handelDrawerToggle} />
