@@ -117,11 +117,6 @@ const useCreateBooking = () => {
 				if (!values.jobType) {
 					errors.jobType = 'Required'
 				}
-				// if (!values.helper && !values.supervisor && !values.technician) {
-				// 	errors.helper = 'Required'
-				// 	errors.supervisor = 'Required'
-				// 	errors.technician = 'Required'
-				// }
 
 				//helper
 				if (!values.helper && values.helperWages) {
@@ -141,7 +136,7 @@ const useCreateBooking = () => {
 				if (!values.supervisor && values.supervisorWages) {
 					errors.supervisor = 'Required'
 				}
-				if (values.supervisorWages && !values.supervisorWages) {
+				if (values.supervisor && !values.supervisorWages) {
 					errors.supervisorWages = 'Required'
 				}
 			}

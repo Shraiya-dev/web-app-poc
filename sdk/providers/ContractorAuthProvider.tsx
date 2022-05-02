@@ -11,6 +11,7 @@ interface AuthState {
 	phoneNumber: null | string
 	accessToken: null | string
 	refreshToken: null | string
+	isRegister: false | Boolean
 }
 
 interface AuthProviderValue extends AuthState {
@@ -18,6 +19,7 @@ interface AuthProviderValue extends AuthState {
 	verifyOtp: (phoneNumber: string, otp: string) => Promise<any>
 	logOut: () => Promise<any>
 	getContactorUserInfo: () => Promise<any>
+	updateIsRegUser: (isRegister: boolean) => {}
 }
 const simpleReducer = (state: AuthState, payload: Partial<AuthState>) => ({
 	...state,
@@ -28,6 +30,7 @@ const initialAuthState: AuthState = {
 	refreshToken: LoadingUniqueString,
 	phoneNumber: LoadingUniqueString,
 	user: null,
+	isRegister: false,
 }
 const ContractorAuthContext = createContext<AuthProviderValue>({
 	...initialAuthState,
@@ -35,6 +38,7 @@ const ContractorAuthContext = createContext<AuthProviderValue>({
 	requestOtp: () => Promise.resolve(null),
 	verifyOtp: () => Promise.resolve(null),
 	getContactorUserInfo: () => Promise.resolve(null),
+	updateIsRegUser: () => false,
 })
 const { Provider, Consumer } = ContractorAuthContext
 
@@ -82,10 +86,11 @@ const ContractorAuthProvider = ({ children }: any) => {
 					return data
 				} else {
 					showSnackbar(data?.error, 'error')
-					throw data
+					return data
 				}
 			} catch (error: any) {
 				showSnackbar(error?.error, 'error')
+				return error
 				//TODO: Need to fix in response also
 				//showSnackbar(error?.response?.data?.developerInfo, 'error')
 			}
@@ -99,6 +104,12 @@ const ContractorAuthProvider = ({ children }: any) => {
 		dispatch(initialAuthState)
 		await router.push('/login')
 	}, [router])
+
+	const updateIsRegUser = useCallback(async (isRegister: boolean) => {
+		dispatch({
+			isRegister: isRegister,
+		})
+	}, [])
 	useEffect(() => {
 		;(async () => {
 			const accessToken = localStorage.getItem('accessToken')
@@ -173,8 +184,9 @@ const ContractorAuthProvider = ({ children }: any) => {
 			verifyOtp: verifyOtp,
 			logOut: logOut,
 			getContactorUserInfo: getContactorUserInfo,
+			updateIsRegUser: updateIsRegUser,
 		}),
-		[state, requestOtp, verifyOtp, logOut, getContactorUserInfo]
+		[state, requestOtp, verifyOtp, logOut, getContactorUserInfo, updateIsRegUser]
 	)
 	return <Provider value={authProviderValue}>{children}</Provider>
 }

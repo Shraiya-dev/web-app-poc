@@ -70,7 +70,7 @@ const CustomBookingStyle = styled(Box)(({ theme }) => ({
 	},
 
 	'.inputLabel': {
-		fontSize: 16,
+		fontSize: 18,
 		fontWeight: 600,
 		marginTop: 40,
 		marginBottom: 10,
@@ -146,6 +146,16 @@ const CustomBookingStyle = styled(Box)(({ theme }) => ({
 		verticalAlign: 'middle',
 		display: 'flex',
 	},
+	'.borderCta': {
+		borderRadius: 8,
+		padding: 8,
+		color: 'rgba(6, 31, 72, 0.7)',
+
+		textTransform: 'none',
+		border: '1px solid #C2C9D2',
+		boxShadow: 'none',
+		lineHeight: 1.4,
+	},
 }))
 
 export const CreateBooking = ({ ...props }) => {
@@ -194,19 +204,20 @@ export const CreateBooking = ({ ...props }) => {
 	]
 
 	const validateWorkerRequired = () => {
+		var validate = false
 		if (form.values.technician > 0 || form.values.technicianWages > 0) {
-			return form.values.technician > 0 && form.values.technicianWages > 0
+			validate = form.values.technician > 0 && form.values.technicianWages > 0
 		}
 
 		if (form.values.helper > 0 || form.values.helperWages > 0) {
-			return form.values.helper > 0 && form.values.helperWages > 0
+			validate = validate && form.values.helper > 0 && form.values.helperWages > 0
 		}
 
 		if (form.values.supervisor > 0 || form.values.supervisorWages > 0) {
-			return form.values.supervisor > 0 && form.values.supervisorWages > 0
+			validate = validate && form.values.supervisor > 0 && form.values.supervisorWages > 0
 		}
 
-		return false
+		return validate
 	}
 
 	useEffect(() => {
@@ -648,9 +659,8 @@ export const CreateBooking = ({ ...props }) => {
 												alignItems={'flex-start'}
 												spacing={2}
 												style={{ marginBottom: 10 }}>
-												<Grid item xs={12} sm={12} md={6}>
+												<Grid item xs={12} sm={12} md={4}>
 													<FormControl fullWidth>
-														{/* <InputLabel id='overTimeFactor'>Overtime Factor</InputLabel> */}
 														<Select
 															labelId='overTimeFactor'
 															id='overTimeFactor'
@@ -733,24 +743,22 @@ export const CreateBooking = ({ ...props }) => {
 										</InputLabel>
 
 										<Grid container spacing={4}>
-											<Grid item xs={12} sm={12} md={8} lg={8}>
+											<Grid container item rowGap={1}>
 												{projectDuration.map((info, index) => {
 													return (
 														<Button
+															className='borderCta'
 															key={index}
 															style={{
-																borderRadius: 4,
-																padding: 8,
 																background:
 																	projectDurationInfo === info?.label
 																		? theme.palette.primary.light
 																		: 'white',
 
-																// height: 35,
-
 																color: '#061F48',
 																marginRight: 10,
 																textTransform: 'none',
+																minWidth: 50,
 															}}
 															onClick={() => handleProjectDuration(info?.label)}>
 															{info?.label}
@@ -769,6 +777,7 @@ export const CreateBooking = ({ ...props }) => {
 										<Grid container spacing={4}>
 											<Grid item xs={12} sm={12} md={8} lg={8}>
 												<Button
+													className='borderCta'
 													style={{
 														borderRadius: 4,
 														padding: 4,
@@ -787,9 +796,8 @@ export const CreateBooking = ({ ...props }) => {
 												</Button>
 
 												<Button
+													className='borderCta'
 													style={{
-														borderRadius: 4,
-														padding: 4,
 														background:
 															shiftTiming === 'Custom'
 																? theme.palette.primary.light
@@ -906,6 +914,7 @@ export const CreateBooking = ({ ...props }) => {
 													error={!!checkError('city', form)}
 													value={form.values.city}
 													//	autoWidth={true}
+													disabled={form.values.state === 'none'}
 													onChange={(e) => {
 														form.handleChange(e)
 													}}
@@ -934,7 +943,8 @@ export const CreateBooking = ({ ...props }) => {
 													name='siteAddress'
 													value={form.values.siteAddress}
 													onChange={form.handleChange}
-													rows={4}
+													minRows={4}
+													maxRows={4}
 													multiline
 													fullWidth
 													onBlur={form.handleBlur}

@@ -52,6 +52,7 @@ export const OnboardingLayout = ({ children, ...props }: any) => {
 							)
 						})}
 					</Stack>
+
 				</Stack>
 			</Stack>
 			<Stack className='right'>{children}</Stack>
@@ -108,25 +109,3 @@ const CustomizeDashboard = styled(Box)(({ theme }) => ({
 	},
 }))
 
-// <Grid container>
-// 	<Grid item xs={5.5} className='left'>
-// 		<Stack spacing={4} justifyContent='center' alignItems='center'>
-// 			<Image src={Logo} alt='' className='logo' />
-// 			<Box className='introBox'>
-// 				{intro.map((x, index) => {
-// 					return (
-// 						<Stack direction='row' spacing={4} width={'100%'} key={index} mb={1.5}>
-// 							<Image src={Circle} alt='' height={15} width={25} />
-// 							<Typography variant='h5' color={'white'}>
-// 								{x.label}
-// 							</Typography>
-// 						</Stack>
-// 					)
-// 				})}
-// 			</Box>
-// 		</Stack>
-// 	</Grid>
-// 	<Grid item xs={6.5}>
-// 		{children}
-// 	</Grid>
-// </Grid>

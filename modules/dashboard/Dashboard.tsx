@@ -27,7 +27,14 @@ export const Dashboard = () => {
 	const { bookings, bookingStats, isLoading } = useDashboard()
 	const router = useRouter()
 	const [openFilterDrawer, setFilterDrawer] = useState(false)
-	const { bookingFormOpen, setBookingFormOpen, onCloseDialog, setOncloseDialog, toggleBookingForm } = useBooking()
+	const {
+		bookingFormOpen,
+		setBookingFormOpen,
+		onCloseDialog,
+		setOncloseDialog,
+		toggleBookingForm,
+		handleBookingForm,
+	} = useBooking()
 
 	const handelDrawerToggle = useCallback(() => {
 		setFilterDrawer((prev) => !prev)
@@ -98,6 +105,8 @@ export const Dashboard = () => {
 				</Grid>
 				<Grid item xs={12} md={3} alignItems='center'>
 					<SearchField name='bookingId' fullWidth placeholder='Search by booking ID' size='small' />
+				<Grid item xs={12} md={4} alignItems='center'>
+					<SearchField name='bookingId' fullWidth placeholder='Search by Booking ID' size='small' />
 				</Grid>
 			</Grid>
 
@@ -110,10 +119,8 @@ export const Dashboard = () => {
 					{bookings.bookings.length === 0 ? (
 						<Stack flex={1} mt={20} direction={'column'} spacing={4} alignItems='center'>
 							<Typography variant='h4'>No booking. Create a booking to hire workers.</Typography>
-							{/* <Typography variant='h5' color={'GrayText'}>
-								Press on Book worker to create bookings
-							</Typography> */}
-							<Button>Book Workers</Button>
+							</Typography>
+							<Button onClick={handleBookingForm}>Book Workers</Button>
 						</Stack>
 					) : (
 						<Grid container spacing={3}>
