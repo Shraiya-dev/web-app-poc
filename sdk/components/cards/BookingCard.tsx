@@ -38,9 +38,9 @@ const CustomPaper = styled(Paper)(({ theme }) => ({
 				flexDirection: 'column',
 				justifyContent: 'space-between',
 				alignItems: 'flex-start',
+				marginRight: theme.spacing(0.5),
 				'&:hover': {
 					backgroundColor: alpha(theme.palette.primary.main, 0.05),
-					border: 1,
 					borderColor: theme.palette.primary.main,
 					color: theme.palette.primary.main,
 				},
