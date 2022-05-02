@@ -33,7 +33,7 @@ export const OnboardingLayout = ({ children, ...props }: any) => {
 				<Stack width='fit-content' className='instruction'>
 					{intro.map((x, index) => {
 						return (
-							<Stack direction='row' spacing={4} width={'100%'} key={index} mb={2}>
+							<Stack direction='row'  width={'100%'} key={index} mb={4}>
 								{/* <Image src={Circle} alt='' height={15} width={25} /> */}
 								<Typography variant='h5' color={'white'} fontSize={24} fontWeight={600}>
 									{x.label}
@@ -78,6 +78,7 @@ const CustomizeDashboard = styled(Box)(({ theme }) => ({
 		flexDirection: 'column',
 		'.instruction': {
 			display: 'none',
+		
 		},
 		'.logoContainer': {
 			display: 'flex',

@@ -71,7 +71,7 @@ const CustomBookingStyle = styled(Box)(({ theme }) => ({
 
 	'.inputLabel': {
 		fontSize: 16,
-		fontWeight: 600,
+		fontWeight: 800,
 		marginTop: 40,
 		marginBottom: 10,
 	},
@@ -194,20 +194,20 @@ export const CreateBooking = ({ ...props }) => {
 	]
 
 	const validateWorkerRequired = () => {
-		var technitianAuth, helperAuth,superviserAuth = false
+		var validate = false
 		if (form.values.technician > 0 || form.values.technicianWages > 0) {
-			technitianAuth= form.values.technician > 0 && form.values.technicianWages > 0
+			validate = form.values.technician > 0 && form.values.technicianWages > 0
 		}
 
 		if (form.values.helper > 0 || form.values.helperWages > 0) {
-			helperAuth= form.values.helper > 0 && form.values.helperWages > 0
+			validate = validate && form.values.helper > 0 && form.values.helperWages > 0
 		}
 
 		if (form.values.supervisor > 0 || form.values.supervisorWages > 0) {
-			superviserAuth= form.values.supervisor > 0 && form.values.supervisorWages > 0
+			validate = validate && form.values.supervisor > 0 && form.values.supervisorWages > 0
 		}
 
-		return technitianAuth && helperAuth && superviserAuth
+		return validate
 	}
 
 	useEffect(() => {
@@ -649,9 +649,8 @@ export const CreateBooking = ({ ...props }) => {
 												alignItems={'flex-start'}
 												spacing={2}
 												style={{ marginBottom: 10 }}>
-												<Grid item xs={12} sm={12} md={6}>
+												<Grid item xs={12} sm={12} md={4}>
 													<FormControl fullWidth>
-														{/* <InputLabel id='overTimeFactor'>Overtime Factor</InputLabel> */}
 														<Select
 															labelId='overTimeFactor'
 															id='overTimeFactor'
@@ -907,6 +906,7 @@ export const CreateBooking = ({ ...props }) => {
 													error={!!checkError('city', form)}
 													value={form.values.city}
 													//	autoWidth={true}
+													disabled={form.values.state === 'none'}
 													onChange={(e) => {
 														form.handleChange(e)
 													}}
