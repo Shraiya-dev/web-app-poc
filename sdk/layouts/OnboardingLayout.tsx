@@ -52,7 +52,6 @@ export const OnboardingLayout = ({ children, ...props }: any) => {
 							)
 						})}
 					</Stack>
-
 				</Stack>
 			</Stack>
 			<Stack className='right'>{children}</Stack>
@@ -108,4 +107,3 @@ const CustomizeDashboard = styled(Box)(({ theme }) => ({
 		},
 	},
 }))
-
