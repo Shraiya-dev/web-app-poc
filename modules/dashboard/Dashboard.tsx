@@ -27,7 +27,14 @@ export const Dashboard = () => {
 	const { bookings, bookingStats, isLoading } = useDashboard()
 	const router = useRouter()
 	const [openFilterDrawer, setFilterDrawer] = useState(false)
-	const { bookingFormOpen, setBookingFormOpen, onCloseDialog, setOncloseDialog, toggleBookingForm } = useBooking()
+	const {
+		bookingFormOpen,
+		setBookingFormOpen,
+		onCloseDialog,
+		setOncloseDialog,
+		toggleBookingForm,
+		handleBookingForm,
+	} = useBooking()
 
 	const handelDrawerToggle = useCallback(() => {
 		setFilterDrawer((prev) => !prev)
@@ -111,7 +118,7 @@ export const Dashboard = () => {
 							<Typography variant='h5' color={'GrayText'}>
 								Press on Book worker to create bookings
 							</Typography>
-							<Button>Book Workers</Button>
+							<Button onClick={handleBookingForm}>Book Workers</Button>
 						</Stack>
 					) : (
 						<Grid container spacing={3}>
