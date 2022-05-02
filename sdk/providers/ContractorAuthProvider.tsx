@@ -82,11 +82,12 @@ const ContractorAuthProvider = ({ children }: any) => {
 					return data
 				} else {
 					showSnackbar(data?.error, 'error')
-					throw data
+					return data
 				}
 			} catch (error: any) {
 				console.log('inerror', error)
 				showSnackbar(error?.error, 'error')
+				return error
 				//TODO: Need to fix in response also
 				//showSnackbar(error?.response?.data?.developerInfo, 'error')
 			}

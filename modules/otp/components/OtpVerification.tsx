@@ -59,7 +59,7 @@ export const OTPVerification = () => {
 						shouldAutoFocus={true}
 						separator={<span> </span>}
 						isInputNum={true}
-						hasErrored={!!error || !!otpState.error}
+						hasErrored={!status}
 						errorStyle={{ border: '1px solid #F70000' }}
 					/>
 					<Stack className='subHeader' onClick={resendOTP}>

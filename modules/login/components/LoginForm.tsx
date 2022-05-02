@@ -53,7 +53,11 @@ export const LoginForm = () => {
 						startAdornment: <InputAdornment position='start'>+91</InputAdornment>,
 					}}
 					value={form.values.phoneNumber}
-					onChange={form.handleChange}
+					onChange={(e: any) => {
+						if (e.target.value.length <= 10) {
+							form.handleChange(e)
+						}
+					}}
 				/>
 				{console.log(checkError('phoneNumber', form))}
 				<LoadingButton className='cta' type='submit' loading={!!loading} variant='contained'>

@@ -194,19 +194,20 @@ export const CreateBooking = ({ ...props }) => {
 	]
 
 	const validateWorkerRequired = () => {
+		var technitianAuth, helperAuth,superviserAuth = false
 		if (form.values.technician > 0 || form.values.technicianWages > 0) {
-			return form.values.technician > 0 && form.values.technicianWages > 0
+			technitianAuth= form.values.technician > 0 && form.values.technicianWages > 0
 		}
 
 		if (form.values.helper > 0 || form.values.helperWages > 0) {
-			return form.values.helper > 0 && form.values.helperWages > 0
+			helperAuth= form.values.helper > 0 && form.values.helperWages > 0
 		}
 
 		if (form.values.supervisor > 0 || form.values.supervisorWages > 0) {
-			return form.values.supervisor > 0 && form.values.supervisorWages > 0
+			superviserAuth= form.values.supervisor > 0 && form.values.supervisorWages > 0
 		}
 
-		return false
+		return technitianAuth && helperAuth && superviserAuth
 	}
 
 	useEffect(() => {
@@ -934,7 +935,8 @@ export const CreateBooking = ({ ...props }) => {
 													name='siteAddress'
 													value={form.values.siteAddress}
 													onChange={form.handleChange}
-													rows={4}
+													minRows={4}
+													maxRows={4}
 													multiline
 													fullWidth
 													onBlur={form.handleBlur}

@@ -141,7 +141,7 @@ const useCreateBooking = () => {
 				if (!values.supervisor && values.supervisorWages) {
 					errors.supervisor = 'Required'
 				}
-				if (values.supervisorWages && !values.supervisorWages) {
+				if (values.supervisor && !values.supervisorWages) {
 					errors.supervisorWages = 'Required'
 				}
 			}
