@@ -32,6 +32,10 @@ const CustomOTPStyles = styled(Box)(({ theme }) => ({
 		color: 'white',
 		cursor: 'pointer',
 	},
+	[theme.breakpoints.down('md')]: {
+		padding: 20,
+		paddingTop: 20,
+	},
 }))
 
 export const OTPVerification = () => {

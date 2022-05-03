@@ -25,7 +25,7 @@ const ConfirmCancel = ({ ...props }) => {
 							{' '}
 							Continue Booking
 						</Button>
-						<Button onClick={()=>router.back()}> Leave</Button>
+						<Button onClick={() => router.back()}> Leave</Button>
 					</Stack>
 				</DialogContent>
 			</Box>

@@ -22,10 +22,10 @@ const CustomEmptyBooking = styled(Box)(({ theme }) => ({
 export default function BookingSuccess({ ...props }) {
 	const router = useRouter()
 
-	const { setBookingFormOpen, bookingFormOpen } = props
+	
 	const handleSuccessBooking = () => {
 		router.push(`/dashboard`)
-		setBookingFormOpen(false)
+		
 	}
 
 	return (

@@ -37,6 +37,10 @@ const CustomLoginStyles = styled(Box)(({ theme }) => ({
 	'.register': {
 		paddingTop: 16,
 	},
+	[theme.breakpoints.down('md')]: {
+		padding: 20,
+		paddingTop: 20,
+	},
 }))
 
 export const LoginForm = () => {
