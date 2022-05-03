@@ -1,4 +1,4 @@
-import { TextField, Typography, Box, Button, InputLabel, Stack, Input, styled } from '@mui/material'
+import { TextField, Typography, Box, Button, InputLabel, Stack, Input, styled, InputAdornment } from '@mui/material'
 
 import LoadingButton from '@mui/lab/LoadingButton'
 import useBasicForm from '../hooks/useBasicForm'
@@ -13,9 +13,6 @@ const BasicFormStyle = styled(Box)(({ theme }) => ({
 	'.cta': {
 		marginTop: '1em',
 		width: '100%',
-		background: '#244CB3',
-		color: 'white',
-		cursor: 'pointer',
 	},
 	'.inputLabel': {
 		paddingTop: 10,
@@ -29,7 +26,7 @@ const BasicFormStyle = styled(Box)(({ theme }) => ({
 }))
 
 export const BasicDetailsForm = () => {
-	const { form, loading, editInfo, setEditInfo, handleEdit } = useBasicForm()
+	const { form, loading, setLoading, editInfo, setEditInfo, handleEdit } = useBasicForm()
 
 	const router = useRouter()
 
@@ -115,7 +112,10 @@ export const BasicDetailsForm = () => {
 									onChange={form.handleChange}
 									onBlur={form.handleBlur}
 									value={form.values.phoneNumber}
-									placeholder='9999988888'
+									InputProps={{
+										startAdornment: <InputAdornment position='start'>+91</InputAdornment>,
+									}}
+									placeholder='Enter Phone Number'
 									variant={
 										router.asPath === '/profile' ? (editInfo ? 'outlined' : 'standard') : 'outlined'
 									}
@@ -126,7 +126,12 @@ export const BasicDetailsForm = () => {
 							</InputWrapper>
 
 							{((editInfo && router.asPath === '/profile') || router.asPath === '/onboarding') && (
-								<LoadingButton type='submit' loading={loading} variant='contained' className='cta'>
+								<LoadingButton
+									type='submit'
+									loading={loading}
+									variant='contained'
+									className='cta'
+									disabled={loading}>
 									{router.asPath === '/profile' ? 'Save' : 'Next'}
 								</LoadingButton>
 							)}

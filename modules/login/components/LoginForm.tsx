@@ -30,9 +30,6 @@ const CustomLoginStyles = styled(Box)(({ theme }) => ({
 	'.cta': {
 		marginTop: '1.5em',
 		width: '100%',
-		background: '#244CB3',
-		color: 'white',
-		cursor: 'pointer',
 	},
 	'.register': {
 		paddingTop: 16,
@@ -44,7 +41,7 @@ const CustomLoginStyles = styled(Box)(({ theme }) => ({
 }))
 
 export const LoginForm = () => {
-	const { form, loading, error, isRegister, handleLogin } = useLogin()
+	const { form, loading, setLoading, error, isRegister, handleLogin } = useLogin()
 
 	return (
 		<CustomLoginStyles>
@@ -71,7 +68,12 @@ export const LoginForm = () => {
 							}
 						}}
 					/>
-					<LoadingButton className='cta' type='submit' loading={!!loading} variant='contained'>
+					<LoadingButton
+						className='cta'
+						type='submit'
+						loading={loading}
+						disabled={loading}
+						variant='contained'>
 						{isRegister ? 'Register' : 'Login'}
 					</LoadingButton>
 

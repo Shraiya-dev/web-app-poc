@@ -28,7 +28,7 @@ const useBasicForm = () => {
 			company: user?.companyName ?? '',
 			companyEmail: user?.email ?? '',
 			name: user?.name ?? '',
-			phoneNumber: user?.phoneNumber ?? '',
+			phoneNumber: user?.phoneNumber.slice(3) ?? '',
 		})
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [user])
@@ -58,14 +58,6 @@ const useBasicForm = () => {
 				errors.phoneNumber = 'Required'
 			}
 
-			// if (
-			// 	values.phoneNumber === '' ||
-			// 	Number.isNaN(Number(values.phoneNumber)) ||
-			// 	values.phoneNumber.length !== 10
-			// ) {
-			// 	errors.phoneNumber = 'Enter Valid phone Number'
-			// }
-
 			if (!validateEmail(values.companyEmail)) {
 				errors.companyEmail = 'Enter Valid Company Email'
 			}
@@ -88,6 +80,7 @@ const useBasicForm = () => {
 				.catch((error: any) => {
 					showSnackbar(error?.response?.data?.developerInfo, 'error')
 					console.log(error)
+					setLoading(false)
 				})
 		},
 	})
@@ -95,6 +88,7 @@ const useBasicForm = () => {
 	return {
 		form,
 		loading,
+		setLoading,
 		editInfo,
 		setEditInfo,
 		handleEdit,
