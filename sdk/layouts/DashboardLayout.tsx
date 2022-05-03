@@ -122,9 +122,11 @@ const DashboardLayout = ({ children, ...props }: any) => {
 									</Link>
 								</>
 							)}
-							<Button variant='contained' onClick={handleBookingForm}>
-								Book Workers
-							</Button>
+							<Link href='/dashboard/bookings/create' passHref>
+								<a>
+									<Button variant='contained'>Book Workers</Button>
+								</a>
+							</Link>
 						</Stack>
 					</Toolbar>
 				</Container>

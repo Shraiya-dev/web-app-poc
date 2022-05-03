@@ -9,7 +9,6 @@ export const isANumber = (value: any) => {
 }
 
 export const checkError = (name: any, form: any) => {
-	console.log(name, form)
 	const touched = form.touched
 	const errors = form.errors
 	return touched[name] && errors[name] ? errors[name] : null

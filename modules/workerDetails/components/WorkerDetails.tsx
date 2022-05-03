@@ -99,7 +99,6 @@ export const WorkerProfileInfo = () => {
 
 		getWorkerInfo(id)
 			.then((data: any) => {
-				console.log(data)
 				setWorkerData(data?.data?.payload)
 			})
 			.catch((error: any) => {

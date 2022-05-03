@@ -57,25 +57,6 @@ const useCreateBooking = () => {
 		}
 	}
 
-	function timeConvert(time: any) {
-		// Check correct time format and split into components
-
-		time = time.getHours() + ':' + time.getMinutes()
-		time = time.toString().match(/^([01]\d|2[0-3])(:)([0-5]\d)(:[0-5]\d)?$/) || [time]
-
-		if (time.length > 1) {
-			// If time format correct
-
-			//console.log("time",time)
-			time = time.slice(1) // Remove full string match value
-			time[5] = +time[0] < 12 ? 'AM' : 'PM' // Set AM/PM
-			time[0] = +time[0] % 12 || 12 // Adjust hours
-		} else {
-			time[0] = time[0] + 'AM'
-		}
-		return time.join('') // return adjusted time or original string
-	}
-
 	const form = useFormik<CreateBookingForm>({
 		initialValues: {
 			jobType: '',
@@ -108,7 +89,7 @@ const useCreateBooking = () => {
 			name: user?.name || '',
 			company: user?.companyName || '',
 			companyEmail: user?.email || '',
-			phoneNumber: user?.phoneNumber || '',
+			phoneNumber: user?.phoneNumber.slice(3) || '',
 		},
 		validate: (values) => {
 			const errors = <any>{}
@@ -209,7 +190,7 @@ const useCreateBooking = () => {
 		setStep,
 		userInitialInfo,
 		setUserInitialInfo,
-		timeConvert,
+
 		handlePrev,
 	}
 }

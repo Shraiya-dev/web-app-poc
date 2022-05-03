@@ -15,13 +15,12 @@ import {
 	Typography,
 	styled,
 	Paper,
-	IconButton,
+	InputAdornment,
 } from '@mui/material'
 import { LoadingButton } from '@mui/lab'
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns'
 import { DatePicker } from '@mui/x-date-pickers/DatePicker'
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
-import { TimePicker } from '@mui/x-date-pickers/TimePicker'
 import Image from 'next/image'
 import { useEffect, useState } from 'react'
 import Helper from '../../../public/assets/icons/helper.svg'
@@ -35,13 +34,13 @@ import BookingSuccess from './bookingsuccess'
 import ConfirmCancel from './confirmCancel'
 
 import { createBooking } from '../apis/apis'
-import { useSnackbar } from '../../../sdk'
+import { useSnackbar, useContractorAuth } from '../../../sdk'
 import { useMobile } from '../../../sdk/hooks/useMobile'
-import CloseIcon from '@mui/icons-material/Close'
-import { format } from 'date-fns'
 
 import { CustomTimePicker } from '../../../sdk/components/timepicker/customTimePicker'
 import { timeDataAM, timeDataPM } from '../utils/helperData'
+
+import { ArrowBack } from '@mui/icons-material'
 
 const CustomBookingStyle = styled(Box)(({ theme }) => ({
 	'.main': {
@@ -87,13 +86,13 @@ const CustomBookingStyle = styled(Box)(({ theme }) => ({
 	'.header': {
 		fontSize: 36,
 		fontWeight: 600,
-		color: theme.palette.secondary.main,
+		//color: theme.palette.secondary.main,
 	},
 	'.subHeader': {
 		fontSize: 20,
 		fontWeight: 600,
 		marginTop: 20,
-		color: theme.palette.secondary.main,
+		//color: theme.palette.secondary.main,
 	},
 	'.subInfo': {
 		fontSize: 13,
@@ -159,7 +158,6 @@ const CustomBookingStyle = styled(Box)(({ theme }) => ({
 }))
 
 export const CreateBooking = ({ ...props }) => {
-	const { toggleBookingForm, onCloseDialog, setOncloseDialog, bookingFormOpen, setBookingFormOpen } = props
 	const { form, step, setStep, handlePrev } = useCreateBooking()
 
 	const [isMore, setIsmore] = useState(false)
@@ -171,7 +169,10 @@ export const CreateBooking = ({ ...props }) => {
 	const [loading, setLoading] = useState<boolean>(false)
 	const { showSnackbar } = useSnackbar()
 
+	const [onCloseDialog, setOncloseDialog] = useState(false)
+
 	const isMobile = useMobile()
+	const { user } = useContractorAuth()
 
 	const workerType = [
 		{
@@ -243,8 +244,7 @@ export const CreateBooking = ({ ...props }) => {
 		}
 
 		if (step === 3) {
-			let canSubmit =
-				!form.values.name || !form.values.company || !form.values.companyEmail || !form.values.phoneNumber
+			let canSubmit = !form.values.name || !form.values.companyEmail || !form.values.phoneNumber
 			setIsSubmittable(canSubmit)
 		}
 	}, [form])
@@ -264,10 +264,10 @@ export const CreateBooking = ({ ...props }) => {
 		const payload = {
 			city: form.values.city,
 			state: form.values.state,
-			companyName: form.values.company,
+			companyName: user?.companyName,
 			email: form.values.companyEmail,
 			name: form.values.name,
-			phoneNumber: form.values.phoneNumber,
+			phoneNumber: '+91' + form.values.phoneNumber,
 			siteAddress: form.values.siteAddress,
 			schedule: {
 				bookingDuration: form.values.BookingDuration,
@@ -294,11 +294,9 @@ export const CreateBooking = ({ ...props }) => {
 
 		if (step < 4) {
 			if (step === 3) {
-				console.log('payload', payload)
 				setLoading(true)
 				createBooking(payload)
 					.then((respone) => {
-						console.log('res', respone)
 						setStep((state) => state + 1)
 						setIsSubmittable(false)
 						setLoading(false)
@@ -356,22 +354,18 @@ export const CreateBooking = ({ ...props }) => {
 		<CustomBookingStyle>
 			{step !== 4 && (
 				<Box display='flex' alignItems='center'>
-					<Box flexGrow={1}></Box>
-					<Box style={{ marginTop: 30, marginRight: 30 }}>
-						<IconButton onClick={toggleBookingForm}>
-							<CloseIcon style={{ fontSize: 32 }} />
-						</IconButton>
-					</Box>
+					<Button
+						startIcon={<ArrowBack />}
+						onClick={() => setOncloseDialog(true)}
+						variant='text'
+						color='primary'>
+						Go Back
+					</Button>
 				</Box>
 			)}
 			<Container className='main' maxWidth={'md'}>
-				<ConfirmCancel
-					onCloseDialog={onCloseDialog}
-					setOncloseDialog={setOncloseDialog}
-					toggleBookingForm={toggleBookingForm}
-					bookingFormOpen={bookingFormOpen}
-					setBookingFormOpen={setBookingFormOpen}
-				/>
+				<ConfirmCancel onCloseDialog={onCloseDialog} setOncloseDialog={setOncloseDialog} />
+
 				<Box width={'100%'}>
 					{step !== 4 && (
 						<Box>
@@ -543,9 +537,6 @@ export const CreateBooking = ({ ...props }) => {
 																mr: 1,
 																mb: 1,
 															}}
-															// color={
-															// 	form.values.tags.includes(item) ? 'primary' : undefined
-															// }
 															key={item}
 															label={item}
 															clickable
@@ -608,9 +599,11 @@ export const CreateBooking = ({ ...props }) => {
 														<Grid item xs={12} sm={12} md={4}>
 															<TextField
 																label={`${info?.label} Required`}
+																placeholder={`Enter ${info?.label}`}
+																defaultValue=''
 																id={info?.name}
 																name={info?.name}
-																value={info?.formvalue}
+																value={info?.formvalue > 0 ? info?.formvalue : ''}
 																type='tel'
 																onChange={(e: any) => {
 																	if (e.target.value >= 0) {
@@ -620,15 +613,18 @@ export const CreateBooking = ({ ...props }) => {
 																fullWidth
 																onBlur={form.handleBlur}
 																error={!!checkError(`${info?.name}`, form)}
-																//helperText={checkError(`${info?.name}`, form)}
 															/>
 														</Grid>
 														<Grid item xs={12} sm={12} md={4}>
 															<TextField
 																label='Daily wage (Rs.)'
+																placeholder='Enter wage'
+																defaultValue=''
 																id={info?.wage}
 																name={info?.wage}
-																value={info?.wageformvalue}
+																value={
+																	info?.wageformvalue > 0 ? info?.wageformvalue : ''
+																}
 																type='tel'
 																onChange={(e: any) => {
 																	if (e.target.value >= 0) {
@@ -638,7 +634,6 @@ export const CreateBooking = ({ ...props }) => {
 																fullWidth
 																onBlur={form.handleBlur}
 																error={!!checkError(`${info?.wage}`, form)}
-																//helperText={checkError(`${info?.wage}`, form)}
 															/>
 														</Grid>
 													</Grid>
@@ -666,8 +661,6 @@ export const CreateBooking = ({ ...props }) => {
 															id='overTimeFactor'
 															name='overTimeFactor'
 															value={form.values.overTimeFactor}
-															//autoWidth={true}
-															//label='Overtime Factor'
 															onChange={form.handleChange}>
 															<MenuItem value={'none'}>Select Overtime Factor</MenuItem>
 															<MenuItem value={10}>1</MenuItem>
@@ -676,39 +669,6 @@ export const CreateBooking = ({ ...props }) => {
 														</Select>
 													</FormControl>
 												</Grid>
-
-												{/* <Grid item xs={4} sm={4} md={4}>
-												<FormControl fullWidth>
-													<InputLabel id='overTimeFactor'>Overtime Buffer</InputLabel>
-													<Select
-														labelId='overTimeFactor'
-														id='overTimeFactor'
-														value={form.values.projectType}
-														label='Overtime Factor'
-														onChange={form.handleChange}>
-														<MenuItem value={10}>Ten</MenuItem>
-														<MenuItem value={20}>Twenty</MenuItem>
-														<MenuItem value={30}>Thirty</MenuItem>
-													</Select>
-												</FormControl>
-											</Grid> */}
-
-												{/* <Grid item xs={12} sm={12} md={6}>
-												<FormControl fullWidth>
-													<InputLabel id='overTime'>Minutes</InputLabel>
-													<Select
-														labelId='overTime'
-														id='overTime'
-														name='overTime'
-														value={form.values.overTime}
-														label='Minutes'
-														onChange={form.handleChange}>
-														<MenuItem value={10}>Ten</MenuItem>
-														<MenuItem value={20}>Twenty</MenuItem>
-														<MenuItem value={30}>Thirty</MenuItem>
-													</Select>
-												</FormControl>
-											</Grid> */}
 											</Grid>
 										</Box>
 									</Box>
@@ -775,7 +735,7 @@ export const CreateBooking = ({ ...props }) => {
 										</InputLabel>
 
 										<Grid container spacing={4}>
-											<Grid item xs={12} sm={12} md={8} lg={8}>
+											<Grid item container>
 												<Button
 													className='borderCta'
 													style={{
@@ -786,13 +746,12 @@ export const CreateBooking = ({ ...props }) => {
 																? theme.palette.primary.light
 																: 'white',
 
-														height: 35,
-														width: 100,
 														color: 'black',
 														marginRight: 10,
+														minWidth: 50,
 													}}
 													onClick={() => handleShiftTiming('09:00am-06:00pm')}>
-													9am-6pm
+													09:00am-06:00pm
 												</Button>
 
 												<Button
@@ -828,21 +787,6 @@ export const CreateBooking = ({ ...props }) => {
 															form.handleChange(e)
 														}}
 													/>
-
-													{/* <LocalizationProvider dateAdapter={AdapterDateFns}>
-														<TimePicker
-															value={form.values.startTime}
-															onChange={(value) => form.setFieldValue('startTime', value)}
-															//onChange={form.handleChange}
-															renderInput={(params) => (
-																<TextField
-																	{...params}
-																	placeholder='Select Start Time'
-																	fullWidth
-																/>
-															)}
-														/>
-													</LocalizationProvider> */}
 												</Grid>
 												<Grid item xs={12} sm={12} md={6} lg={6}>
 													<CustomTimePicker
@@ -857,26 +801,6 @@ export const CreateBooking = ({ ...props }) => {
 															form.handleChange(e)
 														}}
 													/>
-													{/* <LocalizationProvider dateAdapter={AdapterDateFns}>
-														<TimePicker
-															onChange={(value) => {
-																form.setFieldValue('endTime', value),
-																	console.log('endTime', value)
-															}}
-															value={form.values.endTime}
-															renderInput={(params) => (
-																<TextField
-																	{...params}
-																	// onChange={(value) =>
-																	// 	form.setFieldValue('endTime', value)
-																	// }
-																	//value={form.values.endTime}
-																	placeholder='Select End Time'
-																	fullWidth
-																/>
-															)}
-														/>
-													</LocalizationProvider> */}
 												</Grid>
 											</Grid>
 										)}
@@ -913,7 +837,6 @@ export const CreateBooking = ({ ...props }) => {
 													name='city'
 													error={!!checkError('city', form)}
 													value={form.values.city}
-													//	autoWidth={true}
 													disabled={form.values.state === 'none'}
 													onChange={(e) => {
 														form.handleChange(e)
@@ -980,7 +903,7 @@ export const CreateBooking = ({ ...props }) => {
 										</Grid>
 									</Box>
 
-									<Box>
+									{/* <Box>
 										<InputLabel id='company' className='inputLabel'>
 											Company
 										</InputLabel>
@@ -1000,11 +923,11 @@ export const CreateBooking = ({ ...props }) => {
 												/>
 											</Grid>
 										</Grid>
-									</Box>
+									</Box> */}
 
 									<Box>
 										<InputLabel id='companyEmail' className='inputLabel'>
-											Company Email
+											Email
 										</InputLabel>
 
 										<Grid container>
@@ -1034,13 +957,22 @@ export const CreateBooking = ({ ...props }) => {
 												<TextField
 													id='phoneNumber'
 													name='phoneNumber'
-													onChange={form.handleChange}
+													onChange={(e: any) => {
+														if (e.target.value.length <= 10) {
+															form.handleChange(e)
+														}
+													}}
 													value={form.values.phoneNumber}
 													placeholder='9999988888'
 													fullWidth
 													onBlur={form.handleBlur}
 													error={!!checkError(`phoneNumber`, form)}
 													helperText={checkError(`phoneNumber`, form)}
+													InputProps={{
+														startAdornment: (
+															<InputAdornment position='start'>+91</InputAdornment>
+														),
+													}}
 												/>
 											</Grid>
 										</Grid>
@@ -1079,7 +1011,7 @@ export const CreateBooking = ({ ...props }) => {
 
 					{step === 4 && (
 						<Box style={{ verticalAlign: 'middle' }}>
-							<BookingSuccess bookingFormOpen={bookingFormOpen} setBookingFormOpen={setBookingFormOpen} />
+							<BookingSuccess />
 						</Box>
 					)}
 				</Box>

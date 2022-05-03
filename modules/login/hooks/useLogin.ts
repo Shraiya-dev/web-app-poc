@@ -44,19 +44,23 @@ const useLogin = () => {
 			setLoading(true)
 			requestOtp(`+91${values?.phoneNumber}`)
 				.then((res) => {
+					console.log(res?.data?.success)
 					if (res?.data?.success) {
 						setLoginState((prevValues) => ({
 							...prevValues,
 							status: 'success',
 						}))
+						setLoading(false)
 						return router.push('/verifyOTP')
+					} else {
+						showSnackbar(res?.data?.error, 'error')
+						setLoginState((prevValues) => ({
+							...prevValues,
+							status: 'failed',
+							error: res?.data?.error || res?.error,
+						}))
+						setLoading(false)
 					}
-					setLoginState((prevValues) => ({
-						...prevValues,
-						status: 'failed',
-						error: res?.data?.error || res?.error,
-					}))
-					setLoading(false)
 				})
 				.catch((error) => {
 					showSnackbar(error?.response?.data?.developerInfo, 'error')
