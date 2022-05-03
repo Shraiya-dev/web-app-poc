@@ -173,6 +173,7 @@ export const CreateBooking = ({ ...props }) => {
 
 	const isMobile = useMobile()
 	const { user } = useContractorAuth()
+	const fixTiming =`09:00 am - 05:00 pm`
 
 	const workerType = [
 		{
@@ -222,7 +223,6 @@ export const CreateBooking = ({ ...props }) => {
 	}
 	console.log(form)
 	useEffect(() => {
-		
 		if (step === 1) {
 			let canSubmit: boolean =
 				!form.values.jobType || form.values.overTimeFactor === 'none' || !validateWorkerRequired()
@@ -752,7 +752,7 @@ export const CreateBooking = ({ ...props }) => {
 														minWidth: 50,
 													}}
 													onClick={() => handleShiftTiming('09:00am-06:00pm')}>
-													09:00am-06:00pm
+													{fixTiming}
 												</Button>
 
 												<Button
@@ -808,7 +808,7 @@ export const CreateBooking = ({ ...props }) => {
 									</Box>
 
 									<Box>
-										<Grid container spacing={2}>
+										<Grid container columnSpacing={2}>
 											<Grid item xs={12} sm={12} md={6} lg={6} display='block'>
 												<InputLabel id='state' className='inputLabel'>
 													State
