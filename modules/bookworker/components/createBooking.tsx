@@ -174,7 +174,6 @@ export const CreateBooking = ({ ...props }) => {
 	const isMobile = useMobile()
 	const { user } = useContractorAuth()
 
-	console.log('user', user)
 	const workerType = [
 		{
 			label: 'Technician',
@@ -295,11 +294,9 @@ export const CreateBooking = ({ ...props }) => {
 
 		if (step < 4) {
 			if (step === 3) {
-				console.log('payload', payload)
 				setLoading(true)
 				createBooking(payload)
 					.then((respone) => {
-						console.log('res', respone)
 						setStep((state) => state + 1)
 						setIsSubmittable(false)
 						setLoading(false)

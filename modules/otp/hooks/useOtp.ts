@@ -45,9 +45,7 @@ const useOtp = () => {
 			if (validateOtpField(otp) === 'valid') {
 				verifyOtp(`${phoneNumber}`, otp.otp)
 					.then((res) => {
-						console.log('res', res)
 						if (res?.success === true) {
-							console.log('1')
 							setOtpState((prevValues) => ({
 								...prevValues,
 								status: res?.success,

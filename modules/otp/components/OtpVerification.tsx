@@ -53,7 +53,7 @@ export const OTPVerification = () => {
 						numInputs={6}
 						inputStyle={{
 							marginTop: 20,
-							marginRight: '1rem',
+
 							borderRadius: '4px',
 							width: '3em',
 							height: '3em',
@@ -62,7 +62,7 @@ export const OTPVerification = () => {
 							justifyContent: 'center',
 						}}
 						shouldAutoFocus={true}
-						separator={<span> </span>}
+						separator={<span> &nbsp;&nbsp;&nbsp;</span>}
 						isInputNum={true}
 						hasErrored={!status}
 						errorStyle={{ border: '1px solid #F70000' }}

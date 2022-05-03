@@ -46,8 +46,6 @@ const CustomLoginStyles = styled(Box)(({ theme }) => ({
 export const LoginForm = () => {
 	const { form, loading, error, isRegister, handleLogin } = useLogin()
 
-	console.log('loading', loading)
-
 	return (
 		<CustomLoginStyles>
 			<Box className='main'>
@@ -73,7 +71,6 @@ export const LoginForm = () => {
 							}
 						}}
 					/>
-					{console.log(checkError('phoneNumber', form))}
 					<LoadingButton className='cta' type='submit' loading={!!loading} variant='contained'>
 						{isRegister ? 'Register' : 'Login'}
 					</LoadingButton>
