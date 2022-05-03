@@ -211,17 +211,18 @@ export const CreateBooking = ({ ...props }) => {
 		}
 
 		if (form.values.helper > 0 || form.values.helperWages > 0) {
-			validate = validate && form.values.helper > 0 && form.values.helperWages > 0
+			validate = form.values.helper > 0 && form.values.helperWages > 0
 		}
 
 		if (form.values.supervisor > 0 || form.values.supervisorWages > 0) {
-			validate = validate && form.values.supervisor > 0 && form.values.supervisorWages > 0
+			validate = form.values.supervisor > 0 && form.values.supervisorWages > 0
 		}
 
 		return validate
 	}
-
+	console.log(form)
 	useEffect(() => {
+		
 		if (step === 1) {
 			let canSubmit: boolean =
 				!form.values.jobType || form.values.overTimeFactor === 'none' || !validateWorkerRequired()

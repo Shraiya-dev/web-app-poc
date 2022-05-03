@@ -5,6 +5,7 @@ import useOtp from '../hooks/useOtp'
 import { CircularProgress } from '@mui/material'
 import { theme } from '../../../sdk'
 import Link from 'next/link'
+import { LoadingButton } from '@mui/lab'
 
 const CustomOTPStyles = styled(Box)(({ theme }) => ({
 	display: 'flex',
@@ -39,7 +40,7 @@ const CustomOTPStyles = styled(Box)(({ theme }) => ({
 }))
 
 export const OTPVerification = () => {
-	const { otp, form, status, error, handleChange, resendOTP, otpState } = useOtp()
+	const { otp, form, status, error, handleChange, resendOTP, otpState, loading, setLoading } = useOtp()
 
 	return (
 		<CustomOTPStyles>
@@ -71,9 +72,13 @@ export const OTPVerification = () => {
 						Resend OTP
 					</Stack>
 
-					<Button type='submit' variant='contained' color='primary' fullWidth disabled={status === 'loading'}>
+					{/* <Button type='submit' variant='contained' color='primary' fullWidth disabled={status === 'loading'}>
 						{status === 'loading' ? <CircularProgress size={30} /> : `Verify OTP`}
-					</Button>
+					</Button> */}
+
+					<LoadingButton type='submit' loading={loading} disabled={loading} variant='contained' fullWidth>
+						{`Verify OTP`}
+					</LoadingButton>
 
 					<Link href='/login' passHref>
 						<a>

@@ -50,8 +50,9 @@ const useLogin = () => {
 							...prevValues,
 							status: 'success',
 						}))
+
+						router.push('/verifyOTP')
 						setLoading(false)
-						return router.push('/verifyOTP')
 					} else {
 						showSnackbar(res?.data?.error, 'error')
 						setLoginState((prevValues) => ({
@@ -74,6 +75,7 @@ const useLogin = () => {
 		error,
 		form,
 		loading,
+		setLoading,
 		isRegister,
 		handleLogin,
 	}

@@ -21,6 +21,7 @@ const useOtp = () => {
 	const [otpState, setOtpState] = useState(initialOtpState)
 	const { status, error } = otpState
 	const [otp, setOtp] = useState({ otp: '' })
+	const [loading, setLoading] = useState(false)
 	const { showSnackbar } = useSnackbar()
 
 	const handleChange = (otp: any) => setOtp({ otp })
@@ -43,6 +44,7 @@ const useOtp = () => {
 
 		onSubmit: (values) => {
 			if (validateOtpField(otp) === 'valid') {
+				setLoading(true)
 				verifyOtp(`${phoneNumber}`, otp.otp)
 					.then((res) => {
 						if (res?.success === true) {
@@ -50,6 +52,7 @@ const useOtp = () => {
 								...prevValues,
 								status: res?.success,
 							}))
+							setLoading(false)
 						} else {
 							setOtpState((prevValues: any) => ({
 								...prevValues,
@@ -57,6 +60,7 @@ const useOtp = () => {
 								status: false,
 								error: 'Invalid OTP',
 							}))
+							setLoading(false)
 						}
 					})
 					.catch((err) => {
@@ -67,6 +71,7 @@ const useOtp = () => {
 							status: false,
 							error: 'Invalid OTP',
 						}))
+						setLoading(false)
 					})
 			} else {
 				setOtpState((prevValues: any) => ({
@@ -87,6 +92,8 @@ const useOtp = () => {
 		handleChange,
 		resendOTP,
 		otpState,
+		loading,
+		setLoading,
 	}
 }
 
