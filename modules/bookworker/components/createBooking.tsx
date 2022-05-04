@@ -173,7 +173,7 @@ export const CreateBooking = ({ ...props }) => {
 
 	const isMobile = useMobile()
 	const { user } = useContractorAuth()
-	const fixTiming =`09:00 am - 05:00 pm`
+	const fixTiming = `09:00 am - 05:00 pm`
 
 	const workerType = [
 		{
@@ -994,12 +994,12 @@ export const CreateBooking = ({ ...props }) => {
 												className='loadingcta'
 												variant='contained'
 												loading={loading}
-												disabled={!!isSubmittable}
+												disabled={!!isSubmittable || loading}
 												onClick={(e) => handleNext(e)}
 												style={{
 													minWidth: '10rem',
 													marginRight: isMobile ? '' : '14%',
-													background: isSubmittable ? '#cccccc' : '',
+													background: isSubmittable || loading ? '#cccccc' : '',
 												}}>
 												{step === 3 ? 'Finish Booking' : 'Next'}
 											</LoadingButton>
