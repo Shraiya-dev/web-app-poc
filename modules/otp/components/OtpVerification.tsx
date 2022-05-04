@@ -10,7 +10,7 @@ import { LoadingButton } from '@mui/lab'
 const CustomOTPStyles = styled(Box)(({ theme }) => ({
 	display: 'flex',
 	justifyContent: 'center',
-	padding: 20,
+	padding: 16,
 	paddingTop: '37%',
 
 	'.headerInfo': {
@@ -34,13 +34,17 @@ const CustomOTPStyles = styled(Box)(({ theme }) => ({
 		cursor: 'pointer',
 	},
 	[theme.breakpoints.down('md')]: {
-		padding: 20,
-		paddingTop: 20,
+		paddingTop: 16,
 	},
 }))
 
-export const OTPVerification = () => {
+export const OTPVerification = ({ ...props }) => {
 	const { otp, form, status, error, handleChange, resendOTP, otpState, loading, setLoading } = useOtp()
+	const { isOtpSent, setIsOtpSent } = props
+
+	const handleChangeNumber = () => {
+		setIsOtpSent(false)
+	}
 
 	return (
 		<CustomOTPStyles>
@@ -80,13 +84,13 @@ export const OTPVerification = () => {
 						{`Verify OTP`}
 					</LoadingButton>
 
-					<Link href='/login' passHref>
-						<a>
-							<Typography sx={{ textDecoration: 'underline' }} color='primary.main' mt={'16px'}>
-								Change Number
-							</Typography>
-						</a>
-					</Link>
+					<Typography
+						sx={{ textDecoration: 'underline' }}
+						color='primary.main'
+						mt={'16px'}
+						onClick={handleChangeNumber}>
+						Change Number
+					</Typography>
 				</form>
 			</Box>
 		</CustomOTPStyles>

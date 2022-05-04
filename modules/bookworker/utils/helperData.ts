@@ -23,8 +23,8 @@ export const jobTypeInfo = [
 ]
 
 export const moreJobType = [
+	{ icon: Stone, label: 'Stone / Tile / Marble', value: 'STONE_TILE_MARBLE_LAYER' },
 	{ icon: Plumber, label: 'Plumber', value: 'PLUMBING' },
-	{ icon: Stone, label: 'Stone', value: 'STONE_TILE_MARBLE_LAYER' },
 	{ icon: Gypsum, label: 'Gypsum', value: 'GYPSUM' },
 	{ icon: AluminiumFabricator, label: 'Aluminium fabricator', value: 'ALUMINIUM_FABRICATOR' },
 	{ icon: GeneralWorker, label: 'General Worker', value: 'GENERAL_HELPER' },

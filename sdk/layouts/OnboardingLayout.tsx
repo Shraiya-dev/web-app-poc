@@ -95,6 +95,7 @@ const CustomizeDashboard = styled(Box)(({ theme }) => ({
 			display: 'flex',
 			justifyContent: 'start',
 			width: '33.06%',
+			marginLeft: 16,
 		},
 		'.brandLogo': {
 			height: 44,
