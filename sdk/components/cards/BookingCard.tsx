@@ -66,10 +66,10 @@ export const BookingCard = ({ booking }: BookingCardProps) => {
 		<CustomPaper elevation={5}>
 			<Stack className='cardHeader'>
 				<Stack direction='row' justifyContent='space-between' flexWrap='wrap'>
-					<Typography variant='h5' fontWeight={700}>
+					<Typography sx={{ mb: 0.5 }} variant='h5' fontWeight={700}>
 						{JobTypeLabel[booking.jobType]} ({totalCount})
 					</Typography>
-					<StatusChip bookingState={booking.status} />
+					<StatusChip sx={{ mb: 0.5 }} bookingState={booking.status} />
 				</Stack>
 				<Stack alignItems='center' direction='row' spacing={2}>
 					<Typography variant='caption'>ID: {booking.bookingId}</Typography>
@@ -97,7 +97,6 @@ export const BookingCard = ({ booking }: BookingCardProps) => {
 					</Typography>
 				</Stack>
 			</Stack>
-			{console.log(router.pathname)}
 			<Stack className='cardBody'>
 				<Typography color='secondary.main'>WORKER ALLOCATION</Typography>
 				<Grid container xs={12}>

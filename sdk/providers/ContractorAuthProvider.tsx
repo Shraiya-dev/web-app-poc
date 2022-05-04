@@ -162,9 +162,13 @@ const ContractorAuthProvider = ({ children }: any) => {
 	}, [state.accessToken, state.phoneNumber, state.refreshToken])
 	useEffect(() => {
 		if (state.user) {
-			if ([CUSTOMER_STATUS.REGISTERED, CUSTOMER_STATUS.UPDATE_PROFILE].includes(state.user.customerStatus)) {
+			if (
+				[CUSTOMER_STATUS.REGISTERED, CUSTOMER_STATUS.UPDATE_PROFILE].includes(state.user.customerStatus) &&
+				router.asPath !== '/onboarding'
+			) {
 				router.push('/onboarding')
 			} else if (
+				state.user.customerStatus === CUSTOMER_STATUS.PROFILE_COMPLETED &&
 				!(
 					router.pathname.includes('/dashboard') ||
 					router.pathname.includes('/profile') ||
@@ -175,7 +179,7 @@ const ContractorAuthProvider = ({ children }: any) => {
 			}
 		}
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [state.user])
+	}, [state.user, router])
 
 	const authProviderValue: AuthProviderValue = useMemo(
 		() => ({
