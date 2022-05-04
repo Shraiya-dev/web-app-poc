@@ -29,7 +29,7 @@ const CustomPaper = styled(Paper)(({ theme }) => ({
 		padding: theme.spacing(2),
 		button: {
 			borderRadius: 4,
-			borderColor: theme.palette.secondary.light,
+			borderColor: theme.palette.grey[300],
 			color: theme.palette.common.black,
 			justifyContent: 'space-between',
 			margin: `${theme.spacing(1)} 0`,
@@ -52,10 +52,6 @@ const CustomPaper = styled(Paper)(({ theme }) => ({
 			},
 		},
 	},
-	'.vAlignCenter': {
-		display: 'flex',
-		alignItems: 'center',
-	},
 }))
 export const BookingSummaryCard = ({ booking }: BookingSummaryCardProps) => {
 	const router = useRouter()
@@ -75,13 +71,17 @@ export const BookingSummaryCard = ({ booking }: BookingSummaryCardProps) => {
 	return (
 		<CustomPaper elevation={5}>
 			<Stack className='cardHeader'>
-				<Typography variant='h4' fontWeight={700}>
+				<Typography variant='h5' fontWeight={700}>
 					{JobTypeLabel[booking.jobType]} ({totalCount})
 				</Typography>
+
 				<Stack direction='row' justifyContent='space-between'>
 					<Typography variant='body2'>ID: {booking.bookingId}</Typography>
 					<StatusChip bookingState={booking.status} />
 				</Stack>
+				<Typography variant='body2'>
+					Created On: {booking.createdAt && format(booking.createdAt, 'dd/MM/yy')}
+				</Typography>
 				<Stack direction='row' flexWrap='wrap'>
 					{helperCount !== 0 && <Typography mr={1}>Helper ({helperCount})</Typography>}
 					{technicianCount !== 0 && <Typography mr={1}>Technician ({technicianCount})</Typography>}
@@ -109,7 +109,7 @@ export const BookingSummaryCard = ({ booking }: BookingSummaryCardProps) => {
 					onClick={() => {
 						handelTabChange(JobCardState.WORKER_APPLIED)
 					}}>
-					<Typography variant='caption' align='left'>
+					<Typography variant='body1' align='left'>
 						Applied
 					</Typography>
 					<Typography variant='h5'>{booking.jobCardDetails?.ACCEPTED}</Typography>
@@ -120,7 +120,7 @@ export const BookingSummaryCard = ({ booking }: BookingSummaryCardProps) => {
 					onClick={() => {
 						handelTabChange(JobCardState.READY_TO_DEPLOY)
 					}}>
-					<Typography variant='caption' align='left'>
+					<Typography variant='body1' align='left'>
 						Ready to Deploy
 					</Typography>
 					<Typography variant='h5'>{booking.jobCardDetails?.READY_TO_DEPLOY}</Typography>
@@ -131,7 +131,7 @@ export const BookingSummaryCard = ({ booking }: BookingSummaryCardProps) => {
 					onClick={() => {
 						handelTabChange(JobCardState.DEPLOYMENT_COMPLETE)
 					}}>
-					<Typography variant='caption' align='left'>
+					<Typography variant='body1' align='left'>
 						Deployed
 					</Typography>
 					<Typography variant='h5'>{booking.jobCardDetails?.DEPLOYMENT_COMPLETE}</Typography>

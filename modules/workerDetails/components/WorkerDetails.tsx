@@ -8,7 +8,7 @@ import { useRouter } from 'next/router'
 import { ArrowBack } from '@mui/icons-material'
 import { Button } from '@mui/material'
 
-import { getWorkerInfo, } from '../../../sdk/apis'
+import { getWorkerInfo } from '../apis/apis'
 
 import { useSnackbar } from '../../../sdk'
 
@@ -16,18 +16,12 @@ interface WorkerData {
 	name: string
 	city: string
 	state: string
-	phoneNumber:string
-	skills: string[]
-	email: string
+	phoneNumber: string
+	jobType: string
 	gender: string
 	maritalStatus: string
 	experience: string
-	pastProjects: {}
-
-	workDetails: {
-		workerType:string
-		experience:string,
-	  },
+	projectCompleted: string
 }
 
 const WorkerProfileStyle = styled(Box)(({ theme }) => ({
@@ -67,6 +61,8 @@ const WorkerProfileStyle = styled(Box)(({ theme }) => ({
 		fontSize: 14,
 		color: '#CC2C49',
 		verticalAlign: 'middle',
+		textAlign: 'right',
+		marginRight: 4,
 	},
 	'.contactInfo': {
 		padding: 10,
@@ -100,14 +96,12 @@ export const WorkerProfileInfo = () => {
 
 	useEffect(() => {
 		let id = router.query.workerId
-		
+
 		getWorkerInfo(id)
-			.then((data:any) => {
-				console.log(data)
+			.then((data: any) => {
 				setWorkerData(data?.data?.payload)
-			
 			})
-			.catch((error:any) => {
+			.catch((error: any) => {
 				showSnackbar(error?.response?.data?.developerInfo, 'error')
 				console.log(error)
 			})
@@ -130,27 +124,22 @@ export const WorkerProfileInfo = () => {
 								</Stack>
 							</Box>
 							<Box className='secondaryBox'>
-								<Typography className='workerText'>{workerData?.name||''}</Typography>
+								<Typography className='workerText'>{workerData?.name || ''}</Typography>
 
 								<Typography className='locationText'>
 									<LocationOnIcon className='locationIcon' />
-									{`${workerData?.city||''}, ${workerData?.state||''}`}
+									{`${workerData?.city || ''}, ${workerData?.state || ''}`}
 								</Typography>
 
 								<Stack direction='row' spacing={1} justifyContent='center'>
-
-								<Chip label={workerData?.workDetails?.workerType} />
-								
-
-									
+									<Chip label={workerData?.jobType} />
 								</Stack>
 
 								<Stack className='contactInfo'>
 									<Typography className='contactText'>Contact</Typography>
 									<Typography className='locationInfo'>
-										<LocationOnIcon className='locationIcon' /> {workerData?.phoneNumber||''}
+										<LocationOnIcon className='locationIcon' /> {workerData?.phoneNumber || ''}
 									</Typography>
-									
 								</Stack>
 							</Box>
 						</Paper>

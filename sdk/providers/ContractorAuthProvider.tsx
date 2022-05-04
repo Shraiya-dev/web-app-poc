@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { useRouter } from 'next/router'
 import { createContext, useCallback, useContext, useEffect, useMemo, useReducer } from 'react'
-import { loginService, sendOtpService } from '../apis'
+import { getCustomerDetails, loginService, sendOtpService } from '../apis'
 import { CustomerDetails, CUSTOMER_STATUS, USER_LOGIN_TYPE, USER_TYPE } from '../types'
 import { useSnackbar } from './SnackbarProvider'
 
@@ -11,6 +11,7 @@ interface AuthState {
 	phoneNumber: null | string
 	accessToken: null | string
 	refreshToken: null | string
+	isRegister: false | Boolean
 }
 
 interface AuthProviderValue extends AuthState {
@@ -18,6 +19,7 @@ interface AuthProviderValue extends AuthState {
 	verifyOtp: (phoneNumber: string, otp: string) => Promise<any>
 	logOut: () => Promise<any>
 	getContactorUserInfo: () => Promise<any>
+	updateIsRegUser: (isRegister: boolean) => {}
 }
 const simpleReducer = (state: AuthState, payload: Partial<AuthState>) => ({
 	...state,
@@ -28,6 +30,7 @@ const initialAuthState: AuthState = {
 	refreshToken: LoadingUniqueString,
 	phoneNumber: LoadingUniqueString,
 	user: null,
+	isRegister: false,
 }
 const ContractorAuthContext = createContext<AuthProviderValue>({
 	...initialAuthState,
@@ -35,6 +38,7 @@ const ContractorAuthContext = createContext<AuthProviderValue>({
 	requestOtp: () => Promise.resolve(null),
 	verifyOtp: () => Promise.resolve(null),
 	getContactorUserInfo: () => Promise.resolve(null),
+	updateIsRegUser: () => false,
 })
 const { Provider, Consumer } = ContractorAuthContext
 
@@ -50,12 +54,12 @@ const ContractorAuthProvider = ({ children }: any) => {
 	}, [])
 	const getContactorUserInfo = useCallback(async () => {
 		try {
-			const { data } = await axios.get('/gateway/customer-api')
+			const { data } = await getCustomerDetails()
 			dispatch({
 				user: {
 					customerId: data.payload?._id ?? '',
 					email: data.payload?.email ?? '',
-					name: data.payload?.userName ?? '',
+					name: data.payload?.name ?? '',
 					phoneNumber: data.payload?.phoneNumber ?? '',
 					companyName: data.payload.companyName ?? '',
 					customerStatus: data.payload?.customerStatus ?? CUSTOMER_STATUS.REGISTERED,
@@ -81,10 +85,14 @@ const ContractorAuthProvider = ({ children }: any) => {
 					})
 					return data
 				} else {
-					throw data
+					showSnackbar(data?.error, 'error')
+					return data
 				}
 			} catch (error: any) {
-				showSnackbar(error?.response?.data?.developerInfo, 'error')
+				showSnackbar(error?.error, 'error')
+				return error
+				//TODO: Need to fix in response also
+				//showSnackbar(error?.response?.data?.developerInfo, 'error')
 			}
 			//return await loginService(phoneNumber, USER_TYPE.CONTRACTOR, USER_LOGIN_TYPE.OTP, otp)
 		},
@@ -96,6 +104,12 @@ const ContractorAuthProvider = ({ children }: any) => {
 		dispatch(initialAuthState)
 		await router.push('/login')
 	}, [router])
+
+	const updateIsRegUser = useCallback(async (isRegister: boolean) => {
+		dispatch({
+			isRegister: isRegister,
+		})
+	}, [])
 	useEffect(() => {
 		;(async () => {
 			const accessToken = localStorage.getItem('accessToken')
@@ -106,7 +120,7 @@ const ContractorAuthProvider = ({ children }: any) => {
 				return
 			}
 			try {
-				const { data } = await axios.get('/gateway/customer-api')
+				const { data } = await getCustomerDetails()
 
 				dispatch({
 					accessToken: accessToken,
@@ -115,7 +129,7 @@ const ContractorAuthProvider = ({ children }: any) => {
 					user: {
 						customerId: data.payload?.customerId ?? '',
 						email: data.payload?.email ?? '',
-						name: data.payload?.userName ?? '',
+						name: data.payload?.name ?? '',
 						phoneNumber: data.payload?.phoneNumber ?? '',
 						companyName: data.payload.companyName ?? '',
 						customerStatus: data.payload?.customerStatus ?? CUSTOMER_STATUS.REGISTERED,
@@ -170,8 +184,9 @@ const ContractorAuthProvider = ({ children }: any) => {
 			verifyOtp: verifyOtp,
 			logOut: logOut,
 			getContactorUserInfo: getContactorUserInfo,
+			updateIsRegUser: updateIsRegUser,
 		}),
-		[state, requestOtp, verifyOtp, logOut, getContactorUserInfo]
+		[state, requestOtp, verifyOtp, logOut, getContactorUserInfo, updateIsRegUser]
 	)
 	return <Provider value={authProviderValue}>{children}</Provider>
 }

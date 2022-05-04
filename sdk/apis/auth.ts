@@ -36,16 +36,10 @@ export const refreshTokenService = async (refreshToken: string, accessToken: Str
 	return axios.post('/refresh-token', payload)
 }
 
-export const getWorkerInfo = async(workerId:any)=>{
-
-	return axios.get(`/gateway/customer-api/worker/${workerId}`)
+export const getCustomerDetails = async () => {
+	return axios.get(`/gateway/customer-api/customers/profile`)
 }
 
-export const getCustomerDetails = async()=>{
-
-	return axios.get(`/gateway/customer-api/`);
-}
-
-export const updateProfile = async(payload:any)=>{
-	return axios.post('/gateway/customer-api/profile', payload)
+export const updateProfile = async (payload: any) => {
+	return axios.put('/gateway/customer-api/customers/profile', payload)
 }

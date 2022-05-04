@@ -14,11 +14,13 @@ import {
 	TextField,
 	Typography,
 	styled,
+	Paper,
+	InputAdornment,
 } from '@mui/material'
+import { LoadingButton } from '@mui/lab'
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns'
 import { DatePicker } from '@mui/x-date-pickers/DatePicker'
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
-import { TimePicker } from '@mui/x-date-pickers/TimePicker'
 import Image from 'next/image'
 import { useEffect, useState } from 'react'
 import Helper from '../../../public/assets/icons/helper.svg'
@@ -26,28 +28,26 @@ import Supervisor from '../../../public/assets/icons/supervisor.svg'
 import Technician from '../../../public/assets/icons/technician.svg'
 import { checkError, theme } from '../../../sdk'
 import useCreateBooking from '../hooks/useCreateBooking'
-import {
-	CitiesOptions,
-	jobTypeInfo,
-	moreJobType,
-	projectDuration,
-	ShiftTime,
-	StatesOptions,
-	tags,
-} from '../utils/helperData'
+
+import { CitiesOptions, jobTypeInfo, moreJobType, projectDuration, StatesOptions, tags } from '../utils/helperData'
 import BookingSuccess from './bookingsuccess'
 import ConfirmCancel from './confirmCancel'
-import { getCustomerDetails } from '../../../sdk/apis'
 
 import { createBooking } from '../apis/apis'
-import { useSnackbar } from '../../../sdk'
+import { useSnackbar, useContractorAuth } from '../../../sdk'
+import { useMobile } from '../../../sdk/hooks/useMobile'
 
+import { CustomTimePicker } from '../../../sdk/components/timepicker/customTimePicker'
+import { timeDataAM, timeDataPM } from '../utils/helperData'
+
+import { ArrowBack } from '@mui/icons-material'
 
 const CustomBookingStyle = styled(Box)(({ theme }) => ({
 	'.main': {
 		justifyContent: 'center',
 		display: 'flex',
-		padding: 10,
+		padding: 24,
+		marginBottom: 40,
 	},
 
 	'.stepper': {
@@ -69,8 +69,8 @@ const CustomBookingStyle = styled(Box)(({ theme }) => ({
 	},
 
 	'.inputLabel': {
-		fontSize: 16,
-		fontWeight: 700,
+		fontSize: 18,
+		fontWeight: 600,
 		marginTop: 40,
 		marginBottom: 10,
 	},
@@ -78,21 +78,21 @@ const CustomBookingStyle = styled(Box)(({ theme }) => ({
 		position: 'sticky',
 
 		bottom: 0,
-		paddingTop: 20,
-		background: 'white',
-		overflow: '',
-		
+		marginTop: 50,
+
+		overflowY: 'none',
+		zIndex: 1,
 	},
 	'.header': {
 		fontSize: 36,
-		fontWeight: 700,
-		color: theme.palette.secondary.main,
+		fontWeight: 600,
+		//color: theme.palette.secondary.main,
 	},
 	'.subHeader': {
 		fontSize: 20,
-		fontWeight: 700,
+		fontWeight: 600,
 		marginTop: 20,
-		color: theme.palette.secondary.main,
+		//color: theme.palette.secondary.main,
 	},
 	'.subInfo': {
 		fontSize: 13,
@@ -100,19 +100,80 @@ const CustomBookingStyle = styled(Box)(({ theme }) => ({
 		color: theme.palette.secondary.main,
 		paddingBottom: 8,
 	},
+	'.subInfoError': {
+		fontSize: 13,
+		fontWeight: 500,
+		color: theme.palette.error.main,
+		paddingBottom: 20,
+	},
+	'.bottomButton': {
+		position: 'fixed',
+		bottom: 0,
+		left: 0,
+		right: 0,
+		width: '100%',
+		paddingRight: '10%',
+		paddingBottom: 20,
+		paddingTop: 20,
+		background: 'white',
+		overflow: 'hidden',
+	},
+	'.loadingcta': {
+		borderRadius: 30,
+		textTransform: 'inherit',
+		padding: '12px 22px',
+		background: theme.palette.primary.main,
+		color: 'white',
+		width: '10rem',
+	},
+	'.prevCta': {
+		width: '10rem',
+		marginLeft: '14%',
+	},
+	'.jobType': {
+		borderRadius: 8,
+		padding: 8,
+		color: 'rgba(6, 31, 72, 0.7)',
+		height: 100,
+		width: 100,
+		textTransform: 'none',
+		border: '1px solid #C2C9D2',
+		boxShadow: 'none',
+		lineHeight: 1.4,
+	},
+	'.view': {
+		verticalAlign: 'middle',
+		display: 'flex',
+	},
+	'.borderCta': {
+		borderRadius: 8,
+		padding: 8,
+		color: 'rgba(6, 31, 72, 0.7)',
+
+		textTransform: 'none',
+		border: '1px solid #C2C9D2',
+		boxShadow: 'none',
+		lineHeight: 1.4,
+	},
 }))
 
 export const CreateBooking = ({ ...props }) => {
-	const { toggleBookingForm, onCloseDialog, setOncloseDialog, bookingFormOpen, setBookingFormOpen } = props
-	const { form, step, setStep, userInitialInfo, setUserInitialInfo, timeConvert } = useCreateBooking()
+	const { form, step, setStep, handlePrev } = useCreateBooking()
 
-	// const [isMore, setIsmore] = useState(false)
+	const [isMore, setIsmore] = useState(false)
 	const [projectDurationInfo, setProjectDuration] = useState<string>()
 	const [selectedJob, setSelectedjob] = useState('')
 	const [shiftTiming, setShiftTiming] = useState('')
 
 	const [isSubmittable, setIsSubmittable] = useState<boolean>(false)
-	const {showSnackbar} = useSnackbar();
+	const [loading, setLoading] = useState<boolean>(false)
+	const { showSnackbar } = useSnackbar()
+
+	const [onCloseDialog, setOncloseDialog] = useState(false)
+
+	const isMobile = useMobile()
+	const { user } = useContractorAuth()
+	const fixTiming = `09:00 am - 05:00 pm`
 
 	const workerType = [
 		{
@@ -144,75 +205,75 @@ export const CreateBooking = ({ ...props }) => {
 		},
 	]
 
-	useEffect(() => {
-		getCustomerDetails()
-			.then((data: any) => {
-				console.log('basic', data)
-				setUserInitialInfo(data?.data?.payload)
-			})
-			.catch((error) => {
-				console.log(error)
-			})
-	}, [])
+	const validateWorkerRequired = () => {
+		var validate = false
+		if (form.values.technician > 0 || form.values.technicianWages > 0) {
+			validate = form.values.technician > 0 && form.values.technicianWages > 0
+		}
+
+		if (form.values.helper > 0 || form.values.helperWages > 0) {
+			validate = form.values.helper > 0 && form.values.helperWages > 0
+		}
+
+		if (form.values.supervisor > 0 || form.values.supervisorWages > 0) {
+			validate = form.values.supervisor > 0 && form.values.supervisorWages > 0
+		}
+
+		return validate
+	}
+	console.log(form)
 	useEffect(() => {
 		if (step === 1) {
-			var canSubmit: boolean =
-				!form.values.jobType ||
-				form.values.overTimeFactor === 'none' ||
-				(!form.values.technician && !form.values.helper && !form.values.supervisor) ||
-				(!!form.values.technician && !form.values.technicianWages) ||
-				(!form.values.technician && !!form.values.technicianWages) ||
-				(!!form.values.helper && !form.values.helperWages) ||
-				(!form.values.helper && !!form.values.helperWages) ||
-				(!!form.values.supervisor && !form.values.supervisorWages) ||
-				(!form.values.supervisor && !!form.values.supervisorWages)
+			let canSubmit: boolean =
+				!form.values.jobType || form.values.overTimeFactor === 'none' || !validateWorkerRequired()
 
 			setIsSubmittable(canSubmit)
 		}
 
 		if (step === 2) {
-			var canSubmit =
-				form.values.city==='none' ||
-				form.values.state==='none' ||
+			let canSubmit =
+				form.values.city === 'none' ||
+				form.values.state === 'none' ||
 				!form.values.siteAddress ||
-				!form.values.shiftTime ||
 				!form.values.startTime ||
-				!form.values.BookingDuration
+				!form.values.BookingDuration ||
+				(shiftTiming === 'Custom'
+					? form.values.startTime === 'none' || form.values.endTime === 'none'
+					: !form.values.shiftTime)
 
 			setIsSubmittable(canSubmit)
 		}
 
 		if (step === 3) {
-			var canSubmit =
-				!form.values.name || !form.values.company || !form.values.companyEmail || !form.values.phoneNumber
+			let canSubmit = !form.values.name || !form.values.companyEmail || !form.values.phoneNumber
 			setIsSubmittable(canSubmit)
 		}
 	}, [form])
 
-	// const handleMoreJobType = () => {
-	// 	setIsmore((state) => !state)
-	// }
+	const handleMoreJobType = () => {
+		setIsmore((state) => !state)
+	}
 
 	const handleNext = (e: any) => {
-
-		var ConvertedshiftTime = form.values.shiftTime
+		let ConvertedshiftTime = form.values.shiftTime
 		if (shiftTiming === 'Custom') {
-			ConvertedshiftTime = timeConvert(form.values.startTime) + '-' + timeConvert(form.values.endTime)
+			ConvertedshiftTime = form.values.startTime + '-' + form.values.endTime
+
 			form.setFieldValue('shiftTime', ConvertedshiftTime)
-			
 		}
+
 		const payload = {
 			city: form.values.city,
 			state: form.values.state,
-			companyName: form.values.company,
+			companyName: user?.companyName,
 			email: form.values.companyEmail,
 			name: form.values.name,
-			phoneNumber: form.values.phoneNumber,
+			phoneNumber: '+91' + form.values.phoneNumber,
 			siteAddress: form.values.siteAddress,
 			schedule: {
 				bookingDuration: form.values.BookingDuration,
 				startDate: form.values.StartDate,
-				shiftTime: ConvertedshiftTime
+				shiftTime: ConvertedshiftTime,
 			},
 			peopleRequired: {
 				SUPERVISOR: form.values.supervisor,
@@ -229,29 +290,26 @@ export const CreateBooking = ({ ...props }) => {
 			},
 			tags: form.values.tags,
 			jobType: form.values.jobType,
-			userName: form.initialValues.name
+			userName: form.initialValues.name,
 		}
 
 		if (step < 4) {
 			if (step === 3) {
-				console.log("payload",payload);
-				createBooking(payload).then((respone)=>{
-					console.log("res",respone);
-					setStep((state) => state + 1)
-				}).catch((error:any)=>{
-					showSnackbar(error?.response?.data?.developerInfo, 'error')
-				console.log(error)
-				})
-				
+				setLoading(true)
+				createBooking(payload)
+					.then((respone) => {
+						setStep((state) => state + 1)
+						setIsSubmittable(false)
+						setLoading(false)
+					})
+					.catch((error: any) => {
+						showSnackbar(error?.response?.data?.developerInfo, 'error')
+						console.log(error)
+						setLoading(false)
+					})
 			} else {
 				setStep((state) => state + 1)
 			}
-		}
-	}
-
-	const handlePrev = () => {
-		if (step > 1) {
-			setStep((state) => state - 1)
 		}
 	}
 
@@ -270,6 +328,7 @@ export const CreateBooking = ({ ...props }) => {
 
 	const handleJobClick = (info: any) => {
 		form.setFieldValue('jobType', info)
+		form.setFieldValue('tags', [])
 		setSelectedjob(info)
 	}
 
@@ -278,16 +337,36 @@ export const CreateBooking = ({ ...props }) => {
 		setShiftTiming(info)
 	}
 
+	const getErrorString = () => {
+		return form.errors.helper ||
+			form.errors.technician ||
+			form.errors.supervisor ||
+			form.errors.helperWages ||
+			form.errors.technicianWages ||
+			form.errors.supervisorWages ? (
+			<Typography className='subInfoError'>
+				At least 1 technician, helper or supervisor is required with wages
+			</Typography>
+		) : (
+			''
+		)
+	}
 	return (
 		<CustomBookingStyle>
+			{step !== 4 && (
+				<Box display='flex' alignItems='center'>
+					<Button
+						startIcon={<ArrowBack />}
+						onClick={() => setOncloseDialog(true)}
+						variant='text'
+						color='primary'>
+						Go Back
+					</Button>
+				</Box>
+			)}
 			<Container className='main' maxWidth={'md'}>
-				<ConfirmCancel
-					onCloseDialog={onCloseDialog}
-					setOncloseDialog={setOncloseDialog}
-					toggleBookingForm={toggleBookingForm}
-					bookingFormOpen={bookingFormOpen}
-					setBookingFormOpen={setBookingFormOpen}
-				/>
+				<ConfirmCancel onCloseDialog={onCloseDialog} setOncloseDialog={setOncloseDialog} />
+
 				<Box width={'100%'}>
 					{step !== 4 && (
 						<Box>
@@ -354,18 +433,15 @@ export const CreateBooking = ({ ...props }) => {
 												return (
 													<Grid key={index} item xs={4} sm={4} md={2} lg={2}>
 														<Button
+															className='jobType'
+															variant='outlined'
 															onClick={() => handleJobClick(info?.value)}
 															style={{
-																borderRadius: 8,
-																padding: 8,
 																background:
 																	selectedJob === info?.value
 																		? theme.palette.primary.light
 																		: 'white',
-																color: 'rgba(6, 31, 72, 0.7)',
-																height: 100,
-																width: 100,
-																textTransform: 'none',
+
 																border: !!checkError(`jobType`, form) ? 'red' : '',
 															}}>
 															<Box>
@@ -379,39 +455,34 @@ export const CreateBooking = ({ ...props }) => {
 											})}
 										</Grid>
 
-										{/* {isMore && (
+										{isMore && (
 											<Box>
 												<Grid container item rowSpacing={2} columnSpacing={2}>
 													{moreJobType.map((info, index) => {
 														return (
 															<Grid key={index} item xs={4} sm={4} md={2} lg={2}>
 																<Button
+																	className='jobType'
 																	onClick={() => handleJobClick(info?.value)}
 																	style={{
-																		borderRadius: 8,
-																		padding: 8,
 																		background:
 																			selectedJob === info?.value
 																				? theme.palette.primary.light
 																				: 'white',
-																		color: 'rgba(6, 31, 72, 0.7)',
-																		height: 100,
-																		width: 100,
-																		textTransform: 'none',
 																	}}>
-																	<Box>
+																	<Stack>
 																		<Image src={info?.icon} />
 
 																		<Stack>{info?.label}</Stack>
-																	</Box>
+																	</Stack>
 																</Button>
 															</Grid>
 														)
 													})}
 												</Grid>
 											</Box>
-										)} */}
-										{/* <Grid
+										)}
+										<Grid
 											container
 											spacing={0}
 											direction='column'
@@ -429,23 +500,19 @@ export const CreateBooking = ({ ...props }) => {
 												style={{ textTransform: 'none' }}>
 												{isMore ? (
 													<Box>
-														<Typography
-															display='inline'
-															style={{ verticalAlign: 'middle', display: 'flex' }}>
+														<Typography className='view' display='inline'>
 															View Less <KeyboardArrowUpIcon />
 														</Typography>
 													</Box>
 												) : (
 													<Box>
-														<Typography
-															display='inline'
-															style={{ verticalAlign: 'middle', display: 'flex' }}>
+														<Typography className='view' display='inline'>
 															View More <KeyboardArrowDownIcon />
 														</Typography>
 													</Box>
 												)}
 											</Stack>
-										</Grid> */}
+										</Grid>
 									</Box>
 
 									<Box>
@@ -468,11 +535,9 @@ export const CreateBooking = ({ ...props }) => {
 																color: theme.palette.secondary.main,
 															}}
 															sx={{
-																m: 1,
+																mr: 1,
+																mb: 1,
 															}}
-															// color={
-															// 	form.values.tags.includes(item) ? 'primary' : undefined
-															// }
 															key={item}
 															label={item}
 															clickable
@@ -508,67 +573,74 @@ export const CreateBooking = ({ ...props }) => {
 										<InputLabel htmlFor='jobType' className='inputLabel'>
 											{`Workers Required & Daily Wage`}
 										</InputLabel>
+										{getErrorString()}
+										<Grid container spacing={4}>
+											{workerType.map((info, index) => {
+												return (
+													<Grid
+														key={index}
+														container
+														item
+														alignItems={'flex-start'}
+														display='flex'
+														spacing={2}>
+														<Grid container item xs={12} sm={12} md={4}>
+															<Image src={info?.icon} style={{ float: 'left' }} />
 
-										{workerType.map((info, index) => {
-											return (
-												<Grid
-													key={index}
-													container
-													item
-													alignItems={'flex-start'}
-													display='flex'
-													spacing={2}
-													style={{ marginBottom: 20 }}>
-													<Grid item xs={4} sm={4} md={4}>
-														<Image src={info?.icon} />
-														<Typography
-															style={{
-																textAlign: 'center',
-																margin: 8,
-																color: 'rgba(6, 31, 72, 0.7)',
-															}}>
-															{info?.label}
-														</Typography>
-													</Grid>
-													<Grid item xs={4} sm={4} md={4}>
-														<TextField
-															label={`${info?.label} Required`}
-															id={info?.name}
-															name={info?.name}
-															value={info?.formvalue}
-															type='number'
-															onChange={(e: any) => {
-																if (e.target.value >= 0) {
-																	form.handleChange(e)
+															<Typography
+																style={{
+																	float: 'right',
+																	margin: 16,
+																	fontSize: 16,
+																	color: 'rgba(6, 31, 72, 0.7)',
+																}}>
+																{info?.label}
+															</Typography>
+														</Grid>
+														<Grid item xs={12} sm={12} md={4}>
+															<TextField
+																label={`${info?.label} Required`}
+																placeholder={`Enter ${info?.label}`}
+																defaultValue=''
+																id={info?.name}
+																name={info?.name}
+																value={info?.formvalue > 0 ? info?.formvalue : ''}
+																type='tel'
+																onChange={(e: any) => {
+																	if (e.target.value >= 0) {
+																		form.handleChange(e)
+																	}
+																}}
+																fullWidth
+																onBlur={form.handleBlur}
+																error={!!checkError(`${info?.name}`, form)}
+															/>
+														</Grid>
+														<Grid item xs={12} sm={12} md={4}>
+															<TextField
+																label='Daily wage (Rs.)'
+																placeholder='Enter wage'
+																defaultValue=''
+																id={info?.wage}
+																name={info?.wage}
+																value={
+																	info?.wageformvalue > 0 ? info?.wageformvalue : ''
 																}
-															}}
-															fullWidth
-															onBlur={form.handleBlur}
-															error={!!checkError(`${info?.name}`, form)}
-															helperText={checkError(`${info?.name}`, form)}
-														/>
+																type='tel'
+																onChange={(e: any) => {
+																	if (e.target.value >= 0) {
+																		form.handleChange(e)
+																	}
+																}}
+																fullWidth
+																onBlur={form.handleBlur}
+																error={!!checkError(`${info?.wage}`, form)}
+															/>
+														</Grid>
 													</Grid>
-													<Grid item xs={4} sm={4} md={4}>
-														<TextField
-															label='Daily wage (Rs.)'
-															id={info?.wage}
-															name={info?.wage}
-															value={info?.wageformvalue}
-															type='number'
-															onChange={(e: any) => {
-																if (e.target.value >= 0) {
-																	form.handleChange(e)
-																}
-															}}
-															fullWidth
-															onBlur={form.handleBlur}
-															error={!!checkError(`${info?.wage}`, form)}
-															helperText={checkError(`${info?.wage}`, form)}
-														/>
-													</Grid>
-												</Grid>
-											)
-										})}
+												)
+											})}
+										</Grid>
 
 										<Box>
 											<InputLabel htmlFor='overtime' className='inputLabel'>
@@ -583,15 +655,13 @@ export const CreateBooking = ({ ...props }) => {
 												alignItems={'flex-start'}
 												spacing={2}
 												style={{ marginBottom: 10 }}>
-												<Grid item xs={12} sm={12} md={6}>
+												<Grid item xs={12} sm={12} md={4}>
 													<FormControl fullWidth>
-														{/* <InputLabel id='overTimeFactor'>Overtime Factor</InputLabel> */}
 														<Select
 															labelId='overTimeFactor'
 															id='overTimeFactor'
 															name='overTimeFactor'
 															value={form.values.overTimeFactor}
-															//label='Overtime Factor'
 															onChange={form.handleChange}>
 															<MenuItem value={'none'}>Select Overtime Factor</MenuItem>
 															<MenuItem value={10}>1</MenuItem>
@@ -600,39 +670,6 @@ export const CreateBooking = ({ ...props }) => {
 														</Select>
 													</FormControl>
 												</Grid>
-
-												{/* <Grid item xs={4} sm={4} md={4}>
-												<FormControl fullWidth>
-													<InputLabel id='overTimeFactor'>Overtime Buffer</InputLabel>
-													<Select
-														labelId='overTimeFactor'
-														id='overTimeFactor'
-														value={form.values.projectType}
-														label='Overtime Factor'
-														onChange={form.handleChange}>
-														<MenuItem value={10}>Ten</MenuItem>
-														<MenuItem value={20}>Twenty</MenuItem>
-														<MenuItem value={30}>Thirty</MenuItem>
-													</Select>
-												</FormControl>
-											</Grid> */}
-
-												{/* <Grid item xs={12} sm={12} md={6}>
-												<FormControl fullWidth>
-													<InputLabel id='overTime'>Minutes</InputLabel>
-													<Select
-														labelId='overTime'
-														id='overTime'
-														name='overTime'
-														value={form.values.overTime}
-														label='Minutes'
-														onChange={form.handleChange}>
-														<MenuItem value={10}>Ten</MenuItem>
-														<MenuItem value={20}>Twenty</MenuItem>
-														<MenuItem value={30}>Thirty</MenuItem>
-													</Select>
-												</FormControl>
-											</Grid> */}
 											</Grid>
 										</Box>
 									</Box>
@@ -640,6 +677,7 @@ export const CreateBooking = ({ ...props }) => {
 							)}
 
 							{/* Project Details */}
+
 							{step === 2 && (
 								<Stack>
 									<Box>
@@ -650,6 +688,7 @@ export const CreateBooking = ({ ...props }) => {
 											<Grid item xs={12} sm={12} md={6} lg={6}>
 												<LocalizationProvider dateAdapter={AdapterDateFns}>
 													<DatePicker
+														minDate={form.initialValues.StartDate}
 														value={form.values.StartDate}
 														onChange={(value) => form.setFieldValue('StartDate', value)}
 														renderInput={(params) => <TextField {...params} fullWidth />}
@@ -665,24 +704,22 @@ export const CreateBooking = ({ ...props }) => {
 										</InputLabel>
 
 										<Grid container spacing={4}>
-											<Grid item xs={12} sm={12} md={8} lg={8}>
+											<Grid container item rowGap={1}>
 												{projectDuration.map((info, index) => {
 													return (
 														<Button
+															className='borderCta'
 															key={index}
 															style={{
-																borderRadius: 4,
-																padding: 8,
 																background:
 																	projectDurationInfo === info?.label
 																		? theme.palette.primary.light
 																		: 'white',
 
-																// height: 35,
-
 																color: '#061F48',
 																marginRight: 10,
 																textTransform: 'none',
+																minWidth: 50,
 															}}
 															onClick={() => handleProjectDuration(info?.label)}>
 															{info?.label}
@@ -699,29 +736,28 @@ export const CreateBooking = ({ ...props }) => {
 										</InputLabel>
 
 										<Grid container spacing={4}>
-											<Grid item xs={12} sm={12} md={8} lg={8}>
+											<Grid item container>
 												<Button
+													className='borderCta'
 													style={{
 														borderRadius: 4,
 														padding: 4,
 														background:
-															shiftTiming === '9am-6pm'
+															shiftTiming === '09:00am-06:00pm'
 																? theme.palette.primary.light
 																: 'white',
 
-														height: 35,
-														width: 100,
 														color: 'black',
 														marginRight: 10,
+														minWidth: 50,
 													}}
-													onClick={() => handleShiftTiming('9am-6pm')}>
-													9am-6pm
+													onClick={() => handleShiftTiming('09:00am-06:00pm')}>
+													{fixTiming}
 												</Button>
 
 												<Button
+													className='borderCta'
 													style={{
-														borderRadius: 4,
-														padding: 4,
 														background:
 															shiftTiming === 'Custom'
 																? theme.palette.primary.light
@@ -740,46 +776,39 @@ export const CreateBooking = ({ ...props }) => {
 										{shiftTiming === 'Custom' && (
 											<Grid container spacing={4} style={{ marginTop: 10 }}>
 												<Grid item xs={12} sm={12} md={6} lg={6}>
-													<LocalizationProvider dateAdapter={AdapterDateFns}>
-														<TimePicker
-															value={form.values.startTime}
-															onChange={(value) => form.setFieldValue('startTime', value)}
-															//onChange={form.handleChange}
-															renderInput={(params) => (
-																<TextField
-																	{...params}
-																	placeholder='Select Start Time'
-																	fullWidth
-																/>
-															)}
-														/>
-													</LocalizationProvider>
+													<CustomTimePicker
+														form={form}
+														error={!!checkError('startTime', form)}
+														labelId={'startTime'}
+														id={'startTime'}
+														name={'startTime'}
+														value={form.values.startTime}
+														timeOptions={timeDataAM}
+														onChange={(e: any) => {
+															form.handleChange(e)
+														}}
+													/>
 												</Grid>
 												<Grid item xs={12} sm={12} md={6} lg={6}>
-													<LocalizationProvider dateAdapter={AdapterDateFns}>
-														<TimePicker
-															onChange={(value) => {form.setFieldValue('endTime', value), console.log("endTime",value)}}
-															value={form.values.endTime}
-															renderInput={(params) => (
-																<TextField
-																	{...params}
-																	// onChange={(value) =>
-																	// 	form.setFieldValue('endTime', value)
-																	// }
-																	//value={form.values.endTime}
-																	placeholder='Select End Time'
-																	fullWidth
-																/>
-															)}
-														/>
-													</LocalizationProvider>
+													<CustomTimePicker
+														form={form}
+														error={!!checkError('endTime', form)}
+														labelId={'endTime'}
+														id={'endTime'}
+														name={'endTime'}
+														value={form.values.endTime}
+														timeOptions={timeDataPM}
+														onChange={(e: any) => {
+															form.handleChange(e)
+														}}
+													/>
 												</Grid>
 											</Grid>
 										)}
 									</Box>
 
 									<Box>
-										<Grid container spacing={2}>
+										<Grid container columnSpacing={2}>
 											<Grid item xs={12} sm={12} md={6} lg={6} display='block'>
 												<InputLabel id='state' className='inputLabel'>
 													State
@@ -791,6 +820,7 @@ export const CreateBooking = ({ ...props }) => {
 													id='state'
 													name='state'
 													value={form.values.state}
+													//autoWidth={true}
 													onChange={(e) => {
 														form.handleChange(e)
 													}}
@@ -808,6 +838,7 @@ export const CreateBooking = ({ ...props }) => {
 													name='city'
 													error={!!checkError('city', form)}
 													value={form.values.city}
+													disabled={form.values.state === 'none'}
 													onChange={(e) => {
 														form.handleChange(e)
 													}}
@@ -836,7 +867,8 @@ export const CreateBooking = ({ ...props }) => {
 													name='siteAddress'
 													value={form.values.siteAddress}
 													onChange={form.handleChange}
-													rows={4}
+													minRows={4}
+													maxRows={4}
 													multiline
 													fullWidth
 													onBlur={form.handleBlur}
@@ -872,7 +904,7 @@ export const CreateBooking = ({ ...props }) => {
 										</Grid>
 									</Box>
 
-									<Box>
+									{/* <Box>
 										<InputLabel id='company' className='inputLabel'>
 											Company
 										</InputLabel>
@@ -892,11 +924,11 @@ export const CreateBooking = ({ ...props }) => {
 												/>
 											</Grid>
 										</Grid>
-									</Box>
+									</Box> */}
 
 									<Box>
 										<InputLabel id='companyEmail' className='inputLabel'>
-											Company Email
+											Email
 										</InputLabel>
 
 										<Grid container>
@@ -926,13 +958,22 @@ export const CreateBooking = ({ ...props }) => {
 												<TextField
 													id='phoneNumber'
 													name='phoneNumber'
-													onChange={form.handleChange}
+													onChange={(e: any) => {
+														if (e.target.value.length <= 10) {
+															form.handleChange(e)
+														}
+													}}
 													value={form.values.phoneNumber}
 													placeholder='9999988888'
 													fullWidth
 													onBlur={form.handleBlur}
 													error={!!checkError(`phoneNumber`, form)}
 													helperText={checkError(`phoneNumber`, form)}
+													InputProps={{
+														startAdornment: (
+															<InputAdornment position='start'>+91</InputAdornment>
+														),
+													}}
 												/>
 											</Grid>
 										</Grid>
@@ -941,28 +982,37 @@ export const CreateBooking = ({ ...props }) => {
 							)}
 
 							<Box className='stickyBottomBox'>
-								<Stack direction={'row'} spacing={2} justifyContent={'flex-end'}>
-									{(step === 2 || step === 3) && (
-										<Button onClick={handlePrev} style={{ width: '10rem' }}>
-											Previous
-										</Button>
-									)}
-									{step !== 4 && (
-										<Button
-											disabled={isSubmittable}
-											onClick={(e) => handleNext(e)}
-											style={{ width: '10rem', marginLeft: 20 }}>
-											{step === 3 ? 'Finish Booking' : 'Next'}
-										</Button>
-									)}
-								</Stack>
+								<Paper className='bottomButton'>
+									<Stack direction={'row'} justifyContent={'flex-end'} spacing={2}>
+										{(step === 2 || step === 3) && (
+											<Button className='prevCta' onClick={handlePrev}>
+												Previous
+											</Button>
+										)}
+										{step !== 4 && (
+											<LoadingButton
+												className='loadingcta'
+												variant='contained'
+												loading={loading}
+												disabled={!!isSubmittable || loading}
+												onClick={(e) => handleNext(e)}
+												style={{
+													minWidth: '10rem',
+													marginRight: isMobile ? '' : '14%',
+													background: isSubmittable || loading ? '#cccccc' : '',
+												}}>
+												{step === 3 ? 'Finish Booking' : 'Next'}
+											</LoadingButton>
+										)}
+									</Stack>
+								</Paper>
 							</Box>
 						</form>
 					</Box>
 
 					{step === 4 && (
 						<Box style={{ verticalAlign: 'middle' }}>
-							<BookingSuccess bookingFormOpen={bookingFormOpen} setBookingFormOpen={setBookingFormOpen} />
+							<BookingSuccess />
 						</Box>
 					)}
 				</Box>

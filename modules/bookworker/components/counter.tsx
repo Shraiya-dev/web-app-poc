@@ -2,9 +2,7 @@ import { Box, Button, IconButton, Paper, Stack } from '@mui/material'
 import AddIcon from '@mui/icons-material/Add'
 import RemoveIcon from '@mui/icons-material/Remove'
 const Counter = ({ ...props }) => {
-
 	const { info, setInfo } = props
-	console.log('hey', info, setInfo)
 
 	const handleIncrement = () => {
 		setInfo((state: any) => state + 1)

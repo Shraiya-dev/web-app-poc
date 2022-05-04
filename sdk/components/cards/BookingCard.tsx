@@ -1,9 +1,10 @@
 import { AccessTime, ArrowRightAlt, CalendarToday, LocationOn } from '@mui/icons-material'
-import { Button, Paper, Stack, Typography } from '@mui/material'
+import { Button, Paper, Stack, Typography, alpha, Grid } from '@mui/material'
 import { styled } from '@mui/system'
 import { format } from 'date-fns'
 import Link from 'next/link'
-import { useMemo } from 'react'
+import { useRouter } from 'next/router'
+import { useCallback, useMemo } from 'react'
 import { JobCardStateLabel, JobTypeLabel } from '../../constants'
 import { BookingPreview, BOOKING_STATES, JobCardState } from '../../types'
 import { capitalize } from '../../utils'
@@ -20,20 +21,41 @@ const CustomPaper = styled(Paper)(({ theme }) => ({
 	overflow: 'hidden',
 	'.cardHeader': {
 		flex: 1,
-		padding: `${theme.spacing(3)} ${theme.spacing(2)} ${theme.spacing(2)}`,
+		padding: theme.spacing(2.5),
 		backgroundColor: theme.palette.primary.light,
 	},
 	'.cardBody': {
 		flex: 1,
 		flexDirection: 'column',
-		padding: `${theme.spacing(2)} ${theme.spacing(2)} ${theme.spacing(3)}`,
-	},
-	'.vAlignCenter': {
-		display: 'flex',
-		alignItems: 'center',
+		padding: theme.spacing(2.5),
+		'.links': {
+			a: {
+				display: 'flex',
+				padding: theme.spacing(1),
+				cursor: 'pointer',
+				borderRadius: 4,
+				border: `1px solid transparent`,
+				flexDirection: 'column',
+				justifyContent: 'space-between',
+				alignItems: 'flex-start',
+				marginRight: theme.spacing(0.5),
+				'&:hover': {
+					backgroundColor: alpha(theme.palette.primary.main, 0.05),
+					borderColor: theme.palette.primary.main,
+					color: theme.palette.primary.main,
+				},
+				'&.selected': {
+					backgroundColor: alpha(theme.palette.primary.main, 0.05),
+					border: `1px solid`,
+					borderColor: theme.palette.primary.main,
+					color: theme.palette.primary.main,
+				},
+			},
+		},
 	},
 }))
 export const BookingCard = ({ booking }: BookingCardProps) => {
+	const router = useRouter()
 	const { totalCount, supervisorCount, technicianCount, helperCount } = useMemo(() => {
 		const { SUPERVISOR = 0, HELPER = 0, TECHNICIAN = 0 } = booking.peopleRequired
 		const total = HELPER + SUPERVISOR + TECHNICIAN
@@ -43,22 +65,25 @@ export const BookingCard = ({ booking }: BookingCardProps) => {
 	return (
 		<CustomPaper elevation={5}>
 			<Stack className='cardHeader'>
-				<Stack direction='row' justifyContent='space-between'>
-					<Typography variant='h6' fontWeight={700}>
+				<Stack direction='row' justifyContent='space-between' flexWrap='wrap'>
+					<Typography variant='h5' fontWeight={700}>
 						{JobTypeLabel[booking.jobType]} ({totalCount})
 					</Typography>
-					<Stack alignItems='center' direction='row' spacing={2}>
-						<Typography variant='body2'>ID: {booking.bookingId}</Typography>
-						<StatusChip bookingState={booking.status} />
-					</Stack>
+					<StatusChip bookingState={booking.status} />
 				</Stack>
-				<Stack direction='row' flexWrap='wrap'>
+				<Stack alignItems='center' direction='row' spacing={2}>
+					<Typography variant='caption'>ID: {booking.bookingId}</Typography>
+					<Typography variant='caption'>
+						Created On: {booking.createdAt && format(booking.createdAt, 'dd/MM/yy')}
+					</Typography>
+				</Stack>
+				<Stack direction='row' flexWrap='wrap' mt={2}>
 					{helperCount !== 0 && <Typography mr={1}>Helper ({helperCount})</Typography>}
 					{technicianCount !== 0 && <Typography mr={1}>Technician ({technicianCount})</Typography>}
 					{supervisorCount !== 0 && <Typography>Supervisor ({supervisorCount})</Typography>}
 				</Stack>
-				<Stack direction='row' flexWrap='wrap' mt={2}>
-					<Typography mr={1} className='vAlignCenter' variant='body2'>
+				<Stack direction='row' flexWrap='wrap' mt={1}>
+					<Typography mr={1} className='vAlignCenter' variant='body2' width={'50ch'}>
 						<LocationOn fontSize='inherit' color='error' />
 						&nbsp;{capitalize(booking.city)}, {capitalize(booking.state)}
 					</Typography>
@@ -72,69 +97,75 @@ export const BookingCard = ({ booking }: BookingCardProps) => {
 					</Typography>
 				</Stack>
 			</Stack>
+			{console.log(router.pathname)}
 			<Stack className='cardBody'>
 				<Typography color='secondary.main'>WORKER ALLOCATION</Typography>
-				<Stack direction={'row'} justifyContent='space-between' alignItems='flex-end' flexWrap='wrap'>
-					<Stack direction={'row'} spacing={3}>
-						<Stack>
-							<Typography variant='body1' fontWeight={500} lineHeight={2.5} color={'inherit'}>
-								{JobCardStateLabel[JobCardState.ACCEPTED]}
-							</Typography>
-							<Typography variant='h5' fontWeight={700} lineHeight={2} color={'primary'}>
-								{booking?.jobCardDetails ? booking?.jobCardDetails[JobCardState.ACCEPTED] : 0}
-							</Typography>
-						</Stack>
-						<Stack>
-							<Typography variant='body1' fontWeight={500} lineHeight={2.5} color={'inherit'}>
-								{JobCardStateLabel[JobCardState.READY_TO_DEPLOY]}
-							</Typography>
-							<Typography variant='h5' fontWeight={700} lineHeight={2} color={'primary'}>
-								{booking?.jobCardDetails ? booking?.jobCardDetails[JobCardState.READY_TO_DEPLOY] : 0}
-							</Typography>
-						</Stack>
-						<Stack>
-							<Typography variant='body1' fontWeight={500} lineHeight={2.5} color={'inherit'}>
-								{JobCardStateLabel[JobCardState.DEPLOYMENT_COMPLETE]}
-							</Typography>
-							<Typography variant='h5' fontWeight={700} lineHeight={2} color={'primary'}>
-								{booking?.jobCardDetails
-									? booking?.jobCardDetails[JobCardState.DEPLOYMENT_COMPLETE]
-									: 0}
-							</Typography>
-						</Stack>
-					</Stack>
-
-					{/* 
-					//Payment buttons
-					{booking.status === BOOKING_STATES.READY_TO_DEPLOY ? (
-						<Stack spacing={1}>
-							<Typography className='vAlignCenter' sx={{ alignItems: 'flex-end' }}>
-								<CalendarToday fontSize='small' color='error' />
-								<Typography variant='button' fontWeight='bold' color='primary.main'>
-									&nbsp;&#8377;12000
+				<Grid container xs={12}>
+					<Grid item xs={12} md={router.pathname.includes('[bookingId]') ? 12 : 8}>
+						<Stack className='links' flex={1} direction='row'>
+							<Link
+								href={`/dashboard/bookings/${booking.bookingId}/WORKER_APPLIED`}
+								passHref
+								replace={!!router.pathname.includes('[bookingId]')}>
+								<Typography
+									component='a'
+									className={
+										router.query.jobCardState === JobCardState.WORKER_APPLIED ? 'selected' : ''
+									}>
+									<Typography variant='h5'>{booking.jobCardDetails?.ACCEPTED}</Typography>
+									<Typography variant='body2' align='left'>
+										Applied
+									</Typography>
 								</Typography>
-								&nbsp;due on {format(new Date(), 'dd/MM/yy')}
-							</Typography>
-							<Button color='warning' endIcon={<ArrowRightAlt />}>
-								Complete Payment
-							</Button>
+							</Link>
+							<Link
+								href={`/dashboard/bookings/${booking.bookingId}/${JobCardState.READY_TO_DEPLOY}`}
+								passHref
+								replace={!!router.pathname.includes('[bookingId]')}>
+								<Typography
+									component='a'
+									className={
+										router.query.jobCardState === JobCardState.READY_TO_DEPLOY ? 'selected' : ''
+									}>
+									<Typography variant='h5'>{booking.jobCardDetails?.READY_TO_DEPLOY}</Typography>
+									<Typography variant='body2' align='left'>
+										Ready to Deploy
+									</Typography>
+								</Typography>
+							</Link>
+							<Link
+								href={`/dashboard/bookings/${booking.bookingId}/${JobCardState.DEPLOYMENT_COMPLETE}`}
+								passHref
+								replace={!!router.pathname.includes('[bookingId]')}>
+								<Typography
+									component='a'
+									className={
+										router.query.jobCardState === JobCardState.DEPLOYMENT_COMPLETE ? 'selected' : ''
+									}>
+									<Typography variant='h5'>{booking.jobCardDetails?.DEPLOYMENT_COMPLETE}</Typography>
+									<Typography variant='body2' align='left'>
+										Deployed
+									</Typography>
+								</Typography>
+							</Link>
 						</Stack>
-					) : ( */}
-					<Stack flex={1} alignItems='flex-end'>
-						<Link href={`/dashboard/bookings/${booking.bookingId}/WORKER_APPLIED`} passHref>
-							<Typography
-								fontWeight='bold'
-								className='vAlignCenter'
-								variant='body1'
-								component='a'
-								color={'primary.main'}>
-								<>View Details</>
-								<ArrowRightAlt fontSize='large' />
-							</Typography>
-						</Link>
-					</Stack>
-					{/* )} */}
-				</Stack>
+					</Grid>
+					{!router.pathname.includes('[bookingId]') && (
+						<Grid item xs={12} md={4} pt={2} alignItems='flex-end' justifyContent='flex-end'>
+							<Link href={`/dashboard/bookings/${booking.bookingId}/WORKER_APPLIED`} passHref>
+								<Typography
+									lineHeight={0.5}
+									fontWeight='bold'
+									className='vAlignCenter'
+									variant='body1'
+									component='a'
+									color={'primary.main'}>
+									<>View Booking</>
+								</Typography>
+							</Link>
+						</Grid>
+					)}
+				</Grid>
 			</Stack>
 		</CustomPaper>
 	)

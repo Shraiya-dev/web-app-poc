@@ -2,7 +2,6 @@ import { useFormik } from 'formik'
 import { useState, useEffect } from 'react'
 
 import { useContractorAuth, useSnackbar, validateEmail } from '../../../sdk'
-import { getCustomerDetails } from '../../../sdk/apis'
 
 interface CreateBookingForm {
 	jobType: string
@@ -24,8 +23,8 @@ interface CreateBookingForm {
 
 	skills: Array<String>
 	tags: Array<String>
-	startTime: Date
-	endTime: Date
+	startTime: string
+	endTime: string
 	shiftTime: string
 
 	state: string
@@ -49,42 +48,13 @@ interface userInitialInfo {
 const useCreateBooking = () => {
 	const [step, setStep] = useState(1)
 	const [userInitialInfo, setUserInitialInfo] = useState<userInitialInfo>()
-	const { showSnackbar } = useSnackbar()
-	const { getContactorUserInfo, user } = useContractorAuth()
-	useEffect(() => {
-		//getContactorUserInfo();
-		getCustomerDetails()
-			.then((data: any) => {
-				form.values.name = data?.data?.payload?.name
-				form.values.company = data?.data?.payload?.companyName
-				form.values.companyEmail = data?.data?.payload?.email
-				form.values.phoneNumber = data?.data?.payload?.phoneNumber
-			})
-			.catch((error) => {
-				showSnackbar(error?.response?.data?.developerInfo, 'error')
-				console.log(error)
-			})
-	}, [])
 
-	console.log('user', user)
+	const { user } = useContractorAuth()
 
-	function timeConvert(time: any) {
-		// Check correct time format and split into components
-
-		time = time.getHours() + ':' + time.getMinutes()
-		time = time.toString().match(/^([01]\d|2[0-3])(:)([0-5]\d)(:[0-5]\d)?$/) || [time]
-
-		if (time.length > 1) {
-			// If time format correct
-
-			//console.log("time",time)
-			time = time.slice(1) // Remove full string match value
-			time[5] = +time[0] < 12 ? 'AM' : 'PM' // Set AM/PM
-			time[0] = +time[0] % 12 || 12 // Adjust hours
-		} else {
-			time[0] = time[0] + 'AM'
+	const handlePrev = () => {
+		if (step > 1) {
+			setStep((state) => state - 1)
 		}
-		return time.join('') // return adjusted time or original string
 	}
 
 	const form = useFormik<CreateBookingForm>({
@@ -108,23 +78,18 @@ const useCreateBooking = () => {
 
 			skills: [],
 			tags: [],
-			startTime: new Date(),
-			endTime: new Date(),
+			startTime: '09:00am',
+			endTime: '06:00pm',
 			shiftTime: '',
 
 			state: 'none',
 			city: 'none',
 			siteAddress: '',
 
-			name: userInitialInfo?.name || '',
-			company: userInitialInfo?.companyName || '',
-			companyEmail: userInitialInfo?.email || '',
-			phoneNumber: userInitialInfo?.phoneNumber || '',
-
-			// name: user?.name || '',
-			// company: user?.companyName || '',
-			// companyEmail: user?.email || '',
-			// phoneNumber: user?.phoneNumber || '',
+			name: user?.name || '',
+			company: user?.companyName || '',
+			companyEmail: user?.email || '',
+			phoneNumber: user?.phoneNumber.slice(3) || '',
 		},
 		validate: (values) => {
 			const errors = <any>{}
@@ -133,11 +98,6 @@ const useCreateBooking = () => {
 				if (!values.jobType) {
 					errors.jobType = 'Required'
 				}
-				if (!values.helper && !values.supervisor && !values.technician) {
-					errors.helper = 'Required'
-					errors.supervisor = 'Required'
-					errors.technician = 'Required'
-				}
 
 				//helper
 				if (!values.helper && values.helperWages) {
@@ -145,6 +105,20 @@ const useCreateBooking = () => {
 				}
 				if (values.helper && !values.helperWages) {
 					errors.helperWages = 'Required'
+				}
+
+				if (!values.technician && values.technicianWages) {
+					errors.technician = 'Required'
+				}
+				if (values.technician && !values.technicianWages) {
+					errors.technicianWages = 'Required'
+				}
+
+				if (!values.supervisor && values.supervisorWages) {
+					errors.supervisor = 'Required'
+				}
+				if (values.supervisor && !values.supervisorWages) {
+					errors.supervisorWages = 'Required'
 				}
 			}
 
@@ -207,35 +181,6 @@ const useCreateBooking = () => {
 		},
 		onSubmit: (values) => {
 			console.log('hello', values)
-			// const payload = {
-			// 	city: values.city,
-			// 	state: values.state,
-			// 	companyName: values.company,
-			// 	email: values.companyEmail,
-			// 	name: values.name,
-			// 	phoneNumber: values.phoneNumber,
-			// 	siteAddress: values.siteAddress,
-			// 	schedule: {
-			// 		bookingDuration: values.BookingDuration,
-			// 		startDate: values.StartDate,
-			// 		shiftTime: values.shiftTime,
-			// 	},
-			// 	peopleRequired: {
-			// 		SUPERVISOR: values.supervisor,
-			// 		HELPER: values.helper,
-			// 		TECHNICIAN: values.technician,
-			// 	},
-			// 	overTime: {
-			// 		rate: values.overTimeFactor,
-			// 	},
-			// 	earning: {
-			// 		HELPER: values.helperWages,
-			// 		TECHNICIAN: values.technicianWages,
-			// 		SUPERVISOR: values.supervisorWages,
-			// 	},
-			// 	tags: values.tags,
-			// 	jobType: values.jobType,
-			// }
 		},
 	})
 
@@ -245,7 +190,8 @@ const useCreateBooking = () => {
 		setStep,
 		userInitialInfo,
 		setUserInitialInfo,
-		timeConvert,
+
+		handlePrev,
 	}
 }
 

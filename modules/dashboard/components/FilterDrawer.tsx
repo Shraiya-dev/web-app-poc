@@ -14,7 +14,7 @@ export const FilterDrawer = ({ open, onClose }: FilterDrawerProps) => {
 	return (
 		<Drawer anchor='right' open={open} onClose={onClose}>
 			<Stack flex={1} minWidth={drawerWidth} p={2} alignItems='flex-start'>
-				<Button color='inherit' onClick={onClose} variant='text' startIcon={<ArrowBackIos fontSize='large' />}>
+				<Button color='primary' onClick={onClose} variant='text' startIcon={<ArrowBackIos fontSize='large' />}>
 					Back
 				</Button>
 				<Stack flex={1} px={2} width={'100%'}>
@@ -26,7 +26,7 @@ export const FilterDrawer = ({ open, onClose }: FilterDrawerProps) => {
 									none: 'Choose',
 									RECEIVED: 'Created',
 									CONFIRMED: 'Confirmed',
-									ALLOCATION_PENDING: 'Allocation Ongoing',
+									'ALLOCATION_PENDING,ALLOCATION_CLOSED,ALLOCATION_IN_PROGRESS': 'Allocation Ongoing',
 									READY_TO_DEPLOY: 'Ready to Deploy',
 								})}
 							</Select>

@@ -16,9 +16,9 @@ export const useFilterDrawer = () => {
 			} else {
 				delete router.query.status
 			}
+			delete router.query.pageNumber
 
 			//setting up the params
-
 			router.push(router, undefined, {
 				shallow: true,
 				scroll: true,

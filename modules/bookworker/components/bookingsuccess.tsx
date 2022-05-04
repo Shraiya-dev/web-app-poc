@@ -6,7 +6,7 @@ const CustomEmptyBooking = styled(Box)(({ theme }) => ({
 	display: 'flex',
 	justifyContent: 'center',
 	textAlign: 'center',
-	marginTop:"20%",
+	marginTop: '20%',
 	'.info': {
 		margin: 10,
 	},
@@ -22,10 +22,8 @@ const CustomEmptyBooking = styled(Box)(({ theme }) => ({
 export default function BookingSuccess({ ...props }) {
 	const router = useRouter()
 
-	const { setBookingFormOpen, bookingFormOpen } = props
 	const handleSuccessBooking = () => {
 		router.push(`/dashboard`)
-		setBookingFormOpen(false)
 	}
 
 	return (

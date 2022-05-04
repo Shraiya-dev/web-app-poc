@@ -1,15 +1,18 @@
 import axios from 'axios'
 import { useRouter } from 'next/router'
 import { useCallback, useEffect, useState } from 'react'
-import { BookingPreview, JobCard, JOB_TYPES, useSnackbar } from '../../../sdk'
+import { BookingPreview, JobCard, useSnackbar } from '../../../sdk'
 
 export const useBookingId = () => {
 	const router = useRouter()
+	const [isLoading, setIsLoading] = useState(false)
+
 	const { showSnackbar } = useSnackbar()
 	const [bookingSummary, setBookingSummary] = useState<BookingPreview>()
 	const [jobCards, setJobCards] = useState<Array<JobCard>>([])
 
 	const getJobCards = useCallback(async () => {
+		setIsLoading(true)
 		const { bookingId, ...rest } = router.query
 		if (!bookingId) return
 		try {
@@ -39,6 +42,7 @@ export const useBookingId = () => {
 					READY_TO_DEPLOY: booking.jobCardDetails?.READY_TO_DEPLOY ?? 0,
 					DEPLOYMENT_COMPLETE: booking.jobCardDetails?.DEPLOYMENT_COMPLETE ?? 0,
 				},
+				createdAt: new Date(booking.createdAt),
 			})
 			setJobCards(
 				jobCards.map((item: JobCard) => {
@@ -59,6 +63,7 @@ export const useBookingId = () => {
 		} catch (error: any) {
 			showSnackbar(error?.response?.data?.developerInfo, 'error')
 		}
+		setIsLoading(false)
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [router.query])
 
@@ -70,5 +75,6 @@ export const useBookingId = () => {
 		jobCards: jobCards,
 		bookingSummary: bookingSummary,
 		getJobCards: getJobCards,
+		isLoading: isLoading,
 	}
 }

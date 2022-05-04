@@ -1,55 +1,94 @@
-import { Typography, Box, Stack, Button } from '@mui/material'
+import { Typography, Box, Stack, Button, styled } from '@mui/material'
 
 import OtpInput from 'react-otp-input'
 import useOtp from '../hooks/useOtp'
 import { CircularProgress } from '@mui/material'
+import { theme } from '../../../sdk'
+import Link from 'next/link'
+import { LoadingButton } from '@mui/lab'
+
+const CustomOTPStyles = styled(Box)(({ theme }) => ({
+	display: 'flex',
+	justifyContent: 'center',
+	padding: 20,
+	paddingTop: '37%',
+
+	'.headerInfo': {
+		paddingBottom: '0.5em',
+		fontSize: 36,
+		//fontWeight: 600,
+	},
+	'.subHeader': {
+		cursor: 'pointer',
+		marginTop: 10,
+		marginBottom: 20,
+		marginRight: 15,
+		textAlign: 'center',
+		fontSize: 14,
+	},
+	'.cta': {
+		marginTop: '1.5em',
+		width: '100%',
+		background: '#244CB3',
+		color: 'white',
+		cursor: 'pointer',
+	},
+	[theme.breakpoints.down('md')]: {
+		padding: 20,
+		paddingTop: 20,
+	},
+}))
 
 export const OTPVerification = () => {
-	const { otp, form, status, error, handleChange, resendOTP, otpState } = useOtp()
+	const { otp, form, status, error, handleChange, resendOTP, otpState, loading, setLoading } = useOtp()
 
-    console.log("error-----",otpState.error)
 	return (
-		<Box style={{ display: 'flex', justifyContent: 'center', paddingTop: '37%' }}>
-            <Box>
-            <form onSubmit={form.handleSubmit}>
-				<Typography variant='h4'>Enter OTP</Typography>
+		<CustomOTPStyles>
+			<Box>
+				<form onSubmit={form.handleSubmit}>
+					<Typography style={{ fontSize: 36, fontWeight: 700 }}>Enter OTP</Typography>
 
-				<OtpInput
-					value={otp.otp}
-					onChange={handleChange}
-					numInputs={6}
-					inputStyle={{
-						marginTop: 20,
-						marginRight: '1rem',
-						borderRadius: '4px',
-						width: '3em',
-						height: '3em',
-						border: '1px solid #C4C4C4',
-					}}
-					focusStyle={{ border: '1px solid #C4C4C4' }}
-					separator={<span> </span>}
-					isInputNum={true}
-					hasErrored={!!error || !!otpState.error}
-                    
-					errorStyle={{ border: '1px solid #F70000' }}
-				/>
-				<Stack
-					style={{
-						cursor: 'pointer',
-						marginTop: 10,
-						marginBottom: 20,
-						marginRight: 15,
-						textAlign: 'center',
-					}} onClick={resendOTP}> 
-					Resend OTP
-				</Stack>
+					<OtpInput
+						value={otp.otp}
+						onChange={handleChange}
+						numInputs={6}
+						inputStyle={{
+							marginTop: 20,
 
-				<Button type='submit' variant='contained' color='primary' fullWidth disabled={status === 'loading'}>
-					{status === 'loading' ? <CircularProgress size={30} /> : `Verify OTP`}
-				</Button>
-			</form>
-            </Box>
-			
-		</Box>
+							borderRadius: '4px',
+							width: '3em',
+							height: '3em',
+							border: '1px solid #C4C4C4',
+							display: 'flex',
+							justifyContent: 'center',
+						}}
+						shouldAutoFocus={true}
+						separator={<span> &nbsp;&nbsp;&nbsp;</span>}
+						isInputNum={true}
+						hasErrored={!status}
+						errorStyle={{ border: '1px solid #F70000' }}
+					/>
+					<Stack className='subHeader' onClick={resendOTP}>
+						Resend OTP
+					</Stack>
+
+					{/* <Button type='submit' variant='contained' color='primary' fullWidth disabled={status === 'loading'}>
+						{status === 'loading' ? <CircularProgress size={30} /> : `Verify OTP`}
+					</Button> */}
+
+					<LoadingButton type='submit' loading={loading} disabled={loading} variant='contained' fullWidth>
+						{`Verify OTP`}
+					</LoadingButton>
+
+					<Link href='/login' passHref>
+						<a>
+							<Typography sx={{ textDecoration: 'underline' }} color='primary.main' mt={'16px'}>
+								Change Number
+							</Typography>
+						</a>
+					</Link>
+				</form>
+			</Box>
+		</CustomOTPStyles>
 	)
 }

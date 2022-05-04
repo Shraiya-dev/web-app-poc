@@ -30,6 +30,8 @@ import { CreateBooking } from '../../modules/bookworker/components/createBooking
 import { boolean } from 'yup'
 import useCreateBooking from '../../modules/bookworker/hooks/useCreateBooking'
 
+import { useBooking } from '../../modules/bookworker/hooks/useBooking'
+
 //always update when you change the app bar height into the onlyCssWeNeed file
 const APP_BAR_HEIGHT = 84
 const APP_BAR_BG_COLOR = '#FFFFFF'
@@ -54,13 +56,15 @@ const CustomContainer = styled(Container)(({ theme }) => ({
 }))
 
 const DashboardLayout = ({ children, ...props }: any) => {
+	const { drawerOpen, setDrawerOpen, bookingFormOpen, setBookingFormOpen, onCloseDialog, setOncloseDialog } =
+		useBooking()
 	const { logOut } = useContractorAuth()
 	const isMobile = useMobile()
-	const [drawerOpen, setDrawerOpen] = useState<boolean>(false)
+	//const [drawerOpen, setDrawerOpen] = useState<boolean>(false)
 
-	const [bookingFormOpen, setBookingFormOpen] = useState<boolean>(false)
+	//const [bookingFormOpen, setBookingFormOpen] = useState<boolean>(false)
 
-	const [onCloseDialog, setOncloseDialog] = useState<boolean>(false)
+	//const [onCloseDialog, setOncloseDialog] = useState<boolean>(false)
 
 	const toggleDrawer = () => {
 		setDrawerOpen(!drawerOpen)
@@ -79,37 +83,50 @@ const DashboardLayout = ({ children, ...props }: any) => {
 			<CustomAppBar elevation={0}>
 				<Container className='container'>
 					<Toolbar className='toolbar'>
-						{isMobile ? (
-							<IconButton onClick={toggleDrawer}>
-								<Image src={MenuIcon} alt='menu' color='black' />
-							</IconButton>
-						) : (
+						<Stack direction='row'>
+							{isMobile && (
+								<IconButton onClick={toggleDrawer}>
+									<Image src={MenuIcon} alt='menu' color='black' />
+								</IconButton>
+							)}
 							<Link href='/dashboard' passHref>
 								<a>
-									<Image priority src={logo} alt='' height={52} width={162} />
+									<Image
+										priority
+										src={logo}
+										alt=''
+										height={isMobile ? 34 : 52}
+										width={isMobile ? 100 : 162}
+									/>
 								</a>
 							</Link>
-						)}
+						</Stack>
 
 						<Stack direction='row' spacing={2}>
 							{!isMobile && (
 								<>
 									<Link href='/dashboard' passHref>
 										<a>
-											<Button variant='text'>Dashboard</Button>
+											<Button sx={{ px: 1 }} variant='text'>
+												Dashboard
+											</Button>
 										</a>
 									</Link>
 
 									<Link href='/profile' passHref>
 										<a>
-											<Button variant='text'>My Profile</Button>
+											<Button sx={{ px: 1 }} variant='text'>
+												My Profile
+											</Button>
 										</a>
 									</Link>
 								</>
 							)}
-							<Button variant='contained' onClick={handleBookingForm}>
-								Book Worker
-							</Button>{' '}
+							<Link href='/dashboard/bookings/create' passHref>
+								<a>
+									<Button variant='contained'>Book Workers</Button>
+								</a>
+							</Link>
 						</Stack>
 					</Toolbar>
 				</Container>
@@ -153,15 +170,6 @@ const DashboardLayout = ({ children, ...props }: any) => {
 			</Drawer>
 
 			<Dialog onClose={toggleBookingForm} open={bookingFormOpen} fullScreen>
-				<Box display='flex' alignItems='center'>
-					<Box flexGrow={1}></Box>
-					<Box style={{ margin: 20 }}>
-						<IconButton onClick={toggleBookingForm}>
-							<CloseIcon />
-						</IconButton>
-					</Box>
-				</Box>
-
 				<CreateBooking
 					toggleBookingForm={toggleBookingForm}
 					onCloseDialog={onCloseDialog}

@@ -50,8 +50,9 @@ export default function BookingCards() {
 			fontSize: 14,
 			paddingTop: 30,
 		},
-		'.bottom-dimension':{
-			height: 136, padding: 16 
+		'.bottom-dimension': {
+			height: 136,
+			padding: 16,
 		},
 		'.text-info': {
 			display: 'inline',
@@ -86,7 +87,7 @@ export default function BookingCards() {
 				alignItems='flex-start'>
 				{items?.map((index) => {
 					return (
-						<Grid item xs={12} sm={12} md={9} >
+						<Grid item xs={12} sm={12} md={9}>
 							<Box>
 								<Box
 									sx={{

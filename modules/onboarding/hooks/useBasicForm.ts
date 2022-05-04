@@ -5,8 +5,7 @@ import { useFormik } from 'formik'
 import { validateEmail, freeEmailChecker } from '../../../sdk/utils/validationHelpers'
 
 import { updateProfile } from '../../../sdk/apis'
-import { getCustomerDetails } from '../../../sdk/apis'
-import { useSnackbar } from '../../../sdk'
+import { useContractorAuth, useSnackbar } from '../../../sdk'
 interface CreateBasicForm {
 	name: string
 	company: string
@@ -14,20 +13,10 @@ interface CreateBasicForm {
 	phoneNumber: string
 }
 
-interface initialData {
-	name: string
-	companyName: string
-	email: string
-	phoneNumber: string
-	customerStatus: string
-}
-
 const useBasicForm = () => {
-	const router = useRouter()
 	const [loading, setLoading] = useState(false)
 	const { showSnackbar } = useSnackbar()
-	const [initialData, setInitialData] = useState<initialData>()
-
+	const { user, getContactorUserInfo } = useContractorAuth()
 	const [editInfo, setEditInfo] = useState(false)
 
 	const handleEdit = () => {
@@ -35,22 +24,20 @@ const useBasicForm = () => {
 	}
 
 	useEffect(() => {
-		getCustomerDetails()
-			.then((data: any) => {
-				setInitialData(data?.data?.payload)
-			})
-			.catch((error: any) => {
-				showSnackbar(error?.response?.data?.developerInfo, 'error')
-				console.log(error)
-			})
-	}, [router])
-
+		form.setValues({
+			company: user?.companyName ?? '',
+			companyEmail: user?.email ?? '',
+			name: user?.name ?? '',
+			phoneNumber: user?.phoneNumber.slice(3) ?? '',
+		})
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [user])
 	const form = useFormik<CreateBasicForm>({
 		initialValues: {
-			name: initialData?.name || '',
-			company: initialData?.companyName || '',
-			companyEmail: initialData?.email || '',
-			phoneNumber: initialData?.phoneNumber || '',
+			name: user?.name || '',
+			company: user?.companyName || '',
+			companyEmail: user?.email || '',
+			phoneNumber: user?.phoneNumber || '',
 		},
 		validate: (values) => {
 			const errors = <any>{}
@@ -71,14 +58,6 @@ const useBasicForm = () => {
 				errors.phoneNumber = 'Required'
 			}
 
-			// if (
-			// 	values.phoneNumber === '' ||
-			// 	Number.isNaN(Number(values.phoneNumber)) ||
-			// 	values.phoneNumber.length !== 10
-			// ) {
-			// 	errors.phoneNumber = 'Enter Valid phone Number'
-			// }
-
 			if (!validateEmail(values.companyEmail)) {
 				errors.companyEmail = 'Enter Valid Company Email'
 			}
@@ -92,11 +71,16 @@ const useBasicForm = () => {
 				email: values.companyEmail,
 			}
 			updateProfile(payload)
-				.then((status: any) => {
-					router.push('/dashboard')
+				.then((data: any) => {
+					setLoading(true)
+					getContactorUserInfo()
+					setLoading(false)
+					setEditInfo(false)
 				})
-				.catch((error) => {
+				.catch((error: any) => {
+					showSnackbar(error?.response?.data?.developerInfo, 'error')
 					console.log(error)
+					setLoading(false)
 				})
 		},
 	})
@@ -104,8 +88,7 @@ const useBasicForm = () => {
 	return {
 		form,
 		loading,
-		initialData,
-		setInitialData,
+		setLoading,
 		editInfo,
 		setEditInfo,
 		handleEdit,

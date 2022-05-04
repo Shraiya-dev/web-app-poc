@@ -1,19 +1,17 @@
 import React, { useState } from 'react'
+import { useRouter } from 'next/router'
 
 // Material UI
-import { Dialog, DialogContent, Button, Typography, Stack, Box } from '@mui/material'
+import { Dialog, DialogContent, Button, Typography, Stack, Box, Grid } from '@mui/material'
 
 const ConfirmCancel = ({ ...props }) => {
-	const { onCloseDialog, setOncloseDialog, toggleBookingForm, bookingFormOpen, setBookingFormOpen } = props
+	const { onCloseDialog, setOncloseDialog } = props
 
+	const router = useRouter()
 	const handleCancel = () => {
 		setOncloseDialog(false)
 	}
 
-	const handleConfirm = () => {
-		setOncloseDialog(false)
-		setBookingFormOpen(false)
-	}
 	return (
 		<Dialog style={{ zIndex: 1800 }} open={onCloseDialog} keepMounted onClose={handleCancel}>
 			<Box>
@@ -22,12 +20,12 @@ const ConfirmCancel = ({ ...props }) => {
 					<Typography style={{ marginBottom: 30, marginTop: 10, fontSize: 14 }}>
 						There’re unsaved changes
 					</Typography>
-					<Stack direction={'row'} spacing={2} justifyContent={'flex-end'}>
+					<Stack direction={'row'} justifyContent={'flex-end'} style={{ width: '100%', paddingLeft: 20 }}>
 						<Button variant='outlined' onClick={handleCancel} style={{ marginRight: 10 }}>
 							{' '}
 							Continue Booking
 						</Button>
-						<Button onClick={handleConfirm}> Leave</Button>
+						<Button onClick={() => router.back()}> Leave</Button>
 					</Stack>
 				</DialogContent>
 			</Box>

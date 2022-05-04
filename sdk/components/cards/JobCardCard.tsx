@@ -1,4 +1,4 @@
-import { EqualizerRounded, LocationOn } from '@mui/icons-material'
+import { Engineering, EqualizerRounded, LocationOn } from '@mui/icons-material'
 import { Chip, Paper, Stack, Typography } from '@mui/material'
 import { styled } from '@mui/system'
 import Image from 'next/image'
@@ -14,6 +14,7 @@ const CustomPaper = styled(Paper)(({ theme }) => ({
 		width: 125,
 		backgroundPosition: 'center',
 		backgroundFit: 'cover',
+		backgroundRepeat: 'no-repeat',
 	},
 
 	'.vAlignCenter': {
@@ -32,8 +33,7 @@ export const JobCardCard = ({ jobCard }: JobCardCardProps) => {
 				<Stack
 					className='profileImage'
 					sx={{
-						backgroundImage:
-							'url(https://images.unsplash.com/photo-1473090928358-00fcead4f08c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1094&q=80)',
+						backgroundImage: 'url(/assets/icons/worker.svg)',
 					}}>
 					{/* <img
 					className='profileImage'
@@ -43,28 +43,29 @@ export const JobCardCard = ({ jobCard }: JobCardCardProps) => {
 				/> */}
 				</Stack>
 				<Stack flex={1} p={2}>
-					<Stack direction='row' justifyContent='space-between'>
-						<Typography color='primary.main'>{jobCard.workerName}</Typography>
-						<Link href={`/worker/${jobCard.workerId}`} passHref>
+					<Stack mb={1} direction='row' justifyContent='space-between'>
+						<Typography variant='h6' fontWeight={600}>
+							{jobCard.workerName ?? 'Lalit'}
+						</Typography>
+						{/* <Link href={`/worker/${jobCard.workerId}`} passHref>
 							<Typography component={'a'} color='primary.main'>
 								View
 							</Typography>
-						</Link>
+						</Link> */}
 					</Stack>
 					<Stack flex={1} alignItems='flex-start' spacing={1}>
 						<Chip variant='outlined' color='primary' label={jobCard?.skillType} />
-						<Typography color='secondary.main'>45 Years</Typography>
-						<Typography className='vAlignCenter' variant='body2'>
-							<LocationOn fontSize='inherit' color='error' />
+						{/* <Typography className='vAlignCenter' variant='body2'>
+							<Engineering fontSize='inherit' color='error' />
 							&nbsp;{jobCard.projectCount} Projects
-						</Typography>
+						</Typography> */}
 						<Typography className='vAlignCenter' variant='body2'>
 							<LocationOn fontSize='inherit' color='error' />
 							&nbsp;{jobCard.city}, {jobCard.state}
 						</Typography>
 						<Typography className='vAlignCenter' variant='body2'>
 							<EqualizerRounded fontSize='inherit' color='error' />
-							&nbsp;{jobCard.experience} years
+							&nbsp;{jobCard.experience} Years Of Experience
 						</Typography>
 					</Stack>
 				</Stack>

@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { useRouter } from 'next/router'
-import { useContractorAuth } from '../../../sdk'
+import { useContractorAuth, useSnackbar } from '../../../sdk'
 import { useFormik } from 'formik'
 
 const initialOtpState = {
@@ -21,16 +21,19 @@ const useOtp = () => {
 	const [otpState, setOtpState] = useState(initialOtpState)
 	const { status, error } = otpState
 	const [otp, setOtp] = useState({ otp: '' })
+	const [loading, setLoading] = useState(false)
+	const { showSnackbar } = useSnackbar()
 
 	const handleChange = (otp: any) => setOtp({ otp })
 
 	const resendOTP = () => {
 		requestOtp(phoneNumber || '')
 			.then((res) => {
-				console.log('res', res)
+				showSnackbar(res?.data?.data?.msg, 'success')
 			})
-			.catch((err) => {
-				console.log('error', err)
+			.catch((error: any) => {
+				console.log('error', error)
+				showSnackbar(error, 'error')
 			})
 	}
 
@@ -41,39 +44,40 @@ const useOtp = () => {
 
 		onSubmit: (values) => {
 			if (validateOtpField(otp) === 'valid') {
+				setLoading(true)
 				verifyOtp(`${phoneNumber}`, otp.otp)
 					.then((res) => {
-						console.log('00000', res?.data)
-						if (res?.success) {
+						if (res?.success === true) {
 							setOtpState((prevValues) => ({
 								...prevValues,
-								status: 'success',
+								status: res?.success,
 							}))
-
-							return router.push('/onboarding')
+							setLoading(false)
 						} else {
-							setOtpState((prevValues) => ({
+							setOtpState((prevValues: any) => ({
 								...prevValues,
 								otp: '',
-								status: 'failed',
+								status: false,
 								error: 'Invalid OTP',
 							}))
+							setLoading(false)
 						}
 					})
 					.catch((err) => {
-						console.log('error', err)
-						setOtpState((prevValues) => ({
+						console.log('error', error)
+						setOtpState((prevValues: any) => ({
 							...prevValues,
 							otp: '',
-							status: 'failed',
+							status: false,
 							error: 'Invalid OTP',
 						}))
+						setLoading(false)
 					})
 			} else {
-				setOtpState((prevValues) => ({
+				setOtpState((prevValues: any) => ({
 					...prevValues,
 					otp: '',
-					status: 'failed',
+					status: false,
 					error: 'Invalid OTP',
 				}))
 			}
@@ -88,6 +92,8 @@ const useOtp = () => {
 		handleChange,
 		resendOTP,
 		otpState,
+		loading,
+		setLoading,
 	}
 }
 
