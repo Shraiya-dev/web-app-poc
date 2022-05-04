@@ -1,5 +1,5 @@
 import { Search } from '@mui/icons-material'
-import { IconButton, InputAdornment, TextField, TextFieldProps } from '@mui/material'
+import { IconButton, InputAdornment, OutlinedTextFieldProps, TextField, TextFieldProps } from '@mui/material'
 import { styled } from '@mui/system'
 import { useFormik } from 'formik'
 import { useRouter } from 'next/router'
@@ -23,10 +23,11 @@ export const SearchField = ({ name = 'name', ...rest }: TextFieldProps) => {
 		},
 		onSubmit: (values) => {
 			if (values.fieldName) {
-				router.query[name] = values.fieldName
+				router.query = { [name]: values.fieldName }
 			} else {
 				delete router.query[name]
 			}
+
 			router.push(router)
 		},
 	})

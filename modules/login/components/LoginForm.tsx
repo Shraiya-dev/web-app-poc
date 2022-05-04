@@ -30,18 +30,19 @@ const CustomLoginStyles = styled(Box)(({ theme }) => ({
 	'.cta': {
 		marginTop: '1.5em',
 		width: '100%',
+		background: '#244CB3',
+		color: 'white',
+		cursor: 'pointer',
 	},
 	'.register': {
 		paddingTop: 16,
 	},
-	[theme.breakpoints.down('md')]: {
-		padding: 20,
-		paddingTop: 20,
-	},
 }))
 
 export const LoginForm = () => {
-	const { form, loading, setLoading, error, isRegister, handleLogin } = useLogin()
+	const { form, loading, error, isRegister, handleLogin } = useLogin()
+
+	console.log('loading', loading)
 
 	return (
 		<CustomLoginStyles>
@@ -68,12 +69,8 @@ export const LoginForm = () => {
 							}
 						}}
 					/>
-					<LoadingButton
-						className='cta'
-						type='submit'
-						loading={loading}
-						disabled={loading}
-						variant='contained'>
+					{console.log(checkError('phoneNumber', form))}
+					<LoadingButton className='cta' type='submit' loading={!!loading} variant='contained'>
 						{isRegister ? 'Register' : 'Login'}
 					</LoadingButton>
 

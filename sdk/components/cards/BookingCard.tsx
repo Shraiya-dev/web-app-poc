@@ -97,15 +97,16 @@ export const BookingCard = ({ booking }: BookingCardProps) => {
 					</Typography>
 				</Stack>
 			</Stack>
+			{console.log(router.pathname)}
 			<Stack className='cardBody'>
 				<Typography color='secondary.main'>WORKER ALLOCATION</Typography>
 				<Grid container xs={12}>
-					<Grid item xs={12} md={router.query.bookingId ? 12 : 8}>
+					<Grid item xs={12} md={router.pathname.includes('[bookingId]') ? 12 : 8}>
 						<Stack className='links' flex={1} direction='row'>
 							<Link
 								href={`/dashboard/bookings/${booking.bookingId}/WORKER_APPLIED`}
 								passHref
-								replace={!!router.query.bookingId}>
+								replace={!!router.pathname.includes('[bookingId]')}>
 								<Typography
 									component='a'
 									className={
@@ -120,7 +121,7 @@ export const BookingCard = ({ booking }: BookingCardProps) => {
 							<Link
 								href={`/dashboard/bookings/${booking.bookingId}/${JobCardState.READY_TO_DEPLOY}`}
 								passHref
-								replace={!!router.query.bookingId}>
+								replace={!!router.pathname.includes('[bookingId]')}>
 								<Typography
 									component='a'
 									className={
@@ -135,7 +136,7 @@ export const BookingCard = ({ booking }: BookingCardProps) => {
 							<Link
 								href={`/dashboard/bookings/${booking.bookingId}/${JobCardState.DEPLOYMENT_COMPLETE}`}
 								passHref
-								replace={!!router.query.bookingId}>
+								replace={!!router.pathname.includes('[bookingId]')}>
 								<Typography
 									component='a'
 									className={
@@ -149,7 +150,7 @@ export const BookingCard = ({ booking }: BookingCardProps) => {
 							</Link>
 						</Stack>
 					</Grid>
-					{!router.query.bookingId && (
+					{!router.pathname.includes('[bookingId]') && (
 						<Grid item xs={12} md={4} pt={2} alignItems='flex-end' justifyContent='flex-end'>
 							<Link href={`/dashboard/bookings/${booking.bookingId}/WORKER_APPLIED`} passHref>
 								<Typography
