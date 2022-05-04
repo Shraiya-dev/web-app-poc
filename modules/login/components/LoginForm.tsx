@@ -10,7 +10,7 @@ import { useEffect } from 'react'
 const CustomLoginStyles = styled(Box)(({ theme }) => ({
 	display: 'flex',
 	justifyContent: 'center',
-	padding: 8,
+	padding: 16,
 	paddingTop: '37%',
 
 	'.main': {
