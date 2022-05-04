@@ -607,7 +607,11 @@ export const CreateBooking = ({ ...props }) => {
 																value={info?.formvalue > 0 ? info?.formvalue : ''}
 																type='tel'
 																onChange={(e: any) => {
-																	if (e.target.value >= 0) {
+																	if (
+																		e.target.value >= 0 &&
+																		e.target.value <=
+																			(info?.name === 'supervisor' ? 50 : 500)
+																	) {
 																		form.handleChange(e)
 																	}
 																}}
@@ -628,7 +632,7 @@ export const CreateBooking = ({ ...props }) => {
 																}
 																type='tel'
 																onChange={(e: any) => {
-																	if (e.target.value >= 0) {
+																	if (e.target.value >= 0 && e.target.value <= 2000) {
 																		form.handleChange(e)
 																	}
 																}}

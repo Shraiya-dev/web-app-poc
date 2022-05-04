@@ -5,12 +5,14 @@ import LoadingButton from '@mui/lab/LoadingButton'
 import { checkError } from '../../../sdk'
 import useLogin from '../hooks/useLogin'
 import Link from 'next/link'
+import { useEffect } from 'react'
 
 const CustomLoginStyles = styled(Box)(({ theme }) => ({
 	display: 'flex',
 	justifyContent: 'center',
-	padding: 20,
+	padding: 8,
 	paddingTop: '37%',
+
 	'.main': {
 		width: 328,
 		height: 274,
@@ -37,12 +39,21 @@ const CustomLoginStyles = styled(Box)(({ theme }) => ({
 	'.register': {
 		paddingTop: 16,
 	},
+	[theme.breakpoints.down('md')]: {
+		padding: 16,
+		paddingTop: 16,
+	},
 }))
 
-export const LoginForm = () => {
-	const { form, loading, error, isRegister, handleLogin } = useLogin()
+export const LoginForm = ({ ...props }) => {
+	const { form, loading, error, isRegister, handleLogin, status } = useLogin()
+	const { isOtpSent, setIsOtpSent } = props
 
-	console.log('loading', loading)
+	useEffect(() => {
+		if (status === 'success') {
+			setIsOtpSent(true)
+		}
+	}, [form, status])
 
 	return (
 		<CustomLoginStyles>
