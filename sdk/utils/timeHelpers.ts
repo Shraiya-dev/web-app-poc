@@ -15,7 +15,7 @@ export const getTimeOptions = (type: 'am' | 'pm') => {
 	while (start < end) {
 		timeArr.push({
 			label: format(start, 'hh:mm a'),
-			value: format(start, 'hh:mma'),
+			value: format(start, 'hh:mm a'),
 		})
 		start.setMinutes(start.getMinutes() + 30)
 	}

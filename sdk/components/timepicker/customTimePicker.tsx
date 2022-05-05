@@ -1,5 +1,6 @@
 import { Select, MenuItem } from '@mui/material'
-import { getSelectOptionsFromArray } from '../../utils'
+import { getSelectOptions } from '../../utils'
+import { getTimeOptions } from '../../utils/timeHelpers'
 
 export const CustomTimePicker = ({ ...props }) => {
 	const { style, error, labelId, id, name, value, timeOptions, onChange } = props
@@ -15,7 +16,7 @@ export const CustomTimePicker = ({ ...props }) => {
 			style={style}
 			fullWidth>
 			<MenuItem value={'none'}>Select Time</MenuItem>
-			{getSelectOptionsFromArray(timeOptions)}
+			{getSelectOptions([{ label: 'Select End Date', value: 'none' }, ...getTimeOptions(timeOptions)])}
 		</Select>
 	)
 }
