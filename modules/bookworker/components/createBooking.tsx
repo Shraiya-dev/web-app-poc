@@ -221,7 +221,6 @@ export const CreateBooking = ({ ...props }) => {
 
 		return validate
 	}
-	console.log(form)
 	useEffect(() => {
 		if (step === 1) {
 			let canSubmit: boolean =
@@ -277,17 +276,17 @@ export const CreateBooking = ({ ...props }) => {
 				shiftEndTime: form.values.endTime,
 			},
 			peopleRequired: {
-				SUPERVISOR: form.values.supervisor,
-				HELPER: form.values.helper,
-				TECHNICIAN: form.values.technician,
+				SUPERVISOR: Number(form.values.supervisor),
+				HELPER: Number(form.values.helper),
+				TECHNICIAN: Number(form.values.technician),
 			},
 			overTime: {
-				rate: form.values.overTimeFactor,
+				rate: Number(form.values.overTimeFactor),
 			},
 			earning: {
-				HELPER: form.values.helperWages,
-				TECHNICIAN: form.values.technicianWages,
-				SUPERVISOR: form.values.supervisorWages,
+				HELPER: Number(form.values.helperWages),
+				TECHNICIAN: Number(form.values.technicianWages),
+				SUPERVISOR: Number(form.values.supervisorWages),
 			},
 			tags: form.values.tags,
 			jobType: form.values.jobType,
