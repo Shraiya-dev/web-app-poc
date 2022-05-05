@@ -173,7 +173,7 @@ export const CreateBooking = ({ ...props }) => {
 
 	const isMobile = useMobile()
 	const { user } = useContractorAuth()
-	const fixTiming = `09:00 am - 05:00 pm`
+	const fixTiming = `09:00 am - 06:00 pm`
 
 	const workerType = [
 		{
@@ -334,7 +334,6 @@ export const CreateBooking = ({ ...props }) => {
 	}
 
 	const handleShiftTiming = (info: any) => {
-
 		form.setFieldValue('startTime', '09:00 AM')
 		form.setFieldValue('endTime', '06:00 PM')
 		setShiftTiming(info)
