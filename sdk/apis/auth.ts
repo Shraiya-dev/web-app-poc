@@ -24,11 +24,9 @@ export const loginService = async (
 	return axios.post('/login', payload)
 }
 
-export const logoutService = async (ut: USER_TYPE) => {}
-
-export const refreshTokenService = async (refreshToken: string, accessToken: StringConstructor, ut: USER_TYPE) => {
+export const refreshTokenService = async (refreshToken: string, accessToken: string, ut: USER_TYPE) => {
 	const payload = {
-		ult: 'otp',
+		ult: USER_LOGIN_TYPE.OTP,
 		ut: ut,
 		refreshToken: refreshToken,
 		accessToken: accessToken,
@@ -42,4 +40,11 @@ export const getCustomerDetails = async () => {
 
 export const updateProfile = async (payload: any) => {
 	return axios.put('/gateway/customer-api/customers/profile', payload)
+}
+
+export const logOutService = () => {
+	localStorage.clear()
+	if (window.location.pathname !== `/login`) {
+		window.location.href = `/login`
+	}
 }

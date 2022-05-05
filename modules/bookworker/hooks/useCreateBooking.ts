@@ -179,9 +179,7 @@ const useCreateBooking = () => {
 
 			return errors
 		},
-		onSubmit: (values) => {
-			console.log('hello', values)
-		},
+		onSubmit: (values) => {},
 	})
 
 	return {

@@ -80,7 +80,6 @@ export const LoginForm = ({ ...props }) => {
 							}
 						}}
 					/>
-					{console.log(checkError('phoneNumber', form))}
 					<LoadingButton className='cta' type='submit' loading={!!loading} variant='contained'>
 						{isRegister ? 'Register' : 'Login'}
 					</LoadingButton>

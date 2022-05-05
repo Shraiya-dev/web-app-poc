@@ -20,7 +20,6 @@ const Login: NextPage = () => {
 				) : (
 					<LoginForm isOtpSent={isOtpSent} setIsOtpSent={setIsOtpSent} />
 				)}
-				{console.log('isOtpSent', isOtpSent)}
 			</OnboardingLayout>
 		</>
 	)

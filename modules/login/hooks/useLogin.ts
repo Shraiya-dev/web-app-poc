@@ -44,7 +44,6 @@ const useLogin = () => {
 			setLoading(true)
 			requestOtp(`+91${values?.phoneNumber}`)
 				.then((res) => {
-					console.log(res?.data?.success)
 					if (res?.data?.success) {
 						setLoginState((prevValues) => ({
 							...prevValues,
