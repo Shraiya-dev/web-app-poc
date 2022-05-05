@@ -16,12 +16,14 @@ const chipColor: Partial<{
 	ALLOCATION_CLOSED: 'info.main',
 	READY_TO_DEPLOY: 'success.main',
 	DEPLOYED: 'primary.main',
+	CANCELLED: 'error.light',
 }
 
-export const StatusChip = ({ bookingState, ...props }: StatusChipProps) => {
+export const StatusChip = ({ bookingState, sx, ...props }: StatusChipProps) => {
 	return bookingState ? (
 		<Chip
 			sx={{
+				...sx,
 				backgroundColor: chipColor[bookingState],
 				color: 'common.white',
 			}}
