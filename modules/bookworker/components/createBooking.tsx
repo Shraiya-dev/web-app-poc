@@ -670,9 +670,9 @@ export const CreateBooking = ({ ...props }) => {
 															value={form.values.overTimeFactor}
 															onChange={form.handleChange}>
 															<MenuItem value={'none'}>Select Overtime Factor</MenuItem>
-															<MenuItem value={10}>1</MenuItem>
-															<MenuItem value={20}>1.5</MenuItem>
-															<MenuItem value={30}>2</MenuItem>
+															<MenuItem value={1}>1</MenuItem>
+															<MenuItem value={1.5}>1.5</MenuItem>
+															<MenuItem value={2}>2</MenuItem>
 														</Select>
 													</FormControl>
 												</Grid>
