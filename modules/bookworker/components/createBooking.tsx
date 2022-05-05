@@ -173,7 +173,7 @@ export const CreateBooking = ({ ...props }) => {
 
 	const isMobile = useMobile()
 	const { user } = useContractorAuth()
-	const fixTiming = `09:00 am - 05:00 pm`
+	const fixTiming = `09:00 am - 06:00 pm`
 
 	const workerType = [
 		{
@@ -237,9 +237,8 @@ export const CreateBooking = ({ ...props }) => {
 				!form.values.siteAddress ||
 				!form.values.startTime ||
 				!form.values.BookingDuration ||
-				(shiftTiming === 'Custom'
-					? form.values.startTime === 'none' || form.values.endTime === 'none'
-					: !form.values.shiftTime)
+				form.values.startTime === 'none' ||
+				form.values.endTime === 'none'
 
 			setIsSubmittable(canSubmit)
 		}
@@ -273,7 +272,9 @@ export const CreateBooking = ({ ...props }) => {
 			schedule: {
 				bookingDuration: form.values.BookingDuration,
 				startDate: form.values.StartDate,
-				shiftTime: ConvertedshiftTime,
+				//shiftTime: ConvertedshiftTime,
+				shiftStartTime: form.values.startTime,
+				shiftEndTime: form.values.endTime,
 			},
 			peopleRequired: {
 				SUPERVISOR: form.values.supervisor,
@@ -333,7 +334,8 @@ export const CreateBooking = ({ ...props }) => {
 	}
 
 	const handleShiftTiming = (info: any) => {
-		form.setFieldValue('shiftTime', info)
+		form.setFieldValue('startTime', '09:00 AM')
+		form.setFieldValue('endTime', '06:00 PM')
 		setShiftTiming(info)
 	}
 
@@ -607,7 +609,11 @@ export const CreateBooking = ({ ...props }) => {
 																value={info?.formvalue > 0 ? info?.formvalue : ''}
 																type='tel'
 																onChange={(e: any) => {
-																	if (e.target.value >= 0) {
+																	if (
+																		e.target.value >= 0 &&
+																		e.target.value <=
+																			(info?.name === 'supervisor' ? 50 : 500)
+																	) {
 																		form.handleChange(e)
 																	}
 																}}
@@ -628,7 +634,7 @@ export const CreateBooking = ({ ...props }) => {
 																}
 																type='tel'
 																onChange={(e: any) => {
-																	if (e.target.value >= 0) {
+																	if (e.target.value >= 0 && e.target.value <= 2000) {
 																		form.handleChange(e)
 																	}
 																}}
@@ -664,9 +670,9 @@ export const CreateBooking = ({ ...props }) => {
 															value={form.values.overTimeFactor}
 															onChange={form.handleChange}>
 															<MenuItem value={'none'}>Select Overtime Factor</MenuItem>
-															<MenuItem value={10}>1</MenuItem>
-															<MenuItem value={20}>1.5</MenuItem>
-															<MenuItem value={30}>2</MenuItem>
+															<MenuItem value={1}>1</MenuItem>
+															<MenuItem value={1.5}>1.5</MenuItem>
+															<MenuItem value={2}>2</MenuItem>
 														</Select>
 													</FormControl>
 												</Grid>
@@ -783,7 +789,7 @@ export const CreateBooking = ({ ...props }) => {
 														id={'startTime'}
 														name={'startTime'}
 														value={form.values.startTime}
-														timeOptions={timeDataAM}
+														timeOptions={'am'}
 														onChange={(e: any) => {
 															form.handleChange(e)
 														}}
@@ -797,7 +803,7 @@ export const CreateBooking = ({ ...props }) => {
 														id={'endTime'}
 														name={'endTime'}
 														value={form.values.endTime}
-														timeOptions={timeDataPM}
+														timeOptions={'pm'}
 														onChange={(e: any) => {
 															form.handleChange(e)
 														}}

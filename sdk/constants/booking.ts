@@ -10,4 +10,5 @@ export const BookingStateLabel: Partial<{
 	ALLOCATION_CLOSED: 'Allocation Ongoing',
 	READY_TO_DEPLOY: 'Ready to Deploy',
 	DEPLOYED: 'Deployed',
+	CANCELLED: 'Cancelled',
 }

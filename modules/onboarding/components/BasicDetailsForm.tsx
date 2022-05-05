@@ -8,7 +8,7 @@ import { checkError, InputWrapper } from '../../../sdk'
 import { Cancel } from '@mui/icons-material'
 
 const BasicFormStyle = styled(Box)(({ theme }) => ({
-	padding: 20,
+	padding: 16,
 	marginTop: '14%',
 	'.cta': {
 		marginTop: '1em',
@@ -19,8 +19,8 @@ const BasicFormStyle = styled(Box)(({ theme }) => ({
 		paddingBottom: 6,
 	},
 	[theme.breakpoints.down('md')]: {
-		padding: 20,
-		paddingTop: 20,
+		padding: 16,
+		paddingTop: 16,
 		marginTop: 0,
 	},
 }))

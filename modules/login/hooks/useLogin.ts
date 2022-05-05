@@ -51,7 +51,7 @@ const useLogin = () => {
 							status: 'success',
 						}))
 
-						router.push('/verifyOTP')
+						//router.push('/verifyOTP')
 						setLoading(false)
 					} else {
 						showSnackbar(res?.data?.error, 'error')

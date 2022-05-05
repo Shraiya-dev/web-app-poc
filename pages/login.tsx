@@ -3,8 +3,11 @@ import { LoginForm } from '../modules/login/components/LoginForm'
 import { OnboardingLayout } from '../sdk'
 import { Box } from '@mui/material'
 import Head from 'next/head'
+import { useState } from 'react'
+import { OTPVerification } from '../modules/otp/components/OtpVerification'
 
 const Login: NextPage = () => {
+	const [isOtpSent, setIsOtpSent] = useState(false)
 	return (
 		<>
 			<Head>
@@ -12,7 +15,12 @@ const Login: NextPage = () => {
 				<meta name='description' content='' />
 			</Head>
 			<OnboardingLayout>
-				<LoginForm />
+				{isOtpSent ? (
+					<OTPVerification isOtpSent={isOtpSent} setIsOtpSent={setIsOtpSent} />
+				) : (
+					<LoginForm isOtpSent={isOtpSent} setIsOtpSent={setIsOtpSent} />
+				)}
+				{console.log('isOtpSent', isOtpSent)}
 			</OnboardingLayout>
 		</>
 	)

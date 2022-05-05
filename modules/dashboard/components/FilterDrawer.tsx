@@ -28,6 +28,7 @@ export const FilterDrawer = ({ open, onClose }: FilterDrawerProps) => {
 									CONFIRMED: 'Confirmed',
 									'ALLOCATION_PENDING,ALLOCATION_CLOSED,ALLOCATION_IN_PROGRESS': 'Allocation Ongoing',
 									READY_TO_DEPLOY: 'Ready to Deploy',
+									CANCELLED: 'Cancelled',
 								})}
 							</Select>
 						</InputWrapper>

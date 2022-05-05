@@ -15,3 +15,11 @@ export const getSelectOptionsFromArray = (arr: { label: string; value: any }[]) 
 		</MenuItem>
 	))
 }
+
+export const getSelectOptions = (opt: any) => {
+	return opt.map((item: any) => (
+		<MenuItem key={item.label} value={item.value}>
+			{item.label}
+		</MenuItem>
+	))
+}
