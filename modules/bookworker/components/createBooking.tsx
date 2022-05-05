@@ -173,7 +173,7 @@ export const CreateBooking = ({ ...props }) => {
 
 	const isMobile = useMobile()
 	const { user } = useContractorAuth()
-	const fixTiming = `09:00 am - 05:00 pm`
+	const fixTiming = `09:00 am - 06:00 pm`
 
 	const workerType = [
 		{
@@ -237,9 +237,8 @@ export const CreateBooking = ({ ...props }) => {
 				!form.values.siteAddress ||
 				!form.values.startTime ||
 				!form.values.BookingDuration ||
-				(shiftTiming === 'Custom'
-					? form.values.startTime === 'none' || form.values.endTime === 'none'
-					: !form.values.shiftTime)
+				form.values.startTime === 'none' ||
+				form.values.endTime === 'none'
 
 			setIsSubmittable(canSubmit)
 		}
@@ -273,7 +272,9 @@ export const CreateBooking = ({ ...props }) => {
 			schedule: {
 				bookingDuration: form.values.BookingDuration,
 				startDate: form.values.StartDate,
-				shiftTime: ConvertedshiftTime,
+				//shiftTime: ConvertedshiftTime,
+				shiftStartTime: form.values.startTime,
+				shiftEndTime: form.values.endTime,
 			},
 			peopleRequired: {
 				SUPERVISOR: form.values.supervisor,
@@ -333,7 +334,8 @@ export const CreateBooking = ({ ...props }) => {
 	}
 
 	const handleShiftTiming = (info: any) => {
-		form.setFieldValue('shiftTime', info)
+		form.setFieldValue('startTime', '09:00 AM')
+		form.setFieldValue('endTime', '06:00 PM')
 		setShiftTiming(info)
 	}
 
@@ -787,7 +789,7 @@ export const CreateBooking = ({ ...props }) => {
 														id={'startTime'}
 														name={'startTime'}
 														value={form.values.startTime}
-														timeOptions={timeDataAM}
+														timeOptions={'am'}
 														onChange={(e: any) => {
 															form.handleChange(e)
 														}}
@@ -801,7 +803,7 @@ export const CreateBooking = ({ ...props }) => {
 														id={'endTime'}
 														name={'endTime'}
 														value={form.values.endTime}
-														timeOptions={timeDataPM}
+														timeOptions={'pm'}
 														onChange={(e: any) => {
 															form.handleChange(e)
 														}}

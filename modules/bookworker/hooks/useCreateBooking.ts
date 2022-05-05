@@ -78,8 +78,8 @@ const useCreateBooking = () => {
 
 			skills: [],
 			tags: [],
-			startTime: '09:00am',
-			endTime: '06:00pm',
+			startTime: '',
+			endTime: '',
 			shiftTime: '',
 
 			state: 'none',
