@@ -21,6 +21,12 @@ const useBasicForm = () => {
 
 	const handleEdit = () => {
 		setEditInfo((state) => !state)
+		form.setValues({
+			company: user?.companyName ?? '',
+			companyEmail: user?.email ?? '',
+			name: user?.name ?? '',
+			phoneNumber: user?.phoneNumber.slice(3) ?? '',
+		})
 	}
 
 	useEffect(() => {
