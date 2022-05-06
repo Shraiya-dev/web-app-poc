@@ -32,6 +32,27 @@ export const FilterDrawer = ({ open, onClose }: FilterDrawerProps) => {
 								})}
 							</Select>
 						</InputWrapper>
+						<InputWrapper label='Job Type'>
+							<Select fullWidth name='jobType' value={form.values.jobType} onChange={form.handleChange}>
+								{getSelectOptionsFromObject({
+									none: 'Choose',
+
+									PAINTER: 'Painter',
+									ELECTRICAL: 'Electrician',
+									MASON: 'Mason',
+									BAR_BENDER: 'Barbender',
+									CARPENTER: 'Carpenter',
+									SHUTTERING_CARPENTER: 'Shuttering Carpenter',
+									STONE_TILE_MARBLE_LAYER: 'Stone / Tile / Marble',
+									GYPSUM: 'Gypsum',
+									WELDER_FITTER: 'Welder fitter',
+									GENERAL_HELPER: 'GeneralWorker',
+									HVAC: 'Hvac',
+									PLUMBING: 'Plumber',
+									ALUMINIUM_FABRICATOR: 'Aluminium Fabricator',
+								})}
+							</Select>
+						</InputWrapper>
 					</Stack>
 				</Stack>
 				<Divider />

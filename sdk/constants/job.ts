@@ -6,7 +6,7 @@ export const JobTypeLabel: Partial<{
 	GYPSUM: 'Gypsum',
 	PAINTER: 'Painter',
 	CARPENTER: 'Carpenter',
-	ELECTRICAL: 'Electrical',
+	ELECTRICAL: 'Electrician',
 	MASON: 'Mason',
 	BAR_BENDER: 'Bar Bender',
 	SHUTTERING_CARPENTER: 'Shuttering Carpenter',
