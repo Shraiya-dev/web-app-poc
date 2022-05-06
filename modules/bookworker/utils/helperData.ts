@@ -12,6 +12,7 @@ import Hvac from '../../../public/assets/icons/hvac.svg'
 import Welderfitter from '../../../public/assets/icons/welderfitter.svg'
 import Shuttering from '../../../public/assets/icons/shuttering.svg'
 import AluminiumFabricator from '../../../public/assets/icons/aluminiumfabricator.svg'
+import { JOB_TYPES } from '../../../sdk'
 
 export const jobTypeInfo = [
 	{ icon: Painter, label: 'Painter', value: 'PAINTER' },
@@ -149,6 +150,24 @@ export const JobType = [
 	{ label: 'Plumbing', value: 'PLUMBING' },
 	{ label: 'Shuttering Carpenter', value: 'SHUTTERING_CARPENTER' },
 ]
+
+export const JobTypeIcon: Partial<{
+	[key in JOB_TYPES]: string
+}> = {
+	GYPSUM: Gypsum,
+	PAINTER: Painter,
+	CARPENTER: Carpenter,
+	ELECTRICAL: Electrician,
+	MASON: Mason,
+	BAR_BENDER: Barbender,
+	SHUTTERING_CARPENTER: Shuttering,
+	WELDER_FITTER: Welderfitter,
+	GENERAL_HELPER: GeneralWorker,
+	HVAC: Hvac,
+	PLUMBING: Plumber,
+	ALUMINIUM_FABRICATOR: AluminiumFabricator,
+	STONE_TILE_MARBLE_LAYER: Stone,
+}
 
 export const ShiftTime = [
 	{
