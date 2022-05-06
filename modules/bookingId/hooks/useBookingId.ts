@@ -48,7 +48,7 @@ export const useBookingId = () => {
 				jobCards.map((item: JobCard) => {
 					const jobCard: JobCard = {
 						workerId: item.workerId,
-						WorkerName: item.WorkerName,
+						workerName: item.workerName,
 						jobType: item.jobType,
 						experience: item.experience,
 						projectCount: item.projectCount,

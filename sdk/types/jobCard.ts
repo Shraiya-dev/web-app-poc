@@ -11,7 +11,7 @@ export enum JobCardState {
 }
 
 export interface JobCard {
-	WorkerName: string
+	workerName: string
 	jobType: JOB_TYPES
 	dob: string
 	projectCount: Number
