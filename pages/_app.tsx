@@ -16,10 +16,6 @@ import {
 } from '../sdk'
 import '../sdk/styles/onlyCssWeNeed.css'
 //=====================initializing axios interceptor=======================
-
-interface CustomAxiosRequestConfig extends AxiosRequestConfig {
-	_retry: boolean
-}
 axios.defaults.baseURL = SERVER_URL
 axios.interceptors.request.use(
 	(request: any) => {
@@ -33,16 +29,17 @@ axios.interceptors.request.use(
 		return Promise.reject(error)
 	}
 )
+let _retry = false
 axios.interceptors.response.use(
 	(response: AxiosResponse) => {
 		return response
 	},
 	async (error: AxiosError) => {
-		const originalRequest = error.config as CustomAxiosRequestConfig
+		const originalRequest = error.config
 		const accessToken = localStorage.getItem('accessToken')
 		const refreshToken = localStorage.getItem('refreshToken')
-		if (accessToken && refreshToken && error.response?.status === 401 && !originalRequest._retry) {
-			originalRequest._retry = true
+		if (accessToken && refreshToken && error.response?.status === 401 && !_retry) {
+			_retry = true
 
 			try {
 				const { status, data } = await refreshTokenService(refreshToken, accessToken, USER_TYPE.CONTRACTOR)
@@ -51,10 +48,8 @@ axios.interceptors.response.use(
 						return logOutService()
 					}
 
-					localStorage.removeItem('accessToken')
 					localStorage.setItem('accessToken', data.data.accessToken)
-					window.location.reload()
-					return axios(originalRequest)
+					return window.location.reload()
 				}
 			} catch (error) {
 				return logOutService()

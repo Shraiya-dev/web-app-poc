@@ -27,6 +27,7 @@ export const loginService = async (
 export const refreshTokenService = async (refreshToken: string, accessToken: string, ut: USER_TYPE) => {
 	const payload = {
 		ult: USER_LOGIN_TYPE.OTP,
+		dt: 'web',
 		ut: ut,
 		refreshToken: refreshToken,
 		accessToken: accessToken,
