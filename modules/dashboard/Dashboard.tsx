@@ -90,7 +90,7 @@ export const Dashboard = () => {
 								overlap='circular'
 								anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
 								badgeContent={
-									router.query.status && (
+									(router.query.status || router.query.jobType) && (
 										//simple svg to show dot on filter text
 										<svg height='10' width='10'>
 											<circle cx='5' cy='5' r='5' fill='red' />
