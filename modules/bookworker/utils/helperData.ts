@@ -144,7 +144,7 @@ export const JobType = [
 	{ label: 'Painter', value: 'PAINTER' },
 	{ label: 'Mason', value: 'MASON' },
 	{ label: 'Stone/Tile/Marble Layer', value: 'STONE_TILE_MARBLE_LAYER' },
-	{ label: 'Electrical', value: 'ELECTRICAL' },
+	{ label: 'Electrician', value: 'ELECTRICAL' },
 	{ label: 'Gypsum', value: 'GYPSUM' },
 	{ label: 'HVAC', value: 'HVAC' },
 	{ label: 'Plumbing', value: 'PLUMBING' },

@@ -38,7 +38,7 @@ export const FilterDrawer = ({ open, onClose }: FilterDrawerProps) => {
 									none: 'Choose',
 
 									PAINTER: 'Painter',
-									ELECTRICAL: 'Electrical',
+									ELECTRICAL: 'Electrician',
 									MASON: 'Mason',
 									BAR_BENDER: 'Barbender',
 									CARPENTER: 'Carpenter',
