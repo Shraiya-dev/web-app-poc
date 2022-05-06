@@ -15,7 +15,7 @@ import AluminiumFabricator from '../../../public/assets/icons/aluminiumfabricato
 
 export const jobTypeInfo = [
 	{ icon: Painter, label: 'Painter', value: 'PAINTER' },
-	{ icon: Electrician, label: 'Electrical', value: 'ELECTRICAL' },
+	{ icon: Electrician, label: 'Electrician', value: 'ELECTRICAL' },
 	{ icon: Mason, label: 'Mason', value: 'MASON' },
 	{ icon: Barbender, label: 'Barbender', value: 'BAR_BENDER' },
 	{ icon: Carpenter, label: 'Carpenter', value: 'CARPENTER' },
