@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { useRouter } from 'next/router'
 import { createContext, useCallback, useContext, useEffect, useMemo, useReducer } from 'react'
-import { getCustomerDetails, loginService, sendOtpService } from '../apis'
+import { getCustomerDetails, loginService, logOutService, sendOtpService } from '../apis'
 import { CustomerDetails, CUSTOMER_STATUS, USER_LOGIN_TYPE, USER_TYPE } from '../types'
 import { useSnackbar } from './SnackbarProvider'
 
@@ -17,7 +17,7 @@ interface AuthState {
 interface AuthProviderValue extends AuthState {
 	requestOtp: (phoneNumber: string) => Promise<any>
 	verifyOtp: (phoneNumber: string, otp: string) => Promise<any>
-	logOut: () => Promise<any>
+	logOut: () => void
 	getContactorUserInfo: () => Promise<any>
 	updateIsRegUser: (isRegister: boolean) => {}
 }
@@ -99,12 +99,6 @@ const ContractorAuthProvider = ({ children }: any) => {
 		[showSnackbar]
 	)
 
-	const logOut = useCallback(async () => {
-		localStorage.clear()
-		dispatch(initialAuthState)
-		await router.push('/login')
-	}, [router])
-
 	const updateIsRegUser = useCallback(async (isRegister: boolean) => {
 		dispatch({
 			isRegister: isRegister,
@@ -116,7 +110,7 @@ const ContractorAuthProvider = ({ children }: any) => {
 			const refreshToken = localStorage.getItem('refreshToken')
 			const phoneNumber = localStorage.getItem('phoneNumber')
 			if (!(accessToken || refreshToken || phoneNumber)) {
-				logOut()
+				logOutService()
 				return
 			}
 			try {
@@ -141,13 +135,14 @@ const ContractorAuthProvider = ({ children }: any) => {
 				}
 			}
 		})()
+
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [])
 
 	//logic for redirect based on state and update userInfo
 	useEffect(() => {
 		if (!(state.accessToken && state.refreshToken && state.phoneNumber)) {
-			logOut()
+			logOutService()
 			return
 		}
 		if (
@@ -186,11 +181,11 @@ const ContractorAuthProvider = ({ children }: any) => {
 			...state,
 			requestOtp: requestOtp,
 			verifyOtp: verifyOtp,
-			logOut: logOut,
+			logOut: logOutService,
 			getContactorUserInfo: getContactorUserInfo,
 			updateIsRegUser: updateIsRegUser,
 		}),
-		[state, requestOtp, verifyOtp, logOut, getContactorUserInfo, updateIsRegUser]
+		[state, requestOtp, verifyOtp, getContactorUserInfo, updateIsRegUser]
 	)
 	return <Provider value={authProviderValue}>{children}</Provider>
 }

@@ -1,10 +1,9 @@
 import { useFormik } from 'formik'
-import { useState, useEffect } from 'react'
-
-import { useContractorAuth, useSnackbar, validateEmail } from '../../../sdk'
+import { useState } from 'react'
+import { JOB_TYPES, useContractorAuth, validateEmail } from '../../../sdk'
 
 interface CreateBookingForm {
-	jobType: string
+	jobType: JOB_TYPES | ''
 
 	BookingDuration: string
 	StartDate: Date
@@ -18,10 +17,7 @@ interface CreateBookingForm {
 	technicianWages: Number
 
 	overTimeFactor: string
-	overTimeBuffer: string
-	overTime: string
 
-	skills: Array<String>
 	tags: Array<String>
 	startTime: string
 	endTime: string
@@ -37,17 +33,8 @@ interface CreateBookingForm {
 	phoneNumber: string
 }
 
-interface userInitialInfo {
-	name: string
-	companyName: string
-	email: string
-	phoneNumber: string
-	customerStatus: string
-}
-
 const useCreateBooking = () => {
 	const [step, setStep] = useState(1)
-	const [userInitialInfo, setUserInitialInfo] = useState<userInitialInfo>()
 
 	const { user } = useContractorAuth()
 
@@ -73,10 +60,7 @@ const useCreateBooking = () => {
 			technicianWages: 0,
 
 			overTimeFactor: 'none',
-			overTimeBuffer: '',
-			overTime: '',
 
-			skills: [],
 			tags: [],
 			startTime: '',
 			endTime: '',
@@ -179,18 +163,13 @@ const useCreateBooking = () => {
 
 			return errors
 		},
-		onSubmit: (values) => {
-			console.log('hello', values)
-		},
+		onSubmit: (values) => {},
 	})
 
 	return {
 		form,
 		step,
 		setStep,
-		userInitialInfo,
-		setUserInitialInfo,
-
 		handlePrev,
 	}
 }

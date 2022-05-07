@@ -1,5 +1,7 @@
+import { ArrowBack } from '@mui/icons-material'
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp'
+import { LoadingButton } from '@mui/lab'
 import {
 	Box,
 	Button,
@@ -7,17 +9,16 @@ import {
 	Container,
 	FormControl,
 	Grid,
+	InputAdornment,
 	InputLabel,
 	MenuItem,
+	Paper,
 	Select,
 	Stack,
+	styled,
 	TextField,
 	Typography,
-	styled,
-	Paper,
-	InputAdornment,
 } from '@mui/material'
-import { LoadingButton } from '@mui/lab'
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns'
 import { DatePicker } from '@mui/x-date-pickers/DatePicker'
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
@@ -26,22 +27,16 @@ import { useEffect, useState } from 'react'
 import Helper from '../../../public/assets/icons/helper.svg'
 import Supervisor from '../../../public/assets/icons/supervisor.svg'
 import Technician from '../../../public/assets/icons/technician.svg'
-import { checkError, theme } from '../../../sdk'
+import { checkError, theme, useContractorAuth, useSnackbar } from '../../../sdk'
+import { CustomTimePicker } from '../../../sdk/components/timepicker/customTimePicker'
+import { useMobile } from '../../../sdk/hooks/useMobile'
+import { createBooking } from '../apis/apis'
 import useCreateBooking from '../hooks/useCreateBooking'
-
-import { CitiesOptions, jobTypeInfo, moreJobType, projectDuration, StatesOptions, tags } from '../utils/helperData'
+import { jobTypeInfo, moreJobType, overTimefactor, projectDuration, tags } from '../utils/helperData'
 import BookingSuccess from './bookingsuccess'
 import ConfirmCancel from './confirmCancel'
-
-import { createBooking } from '../apis/apis'
-import { useSnackbar, useContractorAuth } from '../../../sdk'
-import { useMobile } from '../../../sdk/hooks/useMobile'
-
-import { CustomTimePicker } from '../../../sdk/components/timepicker/customTimePicker'
-import { timeDataAM, timeDataPM } from '../utils/helperData'
-
-import { ArrowBack } from '@mui/icons-material'
-
+import { CityOptions } from '../../../sdk/constants/city'
+import { StatesOptions } from '../../../sdk/constants/state'
 const CustomBookingStyle = styled(Box)(({ theme }) => ({
 	'.main': {
 		justifyContent: 'center',
@@ -173,7 +168,7 @@ export const CreateBooking = ({ ...props }) => {
 
 	const isMobile = useMobile()
 	const { user } = useContractorAuth()
-	const fixTiming = `09:00 am - 06:00 pm`
+	const fixTiming = `09:00 AM - 06:00 PM`
 
 	const workerType = [
 		{
@@ -602,18 +597,20 @@ export const CreateBooking = ({ ...props }) => {
 															<TextField
 																label={`${info?.label} Required`}
 																placeholder={`Enter ${info?.label}`}
-																defaultValue=''
 																id={info?.name}
 																name={info?.name}
 																value={info?.formvalue > 0 ? info?.formvalue : ''}
-																type='tel'
+																type='number'
 																onChange={(e: any) => {
 																	if (
 																		e.target.value >= 0 &&
 																		e.target.value <=
 																			(info?.name === 'supervisor' ? 50 : 500)
 																	) {
-																		form.handleChange(e)
+																		form.setFieldValue(
+																			e.target.name,
+																			Number(e.target.value)
+																		)
 																	}
 																}}
 																fullWidth
@@ -625,16 +622,18 @@ export const CreateBooking = ({ ...props }) => {
 															<TextField
 																label='Daily wage (Rs.)'
 																placeholder='Enter wage'
-																defaultValue=''
 																id={info?.wage}
 																name={info?.wage}
 																value={
 																	info?.wageformvalue > 0 ? info?.wageformvalue : ''
 																}
-																type='tel'
+																type='number'
 																onChange={(e: any) => {
 																	if (e.target.value >= 0 && e.target.value <= 2000) {
-																		form.handleChange(e)
+																		form.setFieldValue(
+																			e.target.name,
+																			Number(e.target.value)
+																		)
 																	}
 																}}
 																fullWidth
@@ -669,9 +668,7 @@ export const CreateBooking = ({ ...props }) => {
 															value={form.values.overTimeFactor}
 															onChange={form.handleChange}>
 															<MenuItem value={'none'}>Select Overtime Factor</MenuItem>
-															<MenuItem value={1}>1</MenuItem>
-															<MenuItem value={1.5}>1.5</MenuItem>
-															<MenuItem value={2}>2</MenuItem>
+															{getSelectOptions(overTimefactor)}
 														</Select>
 													</FormControl>
 												</Grid>
@@ -697,6 +694,7 @@ export const CreateBooking = ({ ...props }) => {
 														value={form.values.StartDate}
 														onChange={(value) => form.setFieldValue('StartDate', value)}
 														renderInput={(params) => <TextField {...params} fullWidth />}
+														inputFormat='dd/MM/yyyy'
 													/>
 												</LocalizationProvider>
 											</Grid>
@@ -748,7 +746,7 @@ export const CreateBooking = ({ ...props }) => {
 														borderRadius: 4,
 														padding: 4,
 														background:
-															shiftTiming === '09:00am-06:00pm'
+															shiftTiming === 'default'
 																? theme.palette.primary.light
 																: 'white',
 
@@ -756,7 +754,7 @@ export const CreateBooking = ({ ...props }) => {
 														marginRight: 10,
 														minWidth: 50,
 													}}
-													onClick={() => handleShiftTiming('09:00am-06:00pm')}>
+													onClick={() => handleShiftTiming('default')}>
 													{fixTiming}
 												</Button>
 
@@ -849,7 +847,7 @@ export const CreateBooking = ({ ...props }) => {
 													}}
 													fullWidth>
 													<MenuItem value={'none'}>Select city</MenuItem>
-													{CitiesOptions[form.values.state || 'none'].map((item: any) => {
+													{CityOptions[form.values.state || 'none'].map((item: any) => {
 														return (
 															<MenuItem key={item.label} value={item.value}>
 																{item?.label}
@@ -909,28 +907,6 @@ export const CreateBooking = ({ ...props }) => {
 										</Grid>
 									</Box>
 
-									{/* <Box>
-										<InputLabel id='company' className='inputLabel'>
-											Company
-										</InputLabel>
-
-										<Grid container>
-											<Grid item xs={12} sm={12} md={6} lg={6}>
-												<TextField
-													id='company'
-													name='company'
-													onChange={form.handleChange}
-													value={form.values.company}
-													placeholder='Enter Company Name'
-													fullWidth
-													onBlur={form.handleBlur}
-													error={!!checkError(`company`, form)}
-													helperText={checkError(`company`, form)}
-												/>
-											</Grid>
-										</Grid>
-									</Box> */}
-
 									<Box>
 										<InputLabel id='companyEmail' className='inputLabel'>
 											Email
@@ -969,7 +945,8 @@ export const CreateBooking = ({ ...props }) => {
 														}
 													}}
 													value={form.values.phoneNumber}
-													placeholder='9999988888'
+													type='tel'
+													placeholder='Enter PhoneNumber'
 													fullWidth
 													onBlur={form.handleBlur}
 													error={!!checkError(`phoneNumber`, form)}

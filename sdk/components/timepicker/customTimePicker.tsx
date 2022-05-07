@@ -15,8 +15,10 @@ export const CustomTimePicker = ({ ...props }) => {
 			onChange={onChange}
 			style={style}
 			fullWidth>
-			<MenuItem value={'none'}>Select Time</MenuItem>
-			{getSelectOptions([{ label: 'Select End Date', value: 'none' }, ...getTimeOptions(timeOptions)])}
+			{getSelectOptions([
+				{ label: timeOptions === 'am' ? 'Select Start Time' : 'Select End Time', value: 'none' },
+				...getTimeOptions(timeOptions),
+			])}
 		</Select>
 	)
 }

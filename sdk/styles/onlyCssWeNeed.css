@@ -27,3 +27,14 @@ a {
 	display: flex;
 	align-items: center;
 }
+
+/* css to remove the  :increment :decrement button in the number text field */
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+	-webkit-appearance: none;
+}
+
+input[type='number'] {
+	-moz-appearance: textfield;
+}
+/* end */

@@ -1,10 +1,12 @@
 import { AccessTime, ArrowRightAlt, CalendarToday, LocationOn } from '@mui/icons-material'
-import { Button, Paper, Stack, Typography, alpha, Grid } from '@mui/material'
+import { Button, Paper, Stack, Typography, alpha, Grid, Box } from '@mui/material'
 import { styled } from '@mui/system'
 import { format } from 'date-fns'
+import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useCallback, useMemo } from 'react'
+import { JobTypeIcon } from '../../../modules/bookworker/utils/helperData'
 import { JobCardStateLabel, JobTypeLabel } from '../../constants'
 import { BookingPreview, BOOKING_STATES, JobCardState } from '../../types'
 import { capitalize } from '../../utils'
@@ -66,9 +68,17 @@ export const BookingCard = ({ booking }: BookingCardProps) => {
 		<CustomPaper elevation={5}>
 			<Stack className='cardHeader'>
 				<Stack direction='row' justifyContent='space-between' flexWrap='wrap'>
-					<Typography sx={{ mb: 0.5 }} variant='h5' fontWeight={700}>
-						{JobTypeLabel[booking.jobType]} ({totalCount})
-					</Typography>
+					<Box display={'flex'}>
+						<Image
+							src={JobTypeIcon[booking.jobType] || ''}
+							width={24}
+							height={24}
+							style={{ verticalAlign: 'middle' }}
+						/>
+						<Typography variant='h5' fontWeight={700} style={{ verticalAlign: 'middle', margin: 8 }}>
+							{JobTypeLabel[booking.jobType]} ({totalCount})
+						</Typography>
+					</Box>
 					<StatusChip sx={{ mb: 0.5 }} bookingState={booking.status} />
 				</Stack>
 				<Stack alignItems='center' direction='row' spacing={2}>
