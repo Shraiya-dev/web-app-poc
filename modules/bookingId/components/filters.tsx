@@ -38,10 +38,10 @@ const Filters = ({ ...props }) => {
 			scroll: true,
 		})
 
-		getJobCards()
+		//	getJobCards()
 
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [form.values.tags])
+	}, [form.values.skillType, form.values.jobCardState])
 
 	return (
 		<Grid item xs={12} md={12}>

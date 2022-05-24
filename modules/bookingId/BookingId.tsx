@@ -35,7 +35,7 @@ export const BookingId = () => {
 									fontSize: 24,
 									fontWeight: 700,
 									color: theme.palette.secondary.main,
-									padding: 0,
+									paddingRight: 8,
 								}}>
 								<ArrowBackIosNewIcon
 									onClick={() => router.push(`/projects/${router.query.projectId}/bookings`)}
@@ -68,7 +68,7 @@ export const BookingId = () => {
 							sx={{
 								fontSize: 14,
 								color: theme.palette.secondary.main,
-								paddingLeft: 7,
+								paddingLeft: 8,
 							}}>
 							ID:&nbsp;{bookingSummary?.booking?.bookingId}
 						</Typography>

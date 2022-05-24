@@ -73,7 +73,7 @@ export const useBookingId = () => {
 		}
 		//setIsLoading(false)
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [router.query])
+	}, [router.query.skillType, router.query.jobCardState, router.query.projectId])
 
 	const form = useFormik<FilterForm>({
 		initialValues: {
@@ -91,7 +91,7 @@ export const useBookingId = () => {
 
 	useEffect(() => {
 		getJobCards()
-	}, [getJobCards, router.query])
+	}, [getJobCards])
 
 	useEffect(() => {
 		getBookingInfo()

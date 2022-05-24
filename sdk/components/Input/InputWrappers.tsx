@@ -16,7 +16,7 @@ export const InputWrapper = ({ label, toolTip, children, ...props }: InputWrappe
 						color: '#061F48',
 					}}
 					{...props}>
-					<Typography fontSize={13} fontWeight={700}>
+					<Typography fontSize={13} fontWeight={700} display='inline'>
 						{label}
 					</Typography>
 
