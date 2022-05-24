@@ -12,6 +12,7 @@ interface AuthState {
 	accessToken: null | string
 	refreshToken: null | string
 	isRegister: false | Boolean
+	isSideBarToggle: false | boolean
 }
 
 interface AuthProviderValue extends AuthState {
@@ -20,6 +21,7 @@ interface AuthProviderValue extends AuthState {
 	logOut: () => void
 	getContactorUserInfo: () => Promise<any>
 	updateIsRegUser: (isRegister: boolean) => {}
+	updateIsSideBarToggle: (isSideBarToggle: boolean) => {}
 }
 const simpleReducer = (state: AuthState, payload: Partial<AuthState>) => ({
 	...state,
@@ -31,6 +33,7 @@ const initialAuthState: AuthState = {
 	phoneNumber: LoadingUniqueString,
 	user: null,
 	isRegister: false,
+	isSideBarToggle: false,
 }
 const ContractorAuthContext = createContext<AuthProviderValue>({
 	...initialAuthState,
@@ -39,6 +42,7 @@ const ContractorAuthContext = createContext<AuthProviderValue>({
 	verifyOtp: () => Promise.resolve(null),
 	getContactorUserInfo: () => Promise.resolve(null),
 	updateIsRegUser: () => false,
+	updateIsSideBarToggle: () => false,
 })
 const { Provider, Consumer } = ContractorAuthContext
 
@@ -62,6 +66,7 @@ const ContractorAuthProvider = ({ children }: any) => {
 					name: data.payload?.name ?? '',
 					phoneNumber: data.payload?.phoneNumber ?? '',
 					companyName: data.payload.companyName ?? '',
+					GSTIN: data.payload.GSTIN ?? '',
 					customerStatus: data.payload?.customerStatus ?? CUSTOMER_STATUS.REGISTERED,
 				},
 			})
@@ -104,6 +109,12 @@ const ContractorAuthProvider = ({ children }: any) => {
 			isRegister: isRegister,
 		})
 	}, [])
+
+	const updateIsSideBarToggle = useCallback(async (isSideBarToggle: boolean) => {
+		dispatch({
+			isSideBarToggle: isSideBarToggle,
+		})
+	}, [])
 	useEffect(() => {
 		;(async () => {
 			const accessToken = localStorage.getItem('accessToken')
@@ -126,6 +137,7 @@ const ContractorAuthProvider = ({ children }: any) => {
 						name: data.payload?.name ?? '',
 						phoneNumber: data.payload?.phoneNumber ?? '',
 						companyName: data.payload.companyName ?? '',
+						GSTIN: data.payload.GSTIN ?? '',
 						customerStatus: data.payload?.customerStatus ?? CUSTOMER_STATUS.REGISTERED,
 					},
 				})
@@ -167,7 +179,9 @@ const ContractorAuthProvider = ({ children }: any) => {
 				!(
 					router.pathname.includes('/dashboard') ||
 					router.pathname.includes('/profile') ||
-					router.pathname.includes('/worker')
+					router.pathname.includes('/worker') ||
+					router.pathname.includes('/projects') ||
+					router.pathname.includes('/bookings')
 				)
 			) {
 				router.push('/dashboard')
@@ -184,8 +198,9 @@ const ContractorAuthProvider = ({ children }: any) => {
 			logOut: logOutService,
 			getContactorUserInfo: getContactorUserInfo,
 			updateIsRegUser: updateIsRegUser,
+			updateIsSideBarToggle: updateIsSideBarToggle,
 		}),
-		[state, requestOtp, verifyOtp, getContactorUserInfo, updateIsRegUser]
+		[state, requestOtp, verifyOtp, getContactorUserInfo, updateIsRegUser, updateIsSideBarToggle]
 	)
 	return <Provider value={authProviderValue}>{children}</Provider>
 }

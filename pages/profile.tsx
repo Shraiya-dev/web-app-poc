@@ -7,6 +7,8 @@ import { useRouter } from 'next/router'
 
 import { BasicDetailsForm } from '../modules/onboarding/components/BasicDetailsForm'
 import DashboardLayout from '../sdk/layouts/DashboardLayout'
+
+import ContractorDashboardLayout from '../sdk/layouts/ContractorDashboardLayout'
 import { useContractorAuth } from '../sdk'
 import Head from 'next/head'
 
@@ -19,20 +21,11 @@ const Profile: NextPage = () => {
 				<title>Profile | Project Hero</title>
 				<meta name='description' content='' />
 			</Head>
-			<DashboardLayout>
-				<Button startIcon={<ArrowBack />} onClick={() => router.back()} variant='text' color='primary'>
-					Go Back
-				</Button>
-				<Button
-					startIcon={<Logout />}
-					onClick={logOut}
-					variant='text'
-					color='primary'
-					style={{ float: 'right' }}>
-					LogOut
-				</Button>
+			{/* <DashboardLayout> */}
+			<ContractorDashboardLayout>
 				<BasicDetailsForm />
-			</DashboardLayout>
+			</ContractorDashboardLayout>
+			{/* </DashboardLayout> */}
 		</>
 	)
 }

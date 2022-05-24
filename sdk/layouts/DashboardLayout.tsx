@@ -26,11 +26,10 @@ import { useMobile } from '../hooks/useMobile'
 import { useContractorAuth } from '../providers'
 import CloseIcon from '@mui/icons-material/Close'
 
-import { CreateBooking } from '../../modules/bookworker/components/createBooking'
+import { CreateBooking } from '../../modules/createBooking/components/createBooking'
 import { boolean } from 'yup'
-import useCreateBooking from '../../modules/bookworker/hooks/useCreateBooking'
-
-import { useBooking } from '../../modules/bookworker/hooks/useBooking'
+import useCreateBooking from '../../modules/createBooking/hooks/useCreateBooking'
+import useBooking from '../../modules/createBooking/hooks/useBooking'
 
 //always update when you change the app bar height into the onlyCssWeNeed file
 const APP_BAR_HEIGHT = 84
@@ -122,17 +121,17 @@ const DashboardLayout = ({ children, ...props }: any) => {
 									</Link>
 								</>
 							)}
-							<Link href='/dashboard/bookings/create' passHref>
+							{/* <Link href='/dashboard/bookings/create' passHref>
 								<a>
 									<Button variant='contained'>Book Workers</Button>
 								</a>
-							</Link>
+							</Link> */}
 						</Stack>
 					</Toolbar>
 				</Container>
 			</CustomAppBar>
 			<CustomContainer>{children}</CustomContainer>
-			<Drawer anchor={'left'} open={drawerOpen} onClose={toggleDrawer}>
+			<Drawer anchor={'left'} open={drawerOpen} onClose={toggleDrawer} variant='temporary'>
 				<Box width={250} py={4}>
 					<Stack direction={'row'} justifyContent={'center'} alignItems={'center'}>
 						<Image alt='logo' src={logo} />
@@ -171,11 +170,11 @@ const DashboardLayout = ({ children, ...props }: any) => {
 
 			<Dialog onClose={toggleBookingForm} open={bookingFormOpen} fullScreen>
 				<CreateBooking
-					toggleBookingForm={toggleBookingForm}
-					onCloseDialog={onCloseDialog}
-					setOncloseDialog={setOncloseDialog}
-					bookingFormOpen={bookingFormOpen}
-					setBookingFormOpen={setBookingFormOpen}
+				// toggleBookingForm={toggleBookingForm}
+				// onCloseDialog={onCloseDialog}
+				// setOncloseDialog={setOncloseDialog}
+				// bookingFormOpen={bookingFormOpen}
+				// setBookingFormOpen={setBookingFormOpen}
 				/>
 			</Dialog>
 		</>

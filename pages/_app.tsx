@@ -34,25 +34,26 @@ axios.interceptors.response.use(
 		return response
 	},
 	async (error: AxiosError) => {
-		const originalRequest = error.config
-		const accessToken = localStorage.getItem('accessToken')
-		const refreshToken = localStorage.getItem('refreshToken')
-		if (accessToken && refreshToken && error.response?.status === 401 && !_retry) {
-			_retry = true
+		if (error.response?.status === 401) {
+			const originalRequest = error.config
+			const accessToken = localStorage.getItem('accessToken')
+			const refreshToken = localStorage.getItem('refreshToken')
+			if (accessToken && refreshToken && !_retry) {
+				try {
+					_retry = true
 
-			try {
-				const { status, data } = await refreshTokenService(refreshToken, accessToken, USER_TYPE.CONTRACTOR)
-				if (status === 200) {
-					if (!data.success) {
+					const { status, data } = await refreshTokenService(refreshToken, accessToken, USER_TYPE.CONTRACTOR)
+					if (!data?.success) {
 						return logOutService()
 					}
 
 					localStorage.setItem('accessToken', data.data.accessToken)
 					return window.location.reload()
+				} catch (error) {
+					return logOutService()
 				}
-			} catch (error) {
-				return logOutService()
 			}
+			return logOutService()
 		}
 		return Promise.reject(error)
 	}
@@ -88,8 +89,8 @@ function MyApp({ Component, pageProps }: AppProps) {
 		<>
 			<Head>
 				<title></title>
-				{/* Facebook Pixel Code  */}
 				{/* eslint-disable-next-line @next/next/next-script-for-ga */}
+				{/* Facebook Pixel Code  */}
 				{process.env.NEXT_PUBLIC_SERVER_URL === 'https://api.projecthero.in' && (
 					<>
 						<script

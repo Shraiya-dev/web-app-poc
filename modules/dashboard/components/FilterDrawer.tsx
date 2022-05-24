@@ -12,11 +12,19 @@ const drawerWidth = 375
 export const FilterDrawer = ({ open, onClose }: FilterDrawerProps) => {
 	const { form } = useFilterDrawer()
 	return (
-		<Drawer anchor='right' open={open} onClose={onClose}>
+		<Drawer
+			anchor='right'
+			open={open}
+			onClose={onClose}
+			PaperProps={{ style: { borderRadius: '0px 0px 0px 0px', background: 'white' } }}>
 			<Stack flex={1} minWidth={drawerWidth} p={2} alignItems='flex-start'>
-				<Button color='primary' onClick={onClose} variant='text' startIcon={<ArrowBackIos fontSize='large' />}>
-					Back
-				</Button>
+				<Button
+					color='primary'
+					onClick={onClose}
+					variant='text'
+					startIcon={<ArrowBackIos fontSize='large' />}
+				/>
+
 				<Stack flex={1} px={2} width={'100%'}>
 					<Typography variant='h4'>Filters</Typography>
 					<Stack flex={1} width='100%' mt={3} spacing={2}>
@@ -50,6 +58,21 @@ export const FilterDrawer = ({ open, onClose }: FilterDrawerProps) => {
 									HVAC: 'Hvac',
 									PLUMBING: 'Plumber',
 									ALUMINIUM_FABRICATOR: 'Aluminium Fabricator',
+								})}
+							</Select>
+						</InputWrapper>
+
+						<InputWrapper label='Sort By'>
+							<Select
+								fullWidth
+								name='sortBy'
+								defaultValue='Created At'
+								value={'CREATED_AT'}
+								onChange={form.handleChange}>
+								{getSelectOptionsFromObject({
+									none: 'Choose',
+
+									CREATED_AT: 'Created At',
 								})}
 							</Select>
 						</InputWrapper>

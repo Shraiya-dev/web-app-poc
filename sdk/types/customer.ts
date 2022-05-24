@@ -10,4 +10,5 @@ export interface CustomerDetails {
 	phoneNumber: string
 	email: string
 	customerStatus: CUSTOMER_STATUS
+	GSTIN: string
 }

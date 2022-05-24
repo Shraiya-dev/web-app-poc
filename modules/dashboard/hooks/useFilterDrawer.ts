@@ -4,6 +4,7 @@ import { useEffect } from 'react'
 interface FilterForm {
 	status: string
 	jobType: string
+	sortBy: string
 }
 export const useFilterDrawer = () => {
 	const router = useRouter()
@@ -11,6 +12,7 @@ export const useFilterDrawer = () => {
 		initialValues: {
 			status: 'none',
 			jobType: 'none',
+			sortBy: 'none',
 		},
 		onSubmit: (values) => {
 			if (values.status !== 'none') {
@@ -24,6 +26,11 @@ export const useFilterDrawer = () => {
 			} else {
 				delete router.query.jobType
 			}
+			if (values.sortBy !== 'none') {
+				router.query.sortBy = values.sortBy
+			} else {
+				delete router.query.sortBy
+			}
 			delete router.query.pageNumber
 
 			//setting up the params
@@ -33,16 +40,18 @@ export const useFilterDrawer = () => {
 			})
 		},
 		onReset: () => {
-			router.push(router.pathname, undefined, {
+			router.query = { projectId: router.query.projectId, tab: router.query.tab }
+			router.push(router, undefined, {
 				shallow: true,
 				scroll: true,
 			})
 		},
 	})
 	useEffect(() => {
-		const { status, jobType } = router.query
+		const { status, jobType, sortBy } = router.query
 		form.setFieldValue('status', status ?? 'none')
 		form.setFieldValue('jobType', jobType ?? 'none')
+		form.setFieldValue('sortBy', sortBy ?? 'none')
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [router.query])
 

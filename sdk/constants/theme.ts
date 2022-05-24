@@ -2,8 +2,19 @@ import { KeyboardArrowDownRounded } from '@mui/icons-material'
 import { createTheme, responsiveFontSizes } from '@mui/material/styles'
 import { createBreakpoints } from '@mui/system'
 export const primary = {
-	main: '#244CB3',
-	light: '#224ab50d',
+	main: '#1E9FD6', //'#244CB3',
+	light: '#EEFAFF', //'#224ab50d',
+	dark: '#23A0D6',
+
+	// TODO: Need to add Proper Colouring
+	bgColor: '#F0F7FA',
+	secButtonColor: '#36B5EC',
+
+	lightGrey: 'rgba(6, 31, 72, 0.05)',
+	lightOrange: 'rgba(247, 158, 84, 0.2)',
+	lightGreen: 'rgba(15, 175, 127, 0.2)',
+	mediumGreen: 'rgba(15, 175, 127, 0.5)',
+	successGreen: '#0FAF7F',
 }
 
 const breakpoints = createBreakpoints({})
@@ -15,11 +26,12 @@ let themeDef = createTheme({
 			color: '#061F48',
 		},
 	},
+
 	palette: {
 		primary: primary,
 		secondary: {
 			main: '#061e45b3',
-			dark: '#061F48',
+			dark: '#23A0D6',
 			light: '#061F4866',
 		},
 		success: {
@@ -32,15 +44,22 @@ let themeDef = createTheme({
 			main: '#D85B00',
 		},
 		error: {
-			main: '#F13625',
+			main: '#EA5A4D',
 		},
+		background: {
+			default: '#FCFCFC',
+		},
+
 		tonalOffset: 0.3,
 	},
 
 	components: {
 		MuiPaper: {
 			defaultProps: {
-				variant: 'outlined',
+				//variant: 'outlined',
+				style: {
+					boxShadow: '1px 1px 1px 1px rgba(0, 0, 0, 0.08)',
+				},
 			},
 		},
 		MuiInput: {
@@ -72,6 +91,11 @@ let themeDef = createTheme({
 			defaultProps: {
 				variant: 'outlined',
 			},
+			styleOverrides: {
+				root: {
+					minHeight: 48,
+				},
+			},
 		},
 
 		MuiSelect: {
@@ -89,6 +113,24 @@ let themeDef = createTheme({
 			styleOverrides: {
 				root: {
 					borderRadius: 8,
+				},
+			},
+		},
+
+		MuiDrawer: {
+			styleOverrides: {
+				paper: {
+					backgroundColor: primary.light,
+					borderRadius: '0px 40px 40px 0px',
+				},
+			},
+		},
+		MuiTooltip: {
+			styleOverrides: {
+				tooltip: {
+					background: 'black',
+					color: 'white',
+					margin: 16,
 				},
 			},
 		},

@@ -98,7 +98,7 @@ export default function BookingCards() {
 											width: 527,
 										},
 									}}>
-									<Paper elevation={3}>
+									<Paper elevation={1}>
 										<Box className='top-box'>
 											<Box style={{ float: 'left' }}>
 												<Typography variant='h5'>Bar Bender (10)</Typography>
@@ -120,7 +120,7 @@ export default function BookingCards() {
 
 										<Box className='bottom-dimension'>
 											<Box>
-												<Typography className='text-info'>
+												<Typography className='text-info' textTransform='capitalize'>
 													<LocationOnIcon className='icons' /> Nagpur, Maharashtra
 												</Typography>
 												<Typography className='text-info'>

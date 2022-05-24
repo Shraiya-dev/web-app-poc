@@ -1,10 +1,9 @@
 import { NextPage } from 'next'
-import { LoginForm } from '../modules/login/components/LoginForm'
+import { LoginForm } from '../modules/auth/login/components/LoginForm'
 import { OnboardingLayout } from '../sdk'
-import { Box } from '@mui/material'
 import Head from 'next/head'
 import { useState } from 'react'
-import { OTPVerification } from '../modules/otp/components/OtpVerification'
+import { OTPVerification } from '../modules/auth/otp/components/OtpVerification'
 
 const Login: NextPage = () => {
 	const [isOtpSent, setIsOtpSent] = useState(false)

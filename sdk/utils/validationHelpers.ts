@@ -36,8 +36,22 @@ export const validateEmail = (email: any) => {
 		)
 }
 
-export const freeEmailChecker = (email: any) => {
-	var freeRegex = /^[\w-\.]+@([hotmail+\.]|[yahoo+\.]|[gmail+\.])+[\w-]{2,4}$/
+// export const freeEmailChecker = (email: any) => {
+// 	var freeRegex = /^[\w-\.]+@([hotmail+\.]|[yahoo+\.]|[gmail+\.])+[\w-]{2,4}$/
 
-	return validateEmail(email) && !email.match(freeRegex)
+// 	return validateEmail(email) && !email.match(freeRegex)
+// }
+
+export function isPincodeValid(pincode: string): boolean {
+	return /^[1-9][0-9]{5}$/.test(pincode)
+}
+
+export function isValidGSTIN(GSTIN: string): boolean {
+	const checkGSTIN = GSTIN.match(/^([A-Z0-9]+)$/g)
+
+	if (checkGSTIN === null || GSTIN.length !== 15) {
+		return false
+	} else {
+		return true
+	}
 }

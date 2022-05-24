@@ -1,6 +1,5 @@
 export * from './BookingCards'
 export * from './StatisticsCard'
-export * from './WorkerCards'
 export * from './BookingCard'
 export * from './BookingSummaryCard'
 export * from './JobCardCard'

@@ -3,6 +3,7 @@ import { InputAdornment, TextField, TextFieldProps } from '@mui/material'
 export const PhoneField = ({ onChange, ...rest }: TextFieldProps) => {
 	return (
 		<TextField
+			type={'number'}
 			InputProps={{
 				startAdornment: <InputAdornment position='start'>+91</InputAdornment>,
 			}}

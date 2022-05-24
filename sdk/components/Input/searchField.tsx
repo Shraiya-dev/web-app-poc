@@ -23,7 +23,7 @@ export const SearchField = ({ name = 'name', ...rest }: TextFieldProps) => {
 		},
 		onSubmit: (values) => {
 			if (values.fieldName) {
-				router.query = { [name]: values.fieldName }
+				router.query = { [name]: values.fieldName, projectId: router.query.projectId, tab: router.query.tab }
 			} else {
 				delete router.query[name]
 			}

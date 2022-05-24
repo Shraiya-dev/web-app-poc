@@ -14,10 +14,11 @@ export interface JobCard {
 	WorkerName: string
 	jobType: JOB_TYPES
 	dob: string
-	projectCount: Number
+	//projectCount: Number
 	city: string
 	state: string
 	experience: string
 	workerId: string
 	skillType: WORKER_TYPES
+	jobCardState: JobCardState
 }

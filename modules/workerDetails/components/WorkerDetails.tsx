@@ -58,7 +58,7 @@ const WorkerProfileStyle = styled(Box)(({ theme }) => ({
 	},
 	'.locationIcon': {
 		// Move color to Pallete
-		fontSize: 14,
+		fontSize: 12,
 		color: '#CC2C49',
 		verticalAlign: 'middle',
 		textAlign: 'right',
@@ -117,7 +117,7 @@ export const WorkerProfileInfo = () => {
 				</Grid>
 				<Grid container spacing={1}>
 					<Grid item xs={12} md={4}>
-						<Paper elevation={4} className='paper'>
+						<Paper elevation={1} className='paper'>
 							<Box style={{ backgroundColor: 'rgba(36, 76, 179, 0.15)' }}>
 								<Stack direction={'row'} justifyContent='center'>
 									<img className='image' src='http://bluegalaxy.info/images/sea_captain.jpg' />
@@ -126,7 +126,7 @@ export const WorkerProfileInfo = () => {
 							<Box className='secondaryBox'>
 								<Typography className='workerText'>{workerData?.name || ''}</Typography>
 
-								<Typography className='locationText'>
+								<Typography className='locationText' textTransform='capitalize'>
 									<LocationOnIcon className='locationIcon' />
 									{`${workerData?.city || ''}, ${workerData?.state || ''}`}
 								</Typography>
@@ -146,7 +146,7 @@ export const WorkerProfileInfo = () => {
 					</Grid>
 
 					<Grid item xs={12} md={8}>
-						<Paper elevation={4} className='paper' style={{ padding: 20 }}>
+						<Paper elevation={1} className='paper' style={{ padding: 20 }}>
 							<Stack>
 								<Typography variant='h5' style={{ color: theme.palette.primary.main }}>
 									Basic Details

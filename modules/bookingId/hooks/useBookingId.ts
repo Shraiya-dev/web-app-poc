@@ -1,7 +1,15 @@
 import axios from 'axios'
+import { useFormik } from 'formik'
 import { useRouter } from 'next/router'
 import { useCallback, useEffect, useState } from 'react'
-import { BookingPreview, JobCard, useSnackbar } from '../../../sdk'
+import { BookingPreview, BookingDetailsPreview, JobCard, useSnackbar } from '../../../sdk'
+import { getBookingDetails, getWorkerDetails } from '../apis'
+
+interface FilterForm {
+	tags: Array<string>
+	skillType: Array<string>
+	jobCardState: Array<string>
+}
 
 export const useBookingId = () => {
 	const router = useRouter()
@@ -11,51 +19,51 @@ export const useBookingId = () => {
 	const [bookingSummary, setBookingSummary] = useState<BookingPreview>()
 	const [jobCards, setJobCards] = useState<Array<JobCard>>([])
 
+	const [selectedTab, setSelectedTab] = useState('track-workers')
+
+	const handleTabSelection = (e: any, value: any) => {
+		setSelectedTab(value)
+	}
+
+	const getBookingInfo = useCallback(async () => {
+		const { bookingId, projectId, ...rest } = router.query
+
+		if (!bookingId || !projectId) return
+
+		try {
+			setIsLoading(true)
+			const { data } = await getBookingDetails(bookingId, projectId)
+
+			setBookingSummary(data.payload)
+			setIsLoading(false)
+		} catch (error: any) {
+			showSnackbar(error?.response?.data?.developerInfo, 'error')
+		}
+	}, [router.query.bookingId])
+
 	const getJobCards = useCallback(async () => {
-		setIsLoading(true)
-		const { bookingId, ...rest } = router.query
-		if (!bookingId) return
+		const { bookingId, projectId, ...rest } = router.query
+
+		if (!bookingId || !projectId) return
 		try {
 			const queryParams = new URLSearchParams(rest as any)
-			const { data } = await axios.get(`/gateway/customer-api/bookings/${bookingId}?` + queryParams.toString())
-			const booking = data.payload.bookings
+
+			const { data } = await getWorkerDetails(bookingId, projectId, queryParams.toString())
+
 			const jobCards = data.payload.workers ?? []
 
-			setBookingSummary({
-				bookingId: booking.bookingId,
-				city: booking.city,
-				status: booking.status,
-				state: booking.state,
-				jobType: booking.jobType,
-				peopleRequired: {
-					HELPER: booking.peopleRequired.HELPER,
-					SUPERVISOR: booking.peopleRequired.SUPERVISOR,
-					TECHNICIAN: booking.peopleRequired.TECHNICIAN,
-				},
-				schedule: {
-					bookingDuration: booking.schedule.bookingDuration,
-					shiftTime: booking.schedule.shiftTime,
-					startDate: new Date(booking.schedule.startDate),
-				},
-				jobCardDetails: {
-					ACCEPTED: booking.jobCardDetails?.ACCEPTED ?? 0,
-					READY_TO_DEPLOY: booking.jobCardDetails?.READY_TO_DEPLOY ?? 0,
-					DEPLOYMENT_COMPLETE: booking.jobCardDetails?.DEPLOYMENT_COMPLETE ?? 0,
-				},
-				createdAt: new Date(booking.createdAt),
-			})
 			setJobCards(
-				jobCards.map((item: JobCard) => {
+				jobCards.map((item: any) => {
 					const jobCard: JobCard = {
-						workerId: item.workerId,
-						WorkerName: item.WorkerName,
-						jobType: item.jobType,
-						experience: item.experience,
-						projectCount: item.projectCount,
-						city: item.city,
-						state: item.state,
-						dob: item.dob,
-						skillType: item.skillType,
+						workerId: item?.jobCard?.workerId,
+						WorkerName: item?.worker?.name ?? 'No Name',
+						jobType: item?.jobCard?.jobType,
+						experience: item?.worker?.workDetails?.experience || 0,
+						city: item?.worker?.city,
+						state: item?.worker?.state,
+						dob: item?.worker?.dob || 'NA',
+						skillType: item?.jobCard?.skillType,
+						jobCardState: item?.jobCard?.jobCardState,
 					}
 					return jobCard
 				})
@@ -63,18 +71,70 @@ export const useBookingId = () => {
 		} catch (error: any) {
 			showSnackbar(error?.response?.data?.developerInfo, 'error')
 		}
-		setIsLoading(false)
+		//setIsLoading(false)
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [router.query])
 
+	const form = useFormik<FilterForm>({
+		initialValues: {
+			tags: [],
+			skillType: [],
+			jobCardState: [],
+		},
+		onSubmit: (values) => {
+			router.push(router, undefined, {
+				shallow: true,
+				scroll: true,
+			})
+		},
+	})
+
 	useEffect(() => {
 		getJobCards()
-	}, [getJobCards])
+	}, [getJobCards, router.query])
+
+	useEffect(() => {
+		getBookingInfo()
+	}, [getBookingInfo])
+
+	// useEffect(() => {
+	// 	if (form.values.skillType.length > 0) {
+	// 		if (form.values.skillType.length === 1) {
+	// 			router.query.skillType = form.values.skillType[0]
+	// 		} else {
+	// 			router.query.skillType = form.values.skillType.join(',')
+	// 		}
+	// 	} else {
+	// 		delete router.query.skillType
+	// 	}
+
+	// 	if (form.values.jobCardState.length > 0) {
+	// 		if (form.values.jobCardState.length === 1) {
+	// 			router.query.jobCardState = form.values.jobCardState[0]
+	// 		} else {
+	// 			router.query.jobCardState = form.values.jobCardState.join(',')
+	// 		}
+	// 	} else {
+	// 		delete router.query.jobCardState
+	// 	}
+
+	// 	router.query = { projectId: router.query.projectId }
+	// 	router.push(router, undefined, {
+	// 		shallow: true,
+	// 		scroll: true,
+	// 	})
+	// 	getJobCards()
+	// 	console.log('hey')
+	// 	// eslint-disable-next-line react-hooks/exhaustive-deps
+	// }, [router.query])
 
 	return {
 		jobCards: jobCards,
 		bookingSummary: bookingSummary,
 		getJobCards: getJobCards,
 		isLoading: isLoading,
+		selectedTab: selectedTab,
+		handleTabSelection: handleTabSelection,
+		form: form,
 	}
 }

@@ -5,11 +5,11 @@ import { format } from 'date-fns'
 import { useRouter } from 'next/router'
 import { useCallback, useMemo } from 'react'
 import { JobTypeLabel } from '../../constants'
-import { BookingPreview, JobCardState } from '../../types'
+import { BookingDetailsPreview, JobCardState } from '../../types'
 import { StatusChip } from '../chips'
 
 interface BookingSummaryCardProps {
-	booking: BookingPreview
+	booking: BookingDetailsPreview
 }
 
 const CustomPaper = styled(Paper)(({ theme }) => ({
@@ -69,7 +69,7 @@ export const BookingSummaryCard = ({ booking }: BookingSummaryCardProps) => {
 	)
 
 	return (
-		<CustomPaper elevation={5}>
+		<CustomPaper elevation={1}>
 			<Stack className='cardHeader'>
 				<Typography variant='h5' fontWeight={700}>
 					{JobTypeLabel[booking.jobType]} ({totalCount})
