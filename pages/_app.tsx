@@ -6,16 +6,19 @@ import { useRouter } from 'next/router'
 import { useEffect } from 'react'
 import {
 	ContractorAuthProvider,
+	envs,
 	logOutService,
 	refreshTokenService,
-	SERVER_URL,
 	SnackbarProvider,
 	theme,
 	USER_TYPE,
 } from '../sdk'
 import '../sdk/styles/onlyCssWeNeed.css'
+import { Analytic } from '../sdk/analytics/analytics'
+import { AnalyticsPage } from '../sdk/analytics/analyticsWrapper'
 //=====================initializing axios interceptor=======================
-axios.defaults.baseURL = SERVER_URL
+
+axios.defaults.baseURL = envs.SERVER_URL
 axios.interceptors.request.use(
 	(request: any) => {
 		const accessToken = localStorage.getItem('accessToken')
@@ -44,10 +47,12 @@ axios.interceptors.response.use(
 
 					const { status, data } = await refreshTokenService(refreshToken, accessToken, USER_TYPE.CONTRACTOR)
 					if (!data?.success) {
+						Analytic.reset()
 						return logOutService()
 					}
 
 					localStorage.setItem('accessToken', data.data.accessToken)
+					// Analytic.page()
 					return window.location.reload()
 				} catch (error) {
 					return logOutService()
@@ -63,6 +68,12 @@ axios.interceptors.response.use(
 function MyApp({ Component, pageProps }: AppProps) {
 	const router = useRouter()
 	useEffect(() => {}, [])
+
+	useEffect(() => {
+		// const routeInfo = router.route
+		// const tabInfo = router.query.tab
+		AnalyticsPage(router)
+	}, [router.asPath])
 
 	//if route begin with /admin redirect to admin node
 	if (router.pathname.includes('/admin')) {
@@ -91,7 +102,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 				<title></title>
 				{/* eslint-disable-next-line @next/next/next-script-for-ga */}
 				{/* Facebook Pixel Code  */}
-				{process.env.NEXT_PUBLIC_SERVER_URL === 'https://api.projecthero.in' && (
+				{process.env.NEXT_PUBLIC_APP_ENV === 'PROD' && (
 					<>
 						<script
 							dangerouslySetInnerHTML={{

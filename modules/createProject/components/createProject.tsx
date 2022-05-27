@@ -14,9 +14,11 @@ import {
 	styled,
 	TextField,
 } from '@mui/material'
+import { useRouter } from 'next/router'
 import { useEffect } from 'react'
 import ProjectSvg from '../../../public/assets/icons/project.svg'
 import { checkError, getSelectOptions, InputWrapper, primary, theme, useSnackbar } from '../../../sdk'
+import { Analytic } from '../../../sdk/analytics'
 import { TopBanner } from '../../../sdk/components/banner/formBanner'
 import { FileInput } from '../../../sdk/components/Input/fileInput'
 import { PinCodeField } from '../../../sdk/components/Input/PincodeField'
@@ -101,6 +103,8 @@ export const CreateProject = () => {
 		loading,
 	} = useCreateProject()
 
+	const router = useRouter()
+
 	useEffect(() => {
 		if (step === 1) {
 			// TODO: sitePhotos: any
@@ -138,7 +142,15 @@ export const CreateProject = () => {
 						header={step === 1 ? 'New Project' : 'Worker Benefits'}
 						subHeader={step === 1 ? `Tell us project details` : `Add worker benefits for the project `}
 						bannerSvg={ProjectSvg}
-						onClick={() => setOncloseDialog(true)}
+						onClick={() => {
+							setOncloseDialog(true)
+							Analytic.track('ButtonClicked', {
+								action: 'Leave',
+								page: 'Create Project',
+								step: step,
+								url: router.asPath,
+							})
+						}}
 						visibleCloseIcon={true}
 						stepperRequired={true}
 						step={step}

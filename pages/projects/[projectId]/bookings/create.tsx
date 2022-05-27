@@ -7,8 +7,8 @@ const Create: NextPage = () => {
 	return (
 		<>
 			<Head>
-				<title>Project Hero</title>
-				<meta name='description' content='' />
+				<title>Create Booking | Project Hero</title>
+				<meta name='Create Booking' content='' />
 			</Head>
 			<Box>
 				<CreateBooking />

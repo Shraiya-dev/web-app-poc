@@ -9,8 +9,8 @@ const BookingIdPage: NextPage = () => {
 	return (
 		<>
 			<Head>
-				<title>{router.query.bookingId} | Project Hero </title>
-				<meta name='description' content='' />
+				<title>Booking {router.query.tab} | Project Hero </title>
+				<meta name='Booking' content='' />
 			</Head>
 			<ContractorDashboardLayout>
 				<BookingId />

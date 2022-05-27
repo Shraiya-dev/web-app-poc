@@ -5,6 +5,8 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useMemo } from 'react'
 import { JobTypeIcon } from '../../../modules/createBooking/utils/helperData'
+import { Analytic } from '../../analytics'
+import { ButtonClicked, CardClicked } from '../../analytics/analyticsWrapper'
 import { JobTypeLabel, primary } from '../../constants'
 import { useMobile } from '../../hooks'
 import { BookingPreview, JobCardState } from '../../types'
@@ -93,6 +95,12 @@ export const BookingCard = ({ booking }: BookingCardProps) => {
 
 	const handleClick = () => {
 		router.push(`/bookings/${router.query.projectId}/${booking.booking?.bookingId}/track-workers`)
+		CardClicked({
+			action: 'Open Booking',
+			page: 'Project',
+			bookingId: booking.booking?.bookingId,
+			url: router.asPath,
+		})
 	}
 
 	return (
@@ -224,7 +232,17 @@ export const BookingCard = ({ booking }: BookingCardProps) => {
 						<Link
 							href={`/bookings/${router.query.projectId}/${booking.booking?.bookingId}/track-workers`}
 							passHref>
-							<Button className='cta' fullWidth>
+							<Button
+								className='cta'
+								fullWidth
+								onClick={() => {
+									ButtonClicked({
+										action: 'Open Booking',
+										page: 'Project',
+										bookingId: booking.booking?.bookingId,
+										url: router.asPath,
+									})
+								}}>
 								View Booking
 							</Button>
 						</Link>

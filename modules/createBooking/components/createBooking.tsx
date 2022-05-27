@@ -17,6 +17,8 @@ import ConfirmCancel from './confirmCancel'
 import BookingSvg from '../../../public/assets/icons/booking.svg'
 import { TopBanner } from '../../../sdk/components/banner/formBanner'
 import { useRouter } from 'next/router'
+import { Analytic } from '../../../sdk/analytics'
+import { ButtonClicked } from '../../../sdk/analytics/analyticsWrapper'
 
 const CustomBookingStyle = styled(Box)(({ theme }) => ({
 	'.main': {
@@ -241,7 +243,15 @@ export const CreateBooking = () => {
 				header={`Book Workers`}
 				subHeader={`Book workers for the project `}
 				bannerSvg={BookingSvg}
-				onClick={() => setOncloseDialog(true)}
+				onClick={() => {
+					setOncloseDialog(true)
+					ButtonClicked({
+						action: 'Leave',
+						page: 'Create Booking',
+						projectId: router?.query?.projectId,
+						url: router.asPath,
+					})
+				}}
 				visibleCloseIcon={step === 1}
 				linkHeader={projectName}
 				link={`/projects/${router.query.projectId}/bookings`}

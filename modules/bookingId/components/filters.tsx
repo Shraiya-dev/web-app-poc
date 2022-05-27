@@ -45,7 +45,7 @@ const Filters = ({ ...props }) => {
 
 	return (
 		<Grid item xs={12} md={12}>
-			<Stack direction='row' pb={1} overflow={'scroll'}>
+			<Stack direction='row' pb={1} overflow={'auto'}>
 				{filterTags?.map((item: any) => {
 					return (
 						<Chip

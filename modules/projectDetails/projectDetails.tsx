@@ -6,6 +6,8 @@ import { Box } from '@mui/system'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { primary, theme, useMobile } from '../../sdk'
+import { Analytic } from '../../sdk/analytics'
+import { ButtonClicked, HorizontalTabClicked } from '../../sdk/analytics/analyticsWrapper'
 import { CustomTopBar } from '../../sdk/components/topBar/customTopBar'
 import { Dashboard } from '../dashboard'
 import ProjectInfo from '../ProjectInfo/components/projectInfo'
@@ -15,6 +17,8 @@ export const ProjectDetails = () => {
 	const { selectedTab, handleTabSelection, projectDetails } = useProjectDetails()
 	const isMobile = useMobile()
 	const router = useRouter()
+
+	console.log(router)
 
 	return (
 		<>
@@ -48,7 +52,17 @@ export const ProjectDetails = () => {
 				<Stack justifyContent={'flex-end'} width={1}>
 					<Link href={`/projects/${router?.query?.projectId}/bookings/create`} passHref>
 						<a>
-							<Button variant='contained' style={{ float: 'right', margin: 16 }}>
+							<Button
+								variant='contained'
+								style={{ float: 'right', margin: 16 }}
+								onClick={() => {
+									ButtonClicked({
+										action: 'Book Workers',
+										page: 'Project',
+										projectId: router?.query?.projectId,
+										url: router.asPath,
+									})
+								}}>
 								Book Workers
 							</Button>
 						</a>
@@ -90,7 +104,15 @@ export const ProjectDetails = () => {
 							value='bookings'
 							label='Bookings'
 							//href={`/projects/${router?.query?.projectId}/bookings`}
-							onClick={() => router.push(`/projects/${router?.query?.projectId}/bookings`)}
+							onClick={() => {
+								router.push(`/projects/${router?.query?.projectId}/bookings`)
+								HorizontalTabClicked({
+									name: 'Bookings',
+									page: 'Project',
+									projectId: router?.query?.projectId,
+									url: router.asPath,
+								})
+							}}
 						/>
 
 						<Tab
@@ -106,7 +128,15 @@ export const ProjectDetails = () => {
 							// }
 							value='projectDetails'
 							label='Project Details'
-							onClick={() => router.push(`/projects/${router?.query?.projectId}/details`)}
+							onClick={() => {
+								router.push(`/projects/${router?.query?.projectId}/details`)
+								HorizontalTabClicked({
+									name: 'Project Details',
+									page: 'Project',
+									projectId: router?.query?.projectId,
+									url: router.asPath,
+								})
+							}}
 							//href={`/projects/${router?.query?.projectId}/details`}
 						/>
 					</Tabs>

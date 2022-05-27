@@ -6,6 +6,8 @@ import { Box, Button, Stack, styled, TextField, Typography } from '@mui/material
 import { padding } from '@mui/system'
 import { useRouter } from 'next/router'
 import { checkError, InputWrapper, primary, theme, useContractorAuth, useMobile } from '../../../sdk'
+import { Analytic } from '../../../sdk/analytics'
+import { ButtonClicked } from '../../../sdk/analytics/analyticsWrapper'
 import { PhoneField } from '../../../sdk/components/Input/PhoneField'
 import { TextWrapper } from '../../../sdk/components/Input/TextWrapper'
 import { CustomTopBar } from '../../../sdk/components/topBar/customTopBar'
@@ -207,7 +209,14 @@ export const BasicDetailsForm = () => {
 						{editInfo && router.asPath === '/profile' && (
 							<Button
 								fullWidth
-								onClick={handleEdit}
+								onClick={() => {
+									handleEdit()
+									ButtonClicked({
+										action: 'Cancel Edit Profile',
+										page: 'Company Profile',
+										url: router.asPath,
+									})
+								}}
 								style={{
 									border: `1px solid ${primary.main}`,
 									background: primary.light,

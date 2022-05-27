@@ -97,37 +97,6 @@ export const useBookingId = () => {
 		getBookingInfo()
 	}, [getBookingInfo])
 
-	// useEffect(() => {
-	// 	if (form.values.skillType.length > 0) {
-	// 		if (form.values.skillType.length === 1) {
-	// 			router.query.skillType = form.values.skillType[0]
-	// 		} else {
-	// 			router.query.skillType = form.values.skillType.join(',')
-	// 		}
-	// 	} else {
-	// 		delete router.query.skillType
-	// 	}
-
-	// 	if (form.values.jobCardState.length > 0) {
-	// 		if (form.values.jobCardState.length === 1) {
-	// 			router.query.jobCardState = form.values.jobCardState[0]
-	// 		} else {
-	// 			router.query.jobCardState = form.values.jobCardState.join(',')
-	// 		}
-	// 	} else {
-	// 		delete router.query.jobCardState
-	// 	}
-
-	// 	router.query = { projectId: router.query.projectId }
-	// 	router.push(router, undefined, {
-	// 		shallow: true,
-	// 		scroll: true,
-	// 	})
-	// 	getJobCards()
-	// 	console.log('hey')
-	// 	// eslint-disable-next-line react-hooks/exhaustive-deps
-	// }, [router.query])
-
 	return {
 		jobCards: jobCards,
 		bookingSummary: bookingSummary,

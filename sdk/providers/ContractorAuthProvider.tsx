@@ -1,6 +1,7 @@
 import axios from 'axios'
 import { useRouter } from 'next/router'
 import { createContext, useCallback, useContext, useEffect, useMemo, useReducer } from 'react'
+import { Identify } from '../analytics/analyticsWrapper'
 import { getCustomerDetails, loginService, logOutService, sendOtpService } from '../apis'
 import { CustomerDetails, CUSTOMER_STATUS, USER_LOGIN_TYPE, USER_TYPE } from '../types'
 import { useSnackbar } from './SnackbarProvider'
@@ -59,6 +60,8 @@ const ContractorAuthProvider = ({ children }: any) => {
 	const getContactorUserInfo = useCallback(async () => {
 		try {
 			const { data } = await getCustomerDetails()
+
+			console.log(data)
 			dispatch({
 				user: {
 					customerId: data.payload?._id ?? '',
@@ -69,6 +72,13 @@ const ContractorAuthProvider = ({ children }: any) => {
 					GSTIN: data.payload.GSTIN ?? '',
 					customerStatus: data.payload?.customerStatus ?? CUSTOMER_STATUS.REGISTERED,
 				},
+			})
+
+			await Identify({
+				name: data.payload?.name ?? '',
+				email: data.payload?.email ?? '',
+				phone: data.payload?.phoneNumber ?? '',
+				company: data.payload.companyName ?? '',
 			})
 		} catch (error: any) {
 			//todo show error in snackbar
@@ -87,6 +97,15 @@ const ContractorAuthProvider = ({ children }: any) => {
 						accessToken: data.data?.accessToken,
 						phoneNumber: data.data?.phoneNumber,
 						refreshToken: data.data?.refreshToken,
+					})
+
+					await Identify({
+						customerId: data?.data?._id ?? '',
+						name: data.data?.name ?? '',
+						email: data.data?.email ?? '',
+						phone: data.data?.phoneNumber ?? '',
+						company: data.data.companyName ?? '',
+						createdAt: data.data.createdAt ?? '',
 					})
 					return data
 				} else {

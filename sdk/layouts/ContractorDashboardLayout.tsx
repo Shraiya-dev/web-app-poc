@@ -25,6 +25,8 @@ import { DrawerItem } from '../components/drawerItem'
 import { theme } from '../constants'
 import { useMobile } from '../hooks/useMobile'
 import { useContractorAuth } from '../providers'
+import { Analytic } from '../analytics'
+import { NavigationTabClicked } from '../analytics/analyticsWrapper'
 
 //always update when you change the app bar height into the onlyCssWeNeed file
 
@@ -41,9 +43,32 @@ const ContractorDashboardLayout = ({ children }: any) => {
 	const BOOKING_LIST = '/projects/[projectId]/[tab]'
 	const BOOKING_DETAILS = '/bookings/[projectId]/[bookingId]/[tab]'
 	const DASHBOARD = '/dashboard'
+	const PROFILE = '/profile'
 
 	const toggleDrawer = () => {
 		updateIsSideBarToggle(!isSideBarToggle)
+	}
+
+	const pageName =
+		router?.pathname === BOOKING_LIST
+			? 'Project'
+			: router?.pathname === BOOKING_DETAILS
+			? 'Booking'
+			: router?.pathname === PROFILE
+			? 'Profile'
+			: 'Dashboard'
+
+	const handleLogout = () => {
+		NavigationTabClicked({
+			name: 'Logout',
+			page: pageName,
+
+			url: router.asPath,
+		})
+
+		Analytic.reset()
+
+		logOut()
 	}
 
 	return (
@@ -110,7 +135,7 @@ const ContractorDashboardLayout = ({ children }: any) => {
 
 						<ListItem
 							button
-							onClick={logOut}
+							onClick={handleLogout}
 							style={{
 								position: 'fixed',
 								width: APP_DRAWER_WIDTH,

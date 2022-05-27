@@ -2,6 +2,8 @@ import { useState } from 'react'
 import { useRouter } from 'next/router'
 import { useContractorAuth, useSnackbar } from '../../../../sdk'
 import { useFormik } from 'formik'
+import { Analytic } from '../../../../sdk/analytics'
+import { ButtonClicked } from '../../../../sdk/analytics/analyticsWrapper'
 
 const initialOtpState = {
 	status: 'idle',
@@ -29,6 +31,11 @@ const useOtp = () => {
 	const resendOTP = () => {
 		requestOtp(phoneNumber || '')
 			.then((res) => {
+				ButtonClicked({
+					action: 'Resend OTP',
+					page: 'Login',
+					url: router.asPath,
+				})
 				showSnackbar(res?.data?.data?.msg, 'success')
 			})
 			.catch((error: any) => {
@@ -43,6 +50,12 @@ const useOtp = () => {
 		},
 
 		onSubmit: (values) => {
+			ButtonClicked({
+				action: 'Verify OTP',
+				page: 'Login',
+				url: router.asPath,
+			})
+
 			if (validateOtpField(otp) === 'valid') {
 				setLoading(true)
 				verifyOtp(`${phoneNumber}`, otp.otp)

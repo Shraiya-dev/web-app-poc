@@ -13,6 +13,7 @@ env:
   GAR_LOCATION: asia-south1
   DEPLOYMENT_NAME: ph-web
   CONTAINER_NAME: ph-web
+  NEXT_PUBLIC_APP_ENV: STAGE
 
 jobs:
   setup-build-publish-deploy:
@@ -23,7 +24,7 @@ jobs:
         run: echo "BRANCH=${GITHUB_REF##*/}" >> $GITHUB_ENV
       - name: Set branch environments
         run: |-
-          echo "NEXT_PUBLIC_SERVER_URL=${{secrets.NEXT_PUBLIC_STAGE_SERVER_URL_VAR}}" >> "$GITHUB_ENV"
+          echo "NEXT_PUBLIC_APP_ENV=${{env.NEXT_PUBLIC_APP_ENV}}" >> "$GITHUB_ENV"
       - name: Checkout
         uses: actions/checkout@v2
 
@@ -52,7 +53,7 @@ jobs:
         run: |-
           docker build \
             --tag "$GAR_LOCATION-docker.pkg.dev/$PROJECT_ID/$REPOSITORY/$IMAGE:$GITHUB_SHA" \
-            --build-arg NEXT_PUBLIC_SERVER_URL_VAR="$NEXT_PUBLIC_SERVER_URL" \
+            --build-arg NEXT_PUBLIC_APP_ENV="$NEXT_PUBLIC_APP_ENV" \
             .
 
       # Push the Docker image to Google Container Registry

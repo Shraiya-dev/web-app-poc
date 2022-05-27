@@ -2,6 +2,8 @@ import { useFormik } from 'formik'
 import { useRouter } from 'next/router'
 import { useCallback, useState } from 'react'
 import { isPincodeValid, useSnackbar } from '../../../sdk'
+import { Analytic } from '../../../sdk/analytics'
+import { ButtonClicked } from '../../../sdk/analytics/analyticsWrapper'
 import { JobBenefits } from '../../../sdk/types/jobBenefits'
 import { createProject, uploadImage } from '../apis/apis'
 
@@ -44,6 +46,12 @@ const useCreateProject = () => {
 	const handlePrev = () => {
 		if (step > 1) {
 			setStep((state) => state - 1)
+			ButtonClicked({
+				action: 'Go Back',
+				page: 'Create Project',
+				step: 2,
+				url: router.asPath,
+			})
 		}
 	}
 
@@ -208,8 +216,20 @@ const useCreateProject = () => {
 	const handleNext = () => {
 		if (step === 1) {
 			setStep((state) => state + 1)
+			ButtonClicked({
+				action: 'Continue',
+				page: 'Create Project',
+				step: 1,
+				url: router.asPath,
+			})
 		} else {
 			handleSubmit()
+			ButtonClicked({
+				action: 'Submit',
+				page: 'Create Project',
+				step: 2,
+				url: router.asPath,
+			})
 		}
 	}
 

@@ -6,6 +6,8 @@ import employeeIcon from '../../../public/assets/icons/employee.svg'
 import bookingIcon from '../../../public/assets/icons/bookingIcon.svg'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
+import { Analytic } from '../../analytics'
+import { ButtonClicked, CardClicked } from '../../analytics/analyticsWrapper'
 
 // export interface ProjectPreview {
 // 	bookingId: string
@@ -75,7 +77,16 @@ export const ProjectCard = ({ ...props }) => {
 
 	return (
 		<CustomPaper elevation={1}>
-			<Stack onClick={() => router.push(`/projects/${project?.projectId}/bookings`)}>
+			<Stack
+				onClick={() => {
+					router.push(`/projects/${project?.projectId}/bookings`)
+					CardClicked({
+						action: 'Open Project',
+						page: 'Dashboard',
+						projectId: project?.projectId,
+						url: router.asPath,
+					})
+				}}>
 				<Typography style={{ fontSize: 20, fontWeight: 700 }}>{project?.name || ''}</Typography>
 				<Typography style={{ fontSize: 12, color: theme.palette.secondary.main }} textTransform='capitalize'>
 					{' '}
@@ -109,7 +120,16 @@ export const ProjectCard = ({ ...props }) => {
 				<Button
 					fullWidth
 					className='cta'
-					onClick={() => router.push(`/projects/${project.projectId}/bookings/create`)}>
+					onClick={() => {
+						router.push(`/projects/${project.projectId}/bookings/create`)
+
+						ButtonClicked({
+							action: 'Book Workers',
+							page: 'Dashboard',
+							projectId: project?.projectId,
+							url: router.asPath,
+						})
+					}}>
 					Book Workers
 				</Button>
 				{/* <Button fullWidth className='cta'>

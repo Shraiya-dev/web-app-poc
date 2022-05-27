@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import { useContractorAuth, useSnackbar } from '../../../../sdk'
 import { useFormik } from 'formik'
+import { Analytic } from '../../../../sdk/analytics'
+import { ButtonClicked } from '../../../../sdk/analytics/analyticsWrapper'
 
 const initialLoginState = {
 	status: 'idle',
@@ -10,6 +12,8 @@ const initialLoginState = {
 
 const useLogin = () => {
 	const router = useRouter()
+
+	//console.log('router', router.basePath)
 
 	const { requestOtp, isRegister, updateIsRegUser } = useContractorAuth()
 	const [loginState, setLoginState] = useState(initialLoginState)
@@ -21,6 +25,11 @@ const useLogin = () => {
 
 	const handleLogin = () => {
 		updateIsRegUser(!isRegister)
+		ButtonClicked({
+			action: isRegister ? 'Register Option' : 'Login Option',
+			page: 'Login',
+			url: router.asPath,
+		})
 	}
 
 	const form = useFormik({
@@ -42,7 +51,8 @@ const useLogin = () => {
 			}
 			return errors
 		},
-		onSubmit: (values) => {
+		onSubmit: async (values) => {
+			// Analytic.page()
 			setLoading(true)
 			requestOtp(`+91${values?.phoneNumber}`)
 				.then((res) => {
@@ -53,6 +63,7 @@ const useLogin = () => {
 						}))
 
 						//router.push('/verifyOTP')
+
 						setLoading(false)
 					} else {
 						showSnackbar(res?.data?.error, 'error')
@@ -68,6 +79,12 @@ const useLogin = () => {
 					showSnackbar(error?.response?.data?.developerInfo, 'error')
 					console.log('error', error)
 				})
+
+			ButtonClicked({
+				action: 'Login',
+				page: 'Login',
+				url: router.asPath,
+			})
 		},
 	})
 

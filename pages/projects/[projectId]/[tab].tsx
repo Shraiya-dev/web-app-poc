@@ -10,8 +10,8 @@ const TabPage: NextPage = () => {
 	return (
 		<>
 			<Head>
-				<title>{router.query.projectId} | Project Hero </title>
-				<meta name='description' content='' />
+				<title>Project {router.query.tab} | Project Hero </title>
+				<meta name='Project' content='' />
 			</Head>
 			<ContractorDashboardLayout>
 				<ProjectDetails />

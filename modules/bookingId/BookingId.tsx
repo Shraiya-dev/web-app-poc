@@ -9,6 +9,8 @@ import WorkerTracking from './components/workerTracking'
 import Image from 'next/image'
 import { JobTypeIcon } from '../createBooking/utils'
 import BookingInfo from './components/bookingInfo'
+import { Analytic } from '../../sdk/analytics'
+import { HorizontalTabClicked } from '../../sdk/analytics/analyticsWrapper'
 
 export const BookingId = () => {
 	const router = useRouter()
@@ -93,11 +95,18 @@ export const BookingId = () => {
 							}}
 							value='track-workers'
 							label='Track Workers'
-							onClick={() =>
+							onClick={() => {
 								router.push(
 									`/bookings/${router?.query?.projectId}/${router?.query?.bookingId}/track-workers`
 								)
-							}
+
+								HorizontalTabClicked({
+									name: 'Track Workers',
+									page: 'Booking',
+									bookingId: router?.query?.bookingId,
+									url: router.asPath,
+								})
+							}}
 						/>
 						<Tab
 							sx={{
@@ -106,9 +115,15 @@ export const BookingId = () => {
 							}}
 							value='details'
 							label='Booking Details'
-							onClick={() =>
+							onClick={() => {
 								router.push(`/bookings/${router?.query?.projectId}/${router?.query?.bookingId}/details`)
-							}
+								HorizontalTabClicked({
+									name: 'Booking Details',
+									page: 'Booking',
+									bookingId: router?.query?.bookingId,
+									url: router.asPath,
+								})
+							}}
 						/>
 					</Tabs>
 				</Box>

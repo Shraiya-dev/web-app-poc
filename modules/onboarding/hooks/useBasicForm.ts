@@ -6,6 +6,8 @@ import { validateEmail, isValidGSTIN } from '../../../sdk/utils/validationHelper
 
 import { updateProfile } from '../../../sdk/apis'
 import { useContractorAuth, useSnackbar } from '../../../sdk'
+import { Analytic } from '../../../sdk/analytics'
+import { ButtonClicked } from '../../../sdk/analytics/analyticsWrapper'
 interface CreateBasicForm {
 	name: string
 	company: string
@@ -19,9 +21,15 @@ const useBasicForm = () => {
 	const { showSnackbar } = useSnackbar()
 	const { user, getContactorUserInfo } = useContractorAuth()
 	const [editInfo, setEditInfo] = useState(false)
+	const router = useRouter()
 
 	const handleEdit = () => {
 		setEditInfo((state) => !state)
+		ButtonClicked({
+			action: 'Edit Profile',
+			page: 'Company Profile',
+			url: router.asPath,
+		})
 		form.setValues({
 			company: user?.companyName ?? '',
 			companyEmail: user?.email ?? '',
@@ -94,6 +102,11 @@ const useBasicForm = () => {
 					getContactorUserInfo()
 					setLoading(false)
 					setEditInfo(false)
+					ButtonClicked({
+						action: router.asPath === '/profile' ? 'Save' : 'Next',
+						page: router.asPath === '/profile' ? 'Company Profile' : 'Onboarding',
+						url: router.asPath,
+					})
 				})
 				.catch((error: any) => {
 					showSnackbar(error?.response?.data?.developerInfo, 'error')

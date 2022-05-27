@@ -4,6 +4,8 @@ import Image from 'next/image'
 import { useRouter } from 'next/router'
 import EmptyProject from '../../../public/assets/icons/emptyProject.png'
 import { primary, theme, useMobile } from '../../../sdk'
+import { Analytic } from '../../../sdk/analytics'
+import { ButtonClicked, CardClicked } from '../../../sdk/analytics/analyticsWrapper'
 import { ProjectCard } from '../../../sdk/components/cards/ProjectCard'
 import { CustomTopBar } from '../../../sdk/components/topBar/customTopBar'
 import { useProjectDashboard } from '../hooks/useProjectDashboard'
@@ -52,7 +54,14 @@ export const ProjectDashboard = () => {
 						startIcon={<AddCircleOutlineIcon style={{ verticalAlign: 'middle' }} />}
 						variant='text'
 						style={{ verticalAlign: 'middle' }}
-						onClick={() => router.push('/projects/create')}>
+						onClick={() => {
+							ButtonClicked({
+								action: 'Add Project',
+								page: 'Dashboard',
+								url: router.asPath,
+							})
+							router.push('/projects/create')
+						}}>
 						Add Project
 					</Button>
 				</Typography>
@@ -69,7 +78,14 @@ export const ProjectDashboard = () => {
 							<Paper className='info'>
 								<Stack
 									justifyContent={'center'}
-									onClick={() => router.push('/projects/create')}
+									onClick={() => {
+										CardClicked({
+											action: 'Add Project',
+											page: 'Dashboard',
+											url: router.asPath,
+										})
+										router.push('/projects/create')
+									}}
 									style={{ cursor: 'pointer' }}>
 									<Stack direction={'row'} justifyContent={'center'} pb={1}>
 										<AddCircleOutlineIcon
