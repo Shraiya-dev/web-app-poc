@@ -127,6 +127,17 @@ function MyApp({ Component, pageProps }: AppProps) {
 						fbq('track', 'PageView');
 						`,
 							}}></script>
+
+						<script async src='https://www.googletagmanager.com/gtag/js?id=UA-230793668-1'></script>
+						<script
+							dangerouslySetInnerHTML={{
+								__html: `
+								window.dataLayer = window.dataLayer || [];
+  								function gtag(){dataLayer.push(arguments);}
+  								gtag('js', new Date());
+  								gtag('config', 'UA-230793668-1');					
+								`,
+							}}></script>
 						<noscript>
 							<img
 								height='1'
