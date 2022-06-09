@@ -186,8 +186,9 @@ const ContractorAuthProvider = ({ children }: any) => {
 			const { data } = await emailVerification(payload)
 			//getContactorUserInfo()
 			return data
-		} catch (error) {
-			throw error
+		} catch (error:any) {
+			showSnackbar(error?.error, 'error')
+			console.log('error',error)
 		}
 	}, [])
 
