@@ -1,5 +1,7 @@
 import { MenuItem } from '@mui/material'
 
+import { emailProviders } from '../constants/emailValidationHelper'
+
 export const isANumber = (value: any) => {
 	const re = /^[0-9\b]+$/
 	if (value === '' || re.test(value)) {
@@ -36,10 +38,12 @@ export const validateEmail = (email: any) => {
 		)
 }
 
-// export const freeEmailChecker = (email: any) => {
-// 	var freeRegex = /^[\w-\.]+@([hotmail+\.]|[yahoo+\.]|[gmail+\.])+[\w-]{2,4}$/
+// export const validateCompanyEmail = (email: any) => {
+// 	//var freeRegex = /^[\w-\.]+@([hotmail+\.]|[yahoo+\.]|[gmail+\.])+[\w-]{2,4}$/
 
-// 	return validateEmail(email) && !email.match(freeRegex)
+// 	var isInvalidEmail = emailProviders.includes(email.split('@')[1])
+
+// 	return validateEmail(email) && !isInvalidEmail //!email.match(freeRegex)
 // }
 
 export function isPincodeValid(pincode: string): boolean {

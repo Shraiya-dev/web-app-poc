@@ -49,3 +49,11 @@ export const logOutService = () => {
 		window.location.href = `/login`
 	}
 }
+
+export const sendEmailOtpService = async () => {
+	return axios.post('/gateway/customer-api/email-otp/initiate')
+}
+
+export const emailVerification = async (payload: any) => {
+	return axios.post('/gateway/customer-api/email-otp/verify', payload)
+}

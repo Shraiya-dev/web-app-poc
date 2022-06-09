@@ -164,7 +164,7 @@ export const BookingCard = ({ booking }: BookingCardProps) => {
 				<Typography color='secondary.main' fontWeight={700} fontSize={12}>
 					ALLOCATION STATUS
 				</Typography>
-				<Grid container xs={12}>
+				<Grid container>
 					<Grid item xs={12}>
 						<Stack className='links' flex={1} direction='row' spacing={3}>
 							{/* <Link

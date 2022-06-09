@@ -107,6 +107,7 @@ const useOtp = () => {
 		otpState,
 		loading,
 		setLoading,
+		phoneNumber,
 	}
 }
 

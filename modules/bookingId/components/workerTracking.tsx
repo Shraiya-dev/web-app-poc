@@ -1,17 +1,18 @@
-import { Badge, Button, CircularProgress, Grid, Stack, Typography } from '@mui/material'
+import { Badge, Button, CircularProgress, Grid, Pagination, Stack, Typography } from '@mui/material'
 import Link from 'next/link'
 import { JobCardCard, primary, SearchField, theme } from '../../../sdk'
 
 import TuneIcon from '@mui/icons-material/Tune'
 import { useRouter } from 'next/router'
-import { useCallback, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { useBookingId } from '../hooks'
 import Filters from './filters'
 
 const WorkerTracking = () => {
 	const router = useRouter()
 
-	const { jobCards, bookingSummary, isLoading } = useBookingId()
+	const { jobCards, bookingSummary, isLoading, SetPageNumber, pageNumber, hasMore, getJobCards, setJobCards } =
+		useBookingId()
 
 	const filterTags = [
 		{
@@ -37,11 +38,15 @@ const WorkerTracking = () => {
 		{ label: `Technician`, value: 'TECHNICIAN' },
 	]
 
+	useEffect(() => {
+		getJobCards(pageNumber)
+	}, [getJobCards, router.query.pageNumber])
+
 	return (
 		<Stack>
 			<Grid container>
-				<Grid item xs={12} md={9} justifyContent='space-between' alignItems='center'>
-					<Filters filterTags={filterTags} />
+				<Grid item xs={12} md={12} justifyContent='space-between' alignItems='center'>
+					<Filters filterTags={filterTags} setJobCards={setJobCards} jobCards={jobCards} page={pageNumber} />
 				</Grid>
 				{/* <Grid item xs={12} md={3} alignItems='center'>
 					<SearchField name='name' fullWidth placeholder='Search a worker' size='small' />
@@ -71,23 +76,62 @@ const WorkerTracking = () => {
 							})}
 						</Grid>
 					)}
-					{/* TODO: Look into pagination */}
-					{/* {bookings.totalBookings > 0 && (
+
+					{jobCards.length > 0 && (
 						<Stack p={4} alignItems='center'>
 							<Pagination
+								page={router.query.pageNumber ? Number(router.query.pageNumber) : 1}
+								hidePrevButton={
+									!Number(router.query.pageNumber) || Number(router.query.pageNumber) === 1
+								}
+								hideNextButton={!hasMore}
+								count={hasMore ? 35 : Number(router.query.pageNumber)}
+								siblingCount={0}
+								disabled={isLoading}
+								boundaryCount={0}
+								showFirstButton={false}
+								showLastButton={false}
 								color='primary'
-								page={Number(router.query.pageNumber ?? 0) + 1}
-								onChange={(_e, page) => {
-									router.query.pageNumber = page - 1 + ''
-									router.push(router)
+								onChange={(e, page) => {
+									router.push(
+										{
+											query: { ...router.query, pageNumber: `${page}` },
+										},
+										undefined,
+										{}
+									)
+									let pageNum = page - 1 + ''
+
+									SetPageNumber(`${pageNum}`)
 								}}
-								count={Math.ceil(bookings.totalBookings / 10)}
 							/>
 						</Stack>
-					)} */}
+					)}
 				</Stack>
 			)}
 			{/* <FilterDrawer open={openFilterDrawer} onClose={handelDrawerToggle} /> */}
+
+			{/* {hasMore && (
+				<Stack
+					sx={{
+						marginTop: 3,
+						marginBottom: 3,
+						justifyContent: 'center',
+						display: 'flex',
+						alignItems: 'center',
+					}}
+					direction='row'>
+					<Button
+						variant='text'
+						onClick={() => {
+							SetPageNumber((state) => state + 1)
+							router.query.pageNumber = `${pageNumber + 1}`
+							router.replace(router)
+						}}>
+						See More
+					</Button>
+				</Stack>
+			)} */}
 		</Stack>
 	)
 }

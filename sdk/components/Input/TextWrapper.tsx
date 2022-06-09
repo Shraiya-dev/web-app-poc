@@ -12,10 +12,9 @@ export const TextWrapper = ({ label, toolTip, children, ...props }: any) => {
 
 						fontSize: 13,
 						fontWeight: 900,
-						color: '#061F48',
 					}}
 					{...props}>
-					<Typography fontSize={13} fontWeight={700}>
+					<Typography fontSize={13} fontWeight={900} fontStyle={'normal'}>
 						{label}
 					</Typography>
 					{toolTip && (
@@ -32,6 +31,7 @@ export const TextWrapper = ({ label, toolTip, children, ...props }: any) => {
 					)}
 				</Typography>
 			)}
+
 			{children}
 		</Stack>
 	)

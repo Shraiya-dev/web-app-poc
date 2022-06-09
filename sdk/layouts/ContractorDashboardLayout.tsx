@@ -1,24 +1,10 @@
 import DashboardIcon from '@mui/icons-material/Dashboard'
 import LogoutIcon from '@mui/icons-material/Logout'
 import PersonIcon from '@mui/icons-material/Person'
-import {
-	Box,
-	Container,
-	Drawer,
-	IconButton,
-	List,
-	ListItem,
-	ListItemIcon,
-	ListItemText,
-	Stack,
-	styled,
-	Toolbar,
-	Typography,
-} from '@mui/material'
+import { Box, Drawer, IconButton, List, ListItem, ListItemIcon, ListItemText, Stack } from '@mui/material'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
 import React from 'react'
-import useBooking from '../../modules/createBooking/hooks/useBooking'
 import logo from '../../public/assets/icons/BrandLogo.svg'
 import MenuIcon from '../../public/assets/icons/MenuIcon.svg'
 import { DrawerItem } from '../components/drawerItem'
@@ -27,6 +13,8 @@ import { useMobile } from '../hooks/useMobile'
 import { useContractorAuth } from '../providers'
 import { Analytic } from '../analytics'
 import { NavigationTabClicked } from '../analytics/analyticsWrapper'
+import BusinessIcon from '@mui/icons-material/Business'
+import Link from 'next/link'
 
 //always update when you change the app bar height into the onlyCssWeNeed file
 
@@ -43,7 +31,7 @@ const ContractorDashboardLayout = ({ children }: any) => {
 	const BOOKING_LIST = '/projects/[projectId]/[tab]'
 	const BOOKING_DETAILS = '/bookings/[projectId]/[bookingId]/[tab]'
 	const DASHBOARD = '/dashboard'
-	const PROFILE = '/profile'
+	const PROFILE = '/profile/[tab]'
 
 	const toggleDrawer = () => {
 		updateIsSideBarToggle(!isSideBarToggle)
@@ -81,6 +69,28 @@ const ContractorDashboardLayout = ({ children }: any) => {
 					//width: '100vw',
 					height: '100vh',
 				}}>
+				{isMobile ? (
+					<Stack direction='row' p={1}>
+						{isMobile && (
+							<IconButton onClick={toggleDrawer}>
+								<Image src={MenuIcon} alt='menu' color='black' />
+							</IconButton>
+						)}
+						<Link href='/dashboard' passHref>
+							<a>
+								<Image
+									priority
+									src={logo}
+									alt=''
+									height={isMobile ? 34 : 52}
+									width={isMobile ? 100 : 162}
+								/>
+							</a>
+						</Link>
+					</Stack>
+				) : (
+					''
+				)}
 				{children}
 			</Box>
 			<Drawer
@@ -126,9 +136,17 @@ const ContractorDashboardLayout = ({ children }: any) => {
 
 						<DrawerItem
 							icon={<PersonIcon />}
-							path='/profile'
+							path={`/profile/details`}
 							title='Company Profile'
-							route={'/profile'}
+							route={PROFILE}
+							toggleDrawer={toggleDrawer}
+						/>
+
+						<DrawerItem
+							icon={<BusinessIcon />}
+							path='/account'
+							title='Account'
+							route={'/account'}
 							toggleDrawer={toggleDrawer}
 						/>
 						{/* <DrawerItem icon={<AccountTreeOutlined />} path='/dashboard' title='Projects' /> */}

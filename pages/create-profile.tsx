@@ -1,21 +1,21 @@
 import { NextPage } from 'next'
 import Head from 'next/head'
+import { EmailVerificationForm } from '../modules/auth/emailVerification'
 
-import { BasicDetailsForm } from '../modules/onboarding/components/BasicDetailsForm'
 import { OnboardingLayout } from '../sdk'
 
-const Onboarding: NextPage = () => {
+const CreateProfile: NextPage = () => {
 	return (
 		<>
 			<Head>
-				<title>Onboarding | Project Hero</title>
+				<title>Create Profile | Project Hero</title>
 				<meta name='description' content='' />
 			</Head>
 			<OnboardingLayout>
-				<BasicDetailsForm />
+				<EmailVerificationForm />
 			</OnboardingLayout>
 		</>
 	)
 }
 
-export default Onboarding
+export default CreateProfile

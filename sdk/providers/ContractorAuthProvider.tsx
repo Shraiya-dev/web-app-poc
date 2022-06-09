@@ -1,9 +1,15 @@
-import axios from 'axios'
 import { useRouter } from 'next/router'
 import { createContext, useCallback, useContext, useEffect, useMemo, useReducer } from 'react'
 import { Identify } from '../analytics/analyticsWrapper'
-import { getCustomerDetails, loginService, logOutService, sendOtpService } from '../apis'
-import { CustomerDetails, CUSTOMER_STATUS, USER_LOGIN_TYPE, USER_TYPE } from '../types'
+import {
+	emailVerification,
+	getCustomerDetails,
+	loginService,
+	logOutService,
+	sendEmailOtpService,
+	sendOtpService,
+} from '../apis'
+import { CustomerDetails, CUSTOMER_STATUS, ONBOARDING_STATUS, USER_LOGIN_TYPE, USER_TYPE } from '../types'
 import { useSnackbar } from './SnackbarProvider'
 
 const LoadingUniqueString = 'loading...'
@@ -16,6 +22,10 @@ interface AuthState {
 	isSideBarToggle: false | boolean
 }
 
+interface emailOtpPayload {
+	otp: string
+	token: string
+}
 interface AuthProviderValue extends AuthState {
 	requestOtp: (phoneNumber: string) => Promise<any>
 	verifyOtp: (phoneNumber: string, otp: string) => Promise<any>
@@ -23,11 +33,21 @@ interface AuthProviderValue extends AuthState {
 	getContactorUserInfo: () => Promise<any>
 	updateIsRegUser: (isRegister: boolean) => {}
 	updateIsSideBarToggle: (isSideBarToggle: boolean) => {}
+	requestEmailOtp: () => Promise<any>
+	verifyEmailOtp: (payload: emailOtpPayload) => Promise<any>
 }
+
 const simpleReducer = (state: AuthState, payload: Partial<AuthState>) => ({
 	...state,
 	...payload,
 })
+const AccessMap: { [key in ONBOARDING_STATUS]: string } = {
+	PROFILE_CREATION_PENDING: '/create-profile',
+	EMAIL_VERIFICATION_PENDING: '/verify-email',
+	ORGANISATION_CREATION_PENDING: '/create-organisation',
+	ONBOARDED: '/dashboard',
+	ORGANISATION_LINKING_FAILED: '/onboarding/failed',
+}
 const initialAuthState: AuthState = {
 	accessToken: LoadingUniqueString,
 	refreshToken: LoadingUniqueString,
@@ -44,6 +64,8 @@ const ContractorAuthContext = createContext<AuthProviderValue>({
 	getContactorUserInfo: () => Promise.resolve(null),
 	updateIsRegUser: () => false,
 	updateIsSideBarToggle: () => false,
+	requestEmailOtp: () => Promise.resolve(null),
+	verifyEmailOtp: () => Promise.resolve(null),
 })
 const { Provider, Consumer } = ContractorAuthContext
 
@@ -61,16 +83,31 @@ const ContractorAuthProvider = ({ children }: any) => {
 		try {
 			const { data } = await getCustomerDetails()
 
-			console.log(data)
+			const {
+				_id,
+				email,
+				name,
+				phoneNumber,
+				companyName,
+				onboardingStatus,
+				GSTIN,
+				customerStatus,
+				designation,
+				linkedOrganisation,
+			} = data.payload
 			dispatch({
 				user: {
-					customerId: data.payload?._id ?? '',
-					email: data.payload?.email ?? '',
-					name: data.payload?.name ?? '',
-					phoneNumber: data.payload?.phoneNumber ?? '',
-					companyName: data.payload.companyName ?? '',
-					GSTIN: data.payload.GSTIN ?? '',
-					customerStatus: data.payload?.customerStatus ?? CUSTOMER_STATUS.REGISTERED,
+					organisationId: linkedOrganisation?.organisationId ?? '',
+					userAccessRole: linkedOrganisation?.role ?? '',
+					customerId: _id ?? '',
+					email: email ?? '',
+					name: name ?? '',
+					phoneNumber: phoneNumber ?? '',
+					companyName: data?.payload?.companyName ?? '',
+					onboardingStatus: data.payload?.onboardingStatus ?? ONBOARDING_STATUS.PROFILE_CREATION_PENDING,
+					GSTIN: data?.payload?.GSTIN ?? '',
+					customerStatus: customerStatus ?? CUSTOMER_STATUS?.REGISTERED,
+					designation: designation ?? '',
 				},
 			})
 
@@ -79,6 +116,11 @@ const ContractorAuthProvider = ({ children }: any) => {
 				email: data.payload?.email ?? '',
 				phone: data.payload?.phoneNumber ?? '',
 				company: data.payload.companyName ?? '',
+				organisationId: linkedOrganisation?.organisationId ?? '',
+				userAccessRole: linkedOrganisation?.role ?? '',
+				designation: designation ?? '',
+				GSTIN: data?.payload?.GSTIN ?? '',
+				customerStatus: customerStatus ?? CUSTOMER_STATUS?.REGISTERED,
 			})
 		} catch (error: any) {
 			//todo show error in snackbar
@@ -134,6 +176,21 @@ const ContractorAuthProvider = ({ children }: any) => {
 			isSideBarToggle: isSideBarToggle,
 		})
 	}, [])
+
+	const requestEmailOtp = useCallback(async () => {
+		return await sendEmailOtpService()
+	}, [])
+
+	const verifyEmailOtp = useCallback(async (payload: emailOtpPayload) => {
+		try {
+			const { data } = await emailVerification(payload)
+			//getContactorUserInfo()
+			return data
+		} catch (error) {
+			throw error
+		}
+	}, [])
+
 	useEffect(() => {
 		;(async () => {
 			const accessToken = localStorage.getItem('accessToken')
@@ -151,16 +208,21 @@ const ContractorAuthProvider = ({ children }: any) => {
 					refreshToken: refreshToken,
 					phoneNumber: phoneNumber,
 					user: {
-						customerId: data.payload?.customerId ?? '',
-						email: data.payload?.email ?? '',
-						name: data.payload?.name ?? '',
-						phoneNumber: data.payload?.phoneNumber ?? '',
-						companyName: data.payload.companyName ?? '',
-						GSTIN: data.payload.GSTIN ?? '',
-						customerStatus: data.payload?.customerStatus ?? CUSTOMER_STATUS.REGISTERED,
+						customerId: data?.payload?.customerId ?? '',
+						organisationId: data?.payload?.linkedOrganisation?.organisationId ?? '',
+						userAccessRole: data?.payload?.linkedOrganisation?.role ?? '',
+						email: data?.payload?.email ?? '',
+						name: data?.payload?.name ?? '',
+						phoneNumber: data?.payload?.phoneNumber ?? '',
+						companyName: data?.payload?.companyName ?? '',
+						onboardingStatus: data?.payload?.onboardingStatus ?? '',
+						GSTIN: data?.payload?.GSTIN ?? '',
+						customerStatus: data?.payload?.customerStatus ?? CUSTOMER_STATUS.REGISTERED,
+						designation: data?.payload?.designation ?? '',
 					},
 				})
 			} catch (error: any) {
+				console.log('error', error)
 				if (error?.response?.status !== 401) {
 					showSnackbar(error?.response?.data?.developerInfo, 'error')
 				}
@@ -186,24 +248,38 @@ const ContractorAuthProvider = ({ children }: any) => {
 
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [state.accessToken, state.phoneNumber, state.refreshToken])
+
+	useEffect(() => {
+		const timer = setInterval(getContactorUserInfo, 300000)
+		return () => clearInterval(timer)
+	}, [])
+
 	useEffect(() => {
 		if (state.user) {
+			const redirectRoute = AccessMap[state.user.onboardingStatus]
+			if (state.user.onboardingStatus !== ONBOARDING_STATUS.ONBOARDED) {
+				if (router.pathname !== redirectRoute) {
+					router.replace(redirectRoute)
+				}
+				return
+			}
+
 			if (
-				[CUSTOMER_STATUS.REGISTERED, CUSTOMER_STATUS.UPDATE_PROFILE].includes(state.user.customerStatus) &&
-				router.asPath !== '/onboarding'
+				router.pathname === '/create-organisation' &&
+				state.user.onboardingStatus === ONBOARDING_STATUS.ONBOARDED
 			) {
-				router.push('/onboarding')
-			} else if (
-				state.user.customerStatus === CUSTOMER_STATUS.PROFILE_COMPLETED &&
-				!(
-					router.pathname.includes('/dashboard') ||
-					router.pathname.includes('/profile') ||
-					router.pathname.includes('/worker') ||
-					router.pathname.includes('/projects') ||
-					router.pathname.includes('/bookings')
-				)
-			) {
-				router.push('/dashboard')
+				router.replace('/onboarding/success')
+				return
+			} else {
+				if (
+					// restricts access to any other routes except the routes included in array
+					['/dashboard', '/profile', '/worker', '/projects', '/bookings', '/account', '/onboarding'].every(
+						(item) => !router.pathname.includes(item)
+					)
+				) {
+					router.replace(redirectRoute)
+					return
+				}
 			}
 		}
 		// eslint-disable-next-line react-hooks/exhaustive-deps
@@ -218,8 +294,19 @@ const ContractorAuthProvider = ({ children }: any) => {
 			getContactorUserInfo: getContactorUserInfo,
 			updateIsRegUser: updateIsRegUser,
 			updateIsSideBarToggle: updateIsSideBarToggle,
+			requestEmailOtp: requestEmailOtp,
+			verifyEmailOtp: verifyEmailOtp,
 		}),
-		[state, requestOtp, verifyOtp, getContactorUserInfo, updateIsRegUser, updateIsSideBarToggle]
+		[
+			state,
+			requestOtp,
+			verifyOtp,
+			getContactorUserInfo,
+			updateIsRegUser,
+			updateIsSideBarToggle,
+			requestEmailOtp,
+			verifyEmailOtp,
+		]
 	)
 	return <Provider value={authProviderValue}>{children}</Provider>
 }

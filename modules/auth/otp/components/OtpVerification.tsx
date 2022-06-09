@@ -1,15 +1,12 @@
-import { Typography, Box, Stack, Button, styled } from '@mui/material'
+import { Typography, Box, Stack, styled, Button } from '@mui/material'
 
 import OtpInput from 'react-otp-input'
 import useOtp from '../hooks/useOtp'
-import { CircularProgress } from '@mui/material'
-import { primary, theme } from '../../../../sdk'
-import Link from 'next/link'
 import { LoadingButton } from '@mui/lab'
-import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew'
 import { useRouter } from 'next/router'
-import { Analytic } from '../../../../sdk/analytics'
 import { ButtonClicked } from '../../../../sdk/analytics/analyticsWrapper'
+import BackButton from '../../../../sdk/components/backButton/backButtom'
+import { textAlign } from '@mui/system'
 
 const CustomOTPStyles = styled(Box)(({ theme }) => ({
 	display: 'flex',
@@ -18,21 +15,27 @@ const CustomOTPStyles = styled(Box)(({ theme }) => ({
 	// paddingTop: '37%',
 
 	'.headerInfo': {
-		paddingBottom: '0.5em',
+		marginTop: 24,
+		paddingBottom: 8,
 		fontSize: 30,
 		textAlign: 'center',
 		fontWeight: 700,
 	},
 	'.subHeader': {
-		cursor: 'pointer',
-		marginTop: 10,
-		marginBottom: 10,
+		//cursor: 'pointer',
+		marginTop: 16,
+		//marginBottom: 10,
 		//marginRight: 15,
 		textAlign: 'center',
 		fontSize: 14,
 	},
+	'.subInfo': {
+		color: theme.palette.secondary.main,
+		textAlign: 'center',
+		marginBottom: 48,
+	},
 	'.cta': {
-		marginTop: '1.5em',
+		marginTop: 48,
 		width: '100%',
 		background: '#244CB3',
 		color: 'white',
@@ -47,7 +50,7 @@ const CustomOTPStyles = styled(Box)(({ theme }) => ({
 }))
 
 export const OTPVerification = ({ ...props }) => {
-	const { otp, form, status, error, handleChange, resendOTP, otpState, loading, setLoading } = useOtp()
+	const { otp, form, status, error, handleChange, resendOTP, otpState, loading, setLoading, phoneNumber } = useOtp()
 	const { isOtpSent, setIsOtpSent } = props
 	const router = useRouter()
 	const handleChangeNumber = () => {
@@ -63,23 +66,27 @@ export const OTPVerification = ({ ...props }) => {
 		<CustomOTPStyles>
 			<>
 				<form onSubmit={form.handleSubmit}>
-					<ArrowBackIosNewIcon
-						onClick={() => router.push('https://www.projecthero.in/')}
-						sx={{
-							verticalAlign: 'middle',
-							color: primary.main,
-							fontSize: 24,
-							cursor: 'pointer',
-						}}
-					/>
-					<Typography className='headerInfo'>Enter OTP</Typography>
+					<BackButton onClick={() => router.push('https://www.projecthero.in/')} />
+
+					<Typography className='headerInfo'>Verify Mobile</Typography>
+
+					<Typography className='subInfo'>
+						Enter{' '}
+						<Box fontWeight='1000' fontStyle={'bolder'} display='inline' color={'black'}>
+							OTP
+						</Box>{' '}
+						sent to your mobile number{' '}
+						<Box fontWeight='1000' display='inline' color={'black'}>
+							{phoneNumber}
+						</Box>
+					</Typography>
 
 					<OtpInput
 						value={otp.otp}
 						onChange={handleChange}
 						numInputs={6}
 						inputStyle={{
-							marginTop: 20,
+							//marginTop: 20,
 
 							borderRadius: '4px',
 							width: '3.4em',
@@ -93,26 +100,38 @@ export const OTPVerification = ({ ...props }) => {
 						isInputNum={true}
 						hasErrored={!status}
 						errorStyle={{ border: '1px solid #F70000' }}
+						containerStyle={{ justifyContent: 'center' }}
 					/>
-					<Stack className='subHeader' onClick={resendOTP}>
-						Resend OTP
+					<Stack className='subHeader' direction={'row'} justifyContent='center'>
+						<Button onClick={resendOTP} variant='text'>
+							Resend OTP
+						</Button>
+						<Button onClick={handleChangeNumber} variant='text'>
+							Change Number
+						</Button>
 					</Stack>
 
 					{/* <Button type='submit' variant='contained' color='primary' fullWidth disabled={status === 'loading'}>
 						{status === 'loading' ? <CircularProgress size={30} /> : `Verify OTP`}
 					</Button> */}
 
-					<LoadingButton type='submit' loading={loading} disabled={loading} variant='contained' fullWidth>
+					<LoadingButton
+						type='submit'
+						loading={loading}
+						disabled={loading}
+						variant='contained'
+						fullWidth
+						sx={{ marginTop: 6 }}>
 						{`Verify OTP`}
 					</LoadingButton>
 
-					<Typography
+					{/* <Typography
 						sx={{ textDecoration: 'underline', textAlign: 'center', cursor: 'pointer' }}
 						color='primary.main'
 						mt={'16px'}
 						onClick={handleChangeNumber}>
 						Change Number
-					</Typography>
+					</Typography> */}
 				</form>
 			</>
 		</CustomOTPStyles>

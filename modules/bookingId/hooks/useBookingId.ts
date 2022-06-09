@@ -20,6 +20,8 @@ export const useBookingId = () => {
 	const [jobCards, setJobCards] = useState<Array<JobCard>>([])
 
 	const [selectedTab, setSelectedTab] = useState('track-workers')
+	const [pageNumber, SetPageNumber] = useState('')
+	const [hasMore, setHasMore] = useState(false)
 
 	const handleTabSelection = (e: any, value: any) => {
 		setSelectedTab(value)
@@ -41,39 +43,46 @@ export const useBookingId = () => {
 		}
 	}, [router.query.bookingId])
 
-	const getJobCards = useCallback(async () => {
-		const { bookingId, projectId, ...rest } = router.query
+	const getJobCards = useCallback(
+		async (pageNumber) => {
+			const { bookingId, projectId, ...rest } = router.query
 
-		if (!bookingId || !projectId) return
-		try {
-			const queryParams = new URLSearchParams(rest as any)
+			if (!bookingId || !projectId) return
+			try {
+				setIsLoading(true)
 
-			const { data } = await getWorkerDetails(bookingId, projectId, queryParams.toString())
+				const queryParams = new URLSearchParams(rest as any)
+				queryParams.set('pageNumber', `${pageNumber}`)
 
-			const jobCards = data.payload.workers ?? []
+				const { data } = await getWorkerDetails(bookingId, projectId, queryParams.toString())
+				setHasMore(data?.payload?.hasMore)
 
-			setJobCards(
-				jobCards.map((item: any) => {
-					const jobCard: JobCard = {
-						workerId: item?.jobCard?.workerId,
-						WorkerName: item?.worker?.name ?? 'No Name',
-						jobType: item?.jobCard?.jobType,
-						experience: item?.worker?.workDetails?.experience || 0,
-						city: item?.worker?.city,
-						state: item?.worker?.state,
-						dob: item?.worker?.dob || 'NA',
-						skillType: item?.jobCard?.skillType,
-						jobCardState: item?.jobCard?.jobCardState,
-					}
-					return jobCard
-				})
-			)
-		} catch (error: any) {
-			showSnackbar(error?.response?.data?.developerInfo, 'error')
-		}
-		//setIsLoading(false)
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [router.query.skillType, router.query.jobCardState, router.query.projectId])
+				let jobCardData = data.payload.workers ?? []
+
+				setJobCards(
+					jobCardData.map((item: any, index: any) => {
+						const jobCard: JobCard = {
+							workerId: item?.jobCard?.workerId,
+							WorkerName: item?.worker?.name ?? 'No Name',
+							jobType: item?.jobCard?.jobType,
+							experience: item?.worker?.workDetails?.experience || 0,
+							city: item?.worker?.city,
+							state: item?.worker?.state,
+							dob: item?.worker?.dob || 'NA',
+							skillType: item?.jobCard?.skillType,
+							jobCardState: item?.jobCard?.jobCardState,
+						}
+						return jobCard
+					})
+				)
+			} catch (error: any) {
+				showSnackbar(error?.response?.data?.developerInfo, 'error')
+			}
+			setIsLoading(false)
+			// eslint-disable-next-line react-hooks/exhaustive-deps
+		},
+		[router.query.skillType, router.query.jobCardState, router.query.projectId]
+	)
 
 	const form = useFormik<FilterForm>({
 		initialValues: {
@@ -90,10 +99,6 @@ export const useBookingId = () => {
 	})
 
 	useEffect(() => {
-		getJobCards()
-	}, [getJobCards])
-
-	useEffect(() => {
 		getBookingInfo()
 	}, [getBookingInfo])
 
@@ -105,5 +110,9 @@ export const useBookingId = () => {
 		selectedTab: selectedTab,
 		handleTabSelection: handleTabSelection,
 		form: form,
+		pageNumber: pageNumber,
+		SetPageNumber: SetPageNumber,
+		hasMore: hasMore,
+		setJobCards: setJobCards,
 	}
 }

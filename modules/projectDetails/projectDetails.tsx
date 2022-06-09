@@ -18,8 +18,6 @@ export const ProjectDetails = () => {
 	const isMobile = useMobile()
 	const router = useRouter()
 
-	console.log(router)
-
 	return (
 		<>
 			<CustomTopBar>

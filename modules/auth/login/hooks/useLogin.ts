@@ -13,8 +13,6 @@ const initialLoginState = {
 const useLogin = () => {
 	const router = useRouter()
 
-	//console.log('router', router.basePath)
-
 	const { requestOtp, isRegister, updateIsRegUser } = useContractorAuth()
 	const [loginState, setLoginState] = useState(initialLoginState)
 	const { status, error } = loginState

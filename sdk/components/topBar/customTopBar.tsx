@@ -34,11 +34,11 @@ export const CustomTopBar = ({ children }: any) => {
 			<Box style={{ marginLeft: 0, padding: 0 }}>
 				<Toolbar className='toolbar'>
 					<Stack width={1} direction={'row'}>
-						{isMobile && (
+						{/* {isMobile && (
 							<IconButton onClick={toggleDrawer}>
 								<Image src={MenuIcon} alt='menu' color='black' />
 							</IconButton>
-						)}
+						)} */}
 
 						{children}
 					</Stack>

@@ -20,6 +20,7 @@ export const useDashboard = () => {
 		totalBookings: number
 	}>({ hasMore: false, bookings: [], totalBookings: 0 })
 	const { showSnackbar } = useSnackbar()
+
 	// const getBookingStats = useCallback(async () => {
 	// 	try {
 	// 		const { data } = await getBookingsSummaryService()

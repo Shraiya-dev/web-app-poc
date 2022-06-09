@@ -5,7 +5,7 @@ import { JobCardState, primary, theme, useMobile, WORKER_TYPES } from '../../../
 import { useBookingId } from '../hooks'
 
 const Filters = ({ ...props }) => {
-	const { filterTags } = props
+	const { filterTags, setJobCards, jobCards, page } = props
 
 	//const { form } = useFilters()
 	const { getJobCards, form } = useBookingId()
@@ -37,8 +37,6 @@ const Filters = ({ ...props }) => {
 			shallow: true,
 			scroll: true,
 		})
-
-		//	getJobCards()
 
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [form.values.skillType, form.values.jobCardState])
@@ -127,7 +125,8 @@ const Filters = ({ ...props }) => {
 													])
 												}
 											}
-											getJobCards()
+
+											getJobCards(page)
 									  }
 									: undefined
 							}

@@ -33,12 +33,17 @@ interface NavigationTabClicked {
 }
 
 interface Identify {
-	customerId?: any 
+	customerId?: any
 	name: string
 	email: string
 	phone: string
 	company?: string
 	createdAt?: string
+	organisationId?: string
+	userAccessRole?: string
+	designation?: string
+	GSTIN?: string
+	customerStatus?: string
 }
 
 export const ButtonClicked = ({ ...props }: ButtonClicked) => {
@@ -58,7 +63,6 @@ export const NavigationTabClicked = ({ ...props }: NavigationTabClicked) => {
 }
 
 export const Identify = async ({ ...props }: Identify) => {
-
 	const { customerId, ...rest } = props
 	Analytic.identify(customerId, { ...rest })
 }

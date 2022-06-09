@@ -9,11 +9,11 @@ const AppEnvConfig: {
 	[key in ENV_Types]: { SERVER_URL: string; SEGMENT_KEY: string }
 } = {
 	DEV: {
-		SERVER_URL: 'http://dev-api.projecthero.in',
+		SERVER_URL: 'https://dev-api.projecthero.in',
 		SEGMENT_KEY: 'vgfJ6TLq447xB45FZU3IQTtdeHSIQGvE',
 	},
 	STAGE: {
-		SERVER_URL: 'https://staging-api.projecthero.in',
+		SERVER_URL: 'https://stage-api.projecthero.in',
 		SEGMENT_KEY: 'vgfJ6TLq447xB45FZU3IQTtdeHSIQGvE',
 	},
 	PROD: {
