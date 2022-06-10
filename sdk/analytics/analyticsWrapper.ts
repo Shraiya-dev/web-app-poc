@@ -69,7 +69,9 @@ export const Identify = async ({ ...props }: Identify) => {
 
 export const AnalyticsPage = (router: any) => {
 	const routeName =
-		router.route === '/projects/[projectId]/[tab]'
+		router.route === '/profile/[tab]'
+			? `Profile - ${router.query.tab}`
+			: router.route === '/projects/[projectId]/[tab]'
 			? `Project - ${router.query.tab}`
 			: router.route === '/bookings/[projectId]/[bookingId]/[tab]'
 			? `Bookings - ${router.query.tab === 'track-workers' ? 'Track Workers' : router.query.tab}`
