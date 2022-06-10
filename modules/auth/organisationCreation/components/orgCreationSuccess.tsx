@@ -4,6 +4,7 @@ import Image from 'next/image'
 import { useRouter } from 'next/router'
 import Checked from '../../../../public/assets/icons/checked.svg'
 import { useContractorAuth } from '../../../../sdk'
+import { ButtonClicked } from '../../../../sdk/analytics/analyticsWrapper'
 
 const CustomOrgSuccessStyles = styled(Box)(({ theme }) => ({
 	margin: 8,
@@ -37,7 +38,18 @@ const OrgCreationSuccess = () => {
 			<Typography sx={{ marginTop: 4, textAlign: 'center' }}>
 				Your profile is successfully linked to the company {user?.companyName}
 			</Typography>
-			<Button sx={{ marginTop: 6 }} fullWidth onClick={() => router.replace('/dashboard')}>
+			<Button
+				sx={{ marginTop: 6 }}
+				fullWidth
+				onClick={() => {
+					router.replace('/dashboard')
+
+					ButtonClicked({
+						action: 'New Organisation Created',
+						page: 'Organisation Success',
+						url: router.asPath,
+					})
+				}}>
 				Let’s Go!
 			</Button>
 		</CustomOrgSuccessStyles>

@@ -112,6 +112,7 @@ const CustomBookingStyle = styled(Box)(({ theme }) => ({
 		boxShadow: 'none',
 		lineHeight: 1.4,
 	},
+
 	'.view': {
 		verticalAlign: 'middle',
 		display: 'flex',
@@ -299,35 +300,34 @@ export const CreateBooking = () => {
 								</Grid>
 
 								{isMore && (
-									<Box>
-										<Grid container item rowSpacing={2} columnSpacing={2}>
-											{moreJobType.map((info, index) => {
-												return (
-													<Grid key={index} item xs={4} sm={4} md={2} lg={2}>
-														<Button
-															className='jobType'
-															onClick={() => handleJobClick(info?.value)}
-															style={{
-																background:
-																	selectedJob === info?.value
-																		? theme.palette.primary.light
-																		: 'white',
-																border:
-																	selectedJob === info?.value
-																		? `2px solid ${theme.palette.primary.main}`
-																		: `1px solid ${theme.palette.secondary.light}`,
-															}}>
-															<Stack>
-																<Image src={info?.icon} />
+									<Grid container item rowSpacing={2} columnSpacing={2}>
+										{moreJobType.map((info, index) => {
+											return (
+												<Grid key={index} item xs={4} sm={4} md={2} lg={2}>
+													<Button
+														className='jobType'
+														onClick={() => handleJobClick(info?.value)}
+														style={{
+															boxShadow: 'none',
+															background:
+																selectedJob === info?.value
+																	? theme.palette.primary.light
+																	: 'white',
+															border:
+																selectedJob === info?.value
+																	? `2px solid ${theme.palette.primary.main}`
+																	: `1px solid ${theme.palette.secondary.light}`,
+														}}>
+														<Box>
+															<Image src={info?.icon} />
 
-																<Stack>{info?.label}</Stack>
-															</Stack>
-														</Button>
-													</Grid>
-												)
-											})}
-										</Grid>
-									</Box>
+															<Stack>{info?.label}</Stack>
+														</Box>
+													</Button>
+												</Grid>
+											)
+										})}
+									</Grid>
 								)}
 								<Grid
 									container
@@ -362,62 +362,64 @@ export const CreateBooking = () => {
 								</Grid>
 							</InputWrapper>
 
-							<InputWrapper id='skills' label='Skills'>
-								<Typography className='subInfo'>
-									Skills you are looking for the selected trade
-								</Typography>
-								<Grid item xs={12} md={12}>
-									<Stack direction='row' flexWrap='wrap'>
-										{tags[form.values.jobType]?.map((item: any) => {
-											return (
-												<Chip
-													variant='outlined'
-													style={{
-														background: form.values.tags.includes(item)
-															? theme.palette.primary.light
-															: 'white',
-														color: form.values.tags.includes(item)
-															? theme.palette.primary.main
-															: '',
+							{form.values.jobType && (
+								<InputWrapper id='skills' label='Skills'>
+									<Typography className='subInfo'>
+										Skills you are looking for the selected trade
+									</Typography>
+									<Grid item xs={12} md={12}>
+										<Stack direction='row' flexWrap='wrap'>
+											{tags[form.values.jobType]?.map((item: any) => {
+												return (
+													<Chip
+														variant='outlined'
+														style={{
+															background: form.values.tags.includes(item)
+																? theme.palette.primary.light
+																: 'white',
+															color: form.values.tags.includes(item)
+																? theme.palette.primary.main
+																: '',
 
-														border: form.values.tags.includes(item)
-															? `2px solid ${theme.palette.primary.main}`
-															: ``,
-													}}
-													sx={{
-														mr: 1,
-														mb: 1,
-													}}
-													key={item}
-													label={item}
-													clickable
-													onClick={
-														!form.values.tags.includes(item)
-															? () => {
-																	form.setFieldValue('tags', [
-																		...form.values.tags,
-																		item,
-																	])
-															  }
-															: undefined
-													}
-													onDelete={
-														form.values.tags.includes(item)
-															? () => {
-																	form.setFieldValue('tags', [
-																		...form.values.tags.filter(
-																			(val) => val !== item
-																		),
-																	])
-															  }
-															: undefined
-													}
-												/>
-											)
-										})}
-									</Stack>
-								</Grid>
-							</InputWrapper>
+															border: form.values.tags.includes(item)
+																? `2px solid ${theme.palette.primary.main}`
+																: ``,
+														}}
+														sx={{
+															mr: 1,
+															mb: 1,
+														}}
+														key={item}
+														label={item}
+														clickable
+														onClick={
+															!form.values.tags.includes(item)
+																? () => {
+																		form.setFieldValue('tags', [
+																			...form.values.tags,
+																			item,
+																		])
+																  }
+																: undefined
+														}
+														onDelete={
+															form.values.tags.includes(item)
+																? () => {
+																		form.setFieldValue('tags', [
+																			...form.values.tags.filter(
+																				(val) => val !== item
+																			),
+																		])
+																  }
+																: undefined
+														}
+													/>
+												)
+											})}
+										</Stack>
+									</Grid>
+								</InputWrapper>
+							)}
 
 							<InputWrapper
 								id='workerType'

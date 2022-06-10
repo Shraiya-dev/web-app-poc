@@ -4,6 +4,7 @@ import Image from 'next/image'
 import { Router, useRouter } from 'next/router'
 import Error from '../../../../public/assets/icons/error.svg'
 import { useContractorAuth } from '../../../../sdk'
+import { ButtonClicked } from '../../../../sdk/analytics/analyticsWrapper'
 
 const CustomOrgFailedStyles = styled(Box)(({ theme }) => ({
 	margin: 8,
@@ -39,7 +40,14 @@ const OrgCreationFailed = () => {
 			<Button
 				sx={{ marginTop: 6 }}
 				fullWidth
-				onClick={() => router.replace('https://www.projecthero.in/contact-us')}>
+				onClick={() => {
+					router.replace('https://www.projecthero.in/contact-us')
+					ButtonClicked({
+						action: 'Contact Projecthero',
+						page: 'Organisation Linking Failed',
+						url: router.asPath,
+					})
+				}}>
 				Contact Support
 			</Button>
 		</CustomOrgFailedStyles>

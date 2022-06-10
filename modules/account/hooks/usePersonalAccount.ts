@@ -73,7 +73,7 @@ const usePersonalAccount = () => {
 				setLoading(false)
 				handleEdit()
 				ButtonClicked({
-					action: 'Save',
+					action: 'Edit Account',
 					page: 'Account',
 					url: router.asPath,
 				})
