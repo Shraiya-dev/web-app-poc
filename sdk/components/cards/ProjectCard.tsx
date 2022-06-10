@@ -62,6 +62,25 @@ const CustomPaper = styled(Paper)(({ theme }) => ({
 		textAlign: 'center',
 		color: theme.palette.secondary.main,
 	},
+	'.projectName': {
+		fontSize: 20,
+		fontWeight: 700,
+		clear: 'both',
+		display: 'inline-block',
+		overflow: 'hidden',
+		whiteSpace: 'nowrap',
+		textOverflow: 'ellipsis',
+	},
+	'.location': {
+		fontSize: 12,
+		color: theme.palette.secondary.main,
+		clear: 'both',
+		display: 'inline-block',
+		overflow: 'hidden',
+		whiteSpace: 'nowrap',
+		textOverflow: 'ellipsis',
+		textTransform: 'capitalize',
+	},
 	button: {
 		'&:hover': {
 			background: 'rgba(238, 250, 255, 1)',
@@ -87,8 +106,8 @@ export const ProjectCard = ({ ...props }) => {
 						url: router.asPath,
 					})
 				}}>
-				<Typography style={{ fontSize: 20, fontWeight: 700 }}>{project?.name || ''}</Typography>
-				<Typography style={{ fontSize: 12, color: theme.palette.secondary.main }} textTransform='capitalize'>
+				<Typography className='projectName'>{project?.name || ''}</Typography>
+				<Typography className='location'>
 					{' '}
 					<LocationOnOutlinedIcon style={{ verticalAlign: 'middle', fontSize: 12, marginBottom: 4 }} />{' '}
 					{`${project?.city}, ${project?.state}`}
