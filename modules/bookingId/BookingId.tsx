@@ -34,7 +34,7 @@ export const BookingId = () => {
 						<Stack direction={'row'}>
 							<Typography
 								style={{
-									fontSize: 24,
+									fontSize: 26,
 									fontWeight: 700,
 									color: theme.palette.secondary.main,
 									paddingRight: 8,

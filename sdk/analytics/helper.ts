@@ -8,8 +8,8 @@ export const PathName: Partial<{
 	'/projects/create': 'Create Project',
 	'/projects/[projectId]/bookings/create': 'Create Booking',
 	'/create-profile': 'Create Profile',
-	'/verify-email':'Verify Email',
+	'/verify-email': 'Verify Email',
 	'/create-organisation': 'Create Organisation',
-	'/onboarding/failed':'Organisation Creation Failed',
-	'/onboarding/success':'Organisation Creation Success'
+	'/onboarding/failed': 'Organisation Creation Failed',
+	'/onboarding/success': 'Organisation Creation Success',
 }

@@ -24,5 +24,5 @@ export interface CustomerDetails {
 	onboardingStatus: ONBOARDING_STATUS
 	GSTIN: string
 	designation: DESIGNATION
-	userAccessRole: string
+	organisationRole: string
 }

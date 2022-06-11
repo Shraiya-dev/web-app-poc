@@ -3,6 +3,7 @@ import {
 	checkError,
 	CompanyNameField,
 	FileInput,
+	getCustomerDetails,
 	InputWrapper,
 	primary,
 	useContractorAuth,
@@ -35,9 +36,21 @@ const EditCompanyInfo = ({ ...props }) => {
 		}
 		const orgId = user?.organisationId
 		const { data } = await updateOrganisation(payload, orgId)
-		getOrgDetails()
+		//	getOrgDetails()
 		router.push('/profile/details')
 	}, [form])
+
+	useEffect(() => {
+		if (user?.organisationId) {
+			getOrgDetails(user?.organisationId)
+		} else {
+			getCustomerDetails()
+				.then((res) => getOrgDetails(res?.data?.payload?.linkedOrganisation?.organisationId))
+				.catch((error) => {
+					console.log('error', error)
+				})
+		}
+	}, [])
 
 	return (
 		<EditCompanyInfoStyle>
@@ -191,9 +204,9 @@ const EditCompanyInfo = ({ ...props }) => {
 
 						<LoadingButton
 							//type='submit'
-							onClick={() => {
-								updateOrg()
-								getOrgDetails()
+							onClick={async () => {
+								await updateOrg()
+								//getOrgDetails()
 								setIsCmpDetailsEditable((state: any) => !state)
 
 								ButtonClicked({

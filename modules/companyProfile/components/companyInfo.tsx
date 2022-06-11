@@ -12,7 +12,6 @@ const CompanyInfoStyle = styled(Box)(({ theme }) => ({
 
 const CompanyInfo = () => {
 	const { isCmpDetailsEditable, setIsCmpDetailsEditable, handleEdit } = useCompanyDetails()
-	const { user } = useContractorAuth()
 
 	return (
 		<CompanyInfoStyle>
@@ -32,7 +31,10 @@ const CompanyInfo = () => {
 					isCmpDetailsEditable={isCmpDetailsEditable}
 				/>
 			) : (
-				<DisplayCompanyInfo />
+				<DisplayCompanyInfo
+					setIsCmpDetailsEditable={setIsCmpDetailsEditable}
+					isCmpDetailsEditable={isCmpDetailsEditable}
+				/>
 			)}
 		</CompanyInfoStyle>
 	)

@@ -40,9 +40,8 @@ interface Identify {
 	company?: string
 	createdAt?: string
 	organisationId?: string
-	userAccessRole?: string
+	organisationRole?: string
 	designation?: string
-	GSTIN?: string
 	customerStatus?: string
 }
 

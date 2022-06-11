@@ -1,4 +1,5 @@
 import { Box, styled, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material'
+import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import { DESIGNATION, getCustomerRoles, primary, theme } from '../../../sdk'
 import { designationLabel } from '../../../sdk/constants/designation'
@@ -51,9 +52,10 @@ const CompanyMembers = () => {
 		},
 	]
 
-	const { orgMemberDetails } = useCompanyDetails()
+	const { orgMemberDetails, getMemberDetails } = useCompanyDetails()
 
 	const [customerRoles, setCustomerRoles] = useState<any[]>([])
+	const router = useRouter()
 
 	useEffect(() => {
 		getCustomerRoles()
@@ -63,7 +65,13 @@ const CompanyMembers = () => {
 			.catch((error) => {
 				console.log('error', error)
 			})
-	}, [])
+
+		getMemberDetails()
+	}, [router.pathname === '/profile/[tab]'])
+
+	// useEffect(() => {
+
+	// }, [])
 
 	function mapInfo(designation: any) {
 		return customerRoles?.find((obj) => {

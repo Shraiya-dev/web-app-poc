@@ -17,7 +17,7 @@ const useCompanyDetails = () => {
 	const [loading, setLoading] = useState(false)
 	const [isGSTINDocUploaded, setIsGSTINDocUploaded] = useState(false)
 	const [isCmpDetailsEditable, setIsCmpDetailsEditable] = useState(false)
-	const { user } = useContractorAuth()
+	const { user, getContactorUserInfo } = useContractorAuth()
 	const [orgDetails, setOrgDetails] = useState<OrgDetails>()
 	const [orgMemberDetails, setOrgMemberDetails] = useState([])
 
@@ -27,26 +27,27 @@ const useCompanyDetails = () => {
 		setSelectedTab(value)
 	}
 
-	const getOrgDetails = useCallback(async () => {
-		const orgId = user?.organisationId
-		if (orgId) {
-			const { data, status } = await getOrganisationDetails(orgId)
+	const getOrgDetails = useCallback(
+		async (orgId: any) => {
+			if (orgId) {
+				const { data, status } = await getOrganisationDetails(orgId)
+				if (status === 200) {
+					setOrgDetails({
+						companyName: data.payload.organisation.companyName,
+						GSTIN: data.payload.organisation.GSTIN,
+						GSTINDocuments: [data.payload.organisation.GstinCertificate],
+					})
 
-			if (status === 200) {
-				setOrgDetails({
-					companyName: data.payload.organisation.companyName,
-					GSTIN: data.payload.organisation.GSTIN,
-					GSTINDocuments: [data.payload.organisation.GstinCertificate],
-				})
-
-				form.setValues({
-					companyName: data.payload.organisation.companyName ?? '',
-					GSTIN: data.payload.organisation.GSTIN ?? '',
-					GSTINDocuments: [data.payload.organisation.GstinCertificate] ?? [],
-				})
+					form.setValues({
+						companyName: data.payload.organisation.companyName ?? '',
+						GSTIN: data.payload.organisation.GSTIN ?? '',
+						GSTINDocuments: [data.payload.organisation.GstinCertificate] ?? [],
+					})
+				}
 			}
-		}
-	}, [user?.organisationId])
+		},
+		[user?.organisationId]
+	)
 
 	const getMemberDetails = useCallback(async () => {
 		const orgId = user?.organisationId
@@ -142,10 +143,10 @@ const useCompanyDetails = () => {
 		[form, showSnackbar]
 	)
 
-	useEffect(() => {
-		getOrgDetails()
-		getMemberDetails()
-	}, [user, getOrgDetails])
+	// useEffect(() => {
+	// 	getOrgDetails()
+	// 	getMemberDetails()
+	// }, [user, getOrgDetails])
 
 	return {
 		form,
@@ -162,6 +163,7 @@ const useCompanyDetails = () => {
 		orgDetails,
 		setOrgDetails,
 		getOrgDetails,
+		getMemberDetails,
 	}
 }
 

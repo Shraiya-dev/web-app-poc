@@ -19,6 +19,8 @@ const CompanyDetails = () => {
 	const { selectedTab, handleTabSelection } = useCompanyDetails()
 	const router = useRouter()
 
+	console.log('router', router)
+
 	useEffect(() => {
 		getContactorUserInfo()
 	}, [router])
@@ -29,7 +31,7 @@ const CompanyDetails = () => {
 				<Stack m={2}>
 					<Typography
 						style={{
-							fontSize: isMobile ? 20 : 26,
+							fontSize: 26,
 							fontWeight: 700,
 							color: theme.palette.secondary.main,
 						}}>

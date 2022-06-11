@@ -36,7 +36,7 @@ export const ProjectDashboard = () => {
 				<Stack>
 					<Typography
 						style={{
-							fontSize: isMobile ? 20 : 26,
+							fontSize: 26,
 							fontWeight: 700,
 							color: theme.palette.secondary.main,
 						}}>

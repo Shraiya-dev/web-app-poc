@@ -12,7 +12,7 @@ export const DrawerItem = ({ ...props }) => {
 
 	const BOOKING_LIST = '/projects/[projectId]/[tab]'
 	const BOOKING_DETAILS = '/bookings/[projectId]/[bookingId]/[tab]'
-	const PROFILE = '/profile'
+	const PROFILE = '/profile/[tab]'
 
 	const pageName =
 		router?.pathname === BOOKING_LIST
@@ -20,7 +20,7 @@ export const DrawerItem = ({ ...props }) => {
 			: router?.pathname === BOOKING_DETAILS
 			? 'Booking'
 			: router?.pathname === PROFILE
-			? 'Profile'
+			? 'Company Profile'
 			: 'Dashboard'
 
 	const { icon, path, title, route, toggleDrawer } = props

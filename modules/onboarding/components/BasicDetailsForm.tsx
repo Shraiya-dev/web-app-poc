@@ -52,7 +52,7 @@ export const BasicDetailsForm = () => {
 					<Stack mb={3}>
 						<Typography
 							style={{
-								fontSize: isMobile ? 20 : 26,
+								fontSize: 26,
 								fontWeight: 700,
 								color: theme.palette.secondary.main,
 							}}>

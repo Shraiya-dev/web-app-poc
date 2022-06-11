@@ -98,7 +98,7 @@ const ContractorAuthProvider = ({ children }: any) => {
 			dispatch({
 				user: {
 					organisationId: linkedOrganisation?.organisationId ?? '',
-					userAccessRole: linkedOrganisation?.role ?? '',
+					organisationRole: linkedOrganisation?.role ?? '',
 					customerId: _id ?? '',
 					email: email ?? '',
 					name: name ?? '',
@@ -117,9 +117,8 @@ const ContractorAuthProvider = ({ children }: any) => {
 				phone: data.payload?.phoneNumber ?? '',
 				company: data.payload.companyName ?? '',
 				organisationId: linkedOrganisation?.organisationId ?? '',
-				userAccessRole: linkedOrganisation?.role ?? '',
+				organisationRole: linkedOrganisation?.role ?? '',
 				designation: designation ?? '',
-				GSTIN: data?.payload?.GSTIN ?? '',
 				customerStatus: customerStatus ?? CUSTOMER_STATUS?.REGISTERED,
 			})
 		} catch (error: any) {
@@ -186,9 +185,9 @@ const ContractorAuthProvider = ({ children }: any) => {
 			const { data } = await emailVerification(payload)
 			//getContactorUserInfo()
 			return data
-		} catch (error:any) {
+		} catch (error: any) {
 			showSnackbar(error?.error, 'error')
-			console.log('error',error)
+			console.log('error', error)
 		}
 	}, [])
 
@@ -211,7 +210,7 @@ const ContractorAuthProvider = ({ children }: any) => {
 					user: {
 						customerId: data?.payload?.customerId ?? '',
 						organisationId: data?.payload?.linkedOrganisation?.organisationId ?? '',
-						userAccessRole: data?.payload?.linkedOrganisation?.role ?? '',
+						organisationRole: data?.payload?.linkedOrganisation?.role ?? '',
 						email: data?.payload?.email ?? '',
 						name: data?.payload?.name ?? '',
 						phoneNumber: data?.payload?.phoneNumber ?? '',
