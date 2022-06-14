@@ -112,14 +112,19 @@ const ContractorAuthProvider = ({ children }: any) => {
 			})
 
 			await Identify({
-				name: data.payload?.name ?? '',
-				email: data.payload?.email ?? '',
-				phone: data.payload?.phoneNumber ?? '',
-				company: data.payload.companyName ?? '',
-				organisationId: linkedOrganisation?.organisationId ?? '',
-				organisationRole: linkedOrganisation?.role ?? '',
-				designation: designation ?? '',
-				customerStatus: customerStatus ?? CUSTOMER_STATUS?.REGISTERED,
+				userType: 'customer',
+				customerId: data?.payload?._id ?? '',
+				name: data?.payload?.name ?? '',
+				email: data?.payload?.email ?? '',
+				phone: data?.payload?.phoneNumber ?? '',
+				company: data?.payload?.companyName ?? '',
+				createdAt: data?.payload?.createdAt ?? '',
+				organisationId: data?.payload?.linkedOrganisation?.organisationId ?? '',
+				organisationRole: data?.payload?.linkedOrganisation?.role ?? '',
+				designation: data?.payload?.designation ?? '',
+				customerStatus: data?.payload?.customerStatus ?? CUSTOMER_STATUS?.REGISTERED,
+				isOrganisationMembershipDeleted: data?.payload?.linkedOrganisation?.isDeleted ? 'Yes' : '',
+				onboardingStatus: data?.payload?.onboardingStatus ?? ONBOARDING_STATUS.PROFILE_CREATION_PENDING,
 			})
 		} catch (error: any) {
 			//todo show error in snackbar
@@ -141,12 +146,19 @@ const ContractorAuthProvider = ({ children }: any) => {
 					})
 
 					await Identify({
+						userType: 'customer',
 						customerId: data?.data?._id ?? '',
-						name: data.data?.name ?? '',
-						email: data.data?.email ?? '',
-						phone: data.data?.phoneNumber ?? '',
-						company: data.data.companyName ?? '',
-						createdAt: data.data.createdAt ?? '',
+						name: data?.data?.name ?? '',
+						email: data?.data?.email ?? '',
+						phone: data?.data?.phoneNumber ?? '',
+						company: data?.data?.companyName ?? '',
+						createdAt: data?.data?.createdAt ?? '',
+						organisationId: data?.data?.linkedOrganisation?.organisationId ?? '',
+						organisationRole: data?.data?.linkedOrganisation?.role ?? '',
+						designation: data?.data?.designation ?? '',
+						customerStatus: data?.data?.customerStatus ?? CUSTOMER_STATUS?.REGISTERED,
+						isOrganisationMembershipDeleted: data?.data?.linkedOrganisation?.isDeleted ? 'Yes' : '',
+						onboardingStatus: data?.payload?.onboardingStatus ?? ONBOARDING_STATUS.PROFILE_CREATION_PENDING,
 					})
 					return data
 				} else {

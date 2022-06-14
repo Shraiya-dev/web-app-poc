@@ -33,6 +33,7 @@ interface NavigationTabClicked {
 }
 
 interface Identify {
+	userType: string
 	customerId?: any
 	name: string
 	email: string
@@ -43,6 +44,8 @@ interface Identify {
 	organisationRole?: string
 	designation?: string
 	customerStatus?: string
+	isOrganisationMembershipDeleted?: string
+	onboardingStatus?: string
 }
 
 export const ButtonClicked = ({ ...props }: ButtonClicked) => {
@@ -62,7 +65,9 @@ export const NavigationTabClicked = ({ ...props }: NavigationTabClicked) => {
 }
 
 export const Identify = async ({ ...props }: Identify) => {
-	const { customerId, ...rest } = props
+	const indentityInfo = Object.fromEntries(Object.entries(props).filter(([_, v]) => v.length > 0))
+
+	const { customerId, ...rest } = indentityInfo
 	Analytic.identify(customerId, { ...rest })
 }
 

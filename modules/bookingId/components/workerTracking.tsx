@@ -1,17 +1,15 @@
-import { Badge, Button, CircularProgress, Grid, Pagination, Stack, Typography } from '@mui/material'
-import Link from 'next/link'
-import { JobCardCard, primary, SearchField, theme } from '../../../sdk'
+import { CircularProgress, Grid, Pagination, Stack, Typography } from '@mui/material'
+import { JobCardCard, theme } from '../../../sdk'
 
-import TuneIcon from '@mui/icons-material/Tune'
 import { useRouter } from 'next/router'
-import { useCallback, useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { useBookingId } from '../hooks'
 import Filters from './filters'
 
 const WorkerTracking = () => {
 	const router = useRouter()
 
-	const { jobCards, bookingSummary, isLoading, SetPageNumber, pageNumber, hasMore, getJobCards, setJobCards } =
+	const { jobCards, bookingSummary, isLoading, SetPageNumber, pageNumber, hasMore, getJobCards, setJobCards, form } =
 		useBookingId()
 
 	const filterTags = [
@@ -39,6 +37,17 @@ const WorkerTracking = () => {
 	]
 
 	useEffect(() => {
+		router.push(
+			{
+				query: { ...router.query, pageNumber: `1` },
+			},
+			undefined,
+			{}
+		)
+	}, [form.values.skillType, form.values.jobCardState])
+
+	useEffect(() => {
+		let pageNumber = `${Number(router.query.pageNumber) > 0 ? Number(router.query.pageNumber) - 1 : '0'}`
 		getJobCards(pageNumber)
 	}, [getJobCards, router.query.pageNumber])
 
@@ -46,7 +55,13 @@ const WorkerTracking = () => {
 		<Stack>
 			<Grid container>
 				<Grid item xs={12} md={12} justifyContent='space-between' alignItems='center'>
-					<Filters filterTags={filterTags} setJobCards={setJobCards} jobCards={jobCards} page={pageNumber} />
+					<Filters
+						filterTags={filterTags}
+						setJobCards={setJobCards}
+						jobCards={jobCards}
+						page={pageNumber}
+						form={form}
+					/>
 				</Grid>
 				{/* <Grid item xs={12} md={3} alignItems='center'>
 					<SearchField name='name' fullWidth placeholder='Search a worker' size='small' />

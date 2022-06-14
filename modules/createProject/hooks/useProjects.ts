@@ -205,7 +205,7 @@ const useCreateProject = () => {
 				//setStep((state) => state + 1)
 			})
 			.catch((error: any) => {
-				showSnackbar(error?.response?.data?.messageToUser, 'error')
+				showSnackbar(error?.response?.data?.developerInfo, 'error')
 				console.log(error)
 				setLoading(false)
 			})

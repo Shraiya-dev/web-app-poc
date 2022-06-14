@@ -5,10 +5,10 @@ import { JobCardState, primary, theme, useMobile, WORKER_TYPES } from '../../../
 import { useBookingId } from '../hooks'
 
 const Filters = ({ ...props }) => {
-	const { filterTags, setJobCards, jobCards, page } = props
+	const { filterTags, setJobCards, jobCards, page, form } = props
 
 	//const { form } = useFilters()
-	const { getJobCards, form } = useBookingId()
+	const { getJobCards } = useBookingId()
 	const router = useRouter()
 	const isMobile = useMobile()
 
@@ -32,8 +32,13 @@ const Filters = ({ ...props }) => {
 		} else {
 			delete router.query.jobCardState
 		}
-		router.query = { projectId: router.query.projectId, bookingId: router.query.bookingId, ...router.query }
-		router.push(router, undefined, {
+		router.query = {
+			projectId: router.query.projectId,
+			bookingId: router.query.bookingId,
+			...router.query,
+		}
+
+		router.replace(router, undefined, {
 			shallow: true,
 			scroll: true,
 		})
@@ -99,29 +104,31 @@ const Filters = ({ ...props }) => {
 								form.values.tags.includes(item.value)
 									? () => {
 											form.setFieldValue('tags', [
-												...form.values.tags.filter((val) => val !== item.value),
+												...form.values.tags.filter((val: any) => val !== item.value),
 											])
 
 											if (item.value in WORKER_TYPES) {
 												form.setFieldValue('skillType', [
-													...form.values.skillType.filter((val) => val !== item.value),
+													...form.values.skillType.filter((val: any) => val !== item.value),
 												])
 											} else if (item.value in JobCardState) {
 												if (item.value === 'WORKER_APPLIED') {
 													form.setFieldValue('jobCardState', [
 														...form.values.jobCardState.filter(
-															(val) => val !== item.value && val !== 'ACCEPTED'
+															(val: any) => val !== item.value && val !== 'ACCEPTED'
 														),
 													])
 												} else if (item.value === 'DEPLOYMENT_COMPLETE') {
 													form.setFieldValue('jobCardState', [
 														...form.values.jobCardState.filter(
-															(val) => val !== item.value && val !== 'COMPLETED'
+															(val: any) => val !== item.value && val !== 'COMPLETED'
 														),
 													])
 												} else {
 													form.setFieldValue('jobCardState', [
-														...form.values.jobCardState.filter((val) => val !== item.value),
+														...form.values.jobCardState.filter(
+															(val: any) => val !== item.value
+														),
 													])
 												}
 											}

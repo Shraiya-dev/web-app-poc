@@ -52,7 +52,7 @@ export const useBookingId = () => {
 				setIsLoading(true)
 
 				const queryParams = new URLSearchParams(rest as any)
-				queryParams.set('pageNumber', `${pageNumber}`)
+				queryParams.set('pageNumber', `${pageNumber ? pageNumber : '0'}`)
 
 				const { data } = await getWorkerDetails(bookingId, projectId, queryParams.toString())
 				setHasMore(data?.payload?.hasMore)

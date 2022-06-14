@@ -1,4 +1,4 @@
-import { Box, Button, CircularProgress, Stack, Tab, Tabs, Typography } from '@mui/material'
+import { Box, CircularProgress, Stack, Tab, Tabs, Typography } from '@mui/material'
 import { useRouter } from 'next/router'
 import { JobTypeLabel, primary, StatusChip, theme, useMobile } from '../../sdk'
 import { CustomTopBar } from '../../sdk/components/topBar/customTopBar'
@@ -9,7 +9,6 @@ import WorkerTracking from './components/workerTracking'
 import Image from 'next/image'
 import { JobTypeIcon } from '../createBooking/utils'
 import BookingInfo from './components/bookingInfo'
-import { Analytic } from '../../sdk/analytics'
 import { HorizontalTabClicked } from '../../sdk/analytics/analyticsWrapper'
 
 export const BookingId = () => {

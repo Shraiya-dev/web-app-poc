@@ -19,8 +19,6 @@ const CompanyDetails = () => {
 	const { selectedTab, handleTabSelection } = useCompanyDetails()
 	const router = useRouter()
 
-	console.log('router', router)
-
 	useEffect(() => {
 		getContactorUserInfo()
 	}, [router])
