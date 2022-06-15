@@ -70,8 +70,14 @@ function MyApp({ Component, pageProps }: AppProps) {
 	useEffect(() => {}, [])
 
 	useEffect(() => {
-		// const routeInfo = router.route
-		// const tabInfo = router.query.tab
+		const utmParams =
+			'/login?utm_source=social&utm_medium=facebook&utm_campaign=Contractor_lead_welder_fitters_may_2022_homepage&utm_content=a%2Fb+test_homepage'
+		if (router.asPath === utmParams) {
+			let queryInfo = router.asPath?.split('?')
+
+			localStorage.setItem('utmParams', queryInfo[1])
+		}
+
 		AnalyticsPage(router)
 	}, [router.asPath])
 
