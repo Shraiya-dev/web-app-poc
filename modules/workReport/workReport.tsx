@@ -222,7 +222,7 @@ export const WorkReport = () => {
 										</TableCell>
 										<TableCell>
 											<Typography color='secondary.main'>
-												{item?.totalShiftHours ?? 'NA'}
+												{item?.avgShiftHours ?? 'NA'}
 											</Typography>
 										</TableCell>
 										<TableCell>
