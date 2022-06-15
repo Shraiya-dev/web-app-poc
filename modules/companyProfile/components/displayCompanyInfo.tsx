@@ -44,7 +44,7 @@ const DisplayCompanyInfo = ({ ...props }) => {
 	}, [])
 	return (
 		<DisplayCompanyInfoStyle>
-			<ViewImage open={viewDoc} onClick={handleView} imageSrc={orgDetails?.GSTINDocuments[0] ?? ''} />
+			<ViewImage open={viewDoc} onClick={handleView} imageSrc={orgDetails?.GSTINDocuments ?? ''} />
 
 			<Stack spacing={3}>
 				<TextWrapper id='companyName' label='Company Name'>
