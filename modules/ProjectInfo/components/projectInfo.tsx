@@ -1,15 +1,34 @@
 import { Box, CircularProgress, Grid, IconButton, Paper, Stack, Typography } from '@mui/material'
+import { useState } from 'react'
 import { InputWrapper } from '../../../sdk'
 import { TextWrapper } from '../../../sdk/components/Input/TextWrapper'
+import ViewImage from '../../../sdk/components/viewImage/viewImage'
 import { JobBenefits } from '../../../sdk/types/jobBenefits'
 import { overTimeLabel } from '../../createBooking/utils'
 import { useProjectInfo } from '../hooks/useProjectInfo'
 
 const ProjectInfo = () => {
 	const { projectInfo, loading } = useProjectInfo()
+	const [viewSiteImg, setViewSiteImg] = useState(false)
+	const [viewAccomodationImg, setViewAccomodationImg] = useState(false)
+
+	const handleSiteView = () => {
+		setViewSiteImg((state) => !state)
+	}
+
+	const handleAccomodationView = () => {
+		setViewAccomodationImg((state) => !state)
+	}
 
 	return (
 		<>
+			<ViewImage open={viewSiteImg} onClick={handleSiteView} imageSrc={projectInfo?.images?.site ?? ''} />
+			<ViewImage
+				open={viewAccomodationImg}
+				onClick={handleAccomodationView}
+				imageSrc={projectInfo?.images?.accommodations ?? ''}
+			/>
+
 			{loading ? (
 				<Stack p={5} alignItems='center'>
 					<CircularProgress size={50} />
@@ -31,7 +50,7 @@ const ProjectInfo = () => {
 						</TextWrapper>
 
 						<TextWrapper id='sitePhotos' label='Site Photos'>
-							<Grid container>
+							<Grid container onClick={() => handleSiteView()} style={{ cursor: 'pointer' }}>
 								{projectInfo?.images?.site?.map((url: any, index: any) => {
 									return (
 										<Grid item key={index}>
@@ -76,7 +95,7 @@ const ProjectInfo = () => {
 
 						{projectInfo?.benefits?.includes(JobBenefits?.ACCOMODATION) && (
 							<TextWrapper id='accomodationPhotos' label='Accommodation Photos'>
-								<Grid container>
+								<Grid container onClick={() => handleAccomodationView()} style={{ cursor: 'pointer' }}>
 									{projectInfo?.images?.accommodations?.map((url: any, index: any) => {
 										return (
 											<Grid item key={index}>
