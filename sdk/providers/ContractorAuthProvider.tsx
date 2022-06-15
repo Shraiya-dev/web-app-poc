@@ -274,14 +274,17 @@ const ContractorAuthProvider = ({ children }: any) => {
 					router.replace(redirectRoute)
 				}
 				return
-			}
-
-			if (
+			} else if (
 				router.pathname === '/create-organisation' &&
 				state.user.onboardingStatus === ONBOARDING_STATUS.ONBOARDED
 			) {
 				router.replace('/onboarding/success')
 				return
+			} else if (
+				router.pathname === '/onboarding/failed' &&
+				state.user.onboardingStatus === ONBOARDING_STATUS.ONBOARDED
+			) {
+				router.replace('/dashboard')
 			} else {
 				if (
 					// restricts access to any other routes except the routes included in array

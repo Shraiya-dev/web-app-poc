@@ -6,8 +6,6 @@ import Carousal from '../carousal/carousal'
 const ViewImage = ({ ...props }) => {
 	const { open, imageSrc, onClick } = props
 
-	console.log('imageSrc', imageSrc)
-
 	// const fileType = imageSrc.substr(imageSrc.lastIndexOf('.') + 1)
 
 	const openPdf = () => {
