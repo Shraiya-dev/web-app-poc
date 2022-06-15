@@ -16,7 +16,11 @@ export const primary = {
 	mediumGreen: 'rgba(15, 175, 127, 0.5)',
 	successGreen: '#0FAF7F',
 }
-
+export const colors = {
+	AliceBlue: '#EBF1F4',
+	RoyalBlue: '#36B5EC',
+	FloralWhite: '#FFFCF1',
+}
 const breakpoints = createBreakpoints({})
 
 let themeDef = createTheme({

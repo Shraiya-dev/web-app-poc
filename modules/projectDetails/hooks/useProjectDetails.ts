@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router'
 import { useCallback, useEffect, useState } from 'react'
-import { useSnackbar } from '../../../sdk'
+import { capitalize, useSnackbar } from '../../../sdk'
+import { HorizontalTabClicked } from '../../../sdk/analytics/analyticsWrapper'
 import { getProjectDetails } from '../../createBooking/apis'
 
 export const useProjectDetails = () => {
@@ -12,7 +13,14 @@ export const useProjectDetails = () => {
 
 	const projectId = router.query.projectId
 	const handleTabSelection = (e: any, value: any) => {
-		setSelectedTab(value)
+		HorizontalTabClicked({
+			name: capitalize(value),
+			page: 'Project',
+			projectId: projectId,
+			url: router.asPath,
+		})
+		router.query.tab = value
+		router.replace(router)
 	}
 
 	const getProjectInfo = useCallback(async () => {
@@ -24,7 +32,6 @@ export const useProjectDetails = () => {
 			showSnackbar(error?.response?.data?.developerInfo, 'error')
 		}
 	}, [router.query])
-
 	useEffect(() => {
 		getProjectInfo()
 	}, [getProjectInfo])

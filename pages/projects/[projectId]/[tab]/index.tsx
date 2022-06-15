@@ -1,9 +1,8 @@
 import { NextPage } from 'next'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
-
-import ContractorDashboardLayout from '../../../sdk/layouts/ContractorDashboardLayout'
-import { ProjectDetails } from '../../../modules/projectDetails/projectDetails'
+import { ProjectDetails } from '../../../../modules/projectDetails/projectDetails'
+import ContractorDashboardLayout from '../../../../sdk/layouts/ContractorDashboardLayout'
 
 const TabPage: NextPage = () => {
 	const router = useRouter()

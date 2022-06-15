@@ -12,6 +12,7 @@ import { CustomTopBar } from '../../sdk/components/topBar/customTopBar'
 import { Dashboard } from '../dashboard'
 import ProjectInfo from '../ProjectInfo/components/projectInfo'
 import { useProjectDetails } from './hooks/useProjectDetails'
+import { WorkReport } from '../workReport'
 
 export const ProjectDetails = () => {
 	const { selectedTab, handleTabSelection, projectDetails } = useProjectDetails()
@@ -21,33 +22,42 @@ export const ProjectDetails = () => {
 	return (
 		<>
 			<CustomTopBar>
-				<Stack justifyContent={'flex-start'} width={1}>
-					<Typography
-						style={{
-							fontSize: isMobile ? 18 : 26,
-							fontWeight: 700,
-							color: theme.palette.secondary.main,
-						}}>
-						<ArrowBackIosNewIcon
-							onClick={() => router.push('/dashboard')}
-							sx={{
-								verticalAlign: 'middle',
-								color: primary.main,
-								fontSize: 24,
-								cursor: 'pointer',
-							}}
-						/>
-						&nbsp;{projectDetails?.name}
-					</Typography>
-					<Typography
-						sx={{ fontSize: 14, color: theme.palette.secondary.main, paddingLeft: 4 }}
-						textTransform='capitalize'>
-						<LocationOnIcon style={{ fontSize: 12, verticalAlign: 'middle' }} />
-						&nbsp;{projectDetails?.city} , {projectDetails?.state}
-					</Typography>
-				</Stack>
+				<Stack flex={1} direction='row' alignItems='flex-start'>
+					<Stack direction='row' justifyContent={'flex-start'} flex={1}>
+						<Typography
+							style={{
+								fontSize: isMobile ? 18 : 26,
+								fontWeight: 700,
+								color: theme.palette.secondary.main,
+							}}>
+							<ArrowBackIosNewIcon
+								onClick={() => router.push('/dashboard')}
+								sx={{
+									verticalAlign: 'middle',
+									color: primary.main,
+									fontSize: 24,
+									cursor: 'pointer',
+								}}
+							/>
+						</Typography>
+						<Stack>
+							<Typography
+								style={{
+									fontSize: isMobile ? 18 : 26,
+									fontWeight: 700,
+									color: theme.palette.secondary.main,
+								}}>
+								{projectDetails?.name}
+							</Typography>
+							<Typography
+								sx={{ fontSize: 14, color: theme.palette.secondary.main }}
+								textTransform='capitalize'>
+								<LocationOnIcon style={{ fontSize: 12, verticalAlign: 'middle' }} />
+								&nbsp;{projectDetails?.city} , {projectDetails?.state}
+							</Typography>
+						</Stack>
+					</Stack>
 
-				<Stack justifyContent={'flex-end'} width={1}>
 					<Link href={`/projects/${router?.query?.projectId}/bookings/create`} passHref>
 						<a>
 							<Button
@@ -67,7 +77,7 @@ export const ProjectDetails = () => {
 					</Link>
 				</Stack>
 			</CustomTopBar>
-			<TabContext value={selectedTab}>
+			<TabContext value={router.query.tab as string}>
 				<Box sx={{ borderBottom: 1, borderColor: 'divider', marginBottom: 0 }}>
 					{/* <Typography color={primary.main}>
 				<ArrowBackIosNewIcon
@@ -86,62 +96,40 @@ export const ProjectDetails = () => {
 								height: '3px',
 							},
 						}}
-						value={selectedTab}
+						value={router.query.tab as string}
 						onChange={handleTabSelection}>
 						<Tab
 							sx={{
 								fontSize: '18px',
 								textTransform: 'none',
 							}}
-							//iconPosition='start'
-							// icon={
-							// 	<Icon style={{ verticalAlign: 'middle' }}>
-							// 		<Image src={BookingsSvg} />
-							// 	</Icon>
-							// }
 							value='bookings'
 							label='Bookings'
-							//href={`/projects/${router?.query?.projectId}/bookings`}
-							onClick={() => {
-								router.push(`/projects/${router?.query?.projectId}/bookings`)
-								HorizontalTabClicked({
-									name: 'Bookings',
-									page: 'Project',
-									projectId: router?.query?.projectId,
-									url: router.asPath,
-								})
-							}}
 						/>
-
 						<Tab
 							sx={{
 								fontSize: '18px',
 								textTransform: 'none',
 							}}
-							//iconPosition='start'
-							// icon={
-							// 	<Icon style={{ verticalAlign: 'middle' }}>
-							// 		<Image src={ProjectDetailSvg} />
-							// 	</Icon>
-							// }
-							value='projectDetails'
-							label='Project Details'
-							onClick={() => {
-								router.push(`/projects/${router?.query?.projectId}/details`)
-								HorizontalTabClicked({
-									name: 'Project Details',
-									page: 'Project',
-									projectId: router?.query?.projectId,
-									url: router.asPath,
-								})
+							value='work-report'
+							label='Work Report'
+						/>
+						<Tab
+							sx={{
+								fontSize: '18px',
+								textTransform: 'none',
 							}}
-							//href={`/projects/${router?.query?.projectId}/details`}
+							value='details'
+							label='Project Details'
 						/>
 					</Tabs>
 				</Box>
 
 				<TabPanel
 					value='bookings'
+					sx={{
+						padding: isMobile ? 1 : 3,
+					}}
 					style={{
 						height: 'calc( 100vh - 160px )',
 						overflowY: 'auto',
@@ -149,9 +137,23 @@ export const ProjectDetails = () => {
 					}}>
 					<Dashboard />
 				</TabPanel>
-
 				<TabPanel
-					value='projectDetails'
+					sx={{
+						padding: isMobile ? 1 : 3,
+					}}
+					value='work-report'
+					style={{
+						height: 'calc( 100vh - 160px )',
+						overflowY: 'auto',
+						position: 'relative',
+					}}>
+					<WorkReport />
+				</TabPanel>
+				<TabPanel
+					value='details'
+					sx={{
+						padding: isMobile ? 1 : 3,
+					}}
 					style={{
 						height: 'calc( 100vh - 160px )',
 						overflowY: 'auto',
