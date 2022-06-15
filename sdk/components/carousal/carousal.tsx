@@ -35,8 +35,6 @@ const Carousal = ({ ...props }) => {
 
 	const [currImg, setCurrImg] = useState(0)
 
-	console.log('images', props)
-
 	return (
 		<CarousalStyle>
 			{currImg !== 0 && (
