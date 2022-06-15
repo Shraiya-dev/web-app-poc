@@ -48,27 +48,69 @@ interface Identify {
 	onboardingStatus?: string
 }
 
+const getUtmObject = () => {
+	const utmParams = localStorage.getItem('utmParams')
+	let queryObj
+	if (utmParams) {
+		queryObj = JSON.parse('{"' + decodeURI(utmParams.replace(/&/g, '","').replace(/=/g, '":"')) + '"}')
+
+		return queryObj
+	}
+
+	return queryObj
+}
+
 export const ButtonClicked = ({ ...props }: ButtonClicked) => {
-	Analytic.track('Button Clicked', props)
+	const utmInfo = getUtmObject()
+	if (utmInfo) {
+		const utmProp = { ...props, utmParams: utmInfo }
+		Analytic.track('Button Clicked', utmProp)
+	} else {
+		Analytic.track('Button Clicked', props)
+	}
 }
 
 export const CardClicked = ({ ...props }: CardClicked) => {
-	Analytic.track('Card Clicked', props)
+	const utmInfo = getUtmObject()
+	if (utmInfo) {
+		const utmProp = { ...props, utmParams: utmInfo }
+		Analytic.track('Card Clicked', utmProp)
+	} else {
+		Analytic.track('Card Clicked', props)
+	}
 }
 
 export const HorizontalTabClicked = ({ ...props }: HorizontalTabClicked) => {
-	Analytic.track('HorizontalTab Clicked', props)
+	const utmInfo = getUtmObject()
+	if (utmInfo) {
+		const utmProp = { ...props, utmParams: utmInfo }
+		Analytic.track('HorizontalTab Clicked', utmProp)
+	} else {
+		Analytic.track('HorizontalTab Clicked', props)
+	}
 }
 
 export const NavigationTabClicked = ({ ...props }: NavigationTabClicked) => {
-	Analytic.track('NavigationTab Clicked', props)
+	const utmInfo = getUtmObject()
+	if (utmInfo) {
+		const utmProp = { ...props, utmParams: utmInfo }
+		Analytic.track('NavigationTab Clicked', utmProp)
+	} else {
+		Analytic.track('NavigationTab Clicked', props)
+	}
 }
 
 export const Identify = async ({ ...props }: Identify) => {
 	const indentityInfo = Object.fromEntries(Object.entries(props).filter(([_, v]) => v.length > 0))
 
 	const { customerId, ...rest } = indentityInfo
-	Analytic.identify(customerId, { ...rest })
+
+	const utmInfo = getUtmObject()
+	if (utmInfo) {
+		Analytic.identify(customerId, { ...rest, utmParams: utmInfo })
+	} else {
+		Analytic.identify(customerId, { ...rest })
+	}
 }
 
 export const AnalyticsPage = (router: any) => {
@@ -81,5 +123,10 @@ export const AnalyticsPage = (router: any) => {
 			? `Bookings - ${router.query.tab === 'track-workers' ? 'Track Workers' : router.query.tab}`
 			: PathName[router.route ?? '/dashboard']
 
-	Analytic.page({ name: routeName })
+	const utmInfo = getUtmObject()
+	if (utmInfo) {
+		Analytic.page({ name: routeName, utmParams: utmInfo })
+	} else {
+		Analytic.page({ name: routeName })
+	}
 }
