@@ -45,16 +45,16 @@ export const EmailOtpVerification = ({ ...props }) => {
 			<form onSubmit={form.handleSubmit}>
 				<Typography className='header'>Verify Email</Typography>
 
-				<Typography className='subInfo'>
+				<Box className='subInfo'>
 					Enter{' '}
-					<Box fontWeight='1000' fontStyle={'bolder'} display='inline' color={'black'}>
+					<Typography fontWeight='1000' fontStyle={'bolder'} display='inline' color={'black'}>
 						OTP
-					</Box>{' '}
+					</Typography>{' '}
 					sent to your email{' '}
-					<Box fontWeight='1000' display='inline' color={'black'}>
+					<Typography fontWeight='1000' display='inline' color={'black'}>
 						{user?.email}
-					</Box>
-				</Typography>
+					</Typography>
+				</Box>
 
 				<Stack spacing={3}>
 					<OtpInput
