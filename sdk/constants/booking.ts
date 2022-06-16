@@ -1,4 +1,4 @@
-import { BOOKING_STATES } from '../types'
+import { BOOKING_STATES, WORKER_TYPES } from '../types'
 
 export const BookingStateLabel: Partial<{
 	[key in BOOKING_STATES]: string
@@ -11,4 +11,12 @@ export const BookingStateLabel: Partial<{
 	READY_TO_DEPLOY: 'Ready to Deploy',
 	DEPLOYED: 'Deployed',
 	CANCELLED: 'Cancelled',
+}
+
+export const SkillTypeLabel: Partial<{
+	[key in WORKER_TYPES]?: string
+}> = {
+	HELPER: 'Helper',
+	SUPERVISOR: 'Supervisor',
+	TECHNICIAN: 'Technician',
 }

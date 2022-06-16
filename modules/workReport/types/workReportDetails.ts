@@ -1,11 +1,12 @@
+import { JOB_TYPES, WORKER_TYPES } from '../../../sdk'
 import { WorkReportStatus } from './workReport'
 
 export interface WorkReportDetails {
 	workerId?: string
 	name?: string
 	phoneNumber?: string
-	jobType?: string
-	skillType?: string
+	jobType?: JOB_TYPES
+	skillType?: WORKER_TYPES
 	attendanceId?: string
 	isPresent?: boolean
 	checkIn?: string

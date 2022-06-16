@@ -21,7 +21,7 @@ import {
 } from '@mui/material'
 import { useRouter } from 'next/router'
 import { useEffect, useMemo, useState } from 'react'
-import { colors, useContractorAuth, useMobile } from '../../sdk'
+import { colors, JobTypeLabel, JOB_TYPES, SkillTypeLabel, useContractorAuth, useMobile, WORKER_TYPES } from '../../sdk'
 import { ButtonClicked } from '../../sdk/analytics/analyticsWrapper'
 import { DateStack } from '../../sdk/components/date/DateStack'
 import { StyledTableHeadCell } from '../../sdk/styledComponents/Tables'
@@ -398,10 +398,10 @@ export const WorkReportDetails = () => {
 											</Typography>
 										</TableCell>
 										<TableCell>
-											<Typography>{item?.jobType ?? 'NA'}</Typography>
+											<Typography>{JobTypeLabel[item?.jobType as JOB_TYPES]}</Typography>
 										</TableCell>
 										<TableCell>
-											<Typography>{item?.skillType ?? 'NA'}</Typography>
+											<Typography>{SkillTypeLabel[item?.skillType as WORKER_TYPES]}</Typography>
 										</TableCell>
 										<TableCell>
 											{item.isPresent ? (
