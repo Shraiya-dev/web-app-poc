@@ -71,8 +71,13 @@ function MyApp({ Component, pageProps }: AppProps) {
 
 	useEffect(() => {
 		const utmParams =
-			'/login?utm_source=social&utm_medium=facebook&utm_campaign=Contractor_lead_welder_fitters_may_2022_homepage&utm_content=a%2Fb+test_homepage'
-		if (router.asPath === utmParams) {
+			router.asPath.includes('utm_source') ||
+			router.asPath.includes('utm_medium') ||
+			router.asPath.includes('utm_campaign') ||
+			router.asPath.includes('utm_content') ||
+			router.asPath.includes('utm_text')
+
+		if (utmParams) {
 			let queryInfo = router.asPath?.split('?')
 
 			localStorage.setItem('utmParams', queryInfo[1])

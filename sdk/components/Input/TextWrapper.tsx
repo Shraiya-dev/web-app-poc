@@ -1,4 +1,4 @@
-import { InputLabel, InputLabelProps, Stack, Tooltip, Typography } from '@mui/material'
+import { Box, InputLabel, InputLabelProps, Stack, Tooltip, Typography } from '@mui/material'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
 import { theme } from '../../constants'
 
@@ -6,7 +6,7 @@ export const TextWrapper = ({ label, toolTip, children, ...props }: any) => {
 	return (
 		<Stack>
 			{label && (
-				<Typography
+				<Box
 					sx={{
 						mb: 1.5,
 
@@ -29,7 +29,7 @@ export const TextWrapper = ({ label, toolTip, children, ...props }: any) => {
 							/>
 						</Tooltip>
 					)}
-				</Typography>
+				</Box>
 			)}
 
 			{children}
