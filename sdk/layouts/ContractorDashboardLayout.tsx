@@ -15,6 +15,7 @@ import { Analytic } from '../analytics'
 import { NavigationTabClicked } from '../analytics/analyticsWrapper'
 import BusinessIcon from '@mui/icons-material/Business'
 import Link from 'next/link'
+import { clearCookie } from '../analytics/helper'
 
 //always update when you change the app bar height into the onlyCssWeNeed file
 
@@ -55,7 +56,7 @@ const ContractorDashboardLayout = ({ children }: any) => {
 		})
 
 		Analytic.reset()
-
+		clearCookie()
 		logOut()
 	}
 

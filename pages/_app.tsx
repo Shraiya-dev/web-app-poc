@@ -16,6 +16,7 @@ import {
 import '../sdk/styles/onlyCssWeNeed.css'
 import { Analytic } from '../sdk/analytics/analytics'
 import { AnalyticsPage } from '../sdk/analytics/analyticsWrapper'
+import { createCookieInHour, getCookie } from '../sdk/analytics/helper'
 //=====================initializing axios interceptor=======================
 
 axios.defaults.baseURL = envs.SERVER_URL
@@ -67,20 +68,20 @@ axios.interceptors.response.use(
 
 function MyApp({ Component, pageProps }: AppProps) {
 	const router = useRouter()
+	const fullYearDays = 365
+	const cookieExpiryDays = 45
+
 	useEffect(() => {}, [])
 
 	useEffect(() => {
-		const utmParams =
-			router.asPath.includes('utm_source') ||
-			router.asPath.includes('utm_medium') ||
-			router.asPath.includes('utm_campaign') ||
-			router.asPath.includes('utm_content') ||
-			router.asPath.includes('utm_text')
+		const utmParams = router.asPath.includes('utm_')
 
 		if (utmParams) {
 			let queryInfo = router.asPath?.split('?')
-
-			localStorage.setItem('utmParams', queryInfo[1])
+			createCookieInHour('utmParams', queryInfo[1], cookieExpiryDays)
+			if (getCookie('isUTMParamIdentified') === '') {
+				createCookieInHour('isUTMParamIdentified', false, fullYearDays)
+			}
 		}
 
 		AnalyticsPage(router)

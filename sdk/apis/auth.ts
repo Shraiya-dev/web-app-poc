@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { clearCookie, createCookieInHour, getCookie } from '../analytics/helper'
 import { USER_LOGIN_TYPE, USER_TYPE } from '../types/auth'
 
 export const sendOtpService = async (phoneNumber: string, ut: USER_TYPE) => {
@@ -45,6 +46,7 @@ export const updateProfile = async (payload: any) => {
 
 export const logOutService = () => {
 	localStorage.clear()
+
 	if (window.location.pathname !== `/login`) {
 		window.location.href = `/login`
 	}

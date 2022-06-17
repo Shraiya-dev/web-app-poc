@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router'
 import { createContext, useCallback, useContext, useEffect, useMemo, useReducer } from 'react'
 import { Identify } from '../analytics/analyticsWrapper'
+import { createCookieInHour, getCookie } from '../analytics/helper'
 import {
 	emailVerification,
 	getCustomerDetails,
@@ -69,6 +70,8 @@ const ContractorAuthContext = createContext<AuthProviderValue>({
 })
 const { Provider, Consumer } = ContractorAuthContext
 
+const fullYearDays = 365
+
 const ContractorAuthProvider = ({ children }: any) => {
 	const [state, dispatch] = useReducer(simpleReducer, initialAuthState)
 	const router = useRouter()
@@ -82,7 +85,6 @@ const ContractorAuthProvider = ({ children }: any) => {
 	const getContactorUserInfo = useCallback(async () => {
 		try {
 			const { data } = await getCustomerDetails()
-
 			const {
 				_id,
 				email,
@@ -110,6 +112,10 @@ const ContractorAuthProvider = ({ children }: any) => {
 					designation: designation ?? '',
 				},
 			})
+
+			if (getCookie('isUTMParamIdentified') !== '') {
+				createCookieInHour('isUTMParamIdentified', true, fullYearDays)
+			}
 
 			await Identify({
 				userType: 'customer',
@@ -145,6 +151,9 @@ const ContractorAuthProvider = ({ children }: any) => {
 						refreshToken: data.data?.refreshToken,
 					})
 
+					if (getCookie('isUTMParamIdentified') !== '') {
+						createCookieInHour('isUTMParamIdentified', true, fullYearDays)
+					}
 					await Identify({
 						userType: 'customer',
 						customerId: data?.data?._id ?? '',
@@ -233,6 +242,25 @@ const ContractorAuthProvider = ({ children }: any) => {
 						designation: data?.payload?.designation ?? '',
 					},
 				})
+
+				await Identify({
+					userType: 'customer',
+					customerId: data?.payload?._id ?? '',
+					name: data?.payload?.name ?? '',
+					email: data?.payload?.email ?? '',
+					phone: data?.payload?.phoneNumber ?? '',
+					company: data?.payload?.companyName ?? '',
+					createdAt: data?.payload?.createdAt ?? '',
+					organisationId: data?.payload?.linkedOrganisation?.organisationId ?? '',
+					organisationRole: data?.payload?.linkedOrganisation?.role ?? '',
+					designation: data?.payload?.designation ?? '',
+					customerStatus: data?.payload?.customerStatus ?? CUSTOMER_STATUS?.REGISTERED,
+					isOrganisationMembershipDeleted: data?.payload?.linkedOrganisation?.isDeleted ? 'Yes' : '',
+					onboardingStatus: data?.payload?.onboardingStatus ?? ONBOARDING_STATUS.PROFILE_CREATION_PENDING,
+				})
+				if (getCookie('isUTMParamIdentified') !== '') {
+					createCookieInHour('isUTMParamIdentified', true, fullYearDays)
+				}
 			} catch (error: any) {
 				console.log('error', error)
 				if (error?.response?.status !== 401) {

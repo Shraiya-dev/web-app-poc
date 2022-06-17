@@ -1,5 +1,5 @@
 import { Analytic } from './analytics'
-import { PathName } from './helper'
+import { getUtmObject, PathName } from './helper'
 
 interface ButtonClicked {
 	action: string
@@ -46,18 +46,6 @@ interface Identify {
 	customerStatus?: string
 	isOrganisationMembershipDeleted?: string
 	onboardingStatus?: string
-}
-
-const getUtmObject = () => {
-	const utmParams = localStorage.getItem('utmParams')
-	let queryObj
-	if (utmParams) {
-		queryObj = JSON.parse('{"' + decodeURI(utmParams.replace(/&/g, '","').replace(/=/g, '":"')) + '"}')
-
-		return queryObj
-	}
-
-	return queryObj
 }
 
 export const ButtonClicked = ({ ...props }: ButtonClicked) => {
