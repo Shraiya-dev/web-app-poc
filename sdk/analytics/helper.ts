@@ -48,6 +48,12 @@ export const getUtmObject = () => {
 		if (utmParams.length > 0) {
 			queryObj = JSON.parse('{"' + decodeURI(utmParams.replace(/&/g, '","').replace(/=/g, '":"')) + '"}')
 
+			for (const [key, value] of Object.entries(queryObj)) {
+				if (!key.includes('utm_')) {
+					delete queryObj[key]
+				}
+			}
+
 			return queryObj
 		}
 	}

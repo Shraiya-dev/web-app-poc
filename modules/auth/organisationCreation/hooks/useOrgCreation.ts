@@ -54,8 +54,13 @@ const useOrgCreation = () => {
 				GstinCertificate: values.GSTINDocuments[0],
 			}
 
-			await createOrg(payload)
+			try{
+				await createOrg(payload)
 			await getContactorUserInfo()
+			}
+			catch(error: any) {
+				showSnackbar(error?.response?.data?.developerInfo, 'error')
+			}
 			ButtonClicked({
 				action: 'Create Organisation',
 				page: 'Organisation Creation',

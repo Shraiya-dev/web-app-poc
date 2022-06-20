@@ -33,11 +33,11 @@ interface NavigationTabClicked {
 }
 
 interface Identify {
-	userType: string
+	userType?: string
 	customerId?: any
-	name: string
-	email: string
-	phone: string
+	name?: string
+	email?: string
+	phone?: string
 	company?: string
 	createdAt?: string
 	organisationId?: string
@@ -112,6 +112,7 @@ export const AnalyticsPage = (router: any) => {
 			: PathName[router.route ?? '/dashboard']
 
 	const utmInfo = getUtmObject()
+
 	if (utmInfo) {
 		Analytic.page({ name: routeName, utmParams: utmInfo })
 	} else {

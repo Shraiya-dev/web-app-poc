@@ -15,7 +15,7 @@ import {
 } from '../sdk'
 import '../sdk/styles/onlyCssWeNeed.css'
 import { Analytic } from '../sdk/analytics/analytics'
-import { AnalyticsPage } from '../sdk/analytics/analyticsWrapper'
+import { AnalyticsPage, Identify } from '../sdk/analytics/analyticsWrapper'
 import { createCookieInHour, getCookie } from '../sdk/analytics/helper'
 //=====================initializing axios interceptor=======================
 
@@ -84,6 +84,9 @@ function MyApp({ Component, pageProps }: AppProps) {
 			}
 		}
 
+		if (!localStorage.getItem('accessToken')) {
+			Identify({})
+		}
 		AnalyticsPage(router)
 	}, [router.asPath])
 
