@@ -250,15 +250,15 @@ export const WorkReport = () => {
 												{item.status === WorkReportStatus.PENDING_APPROVAL && (
 													<LoadingButton
 														variant='contained'
-														loading={isLoading.approving}
+														loading={isLoading.approving[item.dwrId]}
 														size={'small'}
 														onClick={(e) => {
+															e.stopPropagation()
 															ButtonClicked({
 																action: 'Approve Daily Work Report',
 																page: 'Work report List',
 																url: router.asPath,
 															})
-															e.stopPropagation()
 
 															setApproveConfirmationDialogProps({
 																open: true,

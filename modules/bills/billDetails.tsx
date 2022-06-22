@@ -1,13 +1,8 @@
-import { ArrowBackIosNew, FileDownloadOutlined, Search } from '@mui/icons-material'
-import { LoadingButton } from '@mui/lab'
+import { ArrowBackIosNew } from '@mui/icons-material'
 import {
-	alpha,
 	Avatar,
-	Button,
-	Chip,
+	CircularProgress,
 	IconButton,
-	InputAdornment,
-	Pagination,
 	Paper,
 	Stack,
 	Table,
@@ -16,26 +11,37 @@ import {
 	TableContainer,
 	TableHead,
 	TableRow,
-	TextField,
 	Typography,
 } from '@mui/material'
 import { useRouter } from 'next/router'
-import { useEffect, useMemo, useState } from 'react'
-import { colors, JobTypeLabel, JOB_TYPES, SkillTypeLabel, useContractorAuth, useMobile, WORKER_TYPES } from '../../sdk'
-import { ButtonClicked } from '../../sdk/analytics/analyticsWrapper'
+import { useEffect, useState } from 'react'
+import {
+	colors,
+	JobTypeLabel,
+	JOB_TYPES,
+	PaginationWithHasMore,
+	SkillTypeLabel,
+	useContractorAuth,
+	useMobile,
+	WORKER_TYPES,
+} from '../../sdk'
 import { DateStack } from '../../sdk/components/date/DateStack'
 import { StyledTableHeadCell } from '../../sdk/styledComponents/Tables'
 import { useProjectDetails } from '../projectDetails/hooks'
 import { ApproveConfirmationDialog, ApproveConfirmationDialogProps } from './components'
-import { WorkReportStatusColor, WorkReportStatusLabel } from './constants'
-import { useWorkReport } from './hooks'
-import { WorkReportStatus } from './types'
+import { useBill } from './hooks'
 
-export const WorkReportDetails = () => {
+export const BillDetails = () => {
 	const router = useRouter()
-	const { projectDetails } = useProjectDetails()
-	const { isLoading, workReportByIDResponse, approveWorkReport, disputeWorkReport, downloadWorkReport } =
-		useWorkReport()
+	const { projectDetails, isLoading: isProjectLoading } = useProjectDetails()
+	const {
+		isLoading,
+		billDetailsResponse,
+		billSummaryResponse,
+		approveWorkReport,
+		disputeWorkReport,
+		downloadWorkReport,
+	} = useBill()
 	const { user } = useContractorAuth()
 	const [rasingDispute, setRasingDispute] = useState(false)
 
@@ -58,61 +64,38 @@ export const WorkReportDetails = () => {
 				alignItems='Stretch'
 				justifyContent='space-between'>
 				<Stack spacing={2} direction={isMobile ? 'column' : 'row'}>
+					{/* {isProjectLoading ? (
+						<Stack flex={1} justifyContent='center'>
+							<CircularProgress />
+						</Stack>
+					) : ( */}
 					<Stack direction='row'>
 						<IconButton color='primary' onClick={router.back}>
 							<ArrowBackIosNew />
 						</IconButton>
-						<DateStack date={workReportByIDResponse?.response?.date} />
+						<DateStack date={billDetailsResponse?.displayDate} />
 						<Stack ml={2}>
 							<Typography variant='h5' fontWeight={700}>
-								Work Report
+								Heroes Bills
 							</Typography>
 							<Typography variant='caption' color='grey.600'>
 								{projectDetails?.name}
 							</Typography>
 						</Stack>
 					</Stack>
-					<Stack
-						direction={isMobile ? 'column' : 'row'}
-						alignItems='flex-start'
-						pl={isMobile ? 12 : 0}
-						spacing={2}>
-						<Chip
-							variant='filled'
-							sx={(theme) => ({
-								px: 1,
-								backgroundColor: alpha(
-									WorkReportStatusColor[
-										workReportByIDResponse?.response?.status ?? WorkReportStatus.DRAFT
-									],
-									0.2
-								),
-							})}
-							label={
-								WorkReportStatusLabel[
-									workReportByIDResponse?.response?.status ?? WorkReportStatus.DRAFT
-								]
-							}
-						/>
-						{workReportByIDResponse?.response?.ticketId &&
-							workReportByIDResponse?.response?.status !== WorkReportStatus.APPROVED && (
-								<Typography variant='h6' color='error.main' textAlign='center'>
-									Your ticket id is {workReportByIDResponse?.response?.ticketId}
-								</Typography>
-							)}
-					</Stack>
+					{/* )} */}
 				</Stack>
-				<Stack
+				{/* <Stack
 					direction='row'
 					alignItems='center'
 					justifyContent={isMobile ? 'center' : undefined}
 					spacing={1}
 					mt={1}>
-					{workReportByIDResponse?.response?.status == WorkReportStatus.PENDING_APPROVAL && (
+					// {workReportByIDResponse?.response?.status == WorkReportStatus.PENDING_APPROVAL && (
 						<>
 							<LoadingButton
 								variant='contained'
-								loading={isLoading.approving[router.query?.workReportId as string]}
+								loading={isLoading.approving}
 								disabled={rasingDispute}
 								onClick={() => {
 									ButtonClicked({
@@ -129,7 +112,7 @@ export const WorkReportDetails = () => {
 										cancel: () => {
 											setApproveConfirmationDialogProps({ open: false })
 										},
-										date: workReportByIDResponse?.response?.date,
+										// date: workReportByIDResponse?.response?.date,
 									})
 								}}>
 								Approve
@@ -156,14 +139,14 @@ export const WorkReportDetails = () => {
 							})
 							downloadWorkReport(
 								router.query.workReportId as string,
-								workReportByIDResponse?.response?.date ?? ''
+								// workReportByIDResponse?.response?.date ?? ''
 							)
 						}}>
 						<FileDownloadOutlined />
 					</LoadingButton>
-				</Stack>
+				</Stack> */}
 			</Stack>
-			{rasingDispute && (
+			{/* {rasingDispute && (
 				<Paper
 					sx={{
 						backgroundColor: 'grey.A200',
@@ -194,7 +177,7 @@ export const WorkReportDetails = () => {
 								minRows={4}
 								maxRows={4}
 								sx={{ backgroundColor: 'common.white', borderRadius: 2 }}
-								placeholder='Tell us the heroes names and issues with their attendances. We willl raise a ticket and our customer support team will resolve it. '
+								placeholder='Tell us the heroes names and issues with their attendances. We will raise a ticket and our customer support team will resolve it. '
 							/>
 							<Stack direction='row' spacing={1.5} justifyContent='flex-end'>
 								<Button
@@ -211,14 +194,14 @@ export const WorkReportDetails = () => {
 						</Stack>
 					</form>
 				</Paper>
-			)}
+			)} */}
 			<Stack p={isMobile ? 1 : 2} spacing={1}>
 				<Stack
 					direction={isMobile ? 'column' : 'row'}
-					justifyContent='space-between'
+					justifyContent='flex-end'
 					spacing={1}
 					alignItems='stretch'>
-					<form
+					{/* <form
 						onSubmit={async (e) => {
 							e.preventDefault()
 							router.query.phoneNumber = searchText
@@ -263,32 +246,19 @@ export const WorkReportDetails = () => {
 								clear
 							</Button>
 						</Stack>
-					</form>
+					</form> */}
 					<Stack direction='row' alignItems='center' justifyContent={isMobile ? 'space-between' : undefined}>
 						<Typography variant='subtitle2'>
-							Rows per page: {workReportByIDResponse?.response?.workerDetails?.length ?? 10}
+							Rows per page: {billDetailsResponse?.bills?.length ?? 10}
 						</Typography>
-						<Pagination
-							shape='rounded'
-							count={workReportByIDResponse?.totalPages}
-							color='primary'
-							page={Number(router.query.pageNumber ?? 0) + 1}
-							onChange={async (e, pageNumber) => {
-								router.query.pageNumber = String(pageNumber - 1)
-								await router.replace(router, undefined, { shallow: true })
-							}}
-						/>
+						<PaginationWithHasMore hasMore={billDetailsResponse?.hasMore} loading={isLoading?.fetching} />
 					</Stack>
 				</Stack>
 				<Stack mt={2}>
 					<TableContainer
 						component={Paper}
 						sx={{
-							height: isMobile
-								? 'calc(100vh - 310px)'
-								: rasingDispute
-								? 'calc(100vh - 400px)'
-								: 'calc(100vh - 170px)',
+							height: isMobile ? 'calc(100vh - 120px)' : 'calc(100vh - 170px)',
 						}}>
 						<Table stickyHeader>
 							<TableHead>
@@ -303,68 +273,20 @@ export const WorkReportDetails = () => {
 								</TableRow>
 							</TableHead>
 							<TableBody sx={{ overflowY: 'auto' }}>
-								<TableRow
-									sx={{
-										position: 'sticky',
-										top: 57,
-										backgroundColor: colors.FloralWhite,
-										zIndex: 100,
-										'&:hover': {
-											backgroundColor: colors.AliceBlue,
-										},
-									}}>
-									<TableCell
-										sx={{
-											position: 'sticky',
-											left: 0,
-											width: 80,
-											background: colors.FloralWhite,
-										}}></TableCell>
-									<TableCell
-										sx={{
-											position: 'sticky',
-											left: 80,
-											background: colors.FloralWhite,
-										}}></TableCell>
-									<TableCell></TableCell>
-									<TableCell></TableCell>
-									<TableCell>
-										<Stack>
-											<Typography fontWeight={600} noWrap>
-												{workReportByIDResponse?.response?.footerDetails?.presentPercentage} (
-												{workReportByIDResponse?.response?.footerDetails?.totalPresent}/
-												{workReportByIDResponse?.response?.footerDetails?.totalCount})
-											</Typography>
-											<Typography color='secondary.main' variant='caption' noWrap>
-												Attendance %
-											</Typography>
-										</Stack>
-									</TableCell>
-									<TableCell></TableCell>
-									<TableCell></TableCell>
-									<TableCell>
-										<Typography fontWeight={600} noWrap>
-											{workReportByIDResponse?.response?.footerDetails?.totalShiftHours}
-										</Typography>
-										<Typography color='secondary.main' variant='caption' noWrap>
-											Total Hours
-										</Typography>
-									</TableCell>
-									<TableCell></TableCell>
-									<TableCell></TableCell>
-									<TableCell>
-										<Typography fontWeight={600} noWrap>
-											{workReportByIDResponse?.response?.footerDetails?.totalOtHours}
-										</Typography>
-										<Typography color='secondary.main' variant='caption' noWrap>
-											Total OT Hours
-										</Typography>
-									</TableCell>
-								</TableRow>
-								{workReportByIDResponse?.response?.workerDetails?.map((item) => (
+								{/* {isLoading?.fetching ? (
+									<TableRow sx={{ height: '' }}>
+										<TableCell sx={{ borderBottom: 'none' }} colSpan={100} align='center'>
+											<CircularProgress />
+										</TableCell>
+									</TableRow>
+								) : ( */}
+								<>
 									<TableRow
-										key={item?.workerId}
 										sx={{
+											position: 'sticky',
+											top: 57,
+											backgroundColor: colors.FloralWhite,
+											zIndex: 100,
 											'&:hover': {
 												backgroundColor: colors.AliceBlue,
 											},
@@ -373,77 +295,151 @@ export const WorkReportDetails = () => {
 											sx={{
 												position: 'sticky',
 												left: 0,
-												minWidth: 80,
-												maxWidth: 80,
-
-												background: '#ffffff',
-												'&:hover': {
-													backgroundColor: colors.AliceBlue,
-												},
-											}}>
-											<Avatar sx={{ width: 48, height: 48 }} src='/assets/icons/workerIcon.svg' />
-										</TableCell>
+												width: 80,
+												background: colors.FloralWhite,
+											}}></TableCell>
 										<TableCell
 											sx={{
 												position: 'sticky',
 												left: 80,
-												background: '#ffffff',
+												background: colors.FloralWhite,
+											}}>
+											<Typography fontWeight={600} noWrap>
+												{billSummaryResponse?.summary?.heroCount}
+											</Typography>
+											<Typography color='secondary.main' variant='caption' noWrap>
+												Heroes
+											</Typography>
+										</TableCell>
+										<TableCell></TableCell>
+										<TableCell></TableCell>
+										<TableCell>
+											<Stack>
+												<Typography fontWeight={600} noWrap>
+													{billSummaryResponse?.summary?.baseWage}
+												</Typography>
+												<Typography color='secondary.main' variant='caption' noWrap>
+													Base Wage
+												</Typography>
+											</Stack>
+										</TableCell>
+										{/* <TableCell></TableCell> */}
+										<TableCell>
+											<Typography fontWeight={600} noWrap>
+												{billSummaryResponse?.summary?.otWage}
+											</Typography>
+											<Typography color='secondary.main' variant='caption' noWrap>
+												OT Wage
+											</Typography>
+										</TableCell>
+										<TableCell>
+											<Typography fontWeight={600} noWrap>
+												{billSummaryResponse?.summary?.grossWage}
+											</Typography>
+											<Typography color='secondary.main' variant='caption' noWrap>
+												Gross Wage
+											</Typography>
+										</TableCell>
+										<TableCell>
+											<Typography fontWeight={600} noWrap>
+												{billSummaryResponse?.summary?.pf}
+											</Typography>
+											<Typography color='secondary.main' variant='caption' noWrap>
+												Total PF
+											</Typography>
+										</TableCell>
+										<TableCell>
+											<Typography fontWeight={600} noWrap>
+												{billSummaryResponse?.summary?.esi}
+											</Typography>
+											<Typography color='secondary.main' variant='caption' noWrap>
+												Total ESI
+											</Typography>
+										</TableCell>
+										<TableCell>
+											<Typography fontWeight={600} noWrap>
+												{billSummaryResponse?.summary?.totalPayable}
+											</Typography>
+											<Typography color='secondary.main' variant='caption' noWrap>
+												Total Payable
+											</Typography>
+										</TableCell>
+									</TableRow>
+									{billDetailsResponse?.bills?.map(({ bill, worker }) => (
+										<TableRow
+											key={worker?.id}
+											sx={{
 												'&:hover': {
 													backgroundColor: colors.AliceBlue,
 												},
 											}}>
-											<Typography>{item?.name ?? 'NA'}</Typography>
-											<Typography variant='caption' color='secondary.main'>
-												{item?.phoneNumber ?? 'NA'}
-											</Typography>
-										</TableCell>
-										<TableCell>
-											<Typography>{JobTypeLabel[item?.jobType as JOB_TYPES]}</Typography>
-										</TableCell>
-										<TableCell>
-											<Typography>{SkillTypeLabel[item?.skillType as WORKER_TYPES]}</Typography>
-										</TableCell>
-										<TableCell>
-											{item.isPresent ? (
-												<Chip
-													size='small'
-													sx={(theme) => ({
-														px: 0.5,
-														backgroundColor: alpha(theme.palette.success.main, 0.2),
-													})}
-													label='P'
+											<TableCell
+												sx={{
+													position: 'sticky',
+													left: 0,
+													minWidth: 80,
+													maxWidth: 80,
+
+													background: '#ffffff',
+													'&:hover': {
+														backgroundColor: colors.AliceBlue,
+													},
+												}}>
+												<Avatar
+													sx={{ width: 48, height: 48 }}
+													src='/assets/icons/workerIcon.svg'
 												/>
-											) : (
-												<Chip
-													size='small'
-													sx={(theme) => ({
-														px: 0.5,
-														backgroundColor: alpha(theme.palette.error.main, 0.2),
-													})}
-													label='A'
-												/>
-											)}
-										</TableCell>
-										<TableCell>
-											<Typography>{item?.checkIn ?? 'NA'}</Typography>
-										</TableCell>
-										<TableCell>
-											<Typography>{item?.checkOut ?? 'NA'}</Typography>
-										</TableCell>
-										<TableCell>
-											<Typography>{item?.shiftHours ?? 'NA'}</Typography>
-										</TableCell>
-										<TableCell>
-											<Typography>{item?.otCheckIn ?? 'NA'}</Typography>
-										</TableCell>
-										<TableCell>
-											<Typography>{item?.otCheckOut ?? 'NA'}</Typography>
-										</TableCell>
-										<TableCell>
-											<Typography>{item?.otHours ?? 'NA'}</Typography>
-										</TableCell>
-									</TableRow>
-								))}
+											</TableCell>
+											<TableCell
+												sx={{
+													position: 'sticky',
+													left: 80,
+													background: '#ffffff',
+													'&:hover': {
+														backgroundColor: colors.AliceBlue,
+													},
+												}}>
+												<Typography noWrap>{worker?.name ?? 'NA'}</Typography>
+												<Typography variant='caption' color='secondary.main'>
+													{worker?.phoneNumber ?? 'NA'}
+												</Typography>
+											</TableCell>
+											<TableCell>
+												<Typography noWrap>
+													{JobTypeLabel[worker?.workDetails?.jobType as JOB_TYPES]}
+												</Typography>
+											</TableCell>
+											<TableCell>
+												<Typography noWrap>
+													{SkillTypeLabel[worker?.workDetails?.workerType as WORKER_TYPES]}
+												</Typography>
+											</TableCell>
+
+											<TableCell>
+												<Typography noWrap>{bill?.baseWage ?? 'NA'}</Typography>
+											</TableCell>
+											{/* <TableCell>
+													<Typography noWrap>{bill?.otFactor ?? 'NA'}</Typography>
+												</TableCell> */}
+											<TableCell>
+												<Typography noWrap>{bill?.otWage ?? 'NA'}</Typography>
+											</TableCell>
+											<TableCell>
+												<Typography noWrap>{bill?.grossWage ?? 'NA'}</Typography>
+											</TableCell>
+											<TableCell>
+												<Typography noWrap>{bill?.pf ?? 'NA'}</Typography>
+											</TableCell>
+											<TableCell>
+												<Typography noWrap>{bill?.esi ?? 'NA'}</Typography>
+											</TableCell>
+											<TableCell>
+												<Typography noWrap>{bill?.netWage ?? 'NA'}</Typography>
+											</TableCell>
+										</TableRow>
+									))}
+								</>
+								{/* )} */}
 							</TableBody>
 						</Table>
 					</TableContainer>
@@ -457,11 +453,11 @@ const TableHeaderList: { label?: string; sx?: any }[] = [
 	{ label: 'Name', sx: { position: 'sticky', left: '80px !important', top: 0, background: '#f2f9fb', zIndex: 10 } },
 	{ label: 'Trade' },
 	{ label: 'Skill' },
-	{ label: 'Attendance' },
-	{ label: 'Check In' },
-	{ label: 'Check Out' },
-	{ label: 'Hours' },
-	{ label: 'OT Check In' },
-	{ label: 'OT Check Out' },
-	{ label: 'OT Hours' },
+	{ label: 'Base Wage' },
+	// { label: 'OT Factor' },
+	{ label: 'OT Wage' },
+	{ label: 'Gross Wage' },
+	{ label: 'PF' },
+	{ label: 'ESI' },
+	{ label: 'Net Wage' },
 ]

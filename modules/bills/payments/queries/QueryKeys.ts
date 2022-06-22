@@ -1,0 +1,5 @@
+export const getOutstandingPaymentQueryKey = (projectId: string) => ['outstanding-payment', projectId]
+export const getPaymentHistoryListQueryKey = (projectId: string) => ['payment-history', projectId]
+export const getCreatePaymentQueryKey = (projectId: string) => ['create-payment', projectId]
+export const getConfirmPaymentQueryKey = (projectId: string) => ['confirm-payment', projectId]
+export const getCancelPaymentQueryKey = (projectId: string) => ['cancel-payment', projectId]

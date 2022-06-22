@@ -1,7 +1,7 @@
 import { JOB_TYPES } from '../types'
 
 export const JobTypeLabel: Partial<{
-	[key in JOB_TYPES]: string
+	[key in JOB_TYPES]?: string
 }> = {
 	GYPSUM: 'Gypsum',
 	PAINTER: 'Painter',

@@ -1,6 +1,75 @@
 import { KeyboardArrowDownRounded } from '@mui/icons-material'
 import { createTheme, responsiveFontSizes } from '@mui/material/styles'
 import { createBreakpoints } from '@mui/system'
+
+declare module '@mui/material/styles' {
+	interface Palette {
+		base: {
+			variant70: string
+			variant50: string
+			variant60: string
+			main: string
+		}
+		green: {
+			light: string
+			medium: string
+			dark: string
+			iconBg: string
+		}
+		button: {
+			primary: string
+			secondary: string
+		}
+		textCTA: {
+			white: string
+			blue: string
+		}
+	}
+	interface PaletteOptions {
+		base: {
+			variant70: string
+			main: string
+			variant50: string
+			variant60: string
+		}
+		green: {
+			light: string
+			medium: string
+			dark: string
+			iconBg: string
+		}
+		button: {
+			primary: string
+			secondary: string
+		}
+		textCTA: {
+			white: string
+			blue: string
+		}
+	}
+}
+const colorPalette = {
+	base: {
+		variant70: 'rgba(6, 31, 72, 0.7)',
+		variant50: 'rgba(6, 31, 72, 0.5)',
+		variant60: 'rgba(6, 31, 72, 0.6)',
+		main: '#061F48',
+	},
+	green: {
+		light: 'rgba(15, 175, 127, 0.2)',
+		medium: 'rgba(15, 175, 127, 0.5)',
+		dark: '#0FAF7F',
+		iconBg: '#48D2A9',
+	},
+	button: {
+		primary: 'white',
+		secondary: '#36B5EC',
+	},
+	textCTA: {
+		white: 'white',
+		blue: '#36B5EC',
+	},
+}
 export const primary = {
 	main: '#1E9FD6', //'#244CB3',
 	light: '#EEFAFF', //'#224ab50d',
@@ -53,7 +122,10 @@ let themeDef = createTheme({
 		background: {
 			default: '#FCFCFC',
 		},
-
+		base: colorPalette.base,
+		green: colorPalette.green,
+		button: colorPalette.button,
+		textCTA: colorPalette.textCTA,
 		tonalOffset: 0.3,
 	},
 
@@ -138,6 +210,13 @@ let themeDef = createTheme({
 				},
 			},
 		},
+		// MuiSvgIcon: {
+		// 	styleOverrides: {
+		// 		root: {
+		// 			fill: colorPalette.base.main,
+		// 		},
+		// 	},
+		// },
 	},
 })
 

@@ -9,6 +9,7 @@ export const useProjectDetails = () => {
 
 	const [selectedTab, setSelectedTab] = useState('bookings')
 	const [projectDetails, setProjectDetails] = useState<any>()
+	const [isLoading, setIsLoading] = useState(false)
 	const { showSnackbar } = useSnackbar()
 
 	const projectId = router.query.projectId
@@ -20,23 +21,31 @@ export const useProjectDetails = () => {
 			url: router.asPath,
 		})
 		router.query.tab = value
+		delete router.query.toDate
+		delete router.query.fromDate
+		delete router.query.startDate
+		delete router.query.endDate
+
 		router.replace(router)
 	}
 
 	const getProjectInfo = useCallback(async () => {
 		if (!projectId) return
+		setIsLoading(true)
 		try {
 			const { data } = await getProjectDetails(projectId)
 			setProjectDetails(data?.payload?.project)
 		} catch (error: any) {
 			showSnackbar(error?.response?.data?.developerInfo, 'error')
 		}
-	}, [router.query])
+		setIsLoading(false)
+	}, [projectId, showSnackbar])
 	useEffect(() => {
 		getProjectInfo()
-	}, [getProjectInfo])
+	}, [router.query])
 
 	return {
+		isLoading: isLoading,
 		selectedTab: selectedTab,
 		setSelectedTab: setSelectedTab,
 		handleTabSelection: handleTabSelection,

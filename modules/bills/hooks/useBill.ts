@@ -1,35 +1,37 @@
 import { useRouter } from 'next/router'
 import { useCallback, useEffect, useReducer, useState } from 'react'
 import { useSnackbar } from '../../../sdk'
-import { ButtonClicked } from '../../../sdk/analytics/analyticsWrapper'
 import {
+	getAggregatedBillForProject,
+	getBillForProject,
+	getDownloadWorkReport,
+	getSummaryForBill,
 	postApproveWorkReport,
 	postDisputeWorkReport,
-	getDownloadWorkReport,
-	getWorkReport,
-	getWorkReportDetails,
 } from '../apis'
-import { WorkReportDetailsResponse, WorkReportResponse, WorkReportStatus } from '../types'
+import { BillDetailResponse, BillResponse, BillSummaryResponse } from '../types'
 
-export const useWorkReport = () => {
-	const [workReportResponse, setWorkReportResponse] = useState<WorkReportResponse>()
-	const [workReportByIDResponse, setWorkReportByIDResponse] = useState<WorkReportDetailsResponse>()
+export const useBill = () => {
+	const [billResponse, setBillResponse] = useState<BillResponse>()
+	const [billDetailsResponse, setBillDetailResponse] = useState<BillDetailResponse>()
+	const [billSummaryResponse, setBillSummaryResponse] = useState<BillSummaryResponse>()
+
 	const [refresh, setRefresh] = useState(false)
 	const router = useRouter()
 	const { showSnackbar } = useSnackbar()
 	const [isLoading, setIsLoading] = useReducer((p: any, n: any) => ({ ...p, ...n }), {
 		fetching: false,
-		approving: {},
+		approving: false,
 		disputing: false,
 		downloading: {},
 	})
-	const fetchWorkReport = useCallback(
+	const fetchBillForProject = useCallback(
 		async (queryParameters) => {
 			setRefresh(false)
 			setIsLoading({ fetching: true })
 			try {
-				const { data } = await getWorkReport(router.query.projectId as string, queryParameters)
-				setWorkReportResponse(data.payload)
+				const { data } = await getBillForProject(router.query.projectId as string, queryParameters)
+				setBillResponse(data.payload)
 			} catch (error: any) {
 				showSnackbar(error?.response?.data?.developerInfo, 'error')
 			}
@@ -37,28 +39,47 @@ export const useWorkReport = () => {
 		},
 		[router.query.projectId, showSnackbar]
 	)
-	const fetchWorkReportById = useCallback(
+	const fetchBillForDate = useCallback(
 		async (queryParameters) => {
 			setRefresh(false)
 
 			setIsLoading({ fetching: true })
 			try {
-				const { data } = await getWorkReportDetails(
+				const { data } = await getAggregatedBillForProject(
 					router.query.projectId as string,
-					router.query.workReportId as string,
+					router.query.billId as string,
 					queryParameters
 				)
-				setWorkReportByIDResponse(data.payload)
+				setBillDetailResponse(data.payload)
 			} catch (error: any) {
 				showSnackbar(error?.response?.data?.developerInfo, 'error')
 			}
 			setIsLoading({ fetching: false })
 		},
-		[router.query.projectId, router.query.workReportId, showSnackbar]
+		[router.query.projectId, router.query.billId, showSnackbar]
+	)
+	const fetchBillSummaryForDate = useCallback(
+		async (queryParameters) => {
+			setRefresh(false)
+
+			setIsLoading({ fetching: true })
+			try {
+				const { data } = await getSummaryForBill(
+					router.query.projectId as string,
+					router.query.billId as string,
+					queryParameters
+				)
+				setBillSummaryResponse(data.payload)
+			} catch (error: any) {
+				showSnackbar(error?.response?.data?.developerInfo, 'error')
+			}
+			setIsLoading({ fetching: false })
+		},
+		[router.query.projectId, router.query.billId, showSnackbar]
 	)
 	const approveWorkReport = useCallback(
 		async (dwrId: string) => {
-			setIsLoading({ approving: { [dwrId]: true } })
+			setIsLoading({ approving: true })
 			try {
 				await postApproveWorkReport(router.query.projectId as any, dwrId)
 				showSnackbar('Work Report Approved.', 'success')
@@ -66,9 +87,9 @@ export const useWorkReport = () => {
 				showSnackbar(error?.response?.data?.developerInfo, 'error')
 			}
 			setRefresh(true)
-			setIsLoading({ approving: { ...isLoading.approving, [dwrId]: undefined } })
+			setIsLoading({ approving: false })
 		},
-		[isLoading.approving, router.query.projectId, showSnackbar]
+		[router.query.projectId, showSnackbar]
 	)
 
 	const disputeWorkReport = useCallback(
@@ -113,31 +134,36 @@ export const useWorkReport = () => {
 
 	useEffect(() => {
 		if (!refresh) return
-		const { projectId, tab, workReportId, pageNumber, ...rest } = router.query
+		const { projectId, tab, billId, pageNumber, ...rest } = router.query
 		const searchParams = new URLSearchParams(rest as any)
 
-		if (workReportId) {
-			fetchWorkReportById(searchParams)
+		if (billId) {
+			fetchBillForDate(searchParams)
+			fetchBillSummaryForDate(searchParams)
 		} else {
-			fetchWorkReport(searchParams)
+			fetchBillForProject(searchParams)
 		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [refresh])
 
 	useEffect(() => {
 		if (!router.isReady) return
-		const { projectId, tab, workReportId, ...rest } = router.query
+		const { projectId, tab, billId, ...rest } = router.query
 		const searchParams = new URLSearchParams(rest as any)
-		if (workReportId) {
-			fetchWorkReportById(searchParams)
+		if (billId) {
+			fetchBillForDate(searchParams)
+			fetchBillSummaryForDate(searchParams)
 		} else {
 			if (searchParams.toString().length === 0) return
-			fetchWorkReport(searchParams)
+			fetchBillForProject(searchParams)
 		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [router])
 
 	return {
-		workReportResponse,
-		workReportByIDResponse,
+		billResponse,
+		billDetailsResponse,
+		billSummaryResponse,
 		isLoading,
 		approveWorkReport,
 		disputeWorkReport,

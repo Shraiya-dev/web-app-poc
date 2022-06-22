@@ -4,6 +4,7 @@ import type { AppProps } from 'next/app'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
+import Script from 'next/script'
 import {
 	ContractorAuthProvider,
 	envs,
@@ -15,6 +16,10 @@ import {
 } from '../sdk'
 import '../sdk/styles/onlyCssWeNeed.css'
 import { Analytic } from '../sdk/analytics/analytics'
+import { useQueryClient, QueryClient, QueryClientProvider } from 'react-query'
+
+const queryClient = new QueryClient()
+
 import { AnalyticsPage, Identify } from '../sdk/analytics/analyticsWrapper'
 import { createCookieInHour, getCookie } from '../sdk/analytics/helper'
 //=====================initializing axios interceptor=======================
@@ -94,6 +99,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 	if (router.pathname.includes('/admin')) {
 		return (
 			<>
+				<Script src='https://checkout.razorpay.com/v1/checkout.js' />
 				<Head>
 					<title>Project Hero</title>
 					<link rel='apple-touch-icon' sizes='180x180' href='/apple-touch-icon.png' />
@@ -104,15 +110,18 @@ function MyApp({ Component, pageProps }: AppProps) {
 					<meta name='msapplication-TileColor' content='#da532c' />
 					<meta name='theme-color' content='#333333' />
 				</Head>
-				<ThemeProvider theme={theme}>
-					<Component {...pageProps} />
-				</ThemeProvider>
+				<QueryClientProvider client={queryClient}>
+					<ThemeProvider theme={theme}>
+						<Component {...pageProps} />
+					</ThemeProvider>
+				</QueryClientProvider>
 			</>
 		)
 	}
 	// else contractor node
 	return (
 		<>
+			<Script src='https://checkout.razorpay.com/v1/checkout.js' />
 			<Head>
 				<title></title>
 				{/* eslint-disable-next-line @next/next/next-script-for-ga */}
@@ -164,13 +173,15 @@ function MyApp({ Component, pageProps }: AppProps) {
 				)}
 				{/* End Facebook Pixel Code */}
 			</Head>
-			<ThemeProvider theme={theme}>
-				<SnackbarProvider>
-					<ContractorAuthProvider>
-						<Component {...pageProps} />
-					</ContractorAuthProvider>
-				</SnackbarProvider>
-			</ThemeProvider>
+			<QueryClientProvider client={queryClient}>
+				<ThemeProvider theme={theme}>
+					<SnackbarProvider>
+						<ContractorAuthProvider>
+							<Component {...pageProps} />
+						</ContractorAuthProvider>
+					</SnackbarProvider>
+				</ThemeProvider>
+			</QueryClientProvider>
 		</>
 	)
 }

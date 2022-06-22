@@ -13,6 +13,8 @@ import { Dashboard } from '../dashboard'
 import ProjectInfo from '../ProjectInfo/components/projectInfo'
 import { useProjectDetails } from './hooks/useProjectDetails'
 import { WorkReport } from '../workReport'
+import { Bills } from '../bills'
+import { LocationOnOutlined } from '@mui/icons-material'
 
 export const ProjectDetails = () => {
 	const { selectedTab, handleTabSelection, projectDetails } = useProjectDetails()
@@ -52,7 +54,7 @@ export const ProjectDetails = () => {
 							<Typography
 								sx={{ fontSize: 14, color: theme.palette.secondary.main }}
 								textTransform='capitalize'>
-								<LocationOnIcon style={{ fontSize: 12, verticalAlign: 'middle' }} />
+								<LocationOnOutlined style={{ fontSize: 12, verticalAlign: 'middle' }} />
 								&nbsp;{projectDetails?.city} , {projectDetails?.state}
 							</Typography>
 						</Stack>
@@ -114,6 +116,16 @@ export const ProjectDetails = () => {
 							value='work-report'
 							label='Work Report'
 						/>
+						{projectDetails?.generateBills && (
+							<Tab
+								sx={{
+									fontSize: '18px',
+									textTransform: 'none',
+								}}
+								value='bills'
+								label='Bills'
+							/>
+						)}
 						<Tab
 							sx={{
 								fontSize: '18px',
@@ -143,11 +155,23 @@ export const ProjectDetails = () => {
 					}}
 					value='work-report'
 					style={{
-						height: 'calc( 100vh - 160px )',
+						height: 'calc( 100vh - 200px )',
 						overflowY: 'auto',
 						position: 'relative',
 					}}>
 					<WorkReport />
+				</TabPanel>
+				<TabPanel
+					sx={{
+						padding: isMobile ? 1 : 3,
+					}}
+					value='bills'
+					style={{
+						height: 'calc( 100vh - 200px )',
+						overflowY: 'auto',
+						position: 'relative',
+					}}>
+					<Bills />
 				</TabPanel>
 				<TabPanel
 					value='details'
