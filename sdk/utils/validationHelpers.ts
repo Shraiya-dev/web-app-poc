@@ -61,10 +61,14 @@ export function isValidGSTIN(GSTIN: string): boolean {
 }
 export const isEmptyObject = (obj = {}): boolean => Object.keys(obj).length === 0
 export const indianCurrencyFormat = (value: string) => {
-	value=value.toString()
-	let lastThree = value.substring(value.length - 3)
-	let otherNumbers = value.substring(0, value.length - 3)
+	let valueStr = value.toString()
+	let afterPoint = ''
+	if (valueStr.indexOf('.') > 0) afterPoint = valueStr.substring(valueStr.indexOf('.'), valueStr.length)
+	valueStr = Math.floor(parseInt(valueStr)).toString()
+	let lastThree = valueStr.substring(valueStr.length - 3)
+	let otherNumbers = valueStr.substring(0, valueStr.length - 3)
 	if (otherNumbers != '') lastThree = ',' + lastThree
-	let res = otherNumbers.replace(/\B(?=(\d{2})+(?!\d))/g, ',') + lastThree
+	let res = otherNumbers.replace(/\B(?=(\d{2})+(?!\d))/g, ',') + lastThree + afterPoint
+
 	return res
 }
