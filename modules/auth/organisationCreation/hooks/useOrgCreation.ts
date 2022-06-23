@@ -73,7 +73,7 @@ const useOrgCreation = () => {
 			//todo call gstin submission api here
 			setLoading(true)
 			try {
-				const { status, data } = await postValidateGSTIN({ GSTIN: values.gstin })
+				const { status, data } = await postValidateGSTIN({ GSTIN: values.gstin.toUpperCase() })
 				if (
 					(data?.payload as ValidateGSTINResponse).nextStepCode ===
 					ValidateGSTINStatusCode.CREATE_ORGANISATION

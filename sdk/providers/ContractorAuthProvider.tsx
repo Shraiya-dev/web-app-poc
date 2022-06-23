@@ -207,8 +207,7 @@ const ContractorAuthProvider = ({ children }: any) => {
 			//getContactorUserInfo()
 			return data
 		} catch (error: any) {
-			showSnackbar(error?.error, 'error')
-			console.log('error', error)
+			showSnackbar(error?.response?.data?.developerInfo, 'error')
 		}
 	}, [])
 
