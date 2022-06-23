@@ -233,20 +233,22 @@ export const OrgCreationForm = () => {
 					{component === 'ERROR' && (
 						<Stack spacing={4}>
 							<Typography color='secondary.main'>
-								Company <strong>{orgDetails?.companyName} </strong> already exists on Project Hero for
-								the GSTIN <strong>{orgDetails?.GSTIN} </strong> you provided
+								Company <span style={{ fontWeight: 700 }}>{orgDetails?.companyName}</span> already
+								exists on Project Hero for the GSTIN{' '}
+								<span style={{ fontWeight: 700 }}>{orgDetails?.GSTIN} </span> you provided
 							</Typography>
 							{orgDetails?.contactDetails ? (
 								<Typography color='error.main'>
 									Please ask{' '}
-									<strong>
+									<span style={{ fontWeight: 700 }}>
 										{orgDetails?.contactDetails?.name} ({orgDetails?.contactDetails?.phoneNumber})
-									</strong>
+									</span>
 									, your company admin, to add you to the company account
 								</Typography>
 							) : (
 								<Typography color='error.main'>
-									Please ask <strong>Project Hero admin</strong> to add you to the company account
+									Please ask <span style={{ fontWeight: 700 }}>Project Hero admin</span> to add you to
+									the company account
 								</Typography>
 							)}
 							<Button onClick={() => LogoutAndRedirect()}>Got It</Button>
