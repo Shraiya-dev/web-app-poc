@@ -7,6 +7,7 @@ import { useRouter } from 'next/router'
 import { ButtonClicked } from '../../../../sdk/analytics/analyticsWrapper'
 import BackButton from '../../../../sdk/components/backButton/backButtom'
 import { textAlign } from '@mui/system'
+import { OnboardingCard } from '../../../../sdk/layouts/OrganisationCard'
 
 const CustomOTPStyles = styled(Box)(({ theme }) => ({
 	display: 'flex',
@@ -15,7 +16,6 @@ const CustomOTPStyles = styled(Box)(({ theme }) => ({
 	// paddingTop: '37%',
 
 	'.headerInfo': {
-		marginTop: 24,
 		paddingBottom: 8,
 		fontSize: 30,
 		textAlign: 'center',
@@ -66,8 +66,6 @@ export const OTPVerification = ({ ...props }) => {
 		<CustomOTPStyles>
 			<>
 				<form onSubmit={form.handleSubmit}>
-					<BackButton onClick={() => router.push('https://www.projecthero.in/')} />
-
 					<Typography className='headerInfo'>Verify Mobile</Typography>
 
 					<Typography className='subInfo'>

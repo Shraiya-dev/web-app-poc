@@ -1,19 +1,21 @@
 import { useCallback, useState } from 'react'
 import { isValidGSTIN, useContractorAuth, useSnackbar } from '../../../../sdk'
-import { useFormik } from 'formik'
+import { FormikHelpers, FormikProps, FormikValues, useFormik } from 'formik'
 import { uploadImage } from '../../../createProject/apis'
-import { createOrganisation } from '../apis/apis'
+import { createOrganisation, postValidateGSTIN } from '../apis/apis'
 import { ButtonClicked } from '../../../../sdk/analytics/analyticsWrapper'
 import { useRouter } from 'next/router'
+import { ValidateGSTINResponse, ValidateGSTINStatusCode } from '../types'
 
 const useOrgCreation = () => {
 	const [loading, setLoading] = useState(false)
 	const [isGSTINDocUploaded, setIsGSTINDocUploaded] = useState(false)
 	const { getContactorUserInfo, user } = useContractorAuth()
-
+	const [component, setComponent] = useState<'ORG' | 'ERROR'>('ORG')
 	const { showSnackbar } = useSnackbar()
+	const [orgDetails, setOrgDetails] = useState<ValidateGSTINResponse>()
 	const router = useRouter()
-
+	const [isGSTINVerified, setIsGSTINVerified] = useState(false)
 	const createOrg = useCallback(async (payload: any) => {
 		const { data } = await createOrganisation(payload)
 	}, [])
@@ -49,16 +51,14 @@ const useOrgCreation = () => {
 		onSubmit: async (values) => {
 			const payload = {
 				companyName: values.companyName,
-
 				GSTIN: values.GSTIN.toUpperCase(),
 				GstinCertificate: values.GSTINDocuments[0],
 			}
 
-			try{
+			try {
 				await createOrg(payload)
-			await getContactorUserInfo()
-			}
-			catch(error: any) {
+				await getContactorUserInfo()
+			} catch (error: any) {
 				showSnackbar(error?.response?.data?.developerInfo, 'error')
 			}
 			ButtonClicked({
@@ -68,7 +68,47 @@ const useOrgCreation = () => {
 			})
 		},
 	})
+	const validateGSTIN = useCallback(
+		async (values: { gstin: string }, fh: FormikHelpers<{ gstin: string }>) => {
+			//todo call gstin submission api here
+			setLoading(true)
+			try {
+				const { status, data } = await postValidateGSTIN({ GSTIN: values.gstin })
+				if (
+					(data?.payload as ValidateGSTINResponse).nextStepCode ===
+					ValidateGSTINStatusCode.CREATE_ORGANISATION
+				) {
+					setIsGSTINVerified(true)
+					form.setFieldValue('GSTIN', (data?.payload as ValidateGSTINResponse).GSTIN)
+				} else {
+					setComponent('ERROR')
+				}
+				setOrgDetails(data.payload)
+			} catch (error: any) {
+				showSnackbar(error?.response?.data?.developerInfo, 'error')
+			}
+			setLoading(false)
+		},
+		[showSnackbar]
+	)
 
+	const GSTINForm = useFormik<{ gstin: string }>({
+		initialValues: {
+			gstin: '',
+		},
+		validate: (values) => {
+			const errors: any = {}
+			if (!values.gstin) {
+				errors.gstin = 'Required'
+			}
+			if (values.gstin && !isValidGSTIN(values.gstin.toUpperCase())) {
+				errors.gstin = 'Enter Valid GSTIN Number'
+			}
+
+			return errors
+		},
+		onSubmit: validateGSTIN,
+	})
 	const uploadFiles = useCallback(
 		async (files) => {
 			setIsGSTINDocUploaded((old) => true)
@@ -114,10 +154,15 @@ const useOrgCreation = () => {
 	)
 
 	return {
+		orgDetails,
+		GSTINForm,
 		form,
+		isGSTINVerified,
+		setIsGSTINVerified,
 		loading,
 		isGSTINDocUploaded,
 		uploadFiles,
+		component,
 	}
 }
 

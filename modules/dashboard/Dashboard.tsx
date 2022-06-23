@@ -6,6 +6,7 @@ import { BookingCard, primary, SearchField, theme } from '../../sdk'
 import { FilterDrawer } from './components'
 import { useDashboard } from './hooks'
 import TuneIcon from '@mui/icons-material/Tune'
+import { ButtonClicked } from '../../sdk/analytics/analyticsWrapper'
 
 export const Dashboard = () => {
 	const { bookings, bookingStats, isLoading } = useDashboard()
@@ -44,57 +45,68 @@ export const Dashboard = () => {
 				</Grid>
 			</Grid> */}
 
-			<Grid container>
-				<Grid item xs={12} md={9} justifyContent='space-between' alignItems='center'>
-					{/* <Typography variant='h4'>Your Bookings</Typography> */}
+			{/* <Typography variant='h4'>Your Bookings</Typography> */}
 
-					<Button
-						onClick={handelDrawerToggle}
-						//color='inherit'
-						//disabled={bookings.totalBookings <= 0}
-						endIcon={
-							<Badge
-								overlap='circular'
-								anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-								badgeContent={
-									(router.query.status || router.query.jobType || router.query.sortBy) && (
-										//simple svg to show dot on filter text
-										<svg height='30' width='16'>
-											<circle cx='8' cy='8' r='8' fill={theme.palette.error.main} />
-										</svg>
-									)
-								}>
-								<TuneIcon
-								//style={{ color: router.query.status || router.query.jobType ? primary.main : '' }}
-								/>
-							</Badge>
-						}
-						variant='outlined'
-						sx={{
-							height: 36,
-							borderRadius: 2,
-							padding: 1,
-							margin: 1,
-							marginLeft: 0,
-							border: `1px solid ${
-								router.query.status || router.query.jobType || router.query.sortBy
-									? primary.main
-									: 'rgba(6, 31, 72, 0.3)'
-							}`,
+			<Stack direction='row' justifyContent='space-between' alignItems='center'>
+				<Button
+					onClick={handelDrawerToggle}
+					//color='inherit'
+					//disabled={bookings.totalBookings <= 0}
+					endIcon={
+						<Badge
+							overlap='circular'
+							anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+							badgeContent={
+								(router.query.status || router.query.jobType || router.query.sortBy) && (
+									//simple svg to show dot on filter text
+									<svg height='30' width='16'>
+										<circle cx='8' cy='8' r='8' fill={theme.palette.error.main} />
+									</svg>
+								)
+							}>
+							<TuneIcon
+							//style={{ color: router.query.status || router.query.jobType ? primary.main : '' }}
+							/>
+						</Badge>
+					}
+					variant='outlined'
+					sx={{
+						borderRadius: 2,
+						padding: 1,
+						marginLeft: 0,
+						border: `1px solid ${
+							router.query.status || router.query.jobType || router.query.sortBy
+								? primary.main
+								: 'rgba(6, 31, 72, 0.3)'
+						}`,
 
-							color:
-								router.query.status || router.query.jobType || router.query.sortBy
-									? primary.main
-									: theme.palette.secondary.main,
-						}}>
-						{`Filters & Sort`}
-					</Button>
-				</Grid>
-				<Grid item xs={12} md={3} alignItems='center'>
+						color:
+							router.query.status || router.query.jobType || router.query.sortBy
+								? primary.main
+								: theme.palette.secondary.main,
+					}}>
+					{`Filters & Sort`}
+				</Button>
+				<Stack direction='row' alignItems='center' spacing={2}>
 					<SearchField name='bookingId' fullWidth placeholder='Search by booking ID' size='small' />
-				</Grid>
-			</Grid>
-
+					<Link href={`/projects/${router?.query?.projectId}/bookings/create`} passHref>
+						<a>
+							<Button
+								variant='contained'
+								onClick={() => {
+									ButtonClicked({
+										action: 'Book Workers',
+										page: 'Project',
+										projectId: router?.query?.projectId,
+										url: router.asPath,
+									})
+								}}>
+								Book Workers
+							</Button>
+						</a>
+					</Link>
+				</Stack>
+			</Stack>
 			{isLoading ? (
 				<Stack p={5} alignItems='center'>
 					<CircularProgress size={50} />

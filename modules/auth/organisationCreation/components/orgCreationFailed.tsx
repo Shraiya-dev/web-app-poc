@@ -5,6 +5,7 @@ import { Router, useRouter } from 'next/router'
 import Error from '../../../../public/assets/icons/error.svg'
 import { useContractorAuth } from '../../../../sdk'
 import { ButtonClicked } from '../../../../sdk/analytics/analyticsWrapper'
+import { OnboardingCard } from '../../../../sdk/layouts/OrganisationCard'
 
 const CustomOrgFailedStyles = styled(Box)(({ theme }) => ({
 	margin: 8,
@@ -29,7 +30,7 @@ const OrgCreationFailed = () => {
 	const router = useRouter()
 	const { user } = useContractorAuth()
 	return (
-		<CustomOrgFailedStyles>
+		<OnboardingCard>
 			<Stack sx={{ marginTop: 4, fontSize: 60, display: 'flex' }}>
 				<Image src={Error} />
 			</Stack>
@@ -50,7 +51,7 @@ const OrgCreationFailed = () => {
 				}}>
 				Contact Support
 			</Button>
-		</CustomOrgFailedStyles>
+		</OnboardingCard>
 	)
 }
 

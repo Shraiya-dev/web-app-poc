@@ -37,6 +37,11 @@ export const SearchField = ({ name = 'name', ...rest }: TextFieldProps) => {
 				name='fieldName'
 				value={form.values.fieldName}
 				onChange={form.handleChange}
+				sx={{
+					div: {
+						flex: 1,
+					},
+				}}
 				{...rest}
 				InputProps={{
 					endAdornment: (

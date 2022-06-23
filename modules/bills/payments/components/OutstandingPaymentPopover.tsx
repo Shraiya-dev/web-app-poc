@@ -94,6 +94,7 @@ export const OutstandingPaymentPopover = ({
 	const [order, setOrder] = useState<createOrderResponseType>({} as createOrderResponseType)
 	const razorPayDetails = useRef<ResponseRazorPayType>({} as ResponseRazorPayType)
 	const [showSuccessModal, setShowSuccessModal] = useState(false)
+	const [originalSelected, setOriginalSelected] = useState(true)
 	const projectId = router.query.projectId as string
 	const createPaymentOrderMutation = useCreatePaymentMutation({
 		projectId,
@@ -159,7 +160,7 @@ export const OutstandingPaymentPopover = ({
 			key: 'rzp_live_EjKSlAc9GcAw7S',
 			name: 'Project Hero',
 			currency: 'INR',
-			amount: customAmount ? parseInt(customAmount) * 100 : payAmount * 100,
+			amount: originalSelected ? payAmount * 100 : customAmount ? parseInt(customAmount) * 100 : payAmount * 100,
 			order_id: order?.orderId,
 			description: 'Contractor Payment',
 			image: logo,
@@ -184,8 +185,13 @@ export const OutstandingPaymentPopover = ({
 		paymentObject.open()
 	}
 	const handleRadio = (event: React.ChangeEvent<HTMLInputElement>) => {
-		setAmount((event.target as HTMLInputElement).value)
-		console.log((event.target as HTMLInputElement).value)
+		const val = (event.target as HTMLInputElement).value
+		setAmount(val)
+		if (val === String(payAmount) || val === '') {
+			setOriginalSelected(true)
+		} else {
+			setOriginalSelected(false)
+		}
 	}
 
 	const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -194,6 +200,7 @@ export const OutstandingPaymentPopover = ({
 		if (value === '' || re.test(value)) {
 			setCustomAmount(value)
 			setAmount(value)
+			setOriginalSelected(false)
 		}
 	}
 
@@ -304,7 +311,7 @@ export const OutstandingPaymentPopover = ({
 					</Button>
 					<Button
 						variant='contained'
-						disabled={payAmount==0 && (!amount || amount==='0')}
+						disabled={payAmount == 0 && (!amount || amount === '0')}
 						sx={{
 							background: theme.palette.button.secondary,
 							paddingTop: theme.spacing(2),
@@ -326,7 +333,9 @@ export const OutstandingPaymentPopover = ({
 							}}
 						/>
 						<Typography variant='subtitle2' sx={{ color: theme.palette.textCTA.white }}>
-							{indianCurrencyFormat(customAmount.toString() || payAmount.toString())}
+							{originalSelected
+								? indianCurrencyFormat(payAmount.toString())
+								: indianCurrencyFormat(customAmount.toString() || payAmount.toString())}
 						</Typography>
 					</Button>
 				</DialogActions>

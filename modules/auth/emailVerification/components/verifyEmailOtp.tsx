@@ -43,8 +43,6 @@ export const VerifyEmailOtp = () => {
 		} else {
 			return (
 				<>
-					<BackButton onClick={() => router.push('https://www.projecthero.in/')} />
-
 					<Typography className='headerInfo'>Edit Email</Typography>
 					<form onSubmit={form.handleSubmit}>
 						<InputWrapper
