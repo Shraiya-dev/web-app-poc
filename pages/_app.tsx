@@ -79,21 +79,23 @@ function MyApp({ Component, pageProps }: AppProps) {
 	useEffect(() => {}, [])
 
 	useEffect(() => {
-		const utmParams = router.asPath.includes('utm_')
+		if (router.isReady) {
+			const utmParams = router.asPath.includes('utm_')
 
-		if (utmParams) {
-			let queryInfo = router.asPath?.split('?')
-			createCookieInHour('utmParams', queryInfo[1], cookieExpiryDays)
-			if (getCookie('isUTMParamIdentified') === '') {
-				createCookieInHour('isUTMParamIdentified', false, fullYearDays)
+			if (utmParams) {
+				let queryInfo = router.asPath?.split('?')
+				createCookieInHour('utmParams', queryInfo[1], cookieExpiryDays)
+				if (getCookie('isUTMParamIdentified') === '') {
+					createCookieInHour('isUTMParamIdentified', false, fullYearDays)
+				}
 			}
-		}
 
-		if (!localStorage.getItem('accessToken')) {
-			Identify({})
+			if (!localStorage.getItem('accessToken')) {
+				Identify({})
+			}
+			AnalyticsPage(router)
 		}
-		AnalyticsPage(router)
-	}, [router.asPath])
+	}, [router])
 
 	//if route begin with /admin redirect to admin node
 	if (router.pathname.includes('/admin')) {
