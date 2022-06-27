@@ -59,24 +59,6 @@ export const ProjectDetails = () => {
 							</Typography>
 						</Stack>
 					</Stack>
-
-					<Link href={`/projects/${router?.query?.projectId}/bookings/create`} passHref>
-						<a>
-							<Button
-								variant='contained'
-								style={{ float: 'right', margin: 16 }}
-								onClick={() => {
-									ButtonClicked({
-										action: 'Book Workers',
-										page: 'Project',
-										projectId: router?.query?.projectId,
-										url: router.asPath,
-									})
-								}}>
-								Book Workers
-							</Button>
-						</a>
-					</Link>
 				</Stack>
 			</CustomTopBar>
 			<TabContext value={router.query.tab as string}>

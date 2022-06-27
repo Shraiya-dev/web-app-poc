@@ -83,7 +83,9 @@ export const LastOutstandingPaymentCard = () => {
 							)}
 							<Typography variant='h3' sx={{ fontSize: '2.25rem', color: theme.palette.base.variant50 }}>
 								{lastOutStandingPaymentData.data.response.length > 0
-									? indianCurrencyFormat(lastOutStandingPaymentData.data.response[0].totalPaymentAmount)
+									? indianCurrencyFormat(
+											lastOutStandingPaymentData.data.response[0].totalPaymentAmount
+									  )
 									: '-'}
 							</Typography>
 						</Stack>

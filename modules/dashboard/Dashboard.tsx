@@ -2,16 +2,17 @@ import { Badge, Button, CircularProgress, Grid, Stack, Typography } from '@mui/m
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import React, { useCallback, useState } from 'react'
-import { BookingCard, primary, SearchField, theme } from '../../sdk'
+import { BookingCard, primary, SearchField, theme, useMobile } from '../../sdk'
 import { FilterDrawer } from './components'
 import { useDashboard } from './hooks'
 import TuneIcon from '@mui/icons-material/Tune'
+import { ButtonClicked } from '../../sdk/analytics/analyticsWrapper'
 
 export const Dashboard = () => {
 	const { bookings, bookingStats, isLoading } = useDashboard()
 	const router = useRouter()
 	const [openFilterDrawer, setFilterDrawer] = useState(false)
-
+	const isMobile = useMobile()
 	const handelDrawerToggle = useCallback(() => {
 		setFilterDrawer((prev) => !prev)
 	}, [setFilterDrawer])
@@ -44,10 +45,14 @@ export const Dashboard = () => {
 				</Grid>
 			</Grid> */}
 
-			<Grid container>
-				<Grid item xs={12} md={9} justifyContent='space-between' alignItems='center'>
-					{/* <Typography variant='h4'>Your Bookings</Typography> */}
+			{/* <Typography variant='h4'>Your Bookings</Typography> */}
 
+			<Stack
+				direction={isMobile ? 'column' : 'row'}
+				justifyContent='space-between'
+				alignItems={isMobile ? 'stretch' : 'center'}
+				spacing={1}>
+				<Stack direction='row' justifyContent='space-between'>
 					<Button
 						onClick={handelDrawerToggle}
 						//color='inherit'
@@ -71,10 +76,8 @@ export const Dashboard = () => {
 						}
 						variant='outlined'
 						sx={{
-							height: 36,
 							borderRadius: 2,
 							padding: 1,
-							margin: 1,
 							marginLeft: 0,
 							border: `1px solid ${
 								router.query.status || router.query.jobType || router.query.sortBy
@@ -89,12 +92,47 @@ export const Dashboard = () => {
 						}}>
 						{`Filters & Sort`}
 					</Button>
-				</Grid>
-				<Grid item xs={12} md={3} alignItems='center'>
+					{isMobile && (
+						<Link href={`/projects/${router?.query?.projectId}/bookings/create`} passHref>
+							<a>
+								<Button
+									variant='contained'
+									onClick={() => {
+										ButtonClicked({
+											action: 'Book Workers',
+											page: 'Project',
+											projectId: router?.query?.projectId,
+											url: router.asPath,
+										})
+									}}>
+									Book Workers
+								</Button>
+							</a>
+						</Link>
+					)}
+				</Stack>
+				<Stack direction='row' alignItems='center' spacing={2}>
 					<SearchField name='bookingId' fullWidth placeholder='Search by booking ID' size='small' />
-				</Grid>
-			</Grid>
-
+					{!isMobile && (
+						<Link href={`/projects/${router?.query?.projectId}/bookings/create`} passHref>
+							<a>
+								<Button
+									variant='contained'
+									onClick={() => {
+										ButtonClicked({
+											action: 'Book Workers',
+											page: 'Project',
+											projectId: router?.query?.projectId,
+											url: router.asPath,
+										})
+									}}>
+									Book Workers
+								</Button>
+							</a>
+						</Link>
+					)}
+				</Stack>
+			</Stack>
 			{isLoading ? (
 				<Stack p={5} alignItems='center'>
 					<CircularProgress size={50} />

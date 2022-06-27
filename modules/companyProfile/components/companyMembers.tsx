@@ -12,7 +12,7 @@ const CompanyMembersStyle = styled(Box)(({ theme }) => ({
 }))
 
 interface Column {
-	id: 'name' | 'email' | 'phoneNumber' | 'designation' | 'isDeleted'
+	id: 'name' | 'email' | 'phoneNumber' | 'designation' | 'isDeleted' | 'role'
 	label: string
 	minWidth?: number
 	align?: 'right'
@@ -31,6 +31,10 @@ interface Row {
 	linkedOrganisation: LinkedOrg
 }
 
+const Roles: any = {
+	MEMBER: 'Member',
+	OWNER: 'Owner',
+}
 const CompanyMembers = () => {
 	const columns: readonly Column[] = [
 		{ id: 'name', label: 'Name', minWidth: 160 },
@@ -43,6 +47,11 @@ const CompanyMembers = () => {
 		{
 			id: 'designation',
 			label: 'Designation',
+			minWidth: 160,
+		},
+		{
+			id: 'role',
+			label: 'Role',
 			minWidth: 160,
 		},
 		{
@@ -115,7 +124,10 @@ const CompanyMembers = () => {
 									{/* {row?.designation ? designationLabel[row?.designation] : '_'} */}
 									{row?.designation ? mapInfo(row?.designation)?.label : '_'}
 								</TableCell>
-
+								<TableCell style={{ textTransform: 'capitalize' }}>
+									{/* {row?.designation ? designationLabel[row?.designation] : '_'} */}
+									{Roles[row?.linkedOrganisation?.role]}
+								</TableCell>
 								<TableCell style={{ textTransform: 'capitalize' }}>
 									{row?.linkedOrganisation?.isDeleted ? 'Inactive' : 'Active'}
 								</TableCell>

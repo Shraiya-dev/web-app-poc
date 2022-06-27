@@ -10,19 +10,18 @@ export type cancelPaymentApi = {
 	erroCode?: string
 }
 export type createOrderResponseType = {
-    paymentGatewayType: string
-    totalPaymentAmount: string
-    orderId: string
-    paymentId: string
+	paymentGatewayType: string
+	totalPaymentAmount: string
+	orderId: string
+	paymentId: string
 }
 export type confirmPaymentResponseType = {
-    paymentId: string
-    totalPaymentAmount: number
-    transactionTime: string
+	paymentId: string
+	totalPaymentAmount: number
+	transactionTime: string
 }
 export enum PaymentStatus {
-    CREATED = 'CREATED',
-    PAID = 'PAID',
-    FAILED = 'FAILED',
+	CREATED = 'CREATED',
+	PAID = 'PAID',
+	FAILED = 'FAILED',
 }
-
