@@ -12,6 +12,7 @@ import { WorkerTypeLabel } from '../../constants/workerType'
 import WorkerType from '../../../public/assets/icons/workerType.svg'
 import LocationIcon from '../../../public/assets/icons/location.svg'
 import ExperienceIcon from '../../../public/assets/icons/experience.svg'
+import WorkerIcon from '../../../public/assets/icons/workerIcon.svg'
 
 const CustomPaper = styled(Paper)(({ theme }) => ({
 	overflow: 'hidden',
@@ -33,20 +34,28 @@ interface JobCardCardProps {
 }
 
 export const JobCardCard = ({ jobCard }: JobCardCardProps) => {
+	console.log('profilePicture', jobCard?.workerImage)
 	return (
 		<CustomPaper elevation={1}>
 			<Stack flex={1} direction='row'>
 				<Stack
-					className='profileImage'
-					sx={{
-						backgroundImage: 'url(/assets/icons/workerIcon.svg)',
-					}}>
-					{/* <img
-					className='profileImage'
-					src={
-						
-					alt='worker Image'
-				/> */}
+				// className='profileImage'
+				// sx={{
+				// 	backgroundImage:
+				// 		jobCard?.workerImage?.length > 0
+				// 			? `url(${jobCard?.workerImage})`
+				// 			: 'url(/assets/icons/workerIcon.svg)',
+				// }}>
+				>
+					<img
+						src={jobCard?.workerImage?.length > 0 ? jobCard?.workerImage : '/assets/icons/workerIcon.png'}
+						style={{
+							maxHeight: 154,
+							maxWidth: 125,
+							objectFit: 'cover',
+							marginBottom: 0,
+						}}
+					/>
 				</Stack>
 				<Stack flex={1} p={2}>
 					<Stack mb={1} direction='row' justifyContent='space-between'>
