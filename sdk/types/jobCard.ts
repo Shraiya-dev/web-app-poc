@@ -21,4 +21,5 @@ export interface JobCard {
 	workerId: string
 	skillType: WORKER_TYPES
 	jobCardState: JobCardState
+	workerImage: string
 }

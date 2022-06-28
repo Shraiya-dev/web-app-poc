@@ -37,6 +37,12 @@ axios.interceptors.request.use(
 		return Promise.reject(error)
 	}
 )
+// replace console.* for disable log on production
+if (process.env.NODE_ENV === 'production') {
+	console.log = () => {}
+	console.error = () => {}
+	console.debug = () => {}
+}
 let _retry = false
 axios.interceptors.response.use(
 	(response: AxiosResponse) => {

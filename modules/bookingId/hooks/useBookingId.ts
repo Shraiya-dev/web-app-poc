@@ -71,6 +71,7 @@ export const useBookingId = () => {
 							dob: item?.worker?.dob || 'NA',
 							skillType: item?.jobCard?.skillType,
 							jobCardState: item?.jobCard?.jobCardState,
+							workerImage: item?.worker?.profilePicture, 
 						}
 						return jobCard
 					})
