@@ -311,7 +311,7 @@ export const OutstandingPaymentPopover = ({
 					</Button>
 					<Button
 						variant='contained'
-						disabled={payAmount == 0 && (!amount || amount === '0')}
+						disabled={payAmount <= 0 && (!amount || amount === '0' || parseInt(amount)<=0)}
 						sx={{
 							background: theme.palette.button.secondary,
 							paddingTop: theme.spacing(2),

@@ -67,7 +67,7 @@ export const Bills = () => {
 			<ApproveConfirmationDialog {...approveConfirmationDialogProps} />
 
 			<Stack spacing={3}>
-				<Stack direction='row' spacing={3}>
+				<Stack direction={isMobile ? 'column' : 'row'} spacing={3}>
 					<OutstandiongPaymentCard tooltipTitle='Net amount you owe based on bills raised and past payments made' />
 					<LastOutstandingPaymentCard />
 				</Stack>
