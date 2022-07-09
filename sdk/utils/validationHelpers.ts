@@ -51,7 +51,7 @@ export function isPincodeValid(pincode: string): boolean {
 }
 
 export function isValidGSTIN(GSTIN: string): boolean {
-	const checkGSTIN = GSTIN.match(/^([A-Z0-9]+)$/g)
+	const checkGSTIN = GSTIN.match(/\d{2}[A-Z]{5}\d{4}[A-Z]{1}[A-Z\d]{1}[Z]{1}[A-Z\d]{1}/)
 
 	if (checkGSTIN === null || GSTIN.length !== 15) {
 		return false

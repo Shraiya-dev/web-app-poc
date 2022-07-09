@@ -15,6 +15,7 @@ import {
 import { styled } from '@mui/system'
 import { useRouter } from 'next/router'
 import React, { useCallback, useEffect, useMemo, useState } from 'react'
+import { ButtonClicked } from 'sdk/analytics/analyticsWrapper'
 
 //const Razorpay = require('razorpay')
 //window.Razorpay = Razorpay
@@ -136,7 +137,14 @@ export const ConfirmPaymentSuccessPopover = ({
 						borderRadius: '72px',
 						maxHeight: '3rem',
 					}}
-					onClick={onClose}>
+					onClick={() => {
+						ButtonClicked({
+							action: 'Continue on Payment success',
+							page: document.title,
+							url: router.asPath,
+						})
+						onClose()
+					}}>
 					<Typography variant='subtitle2' sx={{ color: theme.palette.textCTA.white }}>
 						Continue
 					</Typography>

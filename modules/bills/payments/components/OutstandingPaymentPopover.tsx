@@ -30,6 +30,7 @@ import {
 } from '../PaymentTypes'
 import { useCancelPaymentMutation, useConfirmPaymentMutation, useCreatePaymentMutation } from '../queries/hooks'
 import { ConfirmPaymentSuccessPopover } from './ConfirmPaymentSuccessPopover'
+import { ButtonClicked } from 'sdk/analytics/analyticsWrapper'
 
 const CustomDialog = styled(Dialog)(({ theme }) => ({
 	'& .MuiDialog-paper': {
@@ -304,14 +305,16 @@ export const OutstandingPaymentPopover = ({
 							border: `1px solid ${theme.palette.textCTA.blue}`,
 							background: theme.palette.button.primary,
 						}}
-						onClick={hideModal}>
+						onClick={() => {
+							hideModal()
+						}}>
 						<Typography variant='subtitle2' sx={{ color: theme.palette.textCTA.blue }}>
 							Cancel
 						</Typography>
 					</Button>
 					<Button
 						variant='contained'
-						disabled={payAmount <= 0 && (!amount || amount === '0' || parseInt(amount)<=0)}
+						disabled={payAmount <= 0 && (!amount || amount === '0' || parseInt(amount) <= 0)}
 						sx={{
 							background: theme.palette.button.secondary,
 							paddingTop: theme.spacing(2),
@@ -321,7 +324,14 @@ export const OutstandingPaymentPopover = ({
 							borderRadius: '72px',
 							maxHeight: '3rem',
 						}}
-						onClick={createPaymentOrder}>
+						onClick={() => {
+							ButtonClicked({
+								action: originalSelected ? 'Initiate outstanding Payment' : 'Initiate custom Payment',
+								page: document.title,
+								url: router.asPath,
+							})
+							createPaymentOrder()
+						}}>
 						<Typography variant='subtitle2' sx={{ color: theme.palette.textCTA.white }}>
 							Pay
 						</Typography>

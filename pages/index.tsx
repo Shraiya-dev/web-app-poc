@@ -1,18 +1,19 @@
+import { Home } from 'landing'
 import { NextPage } from 'next'
 import Head from 'next/head'
-import { OnboardingLayout } from '../sdk'
+import { LandingLayout } from 'sdk'
 
-//*this is a test page to test out components for theming
-const Index: NextPage = () => {
+const HomePage: NextPage = () => {
 	return (
 		<>
 			<Head>
-				<title>Project Hero</title>
-				<meta name='description' content='' />
+				<title>Project Hero | Home</title>
 			</Head>
-			<OnboardingLayout></OnboardingLayout>
+			<LandingLayout>
+				<Home />
+			</LandingLayout>
 		</>
 	)
 }
 
-export default Index
+export default HomePage

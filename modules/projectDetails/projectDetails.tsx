@@ -137,8 +137,9 @@ export const ProjectDetails = () => {
 					}}
 					value='work-report'
 					style={{
-						height: 'calc( 100vh - 200px )',
+						height: 'calc( 100vh - 130px )',
 						overflowY: 'auto',
+						paddingBottom: 0,
 						position: 'relative',
 					}}>
 					<WorkReport />
@@ -149,8 +150,9 @@ export const ProjectDetails = () => {
 					}}
 					value='bills'
 					style={{
-						height: 'calc( 100vh - 200px )',
+						height: 'calc( 100vh - 130px )',
 						overflowY: 'auto',
+						paddingBottom: 0,
 						position: 'relative',
 					}}>
 					<Bills />

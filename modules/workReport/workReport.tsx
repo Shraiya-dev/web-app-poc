@@ -171,7 +171,7 @@ export const WorkReport = () => {
 					</Button>
 				</Stack>
 				<Stack mt={2}>
-					<TableContainer component={Paper} sx={{ height: 'calc(100vh - 300px)' }}>
+					<TableContainer component={Paper} sx={{ height: 'calc(100vh - 230px)' }}>
 						<Table stickyHeader>
 							<TableHead>
 								<TableRow>

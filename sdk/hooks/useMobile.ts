@@ -7,7 +7,7 @@ export function useMobile() {
 		// Handler to call on window resize
 		function handleResize() {
 			// Set window width/height to state
-			if (window.innerWidth <= 480) {
+			if (window.innerWidth <= 900) {
 				setIsMobile(true)
 			} else {
 				setIsMobile(false)

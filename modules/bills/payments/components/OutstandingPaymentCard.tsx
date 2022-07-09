@@ -9,6 +9,7 @@ import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
 import CurrencyRupeeIcon from '@mui/icons-material/CurrencyRupee'
 import { OutstandingPaymentPopover } from './OutstandingPaymentPopover'
 import { indianCurrencyFormat } from '../../../../sdk'
+import { ButtonClicked } from 'sdk/analytics/analyticsWrapper'
 
 const CustomPaper = styled(Paper)(({ theme }) => ({
 	display: 'flex',
@@ -139,7 +140,14 @@ export const OutstandiongPaymentCard = ({ tooltipTitle }: { tooltipTitle: Toolti
 									borderRadius: '72px',
 									maxHeight: '3rem',
 								}}
-								onClick={showPaymentPopover}>
+								onClick={(e) => {
+									ButtonClicked({
+										action: 'Initiate Payment',
+										page: document.title,
+										url: router.pathname,
+									})
+									showPaymentPopover()
+								}}>
 								<Typography variant='subtitle2' sx={{ color: theme.palette.textCTA.white }}>
 									Pay
 								</Typography>

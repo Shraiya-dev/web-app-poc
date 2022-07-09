@@ -37,45 +37,28 @@ export const JobCardCard = ({ jobCard }: JobCardCardProps) => {
 	console.log('profilePicture', jobCard?.workerImage)
 	return (
 		<CustomPaper elevation={1}>
-			<Stack flex={1} direction='row'>
-				<Stack
-				// className='profileImage'
-				// sx={{
-				// 	backgroundImage:
-				// 		jobCard?.workerImage?.length > 0
-				// 			? `url(${jobCard?.workerImage})`
-				// 			: 'url(/assets/icons/workerIcon.svg)',
-				// }}>
-				>
+			<Stack flex={1} direction='row' alignItems='stretch' height='100%'>
+				<Stack position='relative' sx={{ width: '33%' }}>
 					<img
+						width={'100%'}
+						height={'100%'}
 						src={jobCard?.workerImage?.length > 0 ? jobCard?.workerImage : '/assets/icons/workerIcon.png'}
-						style={{
-							maxHeight: 154,
-							maxWidth: 125,
-							objectFit: 'cover',
-							marginBottom: 0,
-						}}
 					/>
 				</Stack>
-				<Stack flex={1} p={2}>
+				<Stack flex={1} maxWidth='calc(100% - 33%)' p={2}>
 					<Stack mb={1} direction='row' justifyContent='space-between'>
-						<Typography variant='h6' fontWeight={600}>
+						<Typography
+							variant='h6'
+							fontWeight={600}
+							textOverflow='ellipsis'
+							whiteSpace='nowrap'
+							overflow='hidden'>
 							{jobCard.WorkerName ?? 'No Name'}
 						</Typography>
 
 						<JobCardStatusChip jobCardState={jobCard.jobCardState} sx={{ verticalAlign: 'middle' }} />
-						{/* <Link href={`/worker/${jobCard.workerId}`} passHref>
-							<Typography component={'a'} color='primary.main'>
-								View
-							</Typography>
-						</Link> */}
 					</Stack>
 					<Stack flex={1} alignItems='flex-start' spacing={1}>
-						{/* <Chip variant='outlined' color='primary' label={jobCard?.skillType} /> */}
-						{/* <Typography className='vAlignCenter' variant='body2'>
-							<Engineering fontSize='inherit' color='error' />
-							&nbsp;{jobCard.projectCount} Projects
-						</Typography> */}
 						<Typography className='vAlignCenter' variant='body2' color='secondary.main'>
 							{/* <EngineeringIcon fontSize='inherit' /> */}
 							<Icon fontSize='inherit' style={{ display: 'flex' }}>

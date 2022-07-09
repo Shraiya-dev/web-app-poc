@@ -7,7 +7,7 @@ const Details = () => {
 	return (
 		<>
 			<Head>
-				<title>Project Attendance Details | Project Hero </title>
+				<title>Bill Detail | Project Hero </title>
 				<meta name='Project' content='' />
 			</Head>
 			<BillDetails />

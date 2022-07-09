@@ -6,8 +6,12 @@ export const CompanyNameField = ({ onChange, ...rest }: TextFieldProps) => {
 		<TextField
 			{...rest}
 			onChange={(e) => {
-				const value = e.target.value
-				if (value !== '' && !ALPHA_NUMERIC_REGEX.test(value)) {
+				let value = e.target.value
+
+				if (/^\s/.test(value)) e.target.value = ''
+				value = ''
+
+				if (value != '' && !ALPHA_NUMERIC_REGEX.test(value)) {
 					return
 				}
 				if (onChange) {

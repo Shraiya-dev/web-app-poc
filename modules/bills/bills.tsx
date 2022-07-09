@@ -19,6 +19,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
+import { ButtonClicked } from 'sdk/analytics/analyticsWrapper'
 import { colors, PaginationWithHasMore, useMobile } from '../../sdk'
 import { DateStack } from '../../sdk/components/date/DateStack'
 import { StyledTableHeadCell } from '../../sdk/styledComponents/Tables'
@@ -153,7 +154,7 @@ export const Bills = () => {
 					</Stack>
 				</Stack>
 				<Stack>
-					<TableContainer component={Paper} sx={{ height: 'calc(100vh - 500px)' }}>
+					<TableContainer component={Paper} sx={{ height: 'calc(100vh - 425px)' }}>
 						<Table stickyHeader>
 							<TableHead>
 								<TableRow>
@@ -230,7 +231,15 @@ export const Bills = () => {
 													<Link
 														href={`/projects/${router.query.projectId}/work-report/${item?.dwrId}`}
 														passHref>
-														<a onClick={(e) => e.stopPropagation()}>
+														<a
+															onClick={(e) => {
+																ButtonClicked({
+																	action: 'View Work report from bill',
+																	page: document.title,
+																	url: router.asPath,
+																})
+																e.stopPropagation()
+															}}>
 															<Image
 																src={'/assets/icons/reportIcon.svg'}
 																alt={'DWR report'}

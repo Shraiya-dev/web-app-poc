@@ -162,15 +162,6 @@ export const CreateBooking = () => {
 
 	const workerType = [
 		{
-			label: 'Technician',
-			icon: Technician,
-			name: 'technician',
-			wage: 'technicianWages',
-			formvalue: form.values.technician,
-			wageformvalue: form.values.technicianWages,
-			error: form.errors.technician,
-		},
-		{
 			label: 'Helper',
 			icon: Helper,
 			name: 'helper',
@@ -179,6 +170,16 @@ export const CreateBooking = () => {
 			wageformvalue: form.values.helperWages,
 			error: form.errors.helper,
 		},
+		{
+			label: 'Technician',
+			icon: Technician,
+			name: 'technician',
+			wage: 'technicianWages',
+			formvalue: form.values.technician,
+			wageformvalue: form.values.technicianWages,
+			error: form.errors.technician,
+		},
+
 		{
 			label: 'Supervisor',
 			icon: Supervisor,
@@ -456,7 +457,7 @@ export const CreateBooking = () => {
 														id={info?.name}
 														name={info?.name}
 														value={info?.formvalue}
-														type='number'
+														type='tel'
 														onChange={(e: any) => {
 															if (
 																e.target.value >= 0 &&
@@ -478,7 +479,7 @@ export const CreateBooking = () => {
 														id={info?.wage}
 														name={info?.wage}
 														value={info?.wageformvalue > 0 ? info?.wageformvalue : ''}
-														type='number'
+														type='tel'
 														onChange={(e: any) => {
 															if (e.target.value >= 0 && e.target.value <= 2000) {
 																form.setFieldValue(
