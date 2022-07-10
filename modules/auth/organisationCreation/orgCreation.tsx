@@ -3,6 +3,7 @@ import {
 	Box,
 	Button,
 	CircularProgress,
+	FormHelperText,
 	Grid,
 	IconButton,
 	InputAdornment,
@@ -14,7 +15,7 @@ import {
 
 import { Add, CheckCircle, Close } from '@mui/icons-material'
 import { useRouter } from 'next/router'
-import { checkError, FileInput, InputWrapper, primary, useFormikProps } from '../../../sdk'
+import { checkError, FileInput, InputWrapper, isValidGSTIN, primary, useFormikProps } from '../../../sdk'
 import BackButton from '../../../sdk/components/backButton/backButtom'
 import { CompanyNameField } from '../../../sdk/components/Input/companyNameField'
 import useCreateProfile from './hooks/useOrgCreation'
@@ -92,6 +93,9 @@ export const OrgCreationForm = () => {
 											placeholder='15 Digits GSTIN'
 											{...gstinFormikProps('gstin')}
 											onChange={(e) => {
+												GSTINForm.setTouched({
+													gstin: true,
+												})
 												if (e.target.value.length <= 15) {
 													setIsGSTINVerified(false)
 													GSTINForm.handleChange(e)
@@ -110,7 +114,7 @@ export const OrgCreationForm = () => {
 																type='submit'
 																size='small'
 																disabled={
-																	!!GSTINForm.errors.gstin || !GSTINForm.values.gstin
+																	!isValidGSTIN(GSTINForm.values.gstin.toUpperCase())
 																}
 																loading={!!loading}
 																variant='contained'>
@@ -121,10 +125,13 @@ export const OrgCreationForm = () => {
 												),
 											}}
 										/>
+										<FormHelperText sx={{ color: 'success.main', pl: 2 }}>
+											{isGSTINVerified && 'GSTIN is verified successfully'}
+										</FormHelperText>
 									</InputWrapper>
 								</form>
 
-								<InputWrapper id='GSTINDoc' label='Upload GSTIN Certificate'>
+								{/* <InputWrapper id='GSTINDoc' label='Upload GSTIN Certificate'>
 									<Grid container item xs={12} sm={12} md={12} lg={12} rowSpacing={1}>
 										<FileInput
 											sx={{
@@ -212,7 +219,7 @@ export const OrgCreationForm = () => {
 											)
 										})}
 									</Grid>
-								</InputWrapper>
+								</InputWrapper> */}
 							</Stack>
 
 							<LoadingButton
@@ -220,12 +227,7 @@ export const OrgCreationForm = () => {
 								onClick={(e: any) => form.handleSubmit(e)}
 								loading={!!loading}
 								variant='contained'
-								disabled={
-									!form.values.companyName ||
-									!form.values.GSTIN ||
-									form.values.GSTINDocuments.length === 0 ||
-									!isGSTINVerified
-								}>
+								disabled={!form.values.companyName || !form.values.GSTIN || !isGSTINVerified}>
 								Continue
 							</LoadingButton>
 						</>

@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { isValidGSTIN, useContractorAuth, useSnackbar } from '../../../../sdk'
 import { FormikHelpers, FormikProps, FormikValues, useFormik } from 'formik'
 import { uploadImage } from '../../../createProject/apis'
@@ -38,10 +38,6 @@ const useOrgCreation = () => {
 				errors.GSTIN = 'Required'
 			}
 
-			if (values.GSTINDocuments.length === 0) {
-				errors.GSTINDocuments = 'Required'
-			}
-
 			if (!isValidGSTIN(values.GSTIN.toUpperCase())) {
 				errors.GSTIN = 'Enter Valid GSTIN Number'
 			}
@@ -52,7 +48,6 @@ const useOrgCreation = () => {
 			const payload = {
 				companyName: values.companyName,
 				GSTIN: values.GSTIN.toUpperCase(),
-				GstinCertificate: values.GSTINDocuments[0],
 			}
 
 			try {
@@ -85,11 +80,21 @@ const useOrgCreation = () => {
 				}
 				setOrgDetails(data.payload)
 			} catch (error: any) {
-				showSnackbar(error?.response?.data?.developerInfo, 'error')
+				if (error.response.data.isClientError) {
+					fh.setErrors({
+						gstin: error?.response?.data?.developerInfo,
+					})
+				} else {
+					fh.setErrors({
+						gstin: error?.response?.data?.messageToUser,
+					})
+				}
+
+				// showSnackbar(error?.response?.data?.developerInfo, 'error')
 			}
 			setLoading(false)
 		},
-		[showSnackbar]
+		[form]
 	)
 
 	const GSTINForm = useFormik<{ gstin: string }>({
@@ -109,6 +114,9 @@ const useOrgCreation = () => {
 		},
 		onSubmit: validateGSTIN,
 	})
+	useEffect(() => {
+		console.log(GSTINForm)
+	}, [GSTINForm])
 	const uploadFiles = useCallback(
 		async (files) => {
 			setIsGSTINDocUploaded((old) => true)
