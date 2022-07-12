@@ -1,0 +1,32 @@
+[
+	{
+		"relation": ["delegate_permission/common.handle_all_urls"],
+		"target": {
+			"namespace": "android_app",
+			"package_name": "com.projecthero.android",
+			"sha256_cert_fingerprints": [
+				"AE:7E:63:03:BD:75:33:4C:79:24:21:C8:9A:4A:59:44:7F:25:3D:D5:45:11:67:09:E3:F2:0B:73:33:E1:EE:5C"
+			]
+		}
+	},
+	{
+		"relation": ["delegate_permission/common.handle_all_urls"],
+		"target": {
+			"namespace": "android_app",
+			"package_name": "com.projecthero.android",
+			"sha256_cert_fingerprints": [
+				"2D:94:98:D8:49:4E:F1:7A:C6:BE:B7:08:45:6A:03:52:E2:E9:BE:86:44:63:25:43:BA:4F:03:29:31:23:FB:19"
+			]
+		}
+	},
+	{
+		"relation": ["delegate_permission/common.handle_all_urls"],
+		"target": {
+			"namespace": "android_app",
+			"package_name": "com.projecthero.android",
+			"sha256_cert_fingerprints": [
+				"FA:C6:17:45:DC:09:03:78:6F:B9:ED:E6:2A:96:2B:39:9F:73:48:F0:BB:6F:89:9B:83:32:66:75:91:03:3B:9C"
+			]
+		}
+	}
+]
