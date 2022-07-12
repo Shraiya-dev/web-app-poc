@@ -15,6 +15,7 @@ export interface WorkReportDetails {
 	otCheckIn?: string
 	otCheckOut?: string
 	otHours?: string
+	profilePicture?: string
 }
 export interface WorkReportDetailsAggregatedDetails {
 	totalPresent: number

@@ -22,6 +22,7 @@ export interface BillDetails {
 			jobType: JOB_TYPES
 			workerType: WORKER_TYPES
 		}
+		profilePicture?: string
 	}
 }
 

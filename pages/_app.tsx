@@ -125,7 +125,8 @@ function MyApp({ Component, pageProps }: AppProps) {
 	}
 	if (typeof window !== 'undefined') {
 		if (!window.location.hostname.includes('booking')) {
-			if (window.location.hostname.includes('stage')) {
+			if (window.location.hostname.includes('localhost')) {
+			} else if (window.location.hostname.includes('stage')) {
 				window.location.hostname = 'stage-booking.projecthero.in'
 			} else if (window.location.hostname.includes('dev')) {
 				window.location.hostname = 'dev-booking.projecthero.in'

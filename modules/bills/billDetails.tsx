@@ -387,7 +387,7 @@ export const BillDetails = () => {
 												}}>
 												<Avatar
 													sx={{ width: 48, height: 48 }}
-													src='/assets/icons/workerIcon.svg'
+													src={worker.profilePicture ?? '/assets/icons/workerIcon.svg'}
 												/>
 											</TableCell>
 											<TableCell

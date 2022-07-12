@@ -381,7 +381,10 @@ export const WorkReportDetails = () => {
 													backgroundColor: colors.AliceBlue,
 												},
 											}}>
-											<Avatar sx={{ width: 48, height: 48 }} src='/assets/icons/workerIcon.svg' />
+											<Avatar
+												sx={{ width: 48, height: 48 }}
+												src={item.profilePicture ?? '/assets/icons/workerIcon.svg'}
+											/>
 										</TableCell>
 										<TableCell
 											sx={{
