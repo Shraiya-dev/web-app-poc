@@ -35,6 +35,7 @@ const Page: NextPage = () => {
 				<Stack justifyContent='center' spacing={2}>
 					<Box>
 						<img
+							width={'100%'}
 							src={'/assets/landing/banners/kM-july-17.png'}
 							alt='khula-manch'
 							style={{ maxWidth: isMobile ? '' : 600, borderRadius: 8 }}
