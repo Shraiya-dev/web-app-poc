@@ -16,8 +16,8 @@ const Page: NextPage = () => {
 	const router = useRouter()
 	const ref = useRef()
 	useEffect(() => {
-		if (isAfter(new Date(), eventDate) && isBefore(new Date(), eventEndDate)) {
-			;(ref.current as any)?.click()
+		if (isAfter(new Date(), eventDate) && isBefore(new Date(), eventEndDate) && window) {
+			window.location.href = meetLink
 		}
 	}, [])
 
@@ -107,7 +107,6 @@ const Page: NextPage = () => {
 							backgroundColor: '#CC2C49',
 						}}
 						href={meetLink}
-						ref={ref}
 						onClick={() => {
 							ButtonClicked({
 								action: 'Khula Manch',
