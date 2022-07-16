@@ -54,7 +54,7 @@ const useEmailOtpVerification = () => {
 			})
 			.catch((error: any) => {
 				console.log('error', error)
-				showSnackbar(error, 'error')
+				showSnackbar(error.response.data.developerInfo, 'error')
 			})
 	}, [requestEmailOtp, router.asPath, showSnackbar])
 	const resendOtp = useCallback(async () => {

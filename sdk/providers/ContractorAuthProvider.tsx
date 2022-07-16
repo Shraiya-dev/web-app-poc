@@ -86,7 +86,11 @@ const ContractorAuthProvider = ({ children }: any) => {
 		dispatch({
 			phoneNumber: phoneNumber,
 		})
-		return await sendOtpService(phoneNumber, USER_TYPE.CONTRACTOR)
+		try {
+			return await sendOtpService(phoneNumber, USER_TYPE.CONTRACTOR)
+		} catch (error: any) {
+			showSnackbar(error.response.data.developerInfo, 'error')
+		}
 	}, [])
 	const getContactorUserInfo = useCallback(async () => {
 		try {
@@ -204,10 +208,10 @@ const ContractorAuthProvider = ({ children }: any) => {
 	}, [])
 
 	const requestEmailOtp = useCallback(async () => {
-		return await sendEmailOtpService()
+		return sendEmailOtpService()
 	}, [])
 	const reSendEmailOtp = useCallback(async (payload: { token: string }) => {
-		return await reSendEmailOtpService(payload)
+		return reSendEmailOtpService(payload)
 	}, [])
 
 	const verifyEmailOtp = useCallback(async (payload: emailOtpPayload) => {
