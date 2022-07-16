@@ -108,9 +108,16 @@ function MyApp({ Component, pageProps }: AppProps) {
 
 	//if route begin with /admin redirect to admin node
 	if (
-		['/', '/about-us', '/contact-us', '/privacy-policy', '/refund-policy', '/tnc', '/hero/plans'].includes(
-			router.pathname
-		)
+		[
+			'/',
+			'/about-us',
+			'/contact-us',
+			'/privacy-policy',
+			'/refund-policy',
+			'/tnc',
+			'/hero/plans',
+			'/Khula',
+		].includes(router.pathname)
 	) {
 		if (typeof window !== 'undefined') {
 			if (window.location.hostname.includes('booking')) {
