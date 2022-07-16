@@ -1,6 +1,7 @@
 import { Stack, Box, Typography, Button, Divider, Grid } from '@mui/material'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
+import { DataLayerPush } from 'sdk/analytics'
 import { ButtonClicked } from 'sdk/analytics/analyticsWrapper'
 import { AppStoreImage } from 'sdk/constants'
 import { externalLinks, footer } from 'sdk/data'
@@ -32,7 +33,13 @@ export const Footer = () => {
 						<Typography variant={isMobile ? 'h4' : 'h3'} color={footer.textColor}>
 							{footer.tagLine}
 						</Typography>
-						<LinkButton href='/login' variant='contained' sx={{ fontSize: '14px', ml: 2 }}>
+						<LinkButton
+							href='/login'
+							onClick={() => {
+								DataLayerPush({ event: 'book_hero_home_footer' })
+							}}
+							variant='contained'
+							sx={{ fontSize: '14px', ml: 2 }}>
 							Book Hero
 						</LinkButton>
 					</Stack>
@@ -40,7 +47,7 @@ export const Footer = () => {
 				{isMobile && (
 					<Grid container direction={'row'} flexWrap={'wrap'}>
 						{footer.navLinks.map((item) => (
-							<Grid key={item.label} xs={6}>
+							<Grid key={item.label} item xs={6}>
 								<a
 									onClick={() => {
 										ButtonClicked({

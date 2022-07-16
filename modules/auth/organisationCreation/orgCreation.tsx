@@ -1,26 +1,13 @@
 import LoadingButton from '@mui/lab/LoadingButton'
-import {
-	Box,
-	Button,
-	CircularProgress,
-	FormHelperText,
-	Grid,
-	IconButton,
-	InputAdornment,
-	Stack,
-	styled,
-	TextField,
-	Typography,
-} from '@mui/material'
+import { Box, Button, FormHelperText, InputAdornment, Stack, styled, TextField, Typography } from '@mui/material'
 
-import { Add, CheckCircle, Close } from '@mui/icons-material'
+import { CheckCircle } from '@mui/icons-material'
 import { useRouter } from 'next/router'
-import { checkError, FileInput, InputWrapper, isValidGSTIN, primary, useFormikProps } from '../../../sdk'
-import BackButton from '../../../sdk/components/backButton/backButtom'
+import { checkError, InputWrapper, isValidGSTIN, useFormikProps } from '../../../sdk'
 import { CompanyNameField } from '../../../sdk/components/Input/companyNameField'
-import useCreateProfile from './hooks/useOrgCreation'
 import { OnboardingCard } from '../../../sdk/layouts/OrganisationCard'
 import { LogoutAndRedirect } from '../../../sdk/utils/logoutHelper'
+import useCreateProfile from './hooks/useOrgCreation'
 
 const CustomOrgCreationStyles = styled(Box)(({ theme }) => ({
 	margin: 8,
@@ -224,7 +211,9 @@ export const OrgCreationForm = () => {
 
 							<LoadingButton
 								className='cta'
-								onClick={(e: any) => form.handleSubmit(e)}
+								onClick={(e: any) => {
+									form.handleSubmit(e)
+								}}
 								loading={!!loading}
 								variant='contained'
 								disabled={!form.values.companyName || !form.values.GSTIN || !isGSTINVerified}>

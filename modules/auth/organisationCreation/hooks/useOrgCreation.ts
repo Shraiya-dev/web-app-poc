@@ -1,10 +1,10 @@
+import { FormikHelpers, useFormik } from 'formik'
+import { useRouter } from 'next/router'
 import { useCallback, useEffect, useState } from 'react'
-import { isValidGSTIN, useContractorAuth, useSnackbar } from '../../../../sdk'
-import { FormikHelpers, FormikProps, FormikValues, useFormik } from 'formik'
+import { DataLayerPush, isValidGSTIN, useContractorAuth, useSnackbar } from '../../../../sdk'
+import { ButtonClicked } from '../../../../sdk/analytics/analyticsWrapper'
 import { uploadImage } from '../../../createProject/apis'
 import { createOrganisation, postValidateGSTIN } from '../apis/apis'
-import { ButtonClicked } from '../../../../sdk/analytics/analyticsWrapper'
-import { useRouter } from 'next/router'
 import { ValidateGSTINResponse, ValidateGSTINStatusCode } from '../types'
 
 const useOrgCreation = () => {
@@ -52,6 +52,8 @@ const useOrgCreation = () => {
 
 			try {
 				await createOrg(payload)
+				DataLayerPush({ event: 'registration_success', company_name: values.companyName, gstin: values.GSTIN })
+
 				await getContactorUserInfo()
 			} catch (error: any) {
 				showSnackbar(error?.response?.data?.developerInfo, 'error')

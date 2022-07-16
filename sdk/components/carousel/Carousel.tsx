@@ -1,14 +1,21 @@
-import { IconButton, MobileStepper, Stack } from '@mui/material'
+import { IconButton, MobileStepper, MobileStepperProps, Stack } from '@mui/material'
 import { useEffect, useMemo, useState } from 'react'
 import SwipeableViews from 'react-swipeable-views'
 import { autoPlay } from 'react-swipeable-views-utils'
 interface CarouselProps {
 	componentPerView: number
 	items: any[]
+	slideDelay?: number
+	mobileStepperPosition?: 'top' | 'static' | 'bottom'
 }
 
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews)
-export const Carousel = ({ items, componentPerView }: CarouselProps) => {
+export const Carousel = ({
+	items,
+	componentPerView,
+	slideDelay = 5000,
+	mobileStepperPosition = 'bottom',
+}: CarouselProps) => {
 	const contentPerSlide = useMemo(() => {
 		const slides: any[] = []
 		let i = 0
@@ -27,24 +34,10 @@ export const Carousel = ({ items, componentPerView }: CarouselProps) => {
 	}, [activeStep, maxSteps])
 
 	return (
-		<Stack position='relative'>
-			<AutoPlaySwipeableViews
-				interval={5000}
-				index={activeStep}
-				onChangeIndex={(i) => setActiveStep(i)}
-				scrolling=''
-				enableMouseEvents>
-				{contentPerSlide.map((items: any[], index) => (
-					<Stack direction='row' key={index} justifyContent='space-evenly'>
-						{items.map((com, id) => {
-							return com
-						})}
-					</Stack>
-				))}
-			</AutoPlaySwipeableViews>
-			{maxSteps > 1 && (
+		<>
+			{mobileStepperPosition === 'top' && maxSteps > 1 && (
 				<MobileStepper
-					position='static'
+					position={'static'}
 					color='common.white'
 					sx={{ backgroundColor: 'transparent' }}
 					backButton={
@@ -61,6 +54,39 @@ export const Carousel = ({ items, componentPerView }: CarouselProps) => {
 					activeStep={activeStep}
 				/>
 			)}
-		</Stack>
+			<AutoPlaySwipeableViews
+				interval={slideDelay}
+				index={activeStep}
+				onChangeIndex={(i) => setActiveStep(i)}
+				scrolling=''
+				enableMouseEvents>
+				{contentPerSlide.map((items: any[], index) => (
+					<Stack direction='row' key={index} justifyContent='space-evenly'>
+						{items.map((com, id) => {
+							return com
+						})}
+					</Stack>
+				))}
+			</AutoPlaySwipeableViews>
+			{mobileStepperPosition === 'bottom' && maxSteps > 1 && (
+				<MobileStepper
+					position={'static'}
+					color='common.white'
+					sx={{ backgroundColor: 'transparent', top: 0 }}
+					backButton={
+						<IconButton disabled={activeStep === 0} onClick={() => setActiveStep((p) => p - 1)}>
+							{/* <ArrowLeft color='primary' /> */}
+						</IconButton>
+					}
+					nextButton={
+						<IconButton disabled={activeStep >= maxSteps - 1} onClick={() => setActiveStep((p) => p + 1)}>
+							{/* <ArrowRight color='primary' /> */}
+						</IconButton>
+					}
+					steps={maxSteps}
+					activeStep={activeStep}
+				/>
+			)}
+		</>
 	)
 }

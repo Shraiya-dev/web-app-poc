@@ -19,6 +19,7 @@ import { useRouter } from 'next/router'
 import {
 	AppStoreImage,
 	Carousel,
+	DataLayerPush,
 	externalLinks,
 	FloatingUnderLineHeading,
 	HyperLink,
@@ -54,9 +55,9 @@ export const Home = () => {
 								<Typography variant='h4'>
 									India&apos;s largest <strong>skilled construction workforce marketplace</strong>
 								</Typography>
-								{/* <Button sx={{ px: 6 }} variant='outlined'>
+								<LinkButton href='/hero/plans' sx={{ px: 6 }} variant='outlined'>
 									View Plans
-								</Button> */}
+								</LinkButton>
 								<Stack direction='row' spacing={5}>
 									<Stack direction='row' spacing={2}>
 										<Image
@@ -128,6 +129,9 @@ export const Home = () => {
 								color='primary'
 								href='/login'
 								onClick={() => {
+									DataLayerPush({
+										event: 'book_worker_home_hero',
+									})
 									ButtonClicked({
 										page: document.title,
 										action: 'Book Workers',
@@ -141,13 +145,13 @@ export const Home = () => {
 					</Grid>
 				</Grid>
 			</Section>
-			{/* {isMobile && (
+			{isMobile && (
 				<Stack alignItems='center'>
-					<Button sx={{ px: 6 }} variant='outlined'>
+					<LinkButton href='/hero/plans' sx={{ px: 6 }} variant='outlined'>
 						View Plans
-					</Button>
+					</LinkButton>
 				</Stack>
-			)} */}
+			)}
 			<Section>
 				<Grid container spacing={isMobile ? 2 : 4}>
 					{jobSection.jobs.map((item) => (
@@ -243,7 +247,7 @@ export const Home = () => {
 						{hireConstructionSection.cards.map((data, index) => {
 							return (
 								<Grid
-									key='index'
+									key={index}
 									item
 									xs={12}
 									md={6}
@@ -291,7 +295,15 @@ export const Home = () => {
 									borderRadius: '12px',
 								}}>
 								<HyperLink href={item.link}>
-									<Image src={item.image} layout='fill' />
+									<Image
+										onClick={() => {
+											DataLayerPush({
+												event: 'book_worker_home_card',
+											})
+										}}
+										src={item.image}
+										layout='fill'
+									/>
 								</HyperLink>
 							</Stack>
 						)),
@@ -311,7 +323,7 @@ export const Home = () => {
 					<Grid container mt={10}>
 						{phAdvantage.advantage.map((data, index) => {
 							return (
-								<Grid key={index} item xs={12} md={2.4} spacing={4}>
+								<Grid key={index} item xs={12} md={2.4}>
 									<Stack
 										direction={!isMobile ? 'column' : 'row'}
 										spacing={2}

@@ -30,13 +30,14 @@ const CustomEmailOtpVerifyStyles = styled(Box)(({ theme }) => ({
 }))
 export const EmailOtpVerification = ({ ...props }) => {
 	const { handleChangeEmail } = props
-	const { otp, form, status, error, handleChange, resendOTP, loading, user } = useEmailOtpVerification()
+	const { otp, form, status, error, handleChange, requestOtp, resendOtp, loading, user } = useEmailOtpVerification()
 
 	const router = useRouter()
 
 	useEffect(() => {
-		resendOTP()
-	}, [router.pathname === '/verify-email'])
+		if (router.pathname !== '/verify-email') return
+		requestOtp()
+	}, [router])
 
 	return (
 		<OnboardingCard>
@@ -79,7 +80,7 @@ export const EmailOtpVerification = ({ ...props }) => {
 					</Stack>
 
 					<Stack className='subHeader' direction={'row'} justifyContent='center'>
-						<Button onClick={resendOTP} variant='text'>
+						<Button onClick={resendOtp} variant='text'>
 							Resend OTP
 						</Button>
 						<Button onClick={() => handleChangeEmail()} variant='text'>

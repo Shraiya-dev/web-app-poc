@@ -8,7 +8,6 @@ import useEmailOtpVerification from './useEmailOtpVerification'
 const useEditEmail = () => {
 	const [loading, setLoading] = useState(false)
 	const { showSnackbar } = useSnackbar()
-	const { resendOTP } = useEmailOtpVerification()
 	const { user, getContactorUserInfo } = useContractorAuth()
 
 	const [isChangeEmail, setIsChangeEmail] = useState(false)

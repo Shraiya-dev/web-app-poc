@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useRouter } from 'next/router'
 import { useContractorAuth, useSnackbar } from '../../../../sdk'
 import { useFormik } from 'formik'
-import { Analytic } from '../../../../sdk/analytics'
+import { Analytic, DataLayerPush } from '../../../../sdk/analytics'
 import { ButtonClicked } from '../../../../sdk/analytics/analyticsWrapper'
 
 const initialOtpState = {
@@ -65,6 +65,7 @@ const useOtp = () => {
 								...prevValues,
 								status: res?.success,
 							}))
+							DataLayerPush({ event: 'mobile_verification_done' })
 							setLoading(false)
 						} else {
 							setOtpState((prevValues: any) => ({

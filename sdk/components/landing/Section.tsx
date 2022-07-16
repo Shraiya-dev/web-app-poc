@@ -1,10 +1,12 @@
-import { Box, Container, ContainerProps } from '@mui/material'
+import { Box, BoxProps, Container, ContainerProps, SxProps } from '@mui/material'
 
 interface Section extends ContainerProps {
 	backgroundColor?: string
 	backgroundImage?: string
+	sectionProps?: BoxProps<any>
+	boxSx?: SxProps
 }
-export const Section = ({ backgroundColor, backgroundImage, sx, ...rest }: Section) => {
+export const Section = ({ backgroundColor, backgroundImage, boxSx, sectionProps, sx, ...rest }: Section) => {
 	return (
 		<Box
 			sx={{
@@ -13,6 +15,7 @@ export const Section = ({ backgroundColor, backgroundImage, sx, ...rest }: Secti
 				backgroundPosition: 'center',
 				backgroundRepeat: 'no-repeat',
 				backgroundSize: 'contain',
+				...boxSx,
 			}}>
 			<Container sx={{ py: 3, ...sx }} {...rest} />
 		</Box>

@@ -24,6 +24,7 @@ const queryClient = new QueryClient()
 import { AnalyticsPage, Identify } from '../sdk/analytics/analyticsWrapper'
 import { createCookieInHour, getCookie } from '../sdk/analytics/helper'
 import { landingTheme } from 'sdk/constants/landingTheme'
+import { SplashProvider } from 'sdk/providers/SplashProvider'
 //=====================initializing axios interceptor=======================
 
 axios.defaults.baseURL = envs.SERVER_URL
@@ -107,16 +108,9 @@ function MyApp({ Component, pageProps }: AppProps) {
 
 	//if route begin with /admin redirect to admin node
 	if (
-		[
-			'/',
-			'/about-us',
-			'/contact-us',
-			'/privacy-policy',
-			'/refund-policy',
-			'/tnc',
-			'/hero/plans',
-			'/KhulaManch',
-		].includes(router.pathname)
+		['/', '/about-us', '/contact-us', '/privacy-policy', '/refund-policy', '/tnc', '/hero/plans'].includes(
+			router.pathname
+		)
 	) {
 		if (typeof window !== 'undefined') {
 			if (window.location.hostname.includes('booking')) {
@@ -128,7 +122,9 @@ function MyApp({ Component, pageProps }: AppProps) {
 				<CommonHead />
 				<QueryClientProvider client={queryClient}>
 					<ThemeProvider theme={landingTheme}>
-						<Component {...pageProps} />
+						<SplashProvider>
+							<Component {...pageProps} />
+						</SplashProvider>
 					</ThemeProvider>
 				</QueryClientProvider>
 			</>
@@ -152,9 +148,11 @@ function MyApp({ Component, pageProps }: AppProps) {
 			<QueryClientProvider client={queryClient}>
 				<ThemeProvider theme={theme}>
 					<SnackbarProvider>
-						<ContractorAuthProvider>
-							<Component {...pageProps} />
-						</ContractorAuthProvider>
+						<SplashProvider>
+							<ContractorAuthProvider>
+								<Component {...pageProps} />
+							</ContractorAuthProvider>
+						</SplashProvider>
 					</SnackbarProvider>
 				</ThemeProvider>
 			</QueryClientProvider>

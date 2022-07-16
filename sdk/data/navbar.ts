@@ -13,12 +13,12 @@ export const navbar: Navbar = {
 		// {
 		// 	type: 'button_link',
 		// 	label: 'Plans',
-		// 	link: '/landing/plans',
+		// 	link: '/hero/plans',
 		// },
 		// {
 		// 	type: 'button_link',
 		// 	label: 'About Us',
-		// 	link: '/landing/about-us',
+		// 	link: '/about-us',
 		// },
 		// {
 		// 	type: 'support_menu',

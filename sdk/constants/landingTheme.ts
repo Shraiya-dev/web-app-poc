@@ -98,6 +98,12 @@ let themeDef = createTheme({
 		allVariants: {
 			color: '#011F50',
 		},
+		h3: {
+			fontSize: '37px',
+		},
+		h4: {
+			fontSize: '30px',
+		},
 	},
 
 	palette: {
@@ -133,6 +139,15 @@ let themeDef = createTheme({
 		button: colorPalette.button,
 		textCTA: colorPalette.textCTA,
 		tonalOffset: 0.3,
+	},
+	breakpoints: {
+		values: {
+			xl: 1536,
+			lg: 1200,
+			md: 900,
+			sm: 600,
+			xs: 0,
+		},
 	},
 
 	components: {

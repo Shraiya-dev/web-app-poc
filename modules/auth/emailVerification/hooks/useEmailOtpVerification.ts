@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
-import { useContractorAuth, useSnackbar } from '../../../../sdk'
+import { DataLayerPush, useContractorAuth, useSnackbar } from '../../../../sdk'
 import { useFormik } from 'formik'
 import { ButtonClicked } from '../../../../sdk/analytics/analyticsWrapper'
 
@@ -31,13 +31,13 @@ const useEmailOtpVerification = () => {
 	const [otp, setOtp] = useState({ otp: '' })
 	const [loading, setLoading] = useState(false)
 	const { showSnackbar } = useSnackbar()
-	const { requestEmailOtp, user, verifyEmailOtp, getContactorUserInfo } = useContractorAuth()
+	const { requestEmailOtp, user, verifyEmailOtp, getContactorUserInfo, reSendEmailOtp } = useContractorAuth()
 	const [emailPayload, setEmailPayload] = useState<emailOtpPayload>()
 	const router = useRouter()
 
 	const handleChange = (otp: any) => setOtp({ otp })
 
-	const resendOTP = useCallback(() => {
+	const requestOtp = useCallback(() => {
 		requestEmailOtp()
 			.then((res) => {
 				ButtonClicked({
@@ -56,7 +56,21 @@ const useEmailOtpVerification = () => {
 				console.log('error', error)
 				showSnackbar(error, 'error')
 			})
-	}, [])
+	}, [requestEmailOtp, router.asPath, showSnackbar])
+	const resendOtp = useCallback(async () => {
+		ButtonClicked({
+			action: 'Email OTP Sent',
+			page: 'Email Verification',
+			url: router.asPath,
+		})
+		if (!emailPayload?.otpToken) return
+		try {
+			await reSendEmailOtp({ token: emailPayload?.otpToken })
+			showSnackbar('OTP Sent Successfully!', 'success')
+		} catch (error: any) {
+			showSnackbar(error.response.data.developerInfo, 'error')
+		}
+	}, [emailPayload?.otpToken, reSendEmailOtp, router.asPath, showSnackbar])
 
 	const form = useFormik({
 		initialValues: {
@@ -80,6 +94,8 @@ const useEmailOtpVerification = () => {
 							page: 'Email Verification',
 							url: router.asPath,
 						})
+						DataLayerPush({ event: 'email_verification_done' })
+
 						setOtpState((prevValues) => ({
 							...prevValues,
 							status: 'success',
@@ -127,7 +143,8 @@ const useEmailOtpVerification = () => {
 		otp,
 		form,
 		handleChange,
-		resendOTP,
+		requestOtp,
+		resendOtp,
 		otpState,
 		loading,
 		setLoading,

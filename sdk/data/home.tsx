@@ -157,9 +157,9 @@ export const homePage = {
 	supportCarouselSection: {
 		backgroundColor: '#EFF5FF',
 		carouselContent: [
-			{ link: '', image: '/assets/landing/support/support1.png' },
+			{ link: '/', image: '/assets/landing/support/support1.png' },
 			{ link: '/login', image: '/assets/landing/support/support5.png' },
-			{ link: '', image: '/assets/landing/support/support2.png' },
+			{ link: '/', image: '/assets/landing/support/support2.png' },
 			// { link: '', image: '/assets/landing/support/support4.png' },
 		],
 	},

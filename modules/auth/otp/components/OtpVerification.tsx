@@ -1,13 +1,10 @@
-import { Typography, Box, Stack, styled, Button } from '@mui/material'
+import { Box, Button, Stack, styled, Typography } from '@mui/material'
 
-import OtpInput from 'react-otp-input'
-import useOtp from '../hooks/useOtp'
 import { LoadingButton } from '@mui/lab'
 import { useRouter } from 'next/router'
+import OtpInput from 'react-otp-input'
 import { ButtonClicked } from '../../../../sdk/analytics/analyticsWrapper'
-import BackButton from '../../../../sdk/components/backButton/backButtom'
-import { textAlign } from '@mui/system'
-import { OnboardingCard } from '../../../../sdk/layouts/OrganisationCard'
+import useOtp from '../hooks/useOtp'
 
 const CustomOTPStyles = styled(Box)(({ theme }) => ({
 	display: 'flex',

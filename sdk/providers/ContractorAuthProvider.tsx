@@ -8,6 +8,7 @@ import {
 	getCustomerDetails,
 	loginService,
 	logOutService,
+	reSendEmailOtpService,
 	sendEmailOtpService,
 	sendOtpService,
 } from '../apis'
@@ -36,6 +37,8 @@ interface AuthProviderValue extends AuthState {
 	updateIsRegUser: (isRegister: boolean) => {}
 	updateIsSideBarToggle: (isSideBarToggle: boolean) => {}
 	requestEmailOtp: () => Promise<any>
+	reSendEmailOtp: (payload: { token: string }) => Promise<any>
+
 	verifyEmailOtp: (payload: emailOtpPayload) => Promise<any>
 }
 
@@ -67,6 +70,8 @@ const ContractorAuthContext = createContext<AuthProviderValue>({
 	updateIsRegUser: () => false,
 	updateIsSideBarToggle: () => false,
 	requestEmailOtp: () => Promise.resolve(null),
+	reSendEmailOtp: (payload: { token: string }) => Promise.resolve(null),
+
 	verifyEmailOtp: () => Promise.resolve(null),
 })
 const { Provider, Consumer } = ContractorAuthContext
@@ -200,6 +205,9 @@ const ContractorAuthProvider = ({ children }: any) => {
 
 	const requestEmailOtp = useCallback(async () => {
 		return await sendEmailOtpService()
+	}, [])
+	const reSendEmailOtp = useCallback(async (payload: { token: string }) => {
+		return await reSendEmailOtpService(payload)
 	}, [])
 
 	const verifyEmailOtp = useCallback(async (payload: emailOtpPayload) => {
@@ -339,6 +347,7 @@ const ContractorAuthProvider = ({ children }: any) => {
 			updateIsSideBarToggle: updateIsSideBarToggle,
 			requestEmailOtp: requestEmailOtp,
 			verifyEmailOtp: verifyEmailOtp,
+			reSendEmailOtp: reSendEmailOtp,
 		}),
 		[
 			state,
@@ -349,6 +358,7 @@ const ContractorAuthProvider = ({ children }: any) => {
 			updateIsSideBarToggle,
 			requestEmailOtp,
 			verifyEmailOtp,
+			reSendEmailOtp,
 		]
 	)
 	return <Provider value={authProviderValue}>{children}</Provider>

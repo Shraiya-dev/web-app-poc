@@ -1,17 +1,20 @@
 import { Home } from 'landing'
+import { AboutUs } from 'landing/AboutUs'
 import { NextPage } from 'next'
 import Head from 'next/head'
 import { LandingLayout } from 'sdk'
 
-const AboutUs: NextPage = () => {
+const Page: NextPage = () => {
 	return (
 		<>
 			<Head>
 				<title>Project Hero | About Us</title>
 			</Head>
-			<LandingLayout></LandingLayout>
+			<LandingLayout>
+				<AboutUs />
+			</LandingLayout>
 		</>
 	)
 }
 
-export default AboutUs
+export default Page

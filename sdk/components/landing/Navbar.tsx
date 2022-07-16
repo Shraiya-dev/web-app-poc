@@ -3,7 +3,7 @@ import { AppBar, Button, Container, Divider, Menu, MenuItem, Stack, styled, Tool
 import Image from 'next/image'
 import { useRouter } from 'next/router'
 import { useReducer } from 'react'
-import { LinkButton, useMobile } from 'sdk'
+import { DataLayerPush, LinkButton, useMobile } from 'sdk'
 import { ButtonClicked } from 'sdk/analytics/analyticsWrapper'
 import { navbar } from 'sdk/data'
 
@@ -14,7 +14,7 @@ export const Navbar = () => {
 
 	return (
 		<>
-			<AppBar position='fixed'>
+			<AppBar position='fixed' elevation={0}>
 				<Container>
 					<Toolbar sx={{ justifyContent: 'space-between' }} disableGutters>
 						<Image src={navbar.brandImage} width={150} height={27} alt='Project hero' />
@@ -150,6 +150,7 @@ export const Navbar = () => {
 											variant='outlined'
 											color='primary'
 											onClick={() => {
+												DataLayerPush({ event: 'book_worker_home_header' })
 												ButtonClicked({
 													page: document.title,
 													action: 'Book Workers',

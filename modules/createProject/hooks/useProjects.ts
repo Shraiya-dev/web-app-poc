@@ -2,7 +2,7 @@ import { useFormik } from 'formik'
 import { useRouter } from 'next/router'
 import { useCallback, useState } from 'react'
 import { isPincodeValid, useSnackbar } from '../../../sdk'
-import { Analytic } from '../../../sdk/analytics'
+import { DataLayerPush } from '../../../sdk/analytics'
 import { ButtonClicked } from '../../../sdk/analytics/analyticsWrapper'
 import { JobBenefits } from '../../../sdk/types/jobBenefits'
 import { createProject, uploadImage } from '../apis/apis'
@@ -199,6 +199,10 @@ const useCreateProject = () => {
 				if (res?.status === 200) {
 					setIsSubmitable(false)
 					setLoading(false)
+					DataLayerPush({
+						event: 'project_created',
+					})
+
 					showSnackbar('Project Created Successfully', 'success')
 					router.push('/dashboard')
 				}

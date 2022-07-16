@@ -59,3 +59,6 @@ export const sendEmailOtpService = async () => {
 export const emailVerification = async (payload: any) => {
 	return axios.post('/gateway/customer-api/email-otp/verify', payload)
 }
+export const reSendEmailOtpService = async (payload: any) => {
+	return axios.post('/gateway/customer-api/email-otp/resend', payload)
+}
