@@ -116,7 +116,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 			'/refund-policy',
 			'/tnc',
 			'/hero/plans',
-			'/Khula',
+			'/KhulaManch',
 		].includes(router.pathname)
 	) {
 		if (typeof window !== 'undefined') {

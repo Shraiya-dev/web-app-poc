@@ -102,7 +102,7 @@ export const Identify = async ({ ...props }: Identify) => {
 }
 
 export const AnalyticsPage = (router: any) => {
-	const routeName =
+	let routeName =
 		router.route === '/profile/[tab]'
 			? `Profile - ${router.query.tab}`
 			: router.route === '/projects/[projectId]/[tab]'
@@ -110,9 +110,11 @@ export const AnalyticsPage = (router: any) => {
 			: router.route === '/bookings/[projectId]/[bookingId]/[tab]'
 			? `Bookings - ${router.query.tab === 'track-workers' ? 'Track Workers' : router.query.tab}`
 			: PathName[router.route ?? '/dashboard']
-
+	// const pageRoute = router.asPath.split('/').filter((item: string) => item !== '')[0] + ' - ' + router.asPath
 	const utmInfo = getUtmObject()
-
+	if ((router.route = 'KhulaManch')) {
+		routeName = 'Khula Manch' + router.route
+	}
 	if (utmInfo) {
 		Analytic.page({ name: routeName, utmParams: utmInfo })
 	} else {
