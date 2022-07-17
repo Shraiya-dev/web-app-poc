@@ -55,9 +55,9 @@ export const Home = () => {
 								<Typography variant='h4'>
 									India&apos;s largest <strong>skilled construction workforce marketplace</strong>
 								</Typography>
-								<LinkButton href='/hero/plans' sx={{ px: 6 }} variant='outlined'>
+								{/*<LinkButton href='/hero/plans' sx={{ px: 6 }} variant='outlined'>
 									View Plans
-								</LinkButton>
+								</LinkButton>*/}
 								<Stack direction='row' spacing={5}>
 									<Stack direction='row' spacing={2}>
 										<Image
@@ -145,13 +145,13 @@ export const Home = () => {
 					</Grid>
 				</Grid>
 			</Section>
-			{isMobile && (
+			{/*isMobile && (
 				<Stack alignItems='center'>
 					<LinkButton href='/hero/plans' sx={{ px: 6 }} variant='outlined'>
 						View Plans
 					</LinkButton>
 				</Stack>
-			)}
+			)*/}
 			<Section>
 				<Grid container spacing={isMobile ? 2 : 4}>
 					{jobSection.jobs.map((item) => (
