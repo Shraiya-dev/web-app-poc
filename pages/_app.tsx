@@ -177,7 +177,6 @@ const CommonHead = () => {
 				<title>Project hero</title>
 				{/* eslint-disable-next-line @next/next/next-script-for-ga */}
 				{/* Facebook Pixel Code  */}
-				<title>Project Hero</title>
 				<link rel='apple-touch-icon' sizes='180x180' href='/apple-touch-icon.png' />
 				<link rel='icon' type='image/png' sizes='32x32' href='/favicon-32x32.png' />
 				<link rel='icon' type='image/png' sizes='16x16' href='/favicon-16x16.png' />
@@ -185,14 +184,14 @@ const CommonHead = () => {
 				<link rel='mask-icon' href='/safari-pinned-tab.svg' color='#5bbad5' />
 				<meta name='msapplication-TileColor' content='#da532c' />
 				<meta name='theme-color' content='#333333' />
-				{/* {process.env.NEXT_PUBLIC_APP_ENV === 'PROD' && ( */}
-				<>
-					<script>dataLayer = [];</script>
+				{process.env.NEXT_PUBLIC_APP_ENV === 'PROD' && (
+					<>
+						<script>dataLayer = [];</script>
 
-					{/* Facebook pixels */}
-					<script
-						dangerouslySetInnerHTML={{
-							__html: `
+						{/* Facebook pixels */}
+						<script
+							dangerouslySetInnerHTML={{
+								__html: `
 										!(function (f, b, e, v, n, t, s) {
 											if (f.fbq) return
 											n = f.fbq = function () {
@@ -212,20 +211,20 @@ const CommonHead = () => {
 										fbq('init', '1285086655286614');
 										fbq('track', 'PageView');
 										`,
-						}}></script>
-					<noscript>
-						<img
-							height='1'
-							width='1'
-							src='https://www.facebook.com/tr?id=1285086655286614&ev=PageView&noscript=1'
-						/>
-					</noscript>
-					{/* End Facebook Pixel Code */}
-					{/* New Google tag manager  */}
+							}}></script>
+						<noscript>
+							<img
+								height='1'
+								width='1'
+								src='https://www.facebook.com/tr?id=1285086655286614&ev=PageView&noscript=1'
+							/>
+						</noscript>
+						{/* End Facebook Pixel Code */}
+						{/* New Google tag manager  */}
 
-					<script
-						dangerouslySetInnerHTML={{
-							__html: `
+						<script
+							dangerouslySetInnerHTML={{
+								__html: `
 							(function (w, d, s, l, i) {
 								w[l] = w[l] || []; w[l].push({
 									'gtm.start':
@@ -234,23 +233,23 @@ const CommonHead = () => {
 									j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
 										'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
 							})(window, document, 'script', 'dataLayer', 'GTM-5JM8G4W');`,
-						}}></script>
-					{/* END New Google tag manager  */}
+							}}></script>
+						{/* END New Google tag manager  */}
 
-					{/* OLD GTM code */}
-					<script async src='https://www.googletagmanager.com/gtag/js?id=UA-230793668-1'></script>
-					<script
-						dangerouslySetInnerHTML={{
-							__html: `
+						{/* OLD GTM code */}
+						<script async src='https://www.googletagmanager.com/gtag/js?id=UA-230793668-1'></script>
+						<script
+							dangerouslySetInnerHTML={{
+								__html: `
 						window.dataLayer = window.dataLayer || [];
 						  function gtag(){dataLayer.push(arguments);}
 						  gtag('js', new Date());
 						  gtag('config', 'UA-230793668-1');					
 						`,
-						}}></script>
-					{/* END OLD GTM code */}
-				</>
-				{/* )} */}
+							}}></script>
+						{/* END OLD GTM code */}
+					</>
+				)}
 			</Head>
 		</>
 	)
