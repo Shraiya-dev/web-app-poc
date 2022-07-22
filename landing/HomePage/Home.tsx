@@ -409,7 +409,7 @@ export const Home = () => {
 					<Grid item xs={12} md={7} minHeight={270}>
 						<Image src={phApp.appImage} layout='fill' />
 					</Grid>
-					<Grid item xs={12} md={7} flexDirection='column' mt={2} display={{ xs: 'none', md: 'flex' }}>
+					<Grid item xs={12} md={7} flexDirection='column' mt={2} display={{ xs: 'flex', md: 'none' }}>
 						<LinkButton variant='contained' fullWidth href={externalLinks.heroApp}>
 							GET THE APP NOW
 						</LinkButton>
