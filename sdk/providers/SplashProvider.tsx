@@ -39,7 +39,7 @@ const SplashProvider = ({ children }: any) => {
 	useEffect(() => {
 		const a = setTimeout(() => {
 			closeSplash()
-		}, 1000)
+		}, 50)
 		return () => clearTimeout(a)
 	}, [])
 

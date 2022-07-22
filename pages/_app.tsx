@@ -9,6 +9,7 @@ import Script from 'next/script'
 import {
 	ContractorAuthProvider,
 	envs,
+	GlobalCssProvider,
 	logOutService,
 	refreshTokenService,
 	SnackbarProvider,
@@ -80,6 +81,12 @@ axios.interceptors.response.use(
 )
 //=====================axios interceptor end=======================
 
+const domain = {
+	stage: 'https://stage-booking.projecthero.in',
+	dev: 'https://dev-booking.projecthero.in',
+	production: 'https://booking.projecthero.in',
+}
+
 function MyApp({ Component, pageProps }: AppProps) {
 	const router = useRouter()
 	const fullYearDays = 365
@@ -115,6 +122,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 			'/privacy-policy',
 			'/refund-policy',
 			'/tnc',
+			'/faq',
 			'/hero/plans',
 			'/KhulaManch',
 		].includes(router.pathname)
@@ -129,9 +137,13 @@ function MyApp({ Component, pageProps }: AppProps) {
 				<CommonHead />
 				<QueryClientProvider client={queryClient}>
 					<ThemeProvider theme={landingTheme}>
-						<SplashProvider>
-							<Component {...pageProps} />
-						</SplashProvider>
+						<GlobalCssProvider>
+							<SnackbarProvider>
+								<SplashProvider>
+									<Component {...pageProps} />
+								</SplashProvider>
+							</SnackbarProvider>
+						</GlobalCssProvider>
 					</ThemeProvider>
 				</QueryClientProvider>
 			</>
@@ -140,12 +152,13 @@ function MyApp({ Component, pageProps }: AppProps) {
 	if (typeof window !== 'undefined') {
 		if (!window.location.hostname.includes('booking')) {
 			if (window.location.hostname.includes('localhost')) {
+				window.location.replace(domain.stage + router.asPath)
 			} else if (window.location.hostname.includes('stage')) {
-				window.location.hostname = 'stage-booking.projecthero.in'
+				window.location.replace(domain.stage + router.asPath)
 			} else if (window.location.hostname.includes('dev')) {
-				window.location.hostname = 'dev-booking.projecthero.in'
+				window.location.replace(domain.dev + router.asPath)
 			} else {
-				window.location.hostname = 'booking.projecthero.in'
+				window.location.replace(domain.production + router.asPath)
 			}
 		}
 	}
@@ -154,13 +167,15 @@ function MyApp({ Component, pageProps }: AppProps) {
 			<CommonHead />
 			<QueryClientProvider client={queryClient}>
 				<ThemeProvider theme={theme}>
-					<SnackbarProvider>
-						<SplashProvider>
-							<ContractorAuthProvider>
-								<Component {...pageProps} />
-							</ContractorAuthProvider>
-						</SplashProvider>
-					</SnackbarProvider>
+					<GlobalCssProvider>
+						<SnackbarProvider>
+							<SplashProvider>
+								<ContractorAuthProvider>
+									<Component {...pageProps} />
+								</ContractorAuthProvider>
+							</SplashProvider>
+						</SnackbarProvider>
+					</GlobalCssProvider>
 				</ThemeProvider>
 			</QueryClientProvider>
 		</>

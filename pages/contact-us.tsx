@@ -1,5 +1,4 @@
-import { Stack, Typography } from '@mui/material'
-import { Home } from 'landing'
+import { Typography } from '@mui/material'
 import { NextPage } from 'next'
 import Head from 'next/head'
 import { LandingLayout, Section } from 'sdk'

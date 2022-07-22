@@ -16,7 +16,7 @@ import {
 	Typography,
 } from '@mui/material'
 import { FC, useRef, useState } from 'react'
-import { Carousel, FloatingUnderLineHeading, LinkButton, Section, useMobile } from 'sdk'
+import { Carousel, DataLayerPush, FloatingUnderLineHeading, LinkButton, Section, SectionProps, useMobile } from 'sdk'
 import { PlansPageData } from 'sdk/data/plans'
 
 export const Plans: FC = () => {
@@ -29,147 +29,158 @@ export const Plans: FC = () => {
 	const isMobile = useMobile()
 	return (
 		<>
-			{isMobile ? (
-				<>
+			<Stack display={{ xs: 'auto', md: 'none' }}>
+				<Stack p={2} sx={{ backgroundColor: '#F5F6FC' }}>
+					<Typography textAlign='center' variant='h5' color='primary.main' fontWeight={700}>
+						{bannerSection.left.title}{' '}
+						<Typography variant='h5' component='span'>
+							{bannerSection.left.subtitle}
+						</Typography>
+					</Typography>
+				</Stack>
+				<Stack p={4} direction='row' alignItems='center' spacing={2}>
 					<Stack>
-						<Stack p={2} sx={{ backgroundColor: '#F5F6FC' }}>
-							<Typography textAlign='center' variant='h5' color='primary.main' fontWeight={700}>
-								{bannerSection.left.title}{' '}
-								<Typography variant='h5' component='span'>
-									{bannerSection.left.subtitle}
-								</Typography>
-							</Typography>
-						</Stack>
-						<Stack p={4} direction='row' alignItems='center' spacing={2}>
-							<Stack>
-								<Typography variant='h6' fontWeight={700}>
-									{bannerSection.right.title}
-								</Typography>
-								<Typography
-									textAlign='center'
-									variant='caption'
-									sx={{
-										backgroundColor: '#EBFEEA',
-										borderColor: '#EBFEEA',
-										color: '#1E4687',
-										borderRadius: 4,
-										p: 1.5,
-										fontWeight: 700,
-									}}>
-									{bannerSection.right.support.text}
-								</Typography>
-							</Stack>
-							<img src={bannerSection.right.image} width='30%' />
-						</Stack>
-						<Button
-							sx={{ fontSize: 36, px: 4, width: 'fit-content', margin: '0 auto' }}
-							variant='contained'>
-							{bannerSection.right.bookingButton.text}
-						</Button>
-						<Stack spacing={2} alignItems='center' mt={2}>
-							<Stack direction='row' spacing={2}>
-								<img src={bannerSection.right.support.icon} alt='' />
-								<Typography
-									variant='caption'
-									fontSize={8}
-									p={1}
-									sx={{ background: bannerSection.right.support.backgroundColor, borderRadius: 12 }}>
-									{bannerSection.right.support.text}
-								</Typography>
-							</Stack>
-							<Typography fontSize={8} variant='caption' color='grey.A400'>
-								{bannerSection.right.disclaimer}
-							</Typography>
-							<Stack direction='row' alignItems='center' spacing={1} color='grey.A700'>
-								<WhatsApp />
-								<Typography fontSize={8} color='grey.A700'>
-									{bannerSection.right.whatsApp.label}
-								</Typography>
-								<FormControlLabel label='' control={<Switch checked={true} name='antoine' />} />
-							</Stack>
-						</Stack>
-					</Stack>
-				</>
-			) : (
-				<Stack direction='row'>
-					<Stack
-						direction='row'
-						flex={1}
-						sx={{ backgroundColor: bannerSection.left.backgroundColor }}
-						pl='7%'>
-						<img src={bannerSection.left.image} width={'60%'} style={{ marginRight: '-10%' }} />
-						<Stack flex={1} py={3}>
-							<Typography variant='h3' color='primary.main' fontWeight={700}>
-								{bannerSection.left.title}
-							</Typography>
-							<Typography variant='h3'>{bannerSection.left.subtitle}</Typography>
-							<Stack flex={1} alignItems='center' justifyContent='space-evenly' p={2}>
-								{bannerSection.left.benefits.map((item) => (
-									<Stack
-										key={item.text}
-										direction='row'
-										alignItems={'center'}
-										marginLeft={item.marginLeft}
-										sx={{
-											backgroundColor: '#ffffff',
-											p: 1,
-											borderRadius: 4,
-											width: 220,
-											boxShadow:
-												'0px 4px 50px 1px rgba(255, 255, 255, 0.5), 0px 4px 20px 8px rgba(77, 135, 228, 0.25)',
-										}}>
-										<img src={item.icon} alt='icon' width={40} />
-										<Typography flex={1} textAlign={'center'} fontWeight={700}>
-											{item.text}
-										</Typography>
-									</Stack>
-								))}
-							</Stack>
-						</Stack>
-					</Stack>
-					<Stack flex={1} justifyContent='space-between' alignItems='center' p={3} pr='7%'>
-						<Typography variant='h3' fontWeight={700} textAlign='center'>
+						<Typography variant='h6' fontWeight={700}>
 							{bannerSection.right.title}
 						</Typography>
-						<Chip
-							color='success'
-							variant='outlined'
-							label={bannerSection.right.chip.text}
+						<Typography
+							textAlign='center'
+							variant='caption'
 							sx={{
 								backgroundColor: '#EBFEEA',
 								borderColor: '#EBFEEA',
 								color: '#1E4687',
 								borderRadius: 4,
-								p: 2,
+								p: 1.5,
 								fontWeight: 700,
-								height: '53px',
-							}}
-						/>
-						<Button sx={{ width: '50%', fontSize: 30, fontWeight: 700 }} variant='contained'>
-							{bannerSection.right.bookingButton.text}
-						</Button>
-						<Stack spacing={2} alignItems='center' width='100%'>
-							<Stack direction='row'>
-								<img src={bannerSection.right.support.icon} alt='' />
-								<Chip
-									label={bannerSection.right.support.text}
-									sx={{ background: bannerSection.right.support.backgroundColor }}
-								/>
-							</Stack>
-							<Typography variant='caption' color='grey.A400'>
-								{bannerSection.right.disclaimer}
-							</Typography>
-							<Stack direction='row' alignItems='center' spacing={1} color='grey.A700'>
+							}}>
+							{bannerSection.right.support.text}
+						</Typography>
+					</Stack>
+					<img src={bannerSection.right.image} width='30%' />
+				</Stack>
+				<Button sx={{ fontSize: 36, px: 4, width: 'fit-content', margin: '0 auto' }} variant='contained'>
+					{bannerSection.right.bookingButton.text}
+				</Button>
+				<Stack spacing={2} alignItems='center' mt={2}>
+					<Stack direction='row' spacing={2}>
+						<img src={bannerSection.right.support.icon} alt='' />
+						<Typography
+							variant='caption'
+							fontSize={8}
+							p={1}
+							sx={{ background: bannerSection.right.support.backgroundColor, borderRadius: 12 }}>
+							{bannerSection.right.support.text}
+						</Typography>
+					</Stack>
+					<Typography fontSize={8} variant='caption' color='grey.A400'>
+						{bannerSection.right.disclaimer}
+					</Typography>
+					<Stack direction='row' alignItems='center' spacing={1} color='grey.A700'>
+						<WhatsApp />
+						<Typography fontSize={8} color='grey.A700'>
+							{bannerSection.right.whatsApp.label}
+						</Typography>
+						<FormControlLabel label='' control={<Switch checked={true} name='antoine' />} />
+					</Stack>
+				</Stack>
+			</Stack>
+			<Stack direction='row' display={{ xs: 'none', md: 'flex' }}>
+				<Stack
+					direction='row'
+					flex={1}
+					sx={(theme) => ({
+						backgroundColor: bannerSection.left.backgroundColor,
+						'>img': {
+							width: '55%',
+							[theme.breakpoints.up('xl')]: {
+								width: '45%',
+							},
+						},
+					})}
+					pl={{ xl: '7%' }}>
+					<img src={bannerSection.left.image} style={{ marginRight: '-15%' }} />
+					<Stack flex={1} py={3}>
+						<Typography variant='h3' color='primary.main' fontWeight={700}>
+							{bannerSection.left.title}
+						</Typography>
+						<Typography variant='h3'>{bannerSection.left.subtitle}</Typography>
+						<Stack flex={1} alignItems='center' justifyContent='space-evenly' p={2}>
+							{bannerSection.left.benefits.map((item) => (
+								<Stack
+									key={item.text}
+									direction='row'
+									alignItems={'center'}
+									marginLeft={item.marginLeft}
+									sx={{
+										backgroundColor: '#ffffff',
+										p: 1,
+										borderRadius: 4,
+										width: 220,
+										boxShadow:
+											'0px 4px 50px 1px rgba(255, 255, 255, 0.5), 0px 4px 20px 8px rgba(77, 135, 228, 0.25)',
+									}}>
+									<img src={item.icon} alt='icon' width={40} />
+									<Typography flex={1} textAlign={'center'} fontWeight={700}>
+										{item.text}
+									</Typography>
+								</Stack>
+							))}
+						</Stack>
+					</Stack>
+				</Stack>
+				<Stack flex={1} justifyContent='space-between' alignItems='center' p={3} pr={{ xl: '7%' }}>
+					<Typography variant='h4' px={3} fontWeight={700} textAlign='center'>
+						{bannerSection.right.title}
+					</Typography>
+					<Chip
+						color='success'
+						variant='outlined'
+						label={bannerSection.right.chip.text}
+						sx={{
+							backgroundColor: '#EBFEEA',
+							borderColor: '#EBFEEA',
+							color: '#1E4687',
+							borderRadius: 4,
+							p: 2,
+							fontWeight: 700,
+							height: '53px',
+						}}
+					/>
+					<Button sx={{ width: '50%', fontSize: 30, fontWeight: 700 }} variant='contained'>
+						{bannerSection.right.bookingButton.text}
+					</Button>
+					<Stack spacing={2} alignItems='center' width='100%'>
+						<Stack direction='row'>
+							<Chip
+								sx={{
+									backgroundColor: '#EBFEEA',
+									borderColor: '#EBFEEA',
+									color: '#1E4687',
+									borderRadius: 4,
+									fontWeight: 700,
+								}}
+								label={
+									<Stack direction='row' alignItems='center' spacing={2}>
+										<img src={bannerSection.right.support.icon} alt='' />
+										<Typography variant='caption'>{bannerSection.right.support.text}</Typography>
+									</Stack>
+								}
+							/>
+						</Stack>
+						<Typography variant='caption' color='grey.A400'>
+							{bannerSection.right.disclaimer}
+						</Typography>
+						{/* <Stack direction='row' alignItems='center' spacing={1} color='grey.A700'>
 								<WhatsApp />
 								<Typography fontSize={14} color='grey.A700'>
 									{bannerSection.right.whatsApp.label}
 								</Typography>
 								<FormControlLabel label='' control={<Switch checked={true} name='antoine' />} />
-							</Stack>
-						</Stack>
+							</Stack> */}
 					</Stack>
 				</Stack>
-			)}
+			</Stack>
 
 			<Section>
 				<Stack alignItems='center'>
@@ -198,7 +209,7 @@ export const Plans: FC = () => {
 										boxShadow: '0px 0px 10px rgba(6, 99, 246, 0.15);',
 									}}>
 									<Stack
-										minHeight={380}
+										minHeight={350}
 										sx={{
 											backgroundColor: 'primary.main',
 											p: 1,
@@ -322,13 +333,18 @@ export const Plans: FC = () => {
 										</Menu>
 										<Typography
 											flex={1}
-											p={2}
+											p={1.5}
 											fontWeight={700}
 											color='common.white'
 											textAlign='center'>
 											{item.header.description}
 										</Typography>
 										<LinkButton
+											onClick={() =>
+												DataLayerPush({
+													event: 'book_worker_faq_hero',
+												})
+											}
 											href={item.link}
 											sx={{
 												px: 4,
@@ -361,6 +377,11 @@ export const Plans: FC = () => {
 											})}
 										</List>
 										<LinkButton
+											onClick={() =>
+												DataLayerPush({
+													event: 'book_worker_faq_hero',
+												})
+											}
 											href={item.link}
 											sx={(theme) => ({
 												px: 4,

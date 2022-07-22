@@ -31,7 +31,7 @@ export const AboutUsPage = {
 		backgroundImage: '/assets/landing/about-us/polygon-vertical.png',
 		team: [
 			{
-				image: '/assets/landing/about-us/avatar.png',
+				image: '/assets/landing/about-us/avatar-founder.png',
 				title: 'Satya Vyas, CEO ( Founder )',
 				testimonials: [
 					'Headed commercial interior company',
@@ -42,7 +42,7 @@ export const AboutUsPage = {
 				],
 			},
 			{
-				image: '/assets/landing/about-us/avatar.png',
+				image: '/assets/landing/about-us/avatar-coo.png',
 				title: 'Pukhraj Grewal, COO ( Co-Founder )',
 				testimonials: [
 					'8+ years of startup workex',
@@ -52,7 +52,7 @@ export const AboutUsPage = {
 				],
 			},
 			{
-				image: '/assets/landing/about-us/avatar.png',
+				image: '/assets/landing/about-us/avatar-cfo.png',
 				title: 'Raghu Chopra, CFO ( Co-Founder )',
 				testimonials: [
 					'8+ years of startup workex',
@@ -62,7 +62,7 @@ export const AboutUsPage = {
 				],
 			},
 			{
-				image: '/assets/landing/about-us/avatar.png',
+				image: '/assets/landing/about-us/avatar-cto.png',
 				title: 'Sidhant Panda, CTO ( Co-Founder )',
 				testimonials: [
 					'8+ years of rich experience',

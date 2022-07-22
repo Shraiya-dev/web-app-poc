@@ -6,8 +6,9 @@ import { ButtonClicked } from 'sdk/analytics/analyticsWrapper'
 import { AppStoreImage } from 'sdk/constants'
 import { externalLinks, footer } from 'sdk/data'
 import { useMobile } from 'sdk/hooks'
+import { HyperLink } from '../atomic'
 import { LinkButton } from '../button'
-import { Section } from './Section'
+import { Section, SectionProps } from './Section'
 
 export const Footer = () => {
 	const isMobile = useMobile()
@@ -17,12 +18,14 @@ export const Footer = () => {
 			<Stack spacing={2} pt={isMobile ? 2 : 4}>
 				<Stack direction={'row'} justifyContent='space-between' alignItems={'center'}>
 					{!isMobile && (
-						<Image
-							src={footer.brandImage}
-							width={isMobile ? 150 : 200}
-							height={isMobile ? 50 : 70}
-							alt='Project hero'
-						/>
+						<HyperLink href='/'>
+							<Image
+								src={footer.brandImage}
+								width={isMobile ? 150 : 200}
+								height={isMobile ? 50 : 70}
+								alt='Project hero'
+							/>
+						</HyperLink>
 					)}
 
 					<Stack
@@ -82,12 +85,14 @@ export const Footer = () => {
 			/>
 			<Stack direction={'row'} justifyContent={'space-between'} alignItems='center' py={3}>
 				{isMobile ? (
-					<Image
-						src={footer.brandImage}
-						width={isMobile ? 100 : 200}
-						height={isMobile ? 30 : 70}
-						alt='Project hero'
-					/>
+					<HyperLink href='/'>
+						<Image
+							src={footer.brandImage}
+							width={isMobile ? 100 : 200}
+							height={isMobile ? 30 : 70}
+							alt='Project hero'
+						/>
+					</HyperLink>
 				) : (
 					<Stack direction={'row'} spacing={3}>
 						{footer.navLinks.map((item) => (

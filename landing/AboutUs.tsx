@@ -1,18 +1,5 @@
 import { Circle } from '@mui/icons-material'
-import {
-	Box,
-	Divider,
-	Grid,
-	List,
-	ListItem,
-	ListItemIcon,
-	ListItemText,
-	Stack,
-	styled,
-	Theme,
-	Typography,
-	useMediaQuery,
-} from '@mui/material'
+import { Divider, Grid, List, ListItem, ListItemText, Stack, Theme, Typography, useMediaQuery } from '@mui/material'
 import { FC } from 'react'
 import { AboutUsPage, FloatingUnderLineHeading, Section } from 'sdk'
 interface Props {}
@@ -25,8 +12,8 @@ export const AboutUs: FC<Props> = () => {
 		<>
 			<Section
 				boxSx={{
-					minHeight: isMobile ? 270 : 700,
-					backgroundSize: 'cover',
+					minHeight: { xs: 270, md: 500 },
+					backgroundSize: 'contain',
 					display: 'flex',
 				}}
 				sx={{
@@ -47,8 +34,14 @@ export const AboutUs: FC<Props> = () => {
 				</Typography>
 			</Section>
 			<Section>
-				<Stack p={isMobile ? 1 : 10}>
-					<Typography variant={isMobile ? 'caption' : 'h6'}>{bannerSection.description}</Typography>
+				<Stack px={{ xs: 1, md: 10 }} py={{ xs: 1, md: 7 }}>
+					<Typography
+						fontSize={(theme) => ({
+							xs: theme.typography.caption.fontSize,
+							md: theme.typography.h6.fontSize,
+						})}>
+						{bannerSection.description}
+					</Typography>
 				</Stack>
 			</Section>
 			<Section sx={{ py: 8 }} backgroundColor={whoWhatWhySection.backgroundColor}>
@@ -58,23 +51,25 @@ export const AboutUs: FC<Props> = () => {
 							<Grid key={item.title} item md={3} flexDirection='column'>
 								<Typography
 									variant='h4'
-									textAlign={isMobile ? 'center' : 'left'}
+									textAlign={{ xs: 'center', md: 'left' }}
 									fontWeight={700}
 									color='primary.main'>
 									{item.title}
 								</Typography>
-								<Typography mt={isMobile ? 1 : 5}>{item.description}</Typography>
-								{isMobile && (
-									<Divider
-										sx={{
-											backgroundColor: 'primary.main',
-											width: '10vh',
-											height: '5px',
-											m: '20px auto',
-											borderRadius: 5,
-										}}
-									/>
-								)}
+								<Typography mt={{ xs: 1, md: 5 }}>{item.description}</Typography>
+								<Divider
+									sx={(theme) => ({
+										display: 'none',
+										backgroundColor: 'primary.main',
+										width: '10vh',
+										height: '5px',
+										m: '20px auto',
+										borderRadius: 5,
+										[theme.breakpoints.down('md')]: {
+											display: 'block',
+										},
+									})}
+								/>
 							</Grid>
 						)
 					})}
@@ -106,20 +101,28 @@ export const AboutUs: FC<Props> = () => {
 								xs={12}
 								item
 								alignItems='center'
-								flexDirection={isMobile ? 'column' : index % 2 ? 'row' : 'row-reverse'}>
-								<img
-									height={isMobile ? 170 : 320}
-									width={isMobile ? 170 : 320}
-									src={item.image}
-									alt=''
-								/>
+								flexDirection={{ xs: 'column', md: index % 2 ? 'row-reverse' : 'row' }}
+								sx={(theme) => ({
+									img: {
+										height: 300,
+										width: 300,
+										[theme.breakpoints.down('md')]: {
+											height: 170,
+											width: 170,
+										},
+									},
+								})}>
+								<img src={item.image} alt='' />
 								<Stack
 									flex={1}
 									p={3}
-									alignItems={isMobile ? 'center' : index % 2 ? 'flex-start' : 'flex-end'}>
+									alignItems={{ xs: 'center', md: index % 2 ? 'flex-end' : 'flex-start' }}>
 									<Typography
 										color='primary.main'
-										variant={isMobile ? 'body1' : 'h5'}
+										fontSize={(theme) => ({
+											xs: theme.typography.body1.fontSize,
+											md: theme.typography.h5.fontSize,
+										})}
 										fontWeight={700}>
 										{item.title}
 									</Typography>
@@ -135,15 +138,19 @@ export const AboutUs: FC<Props> = () => {
 											} else {
 												return (
 													<ListItem dense key={idx}>
-														{!!(index % 2) && <Circle sx={{ fontSize: 10, mx: 1 }} />}
+														{!(index % 2) && (
+															<Circle sx={{ fontSize: 10, mx: 1, mt: 0.3 }} />
+														)}
 														<ListItemText
 															sx={{
 																fontSize: 18,
-																textAlign: index % 2 ? 'left' : 'right',
+																textAlign: index % 2 ? 'right' : 'left',
 															}}>
 															{text}
 														</ListItemText>
-														{!(index % 2) && <Circle sx={{ fontSize: 10, mx: 1 }} />}
+														{!!(index % 2) && (
+															<Circle sx={{ fontSize: 10, mx: 1, mt: 0.3 }} />
+														)}
 													</ListItem>
 												)
 											}

@@ -1,12 +1,12 @@
 import { Box, BoxProps, Container, ContainerProps, SxProps } from '@mui/material'
 
-interface Section extends ContainerProps {
+export interface SectionProps extends ContainerProps {
 	backgroundColor?: string
 	backgroundImage?: string
 	sectionProps?: BoxProps<any>
 	boxSx?: SxProps
 }
-export const Section = ({ backgroundColor, backgroundImage, boxSx, sectionProps, sx, ...rest }: Section) => {
+export const Section = ({ backgroundColor, backgroundImage, boxSx, sectionProps, sx, ...rest }: SectionProps) => {
 	return (
 		<Box
 			sx={{

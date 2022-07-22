@@ -1,4 +1,3 @@
-import { Home } from 'landing'
 import { NextPage } from 'next'
 import Head from 'next/head'
 import { LandingLayout, Section } from 'sdk'

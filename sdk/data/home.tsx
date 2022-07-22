@@ -206,7 +206,7 @@ export const homePage = {
 			{
 				svg: '/assets/landing/magnifine.svg',
 				header: 'Attendance Tracking',
-				description: 'Track & download worker’s attendance via contractor web-app',
+				description: 'Track & download worker’s attendance via contractor Web App',
 				color: '#00BD62',
 				marginTop: '0px',
 			},
@@ -244,7 +244,7 @@ export const homePage = {
 			},
 			{
 				svg: '/assets/landing/cardman.svg',
-				header: '24*7',
+				header: '24x7',
 				description: 'Customer Support',
 			},
 			{

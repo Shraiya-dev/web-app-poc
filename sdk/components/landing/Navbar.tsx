@@ -1,42 +1,174 @@
 import { ArrowDropDown, ArrowDropUp } from '@mui/icons-material'
-import { AppBar, Button, Container, Divider, Menu, MenuItem, Stack, styled, Toolbar, Typography } from '@mui/material'
+import MenuIcon from '@mui/icons-material/Menu'
+import {
+	AppBar,
+	Button,
+	Container,
+	Divider,
+	Drawer,
+	IconButton,
+	List,
+	ListItem,
+	ListItemAvatar,
+	ListItemText,
+	Menu,
+	MenuItem,
+	Stack,
+	styled,
+	Theme,
+	Toolbar,
+	Typography,
+	useMediaQuery,
+} from '@mui/material'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
-import { useReducer } from 'react'
-import { DataLayerPush, LinkButton, useMobile } from 'sdk'
+import { useEffect, useReducer, useState } from 'react'
+import { DataLayerPush, HyperLink, LinkButton } from 'sdk'
 import { ButtonClicked } from 'sdk/analytics/analyticsWrapper'
-import { navbar } from 'sdk/data'
-
+import { contactUsSection, navbar } from 'sdk/data'
 export const Navbar = () => {
 	const [menuRefs, dispatchMenuRefs] = useReducer((p: any, n: any) => ({ ...p, ...n }), {})
 	const router = useRouter()
-	const isMobile = useMobile()
+	const [navbarOpen, setNavbarOpen] = useState(false)
+	const isMobile = useMediaQuery((theme: Theme) => theme.breakpoints.down('md'))
+	useEffect(() => {
+		!isMobile && setNavbarOpen(false)
+	}, [isMobile])
 
 	return (
 		<>
 			<AppBar position='fixed' elevation={0}>
 				<Container>
 					<Toolbar sx={{ justifyContent: 'space-between' }} disableGutters>
-						<Image src={navbar.brandImage} width={150} height={27} alt='Project hero' />
-						<NavWrapper direction='row' spacing={4} alignItems='center'>
+						<Stack direction='row' spacing={2} alignItems='center'>
+							<IconButton
+								sx={(theme) => ({
+									display: 'none',
+
+									[theme.breakpoints.down('md')]: {
+										display: 'flex',
+									},
+									boxShadow: theme.shadows[3],
+									borderRadius: 2,
+								})}
+								onClick={() => setNavbarOpen((p) => !p)}>
+								<MenuIcon
+									sx={(theme) => ({
+										fontSize: theme.typography.h3.fontSize,
+									})}
+									color='primary'
+								/>
+								<Drawer
+									anchor='left'
+									open={navbarOpen}
+									PaperProps={{
+										sx: {
+											width: 300,
+										},
+									}}>
+									<List>
+										<ListItem>
+											<HyperLink href='/'>
+												<Image
+													src={navbar.brandImage}
+													width={150}
+													height={27}
+													alt='Project hero'
+												/>
+											</HyperLink>
+										</ListItem>
+										{navbar.navLinks.map((navItem, i) => {
+											if (navItem.type === 'button_link') {
+												return (
+													<HyperLink key={i} href={navItem.link}>
+														<ListItem
+															color='secondary'
+															sx={(theme) => ({
+																fontWeight: 700,
+															})}>
+															<ListItemAvatar>{navItem?.icon}</ListItemAvatar>
+															<ListItemText>{navItem.label}</ListItemText>
+														</ListItem>
+													</HyperLink>
+												)
+											}
+										})}
+										<Divider sx={{ my: 2 }} />
+										<Typography variant='h4' color='primary' textAlign={'center'}>
+											Contact us{' '}
+										</Typography>
+										<ListItem
+											color='secondary'
+											sx={(theme) => ({
+												fontWeight: 700,
+											})}>
+											<ListItemAvatar>
+												<img src='/assets/landing/call.svg' alt='plane' />
+											</ListItemAvatar>
+											<ListItemText>
+												<Stack>
+													<Typography variant='caption'>
+														{contactUsSection.support.contactAction.label}
+													</Typography>
+													<Typography sx={{ color: '#0663F6' }}>
+														{contactUsSection.support.contactAction.phone}
+													</Typography>
+												</Stack>
+											</ListItemText>
+										</ListItem>
+										<ListItem
+											color='secondary'
+											sx={(theme) => ({
+												fontWeight: 700,
+											})}>
+											<ListItemAvatar>
+												<img src='/assets/landing/plane.svg' alt='plane' />
+											</ListItemAvatar>
+											<ListItemText>
+												<Stack>
+													<Typography variant='caption'>
+														{contactUsSection.support.mailAction.label}
+													</Typography>
+													<Typography sx={{ color: '#0663F6' }}>
+														{contactUsSection.support.mailAction.email}
+													</Typography>
+												</Stack>
+											</ListItemText>
+										</ListItem>
+									</List>
+								</Drawer>
+							</IconButton>
+							<HyperLink href='/'>
+								<Image src={navbar.brandImage} width={150} height={27} alt='Project hero' />
+							</HyperLink>
+						</Stack>
+						<NavWrapper direction='row' spacing={{ xs: 0, md: 4 }} alignItems='center'>
 							{navbar.navLinks.map((navItem, i) => {
-								if (!isMobile && navItem.type === 'button_link') {
+								if (navItem.type === 'button_link') {
 									return (
 										<LinkButton
 											key={i}
 											color='secondary'
-											sx={{ fontWeight: 700 }}
+											sx={(theme) => ({
+												fontWeight: 700,
+												[theme.breakpoints.down('md')]: { display: 'none' },
+											})}
 											href={navItem.link}
 											className={router.pathname === navItem.link ? 'active' : ''}>
 											{navItem.label}
 										</LinkButton>
 									)
-								} else if (!isMobile && navItem.type === 'support_menu') {
+								} else if (navItem.type === 'support_menu') {
 									return (
 										<Button
 											key={i}
 											color='secondary'
-											sx={{ fontWeight: 700 }}
+											sx={(theme) => ({
+												fontWeight: 700,
+												[theme.breakpoints.down('md')]: {
+													display: 'none',
+												},
+											})}
 											className={menuRefs?.supportMenu ? 'active' : ''}
 											endIcon={
 												!menuRefs?.supportMenu ? (
