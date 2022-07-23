@@ -20,12 +20,12 @@ export const navbar: Navbar = {
 			icon: <HomeRounded sx={{ fontSize: 36, color: 'primary.main' }} />,
 			link: '/',
 		},
-		{
-			type: 'button_link',
-			label: 'Plans',
-			icon: <CalendarMonth sx={{ fontSize: 36, color: 'primary.main' }} />,
-			link: '/hero/plans',
-		},
+		// {
+		// 	type: 'button_link',
+		// 	label: 'Plans',
+		// 	icon: <CalendarMonth sx={{ fontSize: 36, color: 'primary.main' }} />,
+		// 	link: '/hero/plans',
+		// },
 		{
 			type: 'button_link',
 			label: 'About Us',
