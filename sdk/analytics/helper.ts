@@ -46,11 +46,12 @@ export const getUtmObject = () => {
 		const utmParams = getCookie('utmParams')
 
 		if (utmParams.length > 0) {
-			queryObj = JSON.parse('{"' + decodeURI(utmParams.replace(/&/g, '","').replace(/=/g, '":"')) + '"}')
+			const temp = new URLSearchParams(utmParams)
+			// queryObj = JSON.parse('{"' + decodeURI(utmParams.replace(/&/g, '","').replace(/=/g, '":"')) + '"}')
 
-			for (const [key, value] of Object.entries(queryObj)) {
+			for (const [key, value] of Object.entries(temp)) {
 				if (!key.includes('utm_')) {
-					delete queryObj[key]
+					temp.delete(key)
 				}
 			}
 
