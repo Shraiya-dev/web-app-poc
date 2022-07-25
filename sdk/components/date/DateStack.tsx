@@ -1,10 +1,12 @@
 import { Stack, styled, Typography } from '@mui/material'
+import { useMobile } from 'sdk/hooks'
 
 interface Props {
 	date?: string
 }
 
 export const DateStack = ({ date }: Props) => {
+	const isMobile = useMobile()
 	return (
 		<StyledDateStack>
 			<Typography lineHeight={1.4} variant='caption' fontWeight={600} color='primary.main'>

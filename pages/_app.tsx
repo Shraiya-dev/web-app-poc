@@ -152,7 +152,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 	if (typeof window !== 'undefined') {
 		if (!window.location.hostname.includes('booking')) {
 			if (window.location.hostname.includes('localhost')) {
-				window.location.replace(domain.stage + router.asPath)
+				// window.location.replace(domain.stage + router.asPath)
 			} else if (window.location.hostname.includes('stage')) {
 				window.location.replace(domain.stage + router.asPath)
 			} else if (window.location.hostname.includes('dev')) {
