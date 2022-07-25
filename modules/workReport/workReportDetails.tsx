@@ -507,7 +507,13 @@ export const WorkReportDetails = () => {
 								</Stack>
 							</Stack>
 						</Stack>
-						<Stack direction={'row'} justifyContent={'center'} alignItems={'center'}>
+						<Stack
+							direction={'row'}
+							justifyContent={'flex-start'}
+							alignItems={'center'}
+							sx={{
+								paddingLeft: '115px',
+							}}>
 							<Chip
 								variant='filled'
 								sx={(theme) => ({
@@ -561,6 +567,7 @@ export const WorkReportDetails = () => {
 					<Stack
 						sx={{
 							height: 'calc(100vh - 265px)',
+							overflowY: 'scroll',
 						}}>
 						{workReportByIDResponse?.response?.workerDetails?.map((item, index) => {
 							return (
@@ -572,7 +579,7 @@ export const WorkReportDetails = () => {
 											mt: '20px',
 										}}>
 										<Stack direction={'row'} justifyContent={'space-between'} p={'16px'}>
-											<Stack direction={'row'}>
+											<Stack direction={'row'} spacing={1.3}>
 												<Avatar
 													sx={{ width: 48, height: 48 }}
 													src={item.profilePicture ?? '/assets/icons/workerIcon.svg'}
@@ -580,11 +587,14 @@ export const WorkReportDetails = () => {
 												<Stack direction={'column'}>
 													<Typography>{item?.name ?? 'NA'}</Typography>
 													<Stack direction={'row'}>
-														<Typography>
-															{JobTypeLabel[item?.jobType as JOB_TYPES]}
+														<Typography
+															variant='caption'
+															sx={{ color: '#061e45b3', fontWeight: '400' }}>
+															{JobTypeLabel[item?.jobType as JOB_TYPES]}/
 														</Typography>
-														/
-														<Typography>
+														<Typography
+															variant='caption'
+															sx={{ color: '#061e45b3', fontWeight: '400' }}>
 															{SkillTypeLabel[item?.skillType as WORKER_TYPES]}
 														</Typography>
 													</Stack>
@@ -626,7 +636,14 @@ export const WorkReportDetails = () => {
 											<Grid container>
 												<Grid item xs={4}>
 													<Stack direction={'column'}>
-														<Typography variant='caption'>Check-In</Typography>
+														<Typography
+															variant='caption'
+															sx={{
+																color: 'rgba(6, 31, 72, 0.7)',
+																fontWeight: '400',
+															}}>
+															Check-In
+														</Typography>
 														<Typography variant='caption'>
 															{item?.checkIn ?? 'NA'}
 														</Typography>
@@ -634,7 +651,14 @@ export const WorkReportDetails = () => {
 												</Grid>
 												<Grid item xs={4}>
 													<Stack direction={'column'}>
-														<Typography variant='caption'>OT Check-In</Typography>
+														<Typography
+															variant='caption'
+															sx={{
+																color: 'rgba(6, 31, 72, 0.7)',
+																fontWeight: '400',
+															}}>
+															OT Check-In
+														</Typography>
 														<Typography variant='caption'>
 															{item?.otCheckIn ?? 'NA'}
 														</Typography>
@@ -642,7 +666,14 @@ export const WorkReportDetails = () => {
 												</Grid>
 												<Grid item xs={4}>
 													<Stack direction={'column'}>
-														<Typography variant='caption'>Hours</Typography>
+														<Typography
+															variant='caption'
+															sx={{
+																color: 'rgba(6, 31, 72, 0.7)',
+																fontWeight: '400',
+															}}>
+															Hours
+														</Typography>
 														<Typography variant='caption'>
 															{item?.shiftHours ?? 'NA'}
 														</Typography>
@@ -652,7 +683,14 @@ export const WorkReportDetails = () => {
 											<Grid container>
 												<Grid item xs={4}>
 													<Stack direction={'column'}>
-														<Typography variant='caption'>Check-Out</Typography>
+														<Typography
+															variant='caption'
+															sx={{
+																color: 'rgba(6, 31, 72, 0.7)',
+																fontWeight: '400',
+															}}>
+															Check-Out
+														</Typography>
 														<Typography variant='caption'>
 															{item?.checkOut ?? 'NA'}
 														</Typography>
@@ -660,7 +698,14 @@ export const WorkReportDetails = () => {
 												</Grid>
 												<Grid item xs={4}>
 													<Stack direction={'column'}>
-														<Typography variant='caption'>OT Check-Out</Typography>
+														<Typography
+															variant='caption'
+															sx={{
+																color: 'rgba(6, 31, 72, 0.7)',
+																fontWeight: '400',
+															}}>
+															OT Check-Out
+														</Typography>
 														<Typography variant='caption'>
 															{item?.otCheckOut ?? 'NA'}
 														</Typography>
@@ -668,7 +713,14 @@ export const WorkReportDetails = () => {
 												</Grid>
 												<Grid item xs={4}>
 													<Stack direction={'column'}>
-														<Typography variant='caption'>OT Hours</Typography>
+														<Typography
+															variant='caption'
+															sx={{
+																color: 'rgba(6, 31, 72, 0.7)',
+																fontWeight: '400',
+															}}>
+															OT Hours
+														</Typography>
 														<Typography variant='caption'>
 															{item?.otHours ?? 'NA'}
 														</Typography>
@@ -686,16 +738,16 @@ export const WorkReportDetails = () => {
 					<Stack
 						direction='row'
 						alignItems='center'
-						justifyContent={isMobile ? 'center' : undefined}
+						justifyContent={isMobile ? 'space-around' : undefined}
 						spacing={1}
 						mt={1}
 						sx={{
-							height: '80px',
 							background: '#F9F9F9',
 							borderTop: '1px solid #C5C5C5',
 							position: 'absolute',
-							// bottom: 0,
+							bottom: 0,
 							width: '100%',
+							py: 2,
 						}}>
 						{workReportByIDResponse?.response?.status == WorkReportStatus.PENDING_APPROVAL && (
 							<>
