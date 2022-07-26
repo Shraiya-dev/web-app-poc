@@ -5,8 +5,6 @@ export interface Props {
 	description: string
 }
 export const SEO: FC<Props> = ({ children, description, title }) => {
-	console.log(title)
-
 	return (
 		<Head>
 			<title>{title} | Project Hero</title>

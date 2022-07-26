@@ -1,4 +1,4 @@
-import { GetStaticPaths, GetStaticPathsResult, GetStaticPropsContext, GetStaticPropsResult } from 'next'
+import { GetStaticPathsResult, GetStaticPropsContext, GetStaticPropsResult } from 'next'
 import { getMetaData } from 'sdk/data/Seo'
 
 export const staticRenderingProvider = (

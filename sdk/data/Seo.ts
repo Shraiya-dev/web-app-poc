@@ -1,7 +1,5 @@
-import { GetStaticPaths, GetStaticProps } from 'next'
 import { ParsedUrlQuery } from 'querystring'
 import { PageMetaData } from 'sdk/types'
-import { staticRenderingProvider } from 'sdk/utils/nextHelper'
 const SEOData: { [key in string]: PageMetaData } = {
 	'/about-us': { title: 'About Us', description: 'About Us' },
 	'/account': { title: 'Account', description: 'Account' },
@@ -34,15 +32,11 @@ const SEOData: { [key in string]: PageMetaData } = {
 }
 export const getMetaData = (url: string, params?: ParsedUrlQuery): PageMetaData => {
 	const simpleRouteData: PageMetaData | undefined = SEOData[url]
-	let temp = JSON.stringify(simpleRouteData)
+	let metaDataString = JSON.stringify(simpleRouteData)
 	if (params) {
 		Object.keys(params).forEach((key) => {
-			temp = temp.replaceAll('[' + key + ']', String(params[key]).replaceAll('-', ' '))
+			metaDataString = metaDataString.replaceAll('[' + key + ']', String(params[key]).replaceAll('-', ' '))
 		})
 	}
-	return JSON.parse(temp)
+	return JSON.parse(metaDataString)
 }
-
-const pageUrl = '/'
-export const getStaticPaths: GetStaticPaths = staticRenderingProvider(pageUrl).getStaticPaths
-export const getStaticProps: GetStaticProps = staticRenderingProvider(pageUrl).getStaticProps
