@@ -1,3 +1,4 @@
+import { NextRouter } from 'next/router'
 import { Analytic } from './analytics'
 import { getUtmObject, PathName } from './helper'
 
@@ -115,6 +116,16 @@ export const AnalyticsPage = (router: any) => {
 	if ((router.route = 'KhulaManch')) {
 		routeName = 'Khula Manch' + router.route
 	}
+	if (utmInfo) {
+		Analytic.page({ name: routeName, utmParams: utmInfo })
+	} else {
+		Analytic.page({ name: routeName })
+	}
+}
+
+export const NewAnalyticsPage = (router: NextRouter) => {
+	const routeName = document.title
+	const utmInfo = getUtmObject()
 	if (utmInfo) {
 		Analytic.page({ name: routeName, utmParams: utmInfo })
 	} else {

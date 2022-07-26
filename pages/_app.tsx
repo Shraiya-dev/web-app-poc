@@ -25,7 +25,7 @@ const queryClient = new QueryClient()
 
 import { landingTheme } from 'sdk/constants/landingTheme'
 import { SplashProvider } from 'sdk/providers/SplashProvider'
-import { AnalyticsPage, Identify } from '../sdk/analytics/analyticsWrapper'
+import { AnalyticsPage, Identify, NewAnalyticsPage } from '../sdk/analytics/analyticsWrapper'
 import { createCookieInHour, getCookie } from '../sdk/analytics/helper'
 //=====================initializing axios interceptor=======================
 
@@ -108,7 +108,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 			if (!localStorage.getItem('accessToken')) {
 				Identify({})
 			}
-			AnalyticsPage(router)
+			NewAnalyticsPage(router)
 		}
 	}, [router])
 
