@@ -14,7 +14,7 @@ import { HorizontalTabClicked } from '../../sdk/analytics/analyticsWrapper'
 export const BookingId = () => {
 	const router = useRouter()
 	const isMobile = useMobile()
-	const { jobCards, bookingSummary, isLoading, selectedTab, handleTabSelection } = useBookingId()
+	const { jobCards, bookingSummary, isLoading, handleTabSelection } = useBookingId()
 
 	const helperCount = bookingSummary?.booking?.peopleRequired?.HELPER ?? 0
 	const technicianCount = bookingSummary?.booking?.peopleRequired?.TECHNICIAN ?? 0
@@ -77,7 +77,7 @@ export const BookingId = () => {
 				</CustomTopBar>
 			)}
 
-			<TabContext value={selectedTab}>
+			<TabContext value={router.query.tab as string}>
 				<Box sx={{ borderBottom: 1, borderColor: 'divider', margin: 3, marginBottom: 0, marginTop: 3 }}>
 					<Tabs
 						TabIndicatorProps={{
@@ -85,7 +85,7 @@ export const BookingId = () => {
 								height: '3px',
 							},
 						}}
-						value={selectedTab}
+						value={router.query.tab as string}
 						onChange={handleTabSelection}>
 						<Tab
 							sx={{

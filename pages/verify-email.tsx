@@ -1,17 +1,11 @@
-import { NextPage } from 'next'
-import Head from 'next/head'
-import { EmailVerificationForm } from '../modules/auth/emailVerification'
+import { GetStaticProps, NextPage } from 'next'
+import { staticRenderingProvider } from 'sdk/utils/nextHelper'
 import { VerifyEmailOtp } from '../modules/auth/emailVerification/components/verifyEmailOtp'
-
 import { OnboardingLayout } from '../sdk'
 
 const VerifyEmail: NextPage = () => {
 	return (
 		<>
-			<Head>
-				<title>Verify Email | Project Hero</title>
-				<meta name='description' content='' />
-			</Head>
 			<OnboardingLayout>
 				<VerifyEmailOtp />
 			</OnboardingLayout>
@@ -20,3 +14,6 @@ const VerifyEmail: NextPage = () => {
 }
 
 export default VerifyEmail
+
+const pageUrl = '/verify-email'
+export const getStaticProps: GetStaticProps = staticRenderingProvider(pageUrl).getStaticProps

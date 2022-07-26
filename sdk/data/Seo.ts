@@ -1,5 +1,7 @@
+import { GetStaticPaths, GetStaticProps } from 'next'
 import { ParsedUrlQuery } from 'querystring'
 import { PageMetaData } from 'sdk/types'
+import { staticRenderingProvider } from 'sdk/utils/nextHelper'
 const SEOData: { [key in string]: PageMetaData } = {
 	'/about-us': { title: 'About Us', description: 'About Us' },
 	'/account': { title: 'Account', description: 'Account' },
@@ -12,23 +14,23 @@ const SEOData: { [key in string]: PageMetaData } = {
 	'/profile': { title: 'Profile', description: 'Profile' },
 	'/refund-policy': { title: 'Refund Policy', description: 'Refund Policy' },
 	'/tnc': { title: 'Terms and Conditions', description: 'Terms and Conditions' },
-
-	'/bookings/[projectId]/[bookingId]/[tab]': { title: 'Bookings - [tab]', description: 'Bookings - [tab]' },
-	'/projects/[projectId]/[tab]': { title: 'Projects - [tab]', description: 'Projects - [tab]' },
-	'/404': { title: 'Not Found', description: 'Not Found' },
-	'/contact-us': { title: 'Contact Us', description: 'Contact Us' },
+	'/verify-email': { title: 'Email Verification', description: 'Email Verification' },
 	'/dashboard': { title: 'Dashboard', description: 'Dashboard' },
 	'/hero/plans': { title: 'Plans', description: 'Plans' },
-	'/login': { title: 'Login', description: 'Login' },
 	'/onboarding/failed': { title: 'Onboarding Error', description: 'Onboarding Error' },
 	'/onboarding/success': { title: 'Onboarding Success', description: 'Onboarding Success' },
 	'/profile/[tab]': { title: 'Profile - [tab]', description: 'Profile - [tab]' },
+	'/projects/create': { title: 'Create Project', description: 'Create Project' },
+	'/login': { title: 'Login', description: 'Login' },
 	'/projects/[projectId]/[tab]/[workReportId]': { title: 'Work Report Details', description: 'Work Report Details' },
+	'/bookings/[projectId]/[bookingId]/[tab]': { title: 'Bookings - [tab]', description: 'Bookings - [tab]' },
+	'/projects/[projectId]/[tab]': { title: 'Projects - [tab]', description: 'Projects - [tab]' },
 	'/projects/[projectId]/[tab]/billId/[billId]': { title: 'Bills Details', description: 'Bills Details' },
 	'/projects/[projectId]/bookings/create': { title: 'Create Bookings', description: 'Create Bookings' },
-	'/projects/create': { title: 'Create Project', description: 'Create Project' },
-	'/verify-email': { title: 'Email Verification', description: 'Email Verification' },
+	'/contact-us': { title: 'Contact Us', description: 'Contact Us' },
 	'/worker/[workerId]': { title: 'Worker Details', description: 'Worker Details' },
+
+	'/404': { title: 'Not Found', description: 'Not Found' },
 }
 export const getMetaData = (url: string, params?: ParsedUrlQuery): PageMetaData => {
 	const simpleRouteData: PageMetaData | undefined = SEOData[url]
@@ -40,3 +42,7 @@ export const getMetaData = (url: string, params?: ParsedUrlQuery): PageMetaData 
 	}
 	return JSON.parse(temp)
 }
+
+const pageUrl = '/'
+export const getStaticPaths: GetStaticPaths = staticRenderingProvider(pageUrl).getStaticPaths
+export const getStaticProps: GetStaticProps = staticRenderingProvider(pageUrl).getStaticProps

@@ -1,18 +1,11 @@
 import { Box } from '@mui/material'
-import { NextPage } from 'next'
-import Head from 'next/head'
-import Title from 'next/head'
+import { GetStaticProps, NextPage } from 'next'
+import { staticRenderingProvider } from 'sdk/utils/nextHelper'
 import { CreateProject } from '../../modules/createProject/components/createProject'
-import Layout from '../../sdk/layouts/DashboardLayout'
 
 const Create: NextPage = () => {
 	return (
 		<>
-			<Head>
-				<Title>Create Project | Project Hero</Title>
-				<meta name='Create Project' content='' />
-			</Head>
-
 			<Box>
 				<CreateProject />
 			</Box>
@@ -21,3 +14,6 @@ const Create: NextPage = () => {
 }
 
 export default Create
+
+const pageUrl = '/projects/create'
+export const getStaticProps: GetStaticProps = staticRenderingProvider(pageUrl).getStaticProps

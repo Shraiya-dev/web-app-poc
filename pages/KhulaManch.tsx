@@ -1,12 +1,12 @@
-import { Box, Stack, Typography, Button, useMediaQuery, Theme, Paper } from '@mui/material'
+import { Box, Button, Paper, Stack, Theme, Typography, useMediaQuery } from '@mui/material'
 import { isAfter, isBefore } from 'date-fns'
-import { ms } from 'date-fns/locale'
-import { NextPage } from 'next'
+import { GetStaticProps, NextPage } from 'next'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { useEffect, useRef } from 'react'
 import Countdown from 'react-countdown'
 import { ButtonClicked } from 'sdk/analytics/analyticsWrapper'
+import { staticRenderingProvider } from 'sdk/utils/nextHelper'
 
 const eventDate = Date.parse('2022-07-17T13:10:00')
 const eventEndDate = Date.parse('2022-07-17T12:30:00')
@@ -23,9 +23,6 @@ const Page: NextPage = () => {
 
 	return (
 		<>
-			<Head>
-				<title></title>
-			</Head>
 			<Box
 				style={{
 					display: 'flex',
@@ -138,3 +135,6 @@ const Page: NextPage = () => {
 	)
 }
 export default Page
+
+const pageUrl = '/about-us'
+export const getStaticProps: GetStaticProps = staticRenderingProvider(pageUrl).getStaticProps

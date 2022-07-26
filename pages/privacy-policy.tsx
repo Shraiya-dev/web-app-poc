@@ -1,13 +1,11 @@
-import { NextPage } from 'next'
+import { GetStaticProps, NextPage } from 'next'
 import Head from 'next/head'
 import { LandingLayout, Section } from 'sdk'
+import { staticRenderingProvider } from 'sdk/utils/nextHelper'
 
 const PrivacyPolicy: NextPage = () => {
 	return (
 		<>
-			<Head>
-				<title>Project Hero | Privacy Policy</title>
-			</Head>
 			<LandingLayout>
 				<Section>
 					<h1 className='page-title'>Privacy Policy</h1>
@@ -263,3 +261,6 @@ const PrivacyPolicy: NextPage = () => {
 }
 
 export default PrivacyPolicy
+
+const pageUrl = '/privacy-policy'
+export const getStaticProps: GetStaticProps = staticRenderingProvider(pageUrl).getStaticProps

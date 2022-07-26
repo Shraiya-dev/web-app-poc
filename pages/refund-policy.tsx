@@ -1,14 +1,12 @@
 import { Typography } from '@mui/material'
-import { NextPage } from 'next'
+import { GetStaticProps, NextPage } from 'next'
 import Head from 'next/head'
 import { LandingLayout, Section } from 'sdk'
+import { staticRenderingProvider } from 'sdk/utils/nextHelper'
 
 const RefundPolicy: NextPage = () => {
 	return (
 		<>
-			<Head>
-				<title>Project Hero | Refund Policy</title>
-			</Head>
 			<LandingLayout>
 				<Section>
 					<Typography variant='h4' fontWeight={700}>
@@ -62,3 +60,6 @@ const RefundPolicy: NextPage = () => {
 }
 
 export default RefundPolicy
+
+const pageUrl = '/refund-policy'
+export const getStaticProps: GetStaticProps = staticRenderingProvider(pageUrl).getStaticProps

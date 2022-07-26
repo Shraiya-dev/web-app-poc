@@ -19,12 +19,12 @@ export const useBookingId = () => {
 	const [bookingSummary, setBookingSummary] = useState<BookingPreview>()
 	const [jobCards, setJobCards] = useState<Array<JobCard>>([])
 
-	const [selectedTab, setSelectedTab] = useState('track-workers')
 	const [pageNumber, SetPageNumber] = useState('')
 	const [hasMore, setHasMore] = useState(false)
 
 	const handleTabSelection = (e: any, value: any) => {
-		setSelectedTab(value)
+		router.query.tab = value
+		router.replace(router)
 	}
 
 	const getBookingInfo = useCallback(async () => {
@@ -108,7 +108,6 @@ export const useBookingId = () => {
 		bookingSummary: bookingSummary,
 		getJobCards: getJobCards,
 		isLoading: isLoading,
-		selectedTab: selectedTab,
 		handleTabSelection: handleTabSelection,
 		form: form,
 		pageNumber: pageNumber,

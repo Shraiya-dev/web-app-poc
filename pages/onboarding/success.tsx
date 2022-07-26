@@ -1,15 +1,11 @@
-import { NextPage } from 'next'
-import { OnboardingLayout } from '../../sdk'
-import Head from 'next/head'
+import { GetStaticProps, NextPage } from 'next'
+import { staticRenderingProvider } from 'sdk/utils/nextHelper'
 import OrgCreationSuccess from '../../modules/auth/organisationCreation/components/orgCreationSuccess'
+import { OnboardingLayout } from '../../sdk'
 
 const OnboardingSuccess: NextPage = () => {
 	return (
 		<>
-			<Head>
-				<title>Onboarding Success | Project Hero</title>
-				<meta name='description' content='' />
-			</Head>
 			<OnboardingLayout>
 				<OrgCreationSuccess />
 			</OnboardingLayout>
@@ -18,3 +14,6 @@ const OnboardingSuccess: NextPage = () => {
 }
 
 export default OnboardingSuccess
+
+const pageUrl = '/onboarding/success'
+export const getStaticProps: GetStaticProps = staticRenderingProvider(pageUrl).getStaticProps
