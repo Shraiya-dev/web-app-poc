@@ -476,6 +476,7 @@ export const WorkReportDetails = () => {
 					</Stack>
 				</>
 			) : (
+				// mobile view
 				<Box
 					sx={{
 						height: '100vh',

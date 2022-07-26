@@ -1,7 +1,11 @@
 import { ArrowBackIosNew } from '@mui/icons-material'
 import {
 	Avatar,
+	Chip,
 	CircularProgress,
+	Collapse,
+	Divider,
+	Grid,
 	IconButton,
 	Paper,
 	Stack,
@@ -13,8 +17,10 @@ import {
 	TableRow,
 	Typography,
 } from '@mui/material'
+import { Box } from '@mui/system'
+import Image from 'next/image'
 import { useRouter } from 'next/router'
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import {
 	colors,
 	JobTypeLabel,
@@ -30,6 +36,9 @@ import { StyledTableHeadCell } from '../../sdk/styledComponents/Tables'
 import { useProjectDetails } from '../projectDetails/hooks'
 import { ApproveConfirmationDialog, ApproveConfirmationDialogProps } from './components'
 import { useBill } from './hooks'
+import DownloadImage from '../../public/assets/landing/HerosBills/download.svg'
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
+import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp'
 
 export const BillDetails = () => {
 	const router = useRouter()
@@ -44,6 +53,7 @@ export const BillDetails = () => {
 	} = useBill()
 	const { user } = useContractorAuth()
 	const [rasingDispute, setRasingDispute] = useState(false)
+	const [boxOpen, setBoxOpen] = useState(false)
 
 	const [approveConfirmationDialogProps, setApproveConfirmationDialogProps] =
 		useState<ApproveConfirmationDialogProps>({
@@ -55,37 +65,44 @@ export const BillDetails = () => {
 		setSearchText((router.query.phoneNumber as string) ?? '')
 	}, [router])
 	const isMobile = useMobile()
+
+	const handleBox = useCallback(() => {
+		setBoxOpen(!boxOpen)
+	}, [boxOpen])
+
 	return (
 		<>
 			<ApproveConfirmationDialog {...approveConfirmationDialogProps} />
-			<Stack
-				p={isMobile ? 1 : 2}
-				direction={isMobile ? 'column' : 'row'}
-				alignItems='Stretch'
-				justifyContent='space-between'>
-				<Stack spacing={2} direction={isMobile ? 'column' : 'row'}>
-					{/* {isProjectLoading ? (
+			{!isMobile ? (
+				<>
+					<Stack
+						p={isMobile ? 1 : 2}
+						direction={isMobile ? 'column' : 'row'}
+						alignItems='Stretch'
+						justifyContent='space-between'>
+						<Stack spacing={2} direction={isMobile ? 'column' : 'row'}>
+							{/* {isProjectLoading ? (
 						<Stack flex={1} justifyContent='center'>
 							<CircularProgress />
 						</Stack>
 					) : ( */}
-					<Stack direction='row'>
-						<IconButton color='primary' onClick={router.back}>
-							<ArrowBackIosNew />
-						</IconButton>
-						<DateStack date={billDetailsResponse?.displayDate} />
-						<Stack ml={2}>
-							<Typography variant='h5' fontWeight={700}>
-								Heroes Bills
-							</Typography>
-							<Typography variant='caption' color='grey.600'>
-								{projectDetails?.name}
-							</Typography>
+							<Stack direction='row'>
+								<IconButton color='primary' onClick={router.back}>
+									<ArrowBackIosNew />
+								</IconButton>
+								<DateStack date={billDetailsResponse?.displayDate} />
+								<Stack ml={2}>
+									<Typography variant='h5' fontWeight={700}>
+										Heroes Bills
+									</Typography>
+									<Typography variant='caption' color='grey.600'>
+										{projectDetails?.name}
+									</Typography>
+								</Stack>
+							</Stack>
+							{/* )} */}
 						</Stack>
-					</Stack>
-					{/* )} */}
-				</Stack>
-				{/* <Stack
+						{/* <Stack
 					direction='row'
 					alignItems='center'
 					justifyContent={isMobile ? 'center' : undefined}
@@ -145,8 +162,8 @@ export const BillDetails = () => {
 						<FileDownloadOutlined />
 					</LoadingButton>
 				</Stack> */}
-			</Stack>
-			{/* {rasingDispute && (
+					</Stack>
+					{/* {rasingDispute && (
 				<Paper
 					sx={{
 						backgroundColor: 'grey.A200',
@@ -195,13 +212,13 @@ export const BillDetails = () => {
 					</form>
 				</Paper>
 			)} */}
-			<Stack p={isMobile ? 1 : 2} spacing={1}>
-				<Stack
-					direction={isMobile ? 'column' : 'row'}
-					justifyContent='flex-end'
-					spacing={1}
-					alignItems='stretch'>
-					{/* <form
+					<Stack p={isMobile ? 1 : 2} spacing={1}>
+						<Stack
+							direction={isMobile ? 'column' : 'row'}
+							justifyContent='flex-end'
+							spacing={1}
+							alignItems='stretch'>
+							{/* <form
 						onSubmit={async (e) => {
 							e.preventDefault()
 							router.query.phoneNumber = searchText
@@ -247,204 +264,572 @@ export const BillDetails = () => {
 							</Button>
 						</Stack>
 					</form> */}
-					<Stack direction='row' alignItems='center' justifyContent={isMobile ? 'space-between' : undefined}>
-						<Typography variant='subtitle2'>
-							Rows per page: {billDetailsResponse?.bills?.length ?? 10}
-						</Typography>
-						<PaginationWithHasMore hasMore={billDetailsResponse?.hasMore} loading={isLoading?.fetching} />
-					</Stack>
-				</Stack>
-				<Stack mt={2}>
-					<TableContainer
-						component={Paper}
-						sx={{
-							height: isMobile ? 'calc(100vh - 120px)' : 'calc(100vh - 170px)',
-						}}>
-						<Table stickyHeader>
-							<TableHead>
-								<TableRow>
-									{TableHeaderList.map((item) => (
-										<StyledTableHeadCell key={item.label as any} sx={item.sx}>
-											<Typography noWrap fontWeight={600}>
-												{item.label}
-											</Typography>
-										</StyledTableHeadCell>
-									))}
-								</TableRow>
-							</TableHead>
-							<TableBody sx={{ overflowY: 'auto' }}>
-								{/* {isLoading?.fetching ? (
+							<Stack
+								direction='row'
+								alignItems='center'
+								justifyContent={isMobile ? 'space-between' : undefined}>
+								<Typography variant='subtitle2'>
+									Rows per page: {billDetailsResponse?.bills?.length ?? 10}
+								</Typography>
+								<PaginationWithHasMore
+									hasMore={billDetailsResponse?.hasMore}
+									loading={isLoading?.fetching}
+								/>
+							</Stack>
+						</Stack>
+						<Stack mt={2}>
+							<TableContainer
+								component={Paper}
+								sx={{
+									height: isMobile ? 'calc(100vh - 120px)' : 'calc(100vh - 170px)',
+								}}>
+								<Table stickyHeader>
+									<TableHead>
+										<TableRow>
+											{TableHeaderList.map((item) => (
+												<StyledTableHeadCell key={item.label as any} sx={item.sx}>
+													<Typography noWrap fontWeight={600}>
+														{item.label}
+													</Typography>
+												</StyledTableHeadCell>
+											))}
+										</TableRow>
+									</TableHead>
+									<TableBody sx={{ overflowY: 'auto' }}>
+										{/* {isLoading?.fetching ? (
 									<TableRow sx={{ height: '' }}>
 										<TableCell sx={{ borderBottom: 'none' }} colSpan={100} align='center'>
 											<CircularProgress />
 										</TableCell>
 									</TableRow>
 								) : ( */}
-								<>
-									<TableRow
-										sx={{
-											position: 'sticky',
-											top: 57,
-											backgroundColor: colors.FloralWhite,
-											zIndex: 100,
-											'&:hover': {
-												backgroundColor: colors.AliceBlue,
-											},
-										}}>
-										<TableCell
-											sx={{
-												position: 'sticky',
-												left: 0,
-												width: 80,
-												background: colors.FloralWhite,
-											}}></TableCell>
-										<TableCell
-											sx={{
-												position: 'sticky',
-												left: 80,
-												background: colors.FloralWhite,
-											}}>
-											<Typography fontWeight={600} noWrap>
-												{billSummaryResponse?.summary?.heroCount}
-											</Typography>
-											<Typography color='secondary.main' variant='caption' noWrap>
-												Heroes
-											</Typography>
-										</TableCell>
-										<TableCell></TableCell>
-										<TableCell></TableCell>
-										<TableCell>
-											<Stack>
-												<Typography fontWeight={600} noWrap>
-													{billSummaryResponse?.summary?.baseWage}
-												</Typography>
-												<Typography color='secondary.main' variant='caption' noWrap>
-													Base Wage
-												</Typography>
-											</Stack>
-										</TableCell>
-										{/* <TableCell></TableCell> */}
-										<TableCell>
-											<Typography fontWeight={600} noWrap>
-												{billSummaryResponse?.summary?.otWage}
-											</Typography>
-											<Typography color='secondary.main' variant='caption' noWrap>
-												OT Wage
-											</Typography>
-										</TableCell>
-										<TableCell>
-											<Typography fontWeight={600} noWrap>
-												{billSummaryResponse?.summary?.grossWage}
-											</Typography>
-											<Typography color='secondary.main' variant='caption' noWrap>
-												Gross Wage
-											</Typography>
-										</TableCell>
-										<TableCell>
-											<Typography fontWeight={600} noWrap>
-												{billSummaryResponse?.summary?.pf}
-											</Typography>
-											<Typography color='secondary.main' variant='caption' noWrap>
-												Total PF
-											</Typography>
-										</TableCell>
-										<TableCell>
-											<Typography fontWeight={600} noWrap>
-												{billSummaryResponse?.summary?.esi}
-											</Typography>
-											<Typography color='secondary.main' variant='caption' noWrap>
-												Total ESI
-											</Typography>
-										</TableCell>
-										<TableCell>
-											<Typography fontWeight={600} noWrap>
-												{billSummaryResponse?.summary?.totalPayable}
-											</Typography>
-											<Typography color='secondary.main' variant='caption' noWrap>
-												Total Payable
-											</Typography>
-										</TableCell>
-									</TableRow>
-									{billDetailsResponse?.bills?.map(({ bill, worker }) => (
-										<TableRow
-											key={worker?.id}
-											sx={{
-												'&:hover': {
-													backgroundColor: colors.AliceBlue,
-												},
-											}}>
-											<TableCell
+										<>
+											<TableRow
 												sx={{
 													position: 'sticky',
-													left: 0,
-													minWidth: 80,
-													maxWidth: 80,
-
-													background: '#ffffff',
+													top: 57,
+													backgroundColor: colors.FloralWhite,
+													zIndex: 100,
 													'&:hover': {
 														backgroundColor: colors.AliceBlue,
 													},
 												}}>
+												<TableCell
+													sx={{
+														position: 'sticky',
+														left: 0,
+														width: 80,
+														background: colors.FloralWhite,
+													}}></TableCell>
+												<TableCell
+													sx={{
+														position: 'sticky',
+														left: 80,
+														background: colors.FloralWhite,
+													}}>
+													<Typography fontWeight={600} noWrap>
+														{billSummaryResponse?.summary?.heroCount}
+													</Typography>
+													<Typography color='secondary.main' variant='caption' noWrap>
+														Heroes
+													</Typography>
+												</TableCell>
+												<TableCell></TableCell>
+												<TableCell></TableCell>
+												<TableCell>
+													<Stack>
+														<Typography fontWeight={600} noWrap>
+															{billSummaryResponse?.summary?.baseWage}
+														</Typography>
+														<Typography color='secondary.main' variant='caption' noWrap>
+															Base Wage
+														</Typography>
+													</Stack>
+												</TableCell>
+												{/* <TableCell></TableCell> */}
+												<TableCell>
+													<Typography fontWeight={600} noWrap>
+														{billSummaryResponse?.summary?.otWage}
+													</Typography>
+													<Typography color='secondary.main' variant='caption' noWrap>
+														OT Wage
+													</Typography>
+												</TableCell>
+												<TableCell>
+													<Typography fontWeight={600} noWrap>
+														{billSummaryResponse?.summary?.grossWage}
+													</Typography>
+													<Typography color='secondary.main' variant='caption' noWrap>
+														Gross Wage
+													</Typography>
+												</TableCell>
+												<TableCell>
+													<Typography fontWeight={600} noWrap>
+														{billSummaryResponse?.summary?.pf}
+													</Typography>
+													<Typography color='secondary.main' variant='caption' noWrap>
+														Total PF
+													</Typography>
+												</TableCell>
+												<TableCell>
+													<Typography fontWeight={600} noWrap>
+														{billSummaryResponse?.summary?.esi}
+													</Typography>
+													<Typography color='secondary.main' variant='caption' noWrap>
+														Total ESI
+													</Typography>
+												</TableCell>
+												<TableCell>
+													<Typography fontWeight={600} noWrap>
+														{billSummaryResponse?.summary?.totalPayable}
+													</Typography>
+													<Typography color='secondary.main' variant='caption' noWrap>
+														Total Payable
+													</Typography>
+												</TableCell>
+											</TableRow>
+											{billDetailsResponse?.bills?.map(({ bill, worker }) => (
+												<TableRow
+													key={worker?.id}
+													sx={{
+														'&:hover': {
+															backgroundColor: colors.AliceBlue,
+														},
+													}}>
+													<TableCell
+														sx={{
+															position: 'sticky',
+															left: 0,
+															minWidth: 80,
+															maxWidth: 80,
+
+															background: '#ffffff',
+															'&:hover': {
+																backgroundColor: colors.AliceBlue,
+															},
+														}}>
+														<Avatar
+															sx={{ width: 48, height: 48 }}
+															src={
+																worker.profilePicture ?? '/assets/icons/workerIcon.svg'
+															}
+														/>
+													</TableCell>
+													<TableCell
+														sx={{
+															position: 'sticky',
+															left: 80,
+															background: '#ffffff',
+															'&:hover': {
+																backgroundColor: colors.AliceBlue,
+															},
+														}}>
+														<Typography noWrap>{worker?.name ?? 'NA'}</Typography>
+														<Typography variant='caption' color='secondary.main'>
+															{worker?.phoneNumber ?? 'NA'}
+														</Typography>
+													</TableCell>
+													<TableCell>
+														<Typography noWrap>
+															{JobTypeLabel[worker?.workDetails?.jobType as JOB_TYPES]}
+														</Typography>
+													</TableCell>
+													<TableCell>
+														<Typography noWrap>
+															{
+																SkillTypeLabel[
+																	worker?.workDetails?.workerType as WORKER_TYPES
+																]
+															}
+														</Typography>
+													</TableCell>
+
+													<TableCell>
+														<Typography noWrap>{bill?.baseWage ?? 'NA'}</Typography>
+													</TableCell>
+													{/* <TableCell>
+													<Typography noWrap>{bill?.otFactor ?? 'NA'}</Typography>
+												</TableCell> */}
+													<TableCell>
+														<Typography noWrap>{bill?.otWage ?? 'NA'}</Typography>
+													</TableCell>
+													<TableCell>
+														<Typography noWrap>{bill?.grossWage ?? 'NA'}</Typography>
+													</TableCell>
+													<TableCell>
+														<Typography noWrap>{bill?.pf ?? 'NA'}</Typography>
+													</TableCell>
+													<TableCell>
+														<Typography noWrap>{bill?.esi ?? 'NA'}</Typography>
+													</TableCell>
+													<TableCell>
+														<Typography noWrap>{bill?.netWage ?? 'NA'}</Typography>
+													</TableCell>
+												</TableRow>
+											))}
+										</>
+										{/* )} */}
+									</TableBody>
+								</Table>
+							</TableContainer>
+						</Stack>
+					</Stack>
+				</>
+			) : (
+				// Mobile view
+				<Box sx={{ maxHeight: '100vh' }}>
+					{/* header */}
+					<Stack direction={'column'}>
+						<Stack
+							direction={'row'}
+							justifyContent={'space-between'}
+							sx={{
+								p: '16px 10px 10px 16px',
+							}}>
+							<Stack direction={'row'}>
+								<IconButton color='primary' onClick={router.back}>
+									<ArrowBackIosNew sx={{ fontSize: '30px' }} />
+								</IconButton>
+								<DateStack date={billDetailsResponse?.displayDate} />
+								<Stack ml={2}>
+									<Typography variant='h4' fontWeight={700}>
+										Heroes Bills
+									</Typography>
+									<Typography variant='caption' color='grey.600' fontWeight={500}>
+										{projectDetails?.name}
+									</Typography>
+								</Stack>
+							</Stack>
+							{/* <IconButton>
+								<Image src={DownloadImage} alt='downloadImage' height={'24px'} width={'24px'} />
+							</IconButton> */}
+						</Stack>
+						{/* <Stack
+							direction={'row'}
+							justifyContent={'flex-start'}
+							alignItems={'center'}
+							sx={{
+								paddingLeft: '115px',
+							}}>
+							<Chip
+								variant='filled'
+								sx={(theme) => ({
+									px: 1,
+									backgroundColor: '#F69E5433',
+								})}
+								label={'Pending Payment'}
+							/>
+						</Stack> */}
+					</Stack>
+
+					{/* base wage , grossWage , otwage, totalpf , totalEsi ,totalPayable */}
+					<Stack
+						direction={'column'}
+						sx={{
+							height: '72px',
+							background: '#FFFCF1',
+							mt: '22px',
+						}}>
+						<Stack
+							direction={'row'}
+							sx={{
+								p: '16px 16px',
+							}}>
+							<Grid container>
+								<Grid item xs={4}>
+									<Stack direction={'column'}>
+										<Typography fontWeight={600} noWrap>
+											{billSummaryResponse?.summary?.baseWage}
+										</Typography>
+										<Typography color='secondary.main' variant='caption' noWrap>
+											Base Wage
+										</Typography>
+									</Stack>
+								</Grid>
+								<Grid item xs={4}>
+									<Stack direction={'column'}>
+										<Typography fontWeight={600} noWrap>
+											{billSummaryResponse?.summary?.grossWage}
+										</Typography>
+										<Typography color='secondary.main' variant='caption' noWrap>
+											Gross Wage
+										</Typography>
+									</Stack>
+								</Grid>
+								<Grid item xs={4}>
+									<Stack direction={'column'}>
+										<Typography color='#0FAF7F' fontWeight={600} noWrap>
+											{billSummaryResponse?.summary?.totalPayable}
+										</Typography>
+										<Typography color='secondary.main' variant='caption' noWrap>
+											Total Payable
+										</Typography>
+									</Stack>
+								</Grid>
+							</Grid>
+							<IconButton onClick={handleBox}>
+								{!boxOpen ? <ExpandMoreIcon /> : <KeyboardArrowUpIcon />}
+							</IconButton>
+						</Stack>
+					</Stack>
+					<Collapse
+						in={boxOpen}
+						timeout={550}
+						sx={{
+							background: '#FFFCF1',
+						}}>
+						<Stack
+							direction={'row'}
+							sx={{
+								p: '16px 16px',
+							}}>
+							<Grid container>
+								<Grid item xs={4}>
+									<Stack direction={'column'} justifyContent={'flex-start'}>
+										<Typography fontWeight={600} noWrap>
+											{billSummaryResponse?.summary?.otWage}
+										</Typography>
+										<Typography color='secondary.main' variant='caption' noWrap>
+											OT Wage
+										</Typography>
+									</Stack>
+								</Grid>
+								<Grid item xs={4}>
+									<Stack direction={'column'} justifyContent={'flex-start'}>
+										<Typography fontWeight={600} noWrap>
+											{billSummaryResponse?.summary?.pf}
+										</Typography>
+										<Typography color='secondary.main' variant='caption' noWrap>
+											Total PF
+										</Typography>
+									</Stack>
+								</Grid>
+								<Grid item xs={4}>
+									<Stack direction={'column'} justifyContent={'flex-start'}>
+										<Typography fontWeight={600} noWrap>
+											{billSummaryResponse?.summary?.esi}
+										</Typography>
+										<Typography color='secondary.main' variant='caption' noWrap>
+											Total ESI
+										</Typography>
+									</Stack>
+								</Grid>
+							</Grid>
+							{/* this icon button -> balance the distance */}
+							<IconButton sx={{ visibility: 'hidden' }}>
+								<ExpandMoreIcon />
+							</IconButton>
+						</Stack>
+					</Collapse>
+					<Box
+						sx={{
+							maxHeight: `calc(100vh - ${boxOpen ? '270px' : '210px'})`,
+							overflowY: 'scroll',
+						}}>
+						{billDetailsResponse?.bills?.map(({ bill, worker }) => {
+							return (
+								<>
+									<Stack direction={'column'} key={worker?.id} px={'8px'} pb={'15px'}>
+										<Stack direction={'row'} p={'16px 8px'} justifyContent={'space-between'}>
+											<Stack direction={'row'} spacing={1.5}>
 												<Avatar
 													sx={{ width: 48, height: 48 }}
 													src={worker.profilePicture ?? '/assets/icons/workerIcon.svg'}
 												/>
-											</TableCell>
-											<TableCell
-												sx={{
-													position: 'sticky',
-													left: 80,
-													background: '#ffffff',
-													'&:hover': {
-														backgroundColor: colors.AliceBlue,
-													},
-												}}>
-												<Typography noWrap>{worker?.name ?? 'NA'}</Typography>
-												<Typography variant='caption' color='secondary.main'>
-													{worker?.phoneNumber ?? 'NA'}
+												<Stack direction={'column'}>
+													<Typography noWrap sx={{ fontSize: '14px', fontWeight: '700' }}>
+														{worker?.name ?? 'NA'}
+													</Typography>
+													<Typography noWrap variant='caption' sx={{ fontWeight: '400' }}>
+														{JobTypeLabel[worker?.workDetails?.jobType as JOB_TYPES]}/
+														{
+															SkillTypeLabel[
+																worker?.workDetails?.workerType as WORKER_TYPES
+															]
+														}
+													</Typography>
+												</Stack>
+											</Stack>
+											{/* <Chip
+												variant='filled'
+												sx={(theme) => ({
+													px: 1,
+													width: 'fit-content',
+													height: '24px',
+													backgroundColor: '#F69E5433',
+													fontSize: '12px',
+												})}
+												label={'Pending Payment'}
+											/> */}
+										</Stack>
+										<Box
+											sx={{
+												background: '#F9F9F9',
+												borderRadius: '8px',
+												p: '12px 18px 12px 12px',
+											}}>
+											<Stack direction={'row'} justifyContent={'space-between'}>
+												<Stack
+													direction={'row'}
+													width='50%'
+													alignItems={'center'}
+													maxWidth={'200px'}
+													spacing={2}
+													justifyContent={'space-between'}>
+													<Typography
+														color='secondary.main'
+														variant='caption'
+														fontWeight={400}
+														noWrap>
+														Base Wage
+													</Typography>
+													<Typography
+														width={60}
+														fontWeight={400}
+														color='#000'
+														variant='caption'
+														noWrap>
+														{bill?.baseWage ?? 'NA'}
+													</Typography>
+												</Stack>
+												<Stack direction={'row'} alignItems={'center'} spacing={2}>
+													<Typography
+														color='secondary.main'
+														fontWeight={400}
+														variant='caption'
+														noWrap>
+														OT Factor
+													</Typography>
+													<Typography color='#000' fontWeight={400} variant='caption' noWrap>
+														{bill?.otFactor ?? 'NA'}
+													</Typography>
+												</Stack>
+											</Stack>
+											<Stack
+												direction={'row'}
+												width='50%'
+												maxWidth={'200px'}
+												alignItems={'center'}
+												spacing={2}
+												justifyContent={'space-between'}>
+												<Typography
+													color='secondary.main'
+													fontWeight={400}
+													variant='caption'
+													noWrap>
+													OT Wage
 												</Typography>
-											</TableCell>
-											<TableCell>
-												<Typography noWrap>
-													{JobTypeLabel[worker?.workDetails?.jobType as JOB_TYPES]}
+												<Typography
+													width={60}
+													color='#000'
+													fontWeight={400}
+													variant='caption'
+													noWrap>
+													{bill?.otWage ?? 'NA'}
 												</Typography>
-											</TableCell>
-											<TableCell>
-												<Typography noWrap>
-													{SkillTypeLabel[worker?.workDetails?.workerType as WORKER_TYPES]}
+											</Stack>
+											<Stack
+												direction={'row'}
+												width='50%'
+												maxWidth={'200px'}
+												alignItems={'center'}
+												spacing={2}
+												justifyContent={'space-between'}>
+												<Typography
+													color='secondary.main'
+													fontWeight={400}
+													variant='caption'
+													noWrap>
+													Gross Wage
 												</Typography>
-											</TableCell>
-
-											<TableCell>
-												<Typography noWrap>{bill?.baseWage ?? 'NA'}</Typography>
-											</TableCell>
-											{/* <TableCell>
-													<Typography noWrap>{bill?.otFactor ?? 'NA'}</Typography>
-												</TableCell> */}
-											<TableCell>
-												<Typography noWrap>{bill?.otWage ?? 'NA'}</Typography>
-											</TableCell>
-											<TableCell>
-												<Typography noWrap>{bill?.grossWage ?? 'NA'}</Typography>
-											</TableCell>
-											<TableCell>
-												<Typography noWrap>{bill?.pf ?? 'NA'}</Typography>
-											</TableCell>
-											<TableCell>
-												<Typography noWrap>{bill?.esi ?? 'NA'}</Typography>
-											</TableCell>
-											<TableCell>
-												<Typography noWrap>{bill?.netWage ?? 'NA'}</Typography>
-											</TableCell>
-										</TableRow>
-									))}
+												<Typography
+													width={60}
+													color='#000'
+													fontWeight={400}
+													variant='caption'
+													noWrap>
+													{bill?.grossWage ?? 'NA'}
+												</Typography>
+											</Stack>
+											<Stack
+												direction={'row'}
+												width='50%'
+												maxWidth={'200px'}
+												alignItems={'center'}
+												spacing={2}
+												justifyContent={'space-between'}>
+												<Typography
+													color='secondary.main'
+													fontWeight={400}
+													variant='caption'
+													noWrap>
+													PF
+												</Typography>
+												<Typography
+													width={60}
+													color='#000'
+													fontWeight={400}
+													variant='caption'
+													noWrap>
+													{bill?.pf ?? 'NA'}
+												</Typography>
+											</Stack>
+											<Stack
+												direction={'row'}
+												width='50%'
+												maxWidth={'200px'}
+												alignItems={'center'}
+												spacing={2}
+												justifyContent={'space-between'}>
+												<Typography
+													color='secondary.main'
+													fontWeight={400}
+													variant='caption'
+													noWrap>
+													ESI
+												</Typography>
+												<Typography
+													width={60}
+													color='#000'
+													fontWeight={400}
+													variant='caption'
+													noWrap>
+													{' '}
+													{bill?.esi ?? 'NA'}
+												</Typography>
+											</Stack>
+											<Stack
+												direction={'row'}
+												width='50%'
+												maxWidth={'200px'}
+												alignItems={'center'}
+												justifyContent={'space-between'}>
+												<Typography
+													color='secondary.main'
+													fontWeight={400}
+													variant='caption'
+													noWrap>
+													Net Wage
+												</Typography>
+												<Typography
+													width={60}
+													color='#0FAF7F'
+													fontWeight={400}
+													variant='caption'
+													noWrap>
+													{' '}
+													{bill?.netWage ?? 'NA'}
+												</Typography>
+											</Stack>
+										</Box>
+									</Stack>
+									<Divider />
 								</>
-								{/* )} */}
-							</TableBody>
-						</Table>
-					</TableContainer>
-				</Stack>
-			</Stack>
+							)
+						})}
+					</Box>
+				</Box>
+			)}
 		</>
 	)
 }
