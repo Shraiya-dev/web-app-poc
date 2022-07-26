@@ -692,7 +692,7 @@ export const BillDetails = () => {
 														{bill?.baseWage ?? 'NA'}
 													</Typography>
 												</Stack>
-												<Stack direction={'row'} alignItems={'center'} spacing={2}>
+												{/* <Stack direction={'row'} alignItems={'center'} spacing={2}>
 													<Typography
 														color='secondary.main'
 														fontWeight={400}
@@ -703,7 +703,7 @@ export const BillDetails = () => {
 													<Typography color='#000' fontWeight={400} variant='caption' noWrap>
 														{bill?.otFactor ?? 'NA'}
 													</Typography>
-												</Stack>
+												</Stack> */}
 											</Stack>
 											<Stack
 												direction={'row'}
