@@ -1,15 +1,11 @@
 import { Box } from '@mui/material'
-import { NextPage } from 'next'
-import Head from 'next/head'
+import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
+import { staticRenderingProvider } from 'sdk/utils/nextHelper'
 import { CreateBooking } from '../../../../modules/createBooking/components/createBooking'
 
 const Create: NextPage = () => {
 	return (
 		<>
-			<Head>
-				<title>Create Booking | Project Hero</title>
-				<meta name='Create Booking' content='' />
-			</Head>
 			<Box>
 				<CreateBooking />
 			</Box>
@@ -18,3 +14,7 @@ const Create: NextPage = () => {
 }
 
 export default Create
+
+const pageUrl = '/projects/[projectId]/bookings/create'
+export const getStaticPaths: GetStaticPaths = staticRenderingProvider(pageUrl).getStaticPaths
+export const getStaticProps: GetStaticProps = staticRenderingProvider(pageUrl).getStaticProps

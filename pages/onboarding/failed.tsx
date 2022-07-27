@@ -1,15 +1,11 @@
-import { NextPage } from 'next'
-import { OnboardingLayout } from '../../sdk'
-import Head from 'next/head'
+import { GetStaticProps, NextPage } from 'next'
+import { staticRenderingProvider } from 'sdk/utils/nextHelper'
 import OrgCreationFailed from '../../modules/auth/organisationCreation/components/orgCreationFailed'
+import { OnboardingLayout } from '../../sdk'
 
 const OnboardingFailed: NextPage = () => {
 	return (
 		<>
-			<Head>
-				<title>Onboarding Failed | Project Hero</title>
-				<meta name='description' content='' />
-			</Head>
 			<OnboardingLayout>
 				<OrgCreationFailed />
 			</OnboardingLayout>
@@ -18,3 +14,6 @@ const OnboardingFailed: NextPage = () => {
 }
 
 export default OnboardingFailed
+
+const pageUrl = '/onboarding/failed'
+export const getStaticProps: GetStaticProps = staticRenderingProvider(pageUrl).getStaticProps

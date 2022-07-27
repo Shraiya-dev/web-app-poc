@@ -1,21 +1,11 @@
-import { NextPage } from 'next'
-import React from 'react'
-import { Dashboard } from '../../modules/dashboard'
-import DashboardLayout from '../../sdk/layouts/DashboardLayout'
+import { GetStaticProps, NextPage } from 'next'
 import ContractorDashboardLayout from '../../sdk/layouts/ContractorDashboardLayout'
-import Title from 'next/head'
-
-import Head from 'next/head'
 import { ProjectDashboard } from '../../modules/projectDashboard/components/projectDashboard'
+import { staticRenderingProvider } from 'sdk/utils/nextHelper'
 const DashboardPage: NextPage = () => {
 	return (
 		<>
-			<Head>
-				<Title>Dashboard | Project Hero</Title>
-				<meta name='Dashboard' content='' />
-			</Head>
 			<ContractorDashboardLayout>
-				{/* <Dashboard /> */}
 				<ProjectDashboard />
 			</ContractorDashboardLayout>
 		</>
@@ -23,3 +13,6 @@ const DashboardPage: NextPage = () => {
 }
 
 export default DashboardPage
+
+const pageUrl = '/dashboard'
+export const getStaticProps: GetStaticProps = staticRenderingProvider(pageUrl).getStaticProps

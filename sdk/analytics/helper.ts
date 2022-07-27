@@ -40,29 +40,36 @@ export const createCookieInHour = (cookieName: any, cookieValue: any, daysToExpi
 	document.cookie = `${cookieName} = ${cookieValue}; Domain = projecthero.in; expires = ${date.toUTCString()};`
 }
 
-export const getUtmObject = () => {
-	let queryObj
-	if (typeof window !== `undefined`) {
-		const utmParams = getCookie('utmParams')
-
-		if (utmParams.length > 0) {
-			queryObj = JSON.parse('{"' + decodeURI(utmParams.replace(/&/g, '","').replace(/=/g, '":"')) + '"}')
-
-			for (const [key, value] of Object.entries(queryObj)) {
-				if (!key.includes('utm_')) {
-					delete queryObj[key]
-				}
-			}
-
-			return queryObj
-		}
-	}
-
-	return queryObj
-}
-
 export function clearCookie() {
 	document.cookie.split(';').forEach(function (c) {
 		document.cookie = c.replace(/^ +/, '').replace(/=.*/, '=;expires=' + new Date().toUTCString() + ';path=/')
 	})
+}
+
+export const getUtmObject = () => {
+	try {
+		let queryObj
+		if (typeof window !== `undefined`) {
+			const utmParams = getCookie('utmParams')
+
+			if (utmParams.length > 0) {
+				queryObj = JSON.parse('{"' + decodeURI(utmParams.replace(/&/g, '","').replace(/=/g, '":"')) + '"}')
+
+				for (const [key, value] of Object.entries(queryObj)) {
+					if (!key.includes('utm_')) {
+						delete queryObj[key]
+					}
+				}
+
+				return queryObj
+			}
+		}
+
+		return queryObj
+	} catch (error) {
+		clearCookie()
+		console.log(error)
+	}
+
+	return {}
 }
