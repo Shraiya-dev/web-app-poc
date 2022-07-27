@@ -1,19 +1,16 @@
-import { NextPage } from 'next'
+import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
 import { LoginForm } from '../modules/auth/login/components/LoginForm'
 import { OnboardingLayout } from '../sdk'
 import Head from 'next/head'
 import { useState } from 'react'
 import { OTPVerification } from '../modules/auth/otp/components/OtpVerification'
 import { OnboardingCard } from '../sdk/layouts/OrganisationCard'
+import { staticRenderingProvider } from 'sdk/utils/nextHelper'
 
 const Login: NextPage = () => {
 	const [isOtpSent, setIsOtpSent] = useState(false)
 	return (
 		<>
-			<Head>
-				<title>Login | Project Hero</title>
-				<meta name='description' content='' />
-			</Head>
 			<OnboardingLayout>
 				<OnboardingCard>
 					{isOtpSent ? (
@@ -28,3 +25,6 @@ const Login: NextPage = () => {
 }
 
 export default Login
+
+const pageUrl = '/login'
+export const getStaticProps: GetStaticProps = staticRenderingProvider(pageUrl).getStaticProps

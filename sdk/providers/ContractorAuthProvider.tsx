@@ -1,6 +1,5 @@
-import { route } from 'next/dist/server/router'
 import { useRouter } from 'next/router'
-import { createContext, useCallback, useContext, useEffect, useMemo, useReducer } from 'react'
+import { createContext, FC, useCallback, useContext, useEffect, useMemo, useReducer } from 'react'
 import { Identify } from '../analytics/analyticsWrapper'
 import { createCookieInHour, getCookie } from '../analytics/helper'
 import {
@@ -14,7 +13,6 @@ import {
 } from '../apis'
 import { CustomerDetails, CUSTOMER_STATUS, ONBOARDING_STATUS, USER_LOGIN_TYPE, USER_TYPE } from '../types'
 import { useSnackbar } from './SnackbarProvider'
-
 const LoadingUniqueString = 'loading...'
 interface AuthState {
 	user: null | CustomerDetails
@@ -77,9 +75,11 @@ const ContractorAuthContext = createContext<AuthProviderValue>({
 const { Provider, Consumer } = ContractorAuthContext
 
 const fullYearDays = 365
-
-const ContractorAuthProvider = ({ children }: any) => {
-	const [state, dispatch] = useReducer(simpleReducer, initialAuthState)
+interface ContractorAuthProviderProps {
+	authState?: AuthState
+}
+const ContractorAuthProvider: FC<ContractorAuthProviderProps> = ({ children, authState }) => {
+	const [state, dispatch] = useReducer(simpleReducer, authState ?? initialAuthState)
 	const router = useRouter()
 	const { showSnackbar } = useSnackbar()
 	const requestOtp = useCallback(async (phoneNumber: string) => {
@@ -152,6 +152,10 @@ const ContractorAuthProvider = ({ children }: any) => {
 			try {
 				const { data } = await loginService(phoneNumber, USER_TYPE.CONTRACTOR, USER_LOGIN_TYPE.OTP, otp)
 				if (data?.success) {
+					document.cookie = `accessToken = ${data.data?.accessToken}`
+					document.cookie = `phoneNumber = ${data.data?.phoneNumber}`
+					document.cookie = `refreshToken = ${data.data?.refreshToken}`
+
 					localStorage.setItem('accessToken', data.data?.accessToken)
 					localStorage.setItem('phoneNumber', data.data?.phoneNumber)
 					localStorage.setItem('refreshToken', data.data?.refreshToken)

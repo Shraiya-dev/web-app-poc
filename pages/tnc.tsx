@@ -1,13 +1,11 @@
-import { NextPage } from 'next'
+import { GetStaticProps, NextPage } from 'next'
 import Head from 'next/head'
 import { LandingLayout, Section } from 'sdk'
+import { staticRenderingProvider } from 'sdk/utils/nextHelper'
 
 const TnC: NextPage = () => {
 	return (
 		<>
-			<Head>
-				<title>Project Hero | Terms and Conditions</title>
-			</Head>
 			<LandingLayout>
 				<Section>
 					<div>
@@ -390,3 +388,6 @@ const TnC: NextPage = () => {
 }
 
 export default TnC
+
+const pageUrl = '/tnc'
+export const getStaticProps: GetStaticProps = staticRenderingProvider(pageUrl).getStaticProps

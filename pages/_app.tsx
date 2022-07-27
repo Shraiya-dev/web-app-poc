@@ -4,28 +4,29 @@ import axios, { AxiosError, AxiosResponse } from 'axios'
 import type { AppProps } from 'next/app'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
-import { useEffect } from 'react'
 import Script from 'next/script'
+import { useEffect } from 'react'
+import { QueryClient, QueryClientProvider } from 'react-query'
 import {
 	ContractorAuthProvider,
 	envs,
 	GlobalCssProvider,
 	logOutService,
 	refreshTokenService,
+	SEO,
 	SnackbarProvider,
 	theme,
 	USER_TYPE,
 } from '../sdk'
-import '../sdk/styles/onlyCssWeNeed.css'
 import { Analytic } from '../sdk/analytics/analytics'
-import { useQueryClient, QueryClient, QueryClientProvider } from 'react-query'
+import '../sdk/styles/onlyCssWeNeed.css'
 
 const queryClient = new QueryClient()
 
-import { AnalyticsPage, Identify } from '../sdk/analytics/analyticsWrapper'
-import { createCookieInHour, getCookie } from '../sdk/analytics/helper'
 import { landingTheme } from 'sdk/constants/landingTheme'
 import { SplashProvider } from 'sdk/providers/SplashProvider'
+import { AnalyticsPage, Identify, NewAnalyticsPage } from '../sdk/analytics/analyticsWrapper'
+import { createCookieInHour, getCookie } from '../sdk/analytics/helper'
 //=====================initializing axios interceptor=======================
 
 axios.defaults.baseURL = envs.SERVER_URL
@@ -91,9 +92,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 	const router = useRouter()
 	const fullYearDays = 365
 	const cookieExpiryDays = 45
-
-	useEffect(() => {}, [])
-
+	const { seoData } = pageProps
 	useEffect(() => {
 		if (router.isReady) {
 			const utmParams = router.asPath.includes('utm_')
@@ -109,7 +108,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 			if (!localStorage.getItem('accessToken')) {
 				Identify({})
 			}
-			AnalyticsPage(router)
+			NewAnalyticsPage(router)
 		}
 	}, [router])
 
@@ -135,6 +134,8 @@ function MyApp({ Component, pageProps }: AppProps) {
 		return (
 			<>
 				<CommonHead />
+				<SEO {...seoData} />
+
 				<QueryClientProvider client={queryClient}>
 					<ThemeProvider theme={landingTheme}>
 						<GlobalCssProvider>
@@ -152,7 +153,6 @@ function MyApp({ Component, pageProps }: AppProps) {
 	if (typeof window !== 'undefined') {
 		if (!window.location.hostname.includes('booking')) {
 			if (window.location.hostname.includes('localhost')) {
-				window.location.replace(domain.stage + router.asPath)
 			} else if (window.location.hostname.includes('stage')) {
 				window.location.replace(domain.stage + router.asPath)
 			} else if (window.location.hostname.includes('dev')) {
@@ -165,6 +165,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 	return (
 		<>
 			<CommonHead />
+			<SEO {...seoData} />
 			<QueryClientProvider client={queryClient}>
 				<ThemeProvider theme={theme}>
 					<GlobalCssProvider>

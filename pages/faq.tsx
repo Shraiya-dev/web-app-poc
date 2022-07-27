@@ -1,14 +1,11 @@
 import { FAQ } from 'landing'
-import { NextPage } from 'next'
-import Head from 'next/head'
+import { GetStaticProps, NextPage } from 'next'
 import { LandingLayout } from 'sdk'
+import { staticRenderingProvider } from 'sdk/utils/nextHelper'
 
 const Page: NextPage = () => {
 	return (
 		<>
-			<Head>
-				<title>Project hero | FAQ</title>
-			</Head>
 			<LandingLayout>
 				<FAQ />
 			</LandingLayout>
@@ -16,3 +13,6 @@ const Page: NextPage = () => {
 	)
 }
 export default Page
+
+const pageUrl = '/faq'
+export const getStaticProps: GetStaticProps = staticRenderingProvider(pageUrl).getStaticProps

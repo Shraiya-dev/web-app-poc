@@ -1,17 +1,11 @@
-import { NextPage } from 'next'
-import Head from 'next/head'
-import { useRouter } from 'next/router'
+import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
+import { staticRenderingProvider } from 'sdk/utils/nextHelper'
 import { BookingId } from '../../../../modules/bookingId'
 import ContractorDashboardLayout from '../../../../sdk/layouts/ContractorDashboardLayout'
 
 const BookingIdPage: NextPage = () => {
-	const router = useRouter()
 	return (
 		<>
-			<Head>
-				<title>Booking {router.query.tab} | Project Hero </title>
-				<meta name='Booking' content='' />
-			</Head>
 			<ContractorDashboardLayout>
 				<BookingId />
 			</ContractorDashboardLayout>
@@ -19,3 +13,7 @@ const BookingIdPage: NextPage = () => {
 	)
 }
 export default BookingIdPage
+
+const pageUrl = '/bookings/[projectId]/[bookingId]/[tab]'
+export const getStaticPaths: GetStaticPaths = staticRenderingProvider(pageUrl).getStaticPaths
+export const getStaticProps: GetStaticProps = staticRenderingProvider(pageUrl).getStaticProps

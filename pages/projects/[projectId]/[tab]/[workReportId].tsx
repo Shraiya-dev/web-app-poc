@@ -1,17 +1,18 @@
-import Head from 'next/head'
+import { GetStaticPaths, GetStaticProps } from 'next'
+import { staticRenderingProvider } from 'sdk/utils/nextHelper'
 import { WorkReportDetails } from '../../../../modules/workReport'
-import ContractorDashboardLayout from '../../../../sdk/layouts/ContractorDashboardLayout'
 
 const Details = () => {
 	return (
 		<>
-			<Head>
-				<title>Work Report Details | Project Hero </title>
-				<meta name='Project' content='' />
-			</Head>
 			<WorkReportDetails />
 		</>
 	)
 }
 
 export default Details
+
+const pageUrl = '/projects/[projectId]/[tab]/[workReportId]'
+export const getStaticPaths: GetStaticPaths = staticRenderingProvider(pageUrl).getStaticPaths
+
+export const getStaticProps: GetStaticProps = staticRenderingProvider(pageUrl).getStaticProps

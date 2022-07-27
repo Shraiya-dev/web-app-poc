@@ -1,14 +1,11 @@
 import { Typography } from '@mui/material'
-import { NextPage } from 'next'
-import Head from 'next/head'
+import { GetStaticProps, NextPage } from 'next'
 import { LandingLayout, Section } from 'sdk'
+import { staticRenderingProvider } from 'sdk/utils/nextHelper'
 
 const ContactUs: NextPage = () => {
 	return (
 		<>
-			<Head>
-				<title>Project Hero | Contact Us</title>
-			</Head>
 			<LandingLayout>
 				<Section sx={{ py: '15vh' }}>
 					<Typography variant='h3' fontWeight={700}>
@@ -30,3 +27,6 @@ const ContactUs: NextPage = () => {
 }
 
 export default ContactUs
+
+const pageUrl = '/contact-us'
+export const getStaticProps: GetStaticProps = staticRenderingProvider(pageUrl).getStaticProps
