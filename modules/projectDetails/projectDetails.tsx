@@ -15,8 +15,15 @@ import { useProjectDetails } from './hooks/useProjectDetails'
 import { WorkReport } from '../workReport'
 import { Bills } from '../bills'
 import { LocationOnOutlined } from '@mui/icons-material'
-
-export const ProjectDetails = () => {
+import { FC } from 'react'
+interface Props {}
+export const tabList: { [key in string]: string } = {
+	'work-report': 'Work Report',
+	bookings: 'Bookings',
+	details: 'Details',
+	bills: 'Bills',
+}
+export const ProjectDetails: FC<Props> = () => {
 	const { selectedTab, handleTabSelection, projectDetails } = useProjectDetails()
 	const isMobile = useMobile()
 	const router = useRouter()
@@ -82,40 +89,33 @@ export const ProjectDetails = () => {
 						}}
 						value={router.query.tab as string}
 						onChange={handleTabSelection}>
-						<Tab
-							sx={{
-								fontSize: '18px',
-								textTransform: 'none',
-							}}
-							value='bookings'
-							label='Bookings'
-						/>
-						<Tab
-							sx={{
-								fontSize: '18px',
-								textTransform: 'none',
-							}}
-							value='work-report'
-							label='Work Report'
-						/>
-						{projectDetails?.generateBills && (
-							<Tab
-								sx={{
-									fontSize: '18px',
-									textTransform: 'none',
-								}}
-								value='bills'
-								label='Bills'
-							/>
-						)}
-						<Tab
-							sx={{
-								fontSize: '18px',
-								textTransform: 'none',
-							}}
-							value='details'
-							label='Project Details'
-						/>
+						{Object.keys(tabList).map((tab, index) => {
+							if (tab === 'bills') {
+								return (
+									projectDetails?.generateBills && (
+										<Tab
+											sx={{
+												fontSize: '18px',
+												textTransform: 'none',
+											}}
+											value='bills'
+											label='Bills'
+										/>
+									)
+								)
+							}
+							return (
+								<Tab
+									key={tab}
+									sx={{
+										fontSize: '18px',
+										textTransform: 'none',
+									}}
+									value={tab}
+									label={tabList[tab]}
+								/>
+							)
+						})}
 					</Tabs>
 				</Box>
 

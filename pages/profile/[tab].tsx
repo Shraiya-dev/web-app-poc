@@ -1,19 +1,12 @@
-import { NextPage } from 'next'
-import { useRouter } from 'next/router'
+import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
 
-import ContractorDashboardLayout from '../../sdk/layouts/ContractorDashboardLayout'
-import { useContractorAuth } from '../../sdk'
-import Head from 'next/head'
+import { staticRenderingProvider } from 'sdk/utils/nextHelper'
 import CompanyDetails from '../../modules/companyProfile/companyDetails'
+import ContractorDashboardLayout from '../../sdk/layouts/ContractorDashboardLayout'
 
 const Profile: NextPage = () => {
 	return (
 		<>
-			<Head>
-				<title>Company Profile | Project Hero</title>
-				<meta name='description' content='' />
-			</Head>
-
 			<ContractorDashboardLayout>
 				<CompanyDetails />
 			</ContractorDashboardLayout>
@@ -22,3 +15,7 @@ const Profile: NextPage = () => {
 }
 
 export default Profile
+
+const pageUrl = '/profile/[tab]'
+export const getStaticPaths: GetStaticPaths = staticRenderingProvider(pageUrl).getStaticPaths
+export const getStaticProps: GetStaticProps = staticRenderingProvider(pageUrl).getStaticProps
