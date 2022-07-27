@@ -108,7 +108,7 @@ const Page: NextPage = () => {
 						onClick={() => {
 							ButtonClicked({
 								action: 'Khula Manch',
-								page: 'projecthero.in',
+								page: document.title,
 								url: router.asPath,
 							})
 						}}
