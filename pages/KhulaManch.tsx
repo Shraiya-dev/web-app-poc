@@ -136,5 +136,5 @@ const Page: NextPage = () => {
 }
 export default Page
 
-const pageUrl = '/about-us'
+const pageUrl = '/KhulaManch'
 export const getStaticProps: GetStaticProps = staticRenderingProvider(pageUrl).getStaticProps
