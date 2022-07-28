@@ -175,8 +175,8 @@ export const WorkReport = () => {
 						<Table stickyHeader>
 							<TableHead>
 								<TableRow>
-									{TableHeaderList.map((item) => (
-										<StyledTableHeadCell key={item.label as any} sx={item.sx}>
+									{TableHeaderList.map((item, index) => (
+										<StyledTableHeadCell key={String(item.label)} sx={item.sx}>
 											<Typography noWrap fontWeight={600}>
 												{item.label}
 											</Typography>
