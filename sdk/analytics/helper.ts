@@ -46,9 +46,9 @@ export function clearCookie() {
 	})
 }
 
-export const getUtmObject = () => {
+export const getUtmObject = (): any | undefined => {
+	let queryObj = undefined
 	try {
-		let queryObj
 		if (typeof window !== `undefined`) {
 			const utmParams = getCookie('utmParams')
 
@@ -70,6 +70,5 @@ export const getUtmObject = () => {
 		clearCookie()
 		console.log(error)
 	}
-
-	return {}
+	return queryObj
 }

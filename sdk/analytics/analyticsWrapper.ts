@@ -1,7 +1,8 @@
 import { NextRouter } from 'next/router'
+import { PageStaticData } from 'sdk/types'
 import { Analytic } from './analytics'
-import { getUtmObject, PathName } from './helper'
-
+import { getUtmObject } from './helper'
+//old version
 interface ButtonClicked {
 	action: string
 	page: string
@@ -102,33 +103,54 @@ export const Identify = async ({ ...props }: Identify) => {
 	}
 }
 
-export const AnalyticsPage = (router: any) => {
-	let routeName =
-		router.route === '/profile/[tab]'
-			? `Profile - ${router.query.tab}`
-			: router.route === '/projects/[projectId]/[tab]'
-			? `Project - ${router.query.tab}`
-			: router.route === '/bookings/[projectId]/[bookingId]/[tab]'
-			? `Bookings - ${router.query.tab === 'track-workers' ? 'Track Workers' : router.query.tab}`
-			: PathName[router.route ?? '/dashboard']
-	// const pageRoute = router.asPath.split('/').filter((item: string) => item !== '')[0] + ' - ' + router.asPath
-	const utmInfo = getUtmObject()
-	if ((router.route = 'KhulaManch')) {
-		routeName = 'Khula Manch' + router.route
+// new version
+
+export const getPageData = (): { name: string } => {
+	// @ts-ignore comment to disable type checking for a line in TypeScript.
+	return document.pageData
+}
+export const setPageData = (data: PageStaticData) => {
+	if (window) {
+		// @ts-ignore comment to disable type checking for a line in TypeScript.
+		window.document.pageData = {
+			name: data.pageName,
+		}
 	}
+}
+export const NewAnalyticsPage = (router: NextRouter) => {
+	// @ts-ignore comment to disable type checking for a line in TypeScript.
+	const { name } = getPageData()
+	const utmInfo = getUtmObject()
 	if (utmInfo) {
-		Analytic.page({ name: routeName, utmParams: utmInfo })
+		Analytic.page({ name: name, utmParams: utmInfo })
 	} else {
-		Analytic.page({ name: routeName })
+		Analytic.page({ name: name })
 	}
 }
 
-export const NewAnalyticsPage = (router: NextRouter) => {
-	const routeName = document.title
-	const utmInfo = getUtmObject()
-	if (utmInfo) {
-		Analytic.page({ name: routeName, utmParams: utmInfo })
-	} else {
-		Analytic.page({ name: routeName })
-	}
+export enum EventType {
+	ButtonClick = 'BUTTON_CLICK',
+	CardClick = 'CARD_CLICK',
+	HorizontalTabClick = 'HORIZONTAL_TAB_CLICK',
+	NavigationTabClicked = 'NAVIGATION_TAB_CLICK',
 }
+interface BaseEvent {
+	page: string
+	url: string
+	utmParams?: any
+}
+interface Event {
+	action: string
+	metaData?: any
+}
+export const sendAnalytics = async (eventName: EventType, payload: any) => {
+	const utmInfo = getUtmObject()
+	const baseEvent: BaseEvent = {
+		page: getPageData().name,
+		url: document.location.pathname,
+		utmParams: utmInfo,
+	}
+	return await Analytic.track(eventName, { ...baseEvent, ...payload })
+}
+
+export const analyticsEvents = (eventName: EventType, metaData: Event) => sendAnalytics(eventName, metaData)

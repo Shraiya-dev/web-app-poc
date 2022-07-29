@@ -12,6 +12,7 @@ import {
 	envs,
 	GlobalCssProvider,
 	logOutService,
+	PageStaticData,
 	refreshTokenService,
 	SEO,
 	SnackbarProvider,
@@ -25,7 +26,7 @@ const queryClient = new QueryClient()
 
 import { landingTheme } from 'sdk/constants/landingTheme'
 import { SplashProvider } from 'sdk/providers/SplashProvider'
-import { AnalyticsPage, Identify, NewAnalyticsPage } from '../sdk/analytics/analyticsWrapper'
+import { Identify, NewAnalyticsPage, setPageData } from '../sdk/analytics/analyticsWrapper'
 import { createCookieInHour, getCookie } from '../sdk/analytics/helper'
 //=====================initializing axios interceptor=======================
 
@@ -92,7 +93,10 @@ function MyApp({ Component, pageProps }: AppProps) {
 	const router = useRouter()
 	const fullYearDays = 365
 	const cookieExpiryDays = 45
-	const { seoData } = pageProps
+	const { pageStaticData } = pageProps as { pageStaticData: PageStaticData }
+	useEffect(() => {
+		setPageData(pageStaticData)
+	}, [pageStaticData])
 	useEffect(() => {
 		if (router.isReady) {
 			const utmParams = router.asPath.includes('utm_')
@@ -134,7 +138,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 		return (
 			<>
 				<CommonHead />
-				<SEO {...seoData} />
+				<SEO {...pageStaticData.seo} />
 
 				<QueryClientProvider client={queryClient}>
 					<ThemeProvider theme={landingTheme}>
@@ -165,7 +169,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 	return (
 		<>
 			<CommonHead />
-			<SEO {...seoData} />
+			<SEO {...pageStaticData.seo} />
 			<QueryClientProvider client={queryClient}>
 				<ThemeProvider theme={theme}>
 					<GlobalCssProvider>
