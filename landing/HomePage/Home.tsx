@@ -27,7 +27,7 @@ import {
 	Section,
 	useMobile,
 } from 'sdk'
-import { ButtonClicked } from 'sdk/analytics/analyticsWrapper'
+import { analyticsEvents } from 'sdk/analytics/analyticsWrapper'
 import { homePage } from 'sdk/data/home'
 
 export const Home = () => {
@@ -143,10 +143,12 @@ export const Home = () => {
 									DataLayerPush({
 										event: 'book_worker_home_hero',
 									})
-									ButtonClicked({
-										page: document.title,
-										action: 'Book Workers',
-										url: router.asPath,
+
+									analyticsEvents('ButtonClick', {
+										action: 'Book Worker',
+										metaData: {
+											origin: 'hero section',
+										},
 									})
 								}}
 								sx={{ px: 4 }}>

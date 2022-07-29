@@ -1,3 +1,4 @@
+import { constants } from 'fs'
 import { NextRouter } from 'next/router'
 import { PageStaticData } from 'sdk/types'
 import { Analytic } from './analytics'
@@ -118,7 +119,6 @@ export const setPageData = (data: PageStaticData) => {
 	}
 }
 export const NewAnalyticsPage = (router: NextRouter) => {
-	// @ts-ignore comment to disable type checking for a line in TypeScript.
 	const { name } = getPageData()
 	const utmInfo = getUtmObject()
 	if (utmInfo) {
@@ -127,30 +127,30 @@ export const NewAnalyticsPage = (router: NextRouter) => {
 		Analytic.page({ name: name })
 	}
 }
-
-export enum EventType {
-	ButtonClick = 'BUTTON_CLICK',
-	CardClick = 'CARD_CLICK',
-	HorizontalTabClick = 'HORIZONTAL_TAB_CLICK',
-	NavigationTabClicked = 'NAVIGATION_TAB_CLICK',
+const EventTypes = {
+	ButtonClick: 'Button Click',
+	CardClick: 'Card Click',
+	HorizontalTabClick: 'Horizontal Tab Click',
+	NavigationTabClicked: 'Navigation Tab Clicked',
 }
 interface BaseEvent {
 	page: string
 	url: string
 	utmParams?: any
 }
-interface Event {
+interface ContextualData {
 	action: string
 	metaData?: any
 }
-export const sendAnalytics = async (eventName: EventType, payload: any) => {
+export const sendAnalytics = async (eventName: keyof typeof EventTypes, payload: any) => {
 	const utmInfo = getUtmObject()
 	const baseEvent: BaseEvent = {
 		page: getPageData().name,
 		url: document.location.pathname,
 		utmParams: utmInfo,
 	}
-	return await Analytic.track(eventName, { ...baseEvent, ...payload })
+	return await Analytic.track(EventTypes[eventName], { ...baseEvent, ...payload })
 }
 
-export const analyticsEvents = (eventName: EventType, metaData: Event) => sendAnalytics(eventName, metaData)
+export const analyticsEvents = (eventName: keyof typeof EventTypes, metaData: ContextualData) =>
+	sendAnalytics(eventName, metaData)
