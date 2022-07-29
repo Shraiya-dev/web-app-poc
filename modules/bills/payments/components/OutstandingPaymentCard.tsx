@@ -8,7 +8,7 @@ import { useGetOuststandingPaymentQuery } from '../queries/hooks'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
 import CurrencyRupeeIcon from '@mui/icons-material/CurrencyRupee'
 import { OutstandingPaymentPopover } from './OutstandingPaymentPopover'
-import { indianCurrencyFormat } from '../../../../sdk'
+import { indianCurrencyFormat, useMobile } from '../../../../sdk'
 import { ButtonClicked } from 'sdk/analytics/analyticsWrapper'
 
 const CustomPaper = styled(Paper)(({ theme }) => ({
@@ -54,6 +54,7 @@ const CustomPaper = styled(Paper)(({ theme }) => ({
 export const OutstandiongPaymentCard = ({ tooltipTitle }: { tooltipTitle: TooltipProps['title'] }) => {
 	const router = useRouter()
 	const theme = useTheme()
+	const isMobile = useMobile()
 	const projectId = router.query.projectId as string
 	const outStandingPaymentData = useGetOuststandingPaymentQuery(projectId)
 	const [showPopover, setShowPopver] = useState(false)
@@ -75,7 +76,7 @@ export const OutstandiongPaymentCard = ({ tooltipTitle }: { tooltipTitle: Toolti
 					</Stack>
 				</Skeleton>
 			) : (
-				<CustomPaper elevation={1} sx={{ maxWidth: 400 }}>
+				<CustomPaper elevation={isMobile ? 5 : 1} sx={{ minWidth: 300, maxWidth: 400, minHeight: '144px' }}>
 					<Stack direction='row' justifyContent='space-between' flex={1}>
 						<Stack flex={1}>
 							<Stack flex={1}>

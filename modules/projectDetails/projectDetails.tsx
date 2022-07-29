@@ -69,7 +69,16 @@ export const ProjectDetails: FC<Props> = () => {
 				</Stack>
 			</CustomTopBar>
 			<TabContext value={router.query.tab as string}>
-				<Box sx={{ borderBottom: 1, borderColor: 'divider', marginBottom: 0 }}>
+				<Box
+					sx={{
+						borderBottom: 1,
+						borderColor: 'divider',
+						marginBottom: 0,
+						overflowX: isMobile ? 'scroll' : '',
+						'&::-webkit-scrollbar': {
+							display: 'none',
+						},
+					}}>
 					{/* <Typography color={primary.main}>
 				<ArrowBackIosNewIcon
 							onClick={() => router.back()}
@@ -81,42 +90,87 @@ export const ProjectDetails: FC<Props> = () => {
 							}}
 						/> &nbsp;Back
 				</Typography> */}
-					<Tabs
-						TabIndicatorProps={{
-							style: {
-								height: '3px',
-							},
-						}}
-						value={router.query.tab as string}
-						onChange={handleTabSelection}>
-						{Object.keys(tabList).map((tab, index) => {
-							if (tab === 'bills') {
+					{!isMobile ? (
+						<Tabs
+							TabIndicatorProps={{
+								style: {
+									height: '3px',
+								},
+							}}
+							value={router.query.tab as string}
+							onChange={handleTabSelection}>
+							{Object.keys(tabList).map((tab, index) => {
+								if (tab === 'bills') {
+									return (
+										projectDetails?.generateBills && (
+											<Tab
+												sx={{
+													fontSize: '18px',
+													textTransform: 'none',
+												}}
+												value='bills'
+												label='Bills'
+											/>
+										)
+									)
+								}
 								return (
-									projectDetails?.generateBills && (
+									<Tab
+										key={tab}
+										sx={{
+											fontSize: '18px',
+											textTransform: 'none',
+										}}
+										value={tab}
+										label={tabList[tab]}
+									/>
+								)
+							})}
+						</Tabs>
+					) : (
+						<Box
+							sx={{
+								width: '120%',
+								overflowX: 'scroll',
+							}}>
+							<Tabs
+								TabIndicatorProps={{
+									style: {
+										height: '3px',
+									},
+								}}
+								value={router.query.tab as string}
+								onChange={handleTabSelection}>
+								{Object.keys(tabList).map((tab, index) => {
+									if (tab === 'bills') {
+										return (
+											projectDetails?.generateBills && (
+												<Tab
+													sx={{
+														fontSize: '18px',
+														textTransform: 'none',
+													}}
+													value='bills'
+													label='Bills'
+												/>
+											)
+										)
+									}
+									return (
 										<Tab
+											key={tab}
 											sx={{
 												fontSize: '18px',
 												textTransform: 'none',
 											}}
-											value='bills'
-											label='Bills'
+											value={tab}
+											label={tabList[tab]}
 										/>
 									)
-								)
-							}
-							return (
-								<Tab
-									key={tab}
-									sx={{
-										fontSize: '18px',
-										textTransform: 'none',
-									}}
-									value={tab}
-									label={tabList[tab]}
-								/>
-							)
-						})}
-					</Tabs>
+								})}
+							</Tabs>
+						</Box>
+					)}
 				</Box>
 
 				<TabPanel
@@ -133,11 +187,11 @@ export const ProjectDetails: FC<Props> = () => {
 				</TabPanel>
 				<TabPanel
 					sx={{
-						padding: isMobile ? 1 : 3,
+						padding: isMobile ? 0 : 3,
 					}}
 					value='work-report'
 					style={{
-						height: 'calc( 100vh - 130px )',
+						height: `calc( 100vh - ${!isMobile ? '130px' : '190px'} )`,
 						overflowY: 'auto',
 						paddingBottom: 0,
 						position: 'relative',
@@ -150,7 +204,7 @@ export const ProjectDetails: FC<Props> = () => {
 					}}
 					value='bills'
 					style={{
-						height: 'calc( 100vh - 130px )',
+						height: `calc( 100vh - ${!isMobile ? '130px' : '190px'} )`,
 						overflowY: 'auto',
 						paddingBottom: 0,
 						position: 'relative',

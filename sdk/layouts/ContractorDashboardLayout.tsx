@@ -66,7 +66,7 @@ const ContractorDashboardLayout = ({ children }: any) => {
 				style={{
 					padding: isMobile ? 8 : 16,
 					marginLeft: isMobile ? 0 : theme.spacing(33),
-					background: theme.palette.background.default,
+					background: !isMobile ? theme.palette.background.default : '#fff',
 					//width: '100vw',
 					height: '100vh',
 				}}>
