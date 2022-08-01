@@ -24,7 +24,7 @@ import Image from 'next/image'
 import { useRouter } from 'next/router'
 import { useEffect, useReducer, useState } from 'react'
 import { DataLayerPush, HyperLink, LinkButton } from 'sdk'
-import { analyticsEvents } from 'sdk/analytics/analyticsWrapper'
+import { sendAnalytics } from 'sdk/analytics/analyticsWrapper'
 import { contactUsSection, navbar } from 'sdk/data'
 export const Navbar = () => {
 	const [menuRefs, dispatchMenuRefs] = useReducer((p: any, n: any) => ({ ...p, ...n }), {})
@@ -283,11 +283,10 @@ export const Navbar = () => {
 											color='primary'
 											onClick={() => {
 												DataLayerPush({ event: 'book_worker_home_header' })
-												analyticsEvents('ButtonClick', {
-													action: 'Book Worker',
-													metaData: {
-														origin: 'navbar',
-													},
+												sendAnalytics({
+													name: 'BookWorker',
+													action: 'ButtonClick',
+													metaData: { origin: 'navbar' },
 												})
 											}}
 											sx={{ fontWeight: 700, borderRadius: '8px !important' }}

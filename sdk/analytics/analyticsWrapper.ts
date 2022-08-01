@@ -1,4 +1,3 @@
-import { constants } from 'fs'
 import { NextRouter } from 'next/router'
 import { PageStaticData } from 'sdk/types'
 import { Analytic } from './analytics'
@@ -127,30 +126,32 @@ export const NewAnalyticsPage = (router: NextRouter) => {
 		Analytic.page({ name: name })
 	}
 }
+//Define a new event here
 const EventTypes = {
+	BookWorker: 'Book Worker',
+}
+
+//Define a new action type here if needed
+const ActionTypes = {
 	ButtonClick: 'Button Click',
 	CardClick: 'Card Click',
 	HorizontalTabClick: 'Horizontal Tab Click',
 	NavigationTabClicked: 'Navigation Tab Clicked',
 }
-interface BaseEvent {
-	page: string
-	url: string
-	utmParams?: any
-}
-interface ContextualData {
-	action: string
+
+export const sendAnalytics = async (event: {
+	name: keyof typeof EventTypes
+	action: keyof typeof ActionTypes
 	metaData?: any
-}
-export const sendAnalytics = async (eventName: keyof typeof EventTypes, payload: any) => {
+}) => {
 	const utmInfo = getUtmObject()
-	const baseEvent: BaseEvent = {
+	const { name, action, metaData } = event
+	const payload = {
+		action: ActionTypes[action],
+		metaData: metaData,
 		page: getPageData().name,
 		url: document.location.pathname,
 		utmParams: utmInfo,
 	}
-	return await Analytic.track(EventTypes[eventName], { ...baseEvent, ...payload })
+	return await Analytic.track(EventTypes[name], payload)
 }
-
-export const analyticsEvents = (eventName: keyof typeof EventTypes, metaData: ContextualData) =>
-	sendAnalytics(eventName, metaData)
