@@ -1,6 +1,11 @@
+import styled from '@emotion/styled'
+import { FileDownloadOutlined } from '@mui/icons-material'
+import { LoadingButton } from '@mui/lab'
 import {
+	Box,
 	Button,
 	CircularProgress,
+	Divider,
 	Paper,
 	Stack,
 	Table,
@@ -67,13 +72,261 @@ export const Bills = () => {
 		<>
 			<ApproveConfirmationDialog {...approveConfirmationDialogProps} />
 
-			<Stack spacing={3}>
-				<Stack direction={isMobile ? 'column' : 'row'} spacing={3}>
-					<OutstandiongPaymentCard tooltipTitle='Net amount you owe based on bills raised and past payments made' />
-					<LastOutstandingPaymentCard />
+			{!isMobile ? (
+				<Stack spacing={3}>
+					<Stack direction={isMobile ? 'column' : 'row'} spacing={3}>
+						<OutstandiongPaymentCard tooltipTitle='Net amount you owe based on bills raised and past payments made' />
+						<LastOutstandingPaymentCard />
+					</Stack>
+					<Stack direction={isMobile ? 'column' : 'row'} justifyContent='space-between'>
+						<Stack direction='row' py={1} spacing={1} alignItems='center' sx={{ overflowX: 'auto' }}>
+							<LocalizationProvider dateAdapter={AdapterDateFns}>
+								<DesktopDatePicker
+									disableFuture
+									label='From date'
+									inputFormat='dd/MM/yy'
+									mask='__/__/__'
+									value={
+										(router.query.startDate as string)
+											? parse(router.query.startDate as string, 'dd/MM/yy', new Date())
+											: new Date().setDate(1)
+									}
+									onChange={async (date: Date | null) => {
+										date && (router.query.startDate = format(date, 'dd/MM/yy'))
+										await router.replace(router)
+									}}
+									renderInput={({ inputProps, ...params }) => (
+										<TextField
+											sx={{ minHeight: 0, minWidth: 150, maxWidth: 150 }}
+											size='small'
+											{...params}
+											inputProps={{
+												...inputProps,
+												sx: {
+													py: 0.6,
+												},
+											}}
+										/>
+									)}
+								/>
+								<DesktopDatePicker
+									disableFuture
+									label='To date'
+									inputFormat='dd/MM/yy'
+									mask='__/__/__'
+									minDate={
+										(router.query.startDate as string)
+											? parse(router.query.startDate as string, 'dd/MM/yy', new Date())
+											: new Date()
+									}
+									value={
+										(router.query.endDate as string)
+											? parse(router.query.endDate as string, 'dd/MM/yy', new Date())
+											: new Date()
+									}
+									onChange={async (date: Date | null) => {
+										date && (router.query.endDate = format(date, 'dd/MM/yy'))
+										await router.replace(router)
+									}}
+									renderInput={({ inputProps, ...params }) => (
+										<TextField
+											sx={{ minHeight: 0, minWidth: 150, maxWidth: 150 }}
+											size='small'
+											{...params}
+											inputProps={{
+												...inputProps,
+												sx: {
+													py: 0.6,
+												},
+											}}
+										/>
+									)}
+								/>
+							</LocalizationProvider>
+							<Button
+								size='small'
+								variant='outlined'
+								onClick={() => {
+									router.replace(router.asPath.split('?')[0])
+								}}>
+								clear
+							</Button>
+						</Stack>
+						<Stack
+							direction='row'
+							alignItems='center'
+							justifyContent={isMobile ? 'space-between' : undefined}>
+							<Typography variant='subtitle2'>
+								Rows per page: {billResponse?.aggregatedBills?.length ?? 0}
+							</Typography>
+							<PaginationWithHasMore hasMore={billResponse?.hasMore} loading={isLoading?.fetching} />
+						</Stack>
+					</Stack>
+					<Stack>
+						<TableContainer component={Paper} sx={{ height: 'calc(100vh - 425px)' }}>
+							<Table stickyHeader>
+								<TableHead>
+									<TableRow>
+										{TableHeaderList.map((item) => (
+											<StyledTableHeadCell key={item.label as any} sx={item.sx}>
+												<Typography noWrap fontWeight={600}>
+													{item.label}
+												</Typography>
+											</StyledTableHeadCell>
+										))}
+									</TableRow>
+								</TableHead>
+								<TableBody sx={{ overflowY: 'auto' }}>
+									{isLoading?.fetching ? (
+										<TableRow sx={{ height: '' }}>
+											<TableCell sx={{ borderBottom: 'none' }} colSpan={100} align='center'>
+												<CircularProgress />
+											</TableCell>
+										</TableRow>
+									) : (
+										billResponse?.aggregatedBills?.map((item) => (
+											<TableRow
+												key={item?.dwrId}
+												sx={{
+													cursor: 'pointer',
+													'&:hover': {
+														backgroundColor: colors.AliceBlue,
+													},
+												}}
+												onClick={() => {
+													router.push(
+														`/projects/${router.query.projectId}/bills/billId/${item?.aggregationDate}`
+													)
+												}}>
+												<TableCell
+													sx={{
+														position: 'sticky',
+														left: 0,
+														backgroundColor: '#ffffff',
+														width: 80,
+														'&:hover': {
+															backgroundColor: colors.AliceBlue,
+														},
+													}}>
+													<DateStack date={item?.displayDate} />
+												</TableCell>
+												<TableCell>
+													<Stack>
+														<Typography color='success.main' fontWeight={600}>
+															{item?.totalPayable ?? 'NA'}
+														</Typography>
+													</Stack>
+												</TableCell>
+												<TableCell>
+													<Typography>{item?.heroCount ?? 'NA'}</Typography>
+												</TableCell>
+												<TableCell>
+													<Typography>{item?.baseWage ?? 'NA'}</Typography>
+												</TableCell>
+												<TableCell>
+													<Typography>{item?.otWage ?? 'NA'}</Typography>
+												</TableCell>
+												<TableCell>
+													<Typography>{item?.grossWage ?? 'NA'}</Typography>
+												</TableCell>
+												<TableCell>
+													<Typography>{item?.pf ?? 'NA'}</Typography>
+												</TableCell>
+												<TableCell>
+													<Typography>{item?.esi ?? 'NA'}</Typography>
+												</TableCell>
+												<TableCell>
+													{item?.dwrId ? (
+														<Link
+															href={`/projects/${router.query.projectId}/work-report/${item?.dwrId}`}
+															passHref>
+															<a
+																onClick={(e) => {
+																	ButtonClicked({
+																		action: 'View Work report from bill',
+																		page: document.title,
+																		url: router.asPath,
+																	})
+																	e.stopPropagation()
+																}}>
+																<Image
+																	src={'/assets/icons/reportIcon.svg'}
+																	alt={'DWR report'}
+																	height={32}
+																	width={32}
+																/>
+															</a>
+														</Link>
+													) : (
+														<Image
+															style={{ cursor: item?.dwrId ? 'not-allowed' : '' }}
+															src={'/assets/icons/reportIconsDisabled.svg'}
+															alt={'DWR report'}
+															height={32}
+															width={32}
+														/>
+													)}
+													{/* <LoadingButton
+													loading={isLoading.downloading[item.dwrId]}
+													size={'small'}
+													onClick={(e) => {
+														ButtonClicked({
+															action: 'Download Daily Work Report',
+															page: 'Work report List',
+															url: router.asPath,
+														})
+														e.stopPropagation()
+														downloadWorkReport(item.dwrId, item.date)
+													}}>
+													<FileDownloadOutlined />
+												</LoadingButton> */}
+												</TableCell>
+											</TableRow>
+										))
+									)}
+								</TableBody>
+							</Table>
+						</TableContainer>
+					</Stack>
 				</Stack>
-				<Stack direction={isMobile ? 'column' : 'row'} justifyContent='space-between'>
-					<Stack direction='row' py={1} spacing={1} alignItems='center' sx={{ overflowX: 'auto' }}>
+			) : (
+				<>
+					<Stack
+						direction={'row'}
+						spacing={1}
+						sx={{
+							overflowX: 'scroll',
+							background: ' #FDFCFA',
+							'&::-webkit-scrollbar': {
+								display: 'none',
+							},
+						}}>
+						<Box
+							sx={{
+								width: '80vw',
+								padding: '10px 20px',
+							}}>
+							<OutstandiongPaymentCard tooltipTitle='Net amount you owe based on bills raised and past payments made' />
+						</Box>
+						<Box
+							sx={{
+								width: '80vw',
+								padding: '10px 20px',
+							}}>
+							<LastOutstandingPaymentCard />
+						</Box>
+					</Stack>
+					<Stack
+						direction='row'
+						py={1}
+						spacing={1}
+						alignItems='center'
+						sx={{
+							overflowX: 'auto',
+							'&::-webkit-scrollbar': {
+								display: 'none',
+							},
+						}}>
 						<LocalizationProvider dateAdapter={AdapterDateFns}>
 							<DesktopDatePicker
 								disableFuture
@@ -146,140 +399,243 @@ export const Bills = () => {
 							clear
 						</Button>
 					</Stack>
-					<Stack direction='row' alignItems='center' justifyContent={isMobile ? 'space-between' : undefined}>
-						<Typography variant='subtitle2'>
-							Rows per page: {billResponse?.aggregatedBills?.length ?? 0}
-						</Typography>
-						<PaginationWithHasMore hasMore={billResponse?.hasMore} loading={isLoading?.fetching} />
-					</Stack>
-				</Stack>
-				<Stack>
-					<TableContainer component={Paper} sx={{ height: 'calc(100vh - 425px)' }}>
-						<Table stickyHeader>
-							<TableHead>
-								<TableRow>
-									{TableHeaderList.map((item) => (
-										<StyledTableHeadCell key={item.label as any} sx={item.sx}>
-											<Typography noWrap fontWeight={600}>
-												{item.label}
-											</Typography>
-										</StyledTableHeadCell>
-									))}
-								</TableRow>
-							</TableHead>
-							<TableBody sx={{ overflowY: 'auto' }}>
-								{isLoading?.fetching ? (
-									<TableRow sx={{ height: '' }}>
-										<TableCell sx={{ borderBottom: 'none' }} colSpan={100} align='center'>
-											<CircularProgress />
-										</TableCell>
-									</TableRow>
-								) : (
-									billResponse?.aggregatedBills?.map((item) => (
-										<TableRow
-											key={item?.dwrId}
-											sx={{
-												cursor: 'pointer',
-												'&:hover': {
-													backgroundColor: colors.AliceBlue,
-												},
-											}}
-											onClick={() => {
-												router.push(
-													`/projects/${router.query.projectId}/bills/billId/${item?.aggregationDate}`
-												)
-											}}>
-											<TableCell
-												sx={{
-													position: 'sticky',
-													left: 0,
-													backgroundColor: '#ffffff',
-													width: 80,
-													'&:hover': {
-														backgroundColor: colors.AliceBlue,
-													},
-												}}>
+					{isLoading?.fetching ? (
+						<TableCell sx={{ borderBottom: 'none' }} colSpan={100} align='center'>
+							<CircularProgress />
+						</TableCell>
+					) : (
+						billResponse?.aggregatedBills?.map((item) => {
+							return (
+								<>
+									<Stack
+										direction={'column'}
+										key={item?.dwrId}
+										px={'8px'}
+										pb={'15px'}
+										onClick={() => {
+											router.push(
+												`/projects/${router.query.projectId}/bills/billId/${item?.aggregationDate}`
+											)
+										}}>
+										<Stack direction={'row'} p={'16px 8px'} justifyContent={'space-between'}>
+											<Stack direction={'row'} spacing={1.5}>
 												<DateStack date={item?.displayDate} />
-											</TableCell>
-											<TableCell>
-												<Stack>
-													<Typography color='success.main' fontWeight={600}>
+												<Stack direction={'column'}>
+													<Typography noWrap sx={{ fontSize: '14px', fontWeight: '700' }}>
 														{item?.totalPayable ?? 'NA'}
 													</Typography>
+													<Typography noWrap variant='caption' sx={{ fontWeight: '400' }}>
+														Total Payable
+													</Typography>
 												</Stack>
-											</TableCell>
-											<TableCell>
-												<Typography>{item?.heroCount ?? 'NA'}</Typography>
-											</TableCell>
-											<TableCell>
-												<Typography>{item?.baseWage ?? 'NA'}</Typography>
-											</TableCell>
-											<TableCell>
-												<Typography>{item?.otWage ?? 'NA'}</Typography>
-											</TableCell>
-											<TableCell>
-												<Typography>{item?.grossWage ?? 'NA'}</Typography>
-											</TableCell>
-											<TableCell>
-												<Typography>{item?.pf ?? 'NA'}</Typography>
-											</TableCell>
-											<TableCell>
-												<Typography>{item?.esi ?? 'NA'}</Typography>
-											</TableCell>
-											<TableCell>
-												{item?.dwrId ? (
-													<Link
-														href={`/projects/${router.query.projectId}/work-report/${item?.dwrId}`}
-														passHref>
-														<a
-															onClick={(e) => {
-																ButtonClicked({
-																	action: 'View Work report from bill',
-																	page: document.title,
-																	url: router.asPath,
-																})
-																e.stopPropagation()
-															}}>
-															<Image
-																src={'/assets/icons/reportIcon.svg'}
-																alt={'DWR report'}
-																height={32}
-																width={32}
-															/>
-														</a>
-													</Link>
-												) : (
-													<Image
-														style={{ cursor: item?.dwrId ? 'not-allowed' : '' }}
-														src={'/assets/icons/reportIconsDisabled.svg'}
-														alt={'DWR report'}
-														height={32}
-														width={32}
-													/>
-												)}
-												{/* <LoadingButton
-													loading={isLoading.downloading[item.dwrId]}
-													size={'small'}
-													onClick={(e) => {
-														ButtonClicked({
-															action: 'Download Daily Work Report',
-															page: 'Work report List',
-															url: router.asPath,
-														})
-														e.stopPropagation()
-														downloadWorkReport(item.dwrId, item.date)
-													}}>
-													<FileDownloadOutlined />
-												</LoadingButton> */}
-											</TableCell>
-										</TableRow>
-									))
-								)}
-							</TableBody>
-						</Table>
-					</TableContainer>
-				</Stack>
-			</Stack>
+											</Stack>
+											{/* <Chip
+												variant='filled'
+												sx={(theme) => ({
+													px: 1,
+													width: 'fit-content',
+													height: '24px',
+													backgroundColor: '#F69E5433',
+													fontSize: '12px',
+												})}
+												label={'Pending Payment'}
+											/> */}
+										</Stack>
+										<Box
+											sx={{
+												background: '#F9F9F9',
+												borderRadius: '8px',
+												p: '12px 18px 12px 12px',
+											}}>
+											<Stack direction={'row'} justifyContent={'space-between'}>
+												<Stack
+													direction={'row'}
+													width='50%'
+													alignItems={'center'}
+													maxWidth={'200px'}
+													spacing={2}
+													justifyContent={'space-between'}>
+													<Typography
+														color='secondary.main'
+														variant='caption'
+														fontWeight={400}
+														noWrap>
+														Base Wage
+													</Typography>
+													<Typography
+														width={60}
+														fontWeight={400}
+														color='#000'
+														variant='caption'
+														noWrap>
+														{item?.baseWage ?? 'NA'}
+													</Typography>
+												</Stack>
+												<Stack direction={'row'} alignItems={'center'} spacing={2}>
+													<Typography
+														color='secondary.main'
+														fontWeight={400}
+														variant='caption'
+														noWrap>
+														Heroes
+													</Typography>
+													<Typography color='#000' fontWeight={400} variant='caption' noWrap>
+														{item?.heroCount ?? 'NA'}
+													</Typography>
+												</Stack>
+											</Stack>
+											<Stack
+												direction={'row'}
+												width='50%'
+												maxWidth={'200px'}
+												alignItems={'center'}
+												spacing={2}
+												justifyContent={'space-between'}>
+												<Typography
+													color='secondary.main'
+													fontWeight={400}
+													variant='caption'
+													noWrap>
+													OT Wage
+												</Typography>
+												<Typography
+													width={60}
+													color='#000'
+													fontWeight={400}
+													variant='caption'
+													noWrap>
+													{item?.otWage ?? 'NA'}
+												</Typography>
+											</Stack>
+											<Stack
+												direction={'row'}
+												width='50%'
+												maxWidth={'200px'}
+												alignItems={'center'}
+												spacing={2}
+												justifyContent={'space-between'}>
+												<Typography
+													color='secondary.main'
+													fontWeight={400}
+													variant='caption'
+													noWrap>
+													Gross Wage
+												</Typography>
+												<Typography
+													width={60}
+													color='#000'
+													fontWeight={400}
+													variant='caption'
+													noWrap>
+													{item?.grossWage ?? 'NA'}
+												</Typography>
+											</Stack>
+											<Stack
+												direction={'row'}
+												width='50%'
+												maxWidth={'200px'}
+												alignItems={'center'}
+												spacing={2}
+												justifyContent={'space-between'}>
+												<Typography
+													color='secondary.main'
+													fontWeight={400}
+													variant='caption'
+													noWrap>
+													PF
+												</Typography>
+												<Typography
+													width={60}
+													color='#000'
+													fontWeight={400}
+													variant='caption'
+													noWrap>
+													{item?.pf ?? 'NA'}
+												</Typography>
+											</Stack>
+											<Stack
+												direction={'row'}
+												width='50%'
+												maxWidth={'200px'}
+												alignItems={'center'}
+												spacing={2}
+												justifyContent={'space-between'}>
+												<Typography
+													color='secondary.main'
+													fontWeight={400}
+													variant='caption'
+													noWrap>
+													ESI
+												</Typography>
+												<Typography
+													width={60}
+													color='#000'
+													fontWeight={400}
+													variant='caption'
+													noWrap>
+													{' '}
+													{item?.esi ?? 'NA'}
+												</Typography>
+											</Stack>
+										</Box>
+										<Stack
+											direction={'row'}
+											justifyContent={'flex-end'}
+											alignItems={'center'}
+											mt={2}>
+											{item?.dwrId ? (
+												<Link
+													href={`/projects/${router.query.projectId}/work-report/${item?.dwrId}`}
+													passHref>
+													<a
+														onClick={(e) => {
+															ButtonClicked({
+																action: 'View Work report from bill',
+																page: document.title,
+																url: router.asPath,
+															})
+															e.stopPropagation()
+														}}>
+														<Image
+															src={'/assets/icons/reportIcon.svg'}
+															alt={'DWR report'}
+															height={20}
+															width={20}
+														/>
+													</a>
+												</Link>
+											) : (
+												<Image
+													style={{ cursor: item?.dwrId ? 'not-allowed' : '' }}
+													src={'/assets/icons/reportIconsDisabled.svg'}
+													alt={'DWR report'}
+													height={20}
+													width={20}
+												/>
+											)}
+											{/* <LoadingButton
+												loading={isLoading.downloading[item.dwrId]}
+												size={'small'}
+												onClick={(e) => {
+													ButtonClicked({
+														action: 'Download Daily Work Report',
+														page: 'Work report List',
+														url: router.asPath,
+													})
+													e.stopPropagation()
+													downloadWorkReport(item.dwrId, item.date)
+												}}>
+												<FileDownloadOutlined />
+											</LoadingButton> */}
+										</Stack>
+									</Stack>
+									<Divider />
+								</>
+							)
+						})
+					)}
+				</>
+			)}
 		</>
 	)
 }

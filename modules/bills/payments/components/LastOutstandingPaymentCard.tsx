@@ -3,7 +3,7 @@ import { alpha, Button, Paper, Skeleton, Stack, Typography, useTheme } from '@mu
 import { styled } from '@mui/system'
 import { useRouter } from 'next/router'
 import React, { useCallback, useEffect, useMemo, useState } from 'react'
-import { indianCurrencyFormat } from '../../../../sdk'
+import { indianCurrencyFormat, useMobile } from '../../../../sdk'
 
 import { useGetPaymentsHistoryListQuery } from '../queries/hooks'
 
@@ -50,6 +50,7 @@ const CustomPaper = styled(Paper)(({ theme }) => ({
 export const LastOutstandingPaymentCard = () => {
 	const router = useRouter()
 	const theme = useTheme()
+	const isMobile = useMobile()
 	const projectId = router.query.projectId as string
 	const lastOutStandingPaymentData = useGetPaymentsHistoryListQuery(projectId)
 	return (
@@ -63,7 +64,7 @@ export const LastOutstandingPaymentCard = () => {
 					</Stack>
 				</Skeleton>
 			) : (
-				<CustomPaper elevation={1} sx={{ maxWidth: 400, maxHeight: '144px' }}>
+				<CustomPaper elevation={isMobile ? 5 : 1} sx={{ minWidth: 300, maxWidth: 400, maxHeight: '144px' }}>
 					<Stack>
 						<Stack className='cardHeader' direction='row' alignItems='center'>
 							<Typography variant='subtitle2'>Last Payment</Typography>
