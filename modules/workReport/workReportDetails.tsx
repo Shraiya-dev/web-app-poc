@@ -5,6 +5,9 @@ import {
 	Avatar,
 	Button,
 	Chip,
+	Dialog,
+	DialogContent,
+	DialogTitle,
 	Divider,
 	Grid,
 	IconButton,
@@ -23,7 +26,7 @@ import {
 } from '@mui/material'
 import { Box } from '@mui/system'
 import { useRouter } from 'next/router'
-import { useEffect, useMemo, useState } from 'react'
+import { useCallback, useEffect, useMemo, useState } from 'react'
 import { colors, JobTypeLabel, JOB_TYPES, SkillTypeLabel, useContractorAuth, useMobile, WORKER_TYPES } from '../../sdk'
 import { ButtonClicked } from '../../sdk/analytics/analyticsWrapper'
 import { DateStack } from '../../sdk/components/date/DateStack'
@@ -33,6 +36,7 @@ import { ApproveConfirmationDialog, ApproveConfirmationDialogProps } from './com
 import { WorkReportStatusColor, WorkReportStatusLabel } from './constants'
 import { useWorkReport } from './hooks'
 import { WorkReportStatus } from './types'
+import CancelIcon from '@mui/icons-material/Cancel'
 
 export const WorkReportDetails = () => {
 	const router = useRouter()
@@ -41,6 +45,7 @@ export const WorkReportDetails = () => {
 		useWorkReport()
 	const { user } = useContractorAuth()
 	const [rasingDispute, setRasingDispute] = useState(false)
+	const [mobileRasingDispute, setMobileRasingDispute] = useState(false)
 
 	const [approveConfirmationDialogProps, setApproveConfirmationDialogProps] =
 		useState<ApproveConfirmationDialogProps>({
@@ -52,6 +57,11 @@ export const WorkReportDetails = () => {
 		setSearchText((router.query.phoneNumber as string) ?? '')
 	}, [router])
 	const isMobile = useMobile()
+
+	const handleMobileRasingDispute = useCallback(() => {
+		setMobileRasingDispute(false)
+	}, [mobileRasingDispute])
+
 	return (
 		<>
 			<ApproveConfirmationDialog {...approveConfirmationDialogProps} />
@@ -477,334 +487,396 @@ export const WorkReportDetails = () => {
 				</>
 			) : (
 				// mobile view
-				<Box
-					sx={{
-						height: '100vh',
-					}}>
-					<Box>
-						<Stack
-							direction={'column'}
-							justifyContent={'center'}
-							sx={{
-								pt: 2,
-								pb: 1,
-							}}>
-							<Stack direction={'row'} justifyContent={'flex-start'} alignItems={'center'} px={2}>
-								<Stack direction={'row'} mb={2}>
-									<IconButton color='primary' onClick={router.back}>
-										<ArrowBackIosNew sx={{ fontSize: '30px' }} />
-									</IconButton>
-									<DateStack date={workReportByIDResponse?.response?.date} />
+				<>
+					{/* dispute dialog  */}
+					<Dialog onClose={handleMobileRasingDispute} open={mobileRasingDispute} fullWidth>
+						<DialogTitle>
+							<Stack direction={'row'} justifyContent={'space-between'} alignItems={'center'}>
+								<Typography variant='subtitle1' fontWeight={700}>
+									Raise Dispute
+								</Typography>
+								<IconButton onClick={handleMobileRasingDispute}>
+									<CancelIcon />
+								</IconButton>
+							</Stack>
+						</DialogTitle>
+						<DialogContent>
+							<form
+								style={{ width: '100%', display: 'flex', justifyContent: 'flex-end' }}
+								onSubmit={async (e) => {
+									e.preventDefault()
+									ButtonClicked({
+										action: 'Raise Dispute for Daily Work Report',
+										page: 'Work report Detail',
+										url: router.asPath,
+									})
+									await disputeWorkReport(router.query.workReportId as string, {
+										description: disputeReason,
+									})
+									handleMobileRasingDispute()
+								}}>
+								<Stack direction={'column'} sx={{ width: '100%' }}>
+									<TextField
+										value={disputeReason}
+										fullWidth
+										onChange={(e) => setDisputeReason(e.target.value)}
+										multiline
+										minRows={4}
+										maxRows={4}
+										sx={{ backgroundColor: 'common.white', borderRadius: 2 }}
+										placeholder='Tell us the heroes names and issues with their attendances. '
+									/>
+									<Stack direction='row' spacing={1.5} justifyContent='flex-end' pt={2}>
+										<Button
+											size='small'
+											variant='outlined'
+											sx={{ backgroundColor: 'common.white' }}
+											onClick={handleMobileRasingDispute}>
+											Cancel
+										</Button>
+										<Button
+											size='small'
+											type='submit'
+											variant='contained'
+											disabled={!!!disputeReason}>
+											Submit
+										</Button>
+									</Stack>
 								</Stack>
-								<Stack direction={'column'}>
-									<Stack ml={2}>
-										<Typography variant='h4' fontWeight={700}>
-											Work Report
-										</Typography>
-										<Typography variant='caption' color='grey.600' mt={'7px'}>
-											{projectDetails?.name}
-										</Typography>
+							</form>
+						</DialogContent>
+					</Dialog>
+					{/* end dispute dialog */}
+					<Box
+						sx={{
+							height: '100vh',
+						}}>
+						<Box>
+							<Stack
+								direction={'column'}
+								justifyContent={'center'}
+								sx={{
+									pt: 2,
+									pb: 1,
+								}}>
+								<Stack direction={'row'} justifyContent={'flex-start'} alignItems={'center'} px={2}>
+									<Stack direction={'row'} mb={2}>
+										<IconButton color='primary' onClick={router.back}>
+											<ArrowBackIosNew sx={{ fontSize: '30px' }} />
+										</IconButton>
+										<DateStack date={workReportByIDResponse?.response?.date} />
+									</Stack>
+									<Stack direction={'column'}>
+										<Stack ml={2}>
+											<Typography variant='h4' fontWeight={700}>
+												Work Report
+											</Typography>
+											<Typography variant='caption' color='grey.600' mt={'7px'}>
+												{projectDetails?.name}
+											</Typography>
+										</Stack>
 									</Stack>
 								</Stack>
 							</Stack>
+							<Stack
+								direction={'row'}
+								justifyContent={'flex-start'}
+								alignItems={'center'}
+								sx={{
+									paddingLeft: '115px',
+								}}>
+								<Chip
+									variant='filled'
+									sx={(theme) => ({
+										px: 1,
+										backgroundColor: alpha(
+											WorkReportStatusColor[
+												workReportByIDResponse?.response?.status ?? WorkReportStatus.DRAFT
+											],
+											0.2
+										),
+									})}
+									label={
+										WorkReportStatusLabel[
+											workReportByIDResponse?.response?.status ?? WorkReportStatus.DRAFT
+										]
+									}
+								/>
+							</Stack>
+						</Box>
+						{/* attendance, total hours and total ot block */}
+						<Stack direction={'row'} justifyContent={'space-around'} alignItems={'center'} pt={2.4}>
+							<Stack>
+								<Typography fontWeight={600} noWrap>
+									{workReportByIDResponse?.response?.footerDetails?.presentPercentage} (
+									{workReportByIDResponse?.response?.footerDetails?.totalPresent}/
+									{workReportByIDResponse?.response?.footerDetails?.totalCount})
+								</Typography>
+								<Typography color='secondary.main' variant='caption' noWrap>
+									Attendance %
+								</Typography>
+							</Stack>
+							<Stack>
+								<Typography fontWeight={600} noWrap>
+									{workReportByIDResponse?.response?.footerDetails?.totalShiftHours}
+								</Typography>
+								<Typography color='secondary.main' variant='caption' noWrap>
+									Total Hours
+								</Typography>
+							</Stack>
+							<Stack>
+								<Typography fontWeight={600} noWrap>
+									{workReportByIDResponse?.response?.footerDetails?.totalOtHours}
+								</Typography>
+								<Typography color='secondary.main' variant='caption' noWrap>
+									Total OT Hours
+								</Typography>
+							</Stack>
+						</Stack>
+						{/* profile card */}
+
+						<Stack
+							sx={{
+								height: 'calc(100vh - 265px)',
+								overflowY: 'scroll',
+							}}>
+							{workReportByIDResponse?.response?.workerDetails?.map((item, index) => {
+								return (
+									<>
+										<Box
+											key={item?.workerId}
+											sx={{
+												mx: '10px',
+												mt: '20px',
+											}}>
+											<Stack direction={'row'} justifyContent={'space-between'} p={'16px'}>
+												<Stack direction={'row'} spacing={1.3}>
+													<Avatar
+														sx={{ width: 48, height: 48 }}
+														src={item.profilePicture ?? '/assets/icons/workerIcon.svg'}
+													/>
+													<Stack direction={'column'}>
+														<Typography>{item?.name ?? 'NA'}</Typography>
+														<Stack direction={'row'}>
+															<Typography
+																variant='caption'
+																sx={{ color: '#061e45b3', fontWeight: '400' }}>
+																{JobTypeLabel[item?.jobType as JOB_TYPES]}/
+															</Typography>
+															<Typography
+																variant='caption'
+																sx={{ color: '#061e45b3', fontWeight: '400' }}>
+																{SkillTypeLabel[item?.skillType as WORKER_TYPES]}
+															</Typography>
+														</Stack>
+														<Typography variant='caption' color='secondary.main'>
+															{item?.phoneNumber ?? 'NA'}
+														</Typography>
+													</Stack>
+												</Stack>
+												{item.isPresent ? (
+													<Chip
+														size='small'
+														sx={(theme) => ({
+															px: 0.5,
+															backgroundColor: alpha(theme.palette.success.main, 0.2),
+														})}
+														label='P'
+													/>
+												) : (
+													<Chip
+														size='small'
+														sx={(theme) => ({
+															px: 0.5,
+															backgroundColor: alpha(theme.palette.error.main, 0.2),
+														})}
+														label='A'
+													/>
+												)}
+											</Stack>
+											<Box
+												sx={{
+													height: '95px',
+													background: '#F9F9F9',
+													mx: '10px',
+													my: '10px',
+													px: 2,
+													pt: 1,
+													borderRadius: '8px',
+												}}>
+												<Grid container>
+													<Grid item xs={4}>
+														<Stack direction={'column'}>
+															<Typography
+																variant='caption'
+																sx={{
+																	color: 'rgba(6, 31, 72, 0.7)',
+																	fontWeight: '400',
+																}}>
+																Check-In
+															</Typography>
+															<Typography variant='caption'>
+																{item?.checkIn ?? 'NA'}
+															</Typography>
+														</Stack>
+													</Grid>
+													<Grid item xs={4}>
+														<Stack direction={'column'}>
+															<Typography
+																variant='caption'
+																sx={{
+																	color: 'rgba(6, 31, 72, 0.7)',
+																	fontWeight: '400',
+																}}>
+																OT Check-In
+															</Typography>
+															<Typography variant='caption'>
+																{item?.otCheckIn ?? 'NA'}
+															</Typography>
+														</Stack>
+													</Grid>
+													<Grid item xs={4}>
+														<Stack direction={'column'}>
+															<Typography
+																variant='caption'
+																sx={{
+																	color: 'rgba(6, 31, 72, 0.7)',
+																	fontWeight: '400',
+																}}>
+																Hours
+															</Typography>
+															<Typography variant='caption'>
+																{item?.shiftHours ?? 'NA'}
+															</Typography>
+														</Stack>
+													</Grid>
+												</Grid>
+												<Grid container>
+													<Grid item xs={4}>
+														<Stack direction={'column'}>
+															<Typography
+																variant='caption'
+																sx={{
+																	color: 'rgba(6, 31, 72, 0.7)',
+																	fontWeight: '400',
+																}}>
+																Check-Out
+															</Typography>
+															<Typography variant='caption'>
+																{item?.checkOut ?? 'NA'}
+															</Typography>
+														</Stack>
+													</Grid>
+													<Grid item xs={4}>
+														<Stack direction={'column'}>
+															<Typography
+																variant='caption'
+																sx={{
+																	color: 'rgba(6, 31, 72, 0.7)',
+																	fontWeight: '400',
+																}}>
+																OT Check-Out
+															</Typography>
+															<Typography variant='caption'>
+																{item?.otCheckOut ?? 'NA'}
+															</Typography>
+														</Stack>
+													</Grid>
+													<Grid item xs={4}>
+														<Stack direction={'column'}>
+															<Typography
+																variant='caption'
+																sx={{
+																	color: 'rgba(6, 31, 72, 0.7)',
+																	fontWeight: '400',
+																}}>
+																OT Hours
+															</Typography>
+															<Typography variant='caption'>
+																{item?.otHours ?? 'NA'}
+															</Typography>
+														</Stack>
+													</Grid>
+												</Grid>
+											</Box>
+											<Divider />
+										</Box>
+									</>
+								)
+							})}
 						</Stack>
 						<Stack
-							direction={'row'}
-							justifyContent={'flex-start'}
-							alignItems={'center'}
+							direction='row'
+							alignItems='center'
+							justifyContent={isMobile ? 'space-around' : undefined}
+							spacing={1}
+							mt={1}
 							sx={{
-								paddingLeft: '115px',
+								background: '#F9F9F9',
+								borderTop: '1px solid #C5C5C5',
+								position: 'absolute',
+								bottom: 0,
+								width: '100%',
+								py: 2,
 							}}>
-							<Chip
-								variant='filled'
-								sx={(theme) => ({
-									px: 1,
-									backgroundColor: alpha(
-										WorkReportStatusColor[
-											workReportByIDResponse?.response?.status ?? WorkReportStatus.DRAFT
-										],
-										0.2
-									),
-								})}
-								label={
-									WorkReportStatusLabel[
-										workReportByIDResponse?.response?.status ?? WorkReportStatus.DRAFT
-									]
-								}
-							/>
+							{workReportByIDResponse?.response?.status == WorkReportStatus.PENDING_APPROVAL && (
+								<>
+									<LoadingButton
+										variant='contained'
+										loading={isLoading.approving[router.query?.workReportId as string]}
+										disabled={rasingDispute}
+										onClick={() => {
+											ButtonClicked({
+												action: 'Approve Daily Work Report',
+												page: 'Work report Detail',
+												url: router.asPath,
+											})
+											setApproveConfirmationDialogProps({
+												open: true,
+												confirm: () => {
+													approveWorkReport(router.query.workReportId as string)
+													setApproveConfirmationDialogProps({ open: false })
+												},
+												cancel: () => {
+													setApproveConfirmationDialogProps({ open: false })
+												},
+												date: workReportByIDResponse?.response?.date,
+											})
+										}}>
+										Approve
+									</LoadingButton>
+									<LoadingButton
+										loading={isLoading.disputing}
+										disabled={rasingDispute}
+										variant='outlined'
+										onClick={() => {
+											setMobileRasingDispute(true)
+										}}>
+										Raise Dispute
+									</LoadingButton>
+								</>
+							)}
+
+							<LoadingButton
+								loading={isLoading.downloading[(router.query.workReportId as string) ?? '']}
+								disabled={rasingDispute}
+								variant='outlined'
+								onClick={() => {
+									ButtonClicked({
+										action: 'Download Daily Work Report',
+										page: 'Work report detail',
+										url: router.asPath,
+									})
+									downloadWorkReport(
+										router.query.workReportId as string,
+										workReportByIDResponse?.response?.date ?? ''
+									)
+								}}>
+								<FileDownloadOutlined />
+							</LoadingButton>
 						</Stack>
 					</Box>
-					{/* attendance, total hours and total ot block */}
-					<Stack direction={'row'} justifyContent={'space-around'} alignItems={'center'} pt={2.4}>
-						<Stack>
-							<Typography fontWeight={600} noWrap>
-								{workReportByIDResponse?.response?.footerDetails?.presentPercentage} (
-								{workReportByIDResponse?.response?.footerDetails?.totalPresent}/
-								{workReportByIDResponse?.response?.footerDetails?.totalCount})
-							</Typography>
-							<Typography color='secondary.main' variant='caption' noWrap>
-								Attendance %
-							</Typography>
-						</Stack>
-						<Stack>
-							<Typography fontWeight={600} noWrap>
-								{workReportByIDResponse?.response?.footerDetails?.totalShiftHours}
-							</Typography>
-							<Typography color='secondary.main' variant='caption' noWrap>
-								Total Hours
-							</Typography>
-						</Stack>
-						<Stack>
-							<Typography fontWeight={600} noWrap>
-								{workReportByIDResponse?.response?.footerDetails?.totalOtHours}
-							</Typography>
-							<Typography color='secondary.main' variant='caption' noWrap>
-								Total OT Hours
-							</Typography>
-						</Stack>
-					</Stack>
-					{/* profile card */}
-
-					<Stack
-						sx={{
-							height: 'calc(100vh - 265px)',
-							overflowY: 'scroll',
-						}}>
-						{workReportByIDResponse?.response?.workerDetails?.map((item, index) => {
-							return (
-								<>
-									<Box
-										key={item?.workerId}
-										sx={{
-											mx: '10px',
-											mt: '20px',
-										}}>
-										<Stack direction={'row'} justifyContent={'space-between'} p={'16px'}>
-											<Stack direction={'row'} spacing={1.3}>
-												<Avatar
-													sx={{ width: 48, height: 48 }}
-													src={item.profilePicture ?? '/assets/icons/workerIcon.svg'}
-												/>
-												<Stack direction={'column'}>
-													<Typography>{item?.name ?? 'NA'}</Typography>
-													<Stack direction={'row'}>
-														<Typography
-															variant='caption'
-															sx={{ color: '#061e45b3', fontWeight: '400' }}>
-															{JobTypeLabel[item?.jobType as JOB_TYPES]}/
-														</Typography>
-														<Typography
-															variant='caption'
-															sx={{ color: '#061e45b3', fontWeight: '400' }}>
-															{SkillTypeLabel[item?.skillType as WORKER_TYPES]}
-														</Typography>
-													</Stack>
-													<Typography variant='caption' color='secondary.main'>
-														{item?.phoneNumber ?? 'NA'}
-													</Typography>
-												</Stack>
-											</Stack>
-											{item.isPresent ? (
-												<Chip
-													size='small'
-													sx={(theme) => ({
-														px: 0.5,
-														backgroundColor: alpha(theme.palette.success.main, 0.2),
-													})}
-													label='P'
-												/>
-											) : (
-												<Chip
-													size='small'
-													sx={(theme) => ({
-														px: 0.5,
-														backgroundColor: alpha(theme.palette.error.main, 0.2),
-													})}
-													label='A'
-												/>
-											)}
-										</Stack>
-										<Box
-											sx={{
-												height: '95px',
-												background: '#F9F9F9',
-												mx: '10px',
-												my: '10px',
-												px: 2,
-												pt: 1,
-												borderRadius: '8px',
-											}}>
-											<Grid container>
-												<Grid item xs={4}>
-													<Stack direction={'column'}>
-														<Typography
-															variant='caption'
-															sx={{
-																color: 'rgba(6, 31, 72, 0.7)',
-																fontWeight: '400',
-															}}>
-															Check-In
-														</Typography>
-														<Typography variant='caption'>
-															{item?.checkIn ?? 'NA'}
-														</Typography>
-													</Stack>
-												</Grid>
-												<Grid item xs={4}>
-													<Stack direction={'column'}>
-														<Typography
-															variant='caption'
-															sx={{
-																color: 'rgba(6, 31, 72, 0.7)',
-																fontWeight: '400',
-															}}>
-															OT Check-In
-														</Typography>
-														<Typography variant='caption'>
-															{item?.otCheckIn ?? 'NA'}
-														</Typography>
-													</Stack>
-												</Grid>
-												<Grid item xs={4}>
-													<Stack direction={'column'}>
-														<Typography
-															variant='caption'
-															sx={{
-																color: 'rgba(6, 31, 72, 0.7)',
-																fontWeight: '400',
-															}}>
-															Hours
-														</Typography>
-														<Typography variant='caption'>
-															{item?.shiftHours ?? 'NA'}
-														</Typography>
-													</Stack>
-												</Grid>
-											</Grid>
-											<Grid container>
-												<Grid item xs={4}>
-													<Stack direction={'column'}>
-														<Typography
-															variant='caption'
-															sx={{
-																color: 'rgba(6, 31, 72, 0.7)',
-																fontWeight: '400',
-															}}>
-															Check-Out
-														</Typography>
-														<Typography variant='caption'>
-															{item?.checkOut ?? 'NA'}
-														</Typography>
-													</Stack>
-												</Grid>
-												<Grid item xs={4}>
-													<Stack direction={'column'}>
-														<Typography
-															variant='caption'
-															sx={{
-																color: 'rgba(6, 31, 72, 0.7)',
-																fontWeight: '400',
-															}}>
-															OT Check-Out
-														</Typography>
-														<Typography variant='caption'>
-															{item?.otCheckOut ?? 'NA'}
-														</Typography>
-													</Stack>
-												</Grid>
-												<Grid item xs={4}>
-													<Stack direction={'column'}>
-														<Typography
-															variant='caption'
-															sx={{
-																color: 'rgba(6, 31, 72, 0.7)',
-																fontWeight: '400',
-															}}>
-															OT Hours
-														</Typography>
-														<Typography variant='caption'>
-															{item?.otHours ?? 'NA'}
-														</Typography>
-													</Stack>
-												</Grid>
-											</Grid>
-										</Box>
-										<Divider />
-									</Box>
-								</>
-							)
-						})}
-					</Stack>
-
-					<Stack
-						direction='row'
-						alignItems='center'
-						justifyContent={isMobile ? 'space-around' : undefined}
-						spacing={1}
-						mt={1}
-						sx={{
-							background: '#F9F9F9',
-							borderTop: '1px solid #C5C5C5',
-							position: 'absolute',
-							bottom: 0,
-							width: '100%',
-							py: 2,
-						}}>
-						{workReportByIDResponse?.response?.status == WorkReportStatus.PENDING_APPROVAL && (
-							<>
-								<LoadingButton
-									variant='contained'
-									loading={isLoading.approving[router.query?.workReportId as string]}
-									disabled={rasingDispute}
-									onClick={() => {
-										ButtonClicked({
-											action: 'Approve Daily Work Report',
-											page: 'Work report Detail',
-											url: router.asPath,
-										})
-										setApproveConfirmationDialogProps({
-											open: true,
-											confirm: () => {
-												approveWorkReport(router.query.workReportId as string)
-												setApproveConfirmationDialogProps({ open: false })
-											},
-											cancel: () => {
-												setApproveConfirmationDialogProps({ open: false })
-											},
-											date: workReportByIDResponse?.response?.date,
-										})
-									}}>
-									Approve
-								</LoadingButton>
-
-								<LoadingButton
-									loading={isLoading.disputing}
-									disabled={rasingDispute}
-									variant='outlined'
-									onClick={() => setRasingDispute(true)}>
-									Raise Dispute
-								</LoadingButton>
-							</>
-						)}
-						<LoadingButton
-							loading={isLoading.downloading[(router.query.workReportId as string) ?? '']}
-							disabled={rasingDispute}
-							variant='outlined'
-							onClick={() => {
-								ButtonClicked({
-									action: 'Download Daily Work Report',
-									page: 'Work report detail',
-									url: router.asPath,
-								})
-								downloadWorkReport(
-									router.query.workReportId as string,
-									workReportByIDResponse?.response?.date ?? ''
-								)
-							}}>
-							<FileDownloadOutlined />
-						</LoadingButton>
-					</Stack>
-				</Box>
+				</>
 			)}
 		</>
 	)
