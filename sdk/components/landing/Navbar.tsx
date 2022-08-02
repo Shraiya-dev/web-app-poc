@@ -38,7 +38,7 @@ export const Navbar = () => {
 	return (
 		<>
 			<AppBar position='fixed' elevation={0}>
-				<Container>
+				<Container disableGutters>
 					<Toolbar sx={{ justifyContent: 'space-between' }} disableGutters>
 						<Stack direction='row' spacing={2} alignItems='center'>
 							<IconButton
@@ -142,15 +142,17 @@ export const Navbar = () => {
 								<Image src={navbar.brandImage} width={150} height={27} alt='Project hero' />
 							</HyperLink>
 						</Stack>
-						<NavWrapper direction='row' spacing={{ xs: 0, md: 4 }} alignItems='center'>
+						<NavWrapper direction='row' spacing={{ xs: 0, md: 3 }} alignItems='center'>
 							{navbar.navLinks.map((navItem, i) => {
 								if (navItem.type === 'button_link') {
 									return (
 										<LinkButton
+											variant='text'
 											key={i}
-											color='secondary'
+											startIcon={navItem?.icon}
 											sx={(theme) => ({
 												fontWeight: 700,
+												color: 'common.white',
 												[theme.breakpoints.down('md')]: { display: 'none' },
 											})}
 											href={navItem.link}

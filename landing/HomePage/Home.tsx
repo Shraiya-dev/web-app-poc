@@ -1,9 +1,9 @@
 import { FormatQuote } from '@mui/icons-material'
 import {
+	Box,
 	Card,
 	CardContent,
 	CardMedia,
-	Chip,
 	Grid,
 	List,
 	ListItem,
@@ -27,8 +27,8 @@ import {
 	Section,
 	useMobile,
 } from 'sdk'
-import { ButtonClicked } from 'sdk/analytics/analyticsWrapper'
 import { homePage } from 'sdk/data/home'
+import { CreateBookingCard } from 'sdkv2/components'
 
 export const Home = () => {
 	const {
@@ -47,112 +47,47 @@ export const Home = () => {
 	return (
 		<>
 			<Section>
-				<Grid container>
-					<Grid item flex={1} xs={5} display={{ xs: 'none', md: 'flex' }}>
-						<Stack alignItems='flex-start' spacing={5}>
-							<Typography variant='h4'>
-								India&apos;s largest <strong>skilled construction workforce marketplace</strong>
+				<Grid container spacing={2}>
+					<Grid item xs={12} md={7.5}>
+						<Stack justifyContent='space-between' spacing={2}>
+							<Stack alignItems={'center'} direction={{ md: 'row' }} justifyContent='space-between'>
+								<Box
+									sx={{
+										marginTop: { xs: 2, md: 6 },
+										width: '48%',
+									}}>
+									<img width='100%' src='/assets/landingv2/heroSection/heroImg1.png' />
+								</Box>
+								<Box
+									sx={{
+										marginBottom: { xs: 2, md: 6 },
+										width: '48%',
+									}}>
+									<img width='100%' src='/assets/landingv2/heroSection/heroImg2.png' />
+								</Box>
+							</Stack>
+							<Typography variant='h1' lineHeight='1.5'>
+								India&apos;s Largest & Most Trusted Platform to{' '}
+								<Typography display='inline' variant='h1' color='primary.main'>
+									Hire Construction Workers
+								</Typography>
+								{!isMobile && (
+									<img
+										style={{ marginLeft: 30, marginBottom: -30 }}
+										src='/assets/landingv2/heroSection/curlyArrow.svg'
+									/>
+								)}
 							</Typography>
-							{/*<LinkButton href='/hero/plans' sx={{ px: 6 }} variant='outlined'>
-									View Plans
-								</LinkButton>*/}
-							<Stack direction='row' spacing={5}>
-								<Stack direction='row' spacing={2}>
-									<Image
-										src='/assets/landing/statIcon.svg'
-										width={55}
-										height={55}
-										alt='hero Banner'
-									/>
-									<Stack>
-										<Typography color='base.variant70' fontWeight={700}>
-											4 Lac+
-										</Typography>
-										<Typography color='base.variant70'>workforce</Typography>
-									</Stack>
-								</Stack>
-								<Stack direction='row' spacing={2}>
-									<Image
-										src='/assets/landing/thunderIcon.svg'
-										width={55}
-										height={55}
-										alt='hero Banner'
-									/>
-									<Stack>
-										<Typography color='warning.main' fontWeight={700}>
-											10+ Job
-										</Typography>
-										<Typography color='warning.main'>categories</Typography>
-									</Stack>
-								</Stack>
+							<Stack direction='row' alignItems={'center'} spacing={3} mt='auto'>
+								<img width={50} src='/assets/landingv2/heroSection/workerGreen.svg' />
+								<Typography variant='h5'>
+									<strong>4 Lac+</strong> construction workforce available
+								</Typography>
 							</Stack>
 						</Stack>
 					</Grid>
-					<Grid
-						item
-						xs={5}
-						md={3}
-						sx={(theme) => ({
-							img: {
-								width: '125%',
-								[theme.breakpoints.down('md')]: {
-									width: '120%',
-								},
-							},
-						})}>
-						<picture>
-							<source media='(min-width:900px)' srcSet='/assets/landing/bannerImage.png' />
-							<source media='(max-width:900px)' srcSet='/assets/landing/mobileBaner.png' />
-							<img src='/assets/landing/mobileBaner.png' alt='Flowers' />
-						</picture>
-					</Grid>
-					<Grid item xs={7} md={4}>
-						<Stack alignItems='center' flex={1} pt={5} spacing={3}>
-							<Chip
-								sx={(theme) => ({
-									borderRadius: '12px',
-									color: 'success.dark',
-									backgroundColor: 'success.light',
-									fontSize: 14,
-									whiteSpace: 'break-spaces',
-									[theme.breakpoints.down('md')]: {
-										fontSize: 10,
-									},
-								})}
-								variant='filled'
-								label='Submit your Booking requirement now!'
-							/>
-							<Stack>
-								<Typography
-									fontSize={{ xs: 12, md: 14 }}
-									variant='h6'
-									textAlign='center'
-									fontWeight={600}>
-									Get Construction Workforce ASAP!
-								</Typography>
-								<Typography fontSize={{ xs: 12, md: 14 }} textAlign='center'>
-									30 Days* No Questions Asked Refund Policy{' '}
-								</Typography>
-							</Stack>
-							<LinkButton
-								size='large'
-								variant='contained'
-								color='primary'
-								href='/login'
-								onClick={() => {
-									DataLayerPush({
-										event: 'book_worker_home_hero',
-									})
-									ButtonClicked({
-										page: document.title,
-										action: 'Book Workers',
-										url: router.asPath,
-									})
-								}}
-								sx={{ px: 4 }}>
-								Book Workers
-							</LinkButton>
-						</Stack>
+					<Grid item xs={12} md={4.5} justifyContent='center'>
+						<CreateBookingCard />
 					</Grid>
 				</Grid>
 			</Section>

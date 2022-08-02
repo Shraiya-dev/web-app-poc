@@ -1,7 +1,10 @@
-import { KeyboardArrowDownRounded } from '@mui/icons-material'
-import { createTheme, responsiveFontSizes } from '@mui/material/styles'
+import { alpha, createTheme, responsiveFontSizes } from '@mui/material/styles'
 import { createBreakpoints } from '@mui/system'
-
+declare module '@mui/material/TextField' {
+	interface TextFieldPropsVariantOverrides {
+		rounded: true
+	}
+}
 declare module '@mui/material/styles' {
 	interface Palette {
 		base: {
@@ -90,49 +93,104 @@ export const colors = {
 	RoyalBlue: '#36B5EC',
 	FloralWhite: '#FFFCF1',
 }
-const breakpoints = createBreakpoints({})
-
 let themeDef = createTheme({
 	typography: {
 		fontFamily: `'Mulish' , sans-serif`,
 		allVariants: {
 			color: '#011F50',
 		},
+		h1: {
+			fontSize: '36px',
+			fontWeight: 700,
+		},
+		h2: {
+			fontSize: '30px',
+			fontWeight: 700,
+		},
 		h3: {
-			fontSize: '37px',
+			fontSize: '24px',
+			fontWeight: 700,
 		},
 		h4: {
-			fontSize: '30px',
+			fontSize: '20px',
+			fontWeight: 700,
+		},
+		h5: {
+			fontSize: '18px',
+			fontWeight: 700,
+		},
+		h6: {
+			fontSize: '16px',
+			fontWeight: 700,
+		},
+		body1: {
+			fontSize: '16px',
+		},
+		body2: {
+			fontSize: '14px',
+		},
+		subtitle1: {
+			fontSize: '14px',
+			fontWeight: 700,
+		},
+		subtitle2: {
+			fontSize: '12px',
+		},
+		caption: {
+			fontSize: '12px',
 		},
 	},
 
 	palette: {
 		primary: {
-			main: '#0663F6',
-			dark: '#0445AC',
-			light: '#5193FF',
+			main: '#EFC41A',
+			light: '#F2CF47',
+			dark: '#A78912',
 		},
 		secondary: {
-			main: '#011F50',
-			dark: '#001538',
-			light: '#334B73',
+			main: '#CC2C49',
+			light: '#D6566D',
+			dark: '#8E1E33',
 		},
 		success: {
-			main: '#4FDC95',
-			dark: '#649062',
-			light: '#EBFEEA',
+			main: '#0faf7f80',
+			light: '#0faf7f33',
+			dark: '#0FAF7F',
 		},
 		info: {
-			main: '#4676F5',
+			main: '#2196f3',
+			light: '#64b5f6',
+			dark: '#1976d2',
 		},
 		warning: {
-			main: '#E77241',
+			main: '#E58A51',
+			light: '#EAA173',
+			dark: '#A06038',
 		},
 		error: {
 			main: '#EA5A4D',
+			light: '#EE7B70',
+			dark: '#A33E35',
 		},
 		background: {
 			default: '#FCFCFC',
+			paper: '#ffffff',
+		},
+		grey: {
+			'50': alpha('#061F48', 0.5),
+			'100': alpha('#061F48', 0.1),
+			'200': alpha('#061F48', 0.2),
+			'300': alpha('#061F48', 0.3),
+			'400': alpha('#061F48', 0.4),
+			'500': alpha('#061F48', 0.5),
+			'600': alpha('#061F48', 0.6),
+			'700': alpha('#061F48', 0.7),
+			'800': alpha('#061F48', 0.8),
+			'900': alpha('#061F48', 0.9),
+			A100: alpha('#061F48', 0.1),
+			A200: alpha('#061F48', 0.2),
+			A400: alpha('#061F48', 0.4),
+			A700: '#383838',
 		},
 		base: colorPalette.base,
 		green: colorPalette.green,
@@ -143,13 +201,15 @@ let themeDef = createTheme({
 	breakpoints: {
 		values: {
 			xl: 1536,
-			lg: 1200,
+			lg: 1350,
 			md: 900,
 			sm: 600,
 			xs: 0,
 		},
 	},
-
+	shape: {
+		borderRadius: 8,
+	},
 	components: {
 		MuiAppBar: {
 			defaultProps: {
@@ -158,9 +218,26 @@ let themeDef = createTheme({
 			},
 			styleOverrides: {
 				root: {
-					backgroundColor: '#ffffff',
+					backgroundColor: '#000000',
 					border: 0,
 					height: '70px',
+				},
+			},
+		},
+		MuiSelect: {
+			defaultProps: {
+				MenuProps: {
+					sx: {
+						maxHeight: 400,
+						mt: 1,
+					},
+				},
+			},
+		},
+		MuiCard: {
+			styleOverrides: {
+				root: {
+					borderRadius: 16,
 				},
 			},
 		},
@@ -188,11 +265,12 @@ let themeDef = createTheme({
 			},
 		},
 		MuiButton: {
+			defaultProps: {
+				variant: 'contained',
+			},
 			styleOverrides: {
-				contained: {
-					borderRadius: 12,
-				},
 				root: {
+					borderRadius: 30,
 					textTransform: 'inherit',
 				},
 			},
