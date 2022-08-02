@@ -9,8 +9,8 @@ import useOtp from '../hooks/useOtp'
 const CustomOTPStyles = styled(Box)(({ theme }) => ({
 	display: 'flex',
 	justifyContent: 'center',
-	// padding: 16,
-	// paddingTop: '37%',
+	padding: 16,
+	paddingTop: '37%',
 
 	'.headerInfo': {
 		paddingBottom: 8,
