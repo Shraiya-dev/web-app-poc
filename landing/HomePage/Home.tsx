@@ -158,7 +158,7 @@ export const Home = () => {
 					))}
 				</Grid>
 			</Section>
-			<Section className='hide-on-mobile' backgroundColor={bookingJourneySection.backgroundColor}>
+			{/* <Section className='hide-on-mobile' backgroundColor={bookingJourneySection.backgroundColor}>
 				<Stack spacing={2}>
 					<Typography variant='h4' textAlign='center' color={bookingJourneySection.sectionTitle.color}>
 						{bookingJourneySection?.sectionTitle.children}
@@ -180,8 +180,29 @@ export const Home = () => {
 						))}
 					</Grid>
 				</Stack>
+			</Section> */}
+
+			{/* how its works section */}
+			<Section backgroundColor='#F7F7F7'>
+				<Box pt={'24px'} pb={'66px'}>
+					<Stack direction={'column'} mb={'32px'}>
+						<Typography variant='h1'>{homePage.howItWorksSection.heading}</Typography>
+						<Typography variant='h4'>{homePage.howItWorksSection.subHeading}</Typography>
+					</Stack>
+					<Box mb={'66px'}>
+						<Button variant='contained' sx={homePage.howItWorksSection.buttonSx}>
+							{homePage.howItWorksSection.buttonText}
+						</Button>
+					</Box>
+					<Box>
+						<img src='/assets/landingv2/heroSection/howitworks.svg' alt='' />
+					</Box>
+				</Box>
 			</Section>
-			<Section backgroundColor={benefitFromHeroSection.backgroundColor}>
+
+			{/* end how its works section */}
+
+			{/* <Section backgroundColor={benefitFromHeroSection.backgroundColor}>
 				<Carousel
 					componentPerView={isMobile ? 1 : 3}
 					items={[
@@ -208,9 +229,60 @@ export const Home = () => {
 						)),
 					]}
 				/>
+			</Section> */}
+
+			{/* why you should hire section */}
+
+			<Section backgroundColor='#000'>
+				<Box
+					sx={{
+						padding: '46px 0 70px 0',
+					}}>
+					<Grid container>
+						<Grid item xs={6}>
+							<Stack direction={'column'} spacing={4}>
+								<Box>{homePage.whyYouShouldHire.left.heading}</Box>
+								<Box>
+									<Button sx={homePage.whyYouShouldHire.left.buttonSx}>
+										{homePage.whyYouShouldHire.left.buttonText}
+									</Button>
+								</Box>
+							</Stack>
+						</Grid>
+
+						<Grid item xs={6}>
+							<Grid container spacing={4}>
+								{homePage.whyYouShouldHire.right.item.map((data, index) => {
+									return (
+										<Grid key={index} item xs={6}>
+											<Stack direction={'row'} spacing={2} width={'310px'}>
+												<Box sx={homePage.whyYouShouldHire.right.indexSx}>{data.index}</Box>
+												<Box>
+													<Stack direction={'column'} sx={{ color: '#fff' }} spacing={2}>
+														<Typography
+															variant='h4'
+															sx={{
+																color: homePage.whyYouShouldHire.right.itemTextColor,
+															}}>
+															{data.heading}
+														</Typography>
+														<Typography variant='h5'>{data.desc}</Typography>
+													</Stack>
+												</Box>
+											</Stack>
+										</Grid>
+									)
+								})}
+							</Grid>
+						</Grid>
+					</Grid>
+				</Box>
 			</Section>
+
+			{/* end why you should hire section */}
+
 			{/* hire your construction section  */}
-			<Section backgroundImage={hireConstructionSection.backgroundImage}>
+			{/* <Section backgroundImage={hireConstructionSection.backgroundImage}>
 				<Stack
 					direction='row'
 					sx={{
@@ -271,8 +343,51 @@ export const Home = () => {
 						})}
 					</Grid>
 				</Stack>
+			</Section> */}
+
+			<Section backgroundColor='#F7F7F7'>
+				<Box
+					sx={{
+						p: '46px 0px',
+						overflowX: 'hidden',
+					}}>
+					<Grid container spacing={8}>
+						<Grid item xs={6}>
+							<Stack direction={'column'} spacing={4}>
+								<Stack direction={'column'} spacing={2}>
+									<Box>{homePage.HeroAdvantage.Heading}</Box>
+									<Box>{homePage.HeroAdvantage.subHeading}</Box>
+								</Stack>
+								<Box>
+									<Button
+										sx={{
+											p: '20px 66px',
+											fontWeight: '900',
+										}}>
+										{homePage.HeroAdvantage.buttonText}
+									</Button>
+								</Box>
+							</Stack>
+						</Grid>
+						<Grid item xs={6}>
+							<Box
+							// sx={{ background: '#F6F2E1' }}
+							>
+								<Stack direction={'row'}>
+									<Box>
+										<img src='/assets/landingv2/heroSection/advantageHero.svg' alt='' />
+									</Box>
+									<Box sx={{ position: 'relative', left: '-80px' }}>
+										<img src='/assets/landingv2/heroSection/advantageHeropic.svg' alt='' />
+									</Box>
+								</Stack>
+							</Box>
+						</Grid>
+					</Grid>
+				</Box>
 			</Section>
-			<Section backgroundColor={supportCarouselSection.backgroundColor}>
+
+			{/* <Section backgroundColor={supportCarouselSection.backgroundColor}>
 				<Carousel
 					componentPerView={isMobile ? 1 : 3}
 					items={[
@@ -300,10 +415,85 @@ export const Home = () => {
 						)),
 					]}
 				/>
+			</Section> */}
+
+			<Section backgroundColor='#000'>
+				<Box
+					sx={{
+						p: '46px 0 60px 0',
+					}}>
+					<Grid container spacing={2}>
+						<Grid item xs={6}>
+							<Stack direction={'column'}>
+								<Box mb={'14px'}>{homePage.heroApp.heading}</Box>
+								<Box mb={'40px'}>{homePage.heroApp.desc}</Box>
+								<List sx={{ color: '#fff' }}>
+									{homePage.heroApp.list.map((data, index) => {
+										return (
+											<ListItem key={index} sx={{ mb: '24px' }}>
+												<Typography variant='h4' sx={{ fontWeight: 400, fontSize: '20px' }}>
+													{data.item}
+												</Typography>
+											</ListItem>
+										)
+									})}
+								</List>
+								<Typography variant='h4' color={'#fff'}>
+									Download Now!
+								</Typography>
+								<Box mt={'20px'} sx={{ cursor: 'pointer' }}>
+									<img src='/assets/landingv2/heroSection/googlebutton.svg' alt='' />
+								</Box>
+							</Stack>
+						</Grid>
+						<Grid item xs={6}>
+							<Stack direction={'row'}>
+								<Box sx={{ position: 'absolute', left: '190px', zIndex: '2' }}>
+									<img src='/assets/landingv2/heroSection/mobile1.svg' alt='' />
+								</Box>
+								<Box sx={{ position: 'relative', zIndex: '4' }}>
+									<img src='/assets/landingv2/heroSection/mobile2.svg' alt='' />
+								</Box>
+							</Stack>
+						</Grid>
+					</Grid>
+				</Box>
 			</Section>
+
+			{/* what are you section  */}
+
+			<Section backgroundColor='#F7F7F7'>
+				<Box
+					sx={{
+						padding: '46px 0px',
+					}}>
+					<Stack direction={'column'} spacing={4} sx={{ width: '100%' }}>
+						<Box>{homePage.customerReview.heading}</Box>
+						<Stack direction={'row'} justifyContent={'center'} alignItems={'center'}>
+							<Box sx={homePage.customerReview.card.cardStyleSx}>
+								<Stack direction={'row'}>
+									<Box sx={{ backgroundSize: 'cover' }}>
+										<img src={homePage.customerReview.card.cardImageSrc} />
+									</Box>
+									<Stack
+										direction={'row'}
+										justifyContent='center'
+										alignItems={'center'}
+										p={'66px 40px'}>
+										{homePage.customerReview.card.cardText}
+									</Stack>
+								</Stack>
+							</Box>
+						</Stack>
+					</Stack>
+				</Box>
+			</Section>
+
+			{/* end what are you section */}
+
 			{/* ph advantage section  */}
 
-			<Section>
+			{/* <Section>
 				<Stack direction='column'>
 					<FloatingUnderLineHeading variant='h3' underlinePosition='flex-start'>
 						{phAdvantage.heading}
@@ -458,9 +648,9 @@ export const Home = () => {
 						)),
 					]}
 				/>
-			</Section>
+			</Section> */}
 			{/* have a question section */}
-			<ContactUsSection />
+			{/* <ContactUsSection /> */}
 		</>
 	)
 }

@@ -1,9 +1,164 @@
 import { BarChart, Settings, Share, StarBorder } from '@mui/icons-material'
+import { Typography } from '@mui/material'
 import { Children } from 'react'
 import { landingTheme } from 'sdk/constants/landingTheme'
 
 export const homePage = {
 	heroSection: {},
+	howItWorksSection: {
+		heading: 'How it works',
+		subHeading: 'Book workers in by following these steps',
+		buttonText: 'Book Workers Now',
+		buttonSx: {
+			height: '62px',
+			fontWeight: '800',
+			padding: '20px 64px',
+		},
+	},
+	whyYouShouldHire: {
+		left: {
+			heading: (
+				<Typography variant='h2' color={'#fff'}>
+					Why you should hire <br /> your construction worker <br /> from{' '}
+					<span style={{ color: 'yellow' }}>Project Hero</span>
+				</Typography>
+			),
+			buttonText: 'Book Workers Now',
+			buttonSx: {
+				backgroundColor: '#fff',
+				padding: '20px 64px',
+				color: '#000',
+				fontWeight: '700',
+				'& .hover': {
+					backgroundColor: '#fff',
+					color: '#000',
+				},
+			},
+		},
+		right: {
+			indexSx: {
+				background: '#483B08',
+				borderRadius: '50%',
+				padding: '12px',
+				width: '60px',
+				height: '60px',
+			},
+			itemTextColor: '#EFC430',
+			item: [
+				{
+					index: (
+						<Typography variant='h2' color={'#EFC430'}>
+							01
+						</Typography>
+					),
+					heading: 'Verified Profiles',
+					desc: '100% genuine workers with verified phone numbers',
+				},
+				{
+					index: (
+						<Typography variant='h2' color={'#EFC430'}>
+							03
+						</Typography>
+					),
+					heading: 'Skilled & Trained Heroes',
+					desc: 'Heroes go through strict skill evaluation process & scored',
+				},
+				{
+					index: (
+						<Typography variant='h2' color={'#EFC430'}>
+							02
+						</Typography>
+					),
+					heading: 'Hassle Free Hiring Process',
+					desc: 'Get phone numbers of heroes as soon as your booking goes live',
+				},
+
+				{
+					index: (
+						<Typography variant='h2' color={'#EFC430'}>
+							04
+						</Typography>
+					),
+					heading: 'Eager to Work Heroes',
+					desc: 'Largest pool of ready to work heroes available',
+				},
+			],
+		},
+	},
+
+	HeroAdvantage: {
+		Heading: (
+			<Typography variant='h2' color={'#EFC430'} fontSize={'32px'} fontWeight={600}>
+				Project Hero <span style={{ color: '#000' }}>Advantages</span>
+			</Typography>
+		),
+		subHeading: (
+			<Typography variant='h5' fontSize={'16px'} fontWeight={400}>
+				We solve all your construction workforce requirement needs <br /> starting from hiring, management and
+				retention of workers. Our <br />
+				unique contractor web-app gives you the capability to book, call <br />
+				and hire workers. You can also{' '}
+				<span style={{ fontWeight: '700' }}>
+					{' '}
+					track your worker&#39;s attendance, <br />
+					generate daily wage reports
+				</span>{' '}
+				and{' '}
+				<span style={{ fontWeight: '700' }}>
+					pay salaries to your workers in <br />
+					just 2 clicks.
+				</span>
+			</Typography>
+		),
+		buttonText: 'Book Workers Now',
+	},
+	heroApp: {
+		heading: (
+			<Typography variant='h1' sx={{ color: '#EFC430' }}>
+				Project Hero <span style={{ color: '#fff' }}>App</span>{' '}
+			</Typography>
+		),
+		desc: (
+			<Typography variant='h3' sx={{ color: '#fff', fontWeight: 400 }}>
+				Designed for our Heros who apply to jobs <br /> posted by you
+			</Typography>
+		),
+		list: [
+			{
+				item: 'Heroes apply to unlimited jobs posted by YOU!',
+			},
+			{
+				item: 'Heroes can track their Provident Fund(PF) balance on App	',
+			},
+			{
+				item: 'Heroes can track their attendance & income directly on app',
+			},
+			{
+				item: 'Heores get insurance for upto 3 lakhs in just Rs 9 per day',
+			},
+		],
+	},
+
+	customerReview: {
+		heading: (
+			<Typography variant='h2' fontSize={'32px'} fontWeight={600}>
+				What are our
+				<br /> <span style={{ color: 'EFC430' }}>Customers saying</span> about us?
+			</Typography>
+		),
+		card: {
+			cardImageSrc: '/assets/landingv2/heroSection/customer.png',
+			cardText:
+				'We are one of the largest interior Fit-out companies in India and require skilled and unskilled workers in bulk. Earlier, we used to hire via labor contractors but the labor quality and reliability was a major issue. ',
+			cardStyleSx: {
+				background: '#EFC41A',
+				width: '60%',
+				height: '307px',
+				borderRadius:'15px'
+			},
+		},
+	},
+
 	jobSection: {
 		tagLine: [
 			'Manoj just hired 4 Painters ',
