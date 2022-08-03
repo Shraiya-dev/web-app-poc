@@ -96,9 +96,6 @@ export const colors = {
 let themeDef = createTheme({
 	typography: {
 		fontFamily: `'Mulish' , sans-serif`,
-		allVariants: {
-			color: '#011F50',
-		},
 		h1: {
 			fontSize: '36px',
 			fontWeight: 700,
@@ -176,6 +173,11 @@ let themeDef = createTheme({
 			default: '#FCFCFC',
 			paper: '#ffffff',
 		},
+		text: {
+			primary: '#000000de',
+			secondary: '#0000008a',
+			disabled: '#00000061',
+		},
 		grey: {
 			'50': alpha('#061F48', 0.5),
 			'100': alpha('#061F48', 0.1),
@@ -198,6 +200,7 @@ let themeDef = createTheme({
 		textCTA: colorPalette.textCTA,
 		tonalOffset: 0.3,
 	},
+
 	breakpoints: {
 		values: {
 			xl: 1536,

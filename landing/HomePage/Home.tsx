@@ -1,4 +1,5 @@
-import { FormatQuote } from '@mui/icons-material'
+import { ArrowBack, Circle, FormatQuote } from '@mui/icons-material'
+
 import {
 	Box,
 	Card,
@@ -11,6 +12,8 @@ import {
 	ListItemText,
 	Paper,
 	Stack,
+	Tab,
+	Tabs,
 	Typography,
 } from '@mui/material'
 import { ContactUsSection } from 'landing/components'
@@ -28,7 +31,7 @@ import {
 	useMobile,
 } from 'sdk'
 import { homePage } from 'sdk/data/home'
-import { CreateBookingCard } from 'sdkv2/components'
+import { CreateBookingCard, JobCategoryCard } from 'sdkv2/components'
 
 export const Home = () => {
 	const {
@@ -91,32 +94,38 @@ export const Home = () => {
 					</Grid>
 				</Grid>
 			</Section>
-			<Section>
-				<Grid container spacing={{ xs: 2, md: 4 }}>
-					{jobSection.jobs.map((item) => (
-						<Grid item key={item.image} xs={6} md={2.4}>
-							<Stack
-								flex={1}
-								alignItems='center'
-								spacing={1}
-								sx={(theme) => ({
-									'>img': {
-										width: 200,
-										height: 100,
-									},
-									[theme.breakpoints.down('md')]: {
-										'>img': {
-											width: 150,
-											height: 70,
-										},
-									},
-								})}>
-								<img style={{ borderRadius: '12px' }} src={item.image} alt='' />
-								<Typography>{item.label}</Typography>
-							</Stack>
-						</Grid>
+			<Section backgroundColor='#000000'>
+				<Stack direction='row' alignItems='center' spacing={2}>
+					{jobSection.tagLine.map((item, index, arr) => (
+						<>
+							<Typography variant='h6' color='common.white' key={item}>
+								{item}
+							</Typography>
+							{index < arr.length - 1 && <Circle sx={{ fontSize: 8, color: 'common.white' }} />}
+						</>
 					))}
-				</Grid>
+				</Stack>
+				<Stack p={3}>
+					<Typography variant='h2' color='common.white'>
+						Explore{' '}
+						<Typography variant='h2' color='primary' display='inline'>
+							Job Categories
+						</Typography>{' '}
+						and Book Workers{' '}
+						<Typography variant='h2' color='primary' display='inline'>
+							in a minute
+						</Typography>
+					</Typography>
+				</Stack>
+				<Tabs value='Masons' variant='scrollable' ScrollButtonComponent='next'>
+					{jobSection.jobs.map((item) => (
+						<Tab
+							value={item.label}
+							key={item.label}
+							label={<JobCategoryCard src={item.image} label={item.label} />}
+						/>
+					))}
+				</Tabs>
 			</Section>
 			<Section className='hide-on-mobile' backgroundColor={bookingJourneySection.backgroundColor}>
 				<Stack spacing={2}>

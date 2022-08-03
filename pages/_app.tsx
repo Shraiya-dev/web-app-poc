@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/next-script-for-ga */
 import { ThemeProvider } from '@mui/material/styles'
 import axios, { AxiosError, AxiosResponse } from 'axios'
+import 'keen-slider/keen-slider.min.css'
 import type { AppProps } from 'next/app'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
@@ -20,12 +21,11 @@ import {
 } from '../sdk'
 import { Analytic } from '../sdk/analytics/analytics'
 import '../sdk/styles/onlyCssWeNeed.css'
-
 const queryClient = new QueryClient()
 
 import { landingTheme } from 'sdk/constants/landingTheme'
 import { SplashProvider } from 'sdk/providers/SplashProvider'
-import { AnalyticsPage, Identify, NewAnalyticsPage } from '../sdk/analytics/analyticsWrapper'
+import { Identify, NewAnalyticsPage } from '../sdk/analytics/analyticsWrapper'
 import { createCookieInHour, getCookie } from '../sdk/analytics/helper'
 //=====================initializing axios interceptor=======================
 

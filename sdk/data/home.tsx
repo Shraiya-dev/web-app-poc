@@ -5,6 +5,13 @@ import { landingTheme } from 'sdk/constants/landingTheme'
 export const homePage = {
 	heroSection: {},
 	jobSection: {
+		tagLine: [
+			'Manoj just hired 4 Painters ',
+			'Sunil just hired 10 Barbenders',
+			'Rakesh just hired 10 Plumbers',
+			'Roshan just hired 10 Electrician',
+			'Satya just hired 10 Barbenders',
+		],
 		jobs: [
 			{
 				image: '/assets/landing/mason.png',
