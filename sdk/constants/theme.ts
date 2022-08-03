@@ -1,5 +1,5 @@
 import { KeyboardArrowDownRounded } from '@mui/icons-material'
-import { createTheme, responsiveFontSizes } from '@mui/material/styles'
+import { alpha, createTheme, responsiveFontSizes } from '@mui/material/styles'
 import { createBreakpoints } from '@mui/system'
 
 declare module '@mui/material/styles' {
