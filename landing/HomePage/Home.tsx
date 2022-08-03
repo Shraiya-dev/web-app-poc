@@ -1,11 +1,13 @@
-import { ArrowBack, Circle, FormatQuote } from '@mui/icons-material'
+import { ArrowBack, ArrowCircleLeftOutlined, ArrowCircleRightOutlined, Circle, FormatQuote } from '@mui/icons-material'
 
 import {
 	Box,
+	Button,
 	Card,
 	CardContent,
 	CardMedia,
 	Grid,
+	IconButton,
 	List,
 	ListItem,
 	ListItemIcon,
@@ -32,6 +34,7 @@ import {
 } from 'sdk'
 import { homePage } from 'sdk/data/home'
 import { CreateBookingCard, JobCategoryCard } from 'sdkv2/components'
+import { WorkerCard } from 'sdkv2/components/cards/WorkerCard'
 
 export const Home = () => {
 	const {
@@ -98,7 +101,7 @@ export const Home = () => {
 				<Stack direction='row' alignItems='center' spacing={2}>
 					{jobSection.tagLine.map((item, index, arr) => (
 						<>
-							<Typography variant='h6' color='common.white' key={item}>
+							<Typography variant='h6' key={item}>
 								{item}
 							</Typography>
 							{index < arr.length - 1 && <Circle sx={{ fontSize: 8, color: 'common.white' }} />}
@@ -117,15 +120,43 @@ export const Home = () => {
 						</Typography>
 					</Typography>
 				</Stack>
-				<Tabs value='Masons' variant='scrollable' ScrollButtonComponent='next'>
+				<Tabs
+					sx={{ mx: -5 }}
+					value='Masons'
+					variant='scrollable'
+					ScrollButtonComponent={(props) => {
+						if (props.direction === 'left' && !props.disabled) {
+							return (
+								<Button variant='text' {...props}>
+									<ArrowCircleLeftOutlined fontSize={'large'} sx={{ color: 'common.white' }} />
+								</Button>
+							)
+						} else if (props.direction === 'right' && !props.disabled) {
+							return (
+								<Button variant='text' {...props}>
+									<ArrowCircleRightOutlined fontSize={'large'} sx={{ color: 'common.white' }} />
+								</Button>
+							)
+						} else {
+							return null
+						}
+					}}>
 					{jobSection.jobs.map((item) => (
 						<Tab
 							value={item.label}
 							key={item.label}
+							sx={{ color: 'common.white' }}
 							label={<JobCategoryCard src={item.image} label={item.label} />}
 						/>
 					))}
 				</Tabs>
+				<Grid container py={3} spacing={2}>
+					{jobSection.workers.map((item) => (
+						<Grid md={4} item key={item.workerId}>
+							<WorkerCard worker={item as any} />
+						</Grid>
+					))}
+				</Grid>
 			</Section>
 			<Section className='hide-on-mobile' backgroundColor={bookingJourneySection.backgroundColor}>
 				<Stack spacing={2}>

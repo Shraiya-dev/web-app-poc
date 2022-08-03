@@ -55,6 +55,20 @@ export const homePage = {
 				label: 'Plumber',
 			},
 		],
+		workers: Array(6).fill({
+			workerId: String(Math.random() * 1000000),
+			name: 'Rambalak Kewat',
+			verified: true,
+			phoneNumber: '+919650674431',
+			profileImage: 'https://www.un.org/sites/un2.un.org/files/2020/09/smiling-factory-worker.jpg',
+			jobType: 'Mason',
+			skillType: 'Technician',
+			rating: 3,
+			experience: {
+				years: 10,
+				organization: 'Infinity Workforce, Brigade Group',
+			},
+		}),
 	},
 	bookingJourneySection: {
 		sectionTitle: {

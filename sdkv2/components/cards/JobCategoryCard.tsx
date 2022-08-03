@@ -10,7 +10,7 @@ export const JobCategoryCard: FC<Props> = ({ src, active, label }) => {
 	return (
 		<Stack alignItems='center' spacing={2} p={2}>
 			<Avatar sx={{ width: 100, height: 100 }} src={src} />
-			<Typography color='common.white'>{label}</Typography>
+			<Typography>{label}</Typography>
 			<Divider />
 		</Stack>
 	)
