@@ -20,7 +20,7 @@ import { styled } from '@mui/system'
 import { useRouter } from 'next/router'
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 
-import { indianCurrencyFormat, isEmptyObject, useContractorAuth } from '../../../../sdk'
+import { envs, indianCurrencyFormat, isEmptyObject, useContractorAuth } from '../../../../sdk'
 import logo from '../../../../public/assets/icons/BrandLogo.svg'
 import {
 	cancelPaymentApi,
@@ -158,7 +158,7 @@ export const OutstandingPaymentPopover = ({
 	}, [confirmPaymentDetails])
 	const makePayment = async () => {
 		var options = {
-			key: 'rzp_live_EjKSlAc9GcAw7S',
+			key: envs.RAZOR_PAY_KEY,
 			name: 'Project Hero',
 			currency: 'INR',
 			amount: originalSelected ? payAmount * 100 : customAmount ? parseInt(customAmount) * 100 : payAmount * 100,

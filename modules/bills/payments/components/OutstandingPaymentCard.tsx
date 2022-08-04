@@ -76,12 +76,24 @@ export const OutstandiongPaymentCard = ({ tooltipTitle }: { tooltipTitle: Toolti
 					</Stack>
 				</Skeleton>
 			) : (
-				<CustomPaper elevation={isMobile ? 5 : 1} sx={{ minWidth: 300, maxWidth: 400, minHeight: '144px' }}>
+				<CustomPaper
+					elevation={isMobile ? 5 : 1}
+					sx={{ minWidth: 300, maxWidth: 400, minHeight: '144px', background: '#fff' }}
+				>
 					<Stack direction='row' justifyContent='space-between' flex={1}>
 						<Stack flex={1}>
 							<Stack flex={1}>
-								<Stack className='cardHeader' direction='row' alignItems='center'>
-									<Typography variant='subtitle2'>Total Outstanding</Typography>
+								<Stack
+									className='cardHeader'
+									direction='row'
+									alignItems='center'
+									// style={{
+									// 	background: theme.palette.background.paper,
+									// }}
+								>
+									<Typography variant='subtitle2' sx={{ color: '#000' }}>
+										Total Outstanding
+									</Typography>
 									<Tooltip
 										title={tooltipTitle}
 										sx={{ background: theme.palette.base.variant70 }}
@@ -92,7 +104,8 @@ export const OutstandiongPaymentCard = ({ tooltipTitle }: { tooltipTitle: Toolti
 													backgroundColor: theme.palette.base.variant70,
 												},
 											},
-										}}>
+										}}
+									>
 										<HelpOutlineIcon
 											sx={{ fontSize: 16, cursor: 'pointer', marginLeft: theme.spacing(1) }}
 										/>
@@ -111,7 +124,8 @@ export const OutstandiongPaymentCard = ({ tooltipTitle }: { tooltipTitle: Toolti
 									/>
 									<Typography
 										variant='h4'
-										sx={{ fontSize: '2.25rem', color: theme.palette.green.dark }}>
+										sx={{ fontSize: '2.25rem', color: theme.palette.green.dark }}
+									>
 										{indianCurrencyFormat(outStandingPaymentData.data.payload.amount)}
 									</Typography>
 								</Stack>
@@ -148,7 +162,8 @@ export const OutstandiongPaymentCard = ({ tooltipTitle }: { tooltipTitle: Toolti
 										url: router.pathname,
 									})
 									showPaymentPopover()
-								}}>
+								}}
+							>
 								<Typography variant='subtitle2' sx={{ color: theme.palette.textCTA.white }}>
 									Pay
 								</Typography>

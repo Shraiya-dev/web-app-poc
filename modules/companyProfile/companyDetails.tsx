@@ -32,7 +32,8 @@ const CompanyDetails = () => {
 							fontSize: 26,
 							fontWeight: 700,
 							color: theme.palette.secondary.main,
-						}}>
+						}}
+					>
 						Company Profile
 					</Typography>
 					<Typography style={{ fontSize: 14, color: theme.palette.secondary.main }}>
@@ -50,7 +51,8 @@ const CompanyDetails = () => {
 								},
 							}}
 							value={selectedTab}
-							onChange={handleTabSelection}>
+							onChange={handleTabSelection}
+						>
 							<Tab
 								sx={{
 									fontSize: '18px',
@@ -94,7 +96,8 @@ const CompanyDetails = () => {
 							overflowY: 'auto',
 							position: 'relative',
 							paddingTop: 8,
-						}}>
+						}}
+					>
 						<CompanyInfo />
 					</TabPanel>
 
@@ -105,7 +108,8 @@ const CompanyDetails = () => {
 							overflowY: 'auto',
 							position: 'relative',
 							paddingTop: 8,
-						}}>
+						}}
+					>
 						<CompanyMembers />
 					</TabPanel>
 				</TabContext>

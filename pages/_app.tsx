@@ -27,6 +27,7 @@ import { landingTheme } from 'sdk/constants/landingTheme'
 import { SplashProvider } from 'sdk/providers/SplashProvider'
 import { Identify, NewAnalyticsPage } from '../sdk/analytics/analyticsWrapper'
 import { createCookieInHour, getCookie } from '../sdk/analytics/helper'
+import { CssBaseline } from '@mui/material'
 //=====================initializing axios interceptor=======================
 
 axios.defaults.baseURL = envs.SERVER_URL
@@ -168,6 +169,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 			<SEO {...seoData} />
 			<QueryClientProvider client={queryClient}>
 				<ThemeProvider theme={theme}>
+					<CssBaseline/>
 					<GlobalCssProvider>
 						<SnackbarProvider>
 							<SplashProvider>
