@@ -48,7 +48,6 @@ const CustomBookingStyle = styled(Box)(({ theme }) => ({
 
 	'.stickyBottomBox': {
 		position: 'sticky',
-
 		bottom: 0,
 		marginTop: 50,
 
@@ -83,10 +82,9 @@ const CustomBookingStyle = styled(Box)(({ theme }) => ({
 		left: 0,
 		right: 0,
 		width: '100%',
-
+		background: primary.properDark,
 		paddingBottom: 16,
 		paddingTop: 16,
-		background: 'white',
 		overflow: 'hidden',
 	},
 	'.loadingcta': {
@@ -288,7 +286,8 @@ export const CreateBooking = () => {
 															selectedJob === info?.value
 																? `2px solid ${theme.palette.primary.main}`
 																: `1px solid ${theme.palette.secondary.light}`,
-													}}>
+													}}
+												>
 													<Box>
 														<Image src={info?.icon} />
 
@@ -318,7 +317,8 @@ export const CreateBooking = () => {
 																selectedJob === info?.value
 																	? `2px solid ${theme.palette.primary.main}`
 																	: `1px solid ${theme.palette.secondary.light}`,
-														}}>
+														}}
+													>
 														<Box>
 															<Image src={info?.icon} />
 
@@ -336,7 +336,8 @@ export const CreateBooking = () => {
 									direction='column'
 									alignItems='center'
 									justifyContent='center'
-									style={{ marginBottom: 10 }}>
+									style={{ marginBottom: 10 }}
+								>
 									{!!checkError('jobType', form) && (
 										<Typography style={{ color: 'red', padding: 10 }}>
 											Please Select a JobType!!
@@ -345,7 +346,8 @@ export const CreateBooking = () => {
 									<Stack
 										className='viewcta'
 										onClick={handleMoreJobType}
-										style={{ textTransform: 'none' }}>
+										style={{ textTransform: 'none' }}
+									>
 										{isMore ? (
 											<Box>
 												<Typography className='view' display='inline' color={'primary.main'}>
@@ -425,7 +427,8 @@ export const CreateBooking = () => {
 							<InputWrapper
 								id='workerType'
 								label={`Workers Required & Daily Wage`}
-								toolTip={'Daily wage per worker'}>
+								toolTip={'Daily wage per worker'}
+							>
 								{getErrorString()}
 								<Grid container spacing={4}>
 									{workerType.map((info, index) => {
@@ -436,7 +439,8 @@ export const CreateBooking = () => {
 												item
 												alignItems={'flex-start'}
 												display='flex'
-												spacing={2}>
+												spacing={2}
+											>
 												<Grid container item xs={12} sm={12} md={2.5}>
 													<Image src={info?.icon} style={{ float: 'left' }} />
 
@@ -445,8 +449,8 @@ export const CreateBooking = () => {
 															float: 'right',
 															margin: 16,
 															fontSize: 16,
-															color: 'rgba(6, 31, 72, 0.7)',
-														}}>
+														}}
+													>
 														{info?.label}
 													</Typography>
 												</Grid>
@@ -553,7 +557,8 @@ export const CreateBooking = () => {
 															? `2px solid ${theme.palette.primary.main}`
 															: '',
 												}}
-												onClick={() => handleProjectDuration(info?.value)}>
+												onClick={() => handleProjectDuration(info?.value)}
+											>
 												{info?.label}
 											</Button>
 										)
@@ -578,7 +583,8 @@ export const CreateBooking = () => {
 											minWidth: 50,
 											boxShadow: 'none',
 										}}
-										onClick={() => handleShiftTiming('default')}>
+										onClick={() => handleShiftTiming('default')}
+									>
 										{fixTiming}
 									</Button>
 
@@ -598,7 +604,8 @@ export const CreateBooking = () => {
 											color: primary.main,
 											boxShadow: 'none',
 										}}
-										onClick={() => handleShiftTiming('Custom')}>
+										onClick={() => handleShiftTiming('Custom')}
+									>
 										Custom
 									</Button>
 								</Grid>
@@ -919,7 +926,8 @@ export const CreateBooking = () => {
 							<Paper
 								className='bottomButton'
 								variant='outlined'
-								sx={{ paddingRight: isMobile ? '6%' : '12%' }}>
+								sx={{ paddingRight: isMobile ? '6%' : '12%' }}
+							>
 								<Stack direction={'row'} justifyContent={'flex-end'}>
 									{/* {(step === 2 || step === 3) && (
 											<Button className='prevCta' onClick={handlePrev}>
@@ -937,8 +945,10 @@ export const CreateBooking = () => {
 										style={{
 											minWidth: '10rem',
 											marginRight: isMobile ? '' : '14%',
-											background: isSubmittable || loading ? '#cccccc' : '',
-										}}>
+											// background: isSubmittable || loading ? '#cccccc' : '',
+											color: '#000',
+										}}
+									>
 										{'Create Booking'}
 									</LoadingButton>
 								</Stack>

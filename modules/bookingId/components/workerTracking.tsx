@@ -1,5 +1,5 @@
 import { CircularProgress, Grid, Pagination, Stack, Typography } from '@mui/material'
-import { JobCardCard, theme } from '../../../sdk'
+import { JobCardCard, primary, theme } from '../../../sdk'
 
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
@@ -76,7 +76,7 @@ const WorkerTracking = () => {
 				<Stack mt={4}>
 					{jobCards.length === 0 ? (
 						<Stack flex={1} mt={20} direction={'column'} alignItems='center'>
-							<Typography variant='h4' color={theme.palette.secondary.light}>
+							<Typography variant='h4' color={primary.yellow}>
 								You can see workers here when allocation starts
 							</Typography>
 						</Stack>
