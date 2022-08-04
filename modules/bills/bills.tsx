@@ -108,6 +108,22 @@ export const Bills = () => {
 											}}
 										/>
 									)}
+									PaperProps={{
+										sx: {
+											'& .MuiCalendarPicker-root': {
+												background: '#fff',
+											},
+											'& .css-1u04tdt': {
+												color: '#000',
+											},
+											'& .MuiButtonBase-root': {
+												color: '#000',
+											},
+											'& .MuiSvgIcon-root': {
+												color: '#000',
+											},
+										},
+									}}
 								/>
 								<DesktopDatePicker
 									disableFuture
@@ -141,6 +157,22 @@ export const Bills = () => {
 											}}
 										/>
 									)}
+									PaperProps={{
+										sx: {
+											'& .MuiCalendarPicker-root': {
+												background: '#fff',
+											},
+											'& .css-1u04tdt': {
+												color: '#000',
+											},
+											'& .MuiButtonBase-root': {
+												color: '#000',
+											},
+											'& .MuiSvgIcon-root': {
+												color: '#000',
+											},
+										},
+									}}
 								/>
 							</LocalizationProvider>
 							<Button

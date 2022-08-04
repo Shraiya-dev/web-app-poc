@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useRouter } from 'next/router'
 
 // Material UI
-import { Dialog, DialogContent, Button, Typography, Stack, Box, Grid } from '@mui/material'
+import { Dialog, DialogContent, Button, Typography, Stack, Box, Grid, Card } from '@mui/material'
 
 const ConfirmCancel = ({ ...props }) => {
 	const { onCloseDialog, setOncloseDialog, header, buttonLabel } = props
@@ -14,7 +14,7 @@ const ConfirmCancel = ({ ...props }) => {
 
 	return (
 		<Dialog style={{ zIndex: 1800 }} open={onCloseDialog} keepMounted onClose={handleCancel}>
-			<Box>
+			<Box component={Card}>
 				<DialogContent>
 					<Typography variant='h5'>{header}</Typography>
 					<Typography style={{ marginBottom: 30, marginTop: 10, fontSize: 14 }}>
