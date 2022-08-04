@@ -1,6 +1,6 @@
 import { FC } from 'react'
 interface Props {
-	src: string
+	src?: string
 }
 export const HeroCardImage: FC<Props> = ({ src }) => {
 	return (
@@ -47,7 +47,7 @@ export const HeroCardImage: FC<Props> = ({ src }) => {
 						id='image0_9_5741'
 						width='200'
 						height='250'
-						xlinkHref={src}
+						xlinkHref={src ?? ''}
 					/>
 				</defs>
 			</svg>
