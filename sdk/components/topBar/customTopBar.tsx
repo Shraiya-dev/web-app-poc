@@ -6,14 +6,17 @@ import { useMobile } from '../../hooks'
 import { useContractorAuth } from '../../providers'
 import MenuIcon from '../../../public/assets/icons/MenuIcon.svg'
 
-const APP_BAR_BG_COLOR = primary.light
+const APP_BAR_BG_COLOR = primary.darkGrey
 
 const CustomAppBar = styled(Box)(() => ({
-	//backgroundColor: APP_BAR_BG_COLOR,
-	//minHeight: 84,
-	'.toolbar': {
-		padding: 0,
+	backgroundColor: APP_BAR_BG_COLOR,
+	minHeight: 84,
+	display: 'flex',
+	alignItems: 'center',
 
+	'.toolbar': {
+		// padding: 0,
+		paddingLeft: 16,
 		flex: 1,
 		justifyContent: 'space-between',
 		border: 'none',

@@ -8,7 +8,7 @@ import React from 'react'
 import logo from '../../public/assets/icons/BrandLogo.svg'
 import MenuIcon from '../../public/assets/icons/MenuIcon.svg'
 import { DrawerItem } from '../components/drawerItem'
-import { theme } from '../constants'
+import { primary, theme } from '../constants'
 import { useMobile } from '../hooks/useMobile'
 import { useContractorAuth } from '../providers'
 import { Analytic } from '../analytics'
@@ -61,15 +61,19 @@ const ContractorDashboardLayout = ({ children }: any) => {
 	}
 
 	return (
-		<>
+		<Box
+			sx={{
+				background: theme.palette.background.default,
+			}}
+		>
 			<Box
 				style={{
 					padding: isMobile ? 8 : 16,
 					marginLeft: isMobile ? 0 : theme.spacing(33),
-					background: !isMobile ? theme.palette.background.default : '#fff',
 					//width: '100vw',
-					height: '100vh',
-				}}>
+					minHeight: '100vh',
+				}}
+			>
 				{isMobile ? (
 					<Stack direction='row' p={1}>
 						{isMobile && (
@@ -99,7 +103,12 @@ const ContractorDashboardLayout = ({ children }: any) => {
 				open={isSideBarToggle}
 				onClose={toggleDrawer}
 				variant={isMobile ? 'temporary' : 'permanent'}
-				PaperProps={{ style: { boxShadow: 'none' } }}>
+				PaperProps={{
+					style: {
+						boxShadow: 'none',
+					},
+				}}
+			>
 				<Box width={APP_DRAWER_WIDTH} m={2}>
 					<Stack direction={'row'} alignItems={'center'} mb={8} spacing={12}>
 						<Image alt='logo' src={logo} height={52} width={isMobile ? 100 : 162} />
@@ -161,16 +170,21 @@ const ContractorDashboardLayout = ({ children }: any) => {
 								marginBottom: 16,
 								bottom: 0,
 								borderRadius: 40,
-							}}>
+							}}
+						>
 							<ListItemIcon>
-								<LogoutIcon />
+								<LogoutIcon
+									sx={{
+										color: '#b2b2b2',
+									}}
+								/>
 							</ListItemIcon>
-							<ListItemText>Logout</ListItemText>
+							<ListItemText sx={{ color: '#b2b2b2' }}>Logout</ListItemText>
 						</ListItem>
 					</List>
 				</Box>
 			</Drawer>
-		</>
+		</Box>
 	)
 }
 

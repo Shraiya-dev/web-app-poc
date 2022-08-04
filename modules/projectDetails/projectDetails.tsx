@@ -38,7 +38,8 @@ export const ProjectDetails: FC<Props> = () => {
 								fontSize: isMobile ? 18 : 26,
 								fontWeight: 700,
 								color: theme.palette.secondary.main,
-							}}>
+							}}
+						>
 							<ArrowBackIosNewIcon
 								onClick={() => router.push('/dashboard')}
 								sx={{
@@ -55,12 +56,14 @@ export const ProjectDetails: FC<Props> = () => {
 									fontSize: isMobile ? 18 : 26,
 									fontWeight: 700,
 									color: theme.palette.secondary.main,
-								}}>
+								}}
+							>
 								{projectDetails?.name}
 							</Typography>
 							<Typography
 								sx={{ fontSize: 14, color: theme.palette.secondary.main }}
-								textTransform='capitalize'>
+								textTransform='capitalize'
+							>
 								<LocationOnOutlined style={{ fontSize: 12, verticalAlign: 'middle' }} />
 								&nbsp;{projectDetails?.city} , {projectDetails?.state}
 							</Typography>
@@ -78,7 +81,8 @@ export const ProjectDetails: FC<Props> = () => {
 						'&::-webkit-scrollbar': {
 							display: 'none',
 						},
-					}}>
+					}}
+				>
 					{/* <Typography color={primary.main}>
 				<ArrowBackIosNewIcon
 							onClick={() => router.back()}
@@ -98,7 +102,8 @@ export const ProjectDetails: FC<Props> = () => {
 								},
 							}}
 							value={router.query.tab as string}
-							onChange={handleTabSelection}>
+							onChange={handleTabSelection}
+						>
 							{Object.keys(tabList).map((tab, index) => {
 								if (tab === 'bills') {
 									return (
@@ -132,7 +137,8 @@ export const ProjectDetails: FC<Props> = () => {
 							sx={{
 								width: '120%',
 								overflowX: 'scroll',
-							}}>
+							}}
+						>
 							<Tabs
 								TabIndicatorProps={{
 									style: {
@@ -140,7 +146,8 @@ export const ProjectDetails: FC<Props> = () => {
 									},
 								}}
 								value={router.query.tab as string}
-								onChange={handleTabSelection}>
+								onChange={handleTabSelection}
+							>
 								{Object.keys(tabList).map((tab, index) => {
 									if (tab === 'bills') {
 										return (
@@ -182,7 +189,8 @@ export const ProjectDetails: FC<Props> = () => {
 						height: 'calc( 100vh - 160px )',
 						overflowY: 'auto',
 						position: 'relative',
-					}}>
+					}}
+				>
 					<Dashboard />
 				</TabPanel>
 				<TabPanel
@@ -195,7 +203,8 @@ export const ProjectDetails: FC<Props> = () => {
 						overflowY: 'auto',
 						paddingBottom: 0,
 						position: 'relative',
-					}}>
+					}}
+				>
 					<WorkReport />
 				</TabPanel>
 				<TabPanel
@@ -208,7 +217,8 @@ export const ProjectDetails: FC<Props> = () => {
 						overflowY: 'auto',
 						paddingBottom: 0,
 						position: 'relative',
-					}}>
+					}}
+				>
 					<Bills />
 				</TabPanel>
 				<TabPanel
@@ -220,7 +230,8 @@ export const ProjectDetails: FC<Props> = () => {
 						height: 'calc( 100vh - 160px )',
 						overflowY: 'auto',
 						position: 'relative',
-					}}>
+					}}
+				>
 					<ProjectInfo />
 				</TabPanel>
 			</TabContext>

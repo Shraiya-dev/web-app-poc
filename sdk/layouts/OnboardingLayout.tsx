@@ -36,7 +36,6 @@ const CustomizeDashboard = styled(Box)(({ theme }) => ({
 		flex: 1,
 		paddingTop: 24,
 		justifyContent: 'center',
-		backgroundColor: theme.palette.primary.light,
 		alignItems: 'center',
 		backgroundImage: ' url(assets/icons/onboardingBack.svg) ',
 		backgroundPosition: 'center',
@@ -47,15 +46,7 @@ const CustomizeDashboard = styled(Box)(({ theme }) => ({
 		// backgroundImage: `url(${onboardingSvg})`,
 	},
 
-	'.left': {
-		backgroundColor: theme.palette.primary.main,
-		flex: 1,
-		justifyContent: 'space-evenly',
-		alignItems: 'center',
-	},
-	'.right': {
-		flex: 1,
-	},
+	
 	'.logoContainer': {
 		display: 'flex',
 		justifyContent: 'center',
@@ -100,37 +91,6 @@ export const OnboardingLayout = ({ children, ...props }: any) => {
 			<Stack direction={'row'} alignItems={'center'} mb={8} style={{ position: 'absolute', margin: 24 }}>
 				<Image alt='logo' src={logo} />
 			</Stack>
-			{/* <Stack className='left'>
-				<Stack alignItems='flex-start'>
-					<Box className='logoContainer'>
-						
-						<Image src={Banner} alt='' className='brandLogo' width={300} height={200} />
-					</Box>
-					<Stack mt={8} width='fit-content' className='instruction'>
-						{intro.map((x, index) => {
-							return (
-								<Stack
-									mt={2}
-									direction='row'
-									spacing={5}
-									width={'100%'}
-									key={index}
-									mb={2}
-									alignItems='center'>
-									
-									<svg height='20' width='20'>
-										<circle cx='10' cy='10' r='10' fill='#ffffff' />
-									</svg>
-									<Typography variant='h4' color={'white'} fontSize={24} fontWeight={600}>
-										{x.label}
-									</Typography>
-								</Stack>
-							)
-						})}
-					</Stack>
-				</Stack>
-			</Stack> */}
-
 			<Stack className='center'>
 				<Paper elevation={4} style={{ padding: 24, borderRadius: 8, width: isMobile ? 372 : 392, zIndex: 2 }}>
 					{children}

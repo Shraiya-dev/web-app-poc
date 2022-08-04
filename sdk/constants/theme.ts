@@ -70,6 +70,7 @@ const colorPalette = {
 		blue: '#36B5EC',
 	},
 }
+
 export const primary = {
 	main: '#1E9FD6', //'#244CB3',
 	light: '#EEFAFF', //'#224ab50d',
@@ -77,13 +78,15 @@ export const primary = {
 
 	// TODO: Need to add Proper Colouring
 	bgColor: '#F0F7FA',
-	secButtonColor: '#36B5EC',
-
+	secButtonColor: '#EFC530',
+	properDark: '#000',
 	lightGrey: 'rgba(6, 31, 72, 0.05)',
 	lightOrange: 'rgba(247, 158, 84, 0.2)',
 	lightGreen: 'rgba(15, 175, 127, 0.2)',
 	mediumGreen: 'rgba(15, 175, 127, 0.5)',
 	successGreen: '#0FAF7F',
+	darkGrey: '#333333',
+	nightDark: '#000',
 }
 export const colors = {
 	AliceBlue: '#EBF1F4',
@@ -96,7 +99,7 @@ let themeDef = createTheme({
 	typography: {
 		fontFamily: `'Mulish' , sans-serif`,
 		allVariants: {
-			color: '#011F50',
+			color: '#fff',
 		},
 		h1: {
 			fontSize: '36px',
@@ -147,7 +150,7 @@ let themeDef = createTheme({
 			dark: '#A78912',
 		},
 		secondary: {
-			main: '#CC2C49',
+			main: '#ebebeb',
 			light: '#D6566D',
 			dark: '#8E1E33',
 		},
@@ -157,9 +160,10 @@ let themeDef = createTheme({
 			dark: '#0FAF7F',
 		},
 		info: {
-			main: '#2196f3',
-			light: '#64b5f6',
-			dark: '#1976d2',
+			main: '#fff',
+			light: '#fff',
+			dark: '#fff',
+			contrastText: '#fff',
 		},
 		warning: {
 			main: '#E58A51',
@@ -172,9 +176,10 @@ let themeDef = createTheme({
 			dark: '#A33E35',
 		},
 		background: {
-			default: '#FCFCFC',
-			paper: '#ffffff',
+			default: '#2e2e2e', // background color
+			paper: '#383838', // cards background
 		},
+
 		grey: {
 			'50': alpha('#061F48', 0.5),
 			'100': alpha('#061F48', 0.1),
@@ -207,6 +212,34 @@ let themeDef = createTheme({
 		},
 	},
 	components: {
+		MuiTab: {
+			defaultProps: {
+				style: {
+					color: '#fff',
+				},
+			},
+		},
+		MuiInputBase: {
+			defaultProps: {
+				style: {
+					color: '#fff',
+				},
+			},
+		},
+		MuiIconButton: {
+			defaultProps: {
+				style: {
+					color: '#fff',
+				},
+			},
+		},
+		MuiTable: {
+			defaultProps: {
+				style: {
+					background: '#fff',
+				},
+			},
+		},
 		MuiPaper: {
 			defaultProps: {
 				//variant: 'outlined',
@@ -215,6 +248,7 @@ let themeDef = createTheme({
 				},
 			},
 		},
+
 		MuiInput: {
 			defaultProps: {
 				disableUnderline: true,
@@ -243,6 +277,14 @@ let themeDef = createTheme({
 		MuiTextField: {
 			defaultProps: {
 				variant: 'outlined',
+				color: 'info',
+				focused: true,
+				inputProps: {
+					style: {
+						color: '#fff',
+						borderColor: '#fff',
+					},
+				},
 			},
 			styleOverrides: {
 				root: {
@@ -273,7 +315,7 @@ let themeDef = createTheme({
 		MuiDrawer: {
 			styleOverrides: {
 				paper: {
-					backgroundColor: primary.light,
+					backgroundColor: primary.properDark,
 					borderRadius: '0px 40px 40px 0px',
 				},
 			},

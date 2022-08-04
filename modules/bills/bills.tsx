@@ -148,14 +148,16 @@ export const Bills = () => {
 								variant='outlined'
 								onClick={() => {
 									router.replace(router.asPath.split('?')[0])
-								}}>
+								}}
+							>
 								clear
 							</Button>
 						</Stack>
 						<Stack
 							direction='row'
 							alignItems='center'
-							justifyContent={isMobile ? 'space-between' : undefined}>
+							justifyContent={isMobile ? 'space-between' : undefined}
+						>
 							<Typography variant='subtitle2'>
 								Rows per page: {billResponse?.aggregatedBills?.length ?? 0}
 							</Typography>
@@ -169,7 +171,7 @@ export const Bills = () => {
 									<TableRow>
 										{TableHeaderList.map((item) => (
 											<StyledTableHeadCell key={item.label as any} sx={item.sx}>
-												<Typography noWrap fontWeight={600}>
+												<Typography noWrap fontWeight={600} sx={{ color: '#000' }}>
 													{item.label}
 												</Typography>
 											</StyledTableHeadCell>
@@ -197,7 +199,8 @@ export const Bills = () => {
 													router.push(
 														`/projects/${router.query.projectId}/bills/billId/${item?.aggregationDate}`
 													)
-												}}>
+												}}
+											>
 												<TableCell
 													sx={{
 														position: 'sticky',
@@ -207,39 +210,49 @@ export const Bills = () => {
 														'&:hover': {
 															backgroundColor: colors.AliceBlue,
 														},
-													}}>
+													}}
+												>
 													<DateStack date={item?.displayDate} />
 												</TableCell>
-												<TableCell>
+												<TableCell sx={{ background: '#fff' }}>
 													<Stack>
 														<Typography color='success.main' fontWeight={600}>
 															{item?.totalPayable ?? 'NA'}
 														</Typography>
 													</Stack>
 												</TableCell>
-												<TableCell>
-													<Typography>{item?.heroCount ?? 'NA'}</Typography>
+												<TableCell sx={{ background: '#fff' }}>
+													<Typography sx={{ color: '#000' }}>
+														{item?.heroCount ?? 'NA'}
+													</Typography>
 												</TableCell>
-												<TableCell>
-													<Typography>{item?.baseWage ?? 'NA'}</Typography>
+												<TableCell sx={{ background: '#fff' }}>
+													<Typography sx={{ color: '#000' }}>
+														{item?.baseWage ?? 'NA'}
+													</Typography>
 												</TableCell>
-												<TableCell>
-													<Typography>{item?.otWage ?? 'NA'}</Typography>
+												<TableCell sx={{ background: '#fff' }}>
+													<Typography sx={{ color: '#000' }}>
+														{item?.otWage ?? 'NA'}
+													</Typography>
 												</TableCell>
-												<TableCell>
-													<Typography>{item?.grossWage ?? 'NA'}</Typography>
+												<TableCell sx={{ background: '#fff' }}>
+													<Typography sx={{ color: '#000' }}>
+														{item?.grossWage ?? 'NA'}
+													</Typography>
 												</TableCell>
-												<TableCell>
-													<Typography>{item?.pf ?? 'NA'}</Typography>
+												<TableCell sx={{ background: '#fff' }}>
+													<Typography sx={{ color: '#000' }}>{item?.pf ?? 'NA'}</Typography>
 												</TableCell>
-												<TableCell>
-													<Typography>{item?.esi ?? 'NA'}</Typography>
+												<TableCell sx={{ background: '#fff' }}>
+													<Typography sx={{ color: '#000' }}>{item?.esi ?? 'NA'}</Typography>
 												</TableCell>
-												<TableCell>
+												<TableCell sx={{ background: '#fff' }}>
 													{item?.dwrId ? (
 														<Link
 															href={`/projects/${router.query.projectId}/work-report/${item?.dwrId}`}
-															passHref>
+															passHref
+														>
 															<a
 																onClick={(e) => {
 																	ButtonClicked({
@@ -248,7 +261,8 @@ export const Bills = () => {
 																		url: router.asPath,
 																	})
 																	e.stopPropagation()
-																}}>
+																}}
+															>
 																<Image
 																	src={'/assets/icons/reportIcon.svg'}
 																	alt={'DWR report'}
@@ -300,19 +314,22 @@ export const Bills = () => {
 							'&::-webkit-scrollbar': {
 								display: 'none',
 							},
-						}}>
+						}}
+					>
 						<Box
 							sx={{
 								width: '80vw',
 								padding: '10px 20px',
-							}}>
+							}}
+						>
 							<OutstandiongPaymentCard tooltipTitle='Net amount you owe based on bills raised and past payments made' />
 						</Box>
 						<Box
 							sx={{
 								width: '80vw',
 								padding: '10px 20px',
-							}}>
+							}}
+						>
 							<LastOutstandingPaymentCard />
 						</Box>
 					</Stack>
@@ -326,7 +343,8 @@ export const Bills = () => {
 							'&::-webkit-scrollbar': {
 								display: 'none',
 							},
-						}}>
+						}}
+					>
 						<LocalizationProvider dateAdapter={AdapterDateFns}>
 							<DesktopDatePicker
 								disableFuture
@@ -395,7 +413,8 @@ export const Bills = () => {
 							variant='outlined'
 							onClick={() => {
 								router.replace(router.asPath.split('?')[0])
-							}}>
+							}}
+						>
 							clear
 						</Button>
 					</Stack>
@@ -416,7 +435,8 @@ export const Bills = () => {
 											router.push(
 												`/projects/${router.query.projectId}/bills/billId/${item?.aggregationDate}`
 											)
-										}}>
+										}}
+									>
 										<Stack direction={'row'} p={'16px 8px'} justifyContent={'space-between'}>
 											<Stack direction={'row'} spacing={1.5}>
 												<DateStack date={item?.displayDate} />
@@ -446,7 +466,8 @@ export const Bills = () => {
 												background: '#F9F9F9',
 												borderRadius: '8px',
 												p: '12px 18px 12px 12px',
-											}}>
+											}}
+										>
 											<Stack direction={'row'} justifyContent={'space-between'}>
 												<Stack
 													direction={'row'}
@@ -454,12 +475,14 @@ export const Bills = () => {
 													alignItems={'center'}
 													maxWidth={'200px'}
 													spacing={2}
-													justifyContent={'space-between'}>
+													justifyContent={'space-between'}
+												>
 													<Typography
 														color='secondary.main'
 														variant='caption'
 														fontWeight={400}
-														noWrap>
+														noWrap
+													>
 														Base Wage
 													</Typography>
 													<Typography
@@ -467,7 +490,8 @@ export const Bills = () => {
 														fontWeight={400}
 														color='#000'
 														variant='caption'
-														noWrap>
+														noWrap
+													>
 														{item?.baseWage ?? 'NA'}
 													</Typography>
 												</Stack>
@@ -476,7 +500,8 @@ export const Bills = () => {
 														color='secondary.main'
 														fontWeight={400}
 														variant='caption'
-														noWrap>
+														noWrap
+													>
 														Heroes
 													</Typography>
 													<Typography color='#000' fontWeight={400} variant='caption' noWrap>
@@ -490,12 +515,14 @@ export const Bills = () => {
 												maxWidth={'200px'}
 												alignItems={'center'}
 												spacing={2}
-												justifyContent={'space-between'}>
+												justifyContent={'space-between'}
+											>
 												<Typography
 													color='secondary.main'
 													fontWeight={400}
 													variant='caption'
-													noWrap>
+													noWrap
+												>
 													OT Wage
 												</Typography>
 												<Typography
@@ -503,7 +530,8 @@ export const Bills = () => {
 													color='#000'
 													fontWeight={400}
 													variant='caption'
-													noWrap>
+													noWrap
+												>
 													{item?.otWage ?? 'NA'}
 												</Typography>
 											</Stack>
@@ -513,12 +541,14 @@ export const Bills = () => {
 												maxWidth={'200px'}
 												alignItems={'center'}
 												spacing={2}
-												justifyContent={'space-between'}>
+												justifyContent={'space-between'}
+											>
 												<Typography
 													color='secondary.main'
 													fontWeight={400}
 													variant='caption'
-													noWrap>
+													noWrap
+												>
 													Gross Wage
 												</Typography>
 												<Typography
@@ -526,7 +556,8 @@ export const Bills = () => {
 													color='#000'
 													fontWeight={400}
 													variant='caption'
-													noWrap>
+													noWrap
+												>
 													{item?.grossWage ?? 'NA'}
 												</Typography>
 											</Stack>
@@ -536,12 +567,14 @@ export const Bills = () => {
 												maxWidth={'200px'}
 												alignItems={'center'}
 												spacing={2}
-												justifyContent={'space-between'}>
+												justifyContent={'space-between'}
+											>
 												<Typography
 													color='secondary.main'
 													fontWeight={400}
 													variant='caption'
-													noWrap>
+													noWrap
+												>
 													PF
 												</Typography>
 												<Typography
@@ -549,7 +582,8 @@ export const Bills = () => {
 													color='#000'
 													fontWeight={400}
 													variant='caption'
-													noWrap>
+													noWrap
+												>
 													{item?.pf ?? 'NA'}
 												</Typography>
 											</Stack>
@@ -559,12 +593,14 @@ export const Bills = () => {
 												maxWidth={'200px'}
 												alignItems={'center'}
 												spacing={2}
-												justifyContent={'space-between'}>
+												justifyContent={'space-between'}
+											>
 												<Typography
 													color='secondary.main'
 													fontWeight={400}
 													variant='caption'
-													noWrap>
+													noWrap
+												>
 													ESI
 												</Typography>
 												<Typography
@@ -572,7 +608,8 @@ export const Bills = () => {
 													color='#000'
 													fontWeight={400}
 													variant='caption'
-													noWrap>
+													noWrap
+												>
 													{' '}
 													{item?.esi ?? 'NA'}
 												</Typography>
@@ -582,11 +619,13 @@ export const Bills = () => {
 											direction={'row'}
 											justifyContent={'flex-end'}
 											alignItems={'center'}
-											mt={2}>
+											mt={2}
+										>
 											{item?.dwrId ? (
 												<Link
 													href={`/projects/${router.query.projectId}/work-report/${item?.dwrId}`}
-													passHref>
+													passHref
+												>
 													<a
 														onClick={(e) => {
 															ButtonClicked({
@@ -595,7 +634,8 @@ export const Bills = () => {
 																url: router.asPath,
 															})
 															e.stopPropagation()
-														}}>
+														}}
+													>
 														<Image
 															src={'/assets/icons/reportIcon.svg'}
 															alt={'DWR report'}

@@ -1,5 +1,5 @@
 import { Box, Button, styled } from '@mui/material'
-import { theme, useContractorAuth } from '../../../sdk'
+import { primary, theme, useContractorAuth } from '../../../sdk'
 import useCompanyDetails from '../hooks/useCompanyDetails'
 import DisplayCompanyInfo from './displayCompanyInfo'
 import EditCompanyInfo from './editCompanyInfo'
@@ -19,8 +19,15 @@ const CompanyInfo = () => {
 				{!isCmpDetailsEditable && (
 					<Button
 						variant='outlined'
-						sx={{ background: theme.palette.primary.light, padding: 1 }}
-						onClick={handleEdit}>
+						sx={{
+							padding: 1,
+							'&:hover': {
+								background: theme.palette.primary.light,
+								color: primary.nightDark,
+							},
+						}}
+						onClick={handleEdit}
+					>
 						Edit Company
 					</Button>
 				)}

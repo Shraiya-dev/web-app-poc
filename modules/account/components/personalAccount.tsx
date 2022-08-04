@@ -1,5 +1,5 @@
 import { Box, Button, Stack, styled, Typography } from '@mui/material'
-import { theme, useMobile } from '../../../sdk'
+import { primary, theme, useMobile } from '../../../sdk'
 import { CustomTopBar } from '../../../sdk/components/topBar/customTopBar'
 import usePersonalAccount from '../hooks/usePersonalAccount'
 import DisplayInfo from './displayInfo'
@@ -23,7 +23,8 @@ const PersonalAccount = () => {
 							fontSize: 26,
 							fontWeight: 700,
 							color: theme.palette.secondary.main,
-						}}>
+						}}
+					>
 						Account
 					</Typography>
 				</Stack>
@@ -34,8 +35,15 @@ const PersonalAccount = () => {
 					{!isAccountEditable && (
 						<Button
 							variant='outlined'
-							sx={{ background: theme.palette.primary.light, padding: 1 }}
-							onClick={handleEdit}>
+							sx={{
+								padding: 1,
+								'&:hover': {
+									background: theme.palette.primary.light,
+									color: primary.nightDark,
+								},
+							}}
+							onClick={handleEdit}
+						>
 							Edit Profile
 						</Button>
 					)}

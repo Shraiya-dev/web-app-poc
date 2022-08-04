@@ -54,11 +54,12 @@ export const DrawerItem = ({ ...props }) => {
 						borderRadius: 40,
 						marginBottom: 16,
 					}}
-					onClick={handleClick}>
-					<ListItemIcon style={{ color: router.route === route ? 'white' : '' }}>{icon}</ListItemIcon>
+					onClick={handleClick}
+				>
+					<ListItemIcon style={{ color: router.route === route ? '#000' : '#b2b2b2' }}>{icon}</ListItemIcon>
 					<ListItemText>
 						{' '}
-						<Typography style={{ color: router.route === route ? 'white' : '' }}>{title}</Typography>
+						<Typography style={{ color: router.route === route ? '#000' : '#b2b2b2' }}>{title}</Typography>
 					</ListItemText>
 				</ListItem>
 			</a>
