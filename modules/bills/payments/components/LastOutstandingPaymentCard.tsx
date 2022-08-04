@@ -64,10 +64,22 @@ export const LastOutstandingPaymentCard = () => {
 					</Stack>
 				</Skeleton>
 			) : (
-				<CustomPaper elevation={isMobile ? 5 : 1} sx={{ minWidth: 300, maxWidth: 400, maxHeight: '144px' }}>
+				<CustomPaper
+					elevation={isMobile ? 5 : 1}
+					sx={{ minWidth: 300, maxWidth: 400, maxHeight: '144px', background: '#fff' }}
+				>
 					<Stack>
-						<Stack className='cardHeader' direction='row' alignItems='center'>
-							<Typography variant='subtitle2'>Last Payment</Typography>
+						<Stack
+							className='cardHeader'
+							direction='row'
+							alignItems='center'
+							// style={{
+							// 	background: theme.palette.background.paper,
+							// }}
+						>
+							<Typography variant='subtitle2' sx={{ color: '#000' }}>
+								Last Payment
+							</Typography>
 						</Stack>
 						<Stack direction='row' alignItems='center'>
 							{lastOutStandingPaymentData.data.response.length > 0 && (
@@ -96,7 +108,8 @@ export const LastOutstandingPaymentCard = () => {
 								sx={{
 									color: theme.palette.base.variant50,
 									fontWeight: theme.typography.fontWeightBold,
-								}}>
+								}}
+							>
 								Transaction ID: {lastOutStandingPaymentData.data.response[0].paymentId}
 							</Typography>
 						)}
@@ -106,7 +119,8 @@ export const LastOutstandingPaymentCard = () => {
 								sx={{
 									color: theme.palette.base.variant50,
 									fontWeight: theme.typography.fontWeightBold,
-								}}>
+								}}
+							>
 								{lastOutStandingPaymentData.data.response[0].transactionTime}
 							</Typography>
 						)}

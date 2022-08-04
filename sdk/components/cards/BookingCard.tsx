@@ -11,6 +11,7 @@ import { JobTypeLabel, primary } from '../../constants'
 import { useMobile } from '../../hooks'
 import { BookingPreview, JobCardState } from '../../types'
 import { StatusChip } from '../chips'
+import { theme } from '../../../sdk'
 
 interface BookingCardProps {
 	booking: BookingPreview
@@ -231,7 +232,8 @@ export const BookingCard = ({ booking }: BookingCardProps) => {
 					<Stack rowGap={1} mt={2}>
 						<Link
 							href={`/bookings/${router.query.projectId}/${booking.booking?.bookingId}/track-workers`}
-							passHref>
+							passHref
+						>
 							<Button
 								className='cta'
 								fullWidth
@@ -242,7 +244,13 @@ export const BookingCard = ({ booking }: BookingCardProps) => {
 										bookingId: booking.booking?.bookingId,
 										url: router.asPath,
 									})
-								}}>
+								}}
+								style={{
+									padding: 1,
+									background: theme.palette.primary.light,
+									color: primary.nightDark,
+								}}
+							>
 								View Booking
 							</Button>
 						</Link>

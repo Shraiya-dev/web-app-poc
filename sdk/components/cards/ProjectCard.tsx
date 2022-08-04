@@ -105,7 +105,8 @@ export const ProjectCard = ({ ...props }) => {
 						projectId: project?.projectId,
 						url: router.asPath,
 					})
-				}}>
+				}}
+			>
 				<Typography className='projectName'>{project?.name || ''}</Typography>
 				<Typography className='location'>
 					{' '}
@@ -148,7 +149,12 @@ export const ProjectCard = ({ ...props }) => {
 							projectId: project?.projectId,
 							url: router.asPath,
 						})
-					}}>
+					}}
+					style={{
+						background: theme.palette.primary.light,
+						color: '#000',
+					}}
+				>
 					Book Workers
 				</Button>
 				{/* <Button fullWidth className='cta'>

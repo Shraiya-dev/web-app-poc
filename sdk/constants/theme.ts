@@ -1,5 +1,5 @@
 import { KeyboardArrowDownRounded } from '@mui/icons-material'
-import { createTheme, responsiveFontSizes } from '@mui/material/styles'
+import { alpha, createTheme, responsiveFontSizes } from '@mui/material/styles'
 import { createBreakpoints } from '@mui/system'
 
 declare module '@mui/material/styles' {
@@ -70,6 +70,7 @@ const colorPalette = {
 		blue: '#36B5EC',
 	},
 }
+
 export const primary = {
 	main: '#1E9FD6', //'#244CB3',
 	light: '#EEFAFF', //'#224ab50d',
@@ -77,13 +78,15 @@ export const primary = {
 
 	// TODO: Need to add Proper Colouring
 	bgColor: '#F0F7FA',
-	secButtonColor: '#36B5EC',
-
+	secButtonColor: '#EFC530',
+	properDark: '#000',
 	lightGrey: 'rgba(6, 31, 72, 0.05)',
 	lightOrange: 'rgba(247, 158, 84, 0.2)',
 	lightGreen: 'rgba(15, 175, 127, 0.2)',
 	mediumGreen: 'rgba(15, 175, 127, 0.5)',
 	successGreen: '#0FAF7F',
+	darkGrey: '#333333',
+	nightDark: '#000',
 }
 export const colors = {
 	AliceBlue: '#EBF1F4',
@@ -96,31 +99,102 @@ let themeDef = createTheme({
 	typography: {
 		fontFamily: `'Mulish' , sans-serif`,
 		allVariants: {
-			color: '#061F48',
+			color: '#fff',
+		},
+		h1: {
+			fontSize: '36px',
+			fontWeight: 700,
+		},
+		h2: {
+			fontSize: '30px',
+			fontWeight: 700,
+		},
+		h3: {
+			fontSize: '24px',
+			fontWeight: 700,
+		},
+		h4: {
+			fontSize: '20px',
+			fontWeight: 700,
+		},
+		h5: {
+			fontSize: '18px',
+			fontWeight: 700,
+		},
+		h6: {
+			fontSize: '16px',
+			fontWeight: 700,
+		},
+		body1: {
+			fontSize: '16px',
+		},
+		body2: {
+			fontSize: '14px',
+		},
+		subtitle1: {
+			fontSize: '14px',
+			fontWeight: 700,
+		},
+		subtitle2: {
+			fontSize: '12px',
+		},
+		caption: {
+			fontSize: '12px',
 		},
 	},
 
 	palette: {
-		primary: primary,
+		primary: {
+			main: '#EFC41A',
+			light: '#F2CF47',
+			dark: '#A78912',
+		},
 		secondary: {
-			main: '#061e45b3',
-			dark: '#23A0D6',
-			light: '#061F4866',
+			main: '#ebebeb',
+			light: '#D6566D',
+			dark: '#8E1E33',
 		},
 		success: {
-			main: '#0FAF7F',
+			main: '#0faf7f80',
+			light: '#0faf7f33',
+			dark: '#0FAF7F',
 		},
 		info: {
-			main: '#4676F5',
+			main: '#fff',
+			light: '#fff',
+			dark: '#fff',
+			contrastText: '#fff',
 		},
 		warning: {
-			main: '#D85B00',
+			main: '#E58A51',
+			light: '#EAA173',
+			dark: '#A06038',
 		},
 		error: {
 			main: '#EA5A4D',
+			light: '#EE7B70',
+			dark: '#A33E35',
 		},
 		background: {
-			default: '#FCFCFC',
+			default: '#2e2e2e', // background color
+			paper: '#383838', // cards background
+		},
+
+		grey: {
+			'50': alpha('#061F48', 0.5),
+			'100': alpha('#061F48', 0.1),
+			'200': alpha('#061F48', 0.2),
+			'300': alpha('#061F48', 0.3),
+			'400': alpha('#061F48', 0.4),
+			'500': alpha('#061F48', 0.5),
+			'600': alpha('#061F48', 0.6),
+			'700': alpha('#061F48', 0.7),
+			'800': alpha('#061F48', 0.8),
+			'900': alpha('#061F48', 0.9),
+			A100: alpha('#061F48', 0.1),
+			A200: alpha('#061F48', 0.2),
+			A400: alpha('#061F48', 0.4),
+			A700: '#383838',
 		},
 		base: colorPalette.base,
 		green: colorPalette.green,
@@ -128,8 +202,44 @@ let themeDef = createTheme({
 		textCTA: colorPalette.textCTA,
 		tonalOffset: 0.3,
 	},
-
+	breakpoints: {
+		values: {
+			xl: 1536,
+			lg: 1350,
+			md: 900,
+			sm: 600,
+			xs: 0,
+		},
+	},
 	components: {
+		MuiTab: {
+			defaultProps: {
+				style: {
+					color: '#fff',
+				},
+			},
+		},
+		MuiInputBase: {
+			defaultProps: {
+				style: {
+					color: '#fff',
+				},
+			},
+		},
+		MuiIconButton: {
+			defaultProps: {
+				style: {
+					color: '#fff',
+				},
+			},
+		},
+		MuiTable: {
+			defaultProps: {
+				style: {
+					background: '#fff',
+				},
+			},
+		},
 		MuiPaper: {
 			defaultProps: {
 				//variant: 'outlined',
@@ -138,6 +248,7 @@ let themeDef = createTheme({
 				},
 			},
 		},
+
 		MuiInput: {
 			defaultProps: {
 				disableUnderline: true,
@@ -166,6 +277,14 @@ let themeDef = createTheme({
 		MuiTextField: {
 			defaultProps: {
 				variant: 'outlined',
+				color: 'info',
+				focused: true,
+				inputProps: {
+					style: {
+						color: '#fff',
+						borderColor: '#fff',
+					},
+				},
 			},
 			styleOverrides: {
 				root: {
@@ -196,7 +315,7 @@ let themeDef = createTheme({
 		MuiDrawer: {
 			styleOverrides: {
 				paper: {
-					backgroundColor: primary.light,
+					backgroundColor: primary.properDark,
 					borderRadius: '0px 40px 40px 0px',
 				},
 			},
