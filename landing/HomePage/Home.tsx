@@ -1,4 +1,4 @@
-import { ArrowBack, ArrowCircleLeftOutlined, ArrowCircleRightOutlined, Circle, FormatQuote } from '@mui/icons-material'
+import { ArrowCircleLeftOutlined, ArrowCircleRightOutlined, Circle, FormatQuote } from '@mui/icons-material'
 
 import {
 	Box,
@@ -7,7 +7,6 @@ import {
 	CardContent,
 	CardMedia,
 	Grid,
-	IconButton,
 	List,
 	ListItem,
 	ListItemIcon,
