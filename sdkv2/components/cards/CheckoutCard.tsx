@@ -1,12 +1,27 @@
 import { Button, Card, IconButton, Stack, TextField, Typography } from '@mui/material'
-import { FC, useMemo } from 'react'
+import { FC, useCallback, useMemo, useState } from 'react'
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline'
 import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline'
-import BookingSuccess from 'modules/createBooking/components/bookingsuccess'
+// import BookingSuccess from 'modules/createBooking/components/bookingsuccess'
+import DriveFileRenameOutlineOutlinedIcon from '@mui/icons-material/DriveFileRenameOutlineOutlined'
+import { WageUpdateDialog } from '../dialog'
+import { useCheckout } from 'modules/bookingId/hooks/useCheckout'
 
 interface Props {}
 
-const ProfileCard = ({ data }: { data: any }) => {
+const ProfileCard = ({
+	data,
+	setShowWageUpdate,
+	handleChangePersonRequire,
+	personRequire,
+	setFieldName,
+}: {
+	data: any
+	setShowWageUpdate: any
+	handleChangePersonRequire: any
+	personRequire: any
+	setFieldName: any
+}) => {
 	return (
 		<>
 			<Stack borderBottom='1px solid' py='28px' direction='row'>
@@ -15,20 +30,31 @@ const ProfileCard = ({ data }: { data: any }) => {
 					<Typography variant='h5' fontWeight={500}>
 						{data.job}
 					</Typography>
-					<Stack>
+					<Stack direction='row' alignItems='center'>
 						<Typography variant='subtitle2' fontWeight={400}>
 							Wage: &#8377; {`${data.wage} per day`}
 						</Typography>
-						{/* <IconButton>
-
-                        </IconButton> */}
+						<IconButton
+							sx={{ p: '0px', ml: '6px' }}
+							onClick={() => {
+								setShowWageUpdate(true)
+								setFieldName(data?.name)
+							}}>
+							<DriveFileRenameOutlineOutlinedIcon sx={{ color: 'primary.main' }} />
+						</IconButton>
 					</Stack>
 				</Stack>
 				<Stack direction='row' alignItems='center'>
 					<IconButton>
 						<RemoveCircleOutlineIcon sx={{ color: 'primary.main' }} />
 					</IconButton>
-					<TextField type='number' value={10} sx={{ maxWidth: 56 }} />
+					<TextField
+						type='number'
+						name={data?.name}
+						value={personRequire[data?.name]}
+						sx={{ maxWidth: 56 }}
+						onChange={(e: any) => handleChangePersonRequire(e)}
+					/>
 					<IconButton>
 						<AddCircleOutlineIcon sx={{ color: 'primary.main' }} />
 					</IconButton>
@@ -38,32 +64,39 @@ const ProfileCard = ({ data }: { data: any }) => {
 	)
 }
 export const CheckoutCard: FC<Props> = () => {
+	const [showWageUpdate, setShowWageUpdate] = useState<boolean>(false)
+	const { handleChangePersonRequire, personRequire, wages, bookingData } = useCheckout()
+	const [fieldName, setFieldName] = useState('')
+
 	const ProfileCardData = useMemo(
 		() => [
 			{
 				img: '/assets/icons/jobs/technician.svg',
 				job: 'Technician',
-				wage: 650,
+				wage: wages.technician,
+				name: 'technician',
 			},
 			{
 				img: '/assets/icons/jobs/helper.svg',
 				job: 'Helper',
-				wage: 350,
+				wage: wages.helper,
+				name: 'helper',
 			},
 			{
 				img: '/assets/icons/jobs/supervisor.svg',
 				job: 'Supervisor',
-				wage: 850,
+				wage: wages.supervisor,
+				name: 'supervisor',
 			},
 		],
-		[]
+		[[personRequire]]
 	)
 
 	const billData = useMemo(
 		() => [
 			{
 				label: 'Subtotal',
-				value: 1250,
+				value: (personRequire.helper + personRequire.supervisor + personRequire.technician) * 50,
 			},
 			{
 				label: 'Discount (First 15 applications free)',
@@ -84,6 +117,10 @@ export const CheckoutCard: FC<Props> = () => {
 
 	return (
 		<>
+			{/* handleUpdateWages from useCheckout goes in  WageUpdateDialog  */}
+			{WageUpdateDialog && (
+				<WageUpdateDialog open={showWageUpdate} fieldName={fieldName} close={setShowWageUpdate} />
+			)}
 			<Stack rowGap={4}>
 				<Stack>
 					<Typography fontSize='32px' fontWeight={600}>
@@ -114,11 +151,23 @@ export const CheckoutCard: FC<Props> = () => {
 								You have selected
 								<Typography display='inline' variant='body1' fontWeight={600} color='primary.main'>
 									{' '}
-									25 applications
+									{`${
+										personRequire.helper + personRequire.supervisor + personRequire.technician
+									}`}{' '}
+									applications
 								</Typography>{' '}
 							</Typography>
 							{ProfileCardData?.map((profile: any) => {
-								return <ProfileCard key={profile.job} data={profile} />
+								return (
+									<ProfileCard
+										key={profile.job}
+										personRequire={personRequire}
+										data={profile}
+										setShowWageUpdate={setShowWageUpdate}
+										handleChangePersonRequire={handleChangePersonRequire}
+										setFieldName={setFieldName}
+									/>
+								)
 							})}
 						</Stack>
 						<Stack rowGap={2} borderBottom='1px solid' py='24px'>
@@ -128,7 +177,7 @@ export const CheckoutCard: FC<Props> = () => {
 							<Stack rowGap={2}>
 								{billData?.map((i: any) => {
 									return (
-										<>
+										<Stack>
 											<Stack direction='row' justifyContent='space-between'>
 												<Typography
 													sx={(theme) => ({
@@ -147,7 +196,7 @@ export const CheckoutCard: FC<Props> = () => {
 													{i.discount ? '-' : ''}&#8377;{i.value}
 												</Typography>
 											</Stack>
-										</>
+										</Stack>
 									)
 								})}
 							</Stack>
@@ -171,14 +220,14 @@ export const CheckoutCard: FC<Props> = () => {
 					direction='row'
 					alignItems='center'
 					justifyContent='space-between'
-                    p='30px 24px'>
+					p='30px 24px'>
 					<Typography variant='h6' color='#000'>
 						<Typography display='inline' variant='h6' fontWeight='bolder' color='#000'>
 							Have a question?
 						</Typography>{' '}
 						Here to help.
 					</Typography>
-					<Stack direction='row' columnGap={3} >
+					<Stack direction='row' columnGap={3}>
 						<Stack direction='row' alignItems='center'>
 							<img src='/assets/icons/mail.svg' />
 							<Typography ml={1} color='#000'>

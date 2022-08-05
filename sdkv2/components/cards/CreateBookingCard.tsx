@@ -20,12 +20,12 @@ import { JobType, projectDuration } from 'sdkv2/constants'
 interface Props {}
 export const CreateBookingCard: FC<Props> = () => {
 	const [step, setStep] = useState<number>(0)
-	const { form, formikProps } = useEasyBooking()
-	const [wageDisable, setWageDisable] = useState({
-		helperWage: false,
-		technicianWage: false,
-		supervisorWage: false,
-	})
+	const { form, formikProps, wageDisable, setWageDisable } = useEasyBooking()
+	// const [wageDisable, setWageDisable] = useState({
+	// 	helperWage: false,
+	// 	technicianWage: false,
+	// 	supervisorWage: false,
+	// })
 	return (
 		<>
 			<Card elevation={16}>
@@ -40,7 +40,7 @@ export const CreateBookingCard: FC<Props> = () => {
 						</Typography>
 						<Typography>Get started with your booking in easy steps</Typography>
 					</Stack>
-					<form>
+					<form onSubmit={form.handleSubmit}>
 						<Stack spacing={2.5} my={2} alignItems='flex-start' pr={step === 0 ? 6 : 3}>
 							{step === 0 && (
 								<>
@@ -212,7 +212,12 @@ export const CreateBookingCard: FC<Props> = () => {
 											</Stack>
 										</Stack>
 									</InputWrapper>
-									<Button size='large' variant='contained'>
+									<Button
+										size='large'
+										variant='contained'
+										type='submit'
+										disabled={!form.dirty || !form.isValid}
+										>
 										Book Workers Now
 									</Button>
 								</>
