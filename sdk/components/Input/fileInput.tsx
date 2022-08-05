@@ -35,7 +35,7 @@ export const FileInput = ({ ...props }) => {
 				variant={variant}
 				color={color}
 				style={{
-					border: '1px dashed rgba(6, 31, 72, 0.5)',
+					border: '1px dashed #ababab',
 					borderRadius: 8,
 					padding: 20,
 					width: 84,

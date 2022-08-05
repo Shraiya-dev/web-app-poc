@@ -25,7 +25,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import { ButtonClicked } from 'sdk/analytics/analyticsWrapper'
-import { colors, PaginationWithHasMore, useMobile } from '../../sdk'
+import { colors, PaginationWithHasMore, primary, useMobile } from '../../sdk'
 import { DateStack } from '../../sdk/components/date/DateStack'
 import { StyledTableHeadCell } from '../../sdk/styledComponents/Tables'
 import { ApproveConfirmationDialog, ApproveConfirmationDialogProps } from './components'
@@ -83,7 +83,7 @@ export const Bills = () => {
 							<LocalizationProvider dateAdapter={AdapterDateFns}>
 								<DesktopDatePicker
 									disableFuture
-									label='From date'
+									// label='From date'
 									inputFormat='dd/MM/yy'
 									mask='__/__/__'
 									value={
@@ -97,13 +97,21 @@ export const Bills = () => {
 									}}
 									renderInput={({ inputProps, ...params }) => (
 										<TextField
-											sx={{ minHeight: 0, minWidth: 150, maxWidth: 150 }}
+											sx={{
+												minHeight: 0,
+												minWidth: 150,
+												maxWidth: 150,
+												svg: {
+													color: '#000',
+												},
+											}}
 											size='small'
 											{...params}
 											inputProps={{
 												...inputProps,
 												sx: {
 													py: 0.6,
+													color: primary.properDark,
 												},
 											}}
 										/>
@@ -127,7 +135,7 @@ export const Bills = () => {
 								/>
 								<DesktopDatePicker
 									disableFuture
-									label='To date'
+									// label='To date'
 									inputFormat='dd/MM/yy'
 									mask='__/__/__'
 									minDate={
@@ -146,13 +154,21 @@ export const Bills = () => {
 									}}
 									renderInput={({ inputProps, ...params }) => (
 										<TextField
-											sx={{ minHeight: 0, minWidth: 150, maxWidth: 150 }}
+											sx={{
+												minHeight: 0,
+												minWidth: 150,
+												maxWidth: 150,
+												svg: {
+													color: '#000',
+												},
+											}}
 											size='small'
 											{...params}
 											inputProps={{
 												...inputProps,
 												sx: {
 													py: 0.6,
+													color: primary.properDark,
 												},
 											}}
 										/>

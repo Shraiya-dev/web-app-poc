@@ -14,7 +14,7 @@ import { createBooking } from '../apis/apis'
 import useCreateBooking from '../hooks/useCreateBooking'
 import { jobTypeInfo, moreJobType, projectDuration, tags } from '../utils/helperData'
 import ConfirmCancel from './confirmCancel'
-import BookingSvg from '../../../public/assets/icons/booking.svg'
+import BookingSvg from '../../../public/assets/icons/project.svg'
 import { TopBanner } from '../../../sdk/components/banner/formBanner'
 import { useRouter } from 'next/router'
 import { Analytic } from '../../../sdk/analytics'
@@ -57,11 +57,11 @@ const CustomBookingStyle = styled(Box)(({ theme }) => ({
 	'.header': {
 		fontSize: 36,
 		fontWeight: 600,
-		color: theme.palette.primary.main,
+		color: primary.properDark,
 	},
 	'.subHeader': {
 		fontSize: 18,
-		color: theme.palette.primary.main,
+		color: primary.properDark,
 		fontWeight: 400,
 	},
 	'.subInfo': {
@@ -282,10 +282,10 @@ export const CreateBooking = () => {
 																? theme.palette.primary.light
 																: 'white',
 
-														border:
-															selectedJob === info?.value
-																? `2px solid ${theme.palette.primary.main}`
-																: `1px solid ${theme.palette.secondary.light}`,
+														// border:
+														// 	selectedJob === info?.value
+														// 		? `2px solid ${theme.palette.primary.main}`
+														// 		: `1px solid ${theme.palette.secondary.light}`,
 													}}
 												>
 													<Box>
@@ -349,13 +349,21 @@ export const CreateBooking = () => {
 									>
 										{isMore ? (
 											<Box>
-												<Typography className='view' display='inline' color={'primary.main'}>
+												<Typography
+													className='view'
+													display='inline'
+													color={theme.palette.info.main}
+												>
 													View Less <KeyboardArrowUpIcon />
 												</Typography>
 											</Box>
 										) : (
 											<Box>
-												<Typography className='view' display='inline' color={'primary.main'}>
+												<Typography
+													className='view'
+													display='inline'
+													color={theme.palette.info.main}
+												>
 													View More <KeyboardArrowDownIcon />
 												</Typography>
 											</Box>
@@ -455,7 +463,7 @@ export const CreateBooking = () => {
 												</Grid>
 												<Grid item xs={12} sm={12} md={2.5}>
 													<TextField
-														label={`${info?.label} Required`}
+														// label={`${info?.label} Required`}
 														placeholder={`Enter ${info?.label}`}
 														id={info?.name}
 														name={info?.name}
@@ -477,7 +485,7 @@ export const CreateBooking = () => {
 												</Grid>
 												<Grid item xs={12} sm={12} md={4}>
 													<TextField
-														label='Daily wage (Rs.)'
+														// label='Daily wage (Rs.)'
 														placeholder='Enter wage'
 														id={info?.wage}
 														name={info?.wage}
@@ -494,6 +502,11 @@ export const CreateBooking = () => {
 														fullWidth
 														onBlur={form.handleBlur}
 														error={!!checkError(`${info?.wage}`, form)}
+														// sx={{
+														// 	'& .MuiFormLabel-root': {
+														// 		color: theme.palette.primary.dark
+														// 	},
+														// }}
 													/>
 												</Grid>
 											</Grid>
@@ -544,7 +557,9 @@ export const CreateBooking = () => {
 															: 'white',
 
 													color:
-														projectDurationInfo === info?.value ? primary.properDark : '',
+														projectDurationInfo === info?.value
+															? primary.properDark
+															: primary.properDark,
 													marginRight: 10,
 													textTransform: 'none',
 													minWidth: 50,

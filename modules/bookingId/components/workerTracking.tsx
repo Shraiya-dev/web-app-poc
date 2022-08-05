@@ -2,15 +2,44 @@ import { CircularProgress, Grid, Pagination, Stack, Typography } from '@mui/mate
 import { JobCardCard, primary, theme } from '../../../sdk'
 
 import { useRouter } from 'next/router'
-import { useEffect } from 'react'
+import { useEffect, useMemo } from 'react'
 import { useBookingId } from '../hooks'
 import Filters from './filters'
 
-const WorkerTracking = () => {
+interface handleLength {
+	handleRequiredTotal: (jobCardsLength: any) => void
+}
+
+const WorkerTracking = ({ handleRequiredTotal }: handleLength) => {
 	const router = useRouter()
 
-	const { jobCards, bookingSummary, isLoading, SetPageNumber, pageNumber, hasMore, getJobCards, setJobCards, form } =
-		useBookingId()
+	const {
+		jobCardsLength,
+		jobCards,
+		bookingSummary,
+		isLoading,
+		SetPageNumber,
+		pageNumber,
+		hasMore,
+		getJobCards,
+		setJobCards,
+		form,
+	} = useBookingId()
+
+	const { helperCount, technicianCount, supervisorCount, totalCount } = useMemo(() => {
+		const helper = bookingSummary?.stats?.jobCardCountsBySkill.HELPER ?? 0
+		const technician = bookingSummary?.stats?.jobCardCountsBySkill.TECHNICIAN ?? 0
+		const supervisor = bookingSummary?.stats?.jobCardCountsBySkill.SUPERVISOR ?? 0
+		const total = helper + technician + supervisor
+		return {
+			helperCount: helper,
+			technicianCount: technician,
+			supervisorCount: supervisor,
+			totalCount: total,
+		}
+	}, [bookingSummary])
+
+	handleRequiredTotal(totalCount ?? 0)
 
 	const filterTags = [
 		{

@@ -44,7 +44,7 @@ export const ProjectDetails: FC<Props> = () => {
 								onClick={() => router.push('/dashboard')}
 								sx={{
 									verticalAlign: 'middle',
-									color: primary.main,
+									color: '#fff',
 									fontSize: 24,
 									cursor: 'pointer',
 								}}

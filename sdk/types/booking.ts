@@ -144,6 +144,7 @@ export interface BookingPreview {
 	workers: BookingsWorkerInfo[]
 	project: ProjectPreview
 	stats: {
+		jobCardCountsBySkill: any
 		jobCardCounts?: {
 			[key in JobCardState]?: number
 		}

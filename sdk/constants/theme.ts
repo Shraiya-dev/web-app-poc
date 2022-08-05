@@ -321,6 +321,9 @@ let themeDef = createTheme({
 						maxHeight: 400,
 					},
 				},
+				style: {
+					background: '#fff',
+				},
 
 				IconComponent: KeyboardArrowDownRounded,
 			},
