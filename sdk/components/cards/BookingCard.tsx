@@ -79,18 +79,35 @@ const CustomPaper = styled(Paper)(({ theme }) => ({
 export const BookingCard = ({ booking }: BookingCardProps) => {
 	const router = useRouter()
 	const isMobile = useMobile()
-	const { totalCount, supervisorCount, technicianCount, helperCount } = useMemo(() => {
+	const {
+		totalCount,
+		supervisorCount,
+		technicianCount,
+		helperCount,
+		requiredTechnician,
+		requiredHelper,
+		requiredSupervisor,
+		totalRequiredCount,
+	} = useMemo(() => {
 		//const { SUPERVISOR, HELPER, TECHNICIAN } = booking?.booking?.requirements
 
 		const helperCount = booking?.booking?.peopleRequired?.HELPER ?? 0
 		const technicianCount = booking?.booking?.peopleRequired?.TECHNICIAN ?? 0
 		const supervisorCount = booking?.booking?.peopleRequired?.SUPERVISOR ?? 0
 		const total = helperCount + technicianCount + supervisorCount
+		const Technician = booking?.stats?.jobCardCountsBySkill?.TECHNICIAN ?? 0
+		const Helper = booking?.stats?.jobCardCountsBySkill?.HELPER ?? 0
+		const Supervisor = booking?.stats?.jobCardCountsBySkill?.SUPERVISOR ?? 0
+		const requiredTotal = Technician + Helper + Supervisor
 		return {
 			totalCount: total,
 			helperCount: helperCount,
 			technicianCount: technicianCount,
 			supervisorCount: supervisorCount,
+			requiredTechnician: Technician,
+			requiredHelper: Helper,
+			requiredSupervisor: Supervisor,
+			totalRequiredCount: requiredTotal,
 		}
 	}, [booking])
 
@@ -179,7 +196,7 @@ export const BookingCard = ({ booking }: BookingCardProps) => {
 						</Stack>
 
 						<Typography mr={1} fontSize={16} fontWeight={700} color={primary.properDark}>
-							{helperCount}
+							{requiredHelper} / {helperCount}
 						</Typography>
 					</Stack>
 					<Stack direction={'row'} justifyContent={'space-between'} alignItems={'center'}>
@@ -192,7 +209,7 @@ export const BookingCard = ({ booking }: BookingCardProps) => {
 							</Typography>
 						</Stack>
 						<Typography mr={1} fontSize={16} fontWeight={700} color={primary.properDark}>
-							{technicianCount}
+							{requiredTechnician} / {technicianCount}
 						</Typography>
 					</Stack>
 					<Stack direction={'row'} justifyContent={'space-between'} alignItems={'center'}>
@@ -206,7 +223,7 @@ export const BookingCard = ({ booking }: BookingCardProps) => {
 						</Stack>
 
 						<Typography mr={1} fontSize={16} fontWeight={700} color={primary.properDark}>
-							{supervisorCount}
+							{requiredSupervisor} / {supervisorCount}
 						</Typography>
 					</Stack>
 				</Box>

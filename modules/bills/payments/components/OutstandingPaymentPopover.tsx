@@ -20,7 +20,7 @@ import { styled } from '@mui/system'
 import { useRouter } from 'next/router'
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 
-import { envs, indianCurrencyFormat, isEmptyObject, useContractorAuth } from '../../../../sdk'
+import { envs, indianCurrencyFormat, isEmptyObject, primary, useContractorAuth } from '../../../../sdk'
 import logo from '../../../../public/assets/icons/BrandLogo.svg'
 import {
 	cancelPaymentApi,
@@ -219,7 +219,14 @@ export const OutstandingPaymentPopover = ({
 			/>
 			<CustomDialog fullScreen={fullScreen} open={open} maxWidth='xs' fullWidth onClose={hideModal}>
 				<DialogTitle>
-					<Typography variant={'h6'}>Confirm & Pay</Typography>
+					<Typography
+						variant={'h6'}
+						sx={{
+							color: primary.properDark,
+						}}
+					>
+						Confirm & Pay
+					</Typography>
 				</DialogTitle>
 				<DialogContent>
 					<Stack direction='row' justifyContent='space-between'>
@@ -229,7 +236,8 @@ export const OutstandingPaymentPopover = ({
 									aria-labelledby='demo-radio-buttons-group-label'
 									value={amount}
 									onChange={handleRadio}
-									name='radio-buttons-group'>
+									name='radio-buttons-group'
+								>
 									<FormControlLabel
 										sx={{
 											flexDirection: 'row-reverse',
@@ -246,8 +254,12 @@ export const OutstandingPaymentPopover = ({
 										control={<Radio />}
 										label={
 											<Stack>
-												<Typography variant='h6'>{payAmount}</Typography>
-												<Typography variant='caption'>Total outstanding amount</Typography>
+												<Typography variant='h6' sx={{ color: primary.properDark }}>
+													{payAmount}
+												</Typography>
+												<Typography variant='caption' sx={{ color: primary.properDark }}>
+													Total outstanding amount
+												</Typography>
 											</Stack>
 										}
 									/>
@@ -282,7 +294,7 @@ export const OutstandingPaymentPopover = ({
 												placeholder='Enter Amount'
 												value={customAmount}
 												onChange={handleChange}
-												style={{ zIndex: '999' }}
+												style={{ zIndex: '999', color: primary.properDark }}
 											/>
 										}
 									/>
@@ -302,13 +314,12 @@ export const OutstandingPaymentPopover = ({
 							paddingRight: theme.spacing(3),
 							borderRadius: '72px',
 							maxHeight: '3rem',
-							border: `1px solid ${theme.palette.textCTA.blue}`,
-							background: theme.palette.button.primary,
 						}}
 						onClick={() => {
 							hideModal()
-						}}>
-						<Typography variant='subtitle2' sx={{ color: theme.palette.textCTA.blue }}>
+						}}
+					>
+						<Typography variant='subtitle2' sx={{ color: primary.properDark }}>
 							Cancel
 						</Typography>
 					</Button>
@@ -316,7 +327,7 @@ export const OutstandingPaymentPopover = ({
 						variant='contained'
 						disabled={payAmount <= 0 && (!amount || amount === '0' || parseInt(amount) <= 0)}
 						sx={{
-							background: theme.palette.button.secondary,
+							// background: theme.palette.button.secondary,
 							paddingTop: theme.spacing(2),
 							paddingBottom: theme.spacing(2),
 							paddingLeft: theme.spacing(3),
@@ -331,18 +342,19 @@ export const OutstandingPaymentPopover = ({
 								url: router.asPath,
 							})
 							createPaymentOrder()
-						}}>
-						<Typography variant='subtitle2' sx={{ color: theme.palette.textCTA.white }}>
+						}}
+					>
+						<Typography variant='subtitle2' sx={{ color: primary.properDark }}>
 							Pay
 						</Typography>
 						<CurrencyRupeeIcon
 							sx={{
 								fontSize: 'inherit',
 								cursor: 'pointer',
-								fill: theme.palette.textCTA.white,
+								fill: primary.properDark,
 							}}
 						/>
-						<Typography variant='subtitle2' sx={{ color: theme.palette.textCTA.white }}>
+						<Typography variant='subtitle2' sx={{ color: primary.properDark }}>
 							{originalSelected
 								? indianCurrencyFormat(payAmount.toString())
 								: indianCurrencyFormat(customAmount.toString() || payAmount.toString())}
