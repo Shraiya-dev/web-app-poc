@@ -81,8 +81,11 @@ export const WorkReportDetails = () => {
 						direction={isMobile ? 'column' : 'row'}
 						alignItems='Stretch'
 						justifyContent='space-between'
+						sx={{
+							background: primary.darkGrey,
+						}}
 					>
-						<Stack spacing={2} direction={isMobile ? 'column' : 'row'}>
+						<Stack spacing={5} direction={isMobile ? 'column' : 'row'}>
 							<Stack direction='row'>
 								<IconButton color='primary' onClick={router.back}>
 									<ArrowBackIosNew />
@@ -346,7 +349,13 @@ export const WorkReportDetails = () => {
 									<TableHead>
 										<TableRow>
 											{TableHeaderList.map((item) => (
-												<StyledTableHeadCell key={item.label as any} sx={item.sx}>
+												<StyledTableHeadCell
+													key={item.label as any}
+													sx={item.sx}
+													style={{
+														background: '#fffCF1',
+													}}
+												>
 													<Typography noWrap fontWeight={600} color={primary.properDark}>
 														{item.label}
 													</Typography>
@@ -393,7 +402,11 @@ export const WorkReportDetails = () => {
 														({workReportByIDResponse?.response?.footerDetails?.totalPresent}
 														/{workReportByIDResponse?.response?.footerDetails?.totalCount})
 													</Typography>
-													<Typography color={primary.properDark} variant='caption' noWrap>
+													<Typography
+														sx={{ color: primary.darkGrey }}
+														variant='caption'
+														noWrap
+													>
 														Attendance %
 													</Typography>
 												</Stack>
@@ -404,7 +417,7 @@ export const WorkReportDetails = () => {
 												<Typography fontWeight={600} noWrap color={primary.properDark}>
 													{workReportByIDResponse?.response?.footerDetails?.totalShiftHours}
 												</Typography>
-												<Typography color={primary.properDark} variant='caption' noWrap>
+												<Typography sx={{ color: primary.darkGrey }} variant='caption' noWrap>
 													Total Hours
 												</Typography>
 											</TableCell>
@@ -414,7 +427,7 @@ export const WorkReportDetails = () => {
 												<Typography fontWeight={600} noWrap color={primary.properDark}>
 													{workReportByIDResponse?.response?.footerDetails?.totalOtHours}
 												</Typography>
-												<Typography color={primary.properDark} variant='caption' noWrap>
+												<Typography sx={{ color: primary.darkGrey }} variant='caption' noWrap>
 													Total OT Hours
 												</Typography>
 											</TableCell>
@@ -459,7 +472,7 @@ export const WorkReportDetails = () => {
 													<Typography color={primary.properDark}>
 														{item?.name ?? 'NA'}
 													</Typography>
-													<Typography variant='caption' color={primary.properDark}>
+													<Typography variant='caption' sx={{ color: primary.darkGrey }}>
 														{item?.phoneNumber ?? 'NA'}
 													</Typography>
 												</TableCell>

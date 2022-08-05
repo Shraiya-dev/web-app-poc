@@ -93,10 +93,14 @@ export const ProjectDashboard = () => {
 									>
 										<Stack direction={'row'} justifyContent={'center'} pb={1}>
 											<AddCircleOutlineIcon
-												style={{ verticalAlign: 'middle', color: primary.main, fontSize: 56 }}
+												style={{
+													verticalAlign: 'middle',
+													color: primary.properDark,
+													fontSize: 56,
+												}}
 											/>
 										</Stack>
-										<Typography textAlign={'center'} color={primary.main} fontSize={14}>
+										<Typography textAlign={'center'} color={primary.properDark} fontSize={14}>
 											Add a new project to book workers
 										</Typography>
 									</Stack>

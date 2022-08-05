@@ -72,6 +72,7 @@ export const useBookingId = () => {
 							skillType: item?.jobCard?.skillType,
 							jobCardState: item?.jobCard?.jobCardState,
 							workerImage: item?.worker?.profilePicture,
+							phoneNumber: item?.worker?.phoneNumber.toString().slice(3),
 						}
 						return jobCard
 					})

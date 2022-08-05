@@ -202,7 +202,13 @@ export const Bills = () => {
 								<TableHead>
 									<TableRow>
 										{TableHeaderList.map((item) => (
-											<StyledTableHeadCell key={item.label as any} sx={item.sx}>
+											<StyledTableHeadCell
+												key={item.label as any}
+												sx={item.sx}
+												style={{
+													background: '#fffCF1',
+												}}
+											>
 												<Typography noWrap fontWeight={600} sx={{ color: '#000' }}>
 													{item.label}
 												</Typography>

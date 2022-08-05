@@ -230,9 +230,11 @@ let themeDef = createTheme({
 		// 	defaultProps: {
 		// 		style: {
 		// 			outline: '1px solid #000',
+		// 			color:'#000'
 		// 		},
 		// 	},
 		// },
+
 		MuiIconButton: {
 			defaultProps: {
 				style: {
