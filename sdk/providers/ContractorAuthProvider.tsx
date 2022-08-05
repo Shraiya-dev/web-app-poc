@@ -1,3 +1,4 @@
+import axios from 'axios'
 import { useRouter } from 'next/router'
 import { createContext, FC, useCallback, useContext, useEffect, useMemo, useReducer } from 'react'
 import { Identify } from '../analytics/analyticsWrapper'
@@ -310,35 +311,91 @@ const ContractorAuthProvider: FC<ContractorAuthProviderProps> = ({ children, aut
 		return () => clearInterval(timer)
 	}, [])
 
+	const createEasyBooking = useCallback(
+		async (bookingDetails) => {
+			try {
+				const payload = {
+					jobType: bookingDetails.jobType,
+					city: bookingDetails.location.split(',')[0],
+					state: bookingDetails.location.split(',')[0],
+					requirements: {
+						HELPER: bookingDetails.isHelper
+							? {
+									count: 0,
+									wage: bookingDetails.helperWage,
+							  }
+							: undefined,
+						TECHNICIAN: bookingDetails.isTechnician
+							? {
+									count: 0,
+									wage: bookingDetails.technicianWage,
+							  }
+							: undefined,
+						SUPERVISOR: bookingDetails.isSupervisor
+							? {
+									count: 0,
+									wage: bookingDetails.supervisorWage,
+							  }
+							: undefined,
+					},
+					bookingDuration: bookingDetails.workDuration,
+				}
+				const { data, status } = await axios.post('/gateway/customer-api/projects/bookings', payload)
+				router.push(`/bookings/${data.payload.projectId}/${data.payload.bookingId}/checkout`)
+			} catch (error) {
+				showSnackbar('Failed to create easy booking', 'error')
+			}
+		},
+		[router, showSnackbar]
+	)
+
 	useEffect(() => {
 		if (state.user) {
-			const redirectRoute = AccessMap[state.user.onboardingStatus]
-			if (state.user.onboardingStatus !== ONBOARDING_STATUS.ONBOARDED) {
-				if (router.pathname !== redirectRoute) {
-					router.replace(redirectRoute)
+			try {
+				const discoveryBookingFromCookie = JSON.parse(getCookie('discoveryBooking'))
+
+				if (!state.user.hasProjects && discoveryBookingFromCookie) {
+					debugger
+					createEasyBooking(discoveryBookingFromCookie)
+				} else {
+					const redirectRoute = AccessMap[state.user.onboardingStatus]
+					if (state.user.onboardingStatus !== ONBOARDING_STATUS.ONBOARDED) {
+						if (router.pathname !== redirectRoute) {
+							router.replace(redirectRoute)
+						}
+						return
+					} else if (
+						router.pathname === '/create-organisation' &&
+						state.user.onboardingStatus === ONBOARDING_STATUS.ONBOARDED
+					) {
+						router.replace('/onboarding/success')
+						return
+					} else if (
+						router.pathname === '/onboarding/failed' &&
+						state.user.onboardingStatus === ONBOARDING_STATUS.ONBOARDED
+					) {
+						router.replace('/dashboard')
+					} else {
+						if (
+							// restricts access to any other routes except the routes included in array
+							[
+								'/dashboard',
+								'/profile',
+								'/worker',
+								'/projects',
+								'/bookings',
+								'/account',
+								'/onboarding',
+								'/checkout',
+							].every((item) => !router.pathname.includes(item))
+						) {
+							router.replace(redirectRoute)
+							return
+						}
+					}
 				}
-				return
-			} else if (
-				router.pathname === '/create-organisation' &&
-				state.user.onboardingStatus === ONBOARDING_STATUS.ONBOARDED
-			) {
-				router.replace('/onboarding/success')
-				return
-			} else if (
-				router.pathname === '/onboarding/failed' &&
-				state.user.onboardingStatus === ONBOARDING_STATUS.ONBOARDED
-			) {
-				router.replace('/dashboard')
-			} else {
-				if (
-					// restricts access to any other routes except the routes included in array
-					['/dashboard', '/profile', '/worker', '/projects', '/bookings', '/account', '/onboarding','/checkout'].every(
-						(item) => !router.pathname.includes(item)
-					)
-				) {
-					router.replace(redirectRoute)
-					return
-				}
+			} catch (error) {
+				console.log('hello')
 			}
 		}
 		// eslint-disable-next-line react-hooks/exhaustive-deps
