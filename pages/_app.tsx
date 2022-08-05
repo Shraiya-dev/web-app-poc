@@ -28,6 +28,7 @@ import { SplashProvider } from 'sdk/providers/SplashProvider'
 import { AnalyticsPage, Identify, NewAnalyticsPage } from '../sdk/analytics/analyticsWrapper'
 import { createCookieInHour, getCookie } from '../sdk/analytics/helper'
 import { CssBaseline } from '@mui/material'
+import { PaymentProvider } from 'sdk/providers/PaymentProvider'
 //=====================initializing axios interceptor=======================
 
 axios.defaults.baseURL = envs.SERVER_URL
@@ -169,12 +170,14 @@ function MyApp({ Component, pageProps }: AppProps) {
 			<SEO {...seoData} />
 			<QueryClientProvider client={queryClient}>
 				<ThemeProvider theme={theme}>
-					<CssBaseline/>
+					<CssBaseline />
 					<GlobalCssProvider>
 						<SnackbarProvider>
 							<SplashProvider>
 								<ContractorAuthProvider>
-									<Component {...pageProps} />
+									<PaymentProvider>
+										<Component {...pageProps} />
+									</PaymentProvider>
 								</ContractorAuthProvider>
 							</SplashProvider>
 						</SnackbarProvider>
