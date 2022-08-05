@@ -1,4 +1,5 @@
 import { Add, Close } from '@mui/icons-material'
+import CancelRoundedIcon from '@mui/icons-material/CancelRounded'
 import { LoadingButton } from '@mui/lab'
 import {
 	Box,
@@ -17,7 +18,7 @@ import {
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
 import ProjectSvg from '../../../public/assets/icons/project.svg'
-import { checkError, getSelectOptions, InputWrapper, primary, theme, useSnackbar } from '../../../sdk'
+import { checkError, getSelectOptions, InputWrapper, primary, theme, useMobile, useSnackbar } from '../../../sdk'
 import { Analytic } from '../../../sdk/analytics'
 import { TopBanner } from '../../../sdk/components/banner/formBanner'
 import { FileInput } from '../../../sdk/components/Input/fileInput'
@@ -38,11 +39,11 @@ const CustomProjectStyle = styled(Box)(({ theme }) => ({
 	'.header': {
 		fontSize: 36,
 		fontWeight: 600,
-		color: theme.palette.primary.main,
+		color: primary.properDark,
 	},
 	'.subHeader': {
 		fontSize: 18,
-		color: theme.palette.primary.main,
+		color: primary.properDark,
 		fontWeight: 400,
 	},
 
@@ -104,6 +105,8 @@ export const CreateProject = () => {
 	} = useCreateProject()
 
 	const router = useRouter()
+
+	const isMobile = useMobile()
 
 	useEffect(() => {
 		if (step === 1) {
@@ -290,6 +293,7 @@ export const CreateProject = () => {
 														width: 32,
 														height: 32,
 														fontWeight: 100,
+														color: '#fff',
 													}}
 												/>
 											)
@@ -322,15 +326,14 @@ export const CreateProject = () => {
 																)
 															}}
 															sx={(theme) => ({
-																backgroundColor: theme.palette.grey[100],
-																color: primary.main,
+																color: '#fff',
 																position: 'absolute',
-																//zIndex: 100,
+																// zIndex: 100,
 																top: -10,
 																right: -10,
 															})}
 														>
-															<Close />
+															<CancelRoundedIcon />
 														</IconButton>
 
 														<img
@@ -414,6 +417,7 @@ export const CreateProject = () => {
 															width: 32,
 															height: 32,
 															fontWeight: 100,
+															color: '#fff',
 														}}
 													/>
 												)
@@ -448,7 +452,7 @@ export const CreateProject = () => {
 																	)
 																}}
 																sx={(theme) => ({
-																	backgroundColor: theme.palette.grey[100],
+																	// backgroundColor: theme.palette.grey[100],
 																	color: primary.main,
 																	position: 'absolute',
 																	//zIndex: 100,
@@ -456,7 +460,7 @@ export const CreateProject = () => {
 																	right: -10,
 																})}
 															>
-																<Close />
+																<CancelRoundedIcon />
 															</IconButton>
 
 															<img

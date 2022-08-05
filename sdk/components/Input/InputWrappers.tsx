@@ -15,7 +15,8 @@ export const InputWrapper = ({ label, toolTip, children, ...props }: InputWrappe
 						mb: 1, //previous value was 1.5 changed this because the design have 8px spacing between input field and label (why was it 1.5 === 12px ???deepak)
 						color: '#061F48',
 					}}
-					{...props}>
+					{...props}
+				>
 					<Typography fontSize={13} fontWeight={700} display='inline'>
 						{label}
 					</Typography>
@@ -27,7 +28,7 @@ export const InputWrapper = ({ label, toolTip, children, ...props }: InputWrappe
 									fontSize: '18',
 									verticalAlign: 'middle',
 									marginLeft: 4,
-									color: theme.palette.secondary.light,
+									color: '#16253d',
 								}}
 							/>
 						</Tooltip>

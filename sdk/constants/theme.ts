@@ -298,9 +298,13 @@ let themeDef = createTheme({
 				focused: true,
 				inputProps: {
 					style: {
-						color: '#fff',
+						color: '#000',
 						borderColor: '#fff',
 					},
+				},
+				style: {
+					background: '#fff',
+					borderRadius: 8,
 				},
 			},
 			styleOverrides: {
@@ -316,6 +320,9 @@ let themeDef = createTheme({
 					style: {
 						maxHeight: 400,
 					},
+				},
+				style: {
+					background: '#fff',
 				},
 
 				IconComponent: KeyboardArrowDownRounded,
