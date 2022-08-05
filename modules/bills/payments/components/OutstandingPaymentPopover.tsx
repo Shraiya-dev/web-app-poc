@@ -126,7 +126,7 @@ export const OutstandingPaymentPopover = ({
 			paymentId: order.paymentId,
 			transactionId: razorPayDetails.current.razorpay_payment_id,
 			orderId: order.orderId,
-				: razorPayDetails.current.razorpay_signature,
+			signature: razorPayDetails.current.razorpay_signature,
 		}
 		confirmPaymentOrderMutation.mutate(
 			{ projectId: projectId, params },

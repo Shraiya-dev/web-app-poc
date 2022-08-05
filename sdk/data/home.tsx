@@ -2,6 +2,7 @@ import { BarChart, Settings, Share, StarBorder } from '@mui/icons-material'
 import { Typography } from '@mui/material'
 import { Children } from 'react'
 import { landingTheme } from 'sdk/constants/landingTheme'
+import { JOB_TYPES } from 'sdk/types'
 
 export const homePage = {
 	heroSection: {},
@@ -154,7 +155,7 @@ export const homePage = {
 				background: '#EFC41A',
 				width: '60%',
 				height: '307px',
-				borderRadius:'15px'
+				borderRadius: '15px',
 			},
 		},
 	},
@@ -216,7 +217,7 @@ export const homePage = {
 			verified: true,
 			phoneNumber: '+919650674431',
 			profileImage: 'https://www.un.org/sites/un2.un.org/files/2020/09/smiling-factory-worker.jpg',
-			jobType: 'Mason',
+			jobType: JOB_TYPES.ALUMINIUM_FABRICATOR,
 			skillType: 'Technician',
 			rating: 3,
 			experience: {
