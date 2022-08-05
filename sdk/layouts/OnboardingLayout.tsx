@@ -1,13 +1,8 @@
-import { Box, Grid, Paper, Stack, Typography } from '@mui/material'
+import { Box, Paper, Stack, Typography } from '@mui/material'
 import { styled } from '@mui/system'
-import Image from 'next/image'
-import React from 'react'
-import { SvgBrandLogo } from '../components'
-import Banner from '../../public/assets/icons/Banner.svg'
+import { useRouter } from 'next/router'
+import { Navbar } from '../components'
 import { useMobile } from '../hooks'
-import logo from '../../public/assets/icons/BrandLogo.svg'
-import onboardingSvg from '../../public/assets/icons/onboardingBack.svg'
-import { primary } from '../constants'
 
 const intro = [
 	{
@@ -28,25 +23,34 @@ const intro = [
 ]
 
 const CustomizeDashboard = styled(Box)(({ theme }) => ({
-	minHeight: '100vh',
+	minHeight: 'calc(100vh - 65px)',
 	minWidth: '100vw',
 	display: 'flex',
+	marginTop: '65px',
+	position: 'relative',
+
+	'.helmet': {
+		position: 'absolute',
+		top: '15%',
+		left: '50%',
+		transform: 'translate(-50%,0)',
+	},
 
 	'.center': {
 		flex: 1,
 		paddingTop: 24,
 		justifyContent: 'center',
 		alignItems: 'center',
-		backgroundImage: ' url(assets/icons/onboardingBack.svg) ',
-		backgroundPosition: 'center',
-		backgroundRepeat: 'no-repeat',
-		backgroundSize: 'cover',
+		// backgroundImage: ' url(/assets/icons/backgrounds/onboarding-background.svg) ',
+		// backgroundPosition: 'center center',
+		// backgroundRepeat: 'no-repeat',
+		// backgroundSize: 'cover',
+		// objectFit: 'contain',
 
 		//backgroundImage:onboardingSvg,
 		// backgroundImage: `url(${onboardingSvg})`,
 	},
 
-	
 	'.logoContainer': {
 		display: 'flex',
 		justifyContent: 'center',
@@ -81,21 +85,57 @@ const CustomizeDashboard = styled(Box)(({ theme }) => ({
 			maxHeight: 124,
 			alignItems: 'start',
 		},
+		'.helmet': {
+			position: 'absolute',
+			top: '10%',
+			left: '50%',
+			// transform:'translate(-50%,0)'
+		},
 	},
 }))
 
-export const OnboardingLayout = ({ children, ...props }: any) => {
+export const OnboardingLayout = ({ children, helmet = true, ...props }: any) => {
 	const isMobile = useMobile()
+	const router = useRouter()
 	return (
-		<CustomizeDashboard>
-			<Stack direction={'row'} alignItems={'center'} mb={8} style={{ position: 'absolute', margin: 24 }}>
-				<Image alt='logo' src={logo} />
-			</Stack>
-			<Stack className='center'>
-				<Paper elevation={4} style={{ padding: 24, borderRadius: 8, width: isMobile ? 372 : 392, zIndex: 2 }}>
-					{children}
-				</Paper>
-			</Stack>
-		</CustomizeDashboard>
+		<>
+			<Navbar />
+			<CustomizeDashboard>
+				{helmet && (
+					<Stack className='helmet'>
+						<img src='/assets/icons/backgrounds/Helmet.svg' />
+					</Stack>
+				)}
+				<Stack position={'absolute'} top={0} right={0}>
+					<img src='/assets/icons/backgrounds/grey-bubble.svg' />
+				</Stack>
+				<Stack position={'absolute'} bottom={0} left={0}>
+					<img src='/assets/icons/backgrounds/orange-bubble.svg' />
+				</Stack>
+				<Stack
+					onClick={() => {
+						router.back()
+					}}
+					direction='row'
+					sx={{ position: 'absolute', top: '38px', left: '102px', cursor: 'pointer' }}>
+					<img src={'/assets/icons/arrow_back.svg'} alt='back' />
+					<Typography ml={2}>Go Back</Typography>
+				</Stack>
+				{helmet && (
+					<Stack className='center'>
+						<Paper
+							elevation={4}
+							style={{ padding: 24, borderRadius: 8, width: isMobile ? 372 : 392, zIndex: 2 }}>
+							{children}
+						</Paper>
+					</Stack>
+				)}
+				{!helmet && (
+					<Stack mt='90px' mb='20px' className='center'>
+						{children}
+					</Stack>
+				)}
+			</CustomizeDashboard>
+		</>
 	)
 }

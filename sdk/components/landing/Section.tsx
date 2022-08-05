@@ -17,7 +17,7 @@ export const Section = ({ backgroundColor, backgroundImage, boxSx, sectionProps,
 				backgroundSize: 'contain',
 				...boxSx,
 			}}>
-			<Container sx={{ py: 3, ...sx }} {...rest} />
+			<Container sx={{ py: 4, ...sx }} {...rest} />
 		</Box>
 	)
 }
