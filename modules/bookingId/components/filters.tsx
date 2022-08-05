@@ -55,12 +55,12 @@ const Filters = ({ ...props }) => {
 							variant='outlined'
 							style={{
 								color: form.values.tags.includes(item.value)
-									? primary.main
+									? primary.yellow
 									: theme.palette.secondary.main,
 
 								borderColor: form.values.tags.includes(item.value)
-									? primary.main
-									: theme.palette.secondary.light,
+									? primary.yellow
+									: primary.secButtonColor,
 								borderRadius: 8,
 								fontSize: 14,
 							}}

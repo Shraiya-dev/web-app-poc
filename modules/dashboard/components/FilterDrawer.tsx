@@ -1,5 +1,5 @@
 import { ArrowBackIos } from '@mui/icons-material'
-import { Button, Divider, Drawer, Select, Stack, TextField, Typography } from '@mui/material'
+import { Button, Divider, Drawer, Paper, Select, Stack, TextField, Typography } from '@mui/material'
 import { useRouter } from 'next/router'
 import { BookingStateLabel, getSelectOptionsFromObject, InputWrapper } from '../../../sdk'
 import { useFilterDrawer } from '../hooks'
@@ -16,7 +16,8 @@ export const FilterDrawer = ({ open, onClose }: FilterDrawerProps) => {
 			anchor='right'
 			open={open}
 			onClose={onClose}
-			PaperProps={{ style: { borderRadius: '0px 0px 0px 0px', background: 'white' } }}>
+			PaperProps={{ style: { borderRadius: '0px 0px 0px 0px' } }}
+		>
 			<Stack flex={1} minWidth={drawerWidth} p={2} alignItems='flex-start'>
 				<Button
 					color='primary'
@@ -68,7 +69,8 @@ export const FilterDrawer = ({ open, onClose }: FilterDrawerProps) => {
 								name='sortBy'
 								defaultValue='Created At'
 								value={'CREATED_AT'}
-								onChange={form.handleChange}>
+								onChange={form.handleChange}
+							>
 								{getSelectOptionsFromObject({
 									none: 'Choose',
 
@@ -86,7 +88,8 @@ export const FilterDrawer = ({ open, onClose }: FilterDrawerProps) => {
 						onClick={(e) => {
 							form.handleReset(e)
 							onClose()
-						}}>
+						}}
+					>
 						Reset
 					</Button>
 					<Button
@@ -94,7 +97,8 @@ export const FilterDrawer = ({ open, onClose }: FilterDrawerProps) => {
 						onClick={(e: any) => {
 							form.handleSubmit()
 							onClose()
-						}}>
+						}}
+					>
 						Apply
 					</Button>
 				</Stack>

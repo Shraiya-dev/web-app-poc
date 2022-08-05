@@ -26,6 +26,7 @@ import {
 	JobTypeLabel,
 	JOB_TYPES,
 	PaginationWithHasMore,
+	primary,
 	SkillTypeLabel,
 	useContractorAuth,
 	useMobile,
@@ -79,7 +80,8 @@ export const BillDetails = () => {
 						p={isMobile ? 1 : 2}
 						direction={isMobile ? 'column' : 'row'}
 						alignItems='Stretch'
-						justifyContent='space-between'>
+						justifyContent='space-between'
+					>
 						<Stack spacing={2} direction={isMobile ? 'column' : 'row'}>
 							{/* {isProjectLoading ? (
 						<Stack flex={1} justifyContent='center'>
@@ -95,7 +97,7 @@ export const BillDetails = () => {
 									<Typography variant='h5' fontWeight={700}>
 										Heroes Bills
 									</Typography>
-									<Typography variant='caption' color='grey.600'>
+									<Typography variant='caption' color={primary.light}>
 										{projectDetails?.name}
 									</Typography>
 								</Stack>
@@ -217,7 +219,8 @@ export const BillDetails = () => {
 							direction={isMobile ? 'column' : 'row'}
 							justifyContent='flex-end'
 							spacing={1}
-							alignItems='stretch'>
+							alignItems='stretch'
+						>
 							{/* <form
 						onSubmit={async (e) => {
 							e.preventDefault()
@@ -267,7 +270,8 @@ export const BillDetails = () => {
 							<Stack
 								direction='row'
 								alignItems='center'
-								justifyContent={isMobile ? 'space-between' : undefined}>
+								justifyContent={isMobile ? 'space-between' : undefined}
+							>
 								<Typography variant='subtitle2'>
 									Rows per page: {billDetailsResponse?.bills?.length ?? 10}
 								</Typography>
@@ -282,13 +286,14 @@ export const BillDetails = () => {
 								component={Paper}
 								sx={{
 									height: isMobile ? 'calc(100vh - 120px)' : 'calc(100vh - 170px)',
-								}}>
+								}}
+							>
 								<Table stickyHeader>
 									<TableHead>
 										<TableRow>
 											{TableHeaderList.map((item) => (
 												<StyledTableHeadCell key={item.label as any} sx={item.sx}>
-													<Typography noWrap fontWeight={600}>
+													<Typography noWrap fontWeight={600} color={primary.properDark}>
 														{item.label}
 													</Typography>
 												</StyledTableHeadCell>
@@ -313,24 +318,32 @@ export const BillDetails = () => {
 													'&:hover': {
 														backgroundColor: colors.AliceBlue,
 													},
-												}}>
+												}}
+											>
 												<TableCell
 													sx={{
 														position: 'sticky',
 														left: 0,
 														width: 80,
 														background: colors.FloralWhite,
-													}}></TableCell>
+													}}
+												></TableCell>
 												<TableCell
 													sx={{
 														position: 'sticky',
 														left: 80,
 														background: colors.FloralWhite,
-													}}>
-													<Typography fontWeight={600} noWrap>
+													}}
+												>
+													<Typography fontWeight={600} noWrap color={primary.properDark}>
 														{billSummaryResponse?.summary?.heroCount}
 													</Typography>
-													<Typography color='secondary.main' variant='caption' noWrap>
+													<Typography
+														// color={primary.properDark}
+														variant='caption'
+														color={primary.properDark}
+														noWrap
+													>
 														Heroes
 													</Typography>
 												</TableCell>
@@ -338,52 +351,52 @@ export const BillDetails = () => {
 												<TableCell></TableCell>
 												<TableCell>
 													<Stack>
-														<Typography fontWeight={600} noWrap>
+														<Typography fontWeight={600} noWrap color={primary.properDark}>
 															{billSummaryResponse?.summary?.baseWage}
 														</Typography>
-														<Typography color='secondary.main' variant='caption' noWrap>
+														<Typography color={primary.properDark} variant='caption' noWrap>
 															Base Wage
 														</Typography>
 													</Stack>
 												</TableCell>
 												{/* <TableCell></TableCell> */}
 												<TableCell>
-													<Typography fontWeight={600} noWrap>
+													<Typography fontWeight={600} noWrap color={primary.properDark}>
 														{billSummaryResponse?.summary?.otWage}
 													</Typography>
-													<Typography color='secondary.main' variant='caption' noWrap>
+													<Typography color={primary.properDark} variant='caption' noWrap>
 														OT Wage
 													</Typography>
 												</TableCell>
 												<TableCell>
-													<Typography fontWeight={600} noWrap>
+													<Typography fontWeight={600} noWrap color={primary.properDark}>
 														{billSummaryResponse?.summary?.grossWage}
 													</Typography>
-													<Typography color='secondary.main' variant='caption' noWrap>
+													<Typography color={primary.properDark} variant='caption' noWrap>
 														Gross Wage
 													</Typography>
 												</TableCell>
 												<TableCell>
-													<Typography fontWeight={600} noWrap>
+													<Typography fontWeight={600} noWrap color={primary.properDark}>
 														{billSummaryResponse?.summary?.pf}
 													</Typography>
-													<Typography color='secondary.main' variant='caption' noWrap>
+													<Typography color={primary.properDark} variant='caption' noWrap>
 														Total PF
 													</Typography>
 												</TableCell>
 												<TableCell>
-													<Typography fontWeight={600} noWrap>
+													<Typography fontWeight={600} noWrap color={primary.properDark}>
 														{billSummaryResponse?.summary?.esi}
 													</Typography>
-													<Typography color='secondary.main' variant='caption' noWrap>
+													<Typography color={primary.properDark} variant='caption' noWrap>
 														Total ESI
 													</Typography>
 												</TableCell>
 												<TableCell>
-													<Typography fontWeight={600} noWrap>
+													<Typography fontWeight={600} noWrap color={primary.properDark}>
 														{billSummaryResponse?.summary?.totalPayable}
 													</Typography>
-													<Typography color='secondary.main' variant='caption' noWrap>
+													<Typography color={primary.properDark} variant='caption' noWrap>
 														Total Payable
 													</Typography>
 												</TableCell>
@@ -395,7 +408,8 @@ export const BillDetails = () => {
 														'&:hover': {
 															backgroundColor: colors.AliceBlue,
 														},
-													}}>
+													}}
+												>
 													<TableCell
 														sx={{
 															position: 'sticky',
@@ -407,7 +421,8 @@ export const BillDetails = () => {
 															'&:hover': {
 																backgroundColor: colors.AliceBlue,
 															},
-														}}>
+														}}
+													>
 														<Avatar
 															sx={{ width: 48, height: 48 }}
 															src={
@@ -423,19 +438,22 @@ export const BillDetails = () => {
 															'&:hover': {
 																backgroundColor: colors.AliceBlue,
 															},
-														}}>
-														<Typography noWrap>{worker?.name ?? 'NA'}</Typography>
-														<Typography variant='caption' color='secondary.main'>
+														}}
+													>
+														<Typography noWrap color={primary.properDark}>
+															{worker?.name ?? 'NA'}
+														</Typography>
+														<Typography variant='caption' color={primary.properDark}>
 															{worker?.phoneNumber ?? 'NA'}
 														</Typography>
 													</TableCell>
 													<TableCell>
-														<Typography noWrap>
+														<Typography noWrap color={primary.properDark}>
 															{JobTypeLabel[worker?.workDetails?.jobType as JOB_TYPES]}
 														</Typography>
 													</TableCell>
 													<TableCell>
-														<Typography noWrap>
+														<Typography noWrap color={primary.properDark}>
 															{
 																SkillTypeLabel[
 																	worker?.workDetails?.workerType as WORKER_TYPES
@@ -445,25 +463,37 @@ export const BillDetails = () => {
 													</TableCell>
 
 													<TableCell>
-														<Typography noWrap>{bill?.baseWage ?? 'NA'}</Typography>
+														<Typography noWrap color={primary.properDark}>
+															{bill?.baseWage ?? 'NA'}
+														</Typography>
 													</TableCell>
 													{/* <TableCell>
 													<Typography noWrap>{bill?.otFactor ?? 'NA'}</Typography>
 												</TableCell> */}
 													<TableCell>
-														<Typography noWrap>{bill?.otWage ?? 'NA'}</Typography>
+														<Typography noWrap color={primary.properDark}>
+															{bill?.otWage ?? 'NA'}
+														</Typography>
 													</TableCell>
 													<TableCell>
-														<Typography noWrap>{bill?.grossWage ?? 'NA'}</Typography>
+														<Typography noWrap color={primary.properDark}>
+															{bill?.grossWage ?? 'NA'}
+														</Typography>
 													</TableCell>
 													<TableCell>
-														<Typography noWrap>{bill?.pf ?? 'NA'}</Typography>
+														<Typography noWrap color={primary.properDark}>
+															{bill?.pf ?? 'NA'}
+														</Typography>
 													</TableCell>
 													<TableCell>
-														<Typography noWrap>{bill?.esi ?? 'NA'}</Typography>
+														<Typography noWrap color={primary.properDark}>
+															{bill?.esi ?? 'NA'}
+														</Typography>
 													</TableCell>
 													<TableCell>
-														<Typography noWrap>{bill?.netWage ?? 'NA'}</Typography>
+														<Typography noWrap color={primary.properDark}>
+															{bill?.netWage ?? 'NA'}
+														</Typography>
 													</TableCell>
 												</TableRow>
 											))}
@@ -485,7 +515,8 @@ export const BillDetails = () => {
 							justifyContent={'space-between'}
 							sx={{
 								p: '16px 10px 10px 16px',
-							}}>
+							}}
+						>
 							<Stack direction={'row'}>
 								<IconButton color='primary' onClick={router.back}>
 									<ArrowBackIosNew sx={{ fontSize: '30px' }} />
@@ -529,29 +560,31 @@ export const BillDetails = () => {
 							height: '72px',
 							background: '#FFFCF1',
 							mt: '22px',
-						}}>
+						}}
+					>
 						<Stack
 							direction={'row'}
 							sx={{
 								p: '16px 16px',
-							}}>
+							}}
+						>
 							<Grid container>
 								<Grid item xs={4}>
 									<Stack direction={'column'}>
-										<Typography fontWeight={600} noWrap>
+										<Typography fontWeight={600} noWrap color={primary.properDark}>
 											{billSummaryResponse?.summary?.baseWage}
 										</Typography>
-										<Typography color='secondary.main' variant='caption' noWrap>
+										<Typography color={primary.properDark} variant='caption' noWrap>
 											Base Wage
 										</Typography>
 									</Stack>
 								</Grid>
 								<Grid item xs={4}>
 									<Stack direction={'column'}>
-										<Typography fontWeight={600} noWrap>
+										<Typography fontWeight={600} noWrap color={primary.properDark}>
 											{billSummaryResponse?.summary?.grossWage}
 										</Typography>
-										<Typography color='secondary.main' variant='caption' noWrap>
+										<Typography color={primary.properDark} variant='caption' noWrap>
 											Gross Wage
 										</Typography>
 									</Stack>
@@ -561,14 +594,26 @@ export const BillDetails = () => {
 										<Typography color='#0FAF7F' fontWeight={600} noWrap>
 											{billSummaryResponse?.summary?.totalPayable}
 										</Typography>
-										<Typography color='secondary.main' variant='caption' noWrap>
+										<Typography color={primary.properDark} variant='caption' noWrap>
 											Total Payable
 										</Typography>
 									</Stack>
 								</Grid>
 							</Grid>
 							<IconButton onClick={handleBox}>
-								{!boxOpen ? <ExpandMoreIcon /> : <KeyboardArrowUpIcon />}
+								{!boxOpen ? (
+									<ExpandMoreIcon
+										sx={{
+											color: primary.properDark,
+										}}
+									/>
+								) : (
+									<KeyboardArrowUpIcon
+										sx={{
+											color: primary.properDark,
+										}}
+									/>
+								)}
 							</IconButton>
 						</Stack>
 					</Stack>
@@ -577,39 +622,41 @@ export const BillDetails = () => {
 						timeout={550}
 						sx={{
 							background: '#FFFCF1',
-						}}>
+						}}
+					>
 						<Stack
 							direction={'row'}
 							sx={{
 								p: '16px 16px',
-							}}>
+							}}
+						>
 							<Grid container>
 								<Grid item xs={4}>
 									<Stack direction={'column'} justifyContent={'flex-start'}>
-										<Typography fontWeight={600} noWrap>
+										<Typography fontWeight={600} noWrap color={primary.properDark}>
 											{billSummaryResponse?.summary?.otWage}
 										</Typography>
-										<Typography color='secondary.main' variant='caption' noWrap>
+										<Typography color={primary.properDark} variant='caption' noWrap>
 											OT Wage
 										</Typography>
 									</Stack>
 								</Grid>
 								<Grid item xs={4}>
 									<Stack direction={'column'} justifyContent={'flex-start'}>
-										<Typography fontWeight={600} noWrap>
+										<Typography fontWeight={600} noWrap color={primary.properDark}>
 											{billSummaryResponse?.summary?.pf}
 										</Typography>
-										<Typography color='secondary.main' variant='caption' noWrap>
+										<Typography color={primary.properDark} variant='caption' noWrap>
 											Total PF
 										</Typography>
 									</Stack>
 								</Grid>
 								<Grid item xs={4}>
 									<Stack direction={'column'} justifyContent={'flex-start'}>
-										<Typography fontWeight={600} noWrap>
+										<Typography fontWeight={600} noWrap color={primary.properDark}>
 											{billSummaryResponse?.summary?.esi}
 										</Typography>
-										<Typography color='secondary.main' variant='caption' noWrap>
+										<Typography color={primary.properDark} variant='caption' noWrap>
 											Total ESI
 										</Typography>
 									</Stack>
@@ -625,7 +672,8 @@ export const BillDetails = () => {
 						sx={{
 							maxHeight: `calc(100vh - ${boxOpen ? '270px' : '210px'})`,
 							overflowY: 'scroll',
-						}}>
+						}}
+					>
 						{billDetailsResponse?.bills?.map(({ bill, worker }) => {
 							return (
 								<>
@@ -667,7 +715,8 @@ export const BillDetails = () => {
 												background: '#F9F9F9',
 												borderRadius: '8px',
 												p: '12px 18px 12px 12px',
-											}}>
+											}}
+										>
 											<Stack direction={'row'} justifyContent={'space-between'}>
 												<Stack
 													direction={'row'}
@@ -675,12 +724,14 @@ export const BillDetails = () => {
 													alignItems={'center'}
 													maxWidth={'200px'}
 													spacing={2}
-													justifyContent={'space-between'}>
+													justifyContent={'space-between'}
+												>
 													<Typography
-														color='secondary.main'
+														color={primary.properDark}
 														variant='caption'
 														fontWeight={400}
-														noWrap>
+														noWrap
+													>
 														Base Wage
 													</Typography>
 													<Typography
@@ -688,13 +739,14 @@ export const BillDetails = () => {
 														fontWeight={400}
 														color='#000'
 														variant='caption'
-														noWrap>
+														noWrap
+													>
 														{bill?.baseWage ?? 'NA'}
 													</Typography>
 												</Stack>
 												{/* <Stack direction={'row'} alignItems={'center'} spacing={2}>
 													<Typography
-														color='secondary.main'
+														color={primary.properDark}
 														fontWeight={400}
 														variant='caption'
 														noWrap>
@@ -711,12 +763,14 @@ export const BillDetails = () => {
 												maxWidth={'200px'}
 												alignItems={'center'}
 												spacing={2}
-												justifyContent={'space-between'}>
+												justifyContent={'space-between'}
+											>
 												<Typography
-													color='secondary.main'
+													color={primary.properDark}
 													fontWeight={400}
 													variant='caption'
-													noWrap>
+													noWrap
+												>
 													OT Wage
 												</Typography>
 												<Typography
@@ -724,7 +778,8 @@ export const BillDetails = () => {
 													color='#000'
 													fontWeight={400}
 													variant='caption'
-													noWrap>
+													noWrap
+												>
 													{bill?.otWage ?? 'NA'}
 												</Typography>
 											</Stack>
@@ -734,12 +789,14 @@ export const BillDetails = () => {
 												maxWidth={'200px'}
 												alignItems={'center'}
 												spacing={2}
-												justifyContent={'space-between'}>
+												justifyContent={'space-between'}
+											>
 												<Typography
-													color='secondary.main'
+													color={primary.properDark}
 													fontWeight={400}
 													variant='caption'
-													noWrap>
+													noWrap
+												>
 													Gross Wage
 												</Typography>
 												<Typography
@@ -747,7 +804,8 @@ export const BillDetails = () => {
 													color='#000'
 													fontWeight={400}
 													variant='caption'
-													noWrap>
+													noWrap
+												>
 													{bill?.grossWage ?? 'NA'}
 												</Typography>
 											</Stack>
@@ -757,12 +815,14 @@ export const BillDetails = () => {
 												maxWidth={'200px'}
 												alignItems={'center'}
 												spacing={2}
-												justifyContent={'space-between'}>
+												justifyContent={'space-between'}
+											>
 												<Typography
-													color='secondary.main'
+													color={primary.properDark}
 													fontWeight={400}
 													variant='caption'
-													noWrap>
+													noWrap
+												>
 													PF
 												</Typography>
 												<Typography
@@ -770,7 +830,8 @@ export const BillDetails = () => {
 													color='#000'
 													fontWeight={400}
 													variant='caption'
-													noWrap>
+													noWrap
+												>
 													{bill?.pf ?? 'NA'}
 												</Typography>
 											</Stack>
@@ -780,12 +841,14 @@ export const BillDetails = () => {
 												maxWidth={'200px'}
 												alignItems={'center'}
 												spacing={2}
-												justifyContent={'space-between'}>
+												justifyContent={'space-between'}
+											>
 												<Typography
-													color='secondary.main'
+													color={primary.properDark}
 													fontWeight={400}
 													variant='caption'
-													noWrap>
+													noWrap
+												>
 													ESI
 												</Typography>
 												<Typography
@@ -793,7 +856,8 @@ export const BillDetails = () => {
 													color='#000'
 													fontWeight={400}
 													variant='caption'
-													noWrap>
+													noWrap
+												>
 													{' '}
 													{bill?.esi ?? 'NA'}
 												</Typography>
@@ -803,12 +867,14 @@ export const BillDetails = () => {
 												width='50%'
 												maxWidth={'200px'}
 												alignItems={'center'}
-												justifyContent={'space-between'}>
+												justifyContent={'space-between'}
+											>
 												<Typography
-													color='secondary.main'
+													color={primary.properDark}
 													fontWeight={400}
 													variant='caption'
-													noWrap>
+													noWrap
+												>
 													Net Wage
 												</Typography>
 												<Typography
@@ -816,7 +882,8 @@ export const BillDetails = () => {
 													color='#0FAF7F'
 													fontWeight={400}
 													variant='caption'
-													noWrap>
+													noWrap
+												>
 													{' '}
 													{bill?.netWage ?? 'NA'}
 												</Typography>
