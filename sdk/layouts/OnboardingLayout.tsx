@@ -1,14 +1,8 @@
-import { Box, Button, Grid, Paper, Stack, Typography } from '@mui/material'
+import { Box, Paper, Stack, Typography } from '@mui/material'
 import { styled } from '@mui/system'
-import Image from 'next/image'
-import React from 'react'
-import { Navbar, SvgBrandLogo } from '../components'
-import Banner from '../../public/assets/icons/Banner.svg'
-import { useMobile } from '../hooks'
-import logo from '../../public/assets/icons/BrandLogo.svg'
-import onboardingSvg from '../../public/assets/icons/onboardingBack.svg'
-import { primary } from '../constants'
 import { useRouter } from 'next/router'
+import { Navbar } from '../components'
+import { useMobile } from '../hooks'
 
 const intro = [
 	{
@@ -136,7 +130,11 @@ export const OnboardingLayout = ({ children, helmet = true, ...props }: any) => 
 						</Paper>
 					</Stack>
 				)}
-				{!helmet && <Stack mt='90px' mb='20px' className='center'>{children}</Stack>}
+				{!helmet && (
+					<Stack mt='90px' mb='20px' className='center'>
+						{children}
+					</Stack>
+				)}
 			</CustomizeDashboard>
 		</>
 	)

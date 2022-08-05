@@ -1,12 +1,14 @@
 import { useFormik } from 'formik'
 import { useRouter } from 'next/router'
-import { useCallback, useEffect, useMemo, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { useSnackbar } from 'sdk'
-import { getBookingDetails, updateWages } from '../apis'
+import { getBookingDetails, getDiscountEligibilityService } from '../apis'
 
 export const useCheckout = () => {
 	const router = useRouter()
 	const [bookingData, setBookingData] = useState<any>()
+	const [discountEligible, setDiscountEligible] = useState(false)
+
 	const { showSnackbar } = useSnackbar()
 	const [wage, setWage] = useState<any>()
 	const form = useFormik<any>({
@@ -17,7 +19,15 @@ export const useCheckout = () => {
 		},
 		onSubmit: async (values: any) => {},
 	})
-
+	const getDiscountEligibility = useCallback(async () => {
+		const { bookingId, projectId, ...rest } = router?.query
+		try {
+			const { data } = await getDiscountEligibilityService()
+			setDiscountEligible(data?.payload?.response?.isEligible)
+		} catch (error: any) {
+			showSnackbar(error?.response?.data?.developerInfo, 'error')
+		}
+	}, [router?.query, showSnackbar])
 	const getBookingDetail = useCallback(async () => {
 		const { bookingId, projectId, ...rest } = router?.query
 		try {
@@ -41,6 +51,7 @@ export const useCheckout = () => {
 	useEffect(() => {
 		if (!router.isReady) return
 		getBookingDetail()
+		getDiscountEligibility()
 	}, [router])
 
 	return {
@@ -48,5 +59,6 @@ export const useCheckout = () => {
 		wage,
 		bookingData,
 		setWage,
+		discountEligible,
 	}
 }

@@ -23,12 +23,12 @@ const initialState = {
 	razorPayDetails: null,
 	order: null,
 	showConfirmationModel: false,
-	confirmPaymentDetails: null
+	confirmPaymentDetails: null,
 }
 
 const PaymentContext = createContext<any>({
 	...initialState,
-	makePayment: () => null,
+	initiatePayment: () => null,
 })
 const { Provider, Consumer } = PaymentContext
 
@@ -64,7 +64,7 @@ const PaymentProvider: FC<any> = ({ children, authState }) => {
 					if (data.data.payload) {
 						dispatch({
 							showConfirmationModel: true,
-							confirmPaymentDetails: data.data.payload
+							confirmPaymentDetails: data.data.payload,
 						})
 					}
 				},
@@ -80,46 +80,49 @@ const PaymentProvider: FC<any> = ({ children, authState }) => {
 		cancelPaymentOrderMutation.mutate({ projectId: projectId, params })
 	}, [state, cancelPaymentOrderMutation, projectId])
 
-	const makePayment = useCallback(async (order, amount) => {
-		dispatch({
-			order: order,
-		})
-		var options = {
-			key: envs.RAZOR_PAY_KEY,
-			name: constants.name,
-			currency: constants.currency,
-			amount,
-			order_id: order?.orderId,
-			description: constants.description,
-			image: logo,
-			handler: function (response: ResponseRazorPayType) {
-				dispatch({
-					razorPayDetails: response,
-				})
-				confirmPaymentOrder()
-			},
-			modal: {
-				escape: false,
-				ondismiss: function () {
-					cancelPaymentOrder()
+	const initiatePayment = useCallback(
+		async (order, amount) => {
+			dispatch({
+				order: order,
+			})
+			var options = {
+				key: envs.RAZOR_PAY_KEY,
+				name: constants.name,
+				currency: constants.currency,
+				amount,
+				order_id: order?.orderId,
+				description: constants.description,
+				image: logo,
+				handler: function (response: ResponseRazorPayType) {
+					dispatch({
+						razorPayDetails: response,
+					})
+					confirmPaymentOrder()
 				},
-			},
-			prefill: {
-				name: user?.name,
-				email: user?.email,
-				contact: user?.phoneNumber,
-			},
-		}
-		const paymentObject = new (window as any).Razorpay(options)
-		paymentObject.open()
-	}, [cancelPaymentOrder, confirmPaymentOrder, user])
+				modal: {
+					escape: false,
+					ondismiss: function () {
+						cancelPaymentOrder()
+					},
+				},
+				prefill: {
+					name: user?.name,
+					email: user?.email,
+					contact: user?.phoneNumber,
+				},
+			}
+			const paymentObject = new (window as any).Razorpay(options)
+			paymentObject.open()
+		},
+		[cancelPaymentOrder, confirmPaymentOrder, user]
+	)
 
 	const paymentProviderValue: any = useMemo(
 		() => ({
 			...state,
-			makePayment,
+			initiatePayment,
 		}),
-		[state, makePayment]
+		[state, initiatePayment]
 	)
 	return <Provider value={paymentProviderValue}>{children}</Provider>
 }

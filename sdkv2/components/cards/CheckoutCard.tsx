@@ -1,12 +1,14 @@
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline'
 import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline'
 import { Button, Card, CircularProgress, IconButton, Stack, TextField, Typography } from '@mui/material'
-import { FC, useMemo, useState } from 'react'
+import { FC, useCallback, useMemo, useState } from 'react'
 // import BookingSuccess from 'modules/createBooking/components/bookingsuccess'
 import DriveFileRenameOutlineOutlinedIcon from '@mui/icons-material/DriveFileRenameOutlineOutlined'
-import { updateWages } from 'modules/bookingId/apis'
+import { postEasyBookingOrder, updateWages } from 'modules/bookingId/apis'
 import { useCheckout } from 'modules/bookingId/hooks/useCheckout'
 import { useRouter } from 'next/router'
+import { useContractorAuth } from 'sdk/providers'
+import { usePayment } from 'sdk/providers/PaymentProvider'
 import { AddEditWage } from '../dialog'
 
 const ProfileCardData = [
@@ -38,7 +40,6 @@ const billData = [
 	{
 		label: 'Discount (First 15 applications free)',
 		value: 'discount',
-		discount: true,
 	},
 	{
 		label: 'Before Taxes',
@@ -57,7 +58,7 @@ export const CheckoutCard: FC = () => {
 		initialValue: 0,
 	})
 	const [updating, setUpdating] = useState<any>({})
-	const { form, wage, bookingData, setWage } = useCheckout()
+	const { form, wage, bookingData, setWage, discountEligible } = useCheckout()
 	const bill: any = useMemo(() => {
 		const quantity = form.values['qtyHelper'] + form.values['qtyTechnician'] + form.values['qtySupervisor']
 		const subTotal = quantity * 50
@@ -76,6 +77,60 @@ export const CheckoutCard: FC = () => {
 	}, [form.values])
 
 	const router = useRouter()
+	const { initiatePayment } = usePayment()
+	const { user } = useContractorAuth()
+	const handelPayment = useCallback(async () => {
+		const payload = {
+			source: {
+				id: user?.customerId,
+				type: 'BOOKING_TOKEN',
+			},
+			buyerType: 'CONTRACTOR_PROJECT',
+			sellerType: 'PROJECT_HERO',
+			discount: {
+				isDiscounted: discountEligible,
+				discountCode: 'NEWUSER15',
+			},
+			total: bill.amountPayable,
+			lineItems: [
+				{
+					itemName: 'HELPER',
+					quantity: form.values.qtyHelper,
+					category: bookingData?.booking?.jobType,
+					amount: 50,
+					totalAmount: form.values.qtyHelper * 50,
+				},
+				{
+					itemName: 'TECHNICIAN',
+					quantity: form.values.qtyTechnician,
+					category: bookingData?.booking?.jobType,
+					amount: 50,
+					totalAmount: form.values.qtyTechnician * 50,
+				},
+				{
+					itemName: 'SUPERVISOR',
+					quantity: form.values.qtySupervisor,
+					category: bookingData?.booking?.jobType,
+					amount: 50,
+					totalAmount: form.values.qtySupervisor * 50,
+				},
+			],
+		}
+		try {
+			const { data } = await postEasyBookingOrder(payload)
+			initiatePayment({ orderId: data?.payload?.response?.id }, bill.amountPayable)
+		} catch (error) {
+			console.log(error)
+		}
+	}, [
+		bill.amountPayable,
+		bookingData?.booking?.jobType,
+		discountEligible,
+		form.values.qtyHelper,
+		form.values.qtySupervisor,
+		form.values.qtyTechnician,
+		user?.customerId,
+	])
 
 	return (
 		<>
@@ -232,36 +287,38 @@ export const CheckoutCard: FC = () => {
 								)
 							})}
 						</Stack>
-						<Stack rowGap={2} borderBottom='1px solid' py='24px'>
+						<Stack spacing={2} borderBottom='1px solid' py='24px'>
 							<Typography variant='body1' fontWeight={500}>
 								Billing Details
 							</Typography>
-							<Stack rowGap={2}>
-								{billData?.map((i: any) => {
-									return (
-										<Stack key={i}>
-											<Stack direction='row' justifyContent='space-between'>
-												<Typography
-													sx={(theme) => ({
-														color: i.discount ? theme.palette.success.dark : '',
-													})}
-													variant='h4'
-													fontWeight={400}>
+							{billData?.map((i: any) => {
+								if (i.value === 'discount') {
+									if (discountEligible) {
+										return (
+											<Stack key={i.value} direction='row' justifyContent='space-between'>
+												<Typography color='success.dark' variant='h4' fontWeight={400}>
 													{i.label}
 												</Typography>
-												<Typography
-													variant='h4'
-													fontWeight={400}
-													sx={(theme) => ({
-														color: i.discount ? theme.palette.success.dark : '',
-													})}>
-													{i.discount ? '-' : ''}&#8377;{bill[i.value]}
+												<Typography color='success.dark' variant='h4' fontWeight={400}>
+													-&#8377; {bill[i.value]}
 												</Typography>
 											</Stack>
+										)
+									}
+								} else {
+									return (
+										<Stack key={i.value} direction='row' justifyContent='space-between'>
+											<Typography variant='h4' fontWeight={400}>
+												{i.label}
+											</Typography>
+
+											<Typography variant='h4' fontWeight={400}>
+												&#8377; {bill[i.value]}
+											</Typography>
 										</Stack>
 									)
-								})}
-							</Stack>
+								}
+							})}
 						</Stack>
 						<Stack direction='row' justifyContent='space-between' pt={4}>
 							<Typography variant='h1' sx={{ color: 'primary.main' }}>
@@ -270,6 +327,7 @@ export const CheckoutCard: FC = () => {
 							<Button
 								color='info'
 								disabled={bill.quantity <= 0}
+								onClick={handelPayment}
 								sx={{
 									backgroundColor: '#ffffff !important',
 									color: 'common.black',
@@ -304,7 +362,7 @@ export const CheckoutCard: FC = () => {
 							</Typography>
 						</Stack>
 						<Stack direction='row' alignItems='center'>
-							<img src='assets/icons/phone_small.svg' />
+							<img src='/assets/icons/phone_small.svg' />
 							<Typography ml={1} color='#000'>
 								+91-9151003513
 							</Typography>

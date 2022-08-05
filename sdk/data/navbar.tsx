@@ -17,7 +17,7 @@ export const navbar: Navbar = {
 		{
 			type: 'button_link',
 			label: '+91-9151003513',
-			icon: <img src={'assets/landingv2/phone.svg'} />,
+			icon: <img src={'/assets/landingv2/phone.svg'} />,
 			link: 'tel:+91-9151003513',
 		},
 		{
@@ -28,7 +28,7 @@ export const navbar: Navbar = {
 		{
 			type: 'button_link',
 			label: 'Login',
-			icon: <img src={'assets/landingv2/user.svg'} />,
+			icon: <img src={'/assets/landingv2/user.svg'} />,
 			link: '/login',
 		},
 	],
