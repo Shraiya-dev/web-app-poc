@@ -20,7 +20,7 @@ import { JobType, projectDuration } from 'sdkv2/constants'
 interface Props {}
 export const CreateBookingCard: FC<Props> = () => {
 	const [step, setStep] = useState<number>(0)
-	const { form, formikProps, wageDisable, setWageDisable } = useEasyBooking()
+	const { form, formikProps } = useEasyBooking()
 	// const [wageDisable, setWageDisable] = useState({
 	// 	helperWage: false,
 	// 	technicianWage: false,
@@ -135,19 +135,16 @@ export const CreateBookingCard: FC<Props> = () => {
 													sx={{ mt: 1 }}
 													control={
 														<Checkbox
-															value={wageDisable.helperWage}
+															value={form.values.isHelper}
 															onChange={(e, v) => {
-																setWageDisable((p) => ({
-																	...p,
-																	helperWage: v,
-																}))
+																form.setFieldValue('isHelper', v)
 															}}
 														/>
 													}
 													label='Helper'
 												/>
 												<TextField
-													disabled={!wageDisable['helperWage']}
+													disabled={!form.values.isHelper}
 													sx={{ maxWidth: 150 }}
 													type='number'
 													placeholder='Enter Wage'
@@ -162,12 +159,9 @@ export const CreateBookingCard: FC<Props> = () => {
 													sx={{ mt: 1 }}
 													control={
 														<Checkbox
-															value={wageDisable.technicianWage}
+															value={form.values.isTechnician}
 															onChange={(e, v) => {
-																setWageDisable((p) => ({
-																	...p,
-																	technicianWage: v,
-																}))
+																form.setFieldValue('isTechnician', v)
 															}}
 														/>
 													}
@@ -175,7 +169,7 @@ export const CreateBookingCard: FC<Props> = () => {
 												/>
 
 												<TextField
-													disabled={!wageDisable['technicianWage']}
+													disabled={!form.values.isTechnician}
 													sx={{ maxWidth: 150 }}
 													type='number'
 													placeholder='Enter Wage'
@@ -190,12 +184,9 @@ export const CreateBookingCard: FC<Props> = () => {
 													sx={{ mt: 1 }}
 													control={
 														<Checkbox
-															value={wageDisable.supervisorWage}
+															value={form.values.isSupervisor}
 															onChange={(e, v) => {
-																setWageDisable((p) => ({
-																	...p,
-																	supervisorWage: v,
-																}))
+																form.setFieldValue('isSupervisor', v)
 															}}
 														/>
 													}
@@ -203,7 +194,7 @@ export const CreateBookingCard: FC<Props> = () => {
 												/>
 
 												<TextField
-													disabled={!wageDisable['supervisorWage']}
+													disabled={!form.values.isSupervisor}
 													sx={{ maxWidth: 150 }}
 													type='number'
 													placeholder='Enter Wage'
@@ -216,8 +207,7 @@ export const CreateBookingCard: FC<Props> = () => {
 										size='large'
 										variant='contained'
 										type='submit'
-										disabled={!form.dirty || !form.isValid}
-										>
+										disabled={!form.dirty || !form.isValid}>
 										Book Workers Now
 									</Button>
 								</>
