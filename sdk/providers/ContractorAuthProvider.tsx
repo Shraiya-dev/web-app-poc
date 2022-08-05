@@ -332,7 +332,7 @@ const ContractorAuthProvider: FC<ContractorAuthProviderProps> = ({ children, aut
 			} else {
 				if (
 					// restricts access to any other routes except the routes included in array
-					['/dashboard', '/profile', '/worker', '/projects', '/bookings', '/account', '/onboarding'].every(
+					['/dashboard', '/profile', '/worker', '/projects', '/bookings', '/account', '/onboarding','/checkout'].every(
 						(item) => !router.pathname.includes(item)
 					)
 				) {
