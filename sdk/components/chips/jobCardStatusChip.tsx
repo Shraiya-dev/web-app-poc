@@ -6,9 +6,11 @@ interface jobCardChipProps extends ChipProps {
 	jobCardState?: JobCardState
 }
 
-const chipColor: Partial<{
-	[key in JobCardState]: string
-}> = {
+const chipColor: Partial<
+	{
+		[key in JobCardState]: string
+	}
+> = {
 	WORKER_APPLIED: 'primary.lightOrange',
 	ACCEPTED: 'primary.lightGreen',
 	READY_TO_DEPLOY: 'primary.mediumGreen',

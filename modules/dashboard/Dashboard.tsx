@@ -160,7 +160,7 @@ export const Dashboard = () => {
 						<Grid container spacing={3}>
 							{bookings.bookings.map((bookingInfo, index) => {
 								return (
-									<Grid item xs={12} md={4} key={index}>
+									<Grid item xs={12} md={3} key={index}>
 										<BookingCard booking={bookingInfo} />
 									</Grid>
 								)

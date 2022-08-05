@@ -106,7 +106,12 @@ export const BookingCard = ({ booking }: BookingCardProps) => {
 
 	return (
 		<CustomPaper elevation={1}>
-			<Stack className='cardHeader' pb={2} sx={{ borderBottom: 1, borderColor: 'divider' }} onClick={handleClick}>
+			<Stack
+				className='cardHeader'
+				pb={2}
+				onClick={handleClick}
+				//  sx={{ borderBottom: 1, borderColor: 'divider' }}
+			>
 				<Stack direction='row' justifyContent='space-between'>
 					<Box display={'flex'}>
 						<Image
@@ -123,7 +128,7 @@ export const BookingCard = ({ booking }: BookingCardProps) => {
 							{totalCount} {JobTypeLabel[booking?.booking?.jobType]}
 						</Typography>
 					</Box>
-					<StatusChip bookingState={booking?.booking?.status} sx={{ verticalAlign: 'middle' }} />
+					{/* <StatusChip bookingState={booking?.booking?.status} sx={{ verticalAlign: 'middle' }} /> */}
 				</Stack>
 
 				<Typography
@@ -144,7 +149,7 @@ export const BookingCard = ({ booking }: BookingCardProps) => {
 						Created On: {booking.createdAt && format(booking.createdAt, 'dd/MM/yy')}
 					</Typography>
 				</Stack> */}
-				<Stack direction='row' flexWrap='wrap' mt={1} ml={4}>
+				{/* <Stack direction='row' flexWrap='wrap' mt={1} ml={4}>
 					{helperCount !== 0 && (
 						<Typography mr={1} fontSize={13} color={primary.properDark}>
 							{helperCount} Helper
@@ -161,7 +166,50 @@ export const BookingCard = ({ booking }: BookingCardProps) => {
 							{supervisorCount} Supervisor
 						</Typography>
 					)}
-				</Stack>
+				</Stack> */}
+				<Box>
+					<Stack direction={'row'} justifyContent={'space-between'} alignItems={'center'}>
+						<Stack direction={'row'} spacing={2} alignItems={'center'}>
+							<Box>
+								<img src='/assets/landing/bookings/Helper.svg' alt='' />
+							</Box>
+							<Typography variant='body2' color={primary.properDark}>
+								Helper
+							</Typography>
+						</Stack>
+
+						<Typography mr={1} fontSize={16} fontWeight={700} color={primary.properDark}>
+							{helperCount}
+						</Typography>
+					</Stack>
+					<Stack direction={'row'} justifyContent={'space-between'} alignItems={'center'}>
+						<Stack direction={'row'} spacing={2} alignItems={'center'}>
+							<Box>
+								<img src='/assets/landing/bookings/Technician.svg' alt='' />
+							</Box>
+							<Typography fontSize={13} color={primary.properDark}>
+								Technician
+							</Typography>
+						</Stack>
+						<Typography mr={1} fontSize={16} fontWeight={700} color={primary.properDark}>
+							{technicianCount}
+						</Typography>
+					</Stack>
+					<Stack direction={'row'} justifyContent={'space-between'} alignItems={'center'}>
+						<Stack direction={'row'} spacing={2} alignItems={'center'}>
+							<Box>
+								<img src='/assets/landing/bookings/Supervisor.svg' alt='' />
+							</Box>
+							<Typography fontSize={13} color={primary.properDark}>
+								Supervisor
+							</Typography>
+						</Stack>
+
+						<Typography mr={1} fontSize={16} fontWeight={700} color={primary.properDark}>
+							{supervisorCount}
+						</Typography>
+					</Stack>
+				</Box>
 				{/* <Stack direction='row' flexWrap='wrap' mt={1}>
 					<Typography mr={1} className='vAlignCenter' variant='body2' width={'50ch'}>
 						<LocationOn fontSize='inherit' color='error' />
@@ -177,37 +225,38 @@ export const BookingCard = ({ booking }: BookingCardProps) => {
 					</Typography>
 				</Stack> */}
 			</Stack>
+			{/* Allocation Status */}
 			<Stack className='cardBody' onClick={handleClick}>
-				<Typography color={primary.properDark} fontWeight={700} fontSize={12}>
+				{/* <Typography color={primary.properDark} fontWeight={700} fontSize={12}>
 					ALLOCATION STATUS
-				</Typography>
-				<Grid container>
+				</Typography> */}
+				{/* <Grid container>
 					<Grid item xs={12}>
-						<Stack className='links' flex={1} direction='row' spacing={3}>
-							{/* <Link
+						<Stack className='links' flex={1} direction='row' spacing={3}> */}
+				{/* <Link
 								href={`/dashboard/projects/bookings/${router.query.projectId}/${booking.booking?.bookingId}/WORKER_APPLIED`}
 								passHref
 								replace={!!router.pathname.includes('[bookingId]')}> */}
-							<Typography
+				{/* <Typography
 							// component='a'
 							// className={
 							// 	router.query.jobCardState === JobCardState.WORKER_APPLIED ? 'selected' : ''
 							// }
-							>
-								<Typography variant='h5' color={primary.properDark}>
+							> */}
+				{/* <Typography variant='h5' color={primary.properDark}>
 									{(booking?.stats?.jobCardCounts?.WORKER_APPLIED ?? 0) +
 										(booking?.stats?.jobCardCounts?.ACCEPTED ?? 0)}
 								</Typography>
 								<Typography variant='body2' align='left' color={primary.properDark}>
 									Applied
 								</Typography>
-							</Typography>
-							{/* </Link> */}
-							{/* <Link
+							</Typography> */}
+				{/* </Link> */}
+				{/* <Link
 								href={`/dashboard/projects/bookings/${router.query.projectId}/${booking.booking?.bookingId}/${JobCardState.READY_TO_DEPLOY}`}
 								passHref
 								replace={!!router.pathname.includes('[bookingId]')}> */}
-							<Typography
+				{/* <Typography
 							// component='a'
 							// className={
 							// 	router.query.jobCardState === JobCardState.READY_TO_DEPLOY ? 'selected' : ''
@@ -219,13 +268,13 @@ export const BookingCard = ({ booking }: BookingCardProps) => {
 								<Typography variant='body2' align='left' color={primary.properDark}>
 									Ready to Deploy
 								</Typography>
-							</Typography>
-							{/* </Link> */}
-							{/* <Link
+							</Typography> */}
+				{/* </Link> */}
+				{/* <Link
 								href={`/dashboard/projects/bookings/${router.query.projectId}/${booking?.booking?.bookingId}/${JobCardState.DEPLOYMENT_COMPLETE}`}
 								passHref
 								replace={!!router.pathname.includes('[bookingId]')}> */}
-							<Typography
+				{/* <Typography
 							// component='a'
 							// className={
 							// 	router.query.jobCardState === JobCardState.DEPLOYMENT_COMPLETE ? 'selected' : ''
@@ -238,38 +287,48 @@ export const BookingCard = ({ booking }: BookingCardProps) => {
 								<Typography variant='body2' align='left' color={primary.properDark}>
 									Deployed
 								</Typography>
-							</Typography>
-							{/* </Link> */}
-						</Stack>
+							</Typography> */}
+				{/* </Link> */}
+				{/* </Stack>
 					</Grid>
-				</Grid>
+				</Grid> */}
 				{!router.pathname.includes('[bookingId]') && (
 					// <Grid item xs={12} md={4} pt={2} alignItems='flex-end' justifyContent='flex-end'>
-					<Stack rowGap={1} mt={2}>
-						<Link
-							href={`/bookings/${router.query.projectId}/${booking.booking?.bookingId}/track-workers`}
-							passHref
-						>
-							<Button
-								className='cta'
-								fullWidth
-								onClick={() => {
-									ButtonClicked({
-										action: 'Open Booking',
-										page: 'Project',
-										bookingId: booking.booking?.bookingId,
-										url: router.asPath,
-									})
-								}}
-								style={{
-									padding: 1,
-									background: theme.palette.primary.light,
-									color: primary.properDark,
-								}}
+					<Stack
+						direction={'row'}
+						rowGap={1}
+						mt={2}
+						justifyContent='center'
+						sx={{
+							width: '100%',
+						}}
+					>
+						<Box width={'70%'}>
+							<Link
+								href={`/bookings/${router.query.projectId}/${booking.booking?.bookingId}/track-workers`}
+								passHref
 							>
-								View Booking
-							</Button>
-						</Link>
+								<Button
+									className='cta'
+									fullWidth
+									onClick={() => {
+										ButtonClicked({
+											action: 'Open Booking',
+											page: 'Project',
+											bookingId: booking.booking?.bookingId,
+											url: router.asPath,
+										})
+									}}
+									style={{
+										padding: 1,
+										background: theme.palette.primary.light,
+										color: primary.properDark,
+									}}
+								>
+									View Applications
+								</Button>
+							</Link>
+						</Box>
 					</Stack>
 
 					// </Grid>
