@@ -2,7 +2,7 @@ import axios from 'axios'
 import { useRouter } from 'next/router'
 import { createContext, FC, useCallback, useContext, useEffect, useMemo, useReducer } from 'react'
 import { Identify } from '../analytics/analyticsWrapper'
-import { createCookieInHour, getCookie } from '../analytics/helper'
+import { createCookieInHour, deleteCookie, getCookie } from '../analytics/helper'
 import {
 	emailVerification,
 	getCustomerDetails,
@@ -341,6 +341,7 @@ const ContractorAuthProvider: FC<ContractorAuthProviderProps> = ({ children, aut
 					bookingDuration: bookingDetails.workDuration,
 				}
 				const { data, status } = await axios.post('/gateway/customer-api/projects/bookings', payload)
+				deleteCookie('discoveryBooking')
 				router.push(`/bookings/${data.payload.projectId}/${data.payload.bookingId}/checkout`)
 			} catch (error) {
 				showSnackbar('Failed to create easy booking', 'error')
@@ -355,7 +356,6 @@ const ContractorAuthProvider: FC<ContractorAuthProviderProps> = ({ children, aut
 				const discoveryBookingFromCookie = JSON.parse(getCookie('discoveryBooking'))
 
 				if (!state.user.hasProjects && discoveryBookingFromCookie) {
-					debugger
 					createEasyBooking(discoveryBookingFromCookie)
 				} else {
 					const redirectRoute = AccessMap[state.user.onboardingStatus]

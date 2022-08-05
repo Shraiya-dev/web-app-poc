@@ -48,6 +48,9 @@ export function clearCookie() {
 		document.cookie = c.replace(/^ +/, '').replace(/=.*/, '=;expires=' + new Date().toUTCString() + ';path=/')
 	})
 }
+export const deleteCookie = (name: string) => {
+	document.cookie = `${name}=; Path=/; expires=${new Date().toUTCString()};`
+}
 
 export const getUtmObject = () => {
 	try {

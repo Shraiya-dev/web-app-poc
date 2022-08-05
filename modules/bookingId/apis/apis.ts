@@ -8,7 +8,6 @@ export const getWorkerDetails = async (bookingId: any, projectId: any, query: an
 	return await axios.get(`/gateway/customer-api/projects/${projectId}/bookings/${bookingId}/workers?` + query)
 }
 
-
-export const updateWages = async (bookingId: any, projectId: any, payload: any)=>{
-	return await axios.put(`/gateway/customer-api/projects/${projectId}/bookings/${bookingId}`,payload)
-}	
+export const updateWages = async (bookingId: any, projectId: any, payload: any) => {
+	return await axios.post(`/gateway/customer-api/projects/${projectId}/bookings/${bookingId}`, payload)
+}

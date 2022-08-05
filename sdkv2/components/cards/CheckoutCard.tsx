@@ -1,130 +1,135 @@
-import { Button, Card, IconButton, Stack, TextField, Typography } from '@mui/material'
-import { FC, useCallback, useMemo, useState } from 'react'
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline'
 import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline'
+import { Button, Card, CircularProgress, IconButton, Stack, TextField, Typography } from '@mui/material'
+import { FC, useMemo, useState } from 'react'
 // import BookingSuccess from 'modules/createBooking/components/bookingsuccess'
 import DriveFileRenameOutlineOutlinedIcon from '@mui/icons-material/DriveFileRenameOutlineOutlined'
-import { WageUpdateDialog } from '../dialog'
+import { updateWages } from 'modules/bookingId/apis'
 import { useCheckout } from 'modules/bookingId/hooks/useCheckout'
+import { useRouter } from 'next/router'
+import { AddEditWage } from '../dialog'
 
-interface Props {}
+const ProfileCardData = [
+	{
+		img: '/assets/icons/jobs/helper.svg',
+		job: 'Helper',
+		wage: 'wageHelper',
+		name: 'qtyHelper',
+	},
+	{
+		img: '/assets/icons/jobs/technician.svg',
+		job: 'Technician',
+		wage: 'wageTechnician',
+		name: 'qtyTechnician',
+	},
 
-const ProfileCard = ({
-	data,
-	setShowWageUpdate,
-	handleChangePersonRequire,
-	personRequire,
-	setFieldName,
-}: {
-	data: any
-	setShowWageUpdate: any
-	handleChangePersonRequire: any
-	personRequire: any
-	setFieldName: any
-}) => {
-	return (
-		<>
-			<Stack borderBottom='1px solid' py='28px' direction='row'>
-				<img src={data.img} />
-				<Stack flexGrow={1} spacing='12px' ml={2}>
-					<Typography variant='h5' fontWeight={500}>
-						{data.job}
-					</Typography>
-					<Stack direction='row' alignItems='center'>
-						<Typography variant='subtitle2' fontWeight={400}>
-							Wage: &#8377; {`${data.wage} per day`}
-						</Typography>
-						<IconButton
-							sx={{ p: '0px', ml: '6px' }}
-							onClick={() => {
-								setShowWageUpdate(true)
-								setFieldName(data?.name)
-							}}>
-							<DriveFileRenameOutlineOutlinedIcon sx={{ color: 'primary.main' }} />
-						</IconButton>
-					</Stack>
-				</Stack>
-				<Stack direction='row' alignItems='center'>
-					<IconButton>
-						<RemoveCircleOutlineIcon sx={{ color: 'primary.main' }} />
-					</IconButton>
-					<TextField
-						type='number'
-						name={data?.name}
-						value={personRequire[data?.name]}
-						sx={{ maxWidth: 56 }}
-						onChange={(e: any) => handleChangePersonRequire(e)}
-					/>
-					<IconButton>
-						<AddCircleOutlineIcon sx={{ color: 'primary.main' }} />
-					</IconButton>
-				</Stack>
-			</Stack>
-		</>
-	)
-}
-export const CheckoutCard: FC<Props> = () => {
-	const [showWageUpdate, setShowWageUpdate] = useState<boolean>(false)
-	const { handleChangePersonRequire, personRequire, wages, bookingData } = useCheckout()
-	const [fieldName, setFieldName] = useState('')
+	{
+		img: '/assets/icons/jobs/supervisor.svg',
+		job: 'Supervisor',
+		wage: 'wageSupervisor',
+		name: 'qtySupervisor',
+	},
+]
+const billData = [
+	{
+		label: 'Subtotal',
+		value: 'subTotal',
+	},
+	{
+		label: 'Discount (First 15 applications free)',
+		value: 'discount',
+		discount: true,
+	},
+	{
+		label: 'Before Taxes',
+		value: 'beforeTax',
+	},
+	{
+		label: 'Taxes Applicable (GST@18%)',
+		value: 'tax',
+	},
+]
 
-	const ProfileCardData = useMemo(
-		() => [
-			{
-				img: '/assets/icons/jobs/technician.svg',
-				job: 'Technician',
-				wage: wages.technician,
-				name: 'technician',
-			},
-			{
-				img: '/assets/icons/jobs/helper.svg',
-				job: 'Helper',
-				wage: wages.helper,
-				name: 'helper',
-			},
-			{
-				img: '/assets/icons/jobs/supervisor.svg',
-				job: 'Supervisor',
-				wage: wages.supervisor,
-				name: 'supervisor',
-			},
-		],
-		[[personRequire]]
-	)
+export const CheckoutCard: FC = () => {
+	const [addEditWageDialogProps, setAddEditWageDialogProps] = useState({
+		open: false,
+		fieldName: '',
+		initialValue: 0,
+	})
+	const [updating, setUpdating] = useState<any>({})
+	const { form, wage, bookingData, setWage } = useCheckout()
+	const bill: any = useMemo(() => {
+		const quantity = form.values['qtyHelper'] + form.values['qtyTechnician'] + form.values['qtySupervisor']
+		const subTotal = quantity * 50
+		const discount = subTotal > 750 ? 750 : subTotal
+		const beforeTax = subTotal - discount
+		const tax = beforeTax * 0.18
+		const amountPayable = beforeTax + tax
+		return {
+			quantity: quantity,
+			subTotal: subTotal,
+			discount: discount,
+			beforeTax: beforeTax,
+			tax: tax,
+			amountPayable: amountPayable,
+		}
+	}, [form.values])
 
-	const billData = useMemo(
-		() => [
-			{
-				label: 'Subtotal',
-				value: (personRequire.helper + personRequire.supervisor + personRequire.technician) * 50,
-			},
-			{
-				label: 'Discount (First 15 applications free)',
-				value: 750,
-				discount: true,
-			},
-			{
-				label: 'Before Taxes',
-				value: 500,
-			},
-			{
-				label: 'Taxes Applicable (GST@18%)',
-				value: 90,
-			},
-		],
-		[]
-	)
+	const router = useRouter()
 
 	return (
 		<>
 			{/* handleUpdateWages from useCheckout goes in  WageUpdateDialog  */}
-			{WageUpdateDialog && (
-				<WageUpdateDialog open={showWageUpdate} fieldName={fieldName} close={setShowWageUpdate} />
+			{addEditWageDialogProps.open && (
+				<AddEditWage
+					{...addEditWageDialogProps}
+					confirm={async (key: string, newWage: number) => {
+						let updateWage: any = {}
+						setWage((p: any) => {
+							const a = { ...p, [key]: newWage }
+							updateWage = a
+							return a
+						})
+						setAddEditWageDialogProps((p: any) => ({ ...p, open: false }))
+						setUpdating((p: any) => ({ ...p, [key]: true }))
+						try {
+							await updateWages(router.query.bookingId, router.query.projectId, {
+								requirements: {
+									HELPER: updateWage?.wageHelper
+										? {
+												count: 0,
+												wage: updateWage?.wageHelper,
+										  }
+										: undefined,
+									TECHNICIAN: updateWage?.wageTechnician
+										? {
+												count: 0,
+												wage: updateWage?.wageTechnician,
+										  }
+										: undefined,
+									SUPERVISOR: updateWage?.wageSupervisor
+										? {
+												count: 0,
+												wage: updateWage?.wageSupervisor,
+										  }
+										: undefined,
+								},
+								shiftTime: '09:30 AM-06:30 PM',
+								bookingDuration: bookingData?.booking?.schedule?.bookingDuration,
+							})
+						} catch (error) {}
+						setUpdating((p: any) => ({ ...p, [key]: undefined }))
+					}}
+					close={() => {
+						setAddEditWageDialogProps((p: any) => ({ ...p, open: false }))
+					}}
+				/>
 			)}
 			<Stack rowGap={4}>
 				<Stack>
 					<Typography fontSize='32px' fontWeight={600}>
 						One platform to care of all your
+						<br />
 						<Typography display='inline' fontSize='32px' fontWeight={600} color='primary.main'>
 							{' '}
 							Hiring needs!
@@ -152,21 +157,78 @@ export const CheckoutCard: FC<Props> = () => {
 								<Typography display='inline' variant='body1' fontWeight={600} color='primary.main'>
 									{' '}
 									{`${
-										personRequire.helper + personRequire.supervisor + personRequire.technician
+										(form.values.qtyHelper ?? 0) +
+										(form.values.qtySupervisor ?? 0) +
+										(form.values.qtyTechnician ?? 0)
 									}`}{' '}
 									applications
 								</Typography>{' '}
 							</Typography>
 							{ProfileCardData?.map((profile: any) => {
 								return (
-									<ProfileCard
-										key={profile.job}
-										personRequire={personRequire}
-										data={profile}
-										setShowWageUpdate={setShowWageUpdate}
-										handleChangePersonRequire={handleChangePersonRequire}
-										setFieldName={setFieldName}
-									/>
+									<Stack key={profile.job} borderBottom='1px solid' py='28px' direction='row'>
+										<img src={profile.img} />
+										<Stack flexGrow={1} spacing='12px' ml={2}>
+											<Typography variant='h5' fontWeight={500}>
+												{profile.job}
+											</Typography>
+											<Stack direction='row' alignItems='center'>
+												<Typography variant='subtitle2' fontWeight={400}>
+													Wage: &#8377; {`${wage ? wage[profile.wage] : 0} per day`}
+												</Typography>
+
+												<IconButton
+													sx={{ p: '0px', ml: '6px' }}
+													onClick={() => {
+														setAddEditWageDialogProps({
+															fieldName: profile.wage,
+															initialValue: wage[profile.wage],
+															open: true,
+														})
+													}}>
+													{updating[profile.wage] ? (
+														<CircularProgress size={24} color='primary' />
+													) : (
+														<DriveFileRenameOutlineOutlinedIcon color='primary' />
+													)}
+												</IconButton>
+											</Stack>
+										</Stack>
+										<Stack direction='row' alignItems='center'>
+											<IconButton
+												onClick={(e) =>
+													form.setFieldValue(
+														profile?.name,
+														Number(form.values[profile.name] - 1)
+													)
+												}>
+												<RemoveCircleOutlineIcon sx={{ color: 'primary.main' }} />
+											</IconButton>
+											<TextField
+												type='number'
+												sx={{
+													maxWidth: 56,
+													input: {
+														textAlign: 'center',
+													},
+												}}
+												value={form.values[profile?.name]}
+												onChange={(e) =>
+													form.setFieldValue(profile?.name, Number(e.target.value))
+												}
+												name={profile?.name}
+											/>
+											<IconButton
+												onClick={(e) =>
+													form.setFieldValue(
+														profile?.name,
+														Number(form.values[profile.name] + 1)
+													)
+												}>
+												<AddCircleOutlineIcon sx={{ color: 'primary.main' }} />
+											</IconButton>
+										</Stack>
+									</Stack>
 								)
 							})}
 						</Stack>
@@ -177,7 +239,7 @@ export const CheckoutCard: FC<Props> = () => {
 							<Stack rowGap={2}>
 								{billData?.map((i: any) => {
 									return (
-										<Stack>
+										<Stack key={i}>
 											<Stack direction='row' justifyContent='space-between'>
 												<Typography
 													sx={(theme) => ({
@@ -193,7 +255,7 @@ export const CheckoutCard: FC<Props> = () => {
 													sx={(theme) => ({
 														color: i.discount ? theme.palette.success.dark : '',
 													})}>
-													{i.discount ? '-' : ''}&#8377;{i.value}
+													{i.discount ? '-' : ''}&#8377;{bill[i.value]}
 												</Typography>
 											</Stack>
 										</Stack>
@@ -201,15 +263,22 @@ export const CheckoutCard: FC<Props> = () => {
 								})}
 							</Stack>
 						</Stack>
-						<Stack direction='row' justifyContent='space-between' py={4}>
+						<Stack direction='row' justifyContent='space-between' pt={4}>
 							<Typography variant='h1' sx={{ color: 'primary.main' }}>
-								&#8377; 590
+								&#8377; {bill.amountPayable}
 							</Typography>
-							<Button sx={{ backgroundColor: 'info.main' }}>
-								<Typography mr={3} color='#000'>
-									Pay and Book Now
-								</Typography>
-								<img src='/assets/icons/forward_round.svg' />
+							<Button
+								color='info'
+								disabled={bill.quantity <= 0}
+								sx={{
+									backgroundColor: '#ffffff !important',
+									color: 'common.black',
+									'&:disabled': {
+										backgroundColor: '#cccccc !important',
+									},
+								}}
+								endIcon={<img src='/assets/icons/forward_round.svg' />}>
+								Pay and Book Now
 							</Button>
 						</Stack>
 					</Stack>
