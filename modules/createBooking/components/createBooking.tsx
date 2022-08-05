@@ -298,7 +298,6 @@ export const CreateBooking = () => {
 										)
 									})}
 								</Grid>
-
 								{isMore && (
 									<Grid container item rowSpacing={2} columnSpacing={2}>
 										{moreJobType.map((info, index) => {
@@ -381,7 +380,7 @@ export const CreateBooking = () => {
 																? theme.palette.primary.light
 																: 'white',
 															color: form.values.tags.includes(item)
-																? theme.palette.primary.main
+																? primary.properDark
 																: '',
 
 															border: form.values.tags.includes(item)
@@ -545,9 +544,7 @@ export const CreateBooking = () => {
 															: 'white',
 
 													color:
-														projectDurationInfo === info?.value
-															? theme.palette.primary.main
-															: '',
+														projectDurationInfo === info?.value ? primary.properDark : '',
 													marginRight: 10,
 													textTransform: 'none',
 													minWidth: 50,
@@ -601,7 +598,7 @@ export const CreateBooking = () => {
 
 											height: 35,
 											width: 100,
-											color: primary.main,
+											color: primary.properDark,
 											boxShadow: 'none',
 										}}
 										onClick={() => handleShiftTiming('Custom')}
@@ -938,14 +935,14 @@ export const CreateBooking = () => {
 									<LoadingButton
 										className='loadingcta'
 										type='submit'
-										variant='contained'
+										variant={!!isSubmittable ? 'contained' : 'outlined'}
 										loading={loading}
 										disabled={!!isSubmittable || loading}
 										// onClick={() => handleNext()}
 										style={{
 											minWidth: '10rem',
 											marginRight: isMobile ? '' : '14%',
-											// background: isSubmittable || loading ? '#cccccc' : '',
+											background: !!isSubmittable || loading ? theme.palette.primary.dark : '',
 											color: '#000',
 										}}
 									>

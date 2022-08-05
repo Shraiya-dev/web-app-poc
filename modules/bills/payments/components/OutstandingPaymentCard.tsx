@@ -8,7 +8,7 @@ import { useGetOuststandingPaymentQuery } from '../queries/hooks'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
 import CurrencyRupeeIcon from '@mui/icons-material/CurrencyRupee'
 import { OutstandingPaymentPopover } from './OutstandingPaymentPopover'
-import { indianCurrencyFormat, useMobile } from '../../../../sdk'
+import { indianCurrencyFormat, primary, useMobile } from '../../../../sdk'
 import { ButtonClicked } from 'sdk/analytics/analyticsWrapper'
 
 const CustomPaper = styled(Paper)(({ theme }) => ({
@@ -147,7 +147,6 @@ export const OutstandiongPaymentCard = ({ tooltipTitle }: { tooltipTitle: Toolti
 								size='medium'
 								//disabled={outStandingPaymentData.data.payload.amount===0}
 								sx={{
-									background: theme.palette.button.secondary,
 									paddingTop: theme.spacing(2),
 									paddingBottom: theme.spacing(2),
 									paddingLeft: theme.spacing(3),
@@ -164,7 +163,7 @@ export const OutstandiongPaymentCard = ({ tooltipTitle }: { tooltipTitle: Toolti
 									showPaymentPopover()
 								}}
 							>
-								<Typography variant='subtitle2' sx={{ color: theme.palette.textCTA.white }}>
+								<Typography variant='subtitle2' sx={{ color: primary.properDark }}>
 									Pay
 								</Typography>
 							</Button>

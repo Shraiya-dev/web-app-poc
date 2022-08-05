@@ -13,6 +13,7 @@ const CustomAppBar = styled(Box)(() => ({
 	minHeight: 84,
 	display: 'flex',
 	alignItems: 'center',
+	// justifyContent: 'space-between',
 
 	'.toolbar': {
 		// padding: 0,
