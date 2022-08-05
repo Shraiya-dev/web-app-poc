@@ -185,6 +185,7 @@ const EditCompanyInfo = ({ ...props }) => {
 					<Stack direction='row' style={{ fontSize: '18px', paddingTop: 32 }} spacing={2}>
 						<Button
 							fullWidth
+							variant='outlined'
 							onClick={() => {
 								setIsCmpDetailsEditable((state: any) => !state)
 								ButtonClicked({
@@ -193,12 +194,13 @@ const EditCompanyInfo = ({ ...props }) => {
 									url: router.asPath,
 								})
 							}}
-							style={{
-								border: `1px solid ${primary.main}`,
-								background: primary.light,
-								color: primary.main,
-								boxShadow: 'none',
-							}}>
+							// style={{
+							// 	border: `1px solid ${primary.main}`,
+							// 	background: primary.light,
+							// 	color: primary.main,
+							// 	boxShadow: 'none',
+							// }}
+							>
 							Cancel
 						</Button>
 

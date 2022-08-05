@@ -23,7 +23,7 @@ const CompanyInfo = () => {
 							padding: 1,
 							'&:hover': {
 								background: theme.palette.primary.light,
-								color: primary.nightDark,
+								color: primary.properDark,
 							},
 						}}
 						onClick={handleEdit}

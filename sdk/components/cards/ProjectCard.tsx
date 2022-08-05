@@ -1,4 +1,4 @@
-import { Button, Grid, Paper, Stack, Typography } from '@mui/material'
+import { Box, Button, Card, Grid, Paper, Stack, Typography } from '@mui/material'
 import { styled } from '@mui/system'
 import { primary, theme } from '../../constants'
 import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined'
@@ -60,7 +60,7 @@ const CustomPaper = styled(Paper)(({ theme }) => ({
 	'.subInfo': {
 		fontSize: 11,
 		textAlign: 'center',
-		color: theme.palette.secondary.main,
+		// color: theme.palette.secondary.main,
 	},
 	'.projectName': {
 		fontSize: 20,
@@ -73,7 +73,7 @@ const CustomPaper = styled(Paper)(({ theme }) => ({
 	},
 	'.location': {
 		fontSize: 12,
-		color: theme.palette.secondary.main,
+		color: primary.properDark,
 		clear: 'both',
 		display: 'inline-block',
 		overflow: 'hidden',
@@ -107,10 +107,13 @@ export const ProjectCard = ({ ...props }) => {
 					})
 				}}
 			>
-				<Typography className='projectName'>{project?.name || ''}</Typography>
-				<Typography className='location'>
-					{' '}
-					<LocationOnOutlinedIcon style={{ verticalAlign: 'middle', fontSize: 12, marginBottom: 4 }} />{' '}
+				<Typography className='projectName' color={'#000'}>
+					{project?.name || ''}
+				</Typography>
+				<Typography className='location' color={'#333333'}>
+					<LocationOnOutlinedIcon
+						style={{ verticalAlign: 'middle', fontSize: 12, marginBottom: 4, color: '#333333' }}
+					/>
 					{`${project?.city}, ${project?.state}`}
 				</Typography>
 
@@ -118,19 +121,23 @@ export const ProjectCard = ({ ...props }) => {
 					<Grid item xs={6} md={6} justifyContent={'center'}>
 						<Stack justifyContent={'center'}>
 							<Image src={employeeIcon} />
-							<Typography fontSize={28} textAlign={'center'}>
+							<Typography fontSize={28} textAlign={'center'} color={'#000'}>
 								{project?.employee || 0}
 							</Typography>
-							<Typography className='subInfo'>Employees</Typography>
+							<Typography className='subInfo' color={'#000'}>
+								Employees
+							</Typography>
 						</Stack>
 					</Grid>
 					<Grid item xs={6} md={6} justifyContent={'center'}>
 						<Stack justifyContent={'center'}>
 							<Image src={bookingIcon} />
-							<Typography fontSize={28} textAlign={'center'}>
+							<Typography fontSize={28} textAlign={'center'} color={'#000'}>
 								{project?.bookingCount || 0}
 							</Typography>
-							<Typography className='subInfo'>Bookings</Typography>
+							<Typography className='subInfo' color={'#000'}>
+								Bookings
+							</Typography>
 						</Stack>
 					</Grid>
 				</Grid>

@@ -23,7 +23,7 @@ export const TopBanner = ({ ...props }) => {
 
 	return (
 		// TODO: Banner colour need to be moved to theme
-		<Box style={{ background: primary.light }} display='flex'>
+		<Box style={{ background: primary.properDark }} display='flex'>
 			<Container maxWidth={'sm'} style={{ display: 'flex', paddingLeft: isMobile ? 16 : paddingLeft || 80 }}>
 				<Stack style={{ marginTop: isMobile ? 16 : 40, marginBottom: isMobile ? 16 : 40 }}>
 					<Typography className='header' style={{ fontSize: isMobile ? 24 : 36 }}>
@@ -41,7 +41,8 @@ export const TopBanner = ({ ...props }) => {
 									textDecorationStyle: 'dotted',
 									cursor: 'pointer',
 									fontSize: isMobile ? 13 : 18,
-								}}>
+								}}
+							>
 								{linkHeader || ''}
 							</Typography>
 						</Link>
@@ -55,7 +56,7 @@ export const TopBanner = ({ ...props }) => {
 				{visibleCloseIcon && (
 					<Box justifyContent={'flex-end'} style={{ marginTop: 24, marginRight: 24 }}>
 						<CloseIcon
-							style={{ fontSize: isMobile ? 24 : 32, cursor: 'pointer', color: primary.main }}
+							style={{ fontSize: isMobile ? 24 : 32, cursor: 'pointer', color: primary.light }}
 							onClick={onClick}
 						/>
 					</Box>

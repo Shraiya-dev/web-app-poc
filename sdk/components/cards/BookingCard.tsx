@@ -1,4 +1,4 @@
-import { alpha, Box, Button, Grid, Paper, Stack, Typography } from '@mui/material'
+import { alpha, Box, Button, Card, Grid, Paper, Stack, Typography } from '@mui/material'
 import { styled } from '@mui/system'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -115,15 +115,26 @@ export const BookingCard = ({ booking }: BookingCardProps) => {
 							height={24}
 							style={{ verticalAlign: 'middle' }}
 						/>
-						<Typography variant='h5' fontWeight={700} sx={{ verticalAlign: 'middle', margin: 1 }}>
+						<Typography
+							variant='h5'
+							fontWeight={700}
+							sx={{ verticalAlign: 'middle', margin: 1, color: primary.properDark }}
+						>
 							{totalCount} {JobTypeLabel[booking?.booking?.jobType]}
 						</Typography>
 					</Box>
-
 					<StatusChip bookingState={booking?.booking?.status} sx={{ verticalAlign: 'middle' }} />
 				</Stack>
 
-				<Typography style={{ display: 'flex', verticalAlign: 'middle', fontSize: 12, marginLeft: 32 }}>
+				<Typography
+					style={{
+						display: 'flex',
+						verticalAlign: 'middle',
+						fontSize: 12,
+						marginLeft: 32,
+						color: primary.properDark,
+					}}
+				>
 					ID: {booking?.booking?.bookingId}
 				</Typography>
 
@@ -135,16 +146,21 @@ export const BookingCard = ({ booking }: BookingCardProps) => {
 				</Stack> */}
 				<Stack direction='row' flexWrap='wrap' mt={1} ml={4}>
 					{helperCount !== 0 && (
-						<Typography mr={1} fontSize={13}>
+						<Typography mr={1} fontSize={13} color={primary.properDark}>
 							{helperCount} Helper
 						</Typography>
 					)}
 					{technicianCount !== 0 && (
-						<Typography mr={1} fontSize={13}>
+						<Typography mr={1} fontSize={13} color={primary.properDark}>
 							{technicianCount} Technician
 						</Typography>
 					)}
-					{supervisorCount !== 0 && <Typography fontSize={13}> {supervisorCount} Supervisor</Typography>}
+					{supervisorCount !== 0 && (
+						<Typography fontSize={13} color={primary.properDark}>
+							{' '}
+							{supervisorCount} Supervisor
+						</Typography>
+					)}
 				</Stack>
 				{/* <Stack direction='row' flexWrap='wrap' mt={1}>
 					<Typography mr={1} className='vAlignCenter' variant='body2' width={'50ch'}>
@@ -162,7 +178,7 @@ export const BookingCard = ({ booking }: BookingCardProps) => {
 				</Stack> */}
 			</Stack>
 			<Stack className='cardBody' onClick={handleClick}>
-				<Typography color='secondary.main' fontWeight={700} fontSize={12}>
+				<Typography color={primary.properDark} fontWeight={700} fontSize={12}>
 					ALLOCATION STATUS
 				</Typography>
 				<Grid container>
@@ -178,11 +194,11 @@ export const BookingCard = ({ booking }: BookingCardProps) => {
 							// 	router.query.jobCardState === JobCardState.WORKER_APPLIED ? 'selected' : ''
 							// }
 							>
-								<Typography variant='h5'>
+								<Typography variant='h5' color={primary.properDark}>
 									{(booking?.stats?.jobCardCounts?.WORKER_APPLIED ?? 0) +
 										(booking?.stats?.jobCardCounts?.ACCEPTED ?? 0)}
 								</Typography>
-								<Typography variant='body2' align='left'>
+								<Typography variant='body2' align='left' color={primary.properDark}>
 									Applied
 								</Typography>
 							</Typography>
@@ -197,10 +213,10 @@ export const BookingCard = ({ booking }: BookingCardProps) => {
 							// 	router.query.jobCardState === JobCardState.READY_TO_DEPLOY ? 'selected' : ''
 							// }
 							>
-								<Typography variant='h5'>
+								<Typography variant='h5' color={primary.properDark}>
 									{booking?.stats?.jobCardCounts?.READY_TO_DEPLOY ?? 0}
 								</Typography>
-								<Typography variant='body2' align='left'>
+								<Typography variant='body2' align='left' color={primary.properDark}>
 									Ready to Deploy
 								</Typography>
 							</Typography>
@@ -215,11 +231,11 @@ export const BookingCard = ({ booking }: BookingCardProps) => {
 							// 	router.query.jobCardState === JobCardState.DEPLOYMENT_COMPLETE ? 'selected' : ''
 							// }
 							>
-								<Typography variant='h5'>
+								<Typography variant='h5' color={primary.properDark}>
 									{(booking?.stats?.jobCardCounts?.DEPLOYMENT_COMPLETE ?? 0) +
 										(booking?.stats?.jobCardCounts?.COMPLETED ?? 0)}
 								</Typography>
-								<Typography variant='body2' align='left'>
+								<Typography variant='body2' align='left' color={primary.properDark}>
 									Deployed
 								</Typography>
 							</Typography>
@@ -248,7 +264,7 @@ export const BookingCard = ({ booking }: BookingCardProps) => {
 								style={{
 									padding: 1,
 									background: theme.palette.primary.light,
-									color: primary.nightDark,
+									color: primary.properDark,
 								}}
 							>
 								View Booking

@@ -54,7 +54,8 @@ const EditInfo = ({ ...props }) => {
 								id='designation'
 								name='designation'
 								value={form.values.designation}
-								onChange={form.handleChange}>
+								onChange={form.handleChange}
+							>
 								<MenuItem value={'none'}>Select Designation</MenuItem>
 								{getSelectOptions(companyRoles)}
 							</Select>
@@ -63,6 +64,7 @@ const EditInfo = ({ ...props }) => {
 
 					<Stack direction='row' style={{ fontSize: '18px', paddingTop: 32 }} spacing={2}>
 						<Button
+							variant='outlined'
 							fullWidth
 							onClick={() => {
 								setIsAccountEditable((state: any) => !state)
@@ -73,12 +75,13 @@ const EditInfo = ({ ...props }) => {
 									url: router.asPath,
 								})
 							}}
-							style={{
-								border: `1px solid ${primary.main}`,
-								background: primary.light,
-								color: primary.main,
-								boxShadow: 'none',
-							}}>
+							// style={{
+							// 	border: `1px solid ${primary.main}`,
+							// 	background: primary.light,
+							// 	color: primary.main,
+							// 	boxShadow: 'none',
+							// }}
+						>
 							Cancel
 						</Button>
 
@@ -91,7 +94,8 @@ const EditInfo = ({ ...props }) => {
 							onClick={() => {
 								handleSubmit()
 								setIsAccountEditable((state: any) => !state)
-							}}>
+							}}
+						>
 							Save
 						</LoadingButton>
 					</Stack>

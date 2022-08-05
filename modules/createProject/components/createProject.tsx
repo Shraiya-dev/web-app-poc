@@ -60,7 +60,7 @@ const CustomProjectStyle = styled(Box)(({ theme }) => ({
 		bottom: 0,
 		left: 0,
 		right: 0,
-
+		background: primary.properDark,
 		padding: 16,
 
 		//background: 'white',
@@ -196,7 +196,8 @@ export const CreateProject = () => {
 											form.setFieldValue('city', 'none')
 										}}
 										required={true}
-										fullWidth>
+										fullWidth
+									>
 										<MenuItem value={'none'}>Select State</MenuItem>
 										{getSelectOptions(StatesOptions)}
 									</Select>
@@ -215,7 +216,8 @@ export const CreateProject = () => {
 										onChange={(e) => {
 											form.handleChange(e)
 										}}
-										fullWidth>
+										fullWidth
+									>
 										<MenuItem value={'none'}>Select city</MenuItem>
 										{CityOptions[form.values.state].map((item: any) => {
 											return (
@@ -308,7 +310,8 @@ export const CreateProject = () => {
 														sx={{
 															position: 'relative',
 															marginLeft: 1,
-														}}>
+														}}
+													>
 														<IconButton
 															// disabled={formDisabled}
 															size='small'
@@ -325,7 +328,8 @@ export const CreateProject = () => {
 																//zIndex: 100,
 																top: -10,
 																right: -10,
-															})}>
+															})}
+														>
 															<Close />
 														</IconButton>
 
@@ -360,7 +364,8 @@ export const CreateProject = () => {
 										name='overTimeFactor'
 										value={form.values.overTimeFactor}
 										onChange={form.handleChange}
-										fullWidth>
+										fullWidth
+									>
 										<MenuItem value={'none'}>Select over time wage</MenuItem>
 										{getSelectOptions(overTimefactor)}
 									</Select>
@@ -429,7 +434,8 @@ export const CreateProject = () => {
 															sx={{
 																position: 'relative',
 																marginLeft: 1,
-															}}>
+															}}
+														>
 															<IconButton
 																// disabled={formDisabled}
 																size='small'
@@ -448,7 +454,8 @@ export const CreateProject = () => {
 																	//zIndex: 100,
 																	top: -10,
 																	right: -10,
-																})}>
+																})}
+															>
 																<Close />
 															</IconButton>
 
@@ -485,7 +492,8 @@ export const CreateProject = () => {
 										<Button
 											variant='outlined'
 											onClick={handlePrev}
-											style={{ minWidth: '10em', float: 'right', display: 'flex' }}>
+											style={{ minWidth: '10em', float: 'right', display: 'flex' }}
+										>
 											Go Back
 										</Button>
 									)}
@@ -502,8 +510,9 @@ export const CreateProject = () => {
 											// isSubmitable || loading ?  : theme.palette.primary.main,
 											opacity: !!isSubmitable || loading ? 0.4 : 1,
 											minWidth: '10em',
-											color: 'white',
-										}}>
+											color: primary.properDark,
+										}}
+									>
 										{step === 2 ? 'Create Project' : 'Continue'}
 									</LoadingButton>
 								</Stack>

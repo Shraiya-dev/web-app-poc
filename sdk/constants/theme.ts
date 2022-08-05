@@ -78,7 +78,7 @@ export const primary = {
 
 	// TODO: Need to add Proper Colouring
 	bgColor: '#F0F7FA',
-	secButtonColor: '#EFC530',
+	secButtonColor: '#E5E5E5',
 	properDark: '#000',
 	lightGrey: 'rgba(6, 31, 72, 0.05)',
 	lightOrange: 'rgba(247, 158, 84, 0.2)',
@@ -86,7 +86,7 @@ export const primary = {
 	mediumGreen: 'rgba(15, 175, 127, 0.5)',
 	successGreen: '#0FAF7F',
 	darkGrey: '#333333',
-	nightDark: '#000',
+	yellow: '#efc530',
 }
 export const colors = {
 	AliceBlue: '#EBF1F4',
@@ -177,7 +177,7 @@ let themeDef = createTheme({
 		},
 		background: {
 			default: '#2e2e2e', // background color
-			paper: '#383838', // cards background
+			paper: '#fff', // cards background
 		},
 
 		grey: {
@@ -226,6 +226,13 @@ let themeDef = createTheme({
 				},
 			},
 		},
+		// MuiChip: {
+		// 	defaultProps: {
+		// 		style: {
+		// 			outline: '1px solid #000',
+		// 		},
+		// 	},
+		// },
 		MuiIconButton: {
 			defaultProps: {
 				style: {
@@ -240,6 +247,7 @@ let themeDef = createTheme({
 				},
 			},
 		},
+
 		MuiPaper: {
 			defaultProps: {
 				//variant: 'outlined',
@@ -248,12 +256,12 @@ let themeDef = createTheme({
 				},
 			},
 		},
-
 		MuiInput: {
 			defaultProps: {
 				disableUnderline: true,
 			},
 		},
+
 		MuiGrid: {
 			defaultProps: {
 				display: 'flex',
@@ -271,6 +279,13 @@ let themeDef = createTheme({
 				},
 				sizeMedium: {
 					padding: '12px 22px',
+				},
+			},
+		},
+		MuiCard: {
+			defaultProps: {
+				style: {
+					background: '#000',
 				},
 			},
 		},
@@ -300,7 +315,15 @@ let themeDef = createTheme({
 						maxHeight: 400,
 					},
 				},
+
 				IconComponent: KeyboardArrowDownRounded,
+			},
+		},
+		MuiList: {
+			defaultProps: {
+				style: {
+					background: '#000',
+				},
 			},
 		},
 
