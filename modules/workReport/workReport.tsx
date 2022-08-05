@@ -1,4 +1,3 @@
-import { FileDownloadOutlined } from '@mui/icons-material'
 import { LoadingButton } from '@mui/lab'
 import {
 	alpha,
@@ -22,7 +21,7 @@ import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns'
 import { format, parse } from 'date-fns'
 import { useRouter } from 'next/router'
 import { useCallback, useEffect, useState } from 'react'
-import { colors, useMobile } from '../../sdk'
+import { colors, primary, useMobile } from '../../sdk'
 import { ButtonClicked } from '../../sdk/analytics/analyticsWrapper'
 import { DateStack } from '../../sdk/components/date/DateStack'
 import { StyledTableHeadCell } from '../../sdk/styledComponents/Tables'
@@ -237,7 +236,13 @@ export const WorkReport = () => {
 								<TableHead>
 									<TableRow>
 										{TableHeaderList.map((item, index) => (
-											<StyledTableHeadCell key={String(item.label)} sx={item.sx}>
+											<StyledTableHeadCell
+												key={String(item.label)}
+												sx={item.sx}
+												style={{
+													background: '#fffCF1',
+												}}
+											>
 												<Typography noWrap fontWeight={600} sx={{ color: '#000' }}>
 													{item.label}
 												</Typography>
@@ -287,7 +292,7 @@ export const WorkReport = () => {
 													<Typography
 														variant='body2'
 														color={`grey.600`}
-														sx={{ color: '#000' }}
+														sx={{ color: primary.darkGrey }}
 													>
 														{item?.totalPresent ?? 'NA'} / {item?.totalCount ?? 'NA'}
 													</Typography>
@@ -320,6 +325,9 @@ export const WorkReport = () => {
 															],
 															0.2
 														),
+														// color: '#000'
+														fontSize: '12px',
+														fontWeight: '500',
 													})}
 													label={WorkReportStatusLabel[item?.status]}
 												/>
@@ -372,7 +380,12 @@ export const WorkReport = () => {
 															downloadWorkReport(item.dwrId, item.date)
 														}}
 													>
-														<FileDownloadOutlined />
+														<img
+															width={'100%'}
+															height={'100%'}
+															src={'/assets/icons/buttonDownload.svg'}
+															alt=''
+														/>
 													</LoadingButton>
 												</Stack>
 											</TableCell>
@@ -566,7 +579,12 @@ export const WorkReport = () => {
 														downloadWorkReport(item.dwrId, item.date)
 													}}
 												>
-													<FileDownloadOutlined />
+													<img
+														width={'100%'}
+														height={'100%'}
+														src={'/assets/icons/buttonDownload.svg'}
+														alt=''
+													/>
 												</LoadingButton>
 											</Stack>
 										</Box>

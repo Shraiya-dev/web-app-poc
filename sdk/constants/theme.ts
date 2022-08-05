@@ -234,6 +234,7 @@ let themeDef = createTheme({
 		// 		},
 		// 	},
 		// },
+
 		MuiIconButton: {
 			defaultProps: {
 				style: {
