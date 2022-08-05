@@ -1,5 +1,5 @@
 import { Box, Grid, Stack, styled } from '@mui/material'
-import { theme } from '../../constants'
+import { primary, theme } from '../../constants'
 
 const CustomProjectStyle = styled(Box)(({ theme }) => ({
 	'.stepper': {
@@ -22,7 +22,7 @@ export const CustomStepper = ({ ...props }) => {
 				<Stack
 					className='stepper'
 					style={{
-						background: `${step === i ? theme.palette.primary.main : theme.palette.secondary.light}`,
+						background: `${step === i ? primary.properDark : 'rgba(0,0,0,0.4)'}`,
 						opacity: step === i ? 1 : 0.6,
 					}}
 				/>
