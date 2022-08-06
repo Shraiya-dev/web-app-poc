@@ -150,6 +150,9 @@ export const WorkReport = () => {
 											py: 0.6,
 										},
 									}}
+									style={{
+										background: '#2e2e2e',
+									}}
 								/>
 							)}
 							PaperProps={{
@@ -198,6 +201,9 @@ export const WorkReport = () => {
 										sx: {
 											py: 0.6,
 										},
+									}}
+									style={{
+										background: '#2e2e2e',
 									}}
 								/>
 							)}

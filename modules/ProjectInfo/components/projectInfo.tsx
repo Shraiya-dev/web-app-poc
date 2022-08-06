@@ -1,4 +1,4 @@
-import { Box, CircularProgress, Grid, IconButton, Paper, Stack, Typography } from '@mui/material'
+import { Box, Button, CircularProgress, Grid, IconButton, Paper, Stack, Typography } from '@mui/material'
 import { useState } from 'react'
 import { InputWrapper } from '../../../sdk'
 import { TextWrapper } from '../../../sdk/components/Input/TextWrapper'
@@ -35,9 +35,12 @@ const ProjectInfo = () => {
 				</Stack>
 			) : (
 				<Box mb={0}>
-					<Typography fontSize={24} fontWeight={700} pb={2}>
-						Site
-					</Typography>
+					<Stack direction={'row'} justifyContent='space-between'>
+						<Typography fontSize={24} fontWeight={700} pb={2}>
+							Site
+						</Typography>
+						<Button variant='outlined'>Edit Project</Button>
+					</Stack>
 					<Stack spacing={5}>
 						<TextWrapper id={'siteAddress'} label='Site Address'>
 							<Typography>
@@ -58,7 +61,8 @@ const ProjectInfo = () => {
 												sx={{
 													position: 'relative',
 													marginRight: 1,
-												}}>
+												}}
+											>
 												<img
 													style={{
 														height: 84,
@@ -103,7 +107,8 @@ const ProjectInfo = () => {
 													sx={{
 														position: 'relative',
 														marginRight: 1,
-													}}>
+													}}
+												>
 													<img
 														style={{
 															height: 84,

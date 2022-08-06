@@ -101,9 +101,6 @@ export const Bills = () => {
 												minHeight: 0,
 												minWidth: 150,
 												maxWidth: 150,
-												svg: {
-													color: '#000',
-												},
 											}}
 											size='small'
 											{...params}
@@ -111,8 +108,10 @@ export const Bills = () => {
 												...inputProps,
 												sx: {
 													py: 0.6,
-													color: primary.properDark,
 												},
+											}}
+											style={{
+												background: '#2e2e2e',
 											}}
 										/>
 									)}
@@ -158,9 +157,6 @@ export const Bills = () => {
 												minHeight: 0,
 												minWidth: 150,
 												maxWidth: 150,
-												svg: {
-													color: '#000',
-												},
 											}}
 											size='small'
 											{...params}
@@ -168,8 +164,10 @@ export const Bills = () => {
 												...inputProps,
 												sx: {
 													py: 0.6,
-													color: primary.properDark,
 												},
+											}}
+											style={{
+												background: '#2e2e2e',
 											}}
 										/>
 									)}
