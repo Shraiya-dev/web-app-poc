@@ -4,6 +4,7 @@ import { styled } from '@mui/system'
 import { useFormik } from 'formik'
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
+import { primary } from 'sdk/constants'
 
 const StyledForm = styled('form')(({ theme }) => ({
 	flex: 1,
@@ -47,7 +48,7 @@ export const SearchField = ({ name = 'name', ...rest }: TextFieldProps) => {
 					endAdornment: (
 						<InputAdornment position='end'>
 							<IconButton type='submit'>
-								<Search color='inherit' />
+								<Search color='inherit' sx={{color: primary.properDark}} />
 							</IconButton>
 						</InputAdornment>
 					),

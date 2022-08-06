@@ -138,7 +138,7 @@ export const WorkReportDetails = () => {
 							spacing={1}
 							mt={1}
 						>
-							{workReportByIDResponse?.response?.status == WorkReportStatus.PENDING_APPROVAL && (
+							{workReportByIDResponse?.response?.status === WorkReportStatus.PENDING_APPROVAL && (
 								<>
 									<LoadingButton
 										variant='contained'
@@ -199,7 +199,7 @@ export const WorkReportDetails = () => {
 					{rasingDispute && (
 						<Paper
 							sx={{
-								backgroundColor: 'grey.A200',
+								backgroundColor: '#585858',
 								display: 'flex',
 								justifyContent: 'flex-end',
 								height: 203,
@@ -292,7 +292,7 @@ export const WorkReportDetails = () => {
 											endAdornment: (
 												<InputAdornment position='end' sx={{ mr: '-10px' }}>
 													<IconButton size='small' type='submit'>
-														<Search />
+														<Search sx={{ color: primary.properDark }} />
 													</IconButton>
 												</InputAdornment>
 											),
@@ -300,6 +300,7 @@ export const WorkReportDetails = () => {
 										inputProps={{
 											sx: {
 												py: 0.6,
+												color: primary.properDark,
 											},
 										}}
 									/>
@@ -552,11 +553,11 @@ export const WorkReportDetails = () => {
 					<Dialog onClose={handleMobileRasingDispute} open={mobileRasingDispute} fullWidth>
 						<DialogTitle>
 							<Stack direction={'row'} justifyContent={'space-between'} alignItems={'center'}>
-								<Typography variant='subtitle1' fontWeight={700}>
+								<Typography variant='subtitle1' fontWeight={700} color={primary.properDark}>
 									Raise Dispute
 								</Typography>
 								<IconButton onClick={handleMobileRasingDispute}>
-									<CancelIcon />
+									<CancelIcon sx={{ color: primary.properDark }} />
 								</IconButton>
 							</Stack>
 						</DialogTitle>
@@ -584,7 +585,11 @@ export const WorkReportDetails = () => {
 										multiline
 										minRows={4}
 										maxRows={4}
-										sx={{ backgroundColor: 'common.white', borderRadius: 2 }}
+										sx={{
+											backgroundColor: 'common.white',
+											borderRadius: 2,
+											border: '1px solid grey',
+										}}
 										placeholder='Tell us the heroes names and issues with their attendances. '
 									/>
 									<Stack direction='row' spacing={1.5} justifyContent='flex-end' pt={2}>
@@ -899,7 +904,7 @@ export const WorkReportDetails = () => {
 								py: 2,
 							}}
 						>
-							{workReportByIDResponse?.response?.status == WorkReportStatus.PENDING_APPROVAL && (
+							{workReportByIDResponse?.response?.status === WorkReportStatus.PENDING_APPROVAL && (
 								<>
 									<LoadingButton
 										variant='contained'

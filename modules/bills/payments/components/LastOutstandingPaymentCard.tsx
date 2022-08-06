@@ -77,7 +77,7 @@ export const LastOutstandingPaymentCard = () => {
 							// 	background: theme.palette.background.paper,
 							// }}
 						>
-							<Typography variant='subtitle2' sx={{ color: '#000' }}>
+							<Typography variant='subtitle1' sx={{ color: '#000' }}>
 								Last Payment
 							</Typography>
 						</Stack>
@@ -94,7 +94,7 @@ export const LastOutstandingPaymentCard = () => {
 									}}
 								/>
 							)}
-							<Typography variant='h3' sx={{ fontSize: '2.25rem', color: theme.palette.base.variant50 }}>
+							<Typography variant='h2' sx={{ fontSize: '2.25rem', color: theme.palette.base.variant50 }}>
 								{lastOutStandingPaymentData.data.response.length > 0
 									? indianCurrencyFormat(
 											lastOutStandingPaymentData.data.response[0].totalPaymentAmount
