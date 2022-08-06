@@ -15,3 +15,7 @@ const Checkout = () =>{
 }
 
 export default Checkout
+
+const pageUrl = '/bookings/[projectId]/[bookingId]/checkout'
+export const getStaticPaths: GetStaticPaths = staticRenderingProvider(pageUrl).getStaticPaths
+export const getStaticProps: GetStaticProps = staticRenderingProvider(pageUrl).getStaticProps
