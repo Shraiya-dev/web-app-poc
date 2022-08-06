@@ -1,7 +1,7 @@
 import DashboardIcon from '@mui/icons-material/Dashboard'
 import LogoutIcon from '@mui/icons-material/Logout'
 import PersonIcon from '@mui/icons-material/Person'
-import { Box, Drawer, IconButton, List, ListItem, ListItemIcon, ListItemText, Stack } from '@mui/material'
+import { Box, Button, Drawer, IconButton, List, ListItem, ListItemIcon, ListItemText, Stack } from '@mui/material'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
 import React from 'react'
@@ -16,6 +16,7 @@ import { NavigationTabClicked } from '../analytics/analyticsWrapper'
 import BusinessIcon from '@mui/icons-material/Business'
 import Link from 'next/link'
 import { clearCookie } from '../analytics/helper'
+import { ArrowBackIos } from '@mui/icons-material'
 
 //always update when you change the app bar height into the onlyCssWeNeed file
 
@@ -81,7 +82,7 @@ const ContractorDashboardLayout = ({ children }: any) => {
 								<Image src={MenuIcon} alt='menu' color='black' />
 							</IconButton>
 						)}
-						<Link href='/dashboard' passHref>
+						{/* <Link href='/dashboard' passHref>
 							<a>
 								<Image
 									priority
@@ -91,7 +92,7 @@ const ContractorDashboardLayout = ({ children }: any) => {
 									width={isMobile ? 100 : 162}
 								/>
 							</a>
-						</Link>
+						</Link> */}
 					</Stack>
 				) : (
 					''
@@ -113,9 +114,12 @@ const ContractorDashboardLayout = ({ children }: any) => {
 					<Stack direction={'row'} alignItems={'center'} mb={8} spacing={12}>
 						<Image alt='logo' src={logo} height={52} width={isMobile ? 100 : 162} />
 						{isMobile && (
-							<IconButton onClick={toggleDrawer}>
-								<Image src={MenuIcon} alt='menu' color='black' />
-							</IconButton>
+							<Button
+								color='primary'
+								onClick={toggleDrawer}
+								variant='text'
+								startIcon={<ArrowBackIos fontSize='large' sx={{ color: '#fff' }} />}
+							/>
 						)}
 					</Stack>
 					<List>

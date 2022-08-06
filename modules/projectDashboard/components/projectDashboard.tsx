@@ -2,6 +2,7 @@ import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline'
 import { Box, Button, CircularProgress, Grid, Pagination, Paper, Stack, styled, Typography } from '@mui/material'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
+import { BottomBar } from 'sdk/components/MobileBottomBar'
 import EmptyProject from '../../../public/assets/icons/emptyProject.png'
 import { primary, theme, useMobile } from '../../../sdk'
 import { Analytic } from '../../../sdk/analytics'
@@ -136,6 +137,7 @@ export const ProjectDashboard = () => {
 							/>
 						</Stack>
 					)} */}
+				{/* {isMobile && <BottomBar />} */}
 			</CustomProjectDashBoard>
 		</>
 	)

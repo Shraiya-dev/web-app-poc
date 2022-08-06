@@ -306,7 +306,7 @@ export const OutstandingPaymentPopover = ({
 											setInputProps({
 												background: '#ebf8fe',
 												borderRadius: '8px',
-												color: '#000',
+												color: primary.properDark,
 												px: 4,
 											})
 										}}

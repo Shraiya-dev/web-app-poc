@@ -89,7 +89,9 @@ export const BookingId = () => {
 								</Stack>
 							</Stack>
 
-							<Button sx={{ fontSize: '14px', fontWeight: 800 }}>+ Get More Application</Button>
+							{!isMobile && (
+								<Button sx={{ fontSize: '14px', fontWeight: 800 }}>+ Get More Application</Button>
+							)}
 
 							{/* <StatusChip
 								bookingState={bookingSummary?.booking?.status}
@@ -111,6 +113,13 @@ export const BookingId = () => {
 			)}
 
 			<TabContext value={router.query.tab as string}>
+				{isMobile && (
+					<Box pt={2} pl={2}>
+						<Button size='small' sx={{ fontSize: '14px', fontWeight: 800 }}>
+							+ Get More Application
+						</Button>
+					</Box>
+				)}
 				<Box sx={{ borderBottom: 1, borderColor: 'divider', margin: 3, marginBottom: 0, marginTop: 3 }}>
 					<Tabs
 						TabIndicatorProps={{
@@ -163,7 +172,7 @@ export const BookingId = () => {
 				<TabPanel
 					value='track-workers'
 					style={{
-						height: 'calc( 100vh - 160px )',
+						height: 'calc( 100vh - 320px )',
 						overflowY: 'auto',
 						position: 'relative',
 					}}
@@ -174,7 +183,7 @@ export const BookingId = () => {
 				<TabPanel
 					value='details'
 					style={{
-						height: 'calc( 100vh - 160px )',
+						height: 'calc( 100vh - 320px )',
 						overflowY: 'auto',
 						position: 'relative',
 					}}

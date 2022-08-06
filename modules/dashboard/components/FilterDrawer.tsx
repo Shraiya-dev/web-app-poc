@@ -23,7 +23,7 @@ export const FilterDrawer = ({ open, onClose }: FilterDrawerProps) => {
 					color='primary'
 					onClick={onClose}
 					variant='text'
-					startIcon={<ArrowBackIos fontSize='large' />}
+					startIcon={<ArrowBackIos fontSize='large' sx={{ color: '#fff' }} />}
 				/>
 
 				<Stack flex={1} px={2} width={'100%'}>
