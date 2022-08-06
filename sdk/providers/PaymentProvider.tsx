@@ -50,27 +50,30 @@ const PaymentProvider: FC<any> = ({ children, authState }) => {
 		projectId,
 	})
 
-	const confirmPaymentOrder = useCallback(() => {
-		const params: confirmPaymentApi = {
-			paymentId: state.order?.paymentId,
-			transactionId: state.razorPayDetails?.razorpay_payment_id,
-			orderId: state.order?.orderId,
-			signature: state.razorPayDetails?.razorpay_signature,
-		}
-		confirmPaymentOrderMutation.mutate(
-			{ projectId: projectId, params },
-			{
-				onSuccess: (data: any) => {
-					if (data.data.payload) {
-						dispatch({
-							showConfirmationModel: true,
-							confirmPaymentDetails: data.data.payload,
-						})
-					}
-				},
+	const confirmPaymentOrder = useCallback(
+		(order, razorPayDetails) => {
+			const params: confirmPaymentApi = {
+				paymentId: order?.paymentId,
+				transactionId: razorPayDetails?.razorpay_payment_id,
+				orderId: order?.orderId,
+				signature: razorPayDetails?.razorpay_signature,
 			}
-		)
-	}, [state, projectId, confirmPaymentOrderMutation])
+			confirmPaymentOrderMutation.mutate(
+				{ projectId: projectId, params },
+				{
+					onSuccess: (data: any) => {
+						if (data.data.payload) {
+							dispatch({
+								showConfirmationModel: true,
+								confirmPaymentDetails: data.data.payload,
+							})
+						}
+					},
+				}
+			)
+		},
+		[state, projectId, confirmPaymentOrderMutation]
+	)
 
 	const cancelPaymentOrder = useCallback(() => {
 		const params: cancelPaymentApi = {
@@ -97,7 +100,7 @@ const PaymentProvider: FC<any> = ({ children, authState }) => {
 					dispatch({
 						razorPayDetails: response,
 					})
-					confirmPaymentOrder()
+					confirmPaymentOrder(order, response)
 				},
 				modal: {
 					escape: false,
