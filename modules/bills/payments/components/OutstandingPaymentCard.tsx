@@ -91,7 +91,12 @@ export const OutstandiongPaymentCard = ({ tooltipTitle }: { tooltipTitle: Toolti
 									// 	background: theme.palette.background.paper,
 									// }}
 								>
-									<Typography variant='subtitle1' sx={{ color: '#000' }}>
+									<Typography
+										fontFamily={'Saira,sans-serif'}
+										fontWeight={700}
+										variant='subtitle1'
+										sx={{ color: '#000' }}
+									>
 										Total Outstanding
 									</Typography>
 									<Tooltip
@@ -123,6 +128,9 @@ export const OutstandiongPaymentCard = ({ tooltipTitle }: { tooltipTitle: Toolti
 										}}
 									/>
 									<Typography
+										fontFamily={'Saira,sans-serif'}
+										fontWeight={700}
+										fontSize={'36px'}
 										variant='h2'
 										sx={{ fontSize: '2.25rem', color: theme.palette.green.dark }}
 									>
@@ -130,7 +138,11 @@ export const OutstandiongPaymentCard = ({ tooltipTitle }: { tooltipTitle: Toolti
 									</Typography>
 								</Stack>
 							</Stack>
-							<Typography variant='body2' sx={{ fontSize: '13px', color: theme.palette.base.variant60 }}>
+							<Typography
+								variant='body2'
+								fontWeight={500}
+								sx={{ fontSize: '13px', color: theme.palette.base.variant60 }}
+							>
 								{outStandingPaymentData.data.payload.amount >= 0
 									? 'Pay full or custom amount'
 									: 'It will be adjusted in future bills'}

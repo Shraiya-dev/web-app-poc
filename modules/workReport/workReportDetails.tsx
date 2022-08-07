@@ -92,10 +92,15 @@ export const WorkReportDetails = () => {
 								</IconButton>
 								<DateStack date={workReportByIDResponse?.response?.date} />
 								<Stack ml={2}>
-									<Typography variant='h5' fontWeight={700}>
+									<Typography fontFamily={'Saira ,sans-serif'} fontWeight={700} variant='h5'>
 										Work Report
 									</Typography>
-									<Typography variant='caption' color={primary.light}>
+									<Typography
+										fontFamily={'Karla ,sans-serif'}
+										fontWeight={700}
+										variant='caption'
+										color={primary.light}
+									>
 										{projectDetails?.name}
 									</Typography>
 								</Stack>

@@ -51,11 +51,15 @@ export const CustomTopBar = ({ children }: any) => {
 				<Stack direction={'row'} spacing={2} pr={2}>
 					<Stack direction={'row'} spacing={1} alignItems={'center'}>
 						<img height={25} src='/assets/icons/mail.svg' />
-						<Typography>marketing@projecthero.in</Typography>
+						<Typography fontFamily={'Karla,sans-serif'} fontWeight={700}>
+							marketing@projecthero.in
+						</Typography>
 					</Stack>
 					<Stack direction={'row'} spacing={1} alignItems={'center'}>
 						<img height={25} src='/assets/icons/phone.svg' />
-						<Typography>+91-9151003513</Typography>
+						<Typography fontFamily={'Karla,sans-serif'} fontWeight={700}>
+							+91-9151003513
+						</Typography>
 					</Stack>
 				</Stack>
 			)}

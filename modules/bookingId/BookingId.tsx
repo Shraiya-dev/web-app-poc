@@ -90,7 +90,9 @@ export const BookingId = () => {
 							</Stack>
 
 							{!isMobile && (
-								<Button sx={{ fontSize: '14px', fontWeight: 800 }}>+ Get More Application</Button>
+								<Button sx={{ fontSize: '14px', fontWeight: 800, fontFamily: 'Karla,sans-serif' }}>
+									+ Get More Application
+								</Button>
 							)}
 
 							{/* <StatusChip
@@ -115,7 +117,7 @@ export const BookingId = () => {
 			<TabContext value={router.query.tab as string}>
 				{isMobile && (
 					<Box pt={2} pl={2}>
-						<Button size='small' sx={{ fontSize: '14px', fontWeight: 800 }}>
+						<Button size='small' sx={{ fontSize: '14px', fontWeight: 800, fontFamily: 'karla,sans-serif' }}>
 							+ Get More Application
 						</Button>
 					</Box>
@@ -134,6 +136,8 @@ export const BookingId = () => {
 							sx={{
 								fontSize: '18px',
 								textTransform: 'none',
+								fontFamily: 'Saira ,sans-serif',
+								fontWeight: 700,
 							}}
 							value='track-workers'
 							label='Track Workers'
@@ -154,6 +158,8 @@ export const BookingId = () => {
 							sx={{
 								fontSize: '18px',
 								textTransform: 'none',
+								fontFamily: 'Saira ,sans-serif',
+								fontWeight: 700,
 							}}
 							value='details'
 							label='Booking Details'

@@ -36,14 +36,14 @@ const ProjectInfo = () => {
 			) : (
 				<Box mb={0}>
 					<Stack direction={'row'} justifyContent='space-between'>
-						<Typography fontSize={24} fontWeight={700} pb={2}>
+						<Typography fontWeight={700} fontSize={24} pb={2}>
 							Site
 						</Typography>
 						<Button variant='outlined'>Edit Project</Button>
 					</Stack>
 					<Stack spacing={5}>
 						<TextWrapper id={'siteAddress'} label='Site Address'>
-							<Typography>
+							<Typography fontFamily={'Saira,sans-serif'} fontWeight={400}>
 								{projectInfo?.siteAddress ||
 									'' + ',' + projectInfo?.city ||
 									'' + ',' + projectInfo?.state ||

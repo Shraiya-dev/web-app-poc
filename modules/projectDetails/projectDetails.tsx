@@ -63,12 +63,17 @@ export const ProjectDetails: FC<Props> = () => {
 									fontSize: isMobile ? 18 : 26,
 									fontWeight: 700,
 									color: theme.palette.secondary.main,
+									fontFamily: 'Saira,sans-serif',
 								}}
 							>
 								{projectDetails?.name}
 							</Typography>
 							<Typography
-								sx={{ fontSize: 14, color: theme.palette.secondary.main }}
+								sx={{
+									fontSize: 14,
+									color: theme.palette.secondary.main,
+									fontFamily: 'Saira,sans-serif',
+								}}
 								textTransform='capitalize'
 							>
 								<LocationOnOutlined style={{ fontSize: 12, verticalAlign: 'middle' }} />
@@ -119,6 +124,8 @@ export const ProjectDetails: FC<Props> = () => {
 												sx={{
 													fontSize: '18px',
 													textTransform: 'none',
+													fontFamily: 'Karla,sans-serif',
+													fontWeight: 700,
 												}}
 												value='bills'
 												label='Bills'
@@ -132,6 +139,8 @@ export const ProjectDetails: FC<Props> = () => {
 										sx={{
 											fontSize: '18px',
 											textTransform: 'none',
+											fontFamily: 'Karla,sans-serif',
+											fontWeight: 700,
 										}}
 										value={tab}
 										label={tabList[tab]}

@@ -105,7 +105,12 @@ const WorkerTracking = ({ handleRequiredTotal }: handleLength) => {
 				<Stack mt={4}>
 					{jobCards.length === 0 ? (
 						<Stack flex={1} mt={20} direction={'column'} alignItems='center'>
-							<Typography variant='h4' color={primary.yellow}>
+							<Typography
+								fontFamily={'Saira,sans-serif'}
+								fontWeight={700}
+								variant='h4'
+								color={primary.yellow}
+							>
 								You can see workers here when allocation starts
 							</Typography>
 						</Stack>

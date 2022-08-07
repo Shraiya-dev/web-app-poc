@@ -47,9 +47,10 @@ const CustomPaper = styled(Paper)(({ theme }) => ({
 		background: 'rgba(238, 250, 255, 0.6)',
 		boxShadow: 'none',
 		fontSize: 14,
-		fontWeight: 700,
+		fontWeight: 500,
 		padding: 8,
 		//backgroundOpacity: 0.6,
+		fontFamily: 'Saira,sans-serif',
 		height: 32,
 	},
 	'.info': {
@@ -107,10 +108,18 @@ export const ProjectCard = ({ ...props }) => {
 					})
 				}}
 			>
-				<Typography className='projectName' color={'#000'}>
+				<Typography
+					className='projectName'
+					color={'#000'}
+					sx={{
+						fontFamily: 'Saira , sans-serif',
+						fontWeight: '900',
+						fontSize: '20px',
+					}}
+				>
 					{project?.name || ''}
 				</Typography>
-				<Typography className='location' color={'#333333'}>
+				<Typography className='location' color={'#333333'} sx={{ fontFamily: 'Karla , sans-darif' }}>
 					<LocationOnOutlinedIcon
 						style={{ verticalAlign: 'middle', fontSize: 12, marginBottom: 4, color: '#333333' }}
 					/>
@@ -121,10 +130,21 @@ export const ProjectCard = ({ ...props }) => {
 					<Grid item xs={6} md={6} justifyContent={'center'}>
 						<Stack justifyContent={'center'}>
 							<Image src={employeeIcon} />
-							<Typography fontSize={28} textAlign={'center'} color={'#000'}>
+							<Typography
+								fontSize={28}
+								textAlign={'center'}
+								color={'#000'}
+								fontFamily={'Saira,sans-serif'}
+								fontWeight={600}
+							>
 								{project?.employee || 0}
 							</Typography>
-							<Typography className='subInfo' color={'#000'}>
+							<Typography
+								className='subInfo'
+								color={'#000'}
+								fontFamily={'Karla ,sans-serif'}
+								fontWeight={500}
+							>
 								Employees
 							</Typography>
 						</Stack>
@@ -132,10 +152,21 @@ export const ProjectCard = ({ ...props }) => {
 					<Grid item xs={6} md={6} justifyContent={'center'}>
 						<Stack justifyContent={'center'}>
 							<Image src={bookingIcon} />
-							<Typography fontSize={28} textAlign={'center'} color={'#000'}>
+							<Typography
+								fontSize={28}
+								textAlign={'center'}
+								color={'#000'}
+								fontFamily={'Saira,sans-serif'}
+								fontWeight={600}
+							>
 								{project?.bookingCount || 0}
 							</Typography>
-							<Typography className='subInfo' color={'#000'}>
+							<Typography
+								className='subInfo'
+								color={'#000'}
+								fontFamily={'Karla ,sans-serif'}
+								fontWeight={500}
+							>
 								Bookings
 							</Typography>
 						</Stack>

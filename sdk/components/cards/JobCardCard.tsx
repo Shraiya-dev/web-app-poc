@@ -59,6 +59,7 @@ export const JobCardCard = ({ jobCard }: JobCardCardProps) => {
 						<Stack mb={1} direction='row' justifyContent='center'>
 							<Typography
 								variant='h6'
+								fontFamily={'Saira,sans-serif'}
 								fontWeight={600}
 								textOverflow='ellipsis'
 								whiteSpace='nowrap'
@@ -71,21 +72,39 @@ export const JobCardCard = ({ jobCard }: JobCardCardProps) => {
 							{/* <JobCardStatusChip jobCardState={jobCard.jobCardState} sx={{ verticalAlign: 'middle' }} /> */}
 						</Stack>
 						<Stack direction={'column'} flex={1} mb={'40px'} spacing={1} alignItems={'center'}>
-							<Typography className='vAlignCenter' variant='body2' color={primary.properDark}>
+							<Typography
+								fontFamily={'Karla,sans-serif'}
+								fontWeight={500}
+								className='vAlignCenter'
+								variant='body2'
+								color={primary.properDark}
+							>
 								{/* <EngineeringIcon fontSize='inherit' /> */}
 								<Icon fontSize='inherit' style={{ display: 'flex' }}>
 									<Image src={WorkerIcon} />
 								</Icon>
 								&nbsp;{WorkerTypeLabel[jobCard.skillType]}
 							</Typography>
-							<Typography className='vAlignCenter' variant='body2' color={primary.properDark}>
+							<Typography
+								fontFamily={'Karla,sans-serif'}
+								fontWeight={500}
+								className='vAlignCenter'
+								variant='body2'
+								color={primary.properDark}
+							>
 								{/* <LocationOn fontSize='inherit' /> */}
 								<Icon fontSize='inherit' style={{ display: 'flex' }}>
 									<Image src={LocationIcon} />
 								</Icon>
 								&nbsp;{jobCard.city}, {jobCard.state}
 							</Typography>
-							<Typography className='vAlignCenter' variant='body2' color={primary.properDark}>
+							<Typography
+								fontFamily={'Karla,sans-serif'}
+								fontWeight={500}
+								className='vAlignCenter'
+								variant='body2'
+								color={primary.properDark}
+							>
 								{/* <EqualizerRounded fontSize='inherit' /> */}
 								<Icon fontSize='inherit' style={{ display: 'flex' }}>
 									<Image src={ExperienceIcon} />
@@ -99,11 +118,16 @@ export const JobCardCard = ({ jobCard }: JobCardCardProps) => {
 								window.open('tel:9575418224')
 							}}
 						>
-							<Stack spacing={2} direction={'row'} alignItems={'center'}>
+							<Stack spacing={1} direction={'row'} alignItems={'center'}>
 								<Box>
 									<img src='/assets/icons/buttonCall.svg' />
 								</Box>
-								<Typography variant='body1' color={primary.properDark} fontWeight={700}>
+								<Typography
+									fontFamily={'Karla,sans-serif'}
+									fontWeight={700}
+									variant='body1'
+									color={primary.properDark}
+								>
 									Call {jobCard.phoneNumber ?? ' 	'}
 								</Typography>
 							</Stack>
@@ -132,6 +156,7 @@ export const JobCardCard = ({ jobCard }: JobCardCardProps) => {
 								<Box pl={0.5}>
 									<Typography
 										variant='h6'
+										fontFamily={'Saira,sans-serif'}
 										fontWeight={600}
 										textOverflow='ellipsis'
 										whiteSpace='nowrap'
@@ -141,21 +166,39 @@ export const JobCardCard = ({ jobCard }: JobCardCardProps) => {
 										{jobCard.WorkerName ?? 'No Name'}
 									</Typography>
 								</Box>
-								<Typography className='vAlignCenter' variant='body2' color={primary.properDark}>
+								<Typography
+									fontFamily={'Karla,sans-serif'}
+									fontWeight={500}
+									className='vAlignCenter'
+									variant='body2'
+									color={primary.properDark}
+								>
 									{/* <EngineeringIcon fontSize='inherit' /> */}
 									<Icon fontSize='inherit' style={{ display: 'flex' }}>
 										<Image src={WorkerIcon} />
 									</Icon>
 									&nbsp;{WorkerTypeLabel[jobCard.skillType]}
 								</Typography>
-								<Typography className='vAlignCenter' variant='body2' color={primary.properDark}>
+								<Typography
+									fontFamily={'Karla,sans-serif'}
+									fontWeight={500}
+									className='vAlignCenter'
+									variant='body2'
+									color={primary.properDark}
+								>
 									{/* <LocationOn fontSize='inherit' /> */}
 									<Icon fontSize='inherit' style={{ display: 'flex' }}>
 										<Image src={LocationIcon} />
 									</Icon>
 									&nbsp;{jobCard.city}, {jobCard.state}
 								</Typography>
-								<Typography className='vAlignCenter' variant='body2' color={primary.properDark}>
+								<Typography
+									fontFamily={'Karla,sans-serif'}
+									fontWeight={500}
+									className='vAlignCenter'
+									variant='body2'
+									color={primary.properDark}
+								>
 									{/* <EqualizerRounded fontSize='inherit' /> */}
 									<Icon fontSize='inherit' style={{ display: 'flex' }}>
 										<Image src={ExperienceIcon} />
@@ -177,7 +220,12 @@ export const JobCardCard = ({ jobCard }: JobCardCardProps) => {
 								<Box sx={{ position: 'relative', top: '3px' }}>
 									<img src='/assets/icons/buttonCall.svg' />
 								</Box>
-								<Typography variant='body1' color={primary.properDark} fontWeight={700}>
+								<Typography
+									fontFamily={'Karla,sans-serif'}
+									variant='body1'
+									color={primary.properDark}
+									fontWeight={700}
+								>
 									Call {jobCard.phoneNumber ?? ' 	'}
 								</Typography>
 							</Stack>

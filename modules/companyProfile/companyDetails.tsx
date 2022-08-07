@@ -32,11 +32,14 @@ const CompanyDetails = () => {
 							fontSize: 26,
 							fontWeight: 700,
 							color: theme.palette.secondary.main,
+							fontFamily: 'Saira,sans-serif',
 						}}
 					>
 						Company Profile
 					</Typography>
-					<Typography style={{ fontSize: 14, color: theme.palette.secondary.main }}>
+					<Typography
+						style={{ fontSize: 14, color: theme.palette.secondary.main, fontFamily: 'Karla,sans-serif' }}
+					>
 						{user?.companyName}
 					</Typography>
 				</Stack>
@@ -57,6 +60,8 @@ const CompanyDetails = () => {
 								sx={{
 									fontSize: '18px',
 									textTransform: 'none',
+									fontFamily: 'Karla ,sans-serif',
+									fontWeight: 700,
 								}}
 								value='details'
 								label='Company Details'
@@ -74,6 +79,8 @@ const CompanyDetails = () => {
 								sx={{
 									fontSize: '18px',
 									textTransform: 'none',
+									fontFamily: 'Karla ,sans-serif',
+									fontWeight: 700,
 								}}
 								value='members'
 								label='Company Members'
