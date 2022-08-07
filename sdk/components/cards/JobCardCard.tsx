@@ -89,7 +89,11 @@ export const JobCardCard = ({ jobCard }: JobCardCardProps) => {
 							{/* Years Of Experience */}
 						</Typography>
 					</Stack>
-					<Button>
+					<Button
+						onClick={() => {
+							window.open('tel:9575418224')
+						}}
+					>
 						<Stack spacing={2} direction={'row'} alignItems={'center'}>
 							<Box>
 								<img src='/assets/icons/buttonCall.svg' />

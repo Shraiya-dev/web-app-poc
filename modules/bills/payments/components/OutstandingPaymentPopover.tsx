@@ -31,6 +31,7 @@ import {
 import { useCancelPaymentMutation, useConfirmPaymentMutation, useCreatePaymentMutation } from '../queries/hooks'
 import { ConfirmPaymentSuccessPopover } from './ConfirmPaymentSuccessPopover'
 import { ButtonClicked } from 'sdk/analytics/analyticsWrapper'
+import CheckCircleOutlineRoundedIcon from '@mui/icons-material/CheckCircleOutlineRounded'
 
 const CustomDialog = styled(Dialog)(({ theme }) => ({
 	'& .MuiDialog-paper': {
@@ -107,6 +108,7 @@ export const OutstandingPaymentPopover = ({
 		projectId,
 	})
 	const { user } = useContractorAuth()
+	const [inputProps, setInputProps] = useState({})
 	const createPaymentOrder = () => {
 		createPaymentOrderMutation.mutate(
 			{
@@ -247,11 +249,18 @@ export const OutstandingPaymentPopover = ({
 											border: '2px solid #efefef',
 											borderRadius: 2,
 											borderColor: amount === String(payAmount) ? 'primary.main' : undefined,
-											backgroundColor: amount === String(payAmount) ? 'primary.light' : undefined,
+											backgroundColor: amount === String(payAmount) ? 'primary.main' : undefined,
 											mr: 0,
 										}}
 										value={payAmount}
-										control={<Radio />}
+										control={
+											<Radio
+												style={{
+													color: '#000',
+												}}
+												checkedIcon={<CheckCircleOutlineRoundedIcon />}
+											/>
+										}
 										label={
 											<Stack>
 												<Typography variant='h6' sx={{ color: primary.properDark }}>
@@ -273,10 +282,9 @@ export const OutstandingPaymentPopover = ({
 											border: '2px solid #efefef',
 											borderRadius: 2,
 											mr: 0,
-
 											borderColor: amount === String(customAmount) ? 'primary.main' : undefined,
 											backgroundColor:
-												amount === String(customAmount) ? 'primary.light' : undefined,
+												amount === String(customAmount) ? 'primary.main' : undefined,
 											'.MuiFormControlLabel-label': {
 												flex: 1,
 												'*': {
@@ -285,16 +293,40 @@ export const OutstandingPaymentPopover = ({
 											},
 										}}
 										value={customAmount}
-										control={<Radio />}
+										control={
+											<Radio
+												style={{
+													color: '#000',
+												}}
+												checkedIcon={<CheckCircleOutlineRoundedIcon />}
+											/>
+										}
 										inputMode='numeric'
+										onFocus={() => {
+											setInputProps({
+												background: '#ebf8fe',
+												borderRadius: '8px',
+												color: primary.properDark,
+												px: 4,
+											})
+										}}
+										onBlur={() => {
+											setInputProps({})
+										}}
 										label={
 											<TextField
-												fullWidth
 												variant='standard'
 												placeholder='Enter Amount'
 												value={customAmount}
 												onChange={handleChange}
-												style={{ zIndex: '999', color: primary.properDark }}
+												style={{
+													zIndex: '999',
+													color: primary.properDark,
+													width: '50%',
+												}}
+												inputProps={{
+													sx: inputProps,
+												}}
 											/>
 										}
 									/>

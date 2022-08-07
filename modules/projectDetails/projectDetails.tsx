@@ -20,7 +20,7 @@ interface Props {}
 export const tabList: { [key in string]: string } = {
 	'work-report': 'Work Report',
 	bookings: 'Bookings',
-	details: 'Details',
+	details: 'Project Details',
 	bills: 'Bills',
 }
 export const ProjectDetails: FC<Props> = () => {
