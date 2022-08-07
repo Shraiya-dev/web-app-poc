@@ -172,7 +172,7 @@ export const BookingId = () => {
 				<TabPanel
 					value='track-workers'
 					style={{
-						height: 'calc( 100vh - 320px )',
+						height: isMobile ? 'calc( 100vh - 320px )' : '',
 						overflowY: 'auto',
 						position: 'relative',
 					}}
@@ -183,7 +183,7 @@ export const BookingId = () => {
 				<TabPanel
 					value='details'
 					style={{
-						height: 'calc( 100vh - 320px )',
+						height: isMobile ? 'calc( 100vh - 320px )' : '',
 						overflowY: 'auto',
 						position: 'relative',
 					}}

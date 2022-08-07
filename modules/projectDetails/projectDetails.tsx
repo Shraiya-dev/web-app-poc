@@ -32,24 +32,31 @@ export const ProjectDetails: FC<Props> = () => {
 		<>
 			<CustomTopBar>
 				<Stack flex={1} direction='row' alignItems='flex-start'>
-					<Stack direction='row' justifyContent={'flex-start'} flex={1}>
-						<Typography
-							style={{
-								fontSize: isMobile ? 18 : 26,
-								fontWeight: 700,
-								color: theme.palette.secondary.main,
+					<Stack direction='row' justifyContent={'flex-start'} flex={1} spacing={2}>
+						<Box
+							sx={{
+								position: 'relative',
+								top: 4,
 							}}
 						>
-							<ArrowBackIosNewIcon
-								onClick={() => router.push('/dashboard')}
-								sx={{
-									verticalAlign: 'middle',
-									color: '#fff',
-									fontSize: 24,
-									cursor: 'pointer',
+							<Typography
+								style={{
+									fontSize: isMobile ? 18 : 26,
+									fontWeight: 700,
+									color: theme.palette.secondary.main,
 								}}
-							/>
-						</Typography>
+							>
+								<ArrowBackIosNewIcon
+									onClick={() => router.push('/dashboard')}
+									sx={{
+										verticalAlign: 'middle',
+										color: '#fff',
+										fontSize: 24,
+										cursor: 'pointer',
+									}}
+								/>
+							</Typography>
+						</Box>
 						<Stack>
 							<Typography
 								style={{
@@ -186,7 +193,7 @@ export const ProjectDetails: FC<Props> = () => {
 						padding: isMobile ? 1 : 3,
 					}}
 					style={{
-						height: 'calc( 100vh - 160px )',
+						height: isMobile ? 'calc( 100vh - 160px )' : '',
 						overflowY: 'auto',
 						position: 'relative',
 					}}

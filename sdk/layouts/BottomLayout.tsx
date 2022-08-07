@@ -4,7 +4,7 @@ import BusinessIcon from '@mui/icons-material/Business'
 import DashboardIcon from '@mui/icons-material/Dashboard'
 import PersonIcon from '@mui/icons-material/Person'
 
-export const BottomBar = ({ ...props }) => {
+export const BottomLayout = ({ ...props }) => {
 	return (
 		<Box
 			sx={{
