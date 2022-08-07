@@ -9,7 +9,6 @@ import MenuIcon from '../../../public/assets/icons/MenuIcon.svg'
 const APP_BAR_BG_COLOR = primary.darkGrey
 
 const CustomAppBar = styled(Box)(() => ({
-	backgroundColor: APP_BAR_BG_COLOR,
 	minHeight: 84,
 	display: 'flex',
 	alignItems: 'center',
@@ -33,7 +32,14 @@ export const CustomTopBar = ({ children }: any) => {
 	const isMobile = useMobile()
 
 	return (
-		<CustomAppBar>
+		<CustomAppBar
+			sx={{
+				backgroundColor: !isMobile ? APP_BAR_BG_COLOR : primary.properDark,
+				left: isMobile ? 0 : '',
+				right: isMobile ? 0 : '',
+				mt: isMobile ? '-24px' : '',
+			}}
+		>
 			<Box style={{ marginLeft: 0, padding: 0 }}>
 				<Toolbar className='toolbar'>
 					<Stack width={1} direction={'row'}>
@@ -51,11 +57,15 @@ export const CustomTopBar = ({ children }: any) => {
 				<Stack direction={'row'} spacing={2} pr={2}>
 					<Stack direction={'row'} spacing={1} alignItems={'center'}>
 						<img height={25} src='/assets/icons/mail.svg' />
-						<Typography>marketing@projecthero.in</Typography>
+						<Typography fontFamily={'Karla,sans-serif'} fontWeight={700}>
+							marketing@projecthero.in
+						</Typography>
 					</Stack>
 					<Stack direction={'row'} spacing={1} alignItems={'center'}>
 						<img height={25} src='/assets/icons/phone.svg' />
-						<Typography>+91-9151003513</Typography>
+						<Typography fontFamily={'Karla,sans-serif'} fontWeight={700}>
+							+91-9151003513
+						</Typography>
 					</Stack>
 				</Stack>
 			)}

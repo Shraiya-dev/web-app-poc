@@ -1,5 +1,5 @@
 import { CircularProgress, Grid, Pagination, Stack, Typography } from '@mui/material'
-import { JobCardCard, primary, theme } from '../../../sdk'
+import { BottomLayout, JobCardCard, primary, theme, useMobile } from '../../../sdk'
 
 import { useRouter } from 'next/router'
 import { useEffect, useMemo } from 'react'
@@ -12,6 +12,7 @@ interface handleLength {
 
 const WorkerTracking = ({ handleRequiredTotal }: handleLength) => {
 	const router = useRouter()
+	const isMobile = useMobile()
 
 	const {
 		jobCardsLength,
@@ -81,81 +82,89 @@ const WorkerTracking = ({ handleRequiredTotal }: handleLength) => {
 	}, [getJobCards, router.query.pageNumber])
 
 	return (
-		<Stack>
-			<Grid container>
-				<Grid item xs={12} md={12} justifyContent='space-between' alignItems='center'>
-					<Filters
-						filterTags={filterTags}
-						setJobCards={setJobCards}
-						jobCards={jobCards}
-						page={pageNumber}
-						form={form}
-					/>
-				</Grid>
-				{/* <Grid item xs={12} md={3} alignItems='center'>
+		<>
+			<Stack>
+				<Grid container>
+					<Grid item xs={12} md={12} justifyContent='space-between' alignItems='center'>
+						<Filters
+							filterTags={filterTags}
+							setJobCards={setJobCards}
+							jobCards={jobCards}
+							page={pageNumber}
+							form={form}
+						/>
+					</Grid>
+					{/* <Grid item xs={12} md={3} alignItems='center'>
 					<SearchField name='name' fullWidth placeholder='Search a worker' size='small' />
 				</Grid> */}
-			</Grid>
+				</Grid>
 
-			{isLoading ? (
-				<Stack p={5} alignItems='center'>
-					<CircularProgress size={50} />
-				</Stack>
-			) : (
-				<Stack mt={4}>
-					{jobCards.length === 0 ? (
-						<Stack flex={1} mt={20} direction={'column'} alignItems='center'>
-							<Typography variant='h4' color={primary.yellow}>
-								You can see workers here when allocation starts
-							</Typography>
+				<Stack>
+					{isLoading ? (
+						<Stack p={5} alignItems='center'>
+							<CircularProgress size={50} />
 						</Stack>
 					) : (
-						<Grid container spacing={3}>
-							{jobCards.map((jobCardInfo, index) => {
-								return (
-									<Grid item xs={12} md={3} key={index}>
-										<JobCardCard jobCard={jobCardInfo} />
-									</Grid>
-								)
-							})}
-						</Grid>
-					)}
+						<Stack mt={4}>
+							{jobCards.length === 0 ? (
+								<Stack flex={1} mt={20} direction={'column'} alignItems='center'>
+									<Typography
+										fontFamily={'Saira,sans-serif'}
+										fontWeight={700}
+										variant='h4'
+										color={primary.yellow}
+									>
+										You can see workers here when allocation starts
+									</Typography>
+								</Stack>
+							) : (
+								<Grid container spacing={3}>
+									{jobCards.map((jobCardInfo, index) => {
+										return (
+											<Grid item xs={12} md={3} key={index}>
+												<JobCardCard jobCard={jobCardInfo} />
+											</Grid>
+										)
+									})}
+								</Grid>
+							)}
 
-					{jobCards.length > 0 && (
-						<Stack p={4} alignItems='center'>
-							<Pagination
-								page={router.query.pageNumber ? Number(router.query.pageNumber) : 1}
-								hidePrevButton={
-									!Number(router.query.pageNumber) || Number(router.query.pageNumber) === 1
-								}
-								hideNextButton={!hasMore}
-								count={hasMore ? 35 : Number(router.query.pageNumber)}
-								siblingCount={0}
-								disabled={isLoading}
-								boundaryCount={0}
-								showFirstButton={false}
-								showLastButton={false}
-								color='primary'
-								onChange={(e, page) => {
-									router.push(
-										{
-											query: { ...router.query, pageNumber: `${page}` },
-										},
-										undefined,
-										{}
-									)
-									let pageNum = page - 1 + ''
+							{jobCards.length > 0 && (
+								<Stack p={4} alignItems='center'>
+									<Pagination
+										page={router.query.pageNumber ? Number(router.query.pageNumber) : 1}
+										hidePrevButton={
+											!Number(router.query.pageNumber) || Number(router.query.pageNumber) === 1
+										}
+										hideNextButton={!hasMore}
+										count={hasMore ? 35 : Number(router.query.pageNumber)}
+										siblingCount={0}
+										disabled={isLoading}
+										boundaryCount={0}
+										showFirstButton={false}
+										showLastButton={false}
+										color='primary'
+										onChange={(e, page) => {
+											router.push(
+												{
+													query: { ...router.query, pageNumber: `${page}` },
+												},
+												undefined,
+												{}
+											)
+											let pageNum = page - 1 + ''
 
-									SetPageNumber(`${pageNum}`)
-								}}
-							/>
+											SetPageNumber(`${pageNum}`)
+										}}
+									/>
+								</Stack>
+							)}
 						</Stack>
 					)}
 				</Stack>
-			)}
-			{/* <FilterDrawer open={openFilterDrawer} onClose={handelDrawerToggle} /> */}
+				{/* <FilterDrawer open={openFilterDrawer} onClose={handelDrawerToggle} /> */}
 
-			{/* {hasMore && (
+				{/* {hasMore && (
 				<Stack
 					sx={{
 						marginTop: 3,
@@ -176,7 +185,13 @@ const WorkerTracking = ({ handleRequiredTotal }: handleLength) => {
 					</Button>
 				</Stack>
 			)} */}
-		</Stack>
+				{isMobile && (
+					<Stack direction={'row'} justifyContent={'center'}>
+						<BottomLayout />
+					</Stack>
+				)}
+			</Stack>
+		</>
 	)
 }
 

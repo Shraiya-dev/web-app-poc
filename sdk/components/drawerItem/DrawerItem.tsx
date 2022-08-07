@@ -59,7 +59,15 @@ export const DrawerItem = ({ ...props }) => {
 					<ListItemIcon style={{ color: router.route === route ? '#000' : '#b2b2b2' }}>{icon}</ListItemIcon>
 					<ListItemText>
 						{' '}
-						<Typography style={{ color: router.route === route ? '#000' : '#b2b2b2' }}>{title}</Typography>
+						<Typography
+							style={{
+								fontFamily: 'Karla, sans-serif',
+								fontWeight: '700',
+								color: router.route === route ? '#000' : '#b2b2b2',
+							}}
+						>
+							{title}
+						</Typography>
 					</ListItemText>
 				</ListItem>
 			</a>

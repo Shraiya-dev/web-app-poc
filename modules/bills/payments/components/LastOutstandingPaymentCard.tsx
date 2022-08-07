@@ -77,7 +77,12 @@ export const LastOutstandingPaymentCard = () => {
 							// 	background: theme.palette.background.paper,
 							// }}
 						>
-							<Typography variant='subtitle1' sx={{ color: '#000' }}>
+							<Typography
+								fontFamily={'Saira,sans-serif'}
+								fontWeight={700}
+								variant='subtitle1'
+								sx={{ color: '#000' }}
+							>
 								Last Payment
 							</Typography>
 						</Stack>
@@ -94,7 +99,12 @@ export const LastOutstandingPaymentCard = () => {
 									}}
 								/>
 							)}
-							<Typography variant='h2' sx={{ fontSize: '2.25rem', color: theme.palette.base.variant50 }}>
+							<Typography
+								fontFamily={'Saira,sans-serif'}
+								fontWeight={700}
+								variant='h2'
+								sx={{ fontSize: '2.25rem', color: theme.palette.base.variant50 }}
+							>
 								{lastOutStandingPaymentData.data.response.length > 0
 									? indianCurrencyFormat(
 											lastOutStandingPaymentData.data.response[0].totalPaymentAmount
@@ -104,6 +114,8 @@ export const LastOutstandingPaymentCard = () => {
 						</Stack>
 						{lastOutStandingPaymentData.data.response.length > 0 && (
 							<Typography
+								fontFamily={'Karla,sans-serif'}
+								fontWeight={500}
 								variant='caption'
 								sx={{
 									color: theme.palette.base.variant50,
@@ -115,6 +127,8 @@ export const LastOutstandingPaymentCard = () => {
 						)}
 						{lastOutStandingPaymentData.data.response.length > 0 && (
 							<Typography
+								fontFamily={'Karla,sans-serif'}
+								fontWeight={500}
 								variant='caption'
 								sx={{
 									color: theme.palette.base.variant50,

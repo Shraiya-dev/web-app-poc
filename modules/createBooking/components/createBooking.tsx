@@ -94,6 +94,9 @@ const CustomBookingStyle = styled(Box)(({ theme }) => ({
 		background: theme.palette.primary.main,
 		color: 'white',
 		width: '10rem',
+		'& :hover': {
+			background: theme.palette.primary.light,
+		},
 	},
 	'.prevCta': {
 		width: '10rem',

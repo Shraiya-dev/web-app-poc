@@ -44,7 +44,8 @@ export const BookingId = () => {
 										fontWeight: 700,
 										color: theme.palette.secondary.main,
 										paddingRight: 8,
-									}}>
+									}}
+								>
 									<ArrowBackIosNewIcon
 										onClick={() => router.push(`/projects/${router.query.projectId}/bookings`)}
 										sx={{
@@ -66,7 +67,8 @@ export const BookingId = () => {
 									<Typography
 										variant='h5'
 										fontWeight={700}
-										sx={{ verticalAlign: 'middle', margin: 1 }}>
+										sx={{ verticalAlign: 'middle', margin: 1 }}
+									>
 										{length ?? 0} / {total}{' '}
 										{JobTypeLabel[bookingSummary?.booking?.jobType || 'GYPSUM']}
 									</Typography>
@@ -84,11 +86,14 @@ export const BookingId = () => {
 								</Stack>
 							</Stack>
 
-							<LinkButton
-								href={`/bookings/${router.query.projectId}/${router.query.bookingId}/checkout`}
-								sx={{ fontSize: '14px', fontWeight: 800 }}>
-								+ Get More Application
-							</LinkButton>
+							{!isMobile && (
+								<Button
+									href={`/bookings/${router.query.projectId}/${router.query.bookingId}/checkout`}
+									sx={{ fontSize: '14px', fontWeight: 800, fontFamily: 'Karla,sans-serif' }}
+								>
+									+ Get More Application
+								</Button>
+							)}
 
 							{/* <StatusChip
 								bookingState={bookingSummary?.booking?.status}
@@ -110,6 +115,18 @@ export const BookingId = () => {
 			)}
 
 			<TabContext value={router.query.tab as string}>
+				{isMobile && (
+					<Box pt={2} pl={2}>
+						<Button
+							href={`/bookings/${router.query.projectId}/${router.query.bookingId}/checkout`}
+							size='small'
+							sx={{ fontSize: '14px', fontWeight: 800, fontFamily: 'karla,sans-serif' }}
+						>
+							+ Get More Application
+						</Button>
+					</Box>
+				)}
+
 				<Box sx={{ borderBottom: 1, borderColor: 'divider', margin: 3, marginBottom: 0, marginTop: 3 }}>
 					<Tabs
 						TabIndicatorProps={{
@@ -118,11 +135,14 @@ export const BookingId = () => {
 							},
 						}}
 						value={router.query.tab as string}
-						onChange={handleTabSelection}>
+						onChange={handleTabSelection}
+					>
 						<Tab
 							sx={{
 								fontSize: '18px',
 								textTransform: 'none',
+								fontFamily: 'Saira ,sans-serif',
+								fontWeight: 700,
 							}}
 							value='track-workers'
 							label='Track Workers'
@@ -143,6 +163,8 @@ export const BookingId = () => {
 							sx={{
 								fontSize: '18px',
 								textTransform: 'none',
+								fontFamily: 'Saira ,sans-serif',
+								fontWeight: 700,
 							}}
 							value='details'
 							label='Booking Details'
@@ -161,20 +183,24 @@ export const BookingId = () => {
 				<TabPanel
 					value='track-workers'
 					style={{
-						height: 'calc( 100vh - 160px )',
+						height: isMobile ? 'calc( 100vh - 320px )' : '',
+
 						overflowY: 'auto',
 						position: 'relative',
-					}}>
+					}}
+				>
 					<WorkerTracking handleRequiredTotal={handleRequiredTotal} />
 					{/* <Dashboard /> */}
 				</TabPanel>
 				<TabPanel
 					value='details'
 					style={{
-						height: 'calc( 100vh - 160px )',
+						height: isMobile ? 'calc( 100vh - 320px )' : '',
+
 						overflowY: 'auto',
 						position: 'relative',
-					}}>
+					}}
+				>
 					{bookingSummary ? <BookingInfo bookingInfo={bookingSummary} loading={isLoading} /> : ''}
 				</TabPanel>
 			</TabContext>
