@@ -62,7 +62,7 @@ export const CheckoutCard: FC = () => {
 	const bill: any = useMemo(() => {
 		const quantity = form.values['qtyHelper'] + form.values['qtyTechnician'] + form.values['qtySupervisor']
 		const subTotal = quantity * 50
-		const discount = subTotal > 750 ? 750 : subTotal
+		const discount = discountEligible?subTotal > 750 ? 750 : subTotal:0
 		const beforeTax = subTotal - discount
 		const tax = beforeTax * 0.18
 		const amountPayable = beforeTax + tax
