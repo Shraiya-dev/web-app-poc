@@ -368,6 +368,19 @@ let themeDef = createTheme({
 		// 		},
 		// 	},
 		// },
+		MuiAppBar: {
+			defaultProps: {
+				variant: 'outlined',
+				color: 'transparent',
+			},
+			styleOverrides: {
+				root: {
+					backgroundColor: '#000000',
+					border: 0,
+					height: '70px',
+				},
+			},
+		},
 	},
 })
 

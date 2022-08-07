@@ -6177,3 +6177,6118 @@ export const CityOptions: any = {
 		},
 	],
 }
+export const allCityList: any = [
+	{
+		id: '334',
+		label: 'Port Blair',
+		value: 'port blair,andaman and nicobar islands',
+	},
+	{
+		id: '202',
+		label: 'Adoni',
+		value: 'adoni,andhra pradesh',
+	},
+	{
+		id: '585',
+		label: 'Amalapuram',
+		value: 'amalapuram,andhra pradesh',
+	},
+	{
+		id: '382',
+		label: 'Anakapalle',
+		value: 'anakapalle,andhra pradesh',
+	},
+	{
+		id: '136',
+		label: 'Anantapur',
+		value: 'anantapur,andhra pradesh',
+	},
+	{
+		id: '446',
+		label: 'Bapatla',
+		value: 'bapatla,andhra pradesh',
+	},
+	{
+		id: '593',
+		label: 'Bheemunipatnam',
+		value: 'bheemunipatnam,andhra pradesh',
+	},
+	{
+		id: '243',
+		label: 'Bhimavaram',
+		value: 'bhimavaram,andhra pradesh',
+	},
+	{
+		id: '550',
+		label: 'Bobbili',
+		value: 'bobbili,andhra pradesh',
+	},
+	{
+		id: '327',
+		label: 'Chilakaluripet',
+		value: 'chilakaluripet,andhra pradesh',
+	},
+	{
+		id: '378',
+		label: 'Chirala',
+		value: 'chirala,andhra pradesh',
+	},
+	{
+		id: '219',
+		label: 'Chittoor',
+		value: 'chittoor,andhra pradesh',
+	},
+	{
+		id: '269',
+		label: 'Dharmavaram',
+		value: 'dharmavaram,andhra pradesh',
+	},
+	{
+		id: '161',
+		label: 'Eluru',
+		value: 'eluru,andhra pradesh',
+	},
+	{
+		id: '637',
+		label: 'Gooty',
+		value: 'gooty,andhra pradesh',
+	},
+	{
+		id: '274',
+		label: 'Gudivada',
+		value: 'gudivada,andhra pradesh',
+	},
+	{
+		id: '515',
+		label: 'Gudur',
+		value: 'gudur,andhra pradesh',
+	},
+	{
+		id: '259',
+		label: 'Guntakal',
+		value: 'guntakal,andhra pradesh',
+	},
+	{
+		id: '61',
+		label: 'Guntur',
+		value: 'guntur,andhra pradesh',
+	},
+	{
+		id: '223',
+		label: 'Hindupur',
+		value: 'hindupur,andhra pradesh',
+	},
+	{
+		id: '580',
+		label: 'Jaggaiahpet',
+		value: 'jaggaiahpet,andhra pradesh',
+	},
+	{
+		id: '662',
+		label: 'Jammalamadugu',
+		value: 'jammalamadugu,andhra pradesh',
+	},
+	{
+		id: '145',
+		label: 'Kadapa',
+		value: 'kadapa,andhra pradesh',
+	},
+	{
+		id: '365',
+		label: 'Kadiri',
+		value: 'kadiri,andhra pradesh',
+	},
+	{
+		id: '113',
+		label: 'Kakinada',
+		value: 'kakinada,andhra pradesh',
+	},
+	{
+		id: '544',
+		label: 'Kandukur',
+		value: 'kandukur,andhra pradesh',
+	},
+	{
+		id: '393',
+		label: 'Kavali',
+		value: 'kavali,andhra pradesh',
+	},
+	{
+		id: '738',
+		label: 'Kovvur',
+		value: 'kovvur,andhra pradesh',
+	},
+	{
+		id: '93',
+		label: 'Kurnool',
+		value: 'kurnool,andhra pradesh',
+	},
+	{
+		id: '630',
+		label: 'Macherla',
+		value: 'macherla,andhra pradesh',
+	},
+	{
+		id: '195',
+		label: 'Machilipatnam',
+		value: 'machilipatnam,andhra pradesh',
+	},
+	{
+		id: '250',
+		label: 'Madanapalle',
+		value: 'madanapalle,andhra pradesh',
+	},
+	{
+		id: '647',
+		label: 'Mandapeta',
+		value: 'mandapeta,andhra pradesh',
+	},
+	{
+		id: '531',
+		label: 'Markapur',
+		value: 'markapur,andhra pradesh',
+	},
+	{
+		id: '497',
+		label: 'Nagari',
+		value: 'nagari,andhra pradesh',
+	},
+	{
+		id: '488',
+		label: 'Naidupet',
+		value: 'naidupet,andhra pradesh',
+	},
+	{
+		id: '168',
+		label: 'Nandyal',
+		value: 'nandyal,andhra pradesh',
+	},
+	{
+		id: '527',
+		label: 'Narasapuram',
+		value: 'narasapuram,andhra pradesh',
+	},
+	{
+		id: '282',
+		label: 'Narasaraopet',
+		value: 'narasaraopet,andhra pradesh',
+	},
+	{
+		id: '830',
+		label: 'Narsipatnam',
+		value: 'narsipatnam,andhra pradesh',
+	},
+	{
+		id: '81',
+		label: 'Nellore',
+		value: 'nellore,andhra pradesh',
+	},
+	{
+		id: '691',
+		label: 'Nidadavole',
+		value: 'nidadavole,andhra pradesh',
+	},
+	{
+		id: '528',
+		label: 'Nuzvid',
+		value: 'nuzvid,andhra pradesh',
+	},
+	{
+		id: '167',
+		label: 'Ongole',
+		value: 'ongole,andhra pradesh',
+	},
+	{
+		id: '414',
+		label: 'Palacole',
+		value: 'palacole,andhra pradesh',
+	},
+	{
+		id: '620',
+		label: 'Palasa Kasibugga',
+		value: 'palasa kasibugga,andhra pradesh',
+	},
+	{
+		id: '625',
+		label: 'Parvathipuram',
+		value: 'parvathipuram,andhra pradesh',
+	},
+	{
+		id: '916',
+		label: 'Pedana',
+		value: 'pedana,andhra pradesh',
+	},
+	{
+		id: '669',
+		label: 'Peddapuram',
+		value: 'peddapuram,andhra pradesh',
+	},
+	{
+		id: '615',
+		label: 'Pithapuram',
+		value: 'pithapuram,andhra pradesh',
+	},
+	{
+		id: '540',
+		label: 'Ponnur',
+		value: 'ponnur,andhra pradesh',
+	},
+	{
+		id: '228',
+		label: 'Proddatur',
+		value: 'proddatur,andhra pradesh',
+	},
+	{
+		id: '682',
+		label: 'Punganur',
+		value: 'punganur,andhra pradesh',
+	},
+	{
+		id: '920',
+		label: 'Puttur',
+		value: 'puttur,andhra pradesh',
+	},
+	{
+		id: '95',
+		label: 'Rajahmundry',
+		value: 'rajahmundry,andhra pradesh',
+	},
+	{
+		id: '1068',
+		label: 'Rajam',
+		value: 'rajam,andhra pradesh',
+	},
+	{
+		id: '303',
+		label: 'Rajampet',
+		value: 'rajampet,andhra pradesh',
+	},
+	{
+		id: '719',
+		label: 'Ramachandrapuram',
+		value: 'ramachandrapuram,andhra pradesh',
+	},
+	{
+		id: '438',
+		label: 'Rayachoti',
+		value: 'rayachoti,andhra pradesh',
+	},
+	{
+		id: '570',
+		label: 'Rayadurg',
+		value: 'rayadurg,andhra pradesh',
+	},
+	{
+		id: '1055',
+		label: 'Renigunta',
+		value: 'renigunta,andhra pradesh',
+	},
+	{
+		id: '702',
+		label: 'Repalle',
+		value: 'repalle,andhra pradesh',
+	},
+	{
+		id: '638',
+		label: 'Salur',
+		value: 'salur,andhra pradesh',
+	},
+	{
+		id: '579',
+		label: 'Samalkot',
+		value: 'samalkot,andhra pradesh',
+	},
+	{
+		id: '602',
+		label: 'Sattenapalle',
+		value: 'sattenapalle,andhra pradesh',
+	},
+	{
+		id: '277',
+		label: 'Srikakulam',
+		value: 'srikakulam,andhra pradesh',
+	},
+	{
+		id: '444',
+		label: 'Srikalahasti',
+		value: 'srikalahasti,andhra pradesh',
+	},
+	{
+		id: '1074',
+		label: 'Srisailam Project (Right Flank Colony) Townshi',
+		value: 'srisailam project (right flank colony) township,andhra pradesh',
+	},
+	{
+		id: '416',
+		label: 'Sullurpeta',
+		value: 'sullurpeta,andhra pradesh',
+	},
+	{
+		id: '318',
+		label: 'Tadepalligudem',
+		value: 'tadepalligudem,andhra pradesh',
+	},
+	{
+		id: '306',
+		label: 'Tadpatri',
+		value: 'tadpatri,andhra pradesh',
+	},
+	{
+		id: '437',
+		label: 'Tanuku',
+		value: 'tanuku,andhra pradesh',
+	},
+	{
+		id: '205',
+		label: 'Tenali',
+		value: 'tenali,andhra pradesh',
+	},
+	{
+		id: '124',
+		label: 'Tirupati',
+		value: 'tirupati,andhra pradesh',
+	},
+	{
+		id: '760',
+		label: 'Tiruvuru',
+		value: 'tiruvuru,andhra pradesh',
+	},
+	{
+		id: '582',
+		label: 'Tuni',
+		value: 'tuni,andhra pradesh',
+	},
+	{
+		id: '796',
+		label: 'Uravakonda',
+		value: 'uravakonda,andhra pradesh',
+	},
+	{
+		id: '599',
+		label: 'Venkatagiri',
+		value: 'venkatagiri,andhra pradesh',
+	},
+	{
+		id: '41',
+		label: 'Vijayawada',
+		value: 'vijayawada,andhra pradesh',
+	},
+	{
+		id: '521',
+		label: 'Vinukonda',
+		value: 'vinukonda,andhra pradesh',
+	},
+	{
+		id: '18',
+		label: 'Visakhapatnam',
+		value: 'visakhapatnam,andhra pradesh',
+	},
+	{
+		id: '149',
+		label: 'Vizianagaram',
+		value: 'vizianagaram,andhra pradesh',
+	},
+	{
+		id: '350',
+		label: 'Yemmiganur',
+		value: 'yemmiganur,andhra pradesh',
+	},
+	{
+		id: '855',
+		label: 'Yerraguntla',
+		value: 'yerraguntla,andhra pradesh',
+	},
+	{
+		id: '789',
+		label: 'Naharlagun',
+		value: 'naharlagun,arunachal pradesh',
+	},
+	{
+		id: '1122',
+		label: 'Pasighat',
+		value: 'pasighat,arunachal pradesh',
+	},
+	{
+		id: '700',
+		label: 'Barpeta',
+		value: 'barpeta,assam',
+	},
+	{
+		id: '465',
+		label: 'Bongaigaon City',
+		value: 'bongaigaon city,assam',
+	},
+	{
+		id: '492',
+		label: 'Dhubri',
+		value: 'dhubri,assam',
+	},
+	{
+		id: '245',
+		label: 'Dibrugarh',
+		value: 'dibrugarh,assam',
+	},
+	{
+		id: '507',
+		label: 'Diphu',
+		value: 'diphu,assam',
+	},
+	{
+		id: '1221',
+		label: 'Dispur',
+		value: 'dispur,assam',
+	},
+	{
+		id: '581',
+		label: 'Goalpara',
+		value: 'goalpara,assam',
+	},
+	{
+		id: '43',
+		label: 'Guwahati',
+		value: 'guwahati,assam',
+	},
+	{
+		id: '441',
+		label: 'Jorhat',
+		value: 'jorhat,assam',
+	},
+	{
+		id: '548',
+		label: 'Karimganj',
+		value: 'karimganj,assam',
+	},
+	{
+		id: '775',
+		label: 'Lanka',
+		value: 'lanka,assam',
+	},
+	{
+		id: '888',
+		label: 'Lumding',
+		value: 'lumding,assam',
+	},
+	{
+		id: '1054',
+		label: 'Mangaldoi',
+		value: 'mangaldoi,assam',
+	},
+	{
+		id: '934',
+		label: 'Mankachar',
+		value: 'mankachar,assam',
+	},
+	{
+		id: '1051',
+		label: 'Margherita',
+		value: 'margherita,assam',
+	},
+	{
+		id: '1157',
+		label: 'Mariani',
+		value: 'mariani,assam',
+	},
+	{
+		id: '1169',
+		label: 'Marigaon',
+		value: 'marigaon,assam',
+	},
+	{
+		id: '281',
+		label: 'Nagaon',
+		value: 'nagaon,assam',
+	},
+	{
+		id: '954',
+		label: 'Nalbari',
+		value: 'nalbari,assam',
+	},
+	{
+		id: '520',
+		label: 'North Lakhimpur',
+		value: 'north lakhimpur,assam',
+	},
+	{
+		id: '1025',
+		label: 'Rangia',
+		value: 'rangia,assam',
+	},
+	{
+		id: '575',
+		label: 'Sibsagar',
+		value: 'sibsagar,assam',
+	},
+	{
+		id: '1106',
+		label: 'Silapathar',
+		value: 'silapathar,assam',
+	},
+	{
+		id: '185',
+		label: 'Silchar',
+		value: 'silchar,assam',
+	},
+	{
+		id: '529',
+		label: 'Tezpur',
+		value: 'tezpur,assam',
+	},
+	{
+		id: '337',
+		label: 'Tinsukia',
+		value: 'tinsukia,assam',
+	},
+	{
+		id: '405',
+		label: 'Araria',
+		value: 'araria,bihar',
+	},
+	{
+		id: '137',
+		label: 'Arrah',
+		value: 'arrah,bihar',
+	},
+	{
+		id: '598',
+		label: 'Arwal',
+		value: 'arwal,bihar',
+	},
+	{
+		id: '1214',
+		label: 'Asarganj',
+		value: 'asarganj,bihar',
+	},
+	{
+		id: '328',
+		label: 'Aurangabad',
+		value: 'aurangabad,bihar',
+	},
+	{
+		id: '291',
+		label: 'Bagaha',
+		value: 'bagaha,bihar',
+	},
+	{
+		id: '1205',
+		label: 'Barh',
+		value: 'barh,bihar',
+	},
+	{
+		id: '142',
+		label: 'Begusarai',
+		value: 'begusarai,bihar',
+	},
+	{
+		id: '253',
+		label: 'Bettiah',
+		value: 'bettiah,bihar',
+	},
+	{
+		id: '613',
+		label: 'BhabUrban Agglomeration',
+		value: 'bhaburban agglomeration,bihar',
+	},
+	{
+		id: '98',
+		label: 'Bhagalpur',
+		value: 'bhagalpur,bihar',
+	},
+	{
+		id: '320',
+		label: 'Buxar',
+		value: 'buxar,bihar',
+	},
+	{
+		id: '144',
+		label: 'Chhapra',
+		value: 'chhapra,bihar',
+	},
+	{
+		id: '120',
+		label: 'Darbhanga',
+		value: 'darbhanga,bihar',
+	},
+	{
+		id: '249',
+		label: 'Dehri-on-Sone',
+		value: 'dehri-on-sone,bihar',
+	},
+	{
+		id: '578',
+		label: 'Dumraon',
+		value: 'dumraon,bihar',
+	},
+	{
+		id: '611',
+		label: 'Forbesganj',
+		value: 'forbesganj,bihar',
+	},
+	{
+		id: '88',
+		label: 'Gaya',
+		value: 'gaya,bihar',
+	},
+	{
+		id: '464',
+		label: 'Gopalganj',
+		value: 'gopalganj,bihar',
+	},
+	{
+		id: '233',
+		label: 'Hajipur',
+		value: 'hajipur,bihar',
+	},
+	{
+		id: '315',
+		label: 'Jamalpur',
+		value: 'jamalpur,bihar',
+	},
+	{
+		id: '376',
+		label: 'Jamui',
+		value: 'jamui,bihar',
+	},
+	{
+		id: '322',
+		label: 'Jehanabad',
+		value: 'jehanabad,bihar',
+	},
+	{
+		id: '150',
+		label: 'Katihar',
+		value: 'katihar,bihar',
+	},
+	{
+		id: '309',
+		label: 'Kishanganj',
+		value: 'kishanganj,bihar',
+	},
+	{
+		id: '335',
+		label: 'Lakhisarai',
+		value: 'lakhisarai,bihar',
+	},
+	{
+		id: '1081',
+		label: 'Lalganj',
+		value: 'lalganj,bihar',
+	},
+	{
+		id: '672',
+		label: 'Madhepura',
+		value: 'madhepura,bihar',
+	},
+	{
+		id: '476',
+		label: 'Madhubani',
+		value: 'madhubani,bihar',
+	},
+	{
+		id: '1165',
+		label: 'Maharajganj',
+		value: 'maharajganj,bihar',
+	},
+	{
+		id: '766',
+		label: 'Mahnar Bazar',
+		value: 'mahnar bazar,bihar',
+	},
+	{
+		id: '905',
+		label: 'Makhdumpur',
+		value: 'makhdumpur,bihar',
+	},
+	{
+		id: '906',
+		label: 'Maner',
+		value: 'maner,bihar',
+	},
+	{
+		id: '1134',
+		label: 'Manihari',
+		value: 'manihari,bihar',
+	},
+	{
+		id: '1039',
+		label: 'Marhaura',
+		value: 'marhaura,bihar',
+	},
+	{
+		id: '493',
+		label: 'Masaurhi',
+		value: 'masaurhi,bihar',
+	},
+	{
+		id: '1065',
+		label: 'Mirganj',
+		value: 'mirganj,bihar',
+	},
+	{
+		id: '551',
+		label: 'Mokameh',
+		value: 'mokameh,bihar',
+	},
+	{
+		id: '263',
+		label: 'Motihari',
+		value: 'motihari,bihar',
+	},
+	{
+		id: '1123',
+		label: 'Motipur',
+		value: 'motipur,bihar',
+	},
+	{
+		id: '162',
+		label: 'Munger',
+		value: 'munger,bihar',
+	},
+	{
+		id: '1087',
+		label: 'Murliganj',
+		value: 'murliganj,bihar',
+	},
+	{
+		id: '105',
+		label: 'Muzaffarpur',
+		value: 'muzaffarpur,bihar',
+	},
+	{
+		id: '628',
+		label: 'Narkatiaganj',
+		value: 'narkatiaganj,bihar',
+	},
+	{
+		id: '633',
+		label: 'Naugachhia',
+		value: 'naugachhia,bihar',
+	},
+	{
+		id: '341',
+		label: 'Nawada',
+		value: 'nawada,bihar',
+	},
+	{
+		id: '974',
+		label: 'Nokha',
+		value: 'nokha,bihar',
+	},
+	{
+		id: '14',
+		label: 'Patna',
+		value: 'patna,bihar',
+	},
+	{
+		id: '1009',
+		label: 'Piro',
+		value: 'piro,bihar',
+	},
+	{
+		id: '174',
+		label: 'Purnia',
+		value: 'purnia,bihar',
+	},
+	{
+		id: '1030',
+		label: 'Rafiganj',
+		value: 'rafiganj,bihar',
+	},
+	{
+		id: '832',
+		label: 'Rajgir',
+		value: 'rajgir,bihar',
+	},
+	{
+		id: '749',
+		label: 'Ramnagar',
+		value: 'ramnagar,bihar',
+	},
+	{
+		id: '715',
+		label: 'Raxaul Bazar',
+		value: 'raxaul bazar,bihar',
+	},
+	{
+		id: '822',
+		label: 'Revelganj',
+		value: 'revelganj,bihar',
+	},
+	{
+		id: '969',
+		label: 'Rosera',
+		value: 'rosera,bihar',
+	},
+	{
+		id: '217',
+		label: 'Saharsa',
+		value: 'saharsa,bihar',
+	},
+	{
+		id: '501',
+		label: 'Samastipur',
+		value: 'samastipur,bihar',
+	},
+	{
+		id: '232',
+		label: 'Sasaram',
+		value: 'sasaram,bihar',
+	},
+	{
+		id: '694',
+		label: 'Sheikhpura',
+		value: 'sheikhpura,bihar',
+	},
+	{
+		id: '1148',
+		label: 'Sheohar',
+		value: 'sheohar,bihar',
+	},
+	{
+		id: '857',
+		label: 'Sherghati',
+		value: 'sherghati,bihar',
+	},
+	{
+		id: '1186',
+		label: 'Silao',
+		value: 'silao,bihar',
+	},
+	{
+		id: '377',
+		label: 'Sitamarhi',
+		value: 'sitamarhi,bihar',
+	},
+	{
+		id: '302',
+		label: 'Siwan',
+		value: 'siwan,bihar',
+	},
+	{
+		id: '838',
+		label: 'Sonepur',
+		value: 'sonepur,bihar',
+	},
+	{
+		id: '887',
+		label: 'Sugauli',
+		value: 'sugauli,bihar',
+	},
+	{
+		id: '712',
+		label: 'Sultanganj',
+		value: 'sultanganj,bihar',
+	},
+	{
+		id: '571',
+		label: 'Supaul',
+		value: 'supaul,bihar',
+	},
+	{
+		id: '821',
+		label: 'Warisaliganj',
+		value: 'warisaliganj,bihar',
+	},
+	{
+		id: '44',
+		label: 'Chandigarh',
+		value: 'chandigarh,chandigarh',
+	},
+	{
+		id: '286',
+		label: 'Ambikapur',
+		value: 'ambikapur,chhattisgarh',
+	},
+	{
+		id: '543',
+		label: 'Bhatapara',
+		value: 'bhatapara,chhattisgarh',
+	},
+	{
+		id: '66',
+		label: 'Bhilai Nagar',
+		value: 'bhilai nagar,chhattisgarh',
+	},
+	{
+		id: '109',
+		label: 'Bilaspur',
+		value: 'bilaspur,chhattisgarh',
+	},
+	{
+		id: '455',
+		label: 'Chirmiri',
+		value: 'chirmiri,chhattisgarh',
+	},
+	{
+		id: '681',
+		label: 'Dalli-Rajhara',
+		value: 'dalli-rajhara,chhattisgarh',
+	},
+	{
+		id: '394',
+		label: 'Dhamtari',
+		value: 'dhamtari,chhattisgarh',
+	},
+	{
+		id: '131',
+		label: 'Durg',
+		value: 'durg,chhattisgarh',
+	},
+	{
+		id: '262',
+		label: 'Jagdalpur',
+		value: 'jagdalpur,chhattisgarh',
+	},
+	{
+		id: '101',
+		label: 'Korba',
+		value: 'korba,chhattisgarh',
+	},
+	{
+		id: '383',
+		label: 'Mahasamund',
+		value: 'mahasamund,chhattisgarh',
+	},
+	{
+		id: '900',
+		label: 'Manendragarh',
+		value: 'manendragarh,chhattisgarh',
+	},
+	{
+		id: '882',
+		label: 'Mungeli',
+		value: 'mungeli,chhattisgarh',
+	},
+	{
+		id: '730',
+		label: 'Naila Janjgir',
+		value: 'naila janjgir,chhattisgarh',
+	},
+	{
+		id: '283',
+		label: 'Raigarh',
+		value: 'raigarh,chhattisgarh',
+	},
+	{
+		id: '36',
+		label: 'Raipur',
+		value: 'raipur,chhattisgarh',
+	},
+	{
+		id: '240',
+		label: 'Rajnandgaon',
+		value: 'rajnandgaon,chhattisgarh',
+	},
+	{
+		id: '1184',
+		label: 'Sakti',
+		value: 'sakti,chhattisgarh',
+	},
+	{
+		id: '865',
+		label: 'Tilda Newra',
+		value: 'tilda newra,chhattisgarh',
+	},
+	{
+		id: '1129',
+		label: 'Silvassa',
+		value: 'silvassa,dadra and nagar haveli',
+	},
+	{
+		id: 'Daman and Diu',
+		label: 'Daman and Diu',
+		value: 'daman and diu,daman and diu',
+	},
+	{
+		id: '2',
+		label: 'Delhi',
+		value: 'delhi,delhi',
+	},
+	{
+		id: '143',
+		label: 'New Delhi',
+		value: 'new delhi,delhi',
+	},
+	{
+		id: '731',
+		label: 'Mapusa',
+		value: 'mapusa,goa',
+	},
+	{
+		id: '354',
+		label: 'Margao',
+		value: 'margao,goa',
+	},
+	{
+		id: '316',
+		label: 'Marmagao',
+		value: 'marmagao,goa',
+	},
+	{
+		id: '336',
+		label: 'Panaji',
+		value: 'panaji,goa',
+	},
+	{
+		id: '1203',
+		label: 'Adalaj',
+		value: 'adalaj,gujarat',
+	},
+	{
+		id: '4',
+		label: 'Ahmedabad',
+		value: 'ahmedabad,gujarat',
+	},
+	{
+		id: '313',
+		label: 'Amreli',
+		value: 'amreli,gujarat',
+	},
+	{
+		id: '173',
+		label: 'Anand',
+		value: 'anand,gujarat',
+	},
+	{
+		id: '379',
+		label: 'Anjar',
+		value: 'anjar,gujarat',
+	},
+	{
+		id: '425',
+		label: 'Ankleshwar',
+		value: 'ankleshwar,gujarat',
+	},
+	{
+		id: '198',
+		label: 'Bharuch',
+		value: 'bharuch,gujarat',
+	},
+	{
+		id: '70',
+		label: 'Bhavnagar',
+		value: 'bhavnagar,gujarat',
+	},
+	{
+		id: '234',
+		label: 'Bhuj',
+		value: 'bhuj,gujarat',
+	},
+	{
+		id: '1206',
+		label: 'Chhapra',
+		value: 'chhapra,gujarat',
+	},
+	{
+		id: '295',
+		label: 'Deesa',
+		value: 'deesa,gujarat',
+	},
+	{
+		id: '386',
+		label: 'Dhoraji',
+		value: 'dhoraji,gujarat',
+	},
+	{
+		id: '1216',
+		label: 'Gandhinagar',
+		value: 'gandhinagar,gujarat',
+	},
+	{
+		id: '241',
+		label: 'Godhra',
+		value: 'godhra,gujarat',
+	},
+	{
+		id: '75',
+		label: 'Jamnagar',
+		value: 'jamnagar,gujarat',
+	},
+	{
+		id: '430',
+		label: 'Kadi',
+		value: 'kadi,gujarat',
+	},
+	{
+		id: '629',
+		label: 'Kapadvanj',
+		value: 'kapadvanj,gujarat',
+	},
+	{
+		id: '415',
+		label: 'Keshod',
+		value: 'keshod,gujarat',
+	},
+	{
+		id: '390',
+		label: 'Khambhat',
+		value: 'khambhat,gujarat',
+	},
+	{
+		id: '1151',
+		label: 'Lathi',
+		value: 'lathi,gujarat',
+	},
+	{
+		id: '699',
+		label: 'Limbdi',
+		value: 'limbdi,gujarat',
+	},
+	{
+		id: '772',
+		label: 'Lunawada',
+		value: 'lunawada,gujarat',
+	},
+	{
+		id: '899',
+		label: 'Mahemdabad',
+		value: 'mahemdabad,gujarat',
+	},
+	{
+		id: '184',
+		label: 'Mahesana',
+		value: 'mahesana,gujarat',
+	},
+	{
+		id: '397',
+		label: 'Mahuva',
+		value: 'mahuva,gujarat',
+	},
+	{
+		id: '965',
+		label: 'Manavadar',
+		value: 'manavadar,gujarat',
+	},
+	{
+		id: '705',
+		label: 'Mandvi',
+		value: 'mandvi,gujarat',
+	},
+	{
+		id: '554',
+		label: 'Mangrol',
+		value: 'mangrol,gujarat',
+	},
+	{
+		id: '951',
+		label: 'Mansa',
+		value: 'mansa,gujarat',
+	},
+	{
+		id: '569',
+		label: 'Modasa',
+		value: 'modasa,gujarat',
+	},
+	{
+		id: '177',
+		label: 'Morvi',
+		value: 'morvi,gujarat',
+	},
+	{
+		id: '158',
+		label: 'Nadiad',
+		value: 'nadiad,gujarat',
+	},
+	{
+		id: '209',
+		label: 'Navsari',
+		value: 'navsari,gujarat',
+	},
+	{
+		id: '741',
+		label: 'Padra',
+		value: 'padra,gujarat',
+	},
+	{
+		id: '258',
+		label: 'Palanpur',
+		value: 'palanpur,gujarat',
+	},
+	{
+		id: '597',
+		label: 'Palitana',
+		value: 'palitana,gujarat',
+	},
+	{
+		id: '1020',
+		label: 'Pardi',
+		value: 'pardi,gujarat',
+	},
+	{
+		id: '290',
+		label: 'Patan',
+		value: 'patan,gujarat',
+	},
+	{
+		id: '606',
+		label: 'Petlad',
+		value: 'petlad,gujarat',
+	},
+	{
+		id: '171',
+		label: 'Porbandar',
+		value: 'porbandar,gujarat',
+	},
+	{
+		id: '872',
+		label: 'Radhanpur',
+		value: 'radhanpur,gujarat',
+	},
+	{
+		id: '22',
+		label: 'Rajkot',
+		value: 'rajkot,gujarat',
+	},
+	{
+		id: '806',
+		label: 'Rajpipla',
+		value: 'rajpipla,gujarat',
+	},
+	{
+		id: '862',
+		label: 'Rajula',
+		value: 'rajula,gujarat',
+	},
+	{
+		id: '915',
+		label: 'Ranavav',
+		value: 'ranavav,gujarat',
+	},
+	{
+		id: '1083',
+		label: 'Rapar',
+		value: 'rapar,gujarat',
+	},
+	{
+		id: '979',
+		label: 'Salaya',
+		value: 'salaya,gujarat',
+	},
+	{
+		id: '861',
+		label: 'Sanand',
+		value: 'sanand,gujarat',
+	},
+	{
+		id: '426',
+		label: 'Savarkundla',
+		value: 'savarkundla,gujarat',
+	},
+	{
+		id: '534',
+		label: 'Sidhpur',
+		value: 'sidhpur,gujarat',
+	},
+	{
+		id: '655',
+		label: 'Sihor',
+		value: 'sihor,gujarat',
+	},
+	{
+		id: '1107',
+		label: 'Songadh',
+		value: 'songadh,gujarat',
+	},
+	{
+		id: '10',
+		label: 'Surat',
+		value: 'surat,gujarat',
+	},
+	{
+		id: '955',
+		label: 'Talaja',
+		value: 'talaja,gujarat',
+	},
+	{
+		id: '706',
+		label: 'Thangadh',
+		value: 'thangadh,gujarat',
+	},
+	{
+		id: '950',
+		label: 'Tharad',
+		value: 'tharad,gujarat',
+	},
+	{
+		id: '952',
+		label: 'Umbergaon',
+		value: 'umbergaon,gujarat',
+	},
+	{
+		id: '829',
+		label: 'Umreth',
+		value: 'umreth,gujarat',
+	},
+	{
+		id: '530',
+		label: 'Una',
+		value: 'una,gujarat',
+	},
+	{
+		id: '546',
+		label: 'Unjha',
+		value: 'unjha,gujarat',
+	},
+	{
+		id: '526',
+		label: 'Upleta',
+		value: 'upleta,gujarat',
+	},
+	{
+		id: '960',
+		label: 'Vadnagar',
+		value: 'vadnagar,gujarat',
+	},
+	{
+		id: '19',
+		label: 'Vadodara',
+		value: 'vadodara,gujarat',
+	},
+	{
+		id: '285',
+		label: 'Valsad',
+		value: 'valsad,gujarat',
+	},
+	{
+		id: '819',
+		label: 'Vapi',
+		value: 'vapi,gujarat',
+	},
+	{
+		id: '220',
+		label: 'Veraval',
+		value: 'veraval,gujarat',
+	},
+	{
+		id: '1013',
+		label: 'Vijapur',
+		value: 'vijapur,gujarat',
+	},
+	{
+		id: '561',
+		label: 'Viramgam',
+		value: 'viramgam,gujarat',
+	},
+	{
+		id: '494',
+		label: 'Visnagar',
+		value: 'visnagar,gujarat',
+	},
+	{
+		id: '737',
+		label: 'Vyara',
+		value: 'vyara,gujarat',
+	},
+	{
+		id: '417',
+		label: 'Wadhwan',
+		value: 'wadhwan,gujarat',
+	},
+	{
+		id: '689',
+		label: 'Wankaner',
+		value: 'wankaner,gujarat',
+	},
+	{
+		id: '194',
+		label: 'Bahadurgarh',
+		value: 'bahadurgarh,haryana',
+	},
+	{
+		id: '170',
+		label: 'Bhiwani',
+		value: 'bhiwani,haryana',
+	},
+	{
+		id: '618',
+		label: 'Charkhi Dadri',
+		value: 'charkhi dadri,haryana',
+	},
+	{
+		id: '26',
+		label: 'Faridabad',
+		value: 'faridabad,haryana',
+	},
+	{
+		id: '447',
+		label: 'Fatehabad',
+		value: 'fatehabad,haryana',
+	},
+	{
+		id: '478',
+		label: 'Gohana',
+		value: 'gohana,haryana',
+	},
+	{
+		id: '48',
+		label: 'Gurgaon',
+		value: 'gurgaon,haryana',
+	},
+	{
+		id: '381',
+		label: 'Hansi',
+		value: 'hansi,haryana',
+	},
+	{
+		id: '117',
+		label: 'Hisar',
+		value: 'hisar,haryana',
+	},
+	{
+		id: '203',
+		label: 'Jind',
+		value: 'jind,haryana',
+	},
+	{
+		id: '239',
+		label: 'Kaithal',
+		value: 'kaithal,haryana',
+	},
+	{
+		id: '125',
+		label: 'Karnal',
+		value: 'karnal,haryana',
+	},
+	{
+		id: '933',
+		label: 'Ladwa',
+		value: 'ladwa,haryana',
+	},
+	{
+		id: '1045',
+		label: 'Mahendragarh',
+		value: 'mahendragarh,haryana',
+	},
+	{
+		id: '576',
+		label: 'Mandi Dabwali',
+		value: 'mandi dabwali,haryana',
+	},
+	{
+		id: '421',
+		label: 'Narnaul',
+		value: 'narnaul,haryana',
+	},
+	{
+		id: '498',
+		label: 'Narwana',
+		value: 'narwana,haryana',
+	},
+	{
+		id: '257',
+		label: 'Palwal',
+		value: 'palwal,haryana',
+	},
+	{
+		id: '163',
+		label: 'Panchkula',
+		value: 'panchkula,haryana',
+	},
+	{
+		id: '119',
+		label: 'Panipat',
+		value: 'panipat,haryana',
+	},
+	{
+		id: '837',
+		label: 'Pehowa',
+		value: 'pehowa,haryana',
+	},
+	{
+		id: '917',
+		label: 'Pinjore',
+		value: 'pinjore,haryana',
+	},
+	{
+		id: '1159',
+		label: 'Rania',
+		value: 'rania,haryana',
+	},
+	{
+		id: '1057',
+		label: 'Ratia',
+		value: 'ratia,haryana',
+	},
+	{
+		id: '330',
+		label: 'Rewari',
+		value: 'rewari,haryana',
+	},
+	{
+		id: '118',
+		label: 'Rohtak',
+		value: 'rohtak,haryana',
+	},
+	{
+		id: '967',
+		label: 'Safidon',
+		value: 'safidon,haryana',
+	},
+	{
+		id: '912',
+		label: 'Samalkha',
+		value: 'samalkha,haryana',
+	},
+	{
+		id: '1215',
+		label: 'Sarsod',
+		value: 'sarsod,haryana',
+	},
+	{
+		id: '768',
+		label: 'Shahbad',
+		value: 'shahbad,haryana',
+	},
+	{
+		id: '208',
+		label: 'Sirsa',
+		value: 'sirsa,haryana',
+	},
+	{
+		id: '964',
+		label: 'Sohna',
+		value: 'sohna,haryana',
+	},
+	{
+		id: '152',
+		label: 'Sonipat',
+		value: 'sonipat,haryana',
+	},
+	{
+		id: '1003',
+		label: 'Taraori',
+		value: 'taraori,haryana',
+	},
+	{
+		id: '218',
+		label: 'Thanesar',
+		value: 'thanesar,haryana',
+	},
+	{
+		id: '490',
+		label: 'Tohana',
+		value: 'tohana,haryana',
+	},
+	{
+		id: '159',
+		label: 'Yamunanagar',
+		value: 'yamunanagar,haryana',
+	},
+	{
+		id: '1217',
+		label: 'Kullu',
+		value: 'kullu,himachal pradesh',
+	},
+	{
+		id: '518',
+		label: 'Mandi',
+		value: 'mandi,himachal pradesh',
+	},
+	{
+		id: '932',
+		label: 'Nahan',
+		value: 'nahan,himachal pradesh',
+	},
+	{
+		id: '1073',
+		label: 'Palampur',
+		value: 'palampur,himachal pradesh',
+	},
+	{
+		id: '237',
+		label: 'Shimla',
+		value: 'shimla,himachal pradesh',
+	},
+	{
+		id: '818',
+		label: 'Solan',
+		value: 'solan,himachal pradesh',
+	},
+	{
+		id: '1052',
+		label: 'Sundarnagar',
+		value: 'sundarnagar,himachal pradesh',
+	},
+	{
+		id: '305',
+		label: 'Anantnag',
+		value: 'anantnag,jammu and kashmir',
+	},
+	{
+		id: '201',
+		label: 'Baramula',
+		value: 'baramula,jammu and kashmir',
+	},
+	{
+		id: '82',
+		label: 'Jammu',
+		value: 'jammu,jammu and kashmir',
+	},
+	{
+		id: '596',
+		label: 'KathUrban Agglomeration',
+		value: 'kathurban agglomeration,jammu and kashmir',
+	},
+	{
+		id: '723',
+		label: 'Punch',
+		value: 'punch,jammu and kashmir',
+	},
+	{
+		id: '716',
+		label: 'Rajauri',
+		value: 'rajauri,jammu and kashmir',
+	},
+	{
+		id: '468',
+		label: 'Sopore',
+		value: 'sopore,jammu and kashmir',
+	},
+	{
+		id: '32',
+		label: 'Srinagar',
+		value: 'srinagar,jammu and kashmir',
+	},
+	{
+		id: '799',
+		label: 'Udhampur',
+		value: 'udhampur,jammu and kashmir',
+	},
+	{
+		id: '192',
+		label: 'Adityapur',
+		value: 'adityapur,jharkhand',
+	},
+	{
+		id: '94',
+		label: 'Bokaro Steel City',
+		value: 'bokaro steel city,jharkhand',
+	},
+	{
+		id: '454',
+		label: 'Chaibasa',
+		value: 'chaibasa,jharkhand',
+	},
+	{
+		id: '619',
+		label: 'Chatra',
+		value: 'chatra,jharkhand',
+	},
+	{
+		id: '670',
+		label: 'Chirkunda',
+		value: 'chirkunda,jharkhand',
+	},
+	{
+		id: '166',
+		label: 'Deoghar',
+		value: 'deoghar,jharkhand',
+	},
+	{
+		id: '33',
+		label: 'Dhanbad',
+		value: 'dhanbad,jharkhand',
+	},
+	{
+		id: '648',
+		label: 'Dumka',
+		value: 'dumka,jharkhand',
+	},
+	{
+		id: '287',
+		label: 'Giridih',
+		value: 'giridih,jharkhand',
+	},
+	{
+		id: '642',
+		label: 'Gumia',
+		value: 'gumia,jharkhand',
+	},
+	{
+		id: '242',
+		label: 'Hazaribag',
+		value: 'hazaribag,jharkhand',
+	},
+	{
+		id: '65',
+		label: 'Jamshedpur',
+		value: 'jamshedpur,jharkhand',
+	},
+	{
+		id: '373',
+		label: 'Jhumri Tilaiya',
+		value: 'jhumri tilaiya,jharkhand',
+	},
+	{
+		id: '1049',
+		label: 'Lohardaga',
+		value: 'lohardaga,jharkhand',
+	},
+	{
+		id: '651',
+		label: 'Madhupur',
+		value: 'madhupur,jharkhand',
+	},
+	{
+		id: '408',
+		label: 'Medininagar (Daltonganj)',
+		value: 'medininagar (daltonganj),jharkhand',
+	},
+	{
+		id: '841',
+		label: 'Mihijam',
+		value: 'mihijam,jharkhand',
+	},
+	{
+		id: '826',
+		label: 'Musabani',
+		value: 'musabani,jharkhand',
+	},
+	{
+		id: '790',
+		label: 'Pakaur',
+		value: 'pakaur,jharkhand',
+	},
+	{
+		id: '875',
+		label: 'Patratu',
+		value: 'patratu,jharkhand',
+	},
+	{
+		id: '191',
+		label: 'Phusro',
+		value: 'phusro,jharkhand',
+	},
+	{
+		id: '298',
+		label: 'Ramgarh',
+		value: 'ramgarh,jharkhand',
+	},
+	{
+		id: '51',
+		label: 'Ranchi',
+		value: 'ranchi,jharkhand',
+	},
+	{
+		id: '400',
+		label: 'Sahibganj',
+		value: 'sahibganj,jharkhand',
+	},
+	{
+		id: '385',
+		label: 'Saunda',
+		value: 'saunda,jharkhand',
+	},
+	{
+		id: '825',
+		label: 'Simdega',
+		value: 'simdega,jharkhand',
+	},
+	{
+		id: '1119',
+		label: 'Tenu dam-cum-Kathhara',
+		value: 'tenu dam-cum-kathhara,jharkhand',
+	},
+	{
+		id: '1211',
+		label: 'Adyar',
+		value: 'adyar,karnataka',
+	},
+	{
+		id: '977',
+		label: 'Afzalpur',
+		value: 'afzalpur,karnataka',
+	},
+	{
+		id: '603',
+		label: 'Arsikere',
+		value: 'arsikere,karnataka',
+	},
+	{
+		id: '665',
+		label: 'Athni',
+		value: 'athni,karnataka',
+	},
+	{
+		id: '96',
+		label: 'Ballari',
+		value: 'ballari,karnataka',
+	},
+	{
+		id: '83',
+		label: 'Belagavi',
+		value: 'belagavi,karnataka',
+	},
+	{
+		id: '3',
+		label: 'Bengaluru',
+		value: 'bengaluru,karnataka',
+	},
+	{
+		id: '273',
+		label: 'Chikkamagaluru',
+		value: 'chikkamagaluru,karnataka',
+	},
+	{
+		id: '90',
+		label: 'Davanagere',
+		value: 'davanagere,karnataka',
+	},
+	{
+		id: '403',
+		label: 'Gokak',
+		value: 'gokak,karnataka',
+	},
+	{
+		id: '45',
+		label: 'Hubli-Dharwad',
+		value: 'hubli-dharwad,karnataka',
+	},
+	{
+		id: '301',
+		label: 'Karwar',
+		value: 'karwar,karnataka',
+	},
+	{
+		id: '246',
+		label: 'Kolar',
+		value: 'kolar,karnataka',
+	},
+	{
+		id: '778',
+		label: 'Lakshmeshwar',
+		value: 'lakshmeshwar,karnataka',
+	},
+	{
+		id: '802',
+		label: 'Lingsugur',
+		value: 'lingsugur,karnataka',
+	},
+	{
+		id: '991',
+		label: 'Maddur',
+		value: 'maddur,karnataka',
+	},
+	{
+		id: '995',
+		label: 'Madhugiri',
+		value: 'madhugiri,karnataka',
+	},
+	{
+		id: '859',
+		label: 'Madikeri',
+		value: 'madikeri,karnataka',
+	},
+	{
+		id: '1028',
+		label: 'Magadi',
+		value: 'magadi,karnataka',
+	},
+	{
+		id: '897',
+		label: 'Mahalingapura',
+		value: 'mahalingapura,karnataka',
+	},
+	{
+		id: '793',
+		label: 'Malavalli',
+		value: 'malavalli,karnataka',
+	},
+	{
+		id: '956',
+		label: 'Malur',
+		value: 'malur,karnataka',
+	},
+	{
+		id: '248',
+		label: 'Mandya',
+		value: 'mandya,karnataka',
+	},
+	{
+		id: '85',
+		label: 'Mangaluru',
+		value: 'mangaluru,karnataka',
+	},
+	{
+		id: '764',
+		label: 'Manvi',
+		value: 'manvi,karnataka',
+	},
+	{
+		id: '1010',
+		label: 'Mudabidri',
+		value: 'mudabidri,karnataka',
+	},
+	{
+		id: '911',
+		label: 'Mudalagi',
+		value: 'mudalagi,karnataka',
+	},
+	{
+		id: '944',
+		label: 'Muddebihal',
+		value: 'muddebihal,karnataka',
+	},
+	{
+		id: '703',
+		label: 'Mudhol',
+		value: 'mudhol,karnataka',
+	},
+	{
+		id: '687',
+		label: 'Mulbagal',
+		value: 'mulbagal,karnataka',
+	},
+	{
+		id: '1180',
+		label: 'Mundargi',
+		value: 'mundargi,karnataka',
+	},
+	{
+		id: '104',
+		label: 'Mysore',
+		value: 'mysore,karnataka',
+	},
+	{
+		id: '610',
+		label: 'Nanjangud',
+		value: 'nanjangud,karnataka',
+	},
+	{
+		id: '785',
+		label: 'Nargund',
+		value: 'nargund,karnataka',
+	},
+	{
+		id: '1037',
+		label: 'Navalgund',
+		value: 'navalgund,karnataka',
+	},
+	{
+		id: '770',
+		label: 'Nelamangala',
+		value: 'nelamangala,karnataka',
+	},
+	{
+		id: '949',
+		label: 'Pavagada',
+		value: 'pavagada,karnataka',
+	},
+	{
+		id: '1201',
+		label: 'Piriyapatna',
+		value: 'piriyapatna,karnataka',
+	},
+	{
+		id: '643',
+		label: 'Puttur',
+		value: 'puttur,karnataka',
+	},
+	{
+		id: '164',
+		label: 'Raayachuru',
+		value: 'raayachuru,karnataka',
+	},
+	{
+		id: '452',
+		label: 'Rabkavi Banhatti',
+		value: 'rabkavi banhatti,karnataka',
+	},
+	{
+		id: '402',
+		label: 'Ramanagaram',
+		value: 'ramanagaram,karnataka',
+	},
+	{
+		id: '782',
+		label: 'Ramdurg',
+		value: 'ramdurg,karnataka',
+	},
+	{
+		id: '312',
+		label: 'Ranebennuru',
+		value: 'ranebennuru,karnataka',
+	},
+	{
+		id: '364',
+		label: 'Ranibennur',
+		value: 'ranibennur,karnataka',
+	},
+	{
+		id: '212',
+		label: 'Robertson Pet',
+		value: 'robertson pet,karnataka',
+	},
+	{
+		id: '1138',
+		label: 'Ron',
+		value: 'ron,karnataka',
+	},
+	{
+		id: '1185',
+		label: 'Sadalagi',
+		value: 'sadalagi,karnataka',
+	},
+	{
+		id: '614',
+		label: 'Sagara',
+		value: 'sagara,karnataka',
+	},
+	{
+		id: '1080',
+		label: 'Sakaleshapura',
+		value: 'sakaleshapura,karnataka',
+	},
+	{
+		id: '963',
+		label: 'Sanduru',
+		value: 'sanduru,karnataka',
+	},
+	{
+		id: '858',
+		label: 'Sankeshwara',
+		value: 'sankeshwara,karnataka',
+	},
+	{
+		id: '752',
+		label: 'Saundatti-Yellamma',
+		value: 'saundatti-yellamma,karnataka',
+	},
+	{
+		id: '797',
+		label: 'Savanur',
+		value: 'savanur,karnataka',
+	},
+	{
+		id: '883',
+		label: 'Sedam',
+		value: 'sedam,karnataka',
+	},
+	{
+		id: '473',
+		label: 'Shahabad',
+		value: 'shahabad,karnataka',
+	},
+	{
+		id: '744',
+		label: 'Shahpur',
+		value: 'shahpur,karnataka',
+	},
+	{
+		id: '1043',
+		label: 'Shiggaon',
+		value: 'shiggaon,karnataka',
+	},
+	{
+		id: '884',
+		label: 'Shikaripur',
+		value: 'shikaripur,karnataka',
+	},
+	{
+		id: '128',
+		label: 'Shivamogga',
+		value: 'shivamogga,karnataka',
+	},
+	{
+		id: '1059',
+		label: 'Shrirangapattana',
+		value: 'shrirangapattana,karnataka',
+	},
+	{
+		id: '722',
+		label: 'Sidlaghatta',
+		value: 'sidlaghatta,karnataka',
+	},
+	{
+		id: '1075',
+		label: 'Sindagi',
+		value: 'sindagi,karnataka',
+	},
+	{
+		id: '962',
+		label: 'Sindhagi',
+		value: 'sindhagi,karnataka',
+	},
+	{
+		id: '511',
+		label: 'Sindhnur',
+		value: 'sindhnur,karnataka',
+	},
+	{
+		id: '616',
+		label: 'Sira',
+		value: 'sira,karnataka',
+	},
+	{
+		id: '481',
+		label: 'Sirsi',
+		value: 'sirsi,karnataka',
+	},
+	{
+		id: '697',
+		label: 'Siruguppa',
+		value: 'siruguppa,karnataka',
+	},
+	{
+		id: '1086',
+		label: 'Srinivaspur',
+		value: 'srinivaspur,karnataka',
+	},
+	{
+		id: '692',
+		label: 'Surapura',
+		value: 'surapura,karnataka',
+	},
+	{
+		id: '880',
+		label: 'Talikota',
+		value: 'talikota,karnataka',
+	},
+	{
+		id: '792',
+		label: 'Tarikere',
+		value: 'tarikere,karnataka',
+	},
+	{
+		id: '996',
+		label: 'Tekkalakote',
+		value: 'tekkalakote,karnataka',
+	},
+	{
+		id: '1000',
+		label: 'Terdal',
+		value: 'terdal,karnataka',
+	},
+	{
+		id: '522',
+		label: 'Tiptur',
+		value: 'tiptur,karnataka',
+	},
+	{
+		id: '116',
+		label: 'Tumkur',
+		value: 'tumkur,karnataka',
+	},
+	{
+		id: '261',
+		label: 'Udupi',
+		value: 'udupi,karnataka',
+	},
+	{
+		id: '807',
+		label: 'Vijayapura',
+		value: 'vijayapura,karnataka',
+	},
+	{
+		id: '754',
+		label: 'Wadi',
+		value: 'wadi,karnataka',
+	},
+	{
+		id: '423',
+		label: 'Yadgir',
+		value: 'yadgir,karnataka',
+	},
+	{
+		id: '929',
+		label: 'Adoor',
+		value: 'adoor,kerala',
+	},
+	{
+		id: '193',
+		label: 'Alappuzha',
+		value: 'alappuzha,kerala',
+	},
+	{
+		id: '767',
+		label: 'Attingal',
+		value: 'attingal,kerala',
+	},
+	{
+		id: '627',
+		label: 'Chalakudy',
+		value: 'chalakudy,kerala',
+	},
+	{
+		id: '646',
+		label: 'Changanassery',
+		value: 'changanassery,kerala',
+	},
+	{
+		id: '666',
+		label: 'Cherthala',
+		value: 'cherthala,kerala',
+	},
+	{
+		id: '867',
+		label: 'Chittur-Thathamangalam',
+		value: 'chittur-thathamangalam,kerala',
+	},
+	{
+		id: '1176',
+		label: 'Guruvayoor',
+		value: 'guruvayoor,kerala',
+	},
+	{
+		id: '429',
+		label: 'Kanhangad',
+		value: 'kanhangad,kerala',
+	},
+	{
+		id: '549',
+		label: 'Kannur',
+		value: 'kannur,kerala',
+	},
+	{
+		id: '568',
+		label: 'Kasaragod',
+		value: 'kasaragod,kerala',
+	},
+	{
+		id: '458',
+		label: 'Kayamkulam',
+		value: 'kayamkulam,kerala',
+	},
+	{
+		id: '68',
+		label: 'Kochi',
+		value: 'kochi,kerala',
+	},
+	{
+		id: '827',
+		label: 'Kodungallur',
+		value: 'kodungallur,kerala',
+	},
+	{
+		id: '107',
+		label: 'Kollam',
+		value: 'kollam,kerala',
+	},
+	{
+		id: '564',
+		label: 'Kottayam',
+		value: 'kottayam,kerala',
+	},
+	{
+		id: '440',
+		label: 'Koyilandy',
+		value: 'koyilandy,kerala',
+	},
+	{
+		id: '91',
+		label: 'Kozhikode',
+		value: 'kozhikode,kerala',
+	},
+	{
+		id: '572',
+		label: 'Kunnamkulam',
+		value: 'kunnamkulam,kerala',
+	},
+	{
+		id: '329',
+		label: 'Malappuram',
+		value: 'malappuram,kerala',
+	},
+	{
+		id: '683',
+		label: 'Mattannur',
+		value: 'mattannur,kerala',
+	},
+	{
+		id: '939',
+		label: 'Mavelikkara',
+		value: 'mavelikkara,kerala',
+	},
+	{
+		id: '953',
+		label: 'Mavoor',
+		value: 'mavoor,kerala',
+	},
+	{
+		id: '925',
+		label: 'Muvattupuzha',
+		value: 'muvattupuzha,kerala',
+	},
+	{
+		id: '519',
+		label: 'Nedumangad',
+		value: 'nedumangad,kerala',
+	},
+	{
+		id: '445',
+		label: 'Neyyattinkara',
+		value: 'neyyattinkara,kerala',
+	},
+	{
+		id: '659',
+		label: 'Nilambur',
+		value: 'nilambur,kerala',
+	},
+	{
+		id: '577',
+		label: 'Ottappalam',
+		value: 'ottappalam,kerala',
+	},
+	{
+		id: '1098',
+		label: 'Palai',
+		value: 'palai,kerala',
+	},
+	{
+		id: '172',
+		label: 'Palakkad',
+		value: 'palakkad,kerala',
+	},
+	{
+		id: '1207',
+		label: 'Panamattom',
+		value: 'panamattom,kerala',
+	},
+	{
+		id: '1164',
+		label: 'Panniyannur',
+		value: 'panniyannur,kerala',
+	},
+	{
+		id: '839',
+		label: 'Pappinisseri',
+		value: 'pappinisseri,kerala',
+	},
+	{
+		id: '747',
+		label: 'Paravoor',
+		value: 'paravoor,kerala',
+	},
+	{
+		id: '753',
+		label: 'Pathanamthitta',
+		value: 'pathanamthitta,kerala',
+	},
+	{
+		id: '762',
+		label: 'Peringathur',
+		value: 'peringathur,kerala',
+	},
+	{
+		id: '678',
+		label: 'Perinthalmanna',
+		value: 'perinthalmanna,kerala',
+	},
+	{
+		id: '990',
+		label: 'Perumbavoor',
+		value: 'perumbavoor,kerala',
+	},
+	{
+		id: '375',
+		label: 'Ponnani',
+		value: 'ponnani,kerala',
+	},
+	{
+		id: '653',
+		label: 'Punalur',
+		value: 'punalur,kerala',
+	},
+	{
+		id: '1195',
+		label: 'Puthuppally',
+		value: 'puthuppally,kerala',
+	},
+	{
+		id: '709',
+		label: 'Shoranur',
+		value: 'shoranur,kerala',
+	},
+	{
+		id: '435',
+		label: 'Taliparamba',
+		value: 'taliparamba,kerala',
+	},
+	{
+		id: '588',
+		label: 'Thiruvalla',
+		value: 'thiruvalla,kerala',
+	},
+	{
+		id: '58',
+		label: 'Thiruvananthapuram',
+		value: 'thiruvananthapuram,kerala',
+	},
+	{
+		id: '595',
+		label: 'Thodupuzha',
+		value: 'thodupuzha,kerala',
+	},
+	{
+		id: '111',
+		label: 'Thrissur',
+		value: 'thrissur,kerala',
+	},
+	{
+		id: '558',
+		label: 'Tirur',
+		value: 'tirur,kerala',
+	},
+	{
+		id: '1077',
+		label: 'Vaikom',
+		value: 'vaikom,kerala',
+	},
+	{
+		id: '727',
+		label: 'Varkala',
+		value: 'varkala,kerala',
+	},
+	{
+		id: '419',
+		label: 'Vatakara',
+		value: 'vatakara,kerala',
+	},
+	{
+		id: '486',
+		label: 'Alirajpur',
+		value: 'alirajpur,madhya pradesh',
+	},
+	{
+		id: '395',
+		label: 'Ashok Nagar',
+		value: 'ashok nagar,madhya pradesh',
+	},
+	{
+		id: '388',
+		label: 'Balaghat',
+		value: 'balaghat,madhya pradesh',
+	},
+	{
+		id: '17',
+		label: 'Bhopal',
+		value: 'bhopal,madhya pradesh',
+	},
+	{
+		id: '226',
+		label: 'Ganjbasoda',
+		value: 'ganjbasoda,madhya pradesh',
+	},
+	{
+		id: '40',
+		label: 'Gwalior',
+		value: 'gwalior,madhya pradesh',
+	},
+	{
+		id: '15',
+		label: 'Indore',
+		value: 'indore,madhya pradesh',
+	},
+	{
+		id: '338',
+		label: 'Itarsi',
+		value: 'itarsi,madhya pradesh',
+	},
+	{
+		id: '39',
+		label: 'Jabalpur',
+		value: 'jabalpur,madhya pradesh',
+	},
+	{
+		id: '795',
+		label: 'Lahar',
+		value: 'lahar,madhya pradesh',
+	},
+	{
+		id: '1143',
+		label: 'Maharajpur',
+		value: 'maharajpur,madhya pradesh',
+	},
+	{
+		id: '923',
+		label: 'Mahidpur',
+		value: 'mahidpur,madhya pradesh',
+	},
+	{
+		id: '815',
+		label: 'Maihar',
+		value: 'maihar,madhya pradesh',
+	},
+	{
+		id: '868',
+		label: 'Malaj Khand',
+		value: 'malaj khand,madhya pradesh',
+	},
+	{
+		id: '1100',
+		label: 'Manasa',
+		value: 'manasa,madhya pradesh',
+	},
+	{
+		id: '1017',
+		label: 'Manawar',
+		value: 'manawar,madhya pradesh',
+	},
+	{
+		id: '735',
+		label: 'Mandideep',
+		value: 'mandideep,madhya pradesh',
+	},
+	{
+		id: '517',
+		label: 'Mandla',
+		value: 'mandla,madhya pradesh',
+	},
+	{
+		id: '244',
+		label: 'Mandsaur',
+		value: 'mandsaur,madhya pradesh',
+	},
+	{
+		id: '1084',
+		label: 'Mauganj',
+		value: 'mauganj,madhya pradesh',
+	},
+	{
+		id: '357',
+		label: 'Mhow Cantonment',
+		value: 'mhow cantonment,madhya pradesh',
+	},
+	{
+		id: '1175',
+		label: 'Mhowgaon',
+		value: 'mhowgaon,madhya pradesh',
+	},
+	{
+		id: '169',
+		label: 'Morena',
+		value: 'morena,madhya pradesh',
+	},
+	{
+		id: '1144',
+		label: 'Multai',
+		value: 'multai,madhya pradesh',
+	},
+	{
+		id: '909',
+		label: 'Mundi',
+		value: 'mundi,madhya pradesh',
+	},
+	{
+		id: '155',
+		label: 'Murwara (Katni)',
+		value: 'murwara (katni),madhya pradesh',
+	},
+	{
+		id: '333',
+		label: 'Nagda',
+		value: 'nagda,madhya pradesh',
+	},
+	{
+		id: '1101',
+		label: 'Nainpur',
+		value: 'nainpur,madhya pradesh',
+	},
+	{
+		id: '866',
+		label: 'Narsinghgarh',
+		value: 'narsinghgarh,madhya pradesh',
+	},
+	{
+		id: '1212',
+		label: 'Narsinghgarh',
+		value: 'narsinghgarh,madhya pradesh',
+	},
+	{
+		id: '256',
+		label: 'Neemuch',
+		value: 'neemuch,madhya pradesh',
+	},
+	{
+		id: '913',
+		label: 'Nepanagar',
+		value: 'nepanagar,madhya pradesh',
+	},
+	{
+		id: '1060',
+		label: 'Niwari',
+		value: 'niwari,madhya pradesh',
+	},
+	{
+		id: '729',
+		label: 'Nowgong',
+		value: 'nowgong,madhya pradesh',
+	},
+	{
+		id: '1130',
+		label: 'Nowrozabad (Khodargama)',
+		value: 'nowrozabad (khodargama),madhya pradesh',
+	},
+	{
+		id: '1161',
+		label: 'Pachore',
+		value: 'pachore,madhya pradesh',
+	},
+	{
+		id: '1160',
+		label: 'Pali',
+		value: 'pali,madhya pradesh',
+	},
+	{
+		id: '1022',
+		label: 'Panagar',
+		value: 'panagar,madhya pradesh',
+	},
+	{
+		id: '724',
+		label: 'Pandhurna',
+		value: 'pandhurna,madhya pradesh',
+	},
+	{
+		id: '594',
+		label: 'Panna',
+		value: 'panna,madhya pradesh',
+	},
+	{
+		id: '919',
+		label: 'Pasan',
+		value: 'pasan,madhya pradesh',
+	},
+	{
+		id: '680',
+		label: 'Pipariya',
+		value: 'pipariya,madhya pradesh',
+	},
+	{
+		id: '459',
+		label: 'Pithampur',
+		value: 'pithampur,madhya pradesh',
+	},
+	{
+		id: '846',
+		label: 'Porsa',
+		value: 'porsa,madhya pradesh',
+	},
+	{
+		id: '1104',
+		label: 'Prithvipur',
+		value: 'prithvipur,madhya pradesh',
+	},
+	{
+		id: '631',
+		label: 'Raghogarh-Vijaypur',
+		value: 'raghogarh-vijaypur,madhya pradesh',
+	},
+	{
+		id: '1021',
+		label: 'Rahatgarh',
+		value: 'rahatgarh,madhya pradesh',
+	},
+	{
+		id: '794',
+		label: 'Raisen',
+		value: 'raisen,madhya pradesh',
+	},
+	{
+		id: '1053',
+		label: 'Rajgarh',
+		value: 'rajgarh,madhya pradesh',
+	},
+	{
+		id: '129',
+		label: 'Ratlam',
+		value: 'ratlam,madhya pradesh',
+	},
+	{
+		id: '1166',
+		label: 'Rau',
+		value: 'rau,madhya pradesh',
+	},
+	{
+		id: '1006',
+		label: 'Rehli',
+		value: 'rehli,madhya pradesh',
+	},
+	{
+		id: '187',
+		label: 'Rewa',
+		value: 'rewa,madhya pradesh',
+	},
+	{
+		id: '823',
+		label: 'Sabalgarh',
+		value: 'sabalgarh,madhya pradesh',
+	},
+	{
+		id: '115',
+		label: 'Sagar',
+		value: 'sagar,madhya pradesh',
+	},
+	{
+		id: '820',
+		label: 'Sanawad',
+		value: 'sanawad,madhya pradesh',
+	},
+	{
+		id: '869',
+		label: 'Sarangpur',
+		value: 'sarangpur,madhya pradesh',
+	},
+	{
+		id: '352',
+		label: 'Sarni',
+		value: 'sarni,madhya pradesh',
+	},
+	{
+		id: '148',
+		label: 'Satna',
+		value: 'satna,madhya pradesh',
+	},
+	{
+		id: '1046',
+		label: 'Sausar',
+		value: 'sausar,madhya pradesh',
+	},
+	{
+		id: '356',
+		label: 'Sehore',
+		value: 'sehore,madhya pradesh',
+	},
+	{
+		id: '634',
+		label: 'Sendhwa',
+		value: 'sendhwa,madhya pradesh',
+	},
+	{
+		id: '363',
+		label: 'Seoni',
+		value: 'seoni,madhya pradesh',
+	},
+	{
+		id: '997',
+		label: 'Seoni-Malwa',
+		value: 'seoni-malwa,madhya pradesh',
+	},
+	{
+		id: '407',
+		label: 'Shahdol',
+		value: 'shahdol,madhya pradesh',
+	},
+	{
+		id: '537',
+		label: 'Shajapur',
+		value: 'shajapur,madhya pradesh',
+	},
+	{
+		id: '1141',
+		label: 'Shamgarh',
+		value: 'shamgarh,madhya pradesh',
+	},
+	{
+		id: '532',
+		label: 'Sheopur',
+		value: 'sheopur,madhya pradesh',
+	},
+	{
+		id: '235',
+		label: 'Shivpuri',
+		value: 'shivpuri,madhya pradesh',
+	},
+	{
+		id: '704',
+		label: 'Shujalpur',
+		value: 'shujalpur,madhya pradesh',
+	},
+	{
+		id: '667',
+		label: 'Sidhi',
+		value: 'sidhi,madhya pradesh',
+	},
+	{
+		id: '758',
+		label: 'Sihora',
+		value: 'sihora,madhya pradesh',
+	},
+	{
+		id: '182',
+		label: 'Singrauli',
+		value: 'singrauli,madhya pradesh',
+	},
+	{
+		id: '707',
+		label: 'Sironj',
+		value: 'sironj,madhya pradesh',
+	},
+	{
+		id: '1109',
+		label: 'Sohagpur',
+		value: 'sohagpur,madhya pradesh',
+	},
+	{
+		id: '1031',
+		label: 'Tarana',
+		value: 'tarana,madhya pradesh',
+	},
+	{
+		id: '404',
+		label: 'Tikamgarh',
+		value: 'tikamgarh,madhya pradesh',
+	},
+	{
+		id: '76',
+		label: 'Ujjain',
+		value: 'ujjain,madhya pradesh',
+	},
+	{
+		id: '845',
+		label: 'Umaria',
+		value: 'umaria,madhya pradesh',
+	},
+	{
+		id: '216',
+		label: 'Vidisha',
+		value: 'vidisha,madhya pradesh',
+	},
+	{
+		id: '1197',
+		label: 'Vijaypur',
+		value: 'vijaypur,madhya pradesh',
+	},
+	{
+		id: '1027',
+		label: 'Wara Seoni',
+		value: 'wara seoni,madhya pradesh',
+	},
+	{
+		id: '293',
+		label: 'Achalpur',
+		value: 'achalpur,maharashtra',
+	},
+	{
+		id: '106',
+		label: 'Ahmednagar',
+		value: 'ahmednagar,maharashtra',
+	},
+	{
+		id: '92',
+		label: 'Akola',
+		value: 'akola,maharashtra',
+	},
+	{
+		id: '355',
+		label: 'Akot',
+		value: 'akot,maharashtra',
+	},
+	{
+		id: '345',
+		label: 'Amalner',
+		value: 'amalner,maharashtra',
+	},
+	{
+		id: '424',
+		label: 'Ambejogai',
+		value: 'ambejogai,maharashtra',
+	},
+	{
+		id: '62',
+		label: 'Amravati',
+		value: 'amravati,maharashtra',
+	},
+	{
+		id: '553',
+		label: 'Anjangaon',
+		value: 'anjangaon,maharashtra',
+	},
+	{
+		id: '698',
+		label: 'Arvi',
+		value: 'arvi,maharashtra',
+	},
+	{
+		id: '321',
+		label: 'Aurangabad',
+		value: 'aurangabad,maharashtra',
+	},
+	{
+		id: '59',
+		label: 'Bhiwandi',
+		value: 'bhiwandi,maharashtra',
+	},
+	{
+		id: '100',
+		label: 'Dhule',
+		value: 'dhule,maharashtra',
+	},
+	{
+		id: '123',
+		label: 'Ichalkaranji',
+		value: 'ichalkaranji,maharashtra',
+	},
+	{
+		id: '29',
+		label: 'Kalyan-Dombivali',
+		value: 'kalyan-dombivali,maharashtra',
+	},
+	{
+		id: '914',
+		label: 'Karjat',
+		value: 'karjat,maharashtra',
+	},
+	{
+		id: '99',
+		label: 'Latur',
+		value: 'latur,maharashtra',
+	},
+	{
+		id: '1188',
+		label: 'Loha',
+		value: 'loha,maharashtra',
+	},
+	{
+		id: '1070',
+		label: 'Lonar',
+		value: 'lonar,maharashtra',
+	},
+	{
+		id: '539',
+		label: 'Lonavla',
+		value: 'lonavla,maharashtra',
+	},
+	{
+		id: '1048',
+		label: 'Mahad',
+		value: 'mahad,maharashtra',
+	},
+	{
+		id: '87',
+		label: 'Malegaon',
+		value: 'malegaon,maharashtra',
+	},
+	{
+		id: '513',
+		label: 'Malkapur',
+		value: 'malkapur,maharashtra',
+	},
+	{
+		id: '1136',
+		label: 'Mangalvedhe',
+		value: 'mangalvedhe,maharashtra',
+	},
+	{
+		id: '957',
+		label: 'Mangrulpir',
+		value: 'mangrulpir,maharashtra',
+	},
+	{
+		id: '688',
+		label: 'Manjlegaon',
+		value: 'manjlegaon,maharashtra',
+	},
+	{
+		id: '436',
+		label: 'Manmad',
+		value: 'manmad,maharashtra',
+	},
+	{
+		id: '928',
+		label: 'Manwath',
+		value: 'manwath,maharashtra',
+	},
+	{
+		id: '761',
+		label: 'Mehkar',
+		value: 'mehkar,maharashtra',
+	},
+	{
+		id: '1177',
+		label: 'Mhaswad',
+		value: 'mhaswad,maharashtra',
+	},
+	{
+		id: '57',
+		label: 'Mira-Bhayandar',
+		value: 'mira-bhayandar,maharashtra',
+	},
+	{
+		id: '836',
+		label: 'Morshi',
+		value: 'morshi,maharashtra',
+	},
+	{
+		id: '1004',
+		label: 'Mukhed',
+		value: 'mukhed,maharashtra',
+	},
+	{
+		id: '1110',
+		label: 'Mul',
+		value: 'mul,maharashtra',
+	},
+	{
+		id: '1',
+		label: 'Mumbai',
+		value: 'mumbai,maharashtra',
+	},
+	{
+		id: '748',
+		label: 'Murtijapur',
+		value: 'murtijapur,maharashtra',
+	},
+	{
+		id: '13',
+		label: 'Nagpur',
+		value: 'nagpur,maharashtra',
+	},
+	{
+		id: '73',
+		label: 'Nanded-Waghala',
+		value: 'nanded-waghala,maharashtra',
+	},
+	{
+		id: '1204',
+		label: 'Nandgaon',
+		value: 'nandgaon,maharashtra',
+	},
+	{
+		id: '708',
+		label: 'Nandura',
+		value: 'nandura,maharashtra',
+	},
+	{
+		id: '296',
+		label: 'Nandurbar',
+		value: 'nandurbar,maharashtra',
+	},
+	{
+		id: '1153',
+		label: 'Narkhed',
+		value: 'narkhed,maharashtra',
+	},
+	{
+		id: '25',
+		label: 'Nashik',
+		value: 'nashik,maharashtra',
+	},
+	{
+		id: '817',
+		label: 'Nawapur',
+		value: 'nawapur,maharashtra',
+	},
+	{
+		id: '788',
+		label: 'Nilanga',
+		value: 'nilanga,maharashtra',
+	},
+	{
+		id: '294',
+		label: 'Osmanabad',
+		value: 'osmanabad,maharashtra',
+	},
+	{
+		id: '604',
+		label: 'Ozar',
+		value: 'ozar,maharashtra',
+	},
+	{
+		id: '671',
+		label: 'Pachora',
+		value: 'pachora,maharashtra',
+	},
+	{
+		id: '810',
+		label: 'Paithan',
+		value: 'paithan,maharashtra',
+	},
+	{
+		id: '590',
+		label: 'Palghar',
+		value: 'palghar,maharashtra',
+	},
+	{
+		id: '989',
+		label: 'Pandharkaoda',
+		value: 'pandharkaoda,maharashtra',
+	},
+	{
+		id: '360',
+		label: 'Pandharpur',
+		value: 'pandharpur,maharashtra',
+	},
+	{
+		id: '165',
+		label: 'Panvel',
+		value: 'panvel,maharashtra',
+	},
+	{
+		id: '139',
+		label: 'Parbhani',
+		value: 'parbhani,maharashtra',
+	},
+	{
+		id: '368',
+		label: 'Parli',
+		value: 'parli,maharashtra',
+	},
+	{
+		id: '931',
+		label: 'Partur',
+		value: 'partur,maharashtra',
+	},
+	{
+		id: '1093',
+		label: 'Pathardi',
+		value: 'pathardi,maharashtra',
+	},
+	{
+		id: '878',
+		label: 'Pathri',
+		value: 'pathri,maharashtra',
+	},
+	{
+		id: '1173',
+		label: 'Patur',
+		value: 'patur,maharashtra',
+	},
+	{
+		id: '1103',
+		label: 'Pauni',
+		value: 'pauni,maharashtra',
+	},
+	{
+		id: '904',
+		label: 'Pen',
+		value: 'pen,maharashtra',
+	},
+	{
+		id: '608',
+		label: 'Phaltan',
+		value: 'phaltan,maharashtra',
+	},
+	{
+		id: '783',
+		label: 'Pulgaon',
+		value: 'pulgaon,maharashtra',
+	},
+	{
+		id: '8',
+		label: 'Pune',
+		value: 'pune,maharashtra',
+	},
+	{
+		id: '842',
+		label: 'Purna',
+		value: 'purna,maharashtra',
+	},
+	{
+		id: '467',
+		label: 'Pusad',
+		value: 'pusad,maharashtra',
+	},
+	{
+		id: '811',
+		label: 'Rahuri',
+		value: 'rahuri,maharashtra',
+	},
+	{
+		id: '1008',
+		label: 'Rajura',
+		value: 'rajura,maharashtra',
+	},
+	{
+		id: '1105',
+		label: 'Ramtek',
+		value: 'ramtek,maharashtra',
+	},
+	{
+		id: '451',
+		label: 'Ratnagiri',
+		value: 'ratnagiri,maharashtra',
+	},
+	{
+		id: '1001',
+		label: 'Raver',
+		value: 'raver,maharashtra',
+	},
+	{
+		id: '968',
+		label: 'Risod',
+		value: 'risod,maharashtra',
+	},
+	{
+		id: '736',
+		label: 'Sailu',
+		value: 'sailu,maharashtra',
+	},
+	{
+		id: '503',
+		label: 'Sangamner',
+		value: 'sangamner,maharashtra',
+	},
+	{
+		id: '77',
+		label: 'Sangli',
+		value: 'sangli,maharashtra',
+	},
+	{
+		id: '948',
+		label: 'Sangole',
+		value: 'sangole,maharashtra',
+	},
+	{
+		id: '985',
+		label: 'Sasvad',
+		value: 'sasvad,maharashtra',
+	},
+	{
+		id: '856',
+		label: 'Satana',
+		value: 'satana,maharashtra',
+	},
+	{
+		id: '307',
+		label: 'Satara',
+		value: 'satara,maharashtra',
+	},
+	{
+		id: '984',
+		label: 'Savner',
+		value: 'savner,maharashtra',
+	},
+	{
+		id: '1089',
+		label: 'Sawantwadi',
+		value: 'sawantwadi,maharashtra',
+	},
+	{
+		id: '626',
+		label: 'Shahade',
+		value: 'shahade,maharashtra',
+	},
+	{
+		id: '591',
+		label: 'Shegaon',
+		value: 'shegaon,maharashtra',
+	},
+	{
+		id: '1155',
+		label: 'Shendurjana',
+		value: 'shendurjana,maharashtra',
+	},
+	{
+		id: '998',
+		label: 'Shirdi',
+		value: 'shirdi,maharashtra',
+	},
+	{
+		id: '509',
+		label: 'Shirpur-Warwade',
+		value: 'shirpur-warwade,maharashtra',
+	},
+	{
+		id: '978',
+		label: 'Shirur',
+		value: 'shirur,maharashtra',
+	},
+	{
+		id: '994',
+		label: 'Shrigonda',
+		value: 'shrigonda,maharashtra',
+	},
+	{
+		id: '366',
+		label: 'Shrirampur',
+		value: 'shrirampur,maharashtra',
+	},
+	{
+		id: '690',
+		label: 'Sillod',
+		value: 'sillod,maharashtra',
+	},
+	{
+		id: '881',
+		label: 'Sinnar',
+		value: 'sinnar,maharashtra',
+	},
+	{
+		id: '50',
+		label: 'Solapur',
+		value: 'solapur,maharashtra',
+	},
+	{
+		id: '1132',
+		label: 'Soyagaon',
+		value: 'soyagaon,maharashtra',
+	},
+	{
+		id: '552',
+		label: 'Talegaon Dabhade',
+		value: 'talegaon dabhade,maharashtra',
+	},
+	{
+		id: '993',
+		label: 'Talode',
+		value: 'talode,maharashtra',
+	},
+	{
+		id: '756',
+		label: 'Tasgaon',
+		value: 'tasgaon,maharashtra',
+	},
+	{
+		id: '16',
+		label: 'Thane',
+		value: 'thane,maharashtra',
+	},
+	{
+		id: '1024',
+		label: 'Tirora',
+		value: 'tirora,maharashtra',
+	},
+	{
+		id: '824',
+		label: 'Tuljapur',
+		value: 'tuljapur,maharashtra',
+	},
+	{
+		id: '674',
+		label: 'Tumsar',
+		value: 'tumsar,maharashtra',
+	},
+	{
+		id: '891',
+		label: 'Uchgaon',
+		value: 'uchgaon,maharashtra',
+	},
+	{
+		id: '317',
+		label: 'Udgir',
+		value: 'udgir,maharashtra',
+	},
+	{
+		id: '800',
+		label: 'Umarga',
+		value: 'umarga,maharashtra',
+	},
+	{
+		id: '650',
+		label: 'Umarkhed',
+		value: 'umarkhed,maharashtra',
+	},
+	{
+		id: '573',
+		label: 'Umred',
+		value: 'umred,maharashtra',
+	},
+	{
+		id: '901',
+		label: 'Uran',
+		value: 'uran,maharashtra',
+	},
+	{
+		id: '463',
+		label: 'Uran Islampur',
+		value: 'uran islampur,maharashtra',
+	},
+	{
+		id: '1011',
+		label: 'Vadgaon Kasba',
+		value: 'vadgaon kasba,maharashtra',
+	},
+	{
+		id: '720',
+		label: 'Vaijapur',
+		value: 'vaijapur,maharashtra',
+	},
+	{
+		id: '30',
+		label: 'Vasai-Virar',
+		value: 'vasai-virar,maharashtra',
+	},
+	{
+		id: '641',
+		label: 'Vita',
+		value: 'vita,maharashtra',
+	},
+	{
+		id: '725',
+		label: 'Wadgaon Road',
+		value: 'wadgaon road,maharashtra',
+	},
+	{
+		id: '791',
+		label: 'Wai',
+		value: 'wai,maharashtra',
+	},
+	{
+		id: '525',
+		label: 'Wani',
+		value: 'wani,maharashtra',
+	},
+	{
+		id: '311',
+		label: 'Wardha',
+		value: 'wardha,maharashtra',
+	},
+	{
+		id: '658',
+		label: 'Warora',
+		value: 'warora,maharashtra',
+	},
+	{
+		id: '1213',
+		label: 'Warud',
+		value: 'warud,maharashtra',
+	},
+	{
+		id: '410',
+		label: 'Washim',
+		value: 'washim,maharashtra',
+	},
+	{
+		id: '279',
+		label: 'Yavatmal',
+		value: 'yavatmal,maharashtra',
+	},
+	{
+		id: '780',
+		label: 'Yawal',
+		value: 'yawal,maharashtra',
+	},
+	{
+		id: '622',
+		label: 'Yevla',
+		value: 'yevla,maharashtra',
+	},
+	{
+		id: '133',
+		label: 'Imphal',
+		value: 'imphal,manipur',
+	},
+	{
+		id: '1091',
+		label: 'Lilong',
+		value: 'lilong,manipur',
+	},
+	{
+		id: '1174',
+		label: 'Mayang Imphal',
+		value: 'mayang imphal,manipur',
+	},
+	{
+		id: '664',
+		label: 'Thoubal',
+		value: 'thoubal,manipur',
+	},
+	{
+		id: '935',
+		label: 'Nongstoin',
+		value: 'nongstoin,meghalaya',
+	},
+	{
+		id: '132',
+		label: 'Shillong',
+		value: 'shillong,meghalaya',
+	},
+	{
+		id: '420',
+		label: 'Tura',
+		value: 'tura,meghalaya',
+	},
+	{
+		id: '122',
+		label: 'Aizawl',
+		value: 'aizawl,mizoram',
+	},
+	{
+		id: '547',
+		label: 'Lunglei',
+		value: 'lunglei,mizoram',
+	},
+	{
+		id: '1192',
+		label: 'Saiha',
+		value: 'saiha,mizoram',
+	},
+	{
+		id: '265',
+		label: 'Dimapur',
+		value: 'dimapur,nagaland',
+	},
+	{
+		id: '339',
+		label: 'Kohima',
+		value: 'kohima,nagaland',
+	},
+	{
+		id: '892',
+		label: 'Mokokchung',
+		value: 'mokokchung,nagaland',
+	},
+	{
+		id: '777',
+		label: 'Tuensang',
+		value: 'tuensang,nagaland',
+	},
+	{
+		id: '805',
+		label: 'Wokha',
+		value: 'wokha,nagaland',
+	},
+	{
+		id: '765',
+		label: 'Zunheboto',
+		value: 'zunheboto,nagaland',
+	},
+	{
+		id: '340',
+		label: 'Balangir',
+		value: 'balangir,odisha',
+	},
+	{
+		id: '275',
+		label: 'Baleshwar Town',
+		value: 'baleshwar town,odisha',
+	},
+	{
+		id: '474',
+		label: 'Barbil',
+		value: 'barbil,odisha',
+	},
+	{
+		id: '398',
+		label: 'Bargarh',
+		value: 'bargarh,odisha',
+	},
+	{
+		id: '300',
+		label: 'Baripada Town',
+		value: 'baripada town,odisha',
+	},
+	{
+		id: '308',
+		label: 'Bhadrak',
+		value: 'bhadrak,odisha',
+	},
+	{
+		id: '457',
+		label: 'Bhawanipatna',
+		value: 'bhawanipatna,odisha',
+	},
+	{
+		id: '54',
+		label: 'Bhubaneswar',
+		value: 'bhubaneswar,odisha',
+	},
+	{
+		id: '103',
+		label: 'Brahmapur',
+		value: 'brahmapur,odisha',
+	},
+	{
+		id: '635',
+		label: 'Byasanagar',
+		value: 'byasanagar,odisha',
+	},
+	{
+		id: '67',
+		label: 'Cuttack',
+		value: 'cuttack,odisha',
+	},
+	{
+		id: '462',
+		label: 'Dhenkanal',
+		value: 'dhenkanal,odisha',
+	},
+	{
+		id: '560',
+		label: 'Jatani',
+		value: 'jatani,odisha',
+	},
+	{
+		id: '342',
+		label: 'Jharsuguda',
+		value: 'jharsuguda,odisha',
+	},
+	{
+		id: '654',
+		label: 'Kendrapara',
+		value: 'kendrapara,odisha',
+	},
+	{
+		id: '516',
+		label: 'Kendujhar',
+		value: 'kendujhar,odisha',
+	},
+	{
+		id: '1082',
+		label: 'Malkangiri',
+		value: 'malkangiri,odisha',
+	},
+	{
+		id: '910',
+		label: 'Nabarangapur',
+		value: 'nabarangapur,odisha',
+	},
+	{
+		id: '427',
+		label: 'Paradip',
+		value: 'paradip,odisha',
+	},
+	{
+		id: '695',
+		label: 'Parlakhemundi',
+		value: 'parlakhemundi,odisha',
+	},
+	{
+		id: '852',
+		label: 'Pattamundai',
+		value: 'pattamundai,odisha',
+	},
+	{
+		id: '828',
+		label: 'Phulabani',
+		value: 'phulabani,odisha',
+	},
+	{
+		id: '211',
+		label: 'Puri',
+		value: 'puri,odisha',
+	},
+	{
+		id: '1128',
+		label: 'Rairangpur',
+		value: 'rairangpur,odisha',
+	},
+	{
+		id: '693',
+		label: 'Rajagangapur',
+		value: 'rajagangapur,odisha',
+	},
+	{
+		id: '84',
+		label: 'Raurkela',
+		value: 'raurkela,odisha',
+	},
+	{
+		id: '538',
+		label: 'Rayagada',
+		value: 'rayagada,odisha',
+	},
+	{
+		id: '186',
+		label: 'Sambalpur',
+		value: 'sambalpur,odisha',
+	},
+	{
+		id: '958',
+		label: 'Soro',
+		value: 'soro,odisha',
+	},
+	{
+		id: '524',
+		label: 'Sunabeda',
+		value: 'sunabeda,odisha',
+	},
+	{
+		id: '750',
+		label: 'Sundargarh',
+		value: 'sundargarh,odisha',
+	},
+	{
+		id: '726',
+		label: 'Talcher',
+		value: 'talcher,odisha',
+	},
+	{
+		id: '1210',
+		label: 'Tarbha',
+		value: 'tarbha,odisha',
+	},
+	{
+		id: '890',
+		label: 'Titlagarh',
+		value: 'titlagarh,odisha',
+	},
+	{
+		id: '380',
+		label: 'Karaikal',
+		value: 'karaikal,puducherry',
+	},
+	{
+		id: '774',
+		label: 'Mahe',
+		value: 'mahe,puducherry',
+	},
+	{
+		id: '80',
+		label: 'Pondicherry',
+		value: 'pondicherry,puducherry',
+	},
+	{
+		id: '563',
+		label: 'Yanam',
+		value: 'yanam,puducherry',
+	},
+	{
+		id: '35',
+		label: 'Amritsar',
+		value: 'amritsar,punjab',
+	},
+	{
+		id: '280',
+		label: 'Barnala',
+		value: 'barnala,punjab',
+	},
+	{
+		id: '214',
+		label: 'Batala',
+		value: 'batala,punjab',
+	},
+	{
+		id: '126',
+		label: 'Bathinda',
+		value: 'bathinda,punjab',
+	},
+	{
+		id: '566',
+		label: 'Dhuri',
+		value: 'dhuri,punjab',
+	},
+	{
+		id: '384',
+		label: 'Faridkot',
+		value: 'faridkot,punjab',
+	},
+	{
+		id: '413',
+		label: 'Fazilka',
+		value: 'fazilka,punjab',
+	},
+	{
+		id: '299',
+		label: 'Firozpur',
+		value: 'firozpur,punjab',
+	},
+	{
+		id: '586',
+		label: 'Firozpur Cantt.',
+		value: 'firozpur cantt.,punjab',
+	},
+	{
+		id: '432',
+		label: 'Gobindgarh',
+		value: 'gobindgarh,punjab',
+	},
+	{
+		id: '418',
+		label: 'Gurdaspur',
+		value: 'gurdaspur,punjab',
+	},
+	{
+		id: '200',
+		label: 'Hoshiarpur',
+		value: 'hoshiarpur,punjab',
+	},
+	{
+		id: '484',
+		label: 'Jagraon',
+		value: 'jagraon,punjab',
+	},
+	{
+		id: '52',
+		label: 'Jalandhar',
+		value: 'jalandhar,punjab',
+	},
+	{
+		id: '644',
+		label: 'Jalandhar Cantt.',
+		value: 'jalandhar cantt.,punjab',
+	},
+	{
+		id: '326',
+		label: 'Kapurthala',
+		value: 'kapurthala,punjab',
+	},
+	{
+		id: '255',
+		label: 'Khanna',
+		value: 'khanna,punjab',
+	},
+	{
+		id: '422',
+		label: 'Kharar',
+		value: 'kharar,punjab',
+	},
+	{
+		id: '358',
+		label: 'Kot Kapura',
+		value: 'kot kapura,punjab',
+	},
+	{
+		id: '1056',
+		label: 'Longowal',
+		value: 'longowal,punjab',
+	},
+	{
+		id: '21',
+		label: 'Ludhiana',
+		value: 'ludhiana,punjab',
+	},
+	{
+		id: '251',
+		label: 'Malerkotla',
+		value: 'malerkotla,punjab',
+	},
+	{
+		id: '448',
+		label: 'Malout',
+		value: 'malout,punjab',
+	},
+	{
+		id: '434',
+		label: 'Mansa',
+		value: 'mansa,punjab',
+	},
+	{
+		id: '227',
+		label: 'Moga',
+		value: 'moga,punjab',
+	},
+	{
+		id: '266',
+		label: 'Mohali',
+		value: 'mohali,punjab',
+	},
+	{
+		id: '1099',
+		label: 'Morinda, India',
+		value: 'morinda, india,punjab',
+	},
+	{
+		id: '1145',
+		label: 'Mukerian',
+		value: 'mukerian,punjab',
+	},
+	{
+		id: '391',
+		label: 'Muktsar',
+		value: 'muktsar,punjab',
+	},
+	{
+		id: '460',
+		label: 'Nabha',
+		value: 'nabha,punjab',
+	},
+	{
+		id: '771',
+		label: 'Nakodar',
+		value: 'nakodar,punjab',
+	},
+	{
+		id: '721',
+		label: 'Nangal',
+		value: 'nangal,punjab',
+	},
+	{
+		id: '663',
+		label: 'Nawanshahr',
+		value: 'nawanshahr,punjab',
+	},
+	{
+		id: '199',
+		label: 'Pathankot',
+		value: 'pathankot,punjab',
+	},
+	{
+		id: '27',
+		label: 'Patiala',
+		value: 'patiala,punjab',
+	},
+	{
+		id: '812',
+		label: 'Patti',
+		value: 'patti,punjab',
+	},
+	{
+		id: '1116',
+		label: 'Pattran',
+		value: 'pattran,punjab',
+	},
+	{
+		id: '323',
+		label: 'Phagwara',
+		value: 'phagwara,punjab',
+	},
+	{
+		id: '1112',
+		label: 'Phillaur',
+		value: 'phillaur,punjab',
+	},
+	{
+		id: '1127',
+		label: 'Qadian',
+		value: 'qadian,punjab',
+	},
+	{
+		id: '1034',
+		label: 'Raikot',
+		value: 'raikot,punjab',
+	},
+	{
+		id: '392',
+		label: 'Rajpura',
+		value: 'rajpura,punjab',
+	},
+	{
+		id: '677',
+		label: 'Rampura Phul',
+		value: 'rampura phul,punjab',
+	},
+	{
+		id: '632',
+		label: 'Rupnagar',
+		value: 'rupnagar,punjab',
+	},
+	{
+		id: '657',
+		label: 'Samana',
+		value: 'samana,punjab',
+	},
+	{
+		id: '411',
+		label: 'Sangrur',
+		value: 'sangrur,punjab',
+	},
+	{
+		id: '623',
+		label: 'Sirhind Fatehgarh Sahib',
+		value: 'sirhind fatehgarh sahib,punjab',
+	},
+	{
+		id: '1133',
+		label: 'Sujanpur',
+		value: 'sujanpur,punjab',
+	},
+	{
+		id: '555',
+		label: 'Sunam',
+		value: 'sunam,punjab',
+	},
+	{
+		id: '1194',
+		label: 'Talwara',
+		value: 'talwara,punjab',
+	},
+	{
+		id: '470',
+		label: 'Tarn Taran',
+		value: 'tarn taran,punjab',
+	},
+	{
+		id: '1069',
+		label: 'Urmar Tanda',
+		value: 'urmar tanda,punjab',
+	},
+	{
+		id: '779',
+		label: 'Zira',
+		value: 'zira,punjab',
+	},
+	{
+		id: '346',
+		label: 'Zirakpur',
+		value: 'zirakpur,punjab',
+	},
+	{
+		id: '74',
+		label: 'Ajmer',
+		value: 'ajmer,rajasthan',
+	},
+	{
+		id: '112',
+		label: 'Alwar',
+		value: 'alwar,rajasthan',
+	},
+	{
+		id: '176',
+		label: 'Barmer',
+		value: 'barmer,rajasthan',
+	},
+	{
+		id: '141',
+		label: 'Bharatpur',
+		value: 'bharatpur,rajasthan',
+	},
+	{
+		id: '102',
+		label: 'Bhilwara',
+		value: 'bhilwara,rajasthan',
+	},
+	{
+		id: '63',
+		label: 'Bikaner',
+		value: 'bikaner,rajasthan',
+	},
+	{
+		id: '9',
+		label: 'Jaipur',
+		value: 'jaipur,rajasthan',
+	},
+	{
+		id: '34',
+		label: 'Jodhpur',
+		value: 'jodhpur,rajasthan',
+	},
+	{
+		id: '1220',
+		label: 'Kota',
+		value: 'kota,rajasthan',
+	},
+	{
+		id: '583',
+		label: 'Lachhmangarh',
+		value: 'lachhmangarh,rajasthan',
+	},
+	{
+		id: '479',
+		label: 'Ladnu',
+		value: 'ladnu,rajasthan',
+	},
+	{
+		id: '918',
+		label: 'Lakheri',
+		value: 'lakheri,rajasthan',
+	},
+	{
+		id: '814',
+		label: 'Lalsot',
+		value: 'lalsot,rajasthan',
+	},
+	{
+		id: '936',
+		label: 'Losal',
+		value: 'losal,rajasthan',
+	},
+	{
+		id: '359',
+		label: 'Makrana',
+		value: 'makrana,rajasthan',
+	},
+	{
+		id: '971',
+		label: 'Malpura',
+		value: 'malpura,rajasthan',
+	},
+	{
+		id: '1187',
+		label: 'Mandalgarh',
+		value: 'mandalgarh,rajasthan',
+	},
+	{
+		id: '1168',
+		label: 'Mandawa',
+		value: 'mandawa,rajasthan',
+	},
+	{
+		id: '1131',
+		label: 'Mangrol',
+		value: 'mangrol,rajasthan',
+	},
+	{
+		id: '733',
+		label: 'Merta City',
+		value: 'merta city,rajasthan',
+	},
+	{
+		id: '1117',
+		label: 'Mount Abu',
+		value: 'mount abu,rajasthan',
+	},
+	{
+		id: '992',
+		label: 'Nadbai',
+		value: 'nadbai,rajasthan',
+	},
+	{
+		id: '1012',
+		label: 'Nagar',
+		value: 'nagar,rajasthan',
+	},
+	{
+		id: '331',
+		label: 'Nagaur',
+		value: 'nagaur,rajasthan',
+	},
+	{
+		id: '607',
+		label: 'Nasirabad',
+		value: 'nasirabad,rajasthan',
+	},
+	{
+		id: '710',
+		label: 'Nathdwara',
+		value: 'nathdwara,rajasthan',
+	},
+	{
+		id: '786',
+		label: 'Neem-Ka-Thana',
+		value: 'neem-ka-thana,rajasthan',
+	},
+	{
+		id: '504',
+		label: 'Nimbahera',
+		value: 'nimbahera,rajasthan',
+	},
+	{
+		id: '621',
+		label: 'Nohar',
+		value: 'nohar,rajasthan',
+	},
+	{
+		id: '496',
+		label: 'Nokha',
+		value: 'nokha,rajasthan',
+	},
+	{
+		id: '147',
+		label: 'Pali',
+		value: 'pali,rajasthan',
+	},
+	{
+		id: '675',
+		label: 'Phalodi',
+		value: 'phalodi,rajasthan',
+	},
+	{
+		id: '1137',
+		label: 'Phulera',
+		value: 'phulera,rajasthan',
+	},
+	{
+		id: '728',
+		label: 'Pilani',
+		value: 'pilani,rajasthan',
+	},
+	{
+		id: '835',
+		label: 'Pilibanga',
+		value: 'pilibanga,rajasthan',
+	},
+	{
+		id: '1171',
+		label: 'Pindwara',
+		value: 'pindwara,rajasthan',
+	},
+	{
+		id: '851',
+		label: 'Pipar City',
+		value: 'pipar city,rajasthan',
+	},
+	{
+		id: '1114',
+		label: 'Prantij',
+		value: 'prantij,rajasthan',
+	},
+	{
+		id: '801',
+		label: 'Pratapgarh',
+		value: 'pratapgarh,rajasthan',
+	},
+	{
+		id: '961',
+		label: 'Raisinghnagar',
+		value: 'raisinghnagar,rajasthan',
+	},
+	{
+		id: '941',
+		label: 'Rajakhera',
+		value: 'rajakhera,rajasthan',
+	},
+	{
+		id: '1092',
+		label: 'Rajaldesar',
+		value: 'rajaldesar,rajasthan',
+	},
+	{
+		id: '1029',
+		label: 'Rajgarh (Alwar)',
+		value: 'rajgarh (alwar),rajasthan',
+	},
+	{
+		id: '601',
+		label: 'Rajgarh (Churu)',
+		value: 'rajgarh (churu),rajasthan',
+	},
+	{
+		id: '562',
+		label: 'Rajsamand',
+		value: 'rajsamand,rajasthan',
+	},
+	{
+		id: '895',
+		label: 'Ramganj Mandi',
+		value: 'ramganj mandi,rajasthan',
+	},
+	{
+		id: '938',
+		label: 'Ramngarh',
+		value: 'ramngarh,rajasthan',
+	},
+	{
+		id: '491',
+		label: 'Ratangarh',
+		value: 'ratangarh,rajasthan',
+	},
+	{
+		id: '808',
+		label: 'Rawatbhata',
+		value: 'rawatbhata,rajasthan',
+	},
+	{
+		id: '940',
+		label: 'Rawatsar',
+		value: 'rawatsar,rajasthan',
+	},
+	{
+		id: '1088',
+		label: 'Reengus',
+		value: 'reengus,rajasthan',
+	},
+	{
+		id: '1041',
+		label: 'Sadri',
+		value: 'sadri,rajasthan',
+	},
+	{
+		id: '267',
+		label: 'Sadulpur',
+		value: 'sadulpur,rajasthan',
+	},
+	{
+		id: '1111',
+		label: 'Sadulshahar',
+		value: 'sadulshahar,rajasthan',
+	},
+	{
+		id: '894',
+		label: 'Sagwara',
+		value: 'sagwara,rajasthan',
+	},
+	{
+		id: '1113',
+		label: 'Sambhar',
+		value: 'sambhar,rajasthan',
+	},
+	{
+		id: '1007',
+		label: 'Sanchore',
+		value: 'sanchore,rajasthan',
+	},
+	{
+		id: '809',
+		label: 'Sangaria',
+		value: 'sangaria,rajasthan',
+	},
+	{
+		id: '396',
+		label: 'Sardarshahar',
+		value: 'sardarshahar,rajasthan',
+	},
+	{
+		id: '325',
+		label: 'Sawai Madhopur',
+		value: 'sawai madhopur,rajasthan',
+	},
+	{
+		id: '946',
+		label: 'Shahpura',
+		value: 'shahpura,rajasthan',
+	},
+	{
+		id: '959',
+		label: 'Shahpura',
+		value: 'shahpura,rajasthan',
+	},
+	{
+		id: '1033',
+		label: 'Sheoganj',
+		value: 'sheoganj,rajasthan',
+	},
+	{
+		id: '180',
+		label: 'Sikar',
+		value: 'sikar,rajasthan',
+	},
+	{
+		id: '798',
+		label: 'Sirohi',
+		value: 'sirohi,rajasthan',
+	},
+	{
+		id: '745',
+		label: 'Sojat',
+		value: 'sojat,rajasthan',
+	},
+	{
+		id: '937',
+		label: 'Sri Madhopur',
+		value: 'sri madhopur,rajasthan',
+	},
+	{
+		id: '389',
+		label: 'Sujangarh',
+		value: 'sujangarh,rajasthan',
+	},
+	{
+		id: '885',
+		label: 'Sumerpur',
+		value: 'sumerpur,rajasthan',
+	},
+	{
+		id: '536',
+		label: 'Suratgarh',
+		value: 'suratgarh,rajasthan',
+	},
+	{
+		id: '1198',
+		label: 'Takhatgarh',
+		value: 'takhatgarh,rajasthan',
+	},
+	{
+		id: '854',
+		label: 'Taranagar',
+		value: 'taranagar,rajasthan',
+	},
+	{
+		id: '1085',
+		label: 'Todabhim',
+		value: 'todabhim,rajasthan',
+	},
+	{
+		id: '1066',
+		label: 'Todaraisingh',
+		value: 'todaraisingh,rajasthan',
+	},
+	{
+		id: '204',
+		label: 'Tonk',
+		value: 'tonk,rajasthan',
+	},
+	{
+		id: '69',
+		label: 'Udaipur',
+		value: 'udaipur,rajasthan',
+	},
+	{
+		id: '927',
+		label: 'Udaipurwati',
+		value: 'udaipurwati,rajasthan',
+	},
+	{
+		id: '876',
+		label: 'Vijainagar, Ajmer',
+		value: 'vijainagar, ajmer,rajasthan',
+	},
+	{
+		id: 'Sikkim',
+		label: 'Sikkim',
+		value: 'sikkim,sikkim',
+	},
+	{
+		id: '409',
+		label: 'Arakkonam',
+		value: 'arakkonam,tamil nadu',
+	},
+	{
+		id: '374',
+		label: 'Aruppukkottai',
+		value: 'aruppukkottai,tamil nadu',
+	},
+	{
+		id: '6',
+		label: 'Chennai',
+		value: 'chennai,tamil nadu',
+	},
+	{
+		id: '38',
+		label: 'Coimbatore',
+		value: 'coimbatore,tamil nadu',
+	},
+	{
+		id: '213',
+		label: 'Erode',
+		value: 'erode,tamil nadu',
+	},
+	{
+		id: '523',
+		label: 'Gobichettipalayam',
+		value: 'gobichettipalayam,tamil nadu',
+	},
+	{
+		id: '206',
+		label: 'Kancheepuram',
+		value: 'kancheepuram,tamil nadu',
+	},
+	{
+		id: '442',
+		label: 'Karur',
+		value: 'karur,tamil nadu',
+	},
+	{
+		id: '1058',
+		label: 'Lalgudi',
+		value: 'lalgudi,tamil nadu',
+	},
+	{
+		id: '42',
+		label: 'Madurai',
+		value: 'madurai,tamil nadu',
+	},
+	{
+		id: '1005',
+		label: 'Manachanallur',
+		value: 'manachanallur,tamil nadu',
+	},
+	{
+		id: '319',
+		label: 'Nagapattinam',
+		value: 'nagapattinam,tamil nadu',
+	},
+	{
+		id: '153',
+		label: 'Nagercoil',
+		value: 'nagercoil,tamil nadu',
+	},
+	{
+		id: '1149',
+		label: 'Namagiripettai',
+		value: 'namagiripettai,tamil nadu',
+	},
+	{
+		id: '567',
+		label: 'Namakkal',
+		value: 'namakkal,tamil nadu',
+	},
+	{
+		id: '686',
+		label: 'Nandivaram-Guduvancheri',
+		value: 'nandivaram-guduvancheri,tamil nadu',
+	},
+	{
+		id: '853',
+		label: 'Nanjikottai',
+		value: 'nanjikottai,tamil nadu',
+	},
+	{
+		id: '1061',
+		label: 'Natham',
+		value: 'natham,tamil nadu',
+	},
+	{
+		id: '656',
+		label: 'Nellikuppam',
+		value: 'nellikuppam,tamil nadu',
+	},
+	{
+		id: '314',
+		label: 'Neyveli (TS)',
+		value: 'neyveli (ts),tamil nadu',
+	},
+	{
+		id: '1124',
+		label: "O' Valley",
+		value: "o' valley,tamil nadu",
+	},
+	{
+		id: '907',
+		label: 'Oddanchatram',
+		value: 'oddanchatram,tamil nadu',
+	},
+	{
+		id: '1072',
+		label: 'P.N.Patti',
+		value: 'p.n.patti,tamil nadu',
+	},
+	{
+		id: '1095',
+		label: 'Pacode',
+		value: 'pacode,tamil nadu',
+	},
+	{
+		id: '1190',
+		label: 'Padmanabhapuram',
+		value: 'padmanabhapuram,tamil nadu',
+	},
+	{
+		id: '466',
+		label: 'Palani',
+		value: 'palani,tamil nadu',
+	},
+	{
+		id: '908',
+		label: 'Palladam',
+		value: 'palladam,tamil nadu',
+	},
+	{
+		id: '1044',
+		label: 'Pallapatti',
+		value: 'pallapatti,tamil nadu',
+	},
+	{
+		id: '1170',
+		label: 'Pallikonda',
+		value: 'pallikonda,tamil nadu',
+	},
+	{
+		id: '1016',
+		label: 'Panagudi',
+		value: 'panagudi,tamil nadu',
+	},
+	{
+		id: '565',
+		label: 'Panruti',
+		value: 'panruti,tamil nadu',
+	},
+	{
+		id: '387',
+		label: 'Paramakudi',
+		value: 'paramakudi,tamil nadu',
+	},
+	{
+		id: '1162',
+		label: 'Parangipettai',
+		value: 'parangipettai,tamil nadu',
+	},
+	{
+		id: '480',
+		label: 'Pattukkottai',
+		value: 'pattukkottai,tamil nadu',
+	},
+	{
+		id: '763',
+		label: 'Perambalur',
+		value: 'perambalur,tamil nadu',
+	},
+	{
+		id: '1156',
+		label: 'Peravurani',
+		value: 'peravurani,tamil nadu',
+	},
+	{
+		id: '711',
+		label: 'Periyakulam',
+		value: 'periyakulam,tamil nadu',
+	},
+	{
+		id: '877',
+		label: 'Periyasemur',
+		value: 'periyasemur,tamil nadu',
+	},
+	{
+		id: '717',
+		label: 'Pernampattu',
+		value: 'pernampattu,tamil nadu',
+	},
+	{
+		id: '254',
+		label: 'Pollachi',
+		value: 'pollachi,tamil nadu',
+	},
+	{
+		id: '1015',
+		label: 'Polur',
+		value: 'polur,tamil nadu',
+	},
+	{
+		id: '1047',
+		label: 'Ponneri',
+		value: 'ponneri,tamil nadu',
+	},
+	{
+		id: '304',
+		label: 'Pudukkottai',
+		value: 'pudukkottai,tamil nadu',
+	},
+	{
+		id: '1163',
+		label: 'Pudupattinam',
+		value: 'pudupattinam,tamil nadu',
+	},
+	{
+		id: '843',
+		label: 'Puliyankudi',
+		value: 'puliyankudi,tamil nadu',
+	},
+	{
+		id: '1181',
+		label: 'Punjaipugalur',
+		value: 'punjaipugalur,tamil nadu',
+	},
+	{
+		id: '268',
+		label: 'Rajapalayam',
+		value: 'rajapalayam,tamil nadu',
+	},
+	{
+		id: '499',
+		label: 'Ramanathapuram',
+		value: 'ramanathapuram,tamil nadu',
+	},
+	{
+		id: '755',
+		label: 'Rameshwaram',
+		value: 'rameshwaram,tamil nadu',
+	},
+	{
+		id: '135',
+		label: 'Ranipet',
+		value: 'ranipet,tamil nadu',
+	},
+	{
+		id: '660',
+		label: 'Rasipuram',
+		value: 'rasipuram,tamil nadu',
+	},
+	{
+		id: '55',
+		label: 'Salem',
+		value: 'salem,tamil nadu',
+	},
+	{
+		id: '449',
+		label: 'Sankarankovil',
+		value: 'sankarankovil,tamil nadu',
+	},
+	{
+		id: '970',
+		label: 'Sankari',
+		value: 'sankari,tamil nadu',
+	},
+	{
+		id: '834',
+		label: 'Sathyamangalam',
+		value: 'sathyamangalam,tamil nadu',
+	},
+	{
+		id: '886',
+		label: 'Sattur',
+		value: 'sattur,tamil nadu',
+	},
+	{
+		id: '980',
+		label: 'Shenkottai',
+		value: 'shenkottai,tamil nadu',
+	},
+	{
+		id: '1139',
+		label: 'Sholavandan',
+		value: 'sholavandan,tamil nadu',
+	},
+	{
+		id: '988',
+		label: 'Sholingur',
+		value: 'sholingur,tamil nadu',
+	},
+	{
+		id: '871',
+		label: 'Sirkali',
+		value: 'sirkali,tamil nadu',
+	},
+	{
+		id: '734',
+		label: 'Sivaganga',
+		value: 'sivaganga,tamil nadu',
+	},
+	{
+		id: '1179',
+		label: 'Sivagiri',
+		value: 'sivagiri,tamil nadu',
+	},
+	{
+		id: '271',
+		label: 'Sivakasi',
+		value: 'sivakasi,tamil nadu',
+	},
+	{
+		id: '431',
+		label: 'Srivilliputhur',
+		value: 'srivilliputhur,tamil nadu',
+	},
+	{
+		id: '947',
+		label: 'Surandai',
+		value: 'surandai,tamil nadu',
+	},
+	{
+		id: '1126',
+		label: 'Suriyampalayam',
+		value: 'suriyampalayam,tamil nadu',
+	},
+	{
+		id: '450',
+		label: 'Tenkasi',
+		value: 'tenkasi,tamil nadu',
+	},
+	{
+		id: '1142',
+		label: 'Thammampatti',
+		value: 'thammampatti,tamil nadu',
+	},
+	{
+		id: '154',
+		label: 'Thanjavur',
+		value: 'thanjavur,tamil nadu',
+	},
+	{
+		id: '902',
+		label: 'Tharamangalam',
+		value: 'tharamangalam,tamil nadu',
+	},
+	{
+		id: '1079',
+		label: 'Tharangambadi',
+		value: 'tharangambadi,tamil nadu',
+	},
+	{
+		id: '353',
+		label: 'Theni Allinagaram',
+		value: 'theni allinagaram,tamil nadu',
+	},
+	{
+		id: '605',
+		label: 'Thirumangalam',
+		value: 'thirumangalam,tamil nadu',
+	},
+	{
+		id: '1199',
+		label: 'Thirupuvanam',
+		value: 'thirupuvanam,tamil nadu',
+	},
+	{
+		id: '1042',
+		label: 'Thiruthuraipoondi',
+		value: 'thiruthuraipoondi,tamil nadu',
+	},
+	{
+		id: '557',
+		label: 'Thiruvallur',
+		value: 'thiruvallur,tamil nadu',
+	},
+	{
+		id: '533',
+		label: 'Thiruvarur',
+		value: 'thiruvarur,tamil nadu',
+	},
+	{
+		id: '860',
+		label: 'Thuraiyur',
+		value: 'thuraiyur,tamil nadu',
+	},
+	{
+		id: '433',
+		label: 'Tindivanam',
+		value: 'tindivanam,tamil nadu',
+	},
+	{
+		id: '873',
+		label: 'Tiruchendur',
+		value: 'tiruchendur,tamil nadu',
+	},
+	{
+		id: '348',
+		label: 'Tiruchengode',
+		value: 'tiruchengode,tamil nadu',
+	},
+	{
+		id: '53',
+		label: 'Tiruchirappalli',
+		value: 'tiruchirappalli,tamil nadu',
+	},
+	{
+		id: '922',
+		label: 'Tirukalukundram',
+		value: 'tirukalukundram,tamil nadu',
+	},
+	{
+		id: '903',
+		label: 'Tirukkoyilur',
+		value: 'tirukkoyilur,tamil nadu',
+	},
+	{
+		id: '86',
+		label: 'Tirunelveli',
+		value: 'tirunelveli,tamil nadu',
+	},
+	{
+		id: '489',
+		label: 'Tirupathur',
+		value: 'tirupathur,tamil nadu',
+	},
+	{
+		id: '1002',
+		label: 'Tirupathur',
+		value: 'tirupathur,tamil nadu',
+	},
+	{
+		id: '89',
+		label: 'Tiruppur',
+		value: 'tiruppur,tamil nadu',
+	},
+	{
+		id: '676',
+		label: 'Tiruttani',
+		value: 'tiruttani,tamil nadu',
+	},
+	{
+		id: '238',
+		label: 'Tiruvannamalai',
+		value: 'tiruvannamalai,tamil nadu',
+	},
+	{
+		id: '759',
+		label: 'Tiruvethipuram',
+		value: 'tiruvethipuram,tamil nadu',
+	},
+	{
+		id: '1090',
+		label: 'Tittakudi',
+		value: 'tittakudi,tamil nadu',
+	},
+	{
+		id: '371',
+		label: 'Udhagamandalam',
+		value: 'udhagamandalam,tamil nadu',
+	},
+	{
+		id: '512',
+		label: 'Udumalaipettai',
+		value: 'udumalaipettai,tamil nadu',
+	},
+	{
+		id: '1062',
+		label: 'Unnamalaikadai',
+		value: 'unnamalaikadai,tamil nadu',
+	},
+	{
+		id: '803',
+		label: 'Usilampatti',
+		value: 'usilampatti,tamil nadu',
+	},
+	{
+		id: '930',
+		label: 'Uthamapalayam',
+		value: 'uthamapalayam,tamil nadu',
+	},
+	{
+		id: '1023',
+		label: 'Uthiramerur',
+		value: 'uthiramerur,tamil nadu',
+	},
+	{
+		id: '921',
+		label: 'Vadakkuvalliyur',
+		value: 'vadakkuvalliyur,tamil nadu',
+	},
+	{
+		id: '739',
+		label: 'Vadalur',
+		value: 'vadalur,tamil nadu',
+	},
+	{
+		id: '982',
+		label: 'Vadipatti',
+		value: 'vadipatti,tamil nadu',
+	},
+	{
+		id: '443',
+		label: 'Valparai',
+		value: 'valparai,tamil nadu',
+	},
+	{
+		id: '889',
+		label: 'Vandavasi',
+		value: 'vandavasi,tamil nadu',
+	},
+	{
+		id: '351',
+		label: 'Vaniyambadi',
+		value: 'vaniyambadi,tamil nadu',
+	},
+	{
+		id: '816',
+		label: 'Vedaranyam',
+		value: 'vedaranyam,tamil nadu',
+	},
+	{
+		id: '732',
+		label: 'Vellakoil',
+		value: 'vellakoil,tamil nadu',
+	},
+	{
+		id: '181',
+		label: 'Vellore',
+		value: 'vellore,tamil nadu',
+	},
+	{
+		id: '652',
+		label: 'Vikramasingapuram',
+		value: 'vikramasingapuram,tamil nadu',
+	},
+	{
+		id: '344',
+		label: 'Viluppuram',
+		value: 'viluppuram,tamil nadu',
+	},
+	{
+		id: '428',
+		label: 'Virudhachalam',
+		value: 'virudhachalam,tamil nadu',
+	},
+	{
+		id: '439',
+		label: 'Virudhunagar',
+		value: 'virudhunagar,tamil nadu',
+	},
+	{
+		id: '1014',
+		label: 'Viswanatham',
+		value: 'viswanatham,tamil nadu',
+	},
+	{
+		id: '278',
+		label: 'Adilabad',
+		value: 'adilabad,telangana',
+	},
+	{
+		id: '574',
+		label: 'Bellampalle',
+		value: 'bellampalle,telangana',
+	},
+	{
+		id: '617',
+		label: 'Bhadrachalam',
+		value: 'bhadrachalam,telangana',
+	},
+	{
+		id: '624',
+		label: 'Bhainsa',
+		value: 'bhainsa,telangana',
+	},
+	{
+		id: '584',
+		label: 'Bhongir',
+		value: 'bhongir,telangana',
+	},
+	{
+		id: '412',
+		label: 'Bodhan',
+		value: 'bodhan,telangana',
+	},
+	{
+		id: '668',
+		label: 'Farooqnagar',
+		value: 'farooqnagar,telangana',
+	},
+	{
+		id: '542',
+		label: 'Gadwal',
+		value: 'gadwal,telangana',
+	},
+	{
+		id: '5',
+		label: 'Hyderabad',
+		value: 'hyderabad,telangana',
+	},
+	{
+		id: '343',
+		label: 'Jagtial',
+		value: 'jagtial,telangana',
+	},
+	{
+		id: '592',
+		label: 'Jangaon',
+		value: 'jangaon,telangana',
+	},
+	{
+		id: '541',
+		label: 'Kagaznagar',
+		value: 'kagaznagar,telangana',
+	},
+	{
+		id: '399',
+		label: 'Kamareddy',
+		value: 'kamareddy,telangana',
+	},
+	{
+		id: '138',
+		label: 'Karimnagar',
+		value: 'karimnagar,telangana',
+	},
+	{
+		id: '183',
+		label: 'Khammam',
+		value: 'khammam,telangana',
+	},
+	{
+		id: '475',
+		label: 'Koratla',
+		value: 'koratla,telangana',
+	},
+	{
+		id: '401',
+		label: 'Kothagudem',
+		value: 'kothagudem,telangana',
+	},
+	{
+		id: '863',
+		label: 'Kyathampalle',
+		value: 'kyathampalle,telangana',
+	},
+	{
+		id: '210',
+		label: 'Mahbubnagar',
+		value: 'mahbubnagar,telangana',
+	},
+	{
+		id: '276',
+		label: 'Mancherial',
+		value: 'mancherial,telangana',
+	},
+	{
+		id: '472',
+		label: 'Mandamarri',
+		value: 'mandamarri,telangana',
+	},
+	{
+		id: '849',
+		label: 'Manuguru',
+		value: 'manuguru,telangana',
+	},
+	{
+		id: '713',
+		label: 'Medak',
+		value: 'medak,telangana',
+	},
+	{
+		id: '361',
+		label: 'Miryalaguda',
+		value: 'miryalaguda,telangana',
+	},
+	{
+		id: '983',
+		label: 'Nagarkurnool',
+		value: 'nagarkurnool,telangana',
+	},
+	{
+		id: '714',
+		label: 'Narayanpet',
+		value: 'narayanpet,telangana',
+	},
+	{
+		id: '370',
+		label: 'Nirmal',
+		value: 'nirmal,telangana',
+	},
+	{
+		id: '114',
+		label: 'Nizamabad',
+		value: 'nizamabad,telangana',
+	},
+	{
+		id: '456',
+		label: 'Palwancha',
+		value: 'palwancha,telangana',
+	},
+	{
+		id: '146',
+		label: 'Ramagundam',
+		value: 'ramagundam,telangana',
+	},
+	{
+		id: '784',
+		label: 'Sadasivpet',
+		value: 'sadasivpet,telangana',
+	},
+	{
+		id: '545',
+		label: 'Sangareddy',
+		value: 'sangareddy,telangana',
+	},
+	{
+		id: '505',
+		label: 'Siddipet',
+		value: 'siddipet,telangana',
+	},
+	{
+		id: '482',
+		label: 'Sircilla',
+		value: 'sircilla,telangana',
+	},
+	{
+		id: '310',
+		label: 'Suryapet',
+		value: 'suryapet,telangana',
+	},
+	{
+		id: '487',
+		label: 'Tandur',
+		value: 'tandur,telangana',
+	},
+	{
+		id: '587',
+		label: 'Vikarabad',
+		value: 'vikarabad,telangana',
+	},
+	{
+		id: '514',
+		label: 'Wanaparthy',
+		value: 'wanaparthy,telangana',
+	},
+	{
+		id: '56',
+		label: 'Warangal',
+		value: 'warangal,telangana',
+	},
+	{
+		id: '833',
+		label: 'Yellandu',
+		value: 'yellandu,telangana',
+	},
+	{
+		id: '97',
+		label: 'Agartala',
+		value: 'agartala,tripura',
+	},
+	{
+		id: '1191',
+		label: 'Belonia',
+		value: 'belonia,tripura',
+	},
+	{
+		id: '898',
+		label: 'Dharmanagar',
+		value: 'dharmanagar,tripura',
+	},
+	{
+		id: '1182',
+		label: 'Kailasahar',
+		value: 'kailasahar,tripura',
+	},
+	{
+		id: '1196',
+		label: 'Khowai',
+		value: 'khowai,tripura',
+	},
+	{
+		id: '981',
+		label: 'Pratapgarh',
+		value: 'pratapgarh,tripura',
+	},
+	{
+		id: '850',
+		label: 'Udaipur',
+		value: 'udaipur,tripura',
+	},
+	{
+		id: '1094',
+		label: 'Achhnera',
+		value: 'achhnera,uttar pradesh',
+	},
+	{
+		id: '23',
+		label: 'Agra',
+		value: 'agra,uttar pradesh',
+	},
+	{
+		id: '49',
+		label: 'Aligarh',
+		value: 'aligarh,uttar pradesh',
+	},
+	{
+		id: '37',
+		label: 'Allahabad',
+		value: 'allahabad,uttar pradesh',
+	},
+	{
+		id: '46',
+		label: 'Amroha',
+		value: 'amroha,uttar pradesh',
+	},
+	{
+		id: '297',
+		label: 'Azamgarh',
+		value: 'azamgarh,uttar pradesh',
+	},
+	{
+		id: '179',
+		label: 'Bahraich',
+		value: 'bahraich,uttar pradesh',
+	},
+	{
+		id: '288',
+		label: 'Chandausi',
+		value: 'chandausi,uttar pradesh',
+	},
+	{
+		id: '1063',
+		label: 'Deoria',
+		value: 'deoria,uttar pradesh',
+	},
+	{
+		id: '140',
+		label: 'Etawah',
+		value: 'etawah,uttar pradesh',
+	},
+	{
+		id: '848',
+		label: 'Fatehpur Sikri',
+		value: 'fatehpur sikri,uttar pradesh',
+	},
+	{
+		id: '20',
+		label: 'Firozabad',
+		value: 'firozabad,uttar pradesh',
+	},
+	{
+		id: '999',
+		label: 'Gorakhpur',
+		value: 'gorakhpur,uttar pradesh',
+	},
+	{
+		id: '134',
+		label: 'Hapur',
+		value: 'hapur,uttar pradesh',
+	},
+	{
+		id: '292',
+		label: 'Hardoi ',
+		value: 'hardoi ,uttar pradesh',
+	},
+	{
+		id: '79',
+		label: 'Jhansi',
+		value: 'jhansi,uttar pradesh',
+	},
+	{
+		id: '600',
+		label: 'Kalpi',
+		value: 'kalpi,uttar pradesh',
+	},
+	{
+		id: '12',
+		label: 'Kanpur',
+		value: 'kanpur,uttar pradesh',
+	},
+	{
+		id: '324',
+		label: 'Khair',
+		value: 'khair,uttar pradesh',
+	},
+	{
+		id: '502',
+		label: 'Laharpur',
+		value: 'laharpur,uttar pradesh',
+	},
+	{
+		id: '221',
+		label: 'Lakhimpur',
+		value: 'lakhimpur,uttar pradesh',
+	},
+	{
+		id: '943',
+		label: 'Lal Gopalganj Nindaura',
+		value: 'lal gopalganj nindaura,uttar pradesh',
+	},
+	{
+		id: '1152',
+		label: 'Lalganj',
+		value: 'lalganj,uttar pradesh',
+	},
+	{
+		id: '252',
+		label: 'Lalitpur',
+		value: 'lalitpur,uttar pradesh',
+	},
+	{
+		id: '942',
+		label: 'Lar',
+		value: 'lar,uttar pradesh',
+	},
+	{
+		id: '78',
+		label: 'Loni',
+		value: 'loni,uttar pradesh',
+	},
+	{
+		id: '11',
+		label: 'Lucknow',
+		value: 'lucknow,uttar pradesh',
+	},
+	{
+		id: '684',
+		label: 'Mathura',
+		value: 'mathura,uttar pradesh',
+	},
+	{
+		id: '28',
+		label: 'Meerut',
+		value: 'meerut,uttar pradesh',
+	},
+	{
+		id: '1219',
+		label: 'Mirzapur',
+		value: 'mirzapur,uttar pradesh',
+	},
+	{
+		id: '130',
+		label: 'Modinagar',
+		value: 'modinagar,uttar pradesh',
+	},
+	{
+		id: '47',
+		label: 'Moradabad',
+		value: 'moradabad,uttar pradesh',
+	},
+	{
+		id: '349',
+		label: 'Nagina',
+		value: 'nagina,uttar pradesh',
+	},
+	{
+		id: '369',
+		label: 'Najibabad',
+		value: 'najibabad,uttar pradesh',
+	},
+	{
+		id: '1097',
+		label: 'Nakur',
+		value: 'nakur,uttar pradesh',
+	},
+	{
+		id: '639',
+		label: 'Nanpara',
+		value: 'nanpara,uttar pradesh',
+	},
+	{
+		id: '1096',
+		label: 'Naraura',
+		value: 'naraura,uttar pradesh',
+	},
+	{
+		id: '847',
+		label: 'Naugawan Sadat',
+		value: 'naugawan sadat,uttar pradesh',
+	},
+	{
+		id: '831',
+		label: 'Nautanwa',
+		value: 'nautanwa,uttar pradesh',
+	},
+	{
+		id: '740',
+		label: 'Nawabganj',
+		value: 'nawabganj,uttar pradesh',
+	},
+	{
+		id: '645',
+		label: 'Nehtaur',
+		value: 'nehtaur,uttar pradesh',
+	},
+	{
+		id: '1208',
+		label: 'Niwai',
+		value: 'niwai,uttar pradesh',
+	},
+	{
+		id: '64',
+		label: 'Noida',
+		value: 'noida,uttar pradesh',
+	},
+	{
+		id: '746',
+		label: 'Noorpur',
+		value: 'noorpur,uttar pradesh',
+	},
+	{
+		id: '1202',
+		label: 'Obra',
+		value: 'obra,uttar pradesh',
+	},
+	{
+		id: '178',
+		label: 'Orai',
+		value: 'orai,uttar pradesh',
+	},
+	{
+		id: '679',
+		label: 'Padrauna',
+		value: 'padrauna,uttar pradesh',
+	},
+	{
+		id: '804',
+		label: 'Palia Kalan',
+		value: 'palia kalan,uttar pradesh',
+	},
+	{
+		id: '1150',
+		label: 'Parasi',
+		value: 'parasi,uttar pradesh',
+	},
+	{
+		id: '1158',
+		label: 'Phulpur',
+		value: 'phulpur,uttar pradesh',
+	},
+	{
+		id: '966',
+		label: 'Pihani',
+		value: 'pihani,uttar pradesh',
+	},
+	{
+		id: '264',
+		label: 'Pilibhit',
+		value: 'pilibhit,uttar pradesh',
+	},
+	{
+		id: '469',
+		label: 'Pilkhuwa',
+		value: 'pilkhuwa,uttar pradesh',
+	},
+	{
+		id: '1071',
+		label: 'Powayan',
+		value: 'powayan,uttar pradesh',
+	},
+	{
+		id: '1189',
+		label: 'Pukhrayan',
+		value: 'pukhrayan,uttar pradesh',
+	},
+	{
+		id: '769',
+		label: 'Puranpur',
+		value: 'puranpur,uttar pradesh',
+	},
+	{
+		id: '1147',
+		label: 'Purwa',
+		value: 'purwa,uttar pradesh',
+	},
+	{
+		id: '196',
+		label: 'Rae Bareli',
+		value: 'rae bareli,uttar pradesh',
+	},
+	{
+		id: '127',
+		label: 'Rampur',
+		value: 'rampur,uttar pradesh',
+	},
+	{
+		id: '1032',
+		label: 'Rampur Maniharan',
+		value: 'rampur maniharan,uttar pradesh',
+	},
+	{
+		id: '926',
+		label: 'Rasra',
+		value: 'rasra,uttar pradesh',
+	},
+	{
+		id: '559',
+		label: 'Rath',
+		value: 'rath,uttar pradesh',
+	},
+	{
+		id: '471',
+		label: 'Renukoot',
+		value: 'renukoot,uttar pradesh',
+	},
+	{
+		id: '1118',
+		label: 'Reoti',
+		value: 'reoti,uttar pradesh',
+	},
+	{
+		id: '870',
+		label: 'Robertsganj',
+		value: 'robertsganj,uttar pradesh',
+	},
+	{
+		id: '776',
+		label: 'Rudauli',
+		value: 'rudauli,uttar pradesh',
+	},
+	{
+		id: '986',
+		label: 'Rudrapur',
+		value: 'rudrapur,uttar pradesh',
+	},
+	{
+		id: '879',
+		label: 'Sadabad',
+		value: 'sadabad,uttar pradesh',
+	},
+	{
+		id: '1108',
+		label: 'Safipur',
+		value: 'safipur,uttar pradesh',
+	},
+	{
+		id: '60',
+		label: 'Saharanpur',
+		value: 'saharanpur,uttar pradesh',
+	},
+	{
+		id: '1102',
+		label: 'Sahaspur',
+		value: 'sahaspur,uttar pradesh',
+	},
+	{
+		id: '535',
+		label: 'Sahaswan',
+		value: 'sahaswan,uttar pradesh',
+	},
+	{
+		id: '1178',
+		label: 'Sahawar',
+		value: 'sahawar,uttar pradesh',
+	},
+	{
+		id: '1026',
+		label: 'Sahjanwa',
+		value: 'sahjanwa,uttar pradesh',
+	},
+	{
+		id: '1140',
+		label: 'Saidpur',
+		value: 'saidpur,uttar pradesh',
+	},
+	{
+		id: '157',
+		label: 'Sambhal',
+		value: 'sambhal,uttar pradesh',
+	},
+	{
+		id: '1019',
+		label: 'Samdhan',
+		value: 'samdhan,uttar pradesh',
+	},
+	{
+		id: '1183',
+		label: 'Samthar',
+		value: 'samthar,uttar pradesh',
+	},
+	{
+		id: '1076',
+		label: 'Sandi',
+		value: 'sandi,uttar pradesh',
+	},
+	{
+		id: '636',
+		label: 'Sandila',
+		value: 'sandila,uttar pradesh',
+	},
+	{
+		id: '640',
+		label: 'Sardhana',
+		value: 'sardhana,uttar pradesh',
+	},
+	{
+		id: '649',
+		label: 'Seohara',
+		value: 'seohara,uttar pradesh',
+	},
+	{
+		id: '461',
+		label: 'Shahabad, Hardoi',
+		value: 'shahabad, hardoi,uttar pradesh',
+	},
+	{
+		id: '864',
+		label: 'Shahabad, Rampur',
+		value: 'shahabad, rampur,uttar pradesh',
+	},
+	{
+		id: '1038',
+		label: 'Shahganj',
+		value: 'shahganj,uttar pradesh',
+	},
+	{
+		id: '110',
+		label: 'Shahjahanpur',
+		value: 'shahjahanpur,uttar pradesh',
+	},
+	{
+		id: '362',
+		label: 'Shamli',
+		value: 'shamli,uttar pradesh',
+	},
+	{
+		id: '973',
+		label: 'Shamsabad, Agra',
+		value: 'shamsabad, agra,uttar pradesh',
+	},
+	{
+		id: '1064',
+		label: 'Shamsabad, Farrukhabad',
+		value: 'shamsabad, farrukhabad,uttar pradesh',
+	},
+	{
+		id: '589',
+		label: 'Sherkot',
+		value: 'sherkot,uttar pradesh',
+	},
+	{
+		id: '844',
+		label: 'Shikarpur, Bulandshahr',
+		value: 'shikarpur, bulandshahr,uttar pradesh',
+	},
+	{
+		id: '372',
+		label: 'Shikohabad',
+		value: 'shikohabad,uttar pradesh',
+	},
+	{
+		id: '1172',
+		label: 'Shishgarh',
+		value: 'shishgarh,uttar pradesh',
+	},
+	{
+		id: '743',
+		label: 'Siana',
+		value: 'siana,uttar pradesh',
+	},
+	{
+		id: '1135',
+		label: 'Sikanderpur',
+		value: 'sikanderpur,uttar pradesh',
+	},
+	{
+		id: '757',
+		label: 'Sikandra Rao',
+		value: 'sikandra rao,uttar pradesh',
+	},
+	{
+		id: '453',
+		label: 'Sikandrabad',
+		value: 'sikandrabad,uttar pradesh',
+	},
+	{
+		id: '945',
+		label: 'Sirsaganj',
+		value: 'sirsaganj,uttar pradesh',
+	},
+	{
+		id: '1146',
+		label: 'Sirsi',
+		value: 'sirsi,uttar pradesh',
+	},
+	{
+		id: '222',
+		label: 'Sitapur',
+		value: 'sitapur,uttar pradesh',
+	},
+	{
+		id: '987',
+		label: 'Soron',
+		value: 'soron,uttar pradesh',
+	},
+	{
+		id: '332',
+		label: 'Sultanpur',
+		value: 'sultanpur,uttar pradesh',
+	},
+	{
+		id: '1036',
+		label: 'Sumerpur',
+		value: 'sumerpur,uttar pradesh',
+	},
+	{
+		id: '347',
+		label: 'Tanda',
+		value: 'tanda,uttar pradesh',
+	},
+	{
+		id: '685',
+		label: 'Thakurdwara',
+		value: 'thakurdwara,uttar pradesh',
+	},
+	{
+		id: '781',
+		label: 'Thana Bhawan',
+		value: 'thana bhawan,uttar pradesh',
+	},
+	{
+		id: '510',
+		label: 'Tilhar',
+		value: 'tilhar,uttar pradesh',
+	},
+	{
+		id: '1050',
+		label: 'Tirwaganj',
+		value: 'tirwaganj,uttar pradesh',
+	},
+	{
+		id: '1040',
+		label: 'Tulsipur',
+		value: 'tulsipur,uttar pradesh',
+	},
+	{
+		id: '612',
+		label: 'Tundla',
+		value: 'tundla,uttar pradesh',
+	},
+	{
+		id: '500',
+		label: 'Ujhani',
+		value: 'ujhani,uttar pradesh',
+	},
+	{
+		id: '188',
+		label: 'Unnao',
+		value: 'unnao,uttar pradesh',
+	},
+	{
+		id: '874',
+		label: 'Utraula',
+		value: 'utraula,uttar pradesh',
+	},
+	{
+		id: '31',
+		label: 'Varanasi',
+		value: 'varanasi,uttar pradesh',
+	},
+	{
+		id: '495',
+		label: 'Vrindavan',
+		value: 'vrindavan,uttar pradesh',
+	},
+	{
+		id: '1067',
+		label: 'Warhapur',
+		value: 'warhapur,uttar pradesh',
+	},
+	{
+		id: '813',
+		label: 'Zaidpur',
+		value: 'zaidpur,uttar pradesh',
+	},
+	{
+		id: '840',
+		label: 'Zamania',
+		value: 'zamania,uttar pradesh',
+	},
+	{
+		id: '1209',
+		label: 'Bageshwar',
+		value: 'bageshwar,uttarakhand',
+	},
+	{
+		id: '71',
+		label: 'Dehradun',
+		value: 'dehradun,uttarakhand',
+	},
+	{
+		id: '215',
+		label: 'Haldwani-cum-Kathgodam',
+		value: 'haldwani-cum-kathgodam,uttarakhand',
+	},
+	{
+		id: '151',
+		label: 'Hardwar',
+		value: 'hardwar,uttarakhand',
+	},
+	{
+		id: '270',
+		label: 'Kashipur',
+		value: 'kashipur,uttarakhand',
+	},
+	{
+		id: '701',
+		label: 'Manglaur',
+		value: 'manglaur,uttarakhand',
+	},
+	{
+		id: '924',
+		label: 'Mussoorie',
+		value: 'mussoorie,uttarakhand',
+	},
+	{
+		id: '1115',
+		label: 'Nagla',
+		value: 'nagla,uttarakhand',
+	},
+	{
+		id: '718',
+		label: 'Nainital',
+		value: 'nainital,uttarakhand',
+	},
+	{
+		id: '1035',
+		label: 'Pauri',
+		value: 'pauri,uttarakhand',
+	},
+	{
+		id: '673',
+		label: 'Pithoragarh',
+		value: 'pithoragarh,uttarakhand',
+	},
+	{
+		id: '661',
+		label: 'Ramnagar',
+		value: 'ramnagar,uttarakhand',
+	},
+	{
+		id: '406',
+		label: 'Rishikesh',
+		value: 'rishikesh,uttarakhand',
+	},
+	{
+		id: '284',
+		label: 'Roorkee',
+		value: 'roorkee,uttarakhand',
+	},
+	{
+		id: '367',
+		label: 'Rudrapur',
+		value: 'rudrapur,uttarakhand',
+	},
+	{
+		id: '1121',
+		label: 'Sitarganj',
+		value: 'sitarganj,uttarakhand',
+	},
+	{
+		id: '229',
+		label: 'Srinagar',
+		value: 'srinagar,uttarakhand',
+	},
+	{
+		id: '1018',
+		label: 'Tehri',
+		value: 'tehri,uttarakhand',
+	},
+	{
+		id: '1200',
+		label: 'Adra',
+		value: 'adra,west bengal',
+	},
+	{
+		id: '485',
+		label: 'AlipurdUrban Agglomerationr',
+		value: 'alipurdurban agglomerationr,west bengal',
+	},
+	{
+		id: '477',
+		label: 'Arambagh',
+		value: 'arambagh,west bengal',
+	},
+	{
+		id: '72',
+		label: 'Asansol',
+		value: 'asansol,west bengal',
+	},
+	{
+		id: '175',
+		label: 'Baharampur',
+		value: 'baharampur,west bengal',
+	},
+	{
+		id: '225',
+		label: 'Balurghat',
+		value: 'balurghat,west bengal',
+	},
+	{
+		id: '247',
+		label: 'Bankura',
+		value: 'bankura,west bengal',
+	},
+	{
+		id: '272',
+		label: 'Darjiling',
+		value: 'darjiling,west bengal',
+	},
+	{
+		id: '160',
+		label: 'English Bazar',
+		value: 'english bazar,west bengal',
+	},
+	{
+		id: '556',
+		label: 'Gangarampur',
+		value: 'gangarampur,west bengal',
+	},
+	{
+		id: '231',
+		label: 'Habra',
+		value: 'habra,west bengal',
+	},
+	{
+		id: '189',
+		label: 'Hugli-Chinsurah',
+		value: 'hugli-chinsurah,west bengal',
+	},
+	{
+		id: '197',
+		label: 'Jalpaiguri',
+		value: 'jalpaiguri,west bengal',
+	},
+	{
+		id: '508',
+		label: 'Jhargram',
+		value: 'jhargram,west bengal',
+	},
+	{
+		id: '696',
+		label: 'Kalimpong',
+		value: 'kalimpong,west bengal',
+	},
+	{
+		id: '121',
+		label: 'Kharagpur',
+		value: 'kharagpur,west bengal',
+	},
+	{
+		id: '7',
+		label: 'Kolkata',
+		value: 'kolkata,west bengal',
+	},
+	{
+		id: '976',
+		label: 'Mainaguri',
+		value: 'mainaguri,west bengal',
+	},
+	{
+		id: '1078',
+		label: 'Malda',
+		value: 'malda,west bengal',
+	},
+	{
+		id: '1154',
+		label: 'Mathabhanga',
+		value: 'mathabhanga,west bengal',
+	},
+	{
+		id: '230',
+		label: 'Medinipur',
+		value: 'medinipur,west bengal',
+	},
+	{
+		id: '787',
+		label: 'Memari',
+		value: 'memari,west bengal',
+	},
+	{
+		id: '1167',
+		label: 'Monoharpur',
+		value: 'monoharpur,west bengal',
+	},
+	{
+		id: '773',
+		label: 'Murshidabad',
+		value: 'murshidabad,west bengal',
+	},
+	{
+		id: '260',
+		label: 'Nabadwip',
+		value: 'nabadwip,west bengal',
+	},
+	{
+		id: '156',
+		label: 'Naihati',
+		value: 'naihati,west bengal',
+	},
+	{
+		id: '1120',
+		label: 'Panchla',
+		value: 'panchla,west bengal',
+	},
+	{
+		id: '975',
+		label: 'PandUrban Agglomeration',
+		value: 'pandurban agglomeration,west bengal',
+	},
+	{
+		id: '893',
+		label: 'Paschim Punropara',
+		value: 'paschim punropara,west bengal',
+	},
+	{
+		id: '289',
+		label: 'Purulia',
+		value: 'purulia,west bengal',
+	},
+	{
+		id: '108',
+		label: 'Raghunathganj',
+		value: 'raghunathganj,west bengal',
+	},
+	{
+		id: '1125',
+		label: 'Raghunathpur',
+		value: 'raghunathpur,west bengal',
+	},
+	{
+		id: '190',
+		label: 'Raiganj',
+		value: 'raiganj,west bengal',
+	},
+	{
+		id: '609',
+		label: 'Rampurhat',
+		value: 'rampurhat,west bengal',
+	},
+	{
+		id: '236',
+		label: 'Ranaghat',
+		value: 'ranaghat,west bengal',
+	},
+	{
+		id: '742',
+		label: 'Sainthia',
+		value: 'sainthia,west bengal',
+	},
+	{
+		id: '224',
+		label: 'Santipur',
+		value: 'santipur,west bengal',
+	},
+	{
+		id: '24',
+		label: 'Siliguri',
+		value: 'siliguri,west bengal',
+	},
+	{
+		id: '972',
+		label: 'Sonamukhi',
+		value: 'sonamukhi,west bengal',
+	},
+	{
+		id: '1193',
+		label: 'Srirampore',
+		value: 'srirampore,west bengal',
+	},
+	{
+		id: '506',
+		label: 'Suri',
+		value: 'suri,west bengal',
+	},
+	{
+		id: '751',
+		label: 'Taki',
+		value: 'taki,west bengal',
+	},
+	{
+		id: '483',
+		label: 'Tamluk',
+		value: 'tamluk,west bengal',
+	},
+	{
+		id: '896',
+		label: 'Tarakeswar',
+		value: 'tarakeswar,west bengal',
+	},
+].sort((a, b) => {
+	if (a.label < b.label) {
+		return -1
+	}
+	if (a.label > b.label) {
+		return 1
+	}
+	return 0
+})

@@ -64,10 +64,11 @@ const BookingInfo = ({ ...props }: BookingInfo) => {
 						<TextWrapper
 							id={'workerRequired'}
 							label={`Workers Required & Daily Wage`}
-							toolTip={'Daily wage per worker'}>
-							{workerType.map((item) => {
+							toolTip={'Daily wage per worker'}
+						>
+							{workerType.map((item, index) => {
 								return (
-									<Stack direction={'row'} pb={1}>
+									<Stack key={index} direction={'row'} pb={1}>
 										<Box minWidth={50}>
 											<Icon style={{ fontSize: 32, verticalAlign: 'middle' }}>
 												<Image src={item.icon} style={{ width: 32, height: 32 }} />
@@ -82,7 +83,8 @@ const BookingInfo = ({ ...props }: BookingInfo) => {
 										<Box
 											minWidth={20}
 											style={{ verticalAlign: 'middle' }}
-											mt={0.8}>{`Rs. ${item?.wage}`}</Box>
+											mt={0.8}
+										>{`Rs. ${item?.wage}`}</Box>
 									</Stack>
 								)
 							})}

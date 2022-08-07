@@ -1,6 +1,6 @@
 import { Box, Button, CircularProgress, LinearProgress, Stack, Tab, Tabs, Typography } from '@mui/material'
 import { useRouter } from 'next/router'
-import { JobTypeLabel, primary, StatusChip, theme, useMobile } from '../../sdk'
+import { JobTypeLabel, LinkButton, primary, StatusChip, theme, useMobile } from '../../sdk'
 import { CustomTopBar } from '../../sdk/components/topBar/customTopBar'
 import { useBookingId } from './hooks'
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew'
@@ -23,12 +23,9 @@ export const BookingId = () => {
 	const total = helperCount + technicianCount + supervisorCount
 
 	const [length, setLength] = useState(0)
-	const handleRequiredTotal = useCallback(
-		(value) => {
-			setLength(value)
-		},
-		[length]
-	)
+	const handleRequiredTotal = useCallback((value) => {
+		setLength(value)
+	}, [])
 
 	return (
 		<>
@@ -90,7 +87,10 @@ export const BookingId = () => {
 							</Stack>
 
 							{!isMobile && (
-								<Button sx={{ fontSize: '14px', fontWeight: 800, fontFamily: 'Karla,sans-serif' }}>
+								<Button
+									href={`/bookings/${router.query.projectId}/${router.query.bookingId}/checkout`}
+									sx={{ fontSize: '14px', fontWeight: 800, fontFamily: 'Karla,sans-serif' }}
+								>
 									+ Get More Application
 								</Button>
 							)}
@@ -117,11 +117,16 @@ export const BookingId = () => {
 			<TabContext value={router.query.tab as string}>
 				{isMobile && (
 					<Box pt={2} pl={2}>
-						<Button size='small' sx={{ fontSize: '14px', fontWeight: 800, fontFamily: 'karla,sans-serif' }}>
+						<Button
+							href={`/bookings/${router.query.projectId}/${router.query.bookingId}/checkout`}
+							size='small'
+							sx={{ fontSize: '14px', fontWeight: 800, fontFamily: 'karla,sans-serif' }}
+						>
 							+ Get More Application
 						</Button>
 					</Box>
 				)}
+
 				<Box sx={{ borderBottom: 1, borderColor: 'divider', margin: 3, marginBottom: 0, marginTop: 3 }}>
 					<Tabs
 						TabIndicatorProps={{
@@ -179,6 +184,7 @@ export const BookingId = () => {
 					value='track-workers'
 					style={{
 						height: isMobile ? 'calc( 100vh - 320px )' : '',
+
 						overflowY: 'auto',
 						position: 'relative',
 					}}
@@ -190,6 +196,7 @@ export const BookingId = () => {
 					value='details'
 					style={{
 						height: isMobile ? 'calc( 100vh - 320px )' : '',
+
 						overflowY: 'auto',
 						position: 'relative',
 					}}

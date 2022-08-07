@@ -1,4 +1,4 @@
-import { CalendarMonth, HelpCenterRounded, HomeRounded, InfoOutlined } from '@mui/icons-material'
+import { CalendarMonth, HelpCenterRounded, HomeRounded, InfoOutlined, PhoneInTalkRounded } from '@mui/icons-material'
 import { ReactNode } from 'react'
 
 interface Navbar {
@@ -12,39 +12,23 @@ interface Navbar {
 	}[]
 }
 export const navbar: Navbar = {
-	brandImage: '/assets/landing/ph-logo-dark.svg',
+	brandImage: '/assets/landing/ph-logo-light.svg',
 	navLinks: [
 		{
 			type: 'button_link',
-			label: 'Home',
-			icon: <HomeRounded sx={{ fontSize: 36, color: 'primary.main' }} />,
+			label: '+91-9151003513',
+			icon: <img src={'/assets/landingv2/phone.svg'} />,
+			link: 'tel:+91-9151003513',
+		},
+		{
+			type: 'button_link',
+			label: 'How it works?',
 			link: '/',
 		},
 		{
 			type: 'button_link',
-			label: 'Plans',
-			icon: <CalendarMonth sx={{ fontSize: 36, color: 'primary.main' }} />,
-			link: '/hero/plans',
-		},
-		{
-			type: 'button_link',
-			label: 'About Us',
-			icon: <InfoOutlined sx={{ fontSize: 36, color: 'primary.main' }} />,
-			link: '/about-us',
-		},
-		// {
-		// 	type: 'support_menu',
-		// 	label: 'Support',
-		// },
-		{
-			type: 'button_link',
-			label: 'FAQs',
-			icon: <HelpCenterRounded sx={{ fontSize: 36, color: 'primary.main' }} />,
-			link: '/faq',
-		},
-		{
-			type: 'primary_button',
-			label: 'Book Worker',
+			label: 'Login',
+			icon: <img src={'/assets/landingv2/user.svg'} />,
 			link: '/login',
 		},
 	],

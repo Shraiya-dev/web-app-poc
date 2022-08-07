@@ -27,7 +27,7 @@ const SEOData: { [key in string]: PageMetaData } = {
 	'/projects/[projectId]/bookings/create': { title: 'Create Bookings', description: 'Create Bookings' },
 	'/contact-us': { title: 'Contact Us', description: 'Contact Us' },
 	'/worker/[workerId]': { title: 'Worker Details', description: 'Worker Details' },
-
+	'/bookings/[projectId]/[bookingId]/checkout': { title: 'Check out ', description: 'Check out' },
 	'/404': { title: 'Not Found', description: 'Not Found' },
 }
 export const getMetaData = (url: string, params?: ParsedUrlQuery): PageMetaData => {
