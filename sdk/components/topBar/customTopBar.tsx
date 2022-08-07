@@ -9,7 +9,6 @@ import MenuIcon from '../../../public/assets/icons/MenuIcon.svg'
 const APP_BAR_BG_COLOR = primary.darkGrey
 
 const CustomAppBar = styled(Box)(() => ({
-	backgroundColor: APP_BAR_BG_COLOR,
 	minHeight: 84,
 	display: 'flex',
 	alignItems: 'center',
@@ -33,7 +32,11 @@ export const CustomTopBar = ({ children }: any) => {
 	const isMobile = useMobile()
 
 	return (
-		<CustomAppBar>
+		<CustomAppBar
+			sx={{
+				backgroundColor: !isMobile ? APP_BAR_BG_COLOR : primary.properDark,
+			}}
+		>
 			<Box style={{ marginLeft: 0, padding: 0 }}>
 				<Toolbar className='toolbar'>
 					<Stack width={1} direction={'row'}>

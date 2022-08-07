@@ -26,9 +26,11 @@ export const BottomLayout = ({ ...props }) => {
 		<Box
 			sx={{
 				background: '#000',
+				position: 'fixed',
+				bottom: 8,
 			}}
 		>
-			<Stack direction={'row'} spacing={2} justifyContent={'space-around'} position={'sticky'} p={2}>
+			<Stack direction={'row'} spacing={7} justifyContent={'space-evenly'} position={'sticky'}>
 				<BottomBarItem
 					icon={<DashboardIcon />}
 					path={

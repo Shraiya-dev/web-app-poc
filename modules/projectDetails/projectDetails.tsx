@@ -16,6 +16,7 @@ import { WorkReport } from '../workReport'
 import { Bills } from '../bills'
 import { LocationOnOutlined } from '@mui/icons-material'
 import { FC } from 'react'
+import { BottomLayout } from 'sdk/layouts/BottomLayout'
 interface Props {}
 export const tabList: { [key in string]: string } = {
 	'work-report': 'Work Report',
@@ -202,7 +203,8 @@ export const ProjectDetails: FC<Props> = () => {
 						padding: isMobile ? 1 : 3,
 					}}
 					style={{
-						height: isMobile ? 'calc( 100vh - 160px )' : '',
+						maxHeight: isMobile ? 'calc( 100vh - 230px )' : '',
+						minHeight: isMobile ? 'calc( 100vh - 230px )' : '',
 						overflowY: 'auto',
 						position: 'relative',
 					}}
@@ -215,7 +217,8 @@ export const ProjectDetails: FC<Props> = () => {
 					}}
 					value='work-report'
 					style={{
-						height: `calc( 100vh - ${!isMobile ? '130px' : '190px'} )`,
+						maxHeight: isMobile ? 'calc( 100vh - 230px )' : '',
+						minHeight: isMobile ? 'calc( 100vh - 230px )' : '',
 						overflowY: 'auto',
 						paddingBottom: 0,
 						position: 'relative',
@@ -229,7 +232,8 @@ export const ProjectDetails: FC<Props> = () => {
 					}}
 					value='bills'
 					style={{
-						height: `calc( 100vh - ${!isMobile ? '130px' : '190px'} )`,
+						maxHeight: isMobile ? 'calc( 100vh - 230px )' : '',
+						minHeight: isMobile ? 'calc( 100vh - 230px )' : '',
 						overflowY: 'auto',
 						paddingBottom: 0,
 						position: 'relative',
@@ -243,7 +247,8 @@ export const ProjectDetails: FC<Props> = () => {
 						padding: isMobile ? 1 : 3,
 					}}
 					style={{
-						height: 'calc( 100vh - 160px )',
+						maxHeight: isMobile ? 'calc( 100vh - 230px )' : '',
+						minHeight: isMobile ? 'calc( 100vh - 230px )' : '',
 						overflowY: 'auto',
 						position: 'relative',
 					}}
@@ -251,6 +256,7 @@ export const ProjectDetails: FC<Props> = () => {
 					<ProjectInfo />
 				</TabPanel>
 			</TabContext>
+			{isMobile && <BottomLayout />}
 		</>
 	)
 }

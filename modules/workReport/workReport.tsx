@@ -416,6 +416,8 @@ export const WorkReport = () => {
 												background: '#fff',
 												width: '100%',
 												marginTop: '24px',
+												py: 2,
+												borderRadius: 2,
 											}}
 										>
 											{/* card header  */}

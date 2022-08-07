@@ -423,8 +423,27 @@ export const Bills = () => {
 												py: 0.6,
 											},
 										}}
+										style={{
+											background: '#2e2e2e',
+										}}
 									/>
 								)}
+								PaperProps={{
+									sx: {
+										'& .MuiCalendarPicker-root': {
+											background: '#fff',
+										},
+										'& .css-1u04tdt': {
+											color: '#000',
+										},
+										'& .MuiButtonBase-root': {
+											color: '#000',
+										},
+										'& .MuiSvgIcon-root': {
+											color: '#000',
+										},
+									},
+								}}
 							/>
 							<DesktopDatePicker
 								disableFuture
@@ -456,8 +475,27 @@ export const Bills = () => {
 												py: 0.6,
 											},
 										}}
+										style={{
+											background: '#2e2e2e',
+										}}
 									/>
 								)}
+								PaperProps={{
+									sx: {
+										'& .MuiCalendarPicker-root': {
+											background: '#fff',
+										},
+										'& .css-1u04tdt': {
+											color: '#000',
+										},
+										'& .MuiButtonBase-root': {
+											color: '#000',
+										},
+										'& .MuiSvgIcon-root': {
+											color: '#000',
+										},
+									},
+								}}
 							/>
 						</LocalizationProvider>
 						<Button
@@ -530,7 +568,7 @@ export const Bills = () => {
 													justifyContent={'space-between'}
 												>
 													<Typography
-														color='secondary.main'
+														color={primary.properDark}
 														variant='caption'
 														fontWeight={400}
 														noWrap
@@ -540,7 +578,7 @@ export const Bills = () => {
 													<Typography
 														width={60}
 														fontWeight={400}
-														color='#000'
+														color={primary.properDark}
 														variant='caption'
 														noWrap
 													>
@@ -549,7 +587,7 @@ export const Bills = () => {
 												</Stack>
 												<Stack direction={'row'} alignItems={'center'} spacing={2}>
 													<Typography
-														color='secondary.main'
+														color={primary.properDark}
 														fontWeight={400}
 														variant='caption'
 														noWrap
@@ -570,7 +608,7 @@ export const Bills = () => {
 												justifyContent={'space-between'}
 											>
 												<Typography
-													color='secondary.main'
+													color={primary.properDark}
 													fontWeight={400}
 													variant='caption'
 													noWrap
@@ -579,7 +617,7 @@ export const Bills = () => {
 												</Typography>
 												<Typography
 													width={60}
-													color='#000'
+													color={primary.properDark}
 													fontWeight={400}
 													variant='caption'
 													noWrap
@@ -596,7 +634,7 @@ export const Bills = () => {
 												justifyContent={'space-between'}
 											>
 												<Typography
-													color='secondary.main'
+													color={primary.properDark}
 													fontWeight={400}
 													variant='caption'
 													noWrap
@@ -605,7 +643,7 @@ export const Bills = () => {
 												</Typography>
 												<Typography
 													width={60}
-													color='#000'
+													color={primary.properDark}
 													fontWeight={400}
 													variant='caption'
 													noWrap
@@ -622,7 +660,7 @@ export const Bills = () => {
 												justifyContent={'space-between'}
 											>
 												<Typography
-													color='secondary.main'
+													color={primary.properDark}
 													fontWeight={400}
 													variant='caption'
 													noWrap
@@ -631,7 +669,7 @@ export const Bills = () => {
 												</Typography>
 												<Typography
 													width={60}
-													color='#000'
+													color={primary.properDark}
 													fontWeight={400}
 													variant='caption'
 													noWrap
@@ -648,7 +686,7 @@ export const Bills = () => {
 												justifyContent={'space-between'}
 											>
 												<Typography
-													color='secondary.main'
+													color={primary.properDark}
 													fontWeight={400}
 													variant='caption'
 													noWrap
@@ -657,7 +695,7 @@ export const Bills = () => {
 												</Typography>
 												<Typography
 													width={60}
-													color='#000'
+													color={primary.properDark}
 													fontWeight={400}
 													variant='caption'
 													noWrap

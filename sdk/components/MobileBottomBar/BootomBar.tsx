@@ -43,8 +43,8 @@ export const BottomBarItem = ({ ...props }) => {
 					button
 					style={{
 						background: router.route === route ? primary.secButtonColor : '',
-						borderRadius: 40,
-						marginBottom: 16,
+						// borderRadius: 40,
+						// marginBottom: 16,
 					}}
 					onClick={handleClick}
 				>

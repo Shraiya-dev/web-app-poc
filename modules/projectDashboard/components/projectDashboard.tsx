@@ -31,14 +31,13 @@ import LogoutIcon from '@mui/icons-material/Logout'
 import { ArrowBackIos } from '@mui/icons-material'
 
 const CustomProjectDashBoard = styled(Box)(({ theme }) => ({
-	padding: 16,
+	padding: 4,
 	paddingTop: 0,
 	'.info': {
 		display: 'flex',
 		flex: 1,
 		flexDirection: 'column',
 		overflow: 'hidden',
-
 		borderRadius: 8,
 		paddingTop: 56,
 	},
@@ -140,58 +139,66 @@ export const ProjectDashboard = () => {
 						</Button>
 					</Typography>
 				</Stack>
-
-				{loading ? (
-					<Stack p={5} alignItems='center' textAlign={'center'}>
-						<CircularProgress size={50} />
-					</Stack>
-				) : (
-					<Grid container spacing={3}>
-						{projects.projects.length === 0 ? (
-							<Grid item xs={12} md={3}>
-								<Paper className='info'>
-									<Stack
-										justifyContent={'center'}
-										onClick={() => {
-											CardClicked({
-												action: 'Add Project',
-												page: 'Dashboard',
-												url: router.asPath,
-											})
-											router.push('/projects/create')
-										}}
-										style={{ cursor: 'pointer' }}
-									>
-										<Stack direction={'row'} justifyContent={'center'} pb={1}>
-											<AddCircleOutlineIcon
-												style={{
-													verticalAlign: 'middle',
-													color: primary.properDark,
-													fontSize: 56,
-												}}
-											/>
+				<Stack
+					sx={{
+						maxHeight: isMobile ? 'calc(100vh - 280px)' : '',
+						minHeight: isMobile ? 'calc(100vh - 280px)' : '',
+						overflowY: isMobile ? 'scroll' : '',
+					}}
+				>
+					{loading ? (
+						<Stack p={5} alignItems='center' textAlign={'center'}>
+							<CircularProgress size={50} />
+						</Stack>
+					) : (
+						<Grid container spacing={3}>
+							{projects.projects.length === 0 ? (
+								<Grid item xs={12} md={3}>
+									<Paper className='info'>
+										<Stack
+											justifyContent={'center'}
+											onClick={() => {
+												CardClicked({
+													action: 'Add Project',
+													page: 'Dashboard',
+													url: router.asPath,
+												})
+												router.push('/projects/create')
+											}}
+											style={{ cursor: 'pointer' }}
+										>
+											<Stack direction={'row'} justifyContent={'center'} pb={1}>
+												<AddCircleOutlineIcon
+													style={{
+														verticalAlign: 'middle',
+														color: primary.properDark,
+														fontSize: 56,
+													}}
+												/>
+											</Stack>
+											<Typography textAlign={'center'} color={primary.properDark} fontSize={14}>
+												Add a new project to book workers
+											</Typography>
 										</Stack>
-										<Typography textAlign={'center'} color={primary.properDark} fontSize={14}>
-											Add a new project to book workers
-										</Typography>
-									</Stack>
 
-									<Stack direction={'row'} justifyContent={'flex-end'} style={{ marginLeft: 60 }}>
-										<Image src={EmptyProject} />
-									</Stack>
-								</Paper>
-							</Grid>
-						) : (
-							projects.projects.map((project, index) => {
-								return (
-									<Grid item xs={12} md={3} key={index}>
-										<ProjectCard project={project} />
-									</Grid>
-								)
-							})
-						)}
-					</Grid>
-				)}
+										<Stack direction={'row'} justifyContent={'flex-end'} style={{ marginLeft: 60 }}>
+											<Image src={EmptyProject} />
+										</Stack>
+									</Paper>
+								</Grid>
+							) : (
+								projects.projects.map((project, index) => {
+									return (
+										<Grid item xs={12} md={3} key={index}>
+											<ProjectCard project={project} />
+										</Grid>
+									)
+								})
+							)}
+						</Grid>
+					)}
+				</Stack>
+
 				{/* TODO : Add paginations */}
 
 				{/* {projects?.projects?.length > 0 && (
@@ -207,8 +214,8 @@ export const ProjectDashboard = () => {
 							/>
 						</Stack>
 					)} */}
-				{isMobile && <BottomLayout />}
 			</CustomProjectDashBoard>
+			{isMobile && <BottomLayout />}
 
 			{isMobile && (
 				<Drawer
