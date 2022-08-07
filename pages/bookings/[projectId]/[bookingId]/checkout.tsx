@@ -1,17 +1,16 @@
 import { GetStaticPaths, GetStaticProps } from 'next'
-import React from 'react'
 import { OnboardingLayout } from 'sdk'
 import { staticRenderingProvider } from 'sdk/utils/nextHelper'
 import { CheckoutCard } from 'sdkv2/components/cards/CheckoutCard'
 
-const Checkout = () =>{
-    return (
-        <>
-        <OnboardingLayout helmet={false}>
-            <CheckoutCard />
-        </OnboardingLayout>
-        </>
-    )
+const Checkout = () => {
+	return (
+		<>
+			<OnboardingLayout helmet={false}>
+				<CheckoutCard />
+			</OnboardingLayout>
+		</>
+	)
 }
 
 export default Checkout

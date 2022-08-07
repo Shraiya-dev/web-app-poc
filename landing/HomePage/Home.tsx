@@ -1,36 +1,8 @@
-import { ArrowCircleLeftOutlined, ArrowCircleRightOutlined, Circle, FormatQuote } from '@mui/icons-material'
+import { ArrowCircleLeftOutlined, ArrowCircleRightOutlined, Circle } from '@mui/icons-material'
 
-import {
-	Box,
-	Button,
-	Card,
-	CardContent,
-	CardMedia,
-	Grid,
-	List,
-	ListItem,
-	ListItemIcon,
-	ListItemText,
-	Paper,
-	Stack,
-	Tab,
-	Tabs,
-	Typography,
-} from '@mui/material'
-import { ContactUsSection } from 'landing/components'
-import Image from 'next/image'
+import { Box, Button, Grid, List, ListItem, Stack, Tab, Tabs, Typography } from '@mui/material'
 import { useRouter } from 'next/router'
-import {
-	AppStoreImage,
-	Carousel,
-	DataLayerPush,
-	externalLinks,
-	FloatingUnderLineHeading,
-	HyperLink,
-	LinkButton,
-	Section,
-	useMobile,
-} from 'sdk'
+import { Section, useMobile } from 'sdk'
 import { homePage } from 'sdk/data/home'
 import { CreateBookingCard, JobCategoryCard } from 'sdkv2/components'
 import { WorkerCard } from 'sdkv2/components/cards/WorkerCard'
@@ -100,7 +72,7 @@ export const Home = () => {
 				<Stack direction='row' alignItems='center' spacing={2}>
 					{jobSection.tagLine.map((item, index, arr) => (
 						<>
-							<Typography variant='h6' key={item}>
+							<Typography variant='h6' color='common.white' key={item}>
 								{item}
 							</Typography>
 							{index < arr.length - 1 && <Circle sx={{ fontSize: 8, color: 'common.white' }} />}

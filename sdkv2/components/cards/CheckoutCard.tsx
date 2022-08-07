@@ -62,7 +62,7 @@ export const CheckoutCard: FC = () => {
 	const bill: any = useMemo(() => {
 		const quantity = form.values['qtyHelper'] + form.values['qtyTechnician'] + form.values['qtySupervisor']
 		const subTotal = quantity * 50
-		const discount = subTotal > 750 ? 750 : subTotal
+		const discount = discountEligible?subTotal > 750 ? 750 : subTotal:0
 		const beforeTax = subTotal - discount
 		const tax = beforeTax * 0.18
 		const amountPayable = beforeTax + tax
@@ -80,6 +80,8 @@ export const CheckoutCard: FC = () => {
 	const { initiatePayment } = usePayment()
 	const { user } = useContractorAuth()
 	const { showSnackbar } = useSnackbar()
+	console.log(user)
+
 	const handelPayment = useCallback(async () => {
 		const payload = {
 			source: {
@@ -115,11 +117,20 @@ export const CheckoutCard: FC = () => {
 					amount: 50,
 					totalAmount: form.values.qtySupervisor * 50,
 				},
-			],
+			].filter((item) => item.quantity > 0),
 		}
 		try {
 			const { data } = await postEasyBookingOrder(payload)
-			initiatePayment({ orderId: data?.payload?.response?.id }, bill.amountPayable)
+			if (data?.payload?.response?.state === 'CONFIRMED') {
+				if (data?.payload?.response?.payment) {
+					initiatePayment(
+						data?.payload?.response?.payment,
+						data?.payload?.response?.payment?.totalPaymentAmount
+					)
+				}
+			} else {
+				// router.push(`/dashboard/projects/${router.query.projectId}`)
+			}
 		} catch (error: any) {
 			showSnackbar(error?.response?.data?.developerInfo, 'error')
 		}
@@ -131,7 +142,9 @@ export const CheckoutCard: FC = () => {
 		form.values.qtySupervisor,
 		form.values.qtyTechnician,
 		initiatePayment,
-		user?.customerId,
+		router,
+		showSnackbar,
+		user,
 	])
 
 	return (

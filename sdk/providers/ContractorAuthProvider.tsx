@@ -1,3 +1,4 @@
+import { KeyboardReturn } from '@mui/icons-material'
 import axios from 'axios'
 import { useRouter } from 'next/router'
 import { createContext, FC, useCallback, useContext, useEffect, useMemo, useReducer } from 'react'
@@ -119,6 +120,7 @@ const ContractorAuthProvider: FC<ContractorAuthProviderProps> = ({ children, aut
 					companyName: data?.payload?.companyName ?? '',
 					onboardingStatus: data.payload?.onboardingStatus ?? ONBOARDING_STATUS.PROFILE_CREATION_PENDING,
 					GSTIN: data?.payload?.GSTIN ?? '',
+					hasProjects: data?.payload?.hasProjects ?? false,
 					customerStatus: customerStatus ?? CUSTOMER_STATUS?.REGISTERED,
 					designation: designation ?? '',
 				},
@@ -139,6 +141,7 @@ const ContractorAuthProvider: FC<ContractorAuthProviderProps> = ({ children, aut
 				organisationId: data?.payload?.linkedOrganisation?.organisationId ?? '',
 				organisationRole: data?.payload?.linkedOrganisation?.role ?? '',
 				designation: data?.payload?.designation ?? '',
+
 				customerStatus: data?.payload?.customerStatus ?? CUSTOMER_STATUS?.REGISTERED,
 				isOrganisationMembershipDeleted: data?.payload?.linkedOrganisation?.isDeleted ? 'Yes' : '',
 				onboardingStatus: data?.payload?.onboardingStatus ?? ONBOARDING_STATUS.PROFILE_CREATION_PENDING,
@@ -255,6 +258,7 @@ const ContractorAuthProvider: FC<ContractorAuthProviderProps> = ({ children, aut
 						companyName: data?.payload?.companyName ?? '',
 						onboardingStatus: data?.payload?.onboardingStatus ?? '',
 						GSTIN: data?.payload?.GSTIN ?? '',
+						hasProjects: data?.payload?.hasProjects ?? false,
 						customerStatus: data?.payload?.customerStatus ?? CUSTOMER_STATUS.REGISTERED,
 						designation: data?.payload?.designation ?? '',
 					},
@@ -353,12 +357,20 @@ const ContractorAuthProvider: FC<ContractorAuthProviderProps> = ({ children, aut
 	useEffect(() => {
 		if (state.user) {
 			try {
-				const discoveryBookingFromCookie = JSON.parse(getCookie('discoveryBooking'))
+				const discoveryBookingFromCookie = () => {
+					try {
+						const discoveryBookingFromCookie = JSON.parse(getCookie('discoveryBooking'))
+						return discoveryBookingFromCookie
+					} catch (error) {
+						return undefined
+					}
+				}
 
-				if (!state.user.hasProjects && discoveryBookingFromCookie) {
-					createEasyBooking(discoveryBookingFromCookie)
+				if (!state.user.hasProjects && discoveryBookingFromCookie()) {
+					createEasyBooking(discoveryBookingFromCookie())
 				} else {
 					const redirectRoute = AccessMap[state.user.onboardingStatus]
+
 					if (state.user.onboardingStatus !== ONBOARDING_STATUS.ONBOARDED) {
 						if (router.pathname !== redirectRoute) {
 							router.replace(redirectRoute)
@@ -386,7 +398,6 @@ const ContractorAuthProvider: FC<ContractorAuthProviderProps> = ({ children, aut
 								'/bookings',
 								'/account',
 								'/onboarding',
-								'/checkout',
 							].every((item) => !router.pathname.includes(item))
 						) {
 							router.replace(redirectRoute)
@@ -395,7 +406,7 @@ const ContractorAuthProvider: FC<ContractorAuthProviderProps> = ({ children, aut
 					}
 				}
 			} catch (error) {
-				console.log('hello')
+				console.log(error)
 			}
 		}
 		// eslint-disable-next-line react-hooks/exhaustive-deps

@@ -55,7 +55,7 @@ export const useConfirmPaymentMutation = ({ projectId }: { projectId: string }) 
 		({ projectId, params }: { projectId: string; params: confirmPaymentApi }) =>
 			getConfirmPayment(projectId, { ...params }),
 		{
-			mutationKey: queryKey,
+			mutationKey: '/gateway/customer-api/payments/confirm',
 			onSuccess: (data) => {
 				console.log('payment created', data)
 			},
@@ -70,7 +70,7 @@ export const useCancelPaymentMutation = ({ projectId }: { projectId: string }) =
 		({ projectId, params }: { projectId: string; params: cancelPaymentApi }) =>
 			getCancePayment(projectId, { ...params }),
 		{
-			mutationKey: queryKey,
+			mutationKey: '/gateway/customer-api/payments/cancel',
 			onSuccess: (data) => {
 				console.log('payment created', data)
 			},
