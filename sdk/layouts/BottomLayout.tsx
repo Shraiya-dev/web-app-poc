@@ -27,7 +27,9 @@ export const BottomLayout = ({ ...props }) => {
 			sx={{
 				background: '#000',
 				position: 'fixed',
-				bottom: 8,
+				bottom: 0,
+				left: 0,
+				right: 0,
 			}}
 		>
 			<Stack direction={'row'} spacing={7} justifyContent={'space-evenly'} position={'sticky'}>
@@ -53,7 +55,9 @@ export const BottomLayout = ({ ...props }) => {
 							? BOOKING_DETAILS
 							: DASHBOARD
 					}
-					toggleDrawer={toggleDrawer}
+					sx={{
+						flex: 1,
+					}}
 				/>
 
 				<BottomBarItem
@@ -61,7 +65,9 @@ export const BottomLayout = ({ ...props }) => {
 					path={`/profile/details`}
 					title='Company Profile'
 					route={PROFILE}
-					toggleDrawer={toggleDrawer}
+					sx={{
+						flex: 1,
+					}}
 				/>
 
 				<BottomBarItem
@@ -69,7 +75,9 @@ export const BottomLayout = ({ ...props }) => {
 					path='/account'
 					title='Account'
 					route={'/account'}
-					toggleDrawer={toggleDrawer}
+					sx={{
+						flex: 1,
+					}}
 				/>
 			</Stack>
 		</Box>

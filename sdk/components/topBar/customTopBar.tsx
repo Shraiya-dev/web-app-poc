@@ -35,6 +35,9 @@ export const CustomTopBar = ({ children }: any) => {
 		<CustomAppBar
 			sx={{
 				backgroundColor: !isMobile ? APP_BAR_BG_COLOR : primary.properDark,
+				left: isMobile ? 0 : '',
+				right: isMobile ? 0 : '',
+				mt: isMobile ? '-24px' : '',
 			}}
 		>
 			<Box style={{ marginLeft: 0, padding: 0 }}>

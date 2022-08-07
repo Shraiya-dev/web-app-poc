@@ -41,18 +41,30 @@ export const BottomBarItem = ({ ...props }) => {
 			<a>
 				<ListItem
 					button
-					style={{
-						background: router.route === route ? primary.secButtonColor : '',
-						// borderRadius: 40,
-						// marginBottom: 16,
-					}}
+					style={
+						{
+							// background: router.route === route ? primary.secButtonColor : '',
+							// borderRadius: 40,
+							// marginBottom: 16,
+						}
+					}
 					onClick={handleClick}
 				>
 					<Stack direction={'column'} alignItems={'center'} justifyContent={'space-evenly'}>
-						<ListItemIcon style={{ color: router.route === route ? '#000' : '#b2b2b2' }}>
-							{icon}
-						</ListItemIcon>
-						<Typography style={{ fontSize: '10px', color: router.route === route ? '#000' : '#b2b2b2' }}>
+						<Stack
+							direction={'row'}
+							justifyContent={'center'}
+							sx={{
+								width: '100%',
+							}}
+						>
+							<ListItemIcon
+								style={{ color: router.route === route ? '#fff' : '#7d7d7d', minWidth: 'fit-content' }}
+							>
+								{icon}
+							</ListItemIcon>
+						</Stack>
+						<Typography style={{ fontSize: '10px', color: router.route === route ? '#fff' : '#7d7d7d' }}>
 							{title}
 						</Typography>
 					</Stack>
