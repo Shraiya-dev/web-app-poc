@@ -118,7 +118,8 @@ export const CreateBookingCard: FC<Props> = () => {
 										}}
 										sx={{ width: '50%' }}
 										size='large'
-										variant='contained'>
+										variant='contained'
+									>
 										Next
 									</Button>
 								</>
@@ -130,7 +131,8 @@ export const CreateBookingCard: FC<Props> = () => {
 											<Stack
 												direction='row'
 												justifyContent='space-between'
-												alignItems='flex-start'>
+												alignItems='flex-start'
+											>
 												<FormControlLabel
 													sx={{ mt: 1 }}
 													control={
@@ -154,7 +156,8 @@ export const CreateBookingCard: FC<Props> = () => {
 											<Stack
 												direction='row'
 												justifyContent='space-between'
-												alignItems='flex-start'>
+												alignItems='flex-start'
+											>
 												<FormControlLabel
 													sx={{ mt: 1 }}
 													control={
@@ -179,7 +182,8 @@ export const CreateBookingCard: FC<Props> = () => {
 											<Stack
 												direction='row'
 												justifyContent='space-between'
-												alignItems={'flex-start'}>
+												alignItems={'flex-start'}
+											>
 												<FormControlLabel
 													sx={{ mt: 1 }}
 													control={
@@ -207,7 +211,8 @@ export const CreateBookingCard: FC<Props> = () => {
 										size='large'
 										variant='contained'
 										type='submit'
-										disabled={!form.dirty || !form.isValid}>
+										disabled={!form.dirty || !form.isValid}
+									>
 										Book Workers Now
 									</Button>
 								</>
@@ -311,7 +316,8 @@ const ListboxComponent = React.forwardRef<HTMLDivElement, React.HTMLAttributes<H
 					innerElementType='ul'
 					itemSize={(index) => getChildSize(itemData[index])}
 					overscanCount={5}
-					itemCount={itemCount}>
+					itemCount={itemCount}
+				>
 					{renderRow}
 				</VariableSizeList>
 			</OuterElementContext.Provider>

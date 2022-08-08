@@ -1,4 +1,4 @@
-import { Box, Paper, Stack, Typography } from '@mui/material'
+import { Box, Card, Paper, Stack, Typography } from '@mui/material'
 import { styled } from '@mui/system'
 import { useRouter } from 'next/router'
 import { Navbar } from '../components'
@@ -117,15 +117,24 @@ export const OnboardingLayout = ({ children, helmet = true, ...props }: any) => 
 						router.back()
 					}}
 					direction='row'
-					sx={{ position: 'absolute', top: '38px', left: '102px', cursor: 'pointer' }}>
+					sx={{ position: 'absolute', top: '38px', left: '102px', cursor: 'pointer' }}
+				>
 					<img src={'/assets/icons/arrow_back.svg'} alt='back' />
 					<Typography ml={2}>Go Back</Typography>
 				</Stack>
 				{helmet && (
 					<Stack className='center'>
 						<Paper
+							component={Card}
 							elevation={4}
-							style={{ padding: 24, borderRadius: 8, width: isMobile ? 372 : 392, zIndex: 2 }}>
+							style={{
+								background: '#000',
+								padding: 24,
+								borderRadius: 8,
+								width: isMobile ? 372 : 392,
+								zIndex: 2,
+							}}
+						>
 							{children}
 						</Paper>
 					</Stack>
