@@ -2,7 +2,6 @@ import { BarChart, Settings, Share, StarBorder } from '@mui/icons-material'
 import { Typography } from '@mui/material'
 import { Children } from 'react'
 import { landingTheme } from 'sdk/constants/landingTheme'
-import { JOB_TYPES } from 'sdk/types'
 
 export const homePage = {
 	heroSection: {},
@@ -26,14 +25,9 @@ export const homePage = {
 			),
 			buttonText: 'Book Workers Now',
 			buttonSx: {
-				backgroundColor: '#fff',
 				padding: '20px 64px',
 				color: '#000',
 				fontWeight: '700',
-				'& .hover': {
-					backgroundColor: '#fff',
-					color: '#000',
-				},
 			},
 		},
 		right: {
@@ -158,6 +152,13 @@ export const homePage = {
 				borderRadius: '15px',
 			},
 		},
+		ImageList: [
+			{ src: '/assets/landingv2/heroSection/capicite.svg' },
+			{ src: '/assets/landingv2/heroSection/l&t.svg' },
+			{ src: '/assets/landingv2/heroSection/oberoi.svg' },
+			{ src: '/assets/landingv2/heroSection/capicite.svg' },
+			{ src: '/assets/landingv2/heroSection/l&t.svg' },
+		],
 	},
 
 	jobSection: {
@@ -172,68 +173,43 @@ export const homePage = {
 			{
 				image: '/assets/landing/mason.png',
 				label: 'Masons',
-				value: 'MASON',
 			},
 			{
 				image: '/assets/landing/bar-bender.png',
 				label: 'Bar benders',
-				value: 'BAR_BENDER',
 			},
 			{
 				image: '/assets/landing/flooring.png',
 				label: 'Flooring/Tiling',
-				value: 'STONE_TILE_MARBLE_LAYER',
 			},
 			{
 				image: '/assets/landing/carpenter.png',
 				label: 'Carpenters',
-				value: 'CARPENTER',
 			},
 			{
 				image: '/assets/landing/welders.png',
 				label: 'Welder Fitters',
-				value: 'WELDER_FITTER',
 			},
 			{
 				image: '/assets/landing/painter.png',
 				label: 'Painters',
-				value: 'PAINTER',
 			},
 			{
 				image: '/assets/landing/general-helper.png',
 				label: 'General Helpers',
-				value: 'GENERAL_HELPER',
 			},
 			{
 				image: '/assets/landing/shuttering-work.png',
 				label: 'Shuttering Work',
-				value: 'SHUTTERING_CARPENTER',
 			},
 			{
 				image: '/assets/landing/electrician.png',
 				label: 'Electricians',
-				value: 'ELECTRICAL',
 			},
 
 			{
 				image: '/assets/landing/plumbing.png',
 				label: 'Plumber',
-				value: 'PLUMBING',
-			},
-			{
-				image: '/assets/landing/plumbing.png',
-				label: 'Gypsum',
-				value: 'GYPSUM',
-			},
-			{
-				image: '/assets/landing/plumbing.png',
-				label: 'HVAC',
-				value: 'HVAC',
-			},
-			{
-				image: '/assets/landing/plumbing.png',
-				label: 'Aluminium Fabricator',
-				value: 'ALUMINIUM_FABRICATOR',
 			},
 		],
 		workers: Array(6).fill({
@@ -242,7 +218,7 @@ export const homePage = {
 			verified: true,
 			phoneNumber: '+919650674431',
 			profileImage: 'https://www.un.org/sites/un2.un.org/files/2020/09/smiling-factory-worker.jpg',
-			jobType: JOB_TYPES.ALUMINIUM_FABRICATOR,
+			jobType: 'Mason',
 			skillType: 'Technician',
 			rating: 3,
 			experience: {
