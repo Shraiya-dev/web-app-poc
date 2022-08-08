@@ -172,43 +172,68 @@ export const homePage = {
 			{
 				image: '/assets/landing/mason.png',
 				label: 'Masons',
+				value: 'MASON',
 			},
 			{
 				image: '/assets/landing/bar-bender.png',
 				label: 'Bar benders',
+				value: 'BAR_BENDER',
 			},
 			{
 				image: '/assets/landing/flooring.png',
 				label: 'Flooring/Tiling',
+				value: 'STONE_TILE_MARBLE_LAYER',
 			},
 			{
 				image: '/assets/landing/carpenter.png',
 				label: 'Carpenters',
+				value: 'CARPENTER',
 			},
 			{
 				image: '/assets/landing/welders.png',
 				label: 'Welder Fitters',
+				value: 'WELDER_FITTER',
 			},
 			{
 				image: '/assets/landing/painter.png',
 				label: 'Painters',
+				value: 'PAINTER',
 			},
 			{
 				image: '/assets/landing/general-helper.png',
 				label: 'General Helpers',
+				value: 'GENERAL_HELPER',
 			},
 			{
 				image: '/assets/landing/shuttering-work.png',
 				label: 'Shuttering Work',
+				value: 'SHUTTERING_CARPENTER',
 			},
 			{
 				image: '/assets/landing/electrician.png',
 				label: 'Electricians',
+				value: 'ELECTRICAL',
 			},
 
 			{
 				image: '/assets/landing/plumbing.png',
 				label: 'Plumber',
+				value: 'PLUMBING',
+			},
+			{
+				image: '/assets/landing/plumbing.png',
+				label: 'Gypsum',
+				value: 'GYPSUM',
+			},
+			{
+				image: '/assets/landing/plumbing.png',
+				label: 'HVAC',
+				value: 'HVAC',
+			},
+			{
+				image: '/assets/landing/plumbing.png',
+				label: 'Aluminium Fabricator',
+				value: 'ALUMINIUM_FABRICATOR',
 			},
 		],
 		workers: Array(6).fill({

@@ -2,8 +2,11 @@ import { ArrowCircleLeftOutlined, ArrowCircleRightOutlined, Circle } from '@mui/
 
 import { Box, Button, Grid, List, ListItem, Stack, Tab, Tabs, Typography } from '@mui/material'
 import { useRouter } from 'next/router'
-import { Section, useMobile } from 'sdk'
+import { useState } from 'react'
+import { Carousel, Section, useMobile } from 'sdk'
+import { HeroDiscoveryMetaData } from 'sdk/data/discoverHero'
 import { homePage } from 'sdk/data/home'
+import { sliceIntoChunks } from 'sdk/utils/arrayHelpers'
 import { CreateBookingCard, JobCategoryCard } from 'sdkv2/components'
 import { WorkerCard } from 'sdkv2/components/cards/WorkerCard'
 
@@ -19,6 +22,7 @@ export const Home = () => {
 		phApp,
 		clientCarouselSection,
 	} = homePage
+	const [jobTypeForCarousal, setJobTypeForCarousal] = useState('MASON')
 	const isMobile = useMobile()
 	const router = useRouter()
 	return (
@@ -93,7 +97,8 @@ export const Home = () => {
 				</Stack>
 				<Tabs
 					sx={{ mx: -5 }}
-					value='Masons'
+					onChange={(e, v) => setJobTypeForCarousal(v)}
+					value={jobTypeForCarousal}
 					variant='scrollable'
 					ScrollButtonComponent={(props) => {
 						if (props.direction === 'left' && !props.disabled) {
@@ -114,20 +119,30 @@ export const Home = () => {
 					}}>
 					{jobSection.jobs.map((item) => (
 						<Tab
-							value={item.label}
+							value={item.value}
 							key={item.label}
 							sx={{ color: 'common.white' }}
 							label={<JobCategoryCard src={item.image} label={item.label} />}
 						/>
 					))}
 				</Tabs>
-				<Grid container py={3} spacing={2}>
-					{jobSection.workers.map((item) => (
-						<Grid md={4} item key={item.workerId}>
-							<WorkerCard worker={item as any} />
-						</Grid>
-					))}
-				</Grid>
+				<Carousel
+					componentPerView={1}
+					items={sliceIntoChunks(HeroDiscoveryMetaData[jobTypeForCarousal], isMobile ? 2 : 6).map(
+						(slide, index) => {
+							return (
+								<Grid key={index} container py={3} spacing={2}>
+									{slide.map((item: any) => (
+										<Grid md={4} item key={item.workerId}>
+											<WorkerCard worker={item} />
+										</Grid>
+									))}
+								</Grid>
+							)
+						}
+					)}
+					slideDelay={5000}
+				/>
 			</Section>
 
 			<Section backgroundColor='#F7F7F7'>
