@@ -287,7 +287,7 @@ export const Home = () => {
 										onClick={() => {
 											DataLayerPush({ event: 'book_hero_home_footer' })
 										}}>
-										{/* {homePage.whyYouShouldHire.left.buttonText} */}
+										{homePage.whyYouShouldHire.left.buttonText.text}
 									</Button>
 								</Box>
 							</Stack>
@@ -422,7 +422,7 @@ export const Home = () => {
 									<Box>{homePage.HeroAdvantage.subHeading}</Box>
 								</Stack>
 								<Box>
-									{/* <LinkButton
+									<LinkButton
 										href={homePage.HeroAdvantage.buttonText.link}
 										sx={{
 											p: '20px 66px',
@@ -433,7 +433,7 @@ export const Home = () => {
 											DataLayerPush({ event: 'book_hero_home_footer' })
 										}}>
 										{homePage.HeroAdvantage.buttonText.text}
-									</LinkButton> */}
+									</LinkButton>
 								</Box>
 							</Stack>
 						</Grid>
