@@ -137,6 +137,7 @@ export const CreateBookingCard: FC<Props> = () => {
 														<Checkbox
 															value={form.values.isHelper}
 															onChange={(e, v) => {
+																form.setFieldValue('helperWage', '')
 																form.setFieldValue('isHelper', v)
 															}}
 														/>
@@ -161,6 +162,7 @@ export const CreateBookingCard: FC<Props> = () => {
 														<Checkbox
 															value={form.values.isTechnician}
 															onChange={(e, v) => {
+																form.setFieldValue('technicianWage', '')
 																form.setFieldValue('isTechnician', v)
 															}}
 														/>
@@ -186,6 +188,7 @@ export const CreateBookingCard: FC<Props> = () => {
 														<Checkbox
 															value={form.values.isSupervisor}
 															onChange={(e, v) => {
+																form.setFieldValue('supervisorWage', '')
 																form.setFieldValue('isSupervisor', v)
 															}}
 														/>

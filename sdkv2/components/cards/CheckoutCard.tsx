@@ -121,10 +121,11 @@ export const CheckoutCard: FC = () => {
 			const { data } = await postEasyBookingOrder(payload)
 			if (data?.payload?.response?.state === 'CONFIRMED') {
 				if (data?.payload?.response?.payment) {
-					initiatePayment(
+					await initiatePayment(
 						data?.payload?.response?.payment,
 						data?.payload?.response?.payment?.totalPaymentAmount
 					)
+					router.push(`/projects/${router.query.projectId}/bookings`)
 				}
 			} else {
 				router.push(`/dashboard/projects/${router.query.projectId}`)
@@ -245,7 +246,7 @@ export const CheckoutCard: FC = () => {
 												</Typography>
 
 												{['RECEIVED', 'CONFIRMATION', 'ALLOCATION_IN_PROGRESS'].includes(
-													bookingData.booking.status
+													bookingData?.booking?.status
 												) && (
 													<IconButton
 														sx={{ p: '0px', ml: '6px' }}
