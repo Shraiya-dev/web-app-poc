@@ -10,6 +10,8 @@ import { useRouter } from 'next/router'
 import { useSnackbar } from 'sdk/providers'
 import { usePayment } from 'sdk/providers/PaymentProvider'
 import { AddEditWage } from '../dialog'
+import { useFormikProps } from 'sdk/hooks'
+import { Add } from '@mui/icons-material'
 
 const ProfileCardData = [
 	{
@@ -58,7 +60,7 @@ export const CheckoutCard: FC = () => {
 		initialValue: 0,
 	})
 	const [updating, setUpdating] = useState<any>({})
-	const { form, wage, bookingData, setWage, discountEligible } = useCheckout()
+	const { form, wage, bookingData, setWage, discountEligible, getBookingDetail } = useCheckout()
 	const bill: any = useMemo(() => {
 		const quantity = form.values['qtyHelper'] + form.values['qtyTechnician'] + form.values['qtySupervisor']
 		const subTotal = quantity * 50
@@ -144,7 +146,7 @@ export const CheckoutCard: FC = () => {
 		router,
 		showSnackbar,
 	])
-
+	const formikProps = useFormikProps<any>(form)
 	return (
 		<>
 			{/* handleUpdateWages from useCheckout goes in  WageUpdateDialog  */}
@@ -165,19 +167,19 @@ export const CheckoutCard: FC = () => {
 								requirements: {
 									HELPER: updateWage?.wageHelper
 										? {
-												count: 0,
+												count: bookingData?.booking?.peopleRequired['HELPER'],
 												wage: updateWage?.wageHelper,
 										  }
 										: undefined,
 									TECHNICIAN: updateWage?.wageTechnician
 										? {
-												count: 0,
+												count: bookingData?.booking?.peopleRequired['TECHNICIAN'],
 												wage: updateWage?.wageTechnician,
 										  }
 										: undefined,
 									SUPERVISOR: updateWage?.wageSupervisor
 										? {
-												count: 0,
+												count: bookingData?.booking?.peopleRequired['SUPERVISOR'],
 												wage: updateWage?.wageSupervisor,
 										  }
 										: undefined,
@@ -185,6 +187,7 @@ export const CheckoutCard: FC = () => {
 								shiftTime: '09:30 AM-06:30 PM',
 								bookingDuration: bookingData?.booking?.schedule?.bookingDuration,
 							})
+							await getBookingDetail()
 						} catch (error) {}
 						setUpdating((p: any) => ({ ...p, [key]: undefined }))
 					}}
@@ -207,14 +210,16 @@ export const CheckoutCard: FC = () => {
 				<Card sx={{ borderRadius: '15px' }}>
 					<Stack p={3} minWidth='766px'>
 						<Stack spacing={'4px'}>
-							<Typography variant='h3' fontWeight={600}>
-								First
-								<Typography display='inline' variant='h3' fontWeight={600} color='primary.main'>
-									{' '}
-									15 Hero applications
-								</Typography>{' '}
-								are FREE!
-							</Typography>
+							{discountEligible && (
+								<Typography variant='h3' fontWeight={600}>
+									First
+									<Typography display='inline' variant='h3' fontWeight={600} color='primary.main'>
+										{' '}
+										15 Hero applications
+									</Typography>{' '}
+									are FREE!
+								</Typography>
+							)}
 							<Typography variant='body1' fontWeight={400}>
 								₹50 per application thereafter
 							</Typography>
@@ -266,40 +271,67 @@ export const CheckoutCard: FC = () => {
 												)}
 											</Stack>
 										</Stack>
-										<Stack direction='row' alignItems='center'>
-											<IconButton
-												onClick={(e) =>
-													form.setFieldValue(
-														profile?.name,
-														Number(form.values[profile.name] - 1)
-													)
-												}>
-												<RemoveCircleOutlineIcon sx={{ color: 'primary.main' }} />
-											</IconButton>
-											<TextField
-												type='number'
-												sx={{
-													maxWidth: 56,
-													input: {
-														textAlign: 'center',
-													},
-												}}
-												value={form.values[profile?.name]}
-												onChange={(e) =>
-													form.setFieldValue(profile?.name, Number(e.target.value))
-												}
-												name={profile?.name}
-											/>
-											<IconButton
-												onClick={(e) =>
-													form.setFieldValue(
-														profile?.name,
-														Number(form.values[profile.name] + 1)
-													)
-												}>
-												<AddCircleOutlineIcon sx={{ color: 'primary.main' }} />
-											</IconButton>
-										</Stack>
+										{!(
+											bookingData?.booking?.rateCard[profile?.job?.toUpperCase()] &&
+											bookingData?.booking?.rateCard[profile?.job?.toUpperCase()] !== 0
+										) ? (
+											<>
+												<Button
+													onClick={() => {
+														setAddEditWageDialogProps({
+															fieldName: profile.wage,
+															initialValue: wage[profile.wage],
+															open: true,
+														})
+													}}
+													sx={{ justifyContent: 'flex-start', width: 150 }}
+													variant='text'
+													startIcon={<Add />}>
+													{profile.job}
+												</Button>
+											</>
+										) : (
+											<Stack direction='row' alignItems='center'>
+												<IconButton
+													onClick={(e) =>
+														form.setFieldValue(
+															profile?.name,
+															Number(form.values[profile.name] - 1) > 0
+																? Number(form.values[profile.name] - 1)
+																: 0
+														)
+													}>
+													<RemoveCircleOutlineIcon sx={{ color: 'primary.main' }} />
+												</IconButton>
+												<TextField
+													type='number'
+													sx={{
+														maxWidth: 56,
+														input: {
+															textAlign: 'center',
+														},
+													}}
+													value={form.values[profile?.name]}
+													onChange={(e) => {
+														if (e.target.value === '') {
+															form.setFieldValue(profile?.name, e.target.value)
+														} else if (Number(e.target.value) > 0) {
+															form.setFieldValue(profile?.name, Number(e.target.value))
+														}
+													}}
+													name={profile?.name}
+												/>
+												<IconButton
+													onClick={(e) =>
+														form.setFieldValue(
+															profile?.name,
+															Number(form.values[profile.name] + 1)
+														)
+													}>
+													<AddCircleOutlineIcon sx={{ color: 'primary.main' }} />
+												</IconButton>
+											</Stack>
+										)}
 									</Stack>
 								)
 							})}

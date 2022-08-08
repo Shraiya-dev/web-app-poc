@@ -3,7 +3,7 @@ import { ArrowCircleLeftOutlined, ArrowCircleRightOutlined, Circle } from '@mui/
 import { Box, Button, Grid, List, ListItem, Stack, Tab, Tabs, Typography } from '@mui/material'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
-import { Carousel, Section, useMobile } from 'sdk'
+import { Carousel, LinkButton, Section, useMobile } from 'sdk'
 import { HeroDiscoveryMetaData } from 'sdk/data/discoverHero'
 import { homePage } from 'sdk/data/home'
 import { sliceIntoChunks } from 'sdk/utils/arrayHelpers'
@@ -67,20 +67,20 @@ export const Home = () => {
 							</Stack>
 						</Stack>
 					</Grid>
-					<Grid item xs={12} md={4.5} justifyContent='center'>
+					<Grid item xs={12} md={4.5} justifyContent='center' id='book-worker'>
 						<CreateBookingCard />
 					</Grid>
 				</Grid>
 			</Section>
 			<Section backgroundColor='#000000'>
-				<Stack direction='row' alignItems='center' spacing={2}>
+				<Stack direction='row' alignItems='center' spacing={2} overflow='auto'>
 					{jobSection.tagLine.map((item, index, arr) => (
-						<>
-							<Typography variant='h6' color='common.white' key={item}>
+						<Typography key={item} noWrap>
+							<Typography noWrap variant='h6' color='common.white'>
 								{item}
 							</Typography>
 							{index < arr.length - 1 && <Circle sx={{ fontSize: 8, color: 'common.white' }} />}
-						</>
+						</Typography>
 					))}
 				</Stack>
 				<Stack p={3}>
@@ -145,16 +145,21 @@ export const Home = () => {
 				/>
 			</Section>
 
-			<Section backgroundColor='#F7F7F7'>
+			<Section backgroundColor='#F7F7F7' id='how-it-works'>
 				<Box pt={'24px'} pb={'66px'}>
 					<Stack direction={'column'} mb={'32px'}>
 						<Typography variant='h1'>{homePage.howItWorksSection.heading}</Typography>
 						<Typography variant='h4'>{homePage.howItWorksSection.subHeading}</Typography>
 					</Stack>
 					<Box mb={'66px'}>
-						<Button variant='contained' sx={homePage.howItWorksSection.buttonSx}>
-							{homePage.howItWorksSection.buttonText}
-						</Button>
+						<LinkButton
+							href={homePage.HeroAdvantage.buttonText.link}
+							sx={{
+								p: '20px 66px',
+								fontWeight: '900',
+							}}>
+							{homePage.HeroAdvantage.buttonText.text}
+						</LinkButton>
 					</Box>
 					<Box>
 						<img src='/assets/landingv2/heroSection/howitworks.svg' alt='' />
@@ -172,9 +177,14 @@ export const Home = () => {
 							<Stack direction={'column'} spacing={4}>
 								<Box>{homePage.whyYouShouldHire.left.heading}</Box>
 								<Box>
-									<Button sx={homePage.whyYouShouldHire.left.buttonSx}>
-										{homePage.whyYouShouldHire.left.buttonText}
-									</Button>
+									<LinkButton
+										href={homePage.HeroAdvantage.buttonText.link}
+										sx={{
+											p: '20px 66px',
+											fontWeight: '900',
+										}}>
+										{homePage.HeroAdvantage.buttonText.text}
+									</LinkButton>
 								</Box>
 							</Stack>
 						</Grid>
@@ -222,13 +232,14 @@ export const Home = () => {
 									<Box>{homePage.HeroAdvantage.subHeading}</Box>
 								</Stack>
 								<Box>
-									<Button
+									<LinkButton
+										href={homePage.HeroAdvantage.buttonText.link}
 										sx={{
 											p: '20px 66px',
 											fontWeight: '900',
 										}}>
-										{homePage.HeroAdvantage.buttonText}
-									</Button>
+										{homePage.HeroAdvantage.buttonText.text}
+									</LinkButton>
 								</Box>
 							</Stack>
 						</Grid>

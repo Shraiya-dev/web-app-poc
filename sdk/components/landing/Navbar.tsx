@@ -160,6 +160,22 @@ export const Navbar = () => {
 											{navItem.label}
 										</LinkButton>
 									)
+								} else if (navItem.type === 'scroll_link') {
+									return (
+										<LinkButton
+											variant='text'
+											key={i}
+											startIcon={navItem?.icon}
+											sx={(theme) => ({
+												fontWeight: 700,
+												color: 'common.white',
+												[theme.breakpoints.down('md')]: { display: 'none' },
+											})}
+											href={navItem.link}
+											className={router.pathname === navItem.link ? 'active' : ''}>
+											{navItem.label}
+										</LinkButton>
+									)
 								} else if (navItem.type === 'support_menu') {
 									return (
 										<Button

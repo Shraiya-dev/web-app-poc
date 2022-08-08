@@ -7,6 +7,7 @@ import { AppStoreImage } from 'sdk/constants'
 import { externalLinks, footer } from 'sdk/data'
 import { useMobile } from 'sdk/hooks'
 import { HyperLink } from '../atomic'
+import { LinkButton } from '../button'
 import { Section } from './Section'
 
 export const Footer = () => {
@@ -41,15 +42,15 @@ export const Footer = () => {
 						<Typography variant={isMobile ? 'h4' : 'h3'} color={footer.textColor}>
 							{footer.tagLine}
 						</Typography>
-						<Button
-							href='/login'
+						<LinkButton
+							href='#book-worker'
 							onClick={() => {
 								DataLayerPush({ event: 'book_hero_home_footer' })
 							}}
 							variant='contained'
 							sx={{ fontSize: '14px', ml: 2 }}>
 							Book Workers Now
-						</Button>
+						</LinkButton>
 					</Stack>
 					<Stack mt={'60px'}>
 						<Typography variant='h4' color={'#fff'}>

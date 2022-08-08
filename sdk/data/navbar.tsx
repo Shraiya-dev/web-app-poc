@@ -4,7 +4,7 @@ import { ReactNode } from 'react'
 interface Navbar {
 	brandImage: string
 	navLinks: {
-		type: 'button_link' | 'primary_button' | 'support_menu'
+		type: 'button_link' | 'primary_button' | 'support_menu' | 'scroll_link'
 		label: string
 		icon?: ReactNode
 		link?: string
@@ -13,6 +13,7 @@ interface Navbar {
 }
 export const navbar: Navbar = {
 	brandImage: '/assets/landing/ph-logo-light.svg',
+
 	navLinks: [
 		{
 			type: 'button_link',
@@ -21,9 +22,9 @@ export const navbar: Navbar = {
 			link: 'tel:+91-9151003513',
 		},
 		{
-			type: 'button_link',
+			type: 'scroll_link',
 			label: 'How it works?',
-			link: '/',
+			link: '/#how-it-works',
 		},
 		{
 			type: 'button_link',
