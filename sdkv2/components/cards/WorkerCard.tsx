@@ -1,5 +1,5 @@
 import { BusinessRounded } from '@mui/icons-material'
-import { Box, Card, Stack, Typography } from '@mui/material'
+import { Avatar, Box, Card, Stack, Typography } from '@mui/material'
 import { FC } from 'react'
 import { JobTypeLabel } from 'sdk/constants'
 import { JOB_TYPES } from 'sdk/types'
@@ -14,7 +14,7 @@ export const WorkerCard: FC<Props> = ({ worker }) => {
 		<Card sx={{ flex: 1, overflow: 'hidden' }}>
 			<Stack direction='row' p={2} spacing={2}>
 				<Stack>
-					<HeroCardImage src={worker?.profileImage} />
+					<Avatar sx={{ width: 100, height: 100 }} src={worker?.profileImage} />
 				</Stack>
 				<Stack flex={1} spacing={1}>
 					<Typography flex={1} display='flex' alignItems='center' variant='h4'>
@@ -47,7 +47,7 @@ export const WorkerCard: FC<Props> = ({ worker }) => {
 				<Stack direction='row' spacing={1}>
 					{Array(5)
 						.fill('/assets/landingv2/icons/rate0.svg')
-						.fill('/assets/landingv2/icons/rate1.svg', 0, worker?.rating ?? 0)
+						.fill('/assets/landingv2/icons/rate1.svg', 0, Math.round(worker?.rating ?? 0))
 						.map((item, index) => (
 							<Box key={index}>
 								<img src={item} />

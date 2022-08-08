@@ -59,31 +59,34 @@ const PaymentProvider: FC<any> = ({ children, authState }) => {
 	})
 	const confirmPaymentOrder = useCallback(
 		async (order, razorPayDetails) => {
-			const params: confirmPaymentApi = {
-				paymentId: order?.paymentId,
-				transactionId: razorPayDetails?.razorpay_payment_id,
-				orderId: order?.orderId,
-				signature: razorPayDetails?.razorpay_signature,
-			}
-			confirmPaymentOrderMutation.mutate(
-				{ projectId: projectId, params },
-				{
-					onSuccess: (data: any) => {
-						if (data.data.payload) {
-							setPaymentSuccessDialogProps({
-								open: true,
-								paymentId: data?.data?.payload?.paymentId,
-								totalPaymentAmount: data?.data?.payload?.totalPaymentAmount,
-								transactionTime: data?.data?.payload?.transactionTime,
-							})
-							dispatch({
-								showConfirmationModel: true,
-								confirmPaymentDetails: data.data.payload,
-							})
-						}
-					},
+			return new Promise((res, rej) => {
+				const params: confirmPaymentApi = {
+					paymentId: order?.paymentId,
+					transactionId: razorPayDetails?.razorpay_payment_id,
+					orderId: order?.orderId,
+					signature: razorPayDetails?.razorpay_signature,
 				}
-			)
+				confirmPaymentOrderMutation.mutate(
+					{ projectId: projectId, params },
+					{
+						onSuccess: (data: any) => {
+							if (data.data.payload) {
+								setPaymentSuccessDialogProps({
+									open: true,
+									paymentId: data?.data?.payload?.paymentId,
+									totalPaymentAmount: data?.data?.payload?.totalPaymentAmount,
+									transactionTime: data?.data?.payload?.transactionTime,
+								})
+								dispatch({
+									showConfirmationModel: true,
+									confirmPaymentDetails: data.data.payload,
+								})
+								res(undefined)
+							}
+						},
+					}
+				)
+			})
 		},
 		[projectId, confirmPaymentOrderMutation]
 	)

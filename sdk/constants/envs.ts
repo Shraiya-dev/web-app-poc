@@ -13,7 +13,9 @@ const AppEnvConfig: {
 		SEGMENT_KEY: 'vgfJ6TLq447xB45FZU3IQTtdeHSIQGvE',
 	},
 	STAGE: {
-		SERVER_URL: 'https://stage-api.projecthero.in',
+		// SERVER_URL: 'https://stage-api.projecthero.in',
+		SERVER_URL: 'http://192.168.0.185:8080',
+
 		SEGMENT_KEY: 'vgfJ6TLq447xB45FZU3IQTtdeHSIQGvE',
 		RAZOR_PAY_KEY: 'rzp_test_5Cq7IvEn1S6ykT',
 	},
