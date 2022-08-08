@@ -3,6 +3,7 @@ import { Avatar, Box, Card, Stack, Typography } from '@mui/material'
 import { FC } from 'react'
 import { JobTypeLabel } from 'sdk/constants'
 import { JOB_TYPES } from 'sdk/types'
+import { capitalize } from 'sdk/utils'
 import { Worker } from 'sdkv2/types'
 import { HeroCardImage } from '../atomic'
 import { JobCategoryIcon } from '../icons'
@@ -11,28 +12,28 @@ interface Props {
 }
 export const WorkerCard: FC<Props> = ({ worker }) => {
 	return (
-		<Card sx={{ flex: 1, overflow: 'hidden' }}>
-			<Stack direction='row' p={2} spacing={2}>
+		<Card sx={{ flex: 1, display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
+			<Stack flex={1} direction='row' p={2} spacing={2}>
 				<Stack>
 					<Avatar sx={{ width: 100, height: 100 }} src={worker?.profileImage} />
 				</Stack>
 				<Stack flex={1} spacing={1}>
 					<Typography flex={1} display='flex' alignItems='center' variant='h4'>
-						{worker?.name}&nbsp;&nbsp;
+						{capitalize(worker?.name ?? '')}&nbsp;&nbsp;
 						<img src='/assets/landingv2/icons/verified.svg' />
 					</Typography>
 					<Stack direction='row' spacing={1}>
 						<JobCategoryIcon style={{ width: 24, height: 24, marginTop: 5 }} jobType={worker?.jobType} />
 						<Typography flex={1} display='flex' alignItems='center' variant='h5' fontWeight={100}>
-							{JobTypeLabel[worker?.jobType as JOB_TYPES]} | {worker?.skillType}
+							{JobTypeLabel[worker?.jobType as JOB_TYPES]} |{' '}
+							{capitalize((worker?.skillType ?? '').toLowerCase())}
 						</Typography>
 					</Stack>
 					<Stack direction='row' spacing={1}>
 						<BusinessRounded />
 
 						<Typography flex={1} variant='h5' fontWeight={100}>
-							<strong>{worker?.experience?.years}</strong> years experience | Worked with{' '}
-							<strong>{worker?.experience?.organization}</strong>
+							<strong>{worker?.experience}</strong> years experience
 						</Typography>
 					</Stack>
 				</Stack>

@@ -280,6 +280,7 @@ let themeDef = createTheme({
 					borderRadius: 30,
 					textTransform: 'inherit',
 				},
+
 				sizeMedium: {
 					padding: '12px 22px',
 				},

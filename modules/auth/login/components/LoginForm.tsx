@@ -1,15 +1,12 @@
-import { TextField, Typography, Box, Stack, styled, Button } from '@mui/material'
-import InputAdornment from '@mui/material/InputAdornment'
 import LoadingButton from '@mui/lab/LoadingButton'
+import { Box, Button, InputLabel, Stack, styled, Typography } from '@mui/material'
 
-import { checkError, InputWrapper, primary, theme } from '../../../../sdk'
-import useLogin from '../hooks/useLogin'
-import Link from 'next/link'
-import { useEffect } from 'react'
-import { PhoneField } from '../../../../sdk/components/Input/PhoneField'
-import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew'
 import { useRouter } from 'next/router'
-import BackButton from '../../../../sdk/components/backButton/backButtom'
+import { useEffect } from 'react'
+import { InputWrapper } from 'sdkv2/components'
+import { checkError } from '../../../../sdk'
+import { PhoneField } from '../../../../sdk/components/Input/PhoneField'
+import useLogin from '../hooks/useLogin'
 
 const CustomLoginStyles = styled(Box)(({ theme }) => ({
 	display: 'flex',
@@ -33,7 +30,6 @@ const CustomLoginStyles = styled(Box)(({ theme }) => ({
 		marginTop: 48,
 		width: '100%',
 		//background: '#244CB3',
-		color: 'white',
 		cursor: 'pointer',
 	},
 	'.register': {
@@ -56,54 +52,52 @@ export const LoginForm = ({ ...props }) => {
 	}, [form, status])
 
 	return (
-		<CustomLoginStyles>
-			<form onSubmit={form.handleSubmit}>
-				<Typography className='headerInfo'>{isRegister ? 'Register' : 'Log In'} </Typography>
-
-				{isRegister && (
-					<Typography sx={{ color: theme.palette.error.main, textAlign: 'center', marginTop: 1 }}>
-						{`Company Email & GSTIN is required in the next step`}
+		<form onSubmit={form.handleSubmit}>
+			<CustomLoginStyles>
+				<Stack spacing={3} width='100%'>
+					<Typography textAlign='center' fontSize={34} variant='h1'>
+						{isRegister ? 'Register' : 'Login'}
 					</Typography>
-				)}
+					<InputWrapper label='Phone Number'>
+						<PhoneField
+							error={!!checkError('phoneNumber', form)}
+							id='phoneNumber'
+							name='phoneNumber'
+							placeholder='Enter Phone Number'
+							helperText={
+								checkError('phoneNumber', form) !== 'valid' ? checkError('phoneNumber', form) : ''
+							}
+							sx={{ width: '100%', mt: 1 }}
+							// InputProps={{
+							// 	startAdornment: <InputAdornment position='start'>+91</InputAdornment>,
+							// }}
+							value={form.values.phoneNumber}
+							onChange={form.handleChange}
+						/>
+					</InputWrapper>
 
-				<Typography className='subHeader'>Phone Number</Typography>
+					<LoadingButton fullWidth type='submit' loading={!!loading} variant='contained'>
+						{isRegister ? 'Register' : 'Login'}
+					</LoadingButton>
 
-				<PhoneField
-					error={!!checkError('phoneNumber', form)}
-					id='phoneNumber'
-					name='phoneNumber'
-					placeholder='Enter Phone Number'
-					helperText={checkError('phoneNumber', form) !== 'valid' ? checkError('phoneNumber', form) : ''}
-					sx={{ width: '100%', marginBottom: '10' }}
-					// InputProps={{
-					// 	startAdornment: <InputAdornment position='start'>+91</InputAdornment>,
-					// }}
-					value={form.values.phoneNumber}
-					onChange={form.handleChange}
-				/>
-
-				<LoadingButton className='cta' type='submit' loading={!!loading} variant='contained'>
-					{isRegister ? 'Register' : 'Login'}
-				</LoadingButton>
-
-				<Stack className='register' direction={'row'} style={{ cursor: 'pointer' }}>
-					<Typography>{isRegister ? `Already have an account?` : `Don’t have an account?`}</Typography>
-					<Button
-						onClick={handleLogin}
-						variant='text'
-						//disabled={!form.isValid}
-						style={{
-							textDecoration: 'underline',
-							cursor: 'pointer',
-							color: 'primary.main',
-							padding: 0,
-							fontSize: 14,
-						}}
-					>
-						{isRegister ? 'Login' : 'Register'}
-					</Button>
+					<Stack className='register' direction={'row'} style={{ cursor: 'pointer' }}>
+						<Typography>{isRegister ? `Already have an account?` : `Don't have an account?`}</Typography>
+						<Button
+							onClick={handleLogin}
+							variant='text'
+							//disabled={!form.isValid}
+							style={{
+								textDecoration: 'underline',
+								cursor: 'pointer',
+								color: 'primary.main',
+								padding: 0,
+								fontSize: 14,
+							}}>
+							{isRegister ? 'Login' : 'Register'}
+						</Button>
+					</Stack>
 				</Stack>
-			</form>
-		</CustomLoginStyles>
+			</CustomLoginStyles>
+		</form>
 	)
 }

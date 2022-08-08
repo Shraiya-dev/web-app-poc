@@ -253,7 +253,7 @@ export const Footer = () => {
 					</Stack>
 					<Stack direction={'row'} justifyContent={'flex-start'} mt={4}>
 						<Button
-							href='/login'
+							href='/#book-worker'
 							onClick={() => {
 								DataLayerPush({ event: 'book_hero_home_footer' })
 							}}

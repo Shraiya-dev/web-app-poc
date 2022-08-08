@@ -1,4 +1,4 @@
-import { Box, Card, Paper, Stack, Typography } from '@mui/material'
+import { Box, Button, Card, Container, Paper, Stack, Typography } from '@mui/material'
 import { styled } from '@mui/system'
 import { useRouter } from 'next/router'
 import { Navbar } from '../components'
@@ -63,8 +63,13 @@ const CustomizeDashboard = styled(Box)(({ theme }) => ({
 	'.introBox': {
 		minWidth: '80%',
 	},
+	backgroundImage: 'url(/assets/icons/backgrounds/orange-bubble.svg), url(/assets/icons/backgrounds/grey-bubble.svg)',
+	backgroundPosition: 'left bottom, right top',
+	backgroundRepeat: ' no-repeat, no-repeat',
 	//mobile view styles
 	[theme.breakpoints.down('md')]: {
+		backgroundSize: '170px,150px',
+
 		flexDirection: 'column',
 		'.instruction': {
 			display: 'none',
@@ -101,29 +106,25 @@ export const OnboardingLayout = ({ children, helmet = true, ...props }: any) => 
 		<>
 			<Navbar />
 			<CustomizeDashboard>
-				{helmet && (
-					<Stack className='helmet'>
-						<img src='/assets/icons/backgrounds/Helmet.svg' />
-					</Stack>
-				)}
-				<Stack position={'absolute'} top={0} right={0}>
+				{/* <Stack position={'absolute'} top={0} right={0}>
 					<img src='/assets/icons/backgrounds/grey-bubble.svg' />
 				</Stack>
 				<Stack position={'absolute'} bottom={0} left={0}>
 					<img src='/assets/icons/backgrounds/orange-bubble.svg' />
-				</Stack>
-				<Stack
-					onClick={() => {
-						router.back()
-					}}
-					direction='row'
-					sx={{ position: 'absolute', top: '38px', left: '102px', cursor: 'pointer' }}
-				>
-					<img src={'/assets/icons/arrow_back.svg'} alt='back' />
-					<Typography ml={2}>Go Back</Typography>
-				</Stack>
-				{helmet && (
-					<Stack className='center'>
+				</Stack> */}
+				<Container sx={{ display: 'flex', flex: 1, flexDirection: 'column', p: 2 }}>
+					<Button
+						sx={{ alignSelf: 'flex-start' }}
+						variant='text'
+						color='info'
+						startIcon={<img src={'/assets/icons/arrow_back.svg'} alt='back' />}>
+						Go Back
+					</Button>
+
+					<Stack className='center' spacing={5} mt={-20}>
+						<Stack>
+							<img src='/assets/icons/backgrounds/Helmet.svg' />
+						</Stack>
 						<Paper
 							component={Card}
 							elevation={4}
@@ -133,17 +134,11 @@ export const OnboardingLayout = ({ children, helmet = true, ...props }: any) => 
 								borderRadius: 8,
 								width: isMobile ? 372 : 392,
 								zIndex: 2,
-							}}
-						>
+							}}>
 							{children}
 						</Paper>
 					</Stack>
-				)}
-				{!helmet && (
-					<Stack mt='90px' mb='20px' className='center'>
-						{children}
-					</Stack>
-				)}
+				</Container>
 			</CustomizeDashboard>
 		</>
 	)
