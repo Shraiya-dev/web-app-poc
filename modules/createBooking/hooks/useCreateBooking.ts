@@ -89,32 +89,30 @@ const useCreateBooking = () => {
 		validate: (values) => {
 			const errors = <any>{}
 
-			if (step === 1) {
-				if (!values.jobType) {
-					errors.jobType = 'Required'
-				}
+			if (!values.jobType) {
+				errors.jobType = 'Required'
+			}
 
-				//helper
-				if (Number(values.helper) === 0 && Number(values.helperWages) > 0) {
-					errors.helper = 'Required'
-				}
-				if (Number(values.helper) > 0 && Number(values.helperWages) === 0) {
-					errors.helperWages = 'Required'
-				}
+			//helper
+			// if (Number(values.helper) === 0 && Number(values.helperWages) > 0) {
+			// 	errors.helper = 'Required'
+			// }
+			if (Number(values.helper) > 0 && Number(values.helperWages) === 0) {
+				errors.helperWages = 'Required'
+			}
 
-				if (Number(values.technician) === 0 && Number(values.technicianWages) > 0) {
-					errors.technician = 'Required'
-				}
-				if (Number(values.technician) > 0 && Number(values.technicianWages) === 0) {
-					errors.technicianWages = 'Required'
-				}
+			// if (Number(values.technician) === 0 && Number(values.technicianWages) > 0) {
+			// 	errors.technician = 'Required'
+			// }
+			if (Number(values.technician) > 0 && Number(values.technicianWages) === 0) {
+				errors.technicianWages = 'Required'
+			}
 
-				if (Number(values.supervisor) === 0 && Number(values.supervisorWages) > 0) {
-					errors.supervisor = 'Required'
-				}
-				if (Number(values.supervisor) > 0 && Number(values.supervisorWages) === 0) {
-					errors.supervisorWages = 'Required'
-				}
+			// if (Number(values.supervisor) === 0 && Number(values.supervisorWages) > 0) {
+			// 	errors.supervisor = 'Required'
+			// }
+			if (Number(values.supervisor) > 0 && Number(values.supervisorWages) === 0) {
+				errors.supervisorWages = 'Required'
 			}
 
 			return errors
@@ -137,28 +135,26 @@ const useCreateBooking = () => {
 						wage: Number(values.supervisorWages),
 					},
 				},
-				shiftTime: form.values.startTime + '-' + form.values.endTime,
 				bookingDuration: form.values.BookingDuration,
-
-				tags: form.values.tags,
 			}
 			setLoading(true)
 			createBooking(payload, router?.query?.projectId)
 				.then((res) => {
 					if (res.status === 200) {
-						setIsSubmittable(false)
-						setLoading(false)
-						showSnackbar('Booking Created Successfully', 'success')
-						router.push(`/projects/${router?.query?.projectId}/bookings`)
-						DataLayerPush({
-							event: 'worker_booked',
-						})
 						ButtonClicked({
 							action: 'Submit',
 							page: 'Create Booking',
 							projectId: router?.query?.projectId,
 							url: router.asPath,
 						})
+						// setIsSubmittable(false)
+						setLoading(false)
+						showSnackbar('Booking Created Successfully', 'success')
+						DataLayerPush({
+							event: 'worker_booked',
+						})
+
+						router.push(`/projects/${router?.query?.projectId}/bookings/${res.data.payload.bookingId}`)
 					}
 				})
 				.catch((error: any) => {
