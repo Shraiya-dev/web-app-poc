@@ -217,12 +217,12 @@ export const Footer = () => {
 										</a>
 									</IconButton>
 									<IconButton>
-										<a href='' target='blank'>
+										<a href={externalLinks.linkedIn} target='blank'>
 											<LinkedInIcon sx={{ color: '#fff' }} />
 										</a>
 									</IconButton>
 									<IconButton>
-										<a href='' target='blank'>
+										<a href={externalLinks.facebook} target='blank'>
 											<FacebookIcon sx={{ color: '#fff' }} />
 										</a>
 									</IconButton>{' '}
@@ -322,12 +322,12 @@ export const Footer = () => {
 							</a>
 						</IconButton>
 						<IconButton>
-							<a href='' target='blank'>
+							<a href={externalLinks.linkedIn} target='blank'>
 								<LinkedInIcon sx={{ color: '#fff' }} />
 							</a>
 						</IconButton>
 						<IconButton>
-							<a href='' target='blank'>
+							<a href={externalLinks.facebook} target='blank'>
 								<FacebookIcon sx={{ color: '#fff' }} />
 							</a>
 						</IconButton>{' '}

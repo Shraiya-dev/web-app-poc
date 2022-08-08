@@ -153,6 +153,9 @@ export const CreateBookingCard: FC<Props> = () => {
 																form.setFieldValue('helperWage', '')
 																form.setFieldValue('isHelper', v)
 															}}
+															style={{
+																color: '#000',
+															}}
 														/>
 													}
 													label='Helper'
@@ -185,6 +188,9 @@ export const CreateBookingCard: FC<Props> = () => {
 															onChange={(e, v) => {
 																form.setFieldValue('technicianWage', '')
 																form.setFieldValue('isTechnician', v)
+															}}
+															style={{
+																color: '#000',
 															}}
 														/>
 													}
@@ -219,6 +225,9 @@ export const CreateBookingCard: FC<Props> = () => {
 															onChange={(e, v) => {
 																form.setFieldValue('supervisorWage', '')
 																form.setFieldValue('isSupervisor', v)
+															}}
+															style={{
+																color: '#000',
 															}}
 														/>
 													}
