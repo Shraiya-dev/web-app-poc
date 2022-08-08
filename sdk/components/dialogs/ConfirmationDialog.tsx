@@ -1,5 +1,6 @@
 import { ReactJSXElement } from '@emotion/react/types/jsx-namespace'
 import { Button, Dialog, Stack, Typography } from '@mui/material'
+import { primary } from 'sdk/constants'
 export interface ConfirmationDialogProps {
 	title?: string
 	caption?: string
@@ -13,8 +14,18 @@ export const ConfirmationDialog = ({ title, caption, open, confirm, cancel }: Co
 			<Stack p={2} spacing={2}>
 				<Stack>
 					<Stack spacing={2}>
-						{title && <Typography variant='h6'> {title}</Typography>}
-						{caption && <Typography variant='caption'> {caption}</Typography>}{' '}
+						{title && (
+							<Typography variant='h6' color={primary.properDark}>
+								{' '}
+								{title}
+							</Typography>
+						)}
+						{caption && (
+							<Typography variant='caption' color={primary.properDark}>
+								{' '}
+								{caption}
+							</Typography>
+						)}{' '}
 					</Stack>
 				</Stack>
 				<Stack direction='row-reverse' spacing={2}>
