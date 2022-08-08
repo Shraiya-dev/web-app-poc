@@ -84,16 +84,19 @@ const ContractorAuthProvider: FC<ContractorAuthProviderProps> = ({ children, aut
 	const [state, dispatch] = useReducer(simpleReducer, authState ?? initialAuthState)
 	const router = useRouter()
 	const { showSnackbar } = useSnackbar()
-	const requestOtp = useCallback(async (phoneNumber: string) => {
-		dispatch({
-			phoneNumber: phoneNumber,
-		})
-		try {
-			return await sendOtpService(phoneNumber, USER_TYPE.CONTRACTOR)
-		} catch (error: any) {
-			showSnackbar(error.response.data.developerInfo, 'error')
-		}
-	}, [])
+	const requestOtp = useCallback(
+		async (phoneNumber: string) => {
+			dispatch({
+				phoneNumber: phoneNumber,
+			})
+			try {
+				return await sendOtpService(phoneNumber, USER_TYPE.CONTRACTOR)
+			} catch (error: any) {
+				showSnackbar(error.response.data.developerInfo, 'error')
+			}
+		},
+		[showSnackbar]
+	)
 	const getContactorUserInfo = useCallback(async () => {
 		try {
 			const { data } = await getCustomerDetails()
@@ -222,15 +225,18 @@ const ContractorAuthProvider: FC<ContractorAuthProviderProps> = ({ children, aut
 		return reSendEmailOtpService(payload)
 	}, [])
 
-	const verifyEmailOtp = useCallback(async (payload: emailOtpPayload) => {
-		try {
-			const { data } = await emailVerification(payload)
-			//getContactorUserInfo()
-			return data
-		} catch (error: any) {
-			showSnackbar(error?.response?.data?.developerInfo, 'error')
-		}
-	}, [])
+	const verifyEmailOtp = useCallback(
+		async (payload: emailOtpPayload) => {
+			try {
+				const { data } = await emailVerification(payload)
+				//getContactorUserInfo()
+				return data
+			} catch (error: any) {
+				showSnackbar(error?.response?.data?.developerInfo, 'error')
+			}
+		},
+		[showSnackbar]
+	)
 
 	useEffect(() => {
 		;(async () => {

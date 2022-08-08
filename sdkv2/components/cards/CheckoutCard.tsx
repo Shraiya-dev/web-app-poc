@@ -7,7 +7,7 @@ import DriveFileRenameOutlineOutlinedIcon from '@mui/icons-material/DriveFileRen
 import { postEasyBookingOrder, updateWages } from 'modules/bookingId/apis'
 import { useCheckout } from 'modules/bookingId/hooks/useCheckout'
 import { useRouter } from 'next/router'
-import { useContractorAuth, useSnackbar } from 'sdk/providers'
+import { useSnackbar } from 'sdk/providers'
 import { usePayment } from 'sdk/providers/PaymentProvider'
 import { AddEditWage } from '../dialog'
 
@@ -78,7 +78,6 @@ export const CheckoutCard: FC = () => {
 
 	const router = useRouter()
 	const { initiatePayment } = usePayment()
-	const { user } = useContractorAuth()
 	const { showSnackbar } = useSnackbar()
 
 	const handelPayment = useCallback(async () => {

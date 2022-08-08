@@ -207,7 +207,15 @@ export const CreateBookingCard: FC<Props> = () => {
 										size='large'
 										variant='contained'
 										type='submit'
-										disabled={!form.dirty || !form.isValid}>
+										disabled={
+											!form.dirty ||
+											!form.isValid ||
+											!(
+												form.values.isHelper ||
+												form.values.isSupervisor ||
+												form.values.isTechnician
+											)
+										}>
 										Book Workers Now
 									</Button>
 								</>

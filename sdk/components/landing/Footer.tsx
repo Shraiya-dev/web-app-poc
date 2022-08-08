@@ -1,4 +1,4 @@
-import { Stack, Box, Typography, Button, Divider, Grid } from '@mui/material'
+import { Box, Button, Stack, Typography } from '@mui/material'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
 import { DataLayerPush } from 'sdk/analytics'
@@ -7,8 +7,7 @@ import { AppStoreImage } from 'sdk/constants'
 import { externalLinks, footer } from 'sdk/data'
 import { useMobile } from 'sdk/hooks'
 import { HyperLink } from '../atomic'
-import { LinkButton } from '../button'
-import { Section, SectionProps } from './Section'
+import { Section } from './Section'
 
 export const Footer = () => {
 	const isMobile = useMobile()
