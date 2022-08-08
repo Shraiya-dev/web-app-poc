@@ -62,7 +62,7 @@ export const CheckoutCard: FC = () => {
 	const bill: any = useMemo(() => {
 		const quantity = form.values['qtyHelper'] + form.values['qtyTechnician'] + form.values['qtySupervisor']
 		const subTotal = quantity * 50
-		const discount = discountEligible?subTotal > 750 ? 750 : subTotal:0
+		const discount = discountEligible ? (subTotal > 750 ? 750 : subTotal) : 0
 		const beforeTax = subTotal - discount
 		const tax = beforeTax * 0.18
 		const amountPayable = beforeTax + tax
@@ -74,18 +74,17 @@ export const CheckoutCard: FC = () => {
 			tax: tax,
 			amountPayable: amountPayable,
 		}
-	}, [form.values])
+	}, [discountEligible, form.values])
 
 	const router = useRouter()
 	const { initiatePayment } = usePayment()
 	const { user } = useContractorAuth()
 	const { showSnackbar } = useSnackbar()
-	console.log(user)
 
 	const handelPayment = useCallback(async () => {
 		const payload = {
 			source: {
-				id: user?.customerId,
+				id: router.query.bookingId,
 				type: 'BOOKING_TOKEN',
 			},
 			buyerType: 'CONTRACTOR_PROJECT',
@@ -129,7 +128,7 @@ export const CheckoutCard: FC = () => {
 					)
 				}
 			} else {
-				// router.push(`/dashboard/projects/${router.query.projectId}`)
+				router.push(`/dashboard/projects/${router.query.projectId}`)
 			}
 		} catch (error: any) {
 			showSnackbar(error?.response?.data?.developerInfo, 'error')
@@ -144,7 +143,6 @@ export const CheckoutCard: FC = () => {
 		initiatePayment,
 		router,
 		showSnackbar,
-		user,
 	])
 
 	return (
@@ -247,21 +245,25 @@ export const CheckoutCard: FC = () => {
 													Wage: &#8377; {`${wage ? wage[profile.wage] : 0} per day`}
 												</Typography>
 
-												<IconButton
-													sx={{ p: '0px', ml: '6px' }}
-													onClick={() => {
-														setAddEditWageDialogProps({
-															fieldName: profile.wage,
-															initialValue: wage[profile.wage],
-															open: true,
-														})
-													}}>
-													{updating[profile.wage] ? (
-														<CircularProgress size={24} color='primary' />
-													) : (
-														<DriveFileRenameOutlineOutlinedIcon color='primary' />
-													)}
-												</IconButton>
+												{['RECEIVED', 'CONFIRMATION', 'ALLOCATION_IN_PROGRESS'].includes(
+													bookingData.booking.status
+												) && (
+													<IconButton
+														sx={{ p: '0px', ml: '6px' }}
+														onClick={() => {
+															setAddEditWageDialogProps({
+																fieldName: profile.wage,
+																initialValue: wage[profile.wage],
+																open: true,
+															})
+														}}>
+														{updating[profile.wage] ? (
+															<CircularProgress size={24} color='primary' />
+														) : (
+															<DriveFileRenameOutlineOutlinedIcon color='primary' />
+														)}
+													</IconButton>
+												)}
 											</Stack>
 										</Stack>
 										<Stack direction='row' alignItems='center'>

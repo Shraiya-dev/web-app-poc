@@ -72,7 +72,7 @@ const PaymentProvider: FC<any> = ({ children, authState }) => {
 				}
 			)
 		},
-		[state, projectId, confirmPaymentOrderMutation]
+		[projectId, confirmPaymentOrderMutation]
 	)
 
 	const cancelPaymentOrder = useCallback(() => {
