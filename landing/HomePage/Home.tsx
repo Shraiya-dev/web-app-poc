@@ -1,14 +1,44 @@
-import { ArrowCircleLeftOutlined, ArrowCircleRightOutlined, Circle } from '@mui/icons-material'
+import { ArrowCircleLeftOutlined, ArrowCircleRightOutlined, Circle, FormatQuote } from '@mui/icons-material'
 
-import { Box, Button, Grid, List, ListItem, Stack, Tab, Tabs, Typography } from '@mui/material'
+import {
+	Box,
+	Button,
+	Card,
+	CardContent,
+	CardMedia,
+	Grid,
+	List,
+	ListItem,
+	ListItemIcon,
+	ListItemText,
+	Paper,
+	Stack,
+	styled,
+	Tab,
+	Tabs,
+	Typography,
+} from '@mui/material'
+import { ContactUsSection } from 'landing/components'
+import Image from 'next/image'
 import { useRouter } from 'next/router'
-import { useState } from 'react'
-import { Carousel, LinkButton, Section, useMobile } from 'sdk'
-import { HeroDiscoveryMetaData } from 'sdk/data/discoverHero'
+import {
+	AppStoreImage,
+	ButtonClicked,
+	Carousel,
+	DataLayerPush,
+	externalLinks,
+	FloatingUnderLineHeading,
+	HyperLink,
+	LinkButton,
+	primary,
+	Section,
+	theme,
+	useMobile,
+} from 'sdk'
 import { homePage } from 'sdk/data/home'
-import { sliceIntoChunks } from 'sdk/utils/arrayHelpers'
 import { CreateBookingCard, JobCategoryCard } from 'sdkv2/components'
 import { WorkerCard } from 'sdkv2/components/cards/WorkerCard'
+import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord'
 
 export const Home = () => {
 	const {
@@ -22,7 +52,6 @@ export const Home = () => {
 		phApp,
 		clientCarouselSection,
 	} = homePage
-	const [jobTypeForCarousal, setJobTypeForCarousal] = useState('MASON')
 	const isMobile = useMobile()
 	const router = useRouter()
 	return (
@@ -73,14 +102,23 @@ export const Home = () => {
 				</Grid>
 			</Section>
 			<Section backgroundColor='#000000'>
-				<Stack direction='row' alignItems='center' spacing={2} overflow='auto'>
+				<Stack
+					direction='row'
+					alignItems='center'
+					spacing={2}
+					sx={{
+						overflowX: 'scroll',
+						'&::-webkit-scrollbar': {
+							display: 'none',
+						},
+					}}>
 					{jobSection.tagLine.map((item, index, arr) => (
-						<Typography key={item} noWrap>
-							<Typography noWrap variant='h6' color='common.white'>
+						<Stack direction={'row'} alignItems={'center'} spacing={1} key={item} minWidth={'fit-content'}>
+							{index < arr.length && <Circle sx={{ fontSize: 8, color: 'common.white' }} />}
+							<Typography variant='h6' color={'#fff'}>
 								{item}
 							</Typography>
-							{index < arr.length - 1 && <Circle sx={{ fontSize: 8, color: 'common.white' }} />}
-						</Typography>
+						</Stack>
 					))}
 				</Stack>
 				<Stack p={3}>
@@ -96,9 +134,8 @@ export const Home = () => {
 					</Typography>
 				</Stack>
 				<Tabs
-					sx={{ mx: -5 }}
-					onChange={(e, v) => setJobTypeForCarousal(v)}
-					value={jobTypeForCarousal}
+					sx={{ mx: !isMobile ? -2 : 1, overflowX: 'hidden' }}
+					value='Masons'
 					variant='scrollable'
 					ScrollButtonComponent={(props) => {
 						if (props.direction === 'left' && !props.disabled) {
@@ -119,31 +156,44 @@ export const Home = () => {
 					}}>
 					{jobSection.jobs.map((item) => (
 						<Tab
-							value={item.value}
+							value={item.label}
 							key={item.label}
 							sx={{ color: 'common.white' }}
 							label={<JobCategoryCard src={item.image} label={item.label} />}
 						/>
 					))}
 				</Tabs>
-				<Carousel
-					componentPerView={1}
-					items={sliceIntoChunks(HeroDiscoveryMetaData[jobTypeForCarousal], isMobile ? 2 : 6).map(
-						(slide, index) => {
-							return (
-								<Grid key={index} container py={3} spacing={2}>
-									{slide.map((item: any) => (
-										<Grid md={4} item key={item.workerId}>
-											<WorkerCard worker={item} />
-										</Grid>
-									))}
-								</Grid>
-							)
-						}
-					)}
-					slideDelay={5000}
-				/>
+				<Grid container py={3} spacing={2}>
+					{jobSection.workers.map((item) => (
+						<Grid md={4} item key={item.workerId}>
+							<WorkerCard worker={item as any} />
+						</Grid>
+					))}
+				</Grid>
 			</Section>
+			{/* <Section className='hide-on-mobile' backgroundColor={bookingJourneySection.backgroundColor}>
+				<Stack spacing={2}>
+					<Typography variant='h4' textAlign='center' color={bookingJourneySection.sectionTitle.color}>
+						{bookingJourneySection?.sectionTitle.children}
+					</Typography>
+					<Grid container justifyContent={'center'} spacing={1}>
+						{bookingJourneySection.journeySteps.map((item) => (
+							<Grid item key={item.label}>
+								<Stack
+									px={2}
+									py={1}
+									sx={{
+										color: item.color,
+										backgroundColor: item.backgroundColor,
+										borderRadius: '8px',
+									}}>
+									<Typography>{item.label}</Typography>
+								</Stack>
+							</Grid>
+						))}
+					</Grid>
+				</Stack>
+			</Section> */}
 
 			<Section backgroundColor='#F7F7F7' id='how-it-works'>
 				<Box pt={'24px'} pb={'66px'}>
@@ -152,50 +202,113 @@ export const Home = () => {
 						<Typography variant='h4'>{homePage.howItWorksSection.subHeading}</Typography>
 					</Stack>
 					<Box mb={'66px'}>
-						<LinkButton
-							href={homePage.HeroAdvantage.buttonText.link}
-							sx={{
-								p: '20px 66px',
-								fontWeight: '900',
+						<Button
+							variant='contained'
+							sx={homePage.howItWorksSection.buttonSx}
+							href='/login'
+							onClick={() => {
+								DataLayerPush({ event: 'book_hero_home_footer' })
 							}}>
-							{homePage.HeroAdvantage.buttonText.text}
-						</LinkButton>
+							{homePage.howItWorksSection.buttonText.text}
+						</Button>
 					</Box>
-					<Box>
-						<img src='/assets/landingv2/heroSection/howitworks.svg' alt='' />
+					<Box
+						sx={{
+							width: '100%',
+						}}>
+						<Box
+							component={'img'}
+							sx={{
+								content: {
+									xs: `url(${'/assets/landingv2/heroSection/howitworksMobile.svg'})`,
+									md: `url(${'/assets/landingv2/heroSection/howitworks.svg'})`,
+								},
+								width: '100%',
+							}}
+						/>
 					</Box>
 				</Box>
 			</Section>
+
+			{/* <Section backgroundColor={benefitFromHeroSection.backgroundColor}>
+				<Carousel
+					componentPerView={isMobile ? 1 : 3}
+					items={[
+						...benefitFromHeroSection.benefits.map((item, index) => (
+							<Stack
+								key={index}
+								sx={{
+									borderRadius: '12px',
+									backgroundColor: item.backgroundColor,
+									p: 2,
+									pb: 4,
+									maxWidth: 380,
+									height: 170,
+								}}>
+								<Stack flex={1} direction='row' justifyContent='space-between'>
+									<Stack>
+										<Typography color={item.color}>{item.header.left.icon}</Typography>
+										<Typography color={item.color}>{item.header.left.caption}</Typography>
+									</Stack>
+									<Image src={item.header.right.image} width={70} height={70} />
+								</Stack>
+								<Typography color={item.color}>{item.description}</Typography>
+							</Stack>
+						)),
+					]}
+				/>
+			</Section> */}
+
+			{/* why you should hire section */}
 
 			<Section backgroundColor='#000'>
 				<Box
 					sx={{
 						padding: '46px 0 70px 0',
 					}}>
-					<Grid container>
-						<Grid item xs={6}>
+					<Grid
+						container
+						sx={{
+							flexDirection: { xs: 'column', md: 'row' },
+						}}>
+						<Grid
+							item
+							md={6}
+							xs={12}
+							sx={{
+								mb: { xs: 6 },
+							}}>
 							<Stack direction={'column'} spacing={4}>
 								<Box>{homePage.whyYouShouldHire.left.heading}</Box>
 								<Box>
-									<LinkButton
-										href={homePage.HeroAdvantage.buttonText.link}
-										sx={{
-											p: '20px 66px',
-											fontWeight: '900',
+									<Button
+										sx={homePage.whyYouShouldHire.left.buttonSx}
+										href='/login'
+										onClick={() => {
+											DataLayerPush({ event: 'book_hero_home_footer' })
 										}}>
-										{homePage.HeroAdvantage.buttonText.text}
-									</LinkButton>
+										{homePage.whyYouShouldHire.left.buttonText.text}
+									</Button>
 								</Box>
 							</Stack>
 						</Grid>
 
 						<Grid item xs={6}>
-							<Grid container spacing={4}>
+							<Grid
+								container
+								spacing={4}
+								sx={{
+									width: { xs: 'fit-content' },
+								}}>
 								{homePage.whyYouShouldHire.right.item.map((data, index) => {
 									return (
-										<Grid key={index} item xs={6}>
+										<Grid key={index} item xs={12} md={6}>
 											<Stack direction={'row'} spacing={2} width={'310px'}>
-												<Box sx={homePage.whyYouShouldHire.right.indexSx}>{data.index}</Box>
+												<Box sx={homePage.whyYouShouldHire.right.indexSx}>
+													<Typography variant='h2' color={'#EFC430'}>
+														0{index + 1}
+													</Typography>
+												</Box>
 												<Box>
 													<Stack direction={'column'} sx={{ color: '#fff' }} spacing={2}>
 														<Typography
@@ -218,14 +331,91 @@ export const Home = () => {
 				</Box>
 			</Section>
 
-			<Section backgroundColor='#F7F7F7'>
+			{/* end why you should hire section */}
+
+			{/* hire your construction section  */}
+			{/* <Section backgroundImage={hireConstructionSection.backgroundImage}>
+				<Stack
+					direction='row'
+					sx={{
+						overflowX: 'auto',
+						alignItems: 'center',
+						p: 2,
+					}}>
+					<Typography sx={{ flex: 1, minWidth: '50%' }} fontSize={{ xs: 20, md: 36 }}>
+						Why you should
+						<br /> <strong>hire your</strong> construction
+						<br /> workforce from <br />
+						<strong>Project Hero?</strong>
+						<br />
+					</Typography>
+					<Grid
+						container
+						spacing={{ xs: 2, md: 4 }}
+						flexWrap={{ xs: 'nowrap', md: 'wrap' }}
+						sx={{ margin: 0, padding: 0, flex: 1 }}>
+						{hireConstructionSection.cards.map((data, index) => {
+							return (
+								<Grid
+									key={index}
+									item
+									xs={12}
+									md={6}
+									alignItems='center'
+									sx={(theme) => ({
+										top: data.marginTop,
+										[theme.breakpoints.down('md')]: {
+											top: 0,
+										},
+									})}>
+									<Card
+										elevation={5}
+										sx={{
+											borderLeft: '8px solid',
+											borderColor: data.color,
+											width: '200px',
+											height: '240px',
+										}}>
+										<CardMedia
+											component='img'
+											image={data.svg}
+											sx={{ width: '54px', height: '54px' }}
+										/>
+										<CardContent sx={{ marginBottom: '14px' }}>
+											<Typography fontSize='20px' fontWeight='700' color='data.color'>
+												{data.header}
+											</Typography>
+											<Typography fontSize='14px' fontWeight='400'>
+												{data.description}
+											</Typography>
+										</CardContent>
+									</Card>
+								</Grid>
+							)
+						})}
+					</Grid>
+				</Stack>
+			</Section> */}
+
+			{/* hero advantage section */}
+
+			<Section
+				backgroundColor='#F7F7F7'
+				sx={{
+					backgroundImage: !isMobile
+						? `url(${'/assets/landingv2/heroSection/heroAdvantage.svg'})`
+						: `url(${'/assets/landingv2/heroSection/heroAdvantageMobile.svg'})`,
+					backgroundRepeat: 'no-repeat',
+					backgroundPosition: !isMobile ? 'right' : 'bottom',
+					minHeight: !isMobile ? '600px' : '880px',
+				}}>
 				<Box
 					sx={{
 						p: '46px 0px',
 						overflowX: 'hidden',
 					}}>
 					<Grid container spacing={8}>
-						<Grid item xs={6}>
+						<Grid item xs={12} md={6}>
 							<Stack direction={'column'} spacing={4}>
 								<Stack direction={'column'} spacing={2}>
 									<Box>{homePage.HeroAdvantage.Heading}</Box>
@@ -237,29 +427,54 @@ export const Home = () => {
 										sx={{
 											p: '20px 66px',
 											fontWeight: '900',
+										}}
+										// href='/login'
+										onClick={() => {
+											DataLayerPush({ event: 'book_hero_home_footer' })
 										}}>
 										{homePage.HeroAdvantage.buttonText.text}
 									</LinkButton>
 								</Box>
 							</Stack>
 						</Grid>
-						<Grid item xs={6}>
-							<Box
-							// sx={{ background: '#F6F2E1' }}
-							>
-								<Stack direction={'row'}>
-									<Box>
-										<img src='/assets/landingv2/heroSection/advantageHero.svg' alt='' />
-									</Box>
-									<Box sx={{ position: 'relative', left: '-80px' }}>
-										<img src='/assets/landingv2/heroSection/advantageHeropic.svg' alt='' />
-									</Box>
-								</Stack>
-							</Box>
+						<Grid item xs={12} md={6}>
+							{/* <Box>
+								<img src='/assets/landingv2/heroSection/heroAdvantage.svg' alt='' />
+							</Box> */}
 						</Grid>
 					</Grid>
 				</Box>
 			</Section>
+
+			{/* <Section backgroundColor={supportCarouselSection.backgroundColor}>
+				<Carousel
+					componentPerView={isMobile ? 1 : 3}
+					items={[
+						...supportCarouselSection.carouselContent.map((item, index) => (
+							<Stack
+								width={350}
+								height={80}
+								key={index}
+								sx={{
+									position: 'relative',
+									borderRadius: '12px',
+								}}>
+								<HyperLink href={item.link}>
+									<Image
+										onClick={() => {
+											DataLayerPush({
+												event: 'book_worker_home_card',
+											})
+										}}
+										src={item.image}
+										layout='fill'
+									/>
+								</HyperLink>
+							</Stack>
+						)),
+					]}
+				/>
+			</Section> */}
 
 			<Section backgroundColor='#000'>
 				<Box
@@ -267,7 +482,7 @@ export const Home = () => {
 						p: '46px 0 60px 0',
 					}}>
 					<Grid container spacing={2}>
-						<Grid item xs={6}>
+						<Grid item xs={12} md={6}>
 							<Stack direction={'column'}>
 								<Box mb={'14px'}>{homePage.heroApp.heading}</Box>
 								<Box mb={'40px'}>{homePage.heroApp.desc}</Box>
@@ -275,9 +490,16 @@ export const Home = () => {
 									{homePage.heroApp.list.map((data, index) => {
 										return (
 											<ListItem key={index} sx={{ mb: '24px' }}>
-												<Typography variant='h4' sx={{ fontWeight: 400, fontSize: '20px' }}>
-													{data.item}
-												</Typography>
+												<Stack direction={'row'} spacing={1.5} alignItems={'center'}>
+													<FiberManualRecordIcon
+														sx={{
+															fontSize: '8px',
+														}}
+													/>
+													<Typography variant='h4' sx={{ fontWeight: 400, fontSize: '20px' }}>
+														{data.item}
+													</Typography>
+												</Stack>
 											</ListItem>
 										)
 									})}
@@ -286,23 +508,53 @@ export const Home = () => {
 									Download Now!
 								</Typography>
 								<Box mt={'20px'} sx={{ cursor: 'pointer' }}>
-									<img src='/assets/landingv2/heroSection/googlebutton.svg' alt='' />
+									<a
+										href={externalLinks.heroApp}
+										onClick={() => {
+											ButtonClicked({
+												page: document.title,
+												action: 'App store link',
+												url: router.asPath,
+											})
+										}}
+										target='_blank'
+										rel='noopener noreferrer'>
+										<img src='/assets/landingv2/heroSection/googlebutton.svg' alt='' />
+									</a>
 								</Box>
 							</Stack>
 						</Grid>
-						<Grid item xs={6}>
-							<Stack direction={'row'}>
-								<Box sx={{ position: 'absolute', left: '190px', zIndex: '2' }}>
-									<img src='/assets/landingv2/heroSection/mobile1.svg' alt='' />
+						<Grid item xs={12} md={6}>
+							<Stack direction={'row'} justifyContent={'center'} alignItems='flex-end'>
+								<Box sx={{ maxWidth: '75%', maxHeight: '100%', mr: '-25%', zIndex: '4' }}>
+									<img
+										width={'100%'}
+										height={'100%'}
+										src='/assets/landingv2/heroSection/mobile2.svg'
+										alt=''
+									/>
 								</Box>
-								<Box sx={{ position: 'relative', zIndex: '4' }}>
-									<img src='/assets/landingv2/heroSection/mobile2.svg' alt='' />
+								<Box
+									sx={{
+										maxWidth: '65%',
+										maxHeight: '90%',
+										zIndex: '2',
+										mb: { md: 1.8, xs: 1.2 },
+									}}>
+									<img
+										width={'100%'}
+										height={'100%'}
+										src='/assets/landingv2/heroSection/mobile1.svg'
+										alt=''
+									/>
 								</Box>
 							</Stack>
 						</Grid>
 					</Grid>
 				</Box>
 			</Section>
+
+			{/* what are you section  */}
 
 			<Section backgroundColor='#F7F7F7'>
 				<Box
@@ -311,25 +563,222 @@ export const Home = () => {
 					}}>
 					<Stack direction={'column'} spacing={4} sx={{ width: '100%' }}>
 						<Box>{homePage.customerReview.heading}</Box>
-						<Stack direction={'row'} justifyContent={'center'} alignItems={'center'}>
-							<Box sx={homePage.customerReview.card.cardStyleSx}>
-								<Stack direction={'row'}>
-									<Box sx={{ backgroundSize: 'cover' }}>
-										<img src={homePage.customerReview.card.cardImageSrc} />
-									</Box>
-									<Stack
-										direction={'row'}
-										justifyContent='center'
-										alignItems={'center'}
-										p={'66px 40px'}>
+						<Stack direction={'row'} justifyContent={'center'}>
+							<Card
+								sx={{
+									display: 'flex',
+									flexDirection: isMobile ? 'column' : 'row',
+									maxWidth: 800,
+									height: isMobile ? 500 : 300,
+								}}>
+								<CardMedia
+									component='img'
+									sx={{
+										background: 'cover',
+									}}
+									height={isMobile ? '300' : '300'}
+									image={homePage.customerReview.card.cardImageSrc}
+								/>
+								<CardContent
+									sx={{
+										background: theme.palette.primary.main,
+										display: 'flex',
+										justifyContent: 'center',
+										alignItems: 'center',
+										height: isMobile ? 500 : 300,
+									}}>
+									<Typography variant='body2' color={primary.properDark}>
 										{homePage.customerReview.card.cardText}
-									</Stack>
-								</Stack>
-							</Box>
+									</Typography>
+								</CardContent>
+							</Card>
+						</Stack>
+						<Stack
+							direction={'row'}
+							spacing={2}
+							justifyContent={'space-between'}
+							sx={{
+								overflowX: 'scroll',
+								width: !isMobile ? '100%' : '100%',
+								mt: '50px',
+								'&::-webkit-scrollbar': {
+									display: 'none',
+								},
+							}}>
+							{homePage.customerReview.ImageList.map((val, index) => {
+								return (
+									<ListItem key={index}>
+										<img src={val.src} alt='' />
+									</ListItem>
+								)
+							})}
 						</Stack>
 					</Stack>
 				</Box>
 			</Section>
+
+			{/* end what are you section */}
+
+			{/* ph advantage section  */}
+
+			{/* <Section>
+				<Stack direction='column'>
+					<FloatingUnderLineHeading variant='h3' underlinePosition='flex-start'>
+						{phAdvantage.heading}
+					</FloatingUnderLineHeading>
+					<Typography variant='subtitle1' sx={{ maxWidth: 600 }}>
+						{phAdvantage.description}
+					</Typography>
+					<Grid container mt={10}>
+						{phAdvantage.advantage.map((data, index) => {
+							return (
+								<Grid key={index} item xs={12} md={2.4}>
+									<Stack
+										direction={{ xs: 'row', md: 'column' }}
+										spacing={2}
+										p={2}
+										alignItems='center'
+										justifyContent='center'
+										sx={(theme) => ({
+											height: '231px',
+											width: '214px',
+											border: '1px solid #BABABA',
+											borderRadius: '12px',
+											marginBottom: '0px',
+											transition: '0.3s all ease',
+											':hover': {
+												boxShadow: '10px 10px 30px -10px #aaaaaa',
+											},
+											[theme.breakpoints.down('md')]: {
+												height: '120px',
+												width: '100%',
+												marginBottom: '20px',
+											},
+										})}>
+										<img src={data.svg} alt='' height={'107px'} width='97px' />
+										<Stack flex={1} direction={'column'} sx={{ padding: '0 10px' }}>
+											<Typography variant='h6'>{data.header}</Typography>
+											<Typography variant='subtitle2'>{data.description}</Typography>
+										</Stack>
+									</Stack>
+								</Grid>
+							)
+						})}
+					</Grid>
+				</Stack>
+			</Section>
+			<Section backgroundColor={phApp.backgroundColor}>
+				<Grid container>
+					<Grid item xs={12} md={5} minHeight={270}>
+						<Stack spacing={4}>
+							<Stack>
+								<FloatingUnderLineHeading variant='h3' underlinePosition='flex-start'>
+									{phApp.heading}
+								</FloatingUnderLineHeading>
+								<Typography sx={{ my: 2 }} color={'grey.A700'}>
+									{phApp.description}
+								</Typography>
+							</Stack>
+							<List>
+								{phApp.bulletPoints.map((item, index) => {
+									return (
+										<ListItem key={index} sx={{ px: 0 }}>
+											<ListItemIcon>{phApp.bulletPointIcon}</ListItemIcon>
+											<ListItemText>{item}</ListItemText>
+										</ListItem>
+									)
+								})}
+							</List>
+							<Stack display={{ xs: 'none', md: 'flex' }}>
+								<Typography sx={{ mb: 2 }} color={'grey.A700'}>
+									Download our app from
+								</Typography>
+								<a href={externalLinks.heroApp} target='_blank' rel='noopener noreferrer'>
+									<img src={AppStoreImage} width={190} />
+								</a>
+							</Stack>
+						</Stack>
+					</Grid>
+					<Grid item xs={12} md={7} minHeight={270}>
+						<Image src={phApp.appImage} layout='fill' />
+					</Grid>
+					<Grid item xs={12} md={7} flexDirection='column' mt={2} display={{ xs: 'flex', md: 'none' }}>
+						<LinkButton variant='contained' fullWidth href={externalLinks.heroApp}>
+							GET THE APP NOW
+						</LinkButton>
+					</Grid>
+				</Grid>
+			</Section>
+			<Section backgroundImage={customerSayingSection.backgroundImage} sx={{ py: 8 }}>
+				<FloatingUnderLineHeading variant='h3' underlinePosition='flex-start'>
+					{customerSayingSection.title}
+				</FloatingUnderLineHeading>
+				<Carousel
+					componentPerView={isMobile ? 1 : 2}
+					items={[
+						...customerSayingSection.carouselContent.map((item, index) => (
+							<Paper
+								elevation={3}
+								key={index}
+								sx={(theme) => ({
+									position: 'relative',
+									borderRadius: '12px',
+									width: '45%',
+									margin: '5%',
+									[theme.breakpoints.down('md')]: {
+										width: '90%',
+									},
+								})}>
+								<Stack p={3} alignItems='center' minHeight={270}>
+									<Typography
+										fontSize={(theme) => ({
+											xs: theme.typography.h6.fontSize,
+											md: theme.typography.h4.fontSize,
+										})}
+										fontWeight={700}>
+										{item.title}
+									</Typography>
+									<FormatQuote color='primary' sx={{ my: 1 }} />
+									<Typography
+										textAlign='center'
+										fontSize={(theme) => ({
+											xs: theme.typography.caption.fontSize,
+											md: theme.typography.body1.fontSize,
+										})}>
+										{item.description}
+									</Typography>
+								</Stack>
+							</Paper>
+						)),
+					]}
+				/>
+			</Section>
+			<Section backgroundColor={clientCarouselSection.backgroundColor}>
+				<Stack alignItems='center'>
+					<FloatingUnderLineHeading variant='h4' textAlign='center' sx={{ margin: 'auto' }}>
+						{clientCarouselSection.heading}
+					</FloatingUnderLineHeading>
+				</Stack>
+				<Carousel
+					componentPerView={isMobile ? 1 : 3}
+					items={[
+						...clientCarouselSection.carouselContent.map((item, index) => (
+							<Stack
+								width={350}
+								height={80}
+								key={index}
+								sx={{
+									position: 'relative',
+									borderRadius: '12px',
+								}}>
+								<Image src={item} layout='fill' />
+							</Stack>
+						)),
+					]}
+				/>
+			</Section> */}
+			{/* have a question section */}
+			{/* <ContactUsSection /> */}
 		</>
 	)
 }
