@@ -57,6 +57,7 @@ export const useCheckout = () => {
 	return {
 		form,
 		wage,
+		getBookingDetail,
 		bookingData,
 		setWage,
 		discountEligible,

@@ -40,12 +40,6 @@ import { CreateBookingCard, JobCategoryCard } from 'sdkv2/components'
 import { WorkerCard } from 'sdkv2/components/cards/WorkerCard'
 import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord'
 
-const CustomeHome = styled(Box)(({ theme }) => {
-	return {
-		'.': {},
-	}
-})
-
 export const Home = () => {
 	const {
 		jobSection,
@@ -61,7 +55,7 @@ export const Home = () => {
 	const isMobile = useMobile()
 	const router = useRouter()
 	return (
-		<CustomeHome>
+		<>
 			<Section>
 				<Grid container spacing={2}>
 					<Grid item xs={12} md={7.5}>
@@ -102,7 +96,7 @@ export const Home = () => {
 							</Stack>
 						</Stack>
 					</Grid>
-					<Grid item xs={12} md={4.5} justifyContent='center'>
+					<Grid item xs={12} md={4.5} justifyContent='center' id='book-worker'>
 						<CreateBookingCard />
 					</Grid>
 				</Grid>
@@ -201,16 +195,7 @@ export const Home = () => {
 				</Stack>
 			</Section> */}
 
-			{/* how its works section */}
-			<Section
-				backgroundColor='#f7f7f7'
-				sx={{
-					width: '100vw',
-					backgroundImage: `url(${'/assets/landingv2/heroSection/HowItsWorkTopCircle.svg'})`,
-					backgroundRepeat: 'no-repeat',
-					backgroundPosition: 'right top',
-					backgroundSize: 'cover',
-				}}>
+			<Section backgroundColor='#F7F7F7' id='how-it-works'>
 				<Box pt={'24px'} pb={'66px'}>
 					<Stack direction={'column'} mb={'32px'}>
 						<Typography variant='h1'>{homePage.howItWorksSection.heading}</Typography>
@@ -224,7 +209,7 @@ export const Home = () => {
 							onClick={() => {
 								DataLayerPush({ event: 'book_hero_home_footer' })
 							}}>
-							{homePage.howItWorksSection.buttonText}
+							{homePage.howItWorksSection.buttonText.text}
 						</Button>
 					</Box>
 					<Box
@@ -302,7 +287,7 @@ export const Home = () => {
 										onClick={() => {
 											DataLayerPush({ event: 'book_hero_home_footer' })
 										}}>
-										{homePage.whyYouShouldHire.left.buttonText}
+										{/* {homePage.whyYouShouldHire.left.buttonText} */}
 									</Button>
 								</Box>
 							</Stack>
@@ -437,17 +422,18 @@ export const Home = () => {
 									<Box>{homePage.HeroAdvantage.subHeading}</Box>
 								</Stack>
 								<Box>
-									<Button
+									{/* <LinkButton
+										href={homePage.HeroAdvantage.buttonText.link}
 										sx={{
 											p: '20px 66px',
 											fontWeight: '900',
 										}}
-										href='/login'
+										// href='/login'
 										onClick={() => {
 											DataLayerPush({ event: 'book_hero_home_footer' })
 										}}>
-										{homePage.HeroAdvantage.buttonText}
-									</Button>
+										{homePage.HeroAdvantage.buttonText.text}
+									</LinkButton> */}
 								</Box>
 							</Stack>
 						</Grid>
@@ -793,6 +779,6 @@ export const Home = () => {
 			</Section> */}
 			{/* have a question section */}
 			{/* <ContactUsSection /> */}
-		</CustomeHome>
+		</>
 	)
 }

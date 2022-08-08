@@ -42,8 +42,10 @@ export const AddEditWage = ({
 					</Stack>
 				</DialogTitle>
 				<DialogContent>
-					<Stack direction='row' justifyContent='space-between' alignItems='center' spacing={2}>
-						<Typography color='common.black'>Wage</Typography>
+					<Stack direction='row' justifyContent='space-between' alignItems='flex-start' spacing={2}>
+						<Typography color='common.black' mt={2}>
+							Wage
+						</Typography>
 						<TextField
 							color='primary'
 							fullWidth
@@ -51,8 +53,18 @@ export const AddEditWage = ({
 							type='number'
 							placeholder='Enter wages'
 							name={fieldName}
+							error={!(fieldData > 0 && fieldData <= 2000)}
 							value={fieldData}
-							onChange={(e: any) => setFieldData(Number(e.target.value))}
+							helperText={'Wage should be between 1 and 2000'}
+							onChange={(e: any) =>
+								setFieldData(() => {
+									if (e.target.value === '') {
+										return e.target.value
+									} else if (Number(e.target.value) > 0 && Number(e.target.value) <= 2000) {
+										return Number(e.target.value)
+									}
+								})
+							}
 						/>
 					</Stack>
 					{/* <TextField fullWidth placeholder='Enter Wages' /> */}
@@ -61,6 +73,7 @@ export const AddEditWage = ({
 					<Button
 						onClick={() => confirm(fieldName, fieldData)}
 						fullWidth
+						disabled={!(fieldData > 0 && fieldData <= 2000)}
 						sx={{ fontSize: '16px', fontWeight: 700 }}>
 						update
 					</Button>
