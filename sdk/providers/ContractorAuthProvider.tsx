@@ -375,6 +375,10 @@ const ContractorAuthProvider: FC<ContractorAuthProviderProps> = ({ children, aut
 				if (!state.user.hasProjects && discoveryBookingFromCookie()) {
 					createEasyBooking(discoveryBookingFromCookie())
 				} else {
+					if (discoveryBookingFromCookie()) {
+						deleteCookie('discoveryBooking')
+						showSnackbar('Please create a booking inside the project', 'warning')
+					}
 					const redirectRoute = AccessMap[state.user.onboardingStatus]
 
 					if (state.user.onboardingStatus !== ONBOARDING_STATUS.ONBOARDED) {
