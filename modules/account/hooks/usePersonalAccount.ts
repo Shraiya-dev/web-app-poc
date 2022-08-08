@@ -55,6 +55,15 @@ const usePersonalAccount = () => {
 			if (values.designation === 'none' || values.designation === '') {
 				errors.companyName = 'Select relevant Company Role'
 			}
+			if (!values.email) {
+				errors.email = 'Required';
+			  } else if (
+				!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(
+				  values.email
+				)
+			  ) {
+				errors.email = 'Invalid email address';
+			  }
 
 			return errors
 		},
@@ -65,6 +74,7 @@ const usePersonalAccount = () => {
 		const payload = {
 			name: form?.values?.name ?? '',
 			designation: form?.values?.designation,
+			email: form?.values?.email
 		}
 		updateProfile(payload)
 			.then((data: any) => {

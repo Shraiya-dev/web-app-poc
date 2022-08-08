@@ -45,7 +45,9 @@ const EditInfo = ({ ...props }) => {
 								placeholder='Enter Email'
 								fullWidth
 								value={form.values.email}
-								disabled={true}
+								onChange={(e) => {
+									form.handleChange(e)
+								}}
 							/>
 						</InputWrapper>
 						<InputWrapper id='designation' label='Designation'>
