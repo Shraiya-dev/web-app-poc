@@ -143,6 +143,7 @@ let themeDef = createTheme({
 			main: '#EFC41A',
 			light: '#F2CF47',
 			dark: '#A78912',
+			contrastText: '#000000',
 		},
 		secondary: {
 			main: '#CC2C49',

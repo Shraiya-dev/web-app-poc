@@ -230,9 +230,9 @@ export const CheckoutCard: FC = () => {
 								<Typography display='inline' variant='body1' fontWeight={600} color='primary.main'>
 									{' '}
 									{`${
-										(form.values.qtyHelper ?? 0) +
-										(form.values.qtySupervisor ?? 0) +
-										(form.values.qtyTechnician ?? 0)
+										(Number(form.values.qtyHelper) ?? 0) +
+										(Number(form.values.qtySupervisor) ?? 0) +
+										(Number(form.values.qtyTechnician) ?? 0)
 									}`}{' '}
 									applications
 								</Typography>{' '}
@@ -250,7 +250,7 @@ export const CheckoutCard: FC = () => {
 													Wage: &#8377; {`${wage ? wage[profile.wage] : 0} per day`}
 												</Typography>
 
-												{['RECEIVED', 'CONFIRMATION', 'ALLOCATION_IN_PROGRESS'].includes(
+												{['RECEIVED', 'CONFIRMATION'].includes(
 													bookingData?.booking?.status
 												) && (
 													<IconButton
@@ -385,7 +385,7 @@ export const CheckoutCard: FC = () => {
 									},
 								}}
 								endIcon={<img src='/assets/icons/forward_round.svg' />}>
-								Pay and Book Now
+								{bill.amountPayable !== 0 && 'Pay and'} Book Now
 							</Button>
 						</Stack>
 					</Stack>

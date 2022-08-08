@@ -39,6 +39,9 @@ import { homePage } from 'sdk/data/home'
 import { CreateBookingCard, JobCategoryCard } from 'sdkv2/components'
 import { WorkerCard } from 'sdkv2/components/cards/WorkerCard'
 import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord'
+import { useKeenSlider } from 'keen-slider/react'
+
+const animation = { duration: 25000, easing: (t: number) => t }
 
 export const Home = () => {
 	const {
@@ -54,6 +57,21 @@ export const Home = () => {
 	} = homePage
 	const isMobile = useMobile()
 	const router = useRouter()
+	const [sliderRef] = useKeenSlider<HTMLDivElement>({
+		loop: true,
+		renderMode: 'performance',
+		drag: false,
+		slides: { perView: 'auto' },
+		created(s) {
+			s.moveToIdx(5, true, animation)
+		},
+		updated(s) {
+			s.moveToIdx(s.track.details.abs + 5, true, animation)
+		},
+		animationEnded(s) {
+			s.moveToIdx(s.track.details.abs + 5, true, animation)
+		},
+	})
 	return (
 		<>
 			<Section>
@@ -102,25 +120,21 @@ export const Home = () => {
 				</Grid>
 			</Section>
 			<Section backgroundColor='#000000'>
-				<Stack
-					direction='row'
-					alignItems='center'
-					spacing={2}
-					sx={{
-						overflowX: 'scroll',
-						'&::-webkit-scrollbar': {
-							display: 'none',
-						},
-					}}>
+				<Box ref={sliderRef} className='keen-slider'>
 					{jobSection.tagLine.map((item, index, arr) => (
-						<Stack direction={'row'} alignItems={'center'} spacing={1} key={item} minWidth={'fit-content'}>
-							{index < arr.length && <Circle sx={{ fontSize: 8, color: 'common.white' }} />}
-							<Typography variant='h6' color={'#fff'}>
+						<Typography
+							sx={{ minWidth: 'fit-content' }}
+							display='flex'
+							alignItems='center'
+							key={index}
+							className='keen-slider__slide'>
+							<Typography noWrap variant='h6' color='common.white'>
 								{item}
 							</Typography>
-						</Stack>
+							<Circle sx={{ fontSize: 8, color: 'common.white', mx: 2 }} />
+						</Typography>
 					))}
-				</Stack>
+				</Box>
 				<Stack p={3}>
 					<Typography variant='h2' color='common.white'>
 						Explore{' '}
@@ -446,36 +460,6 @@ export const Home = () => {
 				</Box>
 			</Section>
 
-			{/* <Section backgroundColor={supportCarouselSection.backgroundColor}>
-				<Carousel
-					componentPerView={isMobile ? 1 : 3}
-					items={[
-						...supportCarouselSection.carouselContent.map((item, index) => (
-							<Stack
-								width={350}
-								height={80}
-								key={index}
-								sx={{
-									position: 'relative',
-									borderRadius: '12px',
-								}}>
-								<HyperLink href={item.link}>
-									<Image
-										onClick={() => {
-											DataLayerPush({
-												event: 'book_worker_home_card',
-											})
-										}}
-										src={item.image}
-										layout='fill'
-									/>
-								</HyperLink>
-							</Stack>
-						)),
-					]}
-				/>
-			</Section> */}
-
 			<Section backgroundColor='#000'>
 				<Box
 					sx={{
@@ -616,169 +600,6 @@ export const Home = () => {
 					</Stack>
 				</Box>
 			</Section>
-
-			{/* end what are you section */}
-
-			{/* ph advantage section  */}
-
-			{/* <Section>
-				<Stack direction='column'>
-					<FloatingUnderLineHeading variant='h3' underlinePosition='flex-start'>
-						{phAdvantage.heading}
-					</FloatingUnderLineHeading>
-					<Typography variant='subtitle1' sx={{ maxWidth: 600 }}>
-						{phAdvantage.description}
-					</Typography>
-					<Grid container mt={10}>
-						{phAdvantage.advantage.map((data, index) => {
-							return (
-								<Grid key={index} item xs={12} md={2.4}>
-									<Stack
-										direction={{ xs: 'row', md: 'column' }}
-										spacing={2}
-										p={2}
-										alignItems='center'
-										justifyContent='center'
-										sx={(theme) => ({
-											height: '231px',
-											width: '214px',
-											border: '1px solid #BABABA',
-											borderRadius: '12px',
-											marginBottom: '0px',
-											transition: '0.3s all ease',
-											':hover': {
-												boxShadow: '10px 10px 30px -10px #aaaaaa',
-											},
-											[theme.breakpoints.down('md')]: {
-												height: '120px',
-												width: '100%',
-												marginBottom: '20px',
-											},
-										})}>
-										<img src={data.svg} alt='' height={'107px'} width='97px' />
-										<Stack flex={1} direction={'column'} sx={{ padding: '0 10px' }}>
-											<Typography variant='h6'>{data.header}</Typography>
-											<Typography variant='subtitle2'>{data.description}</Typography>
-										</Stack>
-									</Stack>
-								</Grid>
-							)
-						})}
-					</Grid>
-				</Stack>
-			</Section>
-			<Section backgroundColor={phApp.backgroundColor}>
-				<Grid container>
-					<Grid item xs={12} md={5} minHeight={270}>
-						<Stack spacing={4}>
-							<Stack>
-								<FloatingUnderLineHeading variant='h3' underlinePosition='flex-start'>
-									{phApp.heading}
-								</FloatingUnderLineHeading>
-								<Typography sx={{ my: 2 }} color={'grey.A700'}>
-									{phApp.description}
-								</Typography>
-							</Stack>
-							<List>
-								{phApp.bulletPoints.map((item, index) => {
-									return (
-										<ListItem key={index} sx={{ px: 0 }}>
-											<ListItemIcon>{phApp.bulletPointIcon}</ListItemIcon>
-											<ListItemText>{item}</ListItemText>
-										</ListItem>
-									)
-								})}
-							</List>
-							<Stack display={{ xs: 'none', md: 'flex' }}>
-								<Typography sx={{ mb: 2 }} color={'grey.A700'}>
-									Download our app from
-								</Typography>
-								<a href={externalLinks.heroApp} target='_blank' rel='noopener noreferrer'>
-									<img src={AppStoreImage} width={190} />
-								</a>
-							</Stack>
-						</Stack>
-					</Grid>
-					<Grid item xs={12} md={7} minHeight={270}>
-						<Image src={phApp.appImage} layout='fill' />
-					</Grid>
-					<Grid item xs={12} md={7} flexDirection='column' mt={2} display={{ xs: 'flex', md: 'none' }}>
-						<LinkButton variant='contained' fullWidth href={externalLinks.heroApp}>
-							GET THE APP NOW
-						</LinkButton>
-					</Grid>
-				</Grid>
-			</Section>
-			<Section backgroundImage={customerSayingSection.backgroundImage} sx={{ py: 8 }}>
-				<FloatingUnderLineHeading variant='h3' underlinePosition='flex-start'>
-					{customerSayingSection.title}
-				</FloatingUnderLineHeading>
-				<Carousel
-					componentPerView={isMobile ? 1 : 2}
-					items={[
-						...customerSayingSection.carouselContent.map((item, index) => (
-							<Paper
-								elevation={3}
-								key={index}
-								sx={(theme) => ({
-									position: 'relative',
-									borderRadius: '12px',
-									width: '45%',
-									margin: '5%',
-									[theme.breakpoints.down('md')]: {
-										width: '90%',
-									},
-								})}>
-								<Stack p={3} alignItems='center' minHeight={270}>
-									<Typography
-										fontSize={(theme) => ({
-											xs: theme.typography.h6.fontSize,
-											md: theme.typography.h4.fontSize,
-										})}
-										fontWeight={700}>
-										{item.title}
-									</Typography>
-									<FormatQuote color='primary' sx={{ my: 1 }} />
-									<Typography
-										textAlign='center'
-										fontSize={(theme) => ({
-											xs: theme.typography.caption.fontSize,
-											md: theme.typography.body1.fontSize,
-										})}>
-										{item.description}
-									</Typography>
-								</Stack>
-							</Paper>
-						)),
-					]}
-				/>
-			</Section>
-			<Section backgroundColor={clientCarouselSection.backgroundColor}>
-				<Stack alignItems='center'>
-					<FloatingUnderLineHeading variant='h4' textAlign='center' sx={{ margin: 'auto' }}>
-						{clientCarouselSection.heading}
-					</FloatingUnderLineHeading>
-				</Stack>
-				<Carousel
-					componentPerView={isMobile ? 1 : 3}
-					items={[
-						...clientCarouselSection.carouselContent.map((item, index) => (
-							<Stack
-								width={350}
-								height={80}
-								key={index}
-								sx={{
-									position: 'relative',
-									borderRadius: '12px',
-								}}>
-								<Image src={item} layout='fill' />
-							</Stack>
-						)),
-					]}
-				/>
-			</Section> */}
-			{/* have a question section */}
-			{/* <ContactUsSection /> */}
 		</>
 	)
 }

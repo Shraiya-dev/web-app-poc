@@ -49,7 +49,11 @@ export function clearCookie() {
 	})
 }
 export const deleteCookie = (name: string) => {
-	document.cookie = `${name}=; Path=/; expires=${new Date().toUTCString()};`
+	let domain = 'projecthero.in'
+	if (process.env.NODE_ENV !== 'production') {
+		domain = 'localhost'
+	}
+	document.cookie = `${name}=; Path=/;Domain = ${domain}; expires=${new Date().toUTCString()};`
 }
 
 export const getUtmObject = () => {

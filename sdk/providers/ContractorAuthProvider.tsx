@@ -326,8 +326,8 @@ const ContractorAuthProvider: FC<ContractorAuthProviderProps> = ({ children, aut
 			try {
 				const payload = {
 					jobType: bookingDetails.jobType,
-					city: bookingDetails.location.split(',')[0],
-					state: bookingDetails.location.split(',')[0],
+					city: bookingDetails.location.split(', ')[0],
+					state: bookingDetails.location.split(', ')[1],
 					requirements: {
 						HELPER: bookingDetails.isHelper
 							? {

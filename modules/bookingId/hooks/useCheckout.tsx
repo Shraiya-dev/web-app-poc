@@ -38,11 +38,11 @@ export const useCheckout = () => {
 				wageTechnician: data?.payload?.booking?.rateCard?.TECHNICIAN ?? 0,
 				wageSupervisor: data?.payload?.booking?.rateCard?.SUPERVISOR ?? 0,
 			})
-			form.setValues({
-				qtyHelper: data?.payload?.booking?.peopleRequired?.HELPER,
-				qtySupervisor: data?.payload?.booking?.peopleRequired?.SUPERVISOR,
-				qtyTechnician: data?.payload?.booking?.peopleRequired?.TECHNICIAN,
-			})
+			// form.setValues({
+			// 	qtyHelper: data?.payload?.booking?.peopleRequired?.HELPER,
+			// 	qtySupervisor: data?.payload?.booking?.peopleRequired?.SUPERVISOR,
+			// 	qtyTechnician: data?.payload?.booking?.peopleRequired?.TECHNICIAN,
+			// })
 		} catch (error: any) {
 			showSnackbar(error?.response?.data?.developerInfo, 'error')
 		}
