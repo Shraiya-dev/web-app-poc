@@ -15,7 +15,7 @@ import { useProjectDetails } from './hooks/useProjectDetails'
 import { WorkReport } from '../workReport'
 import { Bills } from '../bills'
 import { LocationOnOutlined } from '@mui/icons-material'
-import { FC } from 'react'
+import { FC, useEffect } from 'react'
 import { BottomLayout } from 'sdk/layouts/BottomLayout'
 interface Props {}
 export const tabList: { [key in string]: string } = {
@@ -25,7 +25,7 @@ export const tabList: { [key in string]: string } = {
 	bills: 'Bills',
 }
 export const ProjectDetails: FC<Props> = () => {
-	const { selectedTab, handleTabSelection, projectDetails } = useProjectDetails()
+	const { selectedTab, handleTabSelection, projectDetails, enterpriseStatus } = useProjectDetails()
 	const isMobile = useMobile()
 	const router = useRouter()
 
@@ -38,15 +38,13 @@ export const ProjectDetails: FC<Props> = () => {
 							sx={{
 								position: 'relative',
 								top: 4,
-							}}
-						>
+							}}>
 							<Typography
 								style={{
 									fontSize: isMobile ? 18 : 26,
 									fontWeight: 700,
 									color: theme.palette.secondary.main,
-								}}
-							>
+								}}>
 								<ArrowBackIosNewIcon
 									onClick={() => router.push('/dashboard')}
 									sx={{
@@ -65,8 +63,7 @@ export const ProjectDetails: FC<Props> = () => {
 									fontWeight: 700,
 									color: theme.palette.secondary.main,
 									fontFamily: 'Saira,sans-serif',
-								}}
-							>
+								}}>
 								{projectDetails?.name}
 							</Typography>
 							<Typography
@@ -75,8 +72,7 @@ export const ProjectDetails: FC<Props> = () => {
 									color: theme.palette.secondary.main,
 									fontFamily: 'Saira,sans-serif',
 								}}
-								textTransform='capitalize'
-							>
+								textTransform='capitalize'>
 								<LocationOnOutlined style={{ fontSize: 12, verticalAlign: 'middle' }} />
 								&nbsp;{projectDetails?.city} , {projectDetails?.state}
 							</Typography>
@@ -94,8 +90,7 @@ export const ProjectDetails: FC<Props> = () => {
 						'&::-webkit-scrollbar': {
 							display: 'none',
 						},
-					}}
-				>
+					}}>
 					{/* <Typography color={primary.main}>
 				<ArrowBackIosNewIcon
 							onClick={() => router.back()}
@@ -115,11 +110,11 @@ export const ProjectDetails: FC<Props> = () => {
 								},
 							}}
 							value={router.query.tab as string}
-							onChange={handleTabSelection}
-						>
+							onChange={handleTabSelection}>
 							{Object.keys(tabList).map((tab, index) => {
 								if (tab === 'bills') {
 									return (
+										enterpriseStatus &&
 										projectDetails?.generateBills && (
 											<Tab
 												sx={{
@@ -130,6 +125,21 @@ export const ProjectDetails: FC<Props> = () => {
 												}}
 												value='bills'
 												label='Bills'
+											/>
+										)
+									)
+								} else if (tab === 'work-report') {
+									return (
+										enterpriseStatus && (
+											<Tab
+												sx={{
+													fontSize: '18px',
+													textTransform: 'none',
+													fontFamily: 'Karla,sans-serif',
+													fontWeight: 700,
+												}}
+												value='work-report'
+												label='Work Report'
 											/>
 										)
 									)
@@ -154,8 +164,7 @@ export const ProjectDetails: FC<Props> = () => {
 							sx={{
 								width: '120%',
 								overflowX: 'scroll',
-							}}
-						>
+							}}>
 							<Tabs
 								TabIndicatorProps={{
 									style: {
@@ -163,11 +172,11 @@ export const ProjectDetails: FC<Props> = () => {
 									},
 								}}
 								value={router.query.tab as string}
-								onChange={handleTabSelection}
-							>
+								onChange={handleTabSelection}>
 								{Object.keys(tabList).map((tab, index) => {
 									if (tab === 'bills') {
 										return (
+											enterpriseStatus &&
 											projectDetails?.generateBills && (
 												<Tab
 													sx={{
@@ -176,6 +185,21 @@ export const ProjectDetails: FC<Props> = () => {
 													}}
 													value='bills'
 													label='Bills'
+												/>
+											)
+										)
+									} else if (tab === 'work-report') {
+										return (
+											enterpriseStatus && (
+												<Tab
+													sx={{
+														fontSize: '18px',
+														textTransform: 'none',
+														fontFamily: 'Karla,sans-serif',
+														fontWeight: 700,
+													}}
+													value='work-report'
+													label='Work Report'
 												/>
 											)
 										)
@@ -207,8 +231,7 @@ export const ProjectDetails: FC<Props> = () => {
 						minHeight: isMobile ? 'calc( 100vh - 230px )' : '',
 						overflowY: 'auto',
 						position: 'relative',
-					}}
-				>
+					}}>
 					<Dashboard />
 				</TabPanel>
 				<TabPanel
@@ -222,8 +245,7 @@ export const ProjectDetails: FC<Props> = () => {
 						overflowY: 'auto',
 						paddingBottom: 0,
 						position: 'relative',
-					}}
-				>
+					}}>
 					<WorkReport />
 				</TabPanel>
 				<TabPanel
@@ -237,8 +259,7 @@ export const ProjectDetails: FC<Props> = () => {
 						overflowY: 'auto',
 						paddingBottom: 0,
 						position: 'relative',
-					}}
-				>
+					}}>
 					<Bills />
 				</TabPanel>
 				<TabPanel
@@ -251,8 +272,7 @@ export const ProjectDetails: FC<Props> = () => {
 						minHeight: isMobile ? 'calc( 100vh - 230px )' : '',
 						overflowY: 'auto',
 						position: 'relative',
-					}}
-				>
+					}}>
 					<ProjectInfo />
 				</TabPanel>
 			</TabContext>

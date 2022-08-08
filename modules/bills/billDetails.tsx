@@ -80,8 +80,7 @@ export const BillDetails = () => {
 						p={isMobile ? 1 : 2}
 						direction={isMobile ? 'column' : 'row'}
 						alignItems='Stretch'
-						justifyContent='space-between'
-					>
+						justifyContent='space-between'>
 						<Stack spacing={2} direction={isMobile ? 'column' : 'row'}>
 							{/* {isProjectLoading ? (
 						<Stack flex={1} justifyContent='center'>
@@ -101,8 +100,7 @@ export const BillDetails = () => {
 										fontFamily={'Karla,sans-serif'}
 										fontWeight={500}
 										variant='caption'
-										color={primary.light}
-									>
+										color={primary.light}>
 										{projectDetails?.name}
 									</Typography>
 								</Stack>
@@ -224,8 +222,7 @@ export const BillDetails = () => {
 							direction={isMobile ? 'column' : 'row'}
 							justifyContent='flex-end'
 							spacing={1}
-							alignItems='stretch'
-						>
+							alignItems='stretch'>
 							{/* <form
 						onSubmit={async (e) => {
 							e.preventDefault()
@@ -275,8 +272,7 @@ export const BillDetails = () => {
 							<Stack
 								direction='row'
 								alignItems='center'
-								justifyContent={isMobile ? 'space-between' : undefined}
-							>
+								justifyContent={isMobile ? 'space-between' : undefined}>
 								<Typography variant='subtitle2'>
 									Rows per page: {billDetailsResponse?.bills?.length ?? 10}
 								</Typography>
@@ -291,8 +287,7 @@ export const BillDetails = () => {
 								component={Paper}
 								sx={{
 									height: isMobile ? 'calc(100vh - 120px)' : 'calc(100vh - 170px)',
-								}}
-							>
+								}}>
 								<Table stickyHeader>
 									<TableHead>
 										<TableRow>
@@ -323,23 +318,20 @@ export const BillDetails = () => {
 													'&:hover': {
 														backgroundColor: colors.AliceBlue,
 													},
-												}}
-											>
+												}}>
 												<TableCell
 													sx={{
 														position: 'sticky',
 														left: 0,
 														width: 80,
 														background: colors.FloralWhite,
-													}}
-												></TableCell>
+													}}></TableCell>
 												<TableCell
 													sx={{
 														position: 'sticky',
 														left: 80,
 														background: colors.FloralWhite,
-													}}
-												>
+													}}>
 													<Typography fontWeight={600} noWrap color={primary.properDark}>
 														{billSummaryResponse?.summary?.heroCount}
 													</Typography>
@@ -347,8 +339,7 @@ export const BillDetails = () => {
 														// color={primary.properDark}
 														variant='caption'
 														color={primary.properDark}
-														noWrap
-													>
+														noWrap>
 														Heroes
 													</Typography>
 												</TableCell>
@@ -413,8 +404,7 @@ export const BillDetails = () => {
 														'&:hover': {
 															backgroundColor: colors.AliceBlue,
 														},
-													}}
-												>
+													}}>
 													<TableCell
 														sx={{
 															position: 'sticky',
@@ -426,8 +416,7 @@ export const BillDetails = () => {
 															'&:hover': {
 																backgroundColor: colors.AliceBlue,
 															},
-														}}
-													>
+														}}>
 														<Avatar
 															sx={{ width: 48, height: 48 }}
 															src={
@@ -443,8 +432,7 @@ export const BillDetails = () => {
 															'&:hover': {
 																backgroundColor: colors.AliceBlue,
 															},
-														}}
-													>
+														}}>
 														<Typography noWrap color={primary.properDark}>
 															{worker?.name ?? 'NA'}
 														</Typography>
@@ -520,8 +508,7 @@ export const BillDetails = () => {
 							justifyContent={'space-between'}
 							sx={{
 								p: '16px 10px 10px 16px',
-							}}
-						>
+							}}>
 							<Stack direction={'row'}>
 								<IconButton color='primary' onClick={router.back}>
 									<ArrowBackIosNew sx={{ fontSize: '30px' }} />
@@ -565,14 +552,12 @@ export const BillDetails = () => {
 							height: '72px',
 							background: '#FFFCF1',
 							mt: '22px',
-						}}
-					>
+						}}>
 						<Stack
 							direction={'row'}
 							sx={{
 								p: '16px 16px',
-							}}
-						>
+							}}>
 							<Grid container>
 								<Grid item xs={4}>
 									<Stack direction={'column'}>
@@ -627,14 +612,12 @@ export const BillDetails = () => {
 						timeout={550}
 						sx={{
 							background: '#FFFCF1',
-						}}
-					>
+						}}>
 						<Stack
 							direction={'row'}
 							sx={{
 								p: '16px 16px',
-							}}
-						>
+							}}>
 							<Grid container>
 								<Grid item xs={4}>
 									<Stack direction={'column'} justifyContent={'flex-start'}>
@@ -677,8 +660,7 @@ export const BillDetails = () => {
 						sx={{
 							maxHeight: `calc(100vh - ${boxOpen ? '270px' : '210px'})`,
 							overflowY: 'scroll',
-						}}
-					>
+						}}>
 						{billDetailsResponse?.bills?.map(({ bill, worker }) => {
 							return (
 								<>
@@ -720,8 +702,7 @@ export const BillDetails = () => {
 												background: '#F9F9F9',
 												borderRadius: '8px',
 												p: '12px 18px 12px 12px',
-											}}
-										>
+											}}>
 											<Stack direction={'row'} justifyContent={'space-between'}>
 												<Stack
 													direction={'row'}
@@ -729,14 +710,12 @@ export const BillDetails = () => {
 													alignItems={'center'}
 													maxWidth={'200px'}
 													spacing={2}
-													justifyContent={'space-between'}
-												>
+													justifyContent={'space-between'}>
 													<Typography
 														color={primary.properDark}
 														variant='caption'
 														fontWeight={400}
-														noWrap
-													>
+														noWrap>
 														Base Wage
 													</Typography>
 													<Typography
@@ -744,8 +723,7 @@ export const BillDetails = () => {
 														fontWeight={400}
 														color='#000'
 														variant='caption'
-														noWrap
-													>
+														noWrap>
 														{bill?.baseWage ?? 'NA'}
 													</Typography>
 												</Stack>
@@ -768,14 +746,12 @@ export const BillDetails = () => {
 												maxWidth={'200px'}
 												alignItems={'center'}
 												spacing={2}
-												justifyContent={'space-between'}
-											>
+												justifyContent={'space-between'}>
 												<Typography
 													color={primary.properDark}
 													fontWeight={400}
 													variant='caption'
-													noWrap
-												>
+													noWrap>
 													OT Wage
 												</Typography>
 												<Typography
@@ -783,8 +759,7 @@ export const BillDetails = () => {
 													color='#000'
 													fontWeight={400}
 													variant='caption'
-													noWrap
-												>
+													noWrap>
 													{bill?.otWage ?? 'NA'}
 												</Typography>
 											</Stack>
@@ -794,14 +769,12 @@ export const BillDetails = () => {
 												maxWidth={'200px'}
 												alignItems={'center'}
 												spacing={2}
-												justifyContent={'space-between'}
-											>
+												justifyContent={'space-between'}>
 												<Typography
 													color={primary.properDark}
 													fontWeight={400}
 													variant='caption'
-													noWrap
-												>
+													noWrap>
 													Gross Wage
 												</Typography>
 												<Typography
@@ -809,8 +782,7 @@ export const BillDetails = () => {
 													color='#000'
 													fontWeight={400}
 													variant='caption'
-													noWrap
-												>
+													noWrap>
 													{bill?.grossWage ?? 'NA'}
 												</Typography>
 											</Stack>
@@ -820,14 +792,12 @@ export const BillDetails = () => {
 												maxWidth={'200px'}
 												alignItems={'center'}
 												spacing={2}
-												justifyContent={'space-between'}
-											>
+												justifyContent={'space-between'}>
 												<Typography
 													color={primary.properDark}
 													fontWeight={400}
 													variant='caption'
-													noWrap
-												>
+													noWrap>
 													PF
 												</Typography>
 												<Typography
@@ -835,8 +805,7 @@ export const BillDetails = () => {
 													color='#000'
 													fontWeight={400}
 													variant='caption'
-													noWrap
-												>
+													noWrap>
 													{bill?.pf ?? 'NA'}
 												</Typography>
 											</Stack>
@@ -846,14 +815,12 @@ export const BillDetails = () => {
 												maxWidth={'200px'}
 												alignItems={'center'}
 												spacing={2}
-												justifyContent={'space-between'}
-											>
+												justifyContent={'space-between'}>
 												<Typography
 													color={primary.properDark}
 													fontWeight={400}
 													variant='caption'
-													noWrap
-												>
+													noWrap>
 													ESI
 												</Typography>
 												<Typography
@@ -861,8 +828,7 @@ export const BillDetails = () => {
 													color='#000'
 													fontWeight={400}
 													variant='caption'
-													noWrap
-												>
+													noWrap>
 													{' '}
 													{bill?.esi ?? 'NA'}
 												</Typography>
@@ -872,14 +838,12 @@ export const BillDetails = () => {
 												width='50%'
 												maxWidth={'200px'}
 												alignItems={'center'}
-												justifyContent={'space-between'}
-											>
+												justifyContent={'space-between'}>
 												<Typography
 													color={primary.properDark}
 													fontWeight={400}
 													variant='caption'
-													noWrap
-												>
+													noWrap>
 													Net Wage
 												</Typography>
 												<Typography
@@ -887,8 +851,7 @@ export const BillDetails = () => {
 													color='#0FAF7F'
 													fontWeight={400}
 													variant='caption'
-													noWrap
-												>
+													noWrap>
 													{' '}
 													{bill?.netWage ?? 'NA'}
 												</Typography>

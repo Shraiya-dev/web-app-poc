@@ -9,6 +9,7 @@ export const useProjectDetails = () => {
 
 	const [selectedTab, setSelectedTab] = useState('bookings')
 	const [projectDetails, setProjectDetails] = useState<any>()
+	const [enterpriseStatus, setEnterpriseStatus] = useState<any>()
 	const [isLoading, setIsLoading] = useState(false)
 	const { showSnackbar } = useSnackbar()
 
@@ -35,6 +36,7 @@ export const useProjectDetails = () => {
 		try {
 			const { data } = await getProjectDetails(projectId)
 			setProjectDetails(data?.payload?.project)
+			setEnterpriseStatus(data?.payload?.organisation?.organisation?.isEnterprise ?? false)
 		} catch (error: any) {
 			showSnackbar(error?.response?.data?.developerInfo, 'error')
 		}
@@ -51,5 +53,6 @@ export const useProjectDetails = () => {
 		handleTabSelection: handleTabSelection,
 		projectDetails: projectDetails,
 		setProjectDetails: setProjectDetails,
+		enterpriseStatus: enterpriseStatus,
 	}
 }

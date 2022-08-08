@@ -43,24 +43,24 @@ const WorkerTracking = ({ handleRequiredTotal }: handleLength) => {
 	handleRequiredTotal(totalCount ?? 0)
 
 	const filterTags = [
-		{
-			label: `Applied(${
-				(bookingSummary?.stats?.jobCardCounts?.WORKER_APPLIED ?? 0) +
-				(bookingSummary?.stats?.jobCardCounts?.ACCEPTED ?? 0)
-			})`,
-			value: 'WORKER_APPLIED',
-		},
-		{
-			label: `Ready To Deploy(${bookingSummary?.stats?.jobCardCounts?.READY_TO_DEPLOY ?? 0})`,
-			value: 'READY_TO_DEPLOY',
-		},
-		{
-			label: `Deployed(${
-				(bookingSummary?.stats?.jobCardCounts?.DEPLOYMENT_COMPLETE ?? 0) +
-				(bookingSummary?.stats?.jobCardCounts?.COMPLETED ?? 0)
-			})`,
-			value: 'DEPLOYMENT_COMPLETE',
-		},
+		// {
+		// 	label: `Applied(${
+		// 		(bookingSummary?.stats?.jobCardCounts?.WORKER_APPLIED ?? 0) +
+		// 		(bookingSummary?.stats?.jobCardCounts?.ACCEPTED ?? 0)
+		// 	})`,
+		// 	value: 'WORKER_APPLIED',
+		// },
+		// {
+		// 	label: `Ready To Deploy(${bookingSummary?.stats?.jobCardCounts?.READY_TO_DEPLOY ?? 0})`,
+		// 	value: 'READY_TO_DEPLOY',
+		// },
+		// {
+		// 	label: `Deployed(${
+		// 		(bookingSummary?.stats?.jobCardCounts?.DEPLOYMENT_COMPLETE ?? 0) +
+		// 		(bookingSummary?.stats?.jobCardCounts?.COMPLETED ?? 0)
+		// 	})`,
+		// 	value: 'DEPLOYMENT_COMPLETE',
+		// },
 		{ label: `Supervisor`, value: 'SUPERVISOR' },
 		{ label: `Helper`, value: 'HELPER' },
 		{ label: `Technician`, value: 'TECHNICIAN' },
@@ -112,8 +112,7 @@ const WorkerTracking = ({ handleRequiredTotal }: handleLength) => {
 										fontFamily={'Saira,sans-serif'}
 										fontWeight={700}
 										variant='h4'
-										color={primary.yellow}
-									>
+										color={primary.yellow}>
 										You can see workers here when allocation starts
 									</Typography>
 								</Stack>

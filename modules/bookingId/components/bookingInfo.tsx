@@ -48,10 +48,9 @@ const BookingInfo = ({ ...props }: BookingInfo) => {
 		<>
 			<Stack
 				sx={{
-					maxHeight: 'calc(100vh - 300px)',
-					minHeight: 'calc(100vh - 300px)',
-				}}
-			>
+					maxHeight: isMobile ? 'calc(100vh - 300px)' : '',
+					minHeight: isMobile ? 'calc(100vh - 300px)' : '',
+				}}>
 				{loading ? (
 					<Stack p={5} alignItems='center'>
 						<CircularProgress size={50} />
@@ -72,8 +71,7 @@ const BookingInfo = ({ ...props }: BookingInfo) => {
 							<TextWrapper
 								id={'workerRequired'}
 								label={`Workers Required & Daily Wage`}
-								toolTip={'Daily wage per worker'}
-							>
+								toolTip={'Daily wage per worker'}>
 								{workerType.map((item, index) => {
 									return (
 										<Stack key={index} direction={'row'} pb={1}>
@@ -91,8 +89,7 @@ const BookingInfo = ({ ...props }: BookingInfo) => {
 											<Box
 												minWidth={20}
 												style={{ verticalAlign: 'middle' }}
-												mt={0.8}
-											>{`Rs. ${item?.wage}`}</Box>
+												mt={0.8}>{`Rs. ${item?.wage}`}</Box>
 										</Stack>
 									)
 								})}

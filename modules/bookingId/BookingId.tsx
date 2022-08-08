@@ -44,8 +44,7 @@ export const BookingId = () => {
 										fontWeight: 700,
 										color: theme.palette.secondary.main,
 										paddingRight: 8,
-									}}
-								>
+									}}>
 									<ArrowBackIosNewIcon
 										onClick={() => router.push(`/projects/${router.query.projectId}/bookings`)}
 										sx={{
@@ -67,8 +66,7 @@ export const BookingId = () => {
 									<Typography
 										variant='h5'
 										fontWeight={700}
-										sx={{ verticalAlign: 'middle', margin: 1 }}
-									>
+										sx={{ verticalAlign: 'middle', margin: 1 }}>
 										{length ?? 0} / {total}{' '}
 										{JobTypeLabel[bookingSummary?.booking?.jobType || 'GYPSUM']}
 									</Typography>
@@ -89,8 +87,7 @@ export const BookingId = () => {
 							{!isMobile && (
 								<Button
 									href={`/bookings/${router.query.projectId}/${router.query.bookingId}/checkout`}
-									sx={{ fontSize: '14px', fontWeight: 800, fontFamily: 'Karla,sans-serif' }}
-								>
+									sx={{ fontSize: '14px', fontWeight: 800, fontFamily: 'Karla,sans-serif' }}>
 									+ Get More Application
 								</Button>
 							)}
@@ -120,8 +117,7 @@ export const BookingId = () => {
 						<Button
 							href={`/bookings/${router.query.projectId}/${router.query.bookingId}/checkout`}
 							size='small'
-							sx={{ fontSize: '14px', fontWeight: 800, fontFamily: 'karla,sans-serif' }}
-						>
+							sx={{ fontSize: '14px', fontWeight: 800, fontFamily: 'karla,sans-serif' }}>
 							+ Get More Application
 						</Button>
 					</Box>
@@ -135,8 +131,7 @@ export const BookingId = () => {
 							},
 						}}
 						value={router.query.tab as string}
-						onChange={handleTabSelection}
-					>
+						onChange={handleTabSelection}>
 						<Tab
 							sx={{
 								fontSize: '18px',
@@ -187,8 +182,7 @@ export const BookingId = () => {
 
 						overflowY: 'auto',
 						position: 'relative',
-					}}
-				>
+					}}>
 					<WorkerTracking handleRequiredTotal={handleRequiredTotal} />
 					{/* <Dashboard /> */}
 				</TabPanel>
@@ -199,8 +193,7 @@ export const BookingId = () => {
 
 						overflowY: 'auto',
 						position: 'relative',
-					}}
-				>
+					}}>
 					{bookingSummary ? <BookingInfo bookingInfo={bookingSummary} loading={isLoading} /> : ''}
 				</TabPanel>
 			</TabContext>
