@@ -39,7 +39,7 @@ const ProjectInfo = () => {
 						<Typography fontWeight={700} fontSize={24} pb={2}>
 							Site
 						</Typography>
-						<Button variant='outlined'>Edit Project</Button>
+						{/* <Button variant='outlined'>Edit Project</Button> */}
 					</Stack>
 					<Stack spacing={5}>
 						<TextWrapper id={'siteAddress'} label='Site Address'>
@@ -61,8 +61,7 @@ const ProjectInfo = () => {
 												sx={{
 													position: 'relative',
 													marginRight: 1,
-												}}
-											>
+												}}>
 												<img
 													style={{
 														height: 84,
@@ -107,8 +106,7 @@ const ProjectInfo = () => {
 													sx={{
 														position: 'relative',
 														marginRight: 1,
-													}}
-												>
+													}}>
 													<img
 														style={{
 															height: 84,

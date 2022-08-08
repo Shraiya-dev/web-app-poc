@@ -121,22 +121,28 @@ export const OnboardingLayout = ({ children, helmet = true, ...props }: any) => 
 						Go Back
 					</Button>
 
-					<Stack className='center' spacing={5} mt={-20}>
-						<Stack>
-							<img src='/assets/icons/backgrounds/Helmet.svg' />
-						</Stack>
-						<Paper
-							component={Card}
-							elevation={4}
-							style={{
-								background: '#000',
-								padding: 24,
-								borderRadius: 8,
-								width: isMobile ? 372 : 392,
-								zIndex: 2,
-							}}>
-							{children}
-						</Paper>
+					<Stack className='center' spacing={5} mt={helmet ? -20 : 0}>
+						{helmet && (
+							<Stack>
+								<img src='/assets/icons/backgrounds/Helmet.svg' />
+							</Stack>
+						)}
+						{helmet && (
+							<Paper
+								component={Card}
+								elevation={4}
+								style={{
+									background: '#000',
+									padding: 24,
+									borderRadius: 8,
+									width: 'fit-content',
+									minWidth: isMobile ? 372 : 392,
+									zIndex: 2,
+								}}>
+								{children}
+							</Paper>
+						)}
+						{!helmet && <>{children}</>}
 					</Stack>
 				</Container>
 			</CustomizeDashboard>

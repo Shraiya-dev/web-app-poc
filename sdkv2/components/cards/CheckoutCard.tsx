@@ -130,7 +130,7 @@ export const CheckoutCard: FC = () => {
 					router.push(`/projects/${router.query.projectId}/bookings`)
 				}
 			} else {
-				router.push(`/dashboard/projects/${router.query.projectId}`)
+				router.push(`/dashboard/projects/${router.query.projectId}/bookings`)
 			}
 		} catch (error: any) {
 			showSnackbar(error?.response?.data?.developerInfo, 'error')
@@ -250,9 +250,8 @@ export const CheckoutCard: FC = () => {
 													Wage: &#8377; {`${wage ? wage[profile.wage] : 0} per day`}
 												</Typography>
 
-												{['RECEIVED', 'CONFIRMATION'].includes(
-													bookingData?.booking?.status
-												) && (
+												{bookingData?.booking?.peopleRequired[profile.job.toUpperCase()] ===
+													0 && (
 													<IconButton
 														sx={{ p: '0px', ml: '6px' }}
 														onClick={() => {

@@ -4,6 +4,7 @@ import {
 	Card,
 	Checkbox,
 	FormControlLabel,
+	InputAdornment,
 	ListSubheader,
 	Stack,
 	TextField,
@@ -30,7 +31,7 @@ export const CreateBookingCard: FC<Props> = () => {
 		<>
 			<Card elevation={16}>
 				<Stack p={4}>
-					<Stack spacing={2}>
+					<Stack>
 						<Typography variant='h3'>
 							First{' '}
 							<Typography variant='h3' color='primary.main' display='inline'>
@@ -38,7 +39,8 @@ export const CreateBookingCard: FC<Props> = () => {
 							</Typography>{' '}
 							profiles for FREE!
 						</Typography>
-						<Typography>Get started with your booking in easy steps</Typography>
+						<Typography mt={2}>Only Rs 50 per HERO Application</Typography>
+						<Typography variant='caption'>*after receiving 15 applications</Typography>
 					</Stack>
 					<form onSubmit={form.handleSubmit}>
 						<Stack spacing={2.5} my={2} alignItems='flex-start' pr={step === 0 ? 6 : 3}>
@@ -49,6 +51,8 @@ export const CreateBookingCard: FC<Props> = () => {
 											disableListWrap
 											ListboxComponent={ListboxComponent}
 											options={allCityList}
+											value={form.values.location as any}
+											isOptionEqualToValue={(opt, v) => v?.value === opt?.value}
 											onChange={(e, v) => {
 												form.setFieldValue('location', v?.value)
 											}}
@@ -81,7 +85,16 @@ export const CreateBookingCard: FC<Props> = () => {
 											options={JobType}
 										/>
 									</InputWrapper>
-									<InputWrapper fullWidth label='Work Duration'>
+									<InputWrapper
+										fullWidth
+										label={
+											<>
+												Work Duration
+												<Typography display='inline' color='grey.A400'>
+													*minimum 1 month
+												</Typography>
+											</>
+										}>
 										<Dropdown
 											fullWidth
 											{...formikProps('workDuration')}
@@ -126,7 +139,7 @@ export const CreateBookingCard: FC<Props> = () => {
 							{step === 1 && (
 								<>
 									<InputWrapper fullWidth label='Specify booking details'>
-										<Stack spacing={3} mt={2} pr={10}>
+										<Stack spacing={3} mt={2} pr={{ md: 5 }}>
 											<Stack
 												direction='row'
 												justifyContent='space-between'
@@ -135,7 +148,7 @@ export const CreateBookingCard: FC<Props> = () => {
 													sx={{ mt: 1 }}
 													control={
 														<Checkbox
-															value={form.values.isHelper}
+															checked={form.values.isHelper}
 															onChange={(e, v) => {
 																form.setFieldValue('helperWage', '')
 																form.setFieldValue('isHelper', v)
@@ -146,8 +159,16 @@ export const CreateBookingCard: FC<Props> = () => {
 												/>
 												<TextField
 													disabled={!form.values.isHelper}
-													sx={{ maxWidth: 150 }}
+													sx={{ maxWidth: 200 }}
 													type='number'
+													InputProps={{
+														startAdornment: (
+															<InputAdornment position='start'>&#8377;</InputAdornment>
+														),
+														endAdornment: (
+															<InputAdornment position='start'>/ day</InputAdornment>
+														),
+													}}
 													placeholder='Enter Wage'
 													{...formikProps('helperWage')}
 												/>
@@ -160,7 +181,7 @@ export const CreateBookingCard: FC<Props> = () => {
 													sx={{ mt: 1 }}
 													control={
 														<Checkbox
-															value={form.values.isTechnician}
+															checked={form.values.isTechnician}
 															onChange={(e, v) => {
 																form.setFieldValue('technicianWage', '')
 																form.setFieldValue('isTechnician', v)
@@ -172,10 +193,18 @@ export const CreateBookingCard: FC<Props> = () => {
 
 												<TextField
 													disabled={!form.values.isTechnician}
-													sx={{ maxWidth: 150 }}
+													sx={{ maxWidth: 200 }}
 													type='number'
 													placeholder='Enter Wage'
 													{...formikProps('technicianWage')}
+													InputProps={{
+														startAdornment: (
+															<InputAdornment position='start'>&#8377;</InputAdornment>
+														),
+														endAdornment: (
+															<InputAdornment position='start'>/ day</InputAdornment>
+														),
+													}}
 												/>
 											</Stack>
 											<Stack
@@ -186,7 +215,7 @@ export const CreateBookingCard: FC<Props> = () => {
 													sx={{ mt: 1 }}
 													control={
 														<Checkbox
-															value={form.values.isSupervisor}
+															checked={form.values.isSupervisor}
 															onChange={(e, v) => {
 																form.setFieldValue('supervisorWage', '')
 																form.setFieldValue('isSupervisor', v)
@@ -198,10 +227,18 @@ export const CreateBookingCard: FC<Props> = () => {
 
 												<TextField
 													disabled={!form.values.isSupervisor}
-													sx={{ maxWidth: 150 }}
+													sx={{ maxWidth: 200 }}
 													type='number'
 													placeholder='Enter Wage'
 													{...formikProps('supervisorWage')}
+													InputProps={{
+														startAdornment: (
+															<InputAdornment position='start'>&#8377;</InputAdornment>
+														),
+														endAdornment: (
+															<InputAdornment position='start'>/ day</InputAdornment>
+														),
+													}}
 												/>
 											</Stack>
 										</Stack>

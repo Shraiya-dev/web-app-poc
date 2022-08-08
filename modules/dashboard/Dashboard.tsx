@@ -52,8 +52,7 @@ export const Dashboard = () => {
 				direction={isMobile ? 'column' : 'row'}
 				justifyContent='space-between'
 				alignItems={isMobile ? 'stretch' : 'center'}
-				spacing={1}
-			>
+				spacing={1}>
 				<Stack direction='row' justifyContent='space-between'>
 					<Button
 						onClick={handelDrawerToggle}
@@ -70,8 +69,7 @@ export const Dashboard = () => {
 											<circle cx='8' cy='8' r='8' fill={theme.palette.error.main} />
 										</svg>
 									)
-								}
-							>
+								}>
 								<TuneIcon
 								//style={{ color: router.query.status || router.query.jobType ? primary.main : '' }}
 								/>
@@ -92,8 +90,7 @@ export const Dashboard = () => {
 								router.query.status || router.query.jobType || router.query.sortBy
 									? primary.main
 									: theme.palette.secondary.main,
-						}}
-					>
+						}}>
 						{`Filters & Sort`}
 					</Button>
 					{isMobile && (
@@ -108,8 +105,7 @@ export const Dashboard = () => {
 											projectId: router?.query?.projectId,
 											url: router.asPath,
 										})
-									}}
-								>
+									}}>
 									Book Workers
 								</Button>
 							</a>
@@ -130,8 +126,7 @@ export const Dashboard = () => {
 											projectId: router?.query?.projectId,
 											url: router.asPath,
 										})
-									}}
-								>
+									}}>
 									Book Workers
 								</Button>
 							</a>
@@ -161,7 +156,7 @@ export const Dashboard = () => {
 						<Grid container spacing={3}>
 							{bookings.bookings.map((bookingInfo, index) => {
 								return (
-									<Grid item xs={12} md={3} key={index}>
+									<Grid item xs={12} md={4} key={index}>
 										<BookingCard booking={bookingInfo} />
 									</Grid>
 								)
