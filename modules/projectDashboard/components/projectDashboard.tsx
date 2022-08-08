@@ -101,8 +101,7 @@ export const ProjectDashboard = () => {
 								fontWeight: 600,
 								fontFamily: 'Saira, sans-serif',
 								color: theme.palette.secondary.main,
-							}}
-						>
+							}}>
 							Dashboard
 						</Typography>
 						<Typography style={{ fontSize: 14, color: theme.palette.secondary.main }}>
@@ -119,8 +118,7 @@ export const ProjectDashboard = () => {
 							fontWeight: '700',
 							fontSize: 22,
 							color: theme.palette.secondary.main,
-						}}
-					>
+						}}>
 						Projects{' '}
 						<Button
 							startIcon={<AddCircleOutlineIcon style={{ verticalAlign: 'middle' }} />}
@@ -133,8 +131,7 @@ export const ProjectDashboard = () => {
 									url: router.asPath,
 								})
 								router.push('/projects/create')
-							}}
-						>
+							}}>
 							Add Project
 						</Button>
 					</Typography>
@@ -144,8 +141,7 @@ export const ProjectDashboard = () => {
 						maxHeight: isMobile ? 'calc(100vh - 280px)' : '',
 						minHeight: isMobile ? 'calc(100vh - 280px)' : '',
 						overflowY: isMobile ? 'scroll' : '',
-					}}
-				>
+					}}>
 					{loading ? (
 						<Stack p={5} alignItems='center' textAlign={'center'}>
 							<CircularProgress size={50} />
@@ -165,8 +161,7 @@ export const ProjectDashboard = () => {
 												})
 												router.push('/projects/create')
 											}}
-											style={{ cursor: 'pointer' }}
-										>
+											style={{ cursor: 'pointer' }}>
 											<Stack direction={'row'} justifyContent={'center'} pb={1}>
 												<AddCircleOutlineIcon
 													style={{
@@ -228,8 +223,7 @@ export const ProjectDashboard = () => {
 							boxShadow: 'none',
 							background: primary.darkGrey,
 						},
-					}}
-				>
+					}}>
 					<Box width={APP_DRAWER_WIDTH} m={2}>
 						<Stack direction={'row'} alignItems={'center'} mb={8} spacing={12}>
 							<Image alt='logo' src={logo} height={52} width={isMobile ? 100 : 162} />

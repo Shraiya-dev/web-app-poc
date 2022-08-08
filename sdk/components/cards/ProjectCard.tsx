@@ -106,8 +106,7 @@ export const ProjectCard = ({ ...props }) => {
 						projectId: project?.projectId,
 						url: router.asPath,
 					})
-				}}
-			>
+				}}>
 				<Typography
 					className='projectName'
 					color={'#000'}
@@ -115,8 +114,7 @@ export const ProjectCard = ({ ...props }) => {
 						fontFamily: 'Saira , sans-serif',
 						fontWeight: '900',
 						fontSize: '20px',
-					}}
-				>
+					}}>
 					{project?.name || ''}
 				</Typography>
 				<Typography className='location' color={'#333333'} sx={{ fontFamily: 'Karla , sans-darif' }}>
@@ -135,16 +133,14 @@ export const ProjectCard = ({ ...props }) => {
 								textAlign={'center'}
 								color={'#000'}
 								fontFamily={'Saira,sans-serif'}
-								fontWeight={600}
-							>
+								fontWeight={600}>
 								{project?.employee || 0}
 							</Typography>
 							<Typography
 								className='subInfo'
 								color={'#000'}
 								fontFamily={'Karla ,sans-serif'}
-								fontWeight={500}
-							>
+								fontWeight={500}>
 								Employees
 							</Typography>
 						</Stack>
@@ -157,16 +153,14 @@ export const ProjectCard = ({ ...props }) => {
 								textAlign={'center'}
 								color={'#000'}
 								fontFamily={'Saira,sans-serif'}
-								fontWeight={600}
-							>
+								fontWeight={600}>
 								{project?.bookingCount || 0}
 							</Typography>
 							<Typography
 								className='subInfo'
 								color={'#000'}
 								fontFamily={'Karla ,sans-serif'}
-								fontWeight={500}
-							>
+								fontWeight={500}>
 								Bookings
 							</Typography>
 						</Stack>
@@ -191,8 +185,7 @@ export const ProjectCard = ({ ...props }) => {
 					style={{
 						background: theme.palette.primary.light,
 						color: '#000',
-					}}
-				>
+					}}>
 					Book Workers
 				</Button>
 				{/* <Button fullWidth className='cta'>
