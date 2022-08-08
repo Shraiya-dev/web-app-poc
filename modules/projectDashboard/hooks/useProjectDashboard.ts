@@ -12,6 +12,7 @@ export const useProjectDashboard = () => {
 		bookingCount: number
 		city: string
 		state: string
+		isEnterprise: boolean
 	}
 
 	const [loading, setLoading] = useState(false)
@@ -40,6 +41,7 @@ export const useProjectDashboard = () => {
 					state: item?.project?.state,
 					employee: item?.stats?.activeEmployees,
 					bookingCount: item?.stats?.bookingCount,
+					isEnterprise: item?.customer?.isEnterprise,
 				}
 
 				return project
