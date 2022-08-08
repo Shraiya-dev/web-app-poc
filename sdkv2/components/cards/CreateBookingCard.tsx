@@ -118,8 +118,7 @@ export const CreateBookingCard: FC<Props> = () => {
 										}}
 										sx={{ width: '50%' }}
 										size='large'
-										variant='contained'
-									>
+										variant='contained'>
 										Next
 									</Button>
 								</>
@@ -131,14 +130,14 @@ export const CreateBookingCard: FC<Props> = () => {
 											<Stack
 												direction='row'
 												justifyContent='space-between'
-												alignItems='flex-start'
-											>
+												alignItems='flex-start'>
 												<FormControlLabel
 													sx={{ mt: 1 }}
 													control={
 														<Checkbox
 															value={form.values.isHelper}
 															onChange={(e, v) => {
+																form.setFieldValue('helperWage', '')
 																form.setFieldValue('isHelper', v)
 															}}
 														/>
@@ -156,14 +155,14 @@ export const CreateBookingCard: FC<Props> = () => {
 											<Stack
 												direction='row'
 												justifyContent='space-between'
-												alignItems='flex-start'
-											>
+												alignItems='flex-start'>
 												<FormControlLabel
 													sx={{ mt: 1 }}
 													control={
 														<Checkbox
 															value={form.values.isTechnician}
 															onChange={(e, v) => {
+																form.setFieldValue('technicianWage', '')
 																form.setFieldValue('isTechnician', v)
 															}}
 														/>
@@ -182,14 +181,14 @@ export const CreateBookingCard: FC<Props> = () => {
 											<Stack
 												direction='row'
 												justifyContent='space-between'
-												alignItems={'flex-start'}
-											>
+												alignItems={'flex-start'}>
 												<FormControlLabel
 													sx={{ mt: 1 }}
 													control={
 														<Checkbox
 															value={form.values.isSupervisor}
 															onChange={(e, v) => {
+																form.setFieldValue('supervisorWage', '')
 																form.setFieldValue('isSupervisor', v)
 															}}
 														/>
@@ -211,8 +210,15 @@ export const CreateBookingCard: FC<Props> = () => {
 										size='large'
 										variant='contained'
 										type='submit'
-										disabled={!form.dirty || !form.isValid}
-									>
+										disabled={
+											!form.dirty ||
+											!form.isValid ||
+											!(
+												form.values.isHelper ||
+												form.values.isSupervisor ||
+												form.values.isTechnician
+											)
+										}>
 										Book Workers Now
 									</Button>
 								</>
@@ -316,8 +322,7 @@ const ListboxComponent = React.forwardRef<HTMLDivElement, React.HTMLAttributes<H
 					innerElementType='ul'
 					itemSize={(index) => getChildSize(itemData[index])}
 					overscanCount={5}
-					itemCount={itemCount}
-				>
+					itemCount={itemCount}>
 					{renderRow}
 				</VariableSizeList>
 			</OuterElementContext.Provider>
