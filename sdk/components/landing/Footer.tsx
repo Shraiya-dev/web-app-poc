@@ -51,7 +51,7 @@ export const Footer = () => {
 											DataLayerPush({ event: 'book_hero_home_footer' })
 										}}
 										variant='contained'
-										sx={{ fontSize: '14px', ml: 2 }}>
+										sx={{ fontSize: '14px', p: '20px 66px', fontWeight: '900' }}>
 										Book Workers Now
 									</Button>
 								</Stack>
@@ -212,13 +212,19 @@ export const Footer = () => {
 										</a>
 									</IconButton>
 									<IconButton>
-										<TwitterIcon sx={{ color: '#fff' }} />
+										<a href='' target='blank'>
+											<TwitterIcon sx={{ color: '#fff' }} />
+										</a>
 									</IconButton>
 									<IconButton>
-										<LinkedInIcon sx={{ color: '#fff' }} />
+										<a href='' target='blank'>
+											<LinkedInIcon sx={{ color: '#fff' }} />
+										</a>
 									</IconButton>
 									<IconButton>
-										<FacebookIcon sx={{ color: '#fff' }} />
+										<a href='' target='blank'>
+											<FacebookIcon sx={{ color: '#fff' }} />
+										</a>
 									</IconButton>{' '}
 								</Stack>
 							</Stack>
@@ -252,7 +258,7 @@ export const Footer = () => {
 								DataLayerPush({ event: 'book_hero_home_footer' })
 							}}
 							variant='contained'
-							sx={{ fontSize: '14px' }}>
+							sx={{ fontSize: '14px', p: '10px 35px', fontWeight: '900' }}>
 							Book Workers Now
 						</Button>
 					</Stack>
@@ -311,13 +317,19 @@ export const Footer = () => {
 							</a>
 						</IconButton>
 						<IconButton>
-							<TwitterIcon sx={{ color: '#fff' }} />
+							<a href='' target='blank'>
+								<TwitterIcon sx={{ color: '#fff' }} />
+							</a>
 						</IconButton>
 						<IconButton>
-							<LinkedInIcon sx={{ color: '#fff' }} />
+							<a href='' target='blank'>
+								<LinkedInIcon sx={{ color: '#fff' }} />
+							</a>
 						</IconButton>
 						<IconButton>
-							<FacebookIcon sx={{ color: '#fff' }} />
+							<a href='' target='blank'>
+								<FacebookIcon sx={{ color: '#fff' }} />
+							</a>
 						</IconButton>{' '}
 					</Stack>
 					<Stack direction={'column'} spacing={2} mt={4}>

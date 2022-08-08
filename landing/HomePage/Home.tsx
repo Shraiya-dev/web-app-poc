@@ -23,6 +23,7 @@ import Image from 'next/image'
 import { useRouter } from 'next/router'
 import {
 	AppStoreImage,
+	ButtonClicked,
 	Carousel,
 	DataLayerPush,
 	externalLinks,
@@ -216,7 +217,13 @@ export const Home = () => {
 						<Typography variant='h4'>{homePage.howItWorksSection.subHeading}</Typography>
 					</Stack>
 					<Box mb={'66px'}>
-						<Button variant='contained' sx={homePage.howItWorksSection.buttonSx}>
+						<Button
+							variant='contained'
+							sx={homePage.howItWorksSection.buttonSx}
+							href='/login'
+							onClick={() => {
+								DataLayerPush({ event: 'book_hero_home_footer' })
+							}}>
 							{homePage.howItWorksSection.buttonText}
 						</Button>
 					</Box>
@@ -289,7 +296,12 @@ export const Home = () => {
 							<Stack direction={'column'} spacing={4}>
 								<Box>{homePage.whyYouShouldHire.left.heading}</Box>
 								<Box>
-									<Button sx={homePage.whyYouShouldHire.left.buttonSx}>
+									<Button
+										sx={homePage.whyYouShouldHire.left.buttonSx}
+										href='/login'
+										onClick={() => {
+											DataLayerPush({ event: 'book_hero_home_footer' })
+										}}>
 										{homePage.whyYouShouldHire.left.buttonText}
 									</Button>
 								</Box>
@@ -429,6 +441,10 @@ export const Home = () => {
 										sx={{
 											p: '20px 66px',
 											fontWeight: '900',
+										}}
+										href='/login'
+										onClick={() => {
+											DataLayerPush({ event: 'book_hero_home_footer' })
 										}}>
 										{homePage.HeroAdvantage.buttonText}
 									</Button>
@@ -506,7 +522,19 @@ export const Home = () => {
 									Download Now!
 								</Typography>
 								<Box mt={'20px'} sx={{ cursor: 'pointer' }}>
-									<img src='/assets/landingv2/heroSection/googlebutton.svg' alt='' />
+									<a
+										href={externalLinks.heroApp}
+										onClick={() => {
+											ButtonClicked({
+												page: document.title,
+												action: 'App store link',
+												url: router.asPath,
+											})
+										}}
+										target='_blank'
+										rel='noopener noreferrer'>
+										<img src='/assets/landingv2/heroSection/googlebutton.svg' alt='' />
+									</a>
 								</Box>
 							</Stack>
 						</Grid>
