@@ -140,6 +140,7 @@ export const BookingCard = ({ booking }: BookingCardProps) => {
 						<Typography
 							variant='h5'
 							fontWeight={700}
+							fontFamily={'Saira,sans-serif'}
 							sx={{ verticalAlign: 'middle', margin: 1, color: primary.properDark }}
 						>
 							{totalCount} {JobTypeLabel[booking?.booking?.jobType]}
@@ -149,6 +150,8 @@ export const BookingCard = ({ booking }: BookingCardProps) => {
 				</Stack>
 
 				<Typography
+					fontWeight={300}
+					fontFamily={'Karla,sans-serif'}
 					style={{
 						display: 'flex',
 						verticalAlign: 'middle',
@@ -195,7 +198,13 @@ export const BookingCard = ({ booking }: BookingCardProps) => {
 							</Typography>
 						</Stack>
 
-						<Typography mr={1} fontSize={16} fontWeight={700} color={primary.properDark}>
+						<Typography
+							fontFamily={'Saira,sans-serif'}
+							fontWeight={600}
+							mr={1}
+							fontSize={16}
+							color={primary.properDark}
+						>
 							{requiredHelper} / {helperCount}
 						</Typography>
 					</Stack>
@@ -208,7 +217,13 @@ export const BookingCard = ({ booking }: BookingCardProps) => {
 								Technician
 							</Typography>
 						</Stack>
-						<Typography mr={1} fontSize={16} fontWeight={700} color={primary.properDark}>
+						<Typography
+							fontFamily={'Saira,sans-serif'}
+							fontWeight={600}
+							mr={1}
+							fontSize={16}
+							color={primary.properDark}
+						>
 							{requiredTechnician} / {technicianCount}
 						</Typography>
 					</Stack>
@@ -222,7 +237,13 @@ export const BookingCard = ({ booking }: BookingCardProps) => {
 							</Typography>
 						</Stack>
 
-						<Typography mr={1} fontSize={16} fontWeight={700} color={primary.properDark}>
+						<Typography
+							mr={1}
+							fontSize={16}
+							fontFamily={'Saira,sans-serif'}
+							fontWeight={600}
+							color={primary.properDark}
+						>
 							{requiredSupervisor} / {supervisorCount}
 						</Typography>
 					</Stack>
@@ -340,6 +361,8 @@ export const BookingCard = ({ booking }: BookingCardProps) => {
 										padding: 1,
 										background: theme.palette.primary.light,
 										color: primary.properDark,
+										fontFamily: 'Saira,sans-serif',
+										fontWeight: 600,
 									}}
 								>
 									View Applications

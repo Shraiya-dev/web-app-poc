@@ -67,11 +67,11 @@ export const OTPVerification = ({ ...props }) => {
 
 					<Typography className='subInfo'>
 						Enter{' '}
-						<Box fontWeight='1000' fontStyle={'bolder'} display='inline' color={'black'}>
+						<Box fontWeight='1000' fontStyle={'bolder'} display='inline' color={'#fff'}>
 							OTP
 						</Box>{' '}
 						sent to your mobile number{' '}
-						<Box fontWeight='1000' display='inline' color={'black'}>
+						<Box fontWeight='1000' display='inline' color={'#fff'}>
 							{phoneNumber}
 						</Box>
 					</Typography>

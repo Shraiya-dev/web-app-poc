@@ -86,7 +86,7 @@ const EditCompanyInfo = ({ ...props }) => {
 								error={!!checkError('GSTIN', form)}
 								helperText={checkError('GSTIN', form)}
 								inputProps={{
-									style: { textTransform: 'uppercase' },
+									style: { textTransform: 'uppercase' , color:'#000' },
 								}}
 							/>
 						</InputWrapper>
@@ -153,7 +153,8 @@ const EditCompanyInfo = ({ ...props }) => {
 
 															top: -10,
 															right: -10,
-														})}>
+														})}
+													>
 														<Close />
 													</IconButton>
 
@@ -200,7 +201,7 @@ const EditCompanyInfo = ({ ...props }) => {
 							// 	color: primary.main,
 							// 	boxShadow: 'none',
 							// }}
-							>
+						>
 							Cancel
 						</Button>
 
@@ -226,7 +227,8 @@ const EditCompanyInfo = ({ ...props }) => {
 								!form.values.companyName ||
 								form.values.GSTINDocuments.length === 0
 							}
-							fullWidth>
+							fullWidth
+						>
 							Save
 						</LoadingButton>
 					</Stack>

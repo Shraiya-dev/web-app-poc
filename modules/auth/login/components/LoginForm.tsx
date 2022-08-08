@@ -98,7 +98,8 @@ export const LoginForm = ({ ...props }) => {
 							color: 'primary.main',
 							padding: 0,
 							fontSize: 14,
-						}}>
+						}}
+					>
 						{isRegister ? 'Login' : 'Register'}
 					</Button>
 				</Stack>

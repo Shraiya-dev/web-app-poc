@@ -94,10 +94,15 @@ export const BillDetails = () => {
 								</IconButton>
 								<DateStack date={billDetailsResponse?.displayDate} />
 								<Stack ml={2}>
-									<Typography variant='h5' fontWeight={700}>
+									<Typography fontFamily={'Saira,sans-serif'} fontWeight={700} variant='h5'>
 										Heroes Bills
 									</Typography>
-									<Typography variant='caption' color={primary.light}>
+									<Typography
+										fontFamily={'Karla,sans-serif'}
+										fontWeight={500}
+										variant='caption'
+										color={primary.light}
+									>
 										{projectDetails?.name}
 									</Typography>
 								</Stack>

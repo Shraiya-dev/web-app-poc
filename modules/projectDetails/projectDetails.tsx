@@ -16,6 +16,7 @@ import { WorkReport } from '../workReport'
 import { Bills } from '../bills'
 import { LocationOnOutlined } from '@mui/icons-material'
 import { FC } from 'react'
+import { BottomLayout } from 'sdk/layouts/BottomLayout'
 interface Props {}
 export const tabList: { [key in string]: string } = {
 	'work-report': 'Work Report',
@@ -32,25 +33,13 @@ export const ProjectDetails: FC<Props> = () => {
 		<>
 			<CustomTopBar>
 				<Stack flex={1} direction='row' alignItems='flex-start'>
-					<Stack direction='row' justifyContent={'flex-start'} flex={1}>
-						<Typography
-							style={{
-								fontSize: isMobile ? 18 : 26,
-								fontWeight: 700,
-								color: theme.palette.secondary.main,
+					<Stack direction='row' justifyContent={'flex-start'} flex={1} spacing={2}>
+						<Box
+							sx={{
+								position: 'relative',
+								top: 4,
 							}}
 						>
-							<ArrowBackIosNewIcon
-								onClick={() => router.push('/dashboard')}
-								sx={{
-									verticalAlign: 'middle',
-									color: '#fff',
-									fontSize: 24,
-									cursor: 'pointer',
-								}}
-							/>
-						</Typography>
-						<Stack>
 							<Typography
 								style={{
 									fontSize: isMobile ? 18 : 26,
@@ -58,10 +47,34 @@ export const ProjectDetails: FC<Props> = () => {
 									color: theme.palette.secondary.main,
 								}}
 							>
+								<ArrowBackIosNewIcon
+									onClick={() => router.push('/dashboard')}
+									sx={{
+										verticalAlign: 'middle',
+										color: '#fff',
+										fontSize: 24,
+										cursor: 'pointer',
+									}}
+								/>
+							</Typography>
+						</Box>
+						<Stack>
+							<Typography
+								style={{
+									fontSize: isMobile ? 18 : 26,
+									fontWeight: 700,
+									color: theme.palette.secondary.main,
+									fontFamily: 'Saira,sans-serif',
+								}}
+							>
 								{projectDetails?.name}
 							</Typography>
 							<Typography
-								sx={{ fontSize: 14, color: theme.palette.secondary.main }}
+								sx={{
+									fontSize: 14,
+									color: theme.palette.secondary.main,
+									fontFamily: 'Saira,sans-serif',
+								}}
 								textTransform='capitalize'
 							>
 								<LocationOnOutlined style={{ fontSize: 12, verticalAlign: 'middle' }} />
@@ -112,6 +125,8 @@ export const ProjectDetails: FC<Props> = () => {
 												sx={{
 													fontSize: '18px',
 													textTransform: 'none',
+													fontFamily: 'Karla,sans-serif',
+													fontWeight: 700,
 												}}
 												value='bills'
 												label='Bills'
@@ -125,6 +140,8 @@ export const ProjectDetails: FC<Props> = () => {
 										sx={{
 											fontSize: '18px',
 											textTransform: 'none',
+											fontFamily: 'Karla,sans-serif',
+											fontWeight: 700,
 										}}
 										value={tab}
 										label={tabList[tab]}
@@ -186,7 +203,8 @@ export const ProjectDetails: FC<Props> = () => {
 						padding: isMobile ? 1 : 3,
 					}}
 					style={{
-						height: 'calc( 100vh - 160px )',
+						maxHeight: isMobile ? 'calc( 100vh - 230px )' : '',
+						minHeight: isMobile ? 'calc( 100vh - 230px )' : '',
 						overflowY: 'auto',
 						position: 'relative',
 					}}
@@ -199,7 +217,8 @@ export const ProjectDetails: FC<Props> = () => {
 					}}
 					value='work-report'
 					style={{
-						height: `calc( 100vh - ${!isMobile ? '130px' : '190px'} )`,
+						maxHeight: isMobile ? 'calc( 100vh - 230px )' : '',
+						minHeight: isMobile ? 'calc( 100vh - 230px )' : '',
 						overflowY: 'auto',
 						paddingBottom: 0,
 						position: 'relative',
@@ -213,7 +232,8 @@ export const ProjectDetails: FC<Props> = () => {
 					}}
 					value='bills'
 					style={{
-						height: `calc( 100vh - ${!isMobile ? '130px' : '190px'} )`,
+						maxHeight: isMobile ? 'calc( 100vh - 230px )' : '',
+						minHeight: isMobile ? 'calc( 100vh - 230px )' : '',
 						overflowY: 'auto',
 						paddingBottom: 0,
 						position: 'relative',
@@ -227,7 +247,8 @@ export const ProjectDetails: FC<Props> = () => {
 						padding: isMobile ? 1 : 3,
 					}}
 					style={{
-						height: 'calc( 100vh - 160px )',
+						maxHeight: isMobile ? 'calc( 100vh - 230px )' : '',
+						minHeight: isMobile ? 'calc( 100vh - 230px )' : '',
 						overflowY: 'auto',
 						position: 'relative',
 					}}
@@ -235,6 +256,7 @@ export const ProjectDetails: FC<Props> = () => {
 					<ProjectInfo />
 				</TabPanel>
 			</TabContext>
+			{isMobile && <BottomLayout />}
 		</>
 	)
 }
