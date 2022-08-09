@@ -1,6 +1,6 @@
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline'
 import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline'
-import { Button, Card, CircularProgress, IconButton, Stack, TextField, Typography } from '@mui/material'
+import { Box, Button, Card, CircularProgress, IconButton, Stack, TextField, Typography } from '@mui/material'
 import { FC, useCallback, useMemo, useState } from 'react'
 // import BookingSuccess from 'modules/createBooking/components/bookingsuccess'
 import DriveFileRenameOutlineOutlinedIcon from '@mui/icons-material/DriveFileRenameOutlineOutlined'
@@ -10,7 +10,7 @@ import { useRouter } from 'next/router'
 import { useSnackbar } from 'sdk/providers'
 import { usePayment } from 'sdk/providers/PaymentProvider'
 import { AddEditWage } from '../dialog'
-import { useFormikProps } from 'sdk/hooks'
+import { useFormikProps, useMobile } from 'sdk/hooks'
 import { Add } from '@mui/icons-material'
 import { LoadingButton } from '@mui/lab'
 import { DataLayerPush, sendAnalytics } from 'sdk/analytics'
@@ -83,9 +83,10 @@ export const CheckoutCard: FC = () => {
 	const router = useRouter()
 	const { initiatePayment } = usePayment()
 	const { showSnackbar } = useSnackbar()
-	const [loading, setLoading] = useState(false)
+
+	const isMobile = useMobile()
+
 	const handelPayment = useCallback(async () => {
-		setLoading(true)
 		const payload = {
 			source: {
 				id: router.query.bookingId,
@@ -126,8 +127,6 @@ export const CheckoutCard: FC = () => {
 			const { data } = await postEasyBookingOrder(payload)
 			if (data?.payload?.response?.state === 'CONFIRMED') {
 				if (data?.payload?.response?.payment) {
-					setLoading(false)
-
 					await initiatePayment(
 						data?.payload?.response?.payment,
 						data?.payload?.response?.payment?.totalPaymentAmount,
@@ -143,6 +142,7 @@ export const CheckoutCard: FC = () => {
 							router.push(`/bookings/${router.query.projectId}/${router.query.bookingId}/track-workers`)
 						}
 					)
+					router.push(`/projects/${router.query.projectId}/bookings`)
 				}
 			} else {
 				DataLayerPush({ event: 'booking_done' })
@@ -154,11 +154,11 @@ export const CheckoutCard: FC = () => {
 					},
 				})
 				router.push(`/bookings/${router.query.projectId}/${router.query.bookingId}/track-workers`)
+				router.push(`/dashboard/projects/${router.query.projectId}`)
 			}
 		} catch (error: any) {
 			showSnackbar(error?.response?.data?.developerInfo, 'error')
 		}
-		setLoading(false)
 	}, [
 		bill.amountPayable,
 		bookingData?.booking?.jobType,
@@ -220,19 +220,29 @@ export const CheckoutCard: FC = () => {
 					}}
 				/>
 			)}
-			<Stack rowGap={4}>
+			<Stack
+				rowGap={4}
+				style={{
+					width: !isMobile ? '766px' : '100%',
+					paddingLeft: !isMobile ? '' : '16px',
+					paddingRight: !isMobile ? '' : '16px',
+				}}>
 				<Stack>
-					<Typography fontSize='32px' fontWeight={600}>
+					<Typography fontSize={!isMobile ? '32px' : '24px'} fontWeight={600}>
 						One platform to care of all your
 						<br />
-						<Typography display='inline' fontSize='32px' fontWeight={600} color='primary.main'>
+						<Typography
+							display='inline'
+							fontSize={!isMobile ? '32px' : '24px'}
+							fontWeight={600}
+							color='primary.main'>
 							{' '}
 							Hiring needs!
 						</Typography>
 					</Typography>
 				</Stack>
 				<Card sx={{ borderRadius: '15px' }}>
-					<Stack p={3} minWidth='766px'>
+					<Stack p={3} minWidth={!isMobile ? '766px' : '100%'}>
 						<Stack spacing={'4px'}>
 							{discountEligible && (
 								<Typography variant='h3' fontWeight={600}>
@@ -274,27 +284,25 @@ export const CheckoutCard: FC = () => {
 													Wage: &#8377; {`${wage ? wage[profile.wage] : 0} per day`}
 												</Typography>
 
-												{bookingData?.booking?.peopleRequired[profile?.job?.toUpperCase()] ===
-													0 &&
-													bookingData?.booking?.rateCard[profile?.job?.toUpperCase()] &&
-													bookingData?.booking?.rateCard[profile?.job?.toUpperCase()] !==
-														0 && (
-														<IconButton
-															sx={{ p: '0px', ml: '6px' }}
-															onClick={() => {
-																setAddEditWageDialogProps({
-																	fieldName: profile.wage,
-																	initialValue: wage[profile.wage],
-																	open: true,
-																})
-															}}>
-															{updating[profile.wage] ? (
-																<CircularProgress size={24} color='primary' />
-															) : (
-																<DriveFileRenameOutlineOutlinedIcon color='primary' />
-															)}
-														</IconButton>
-													)}
+												{['RECEIVED', 'CONFIRMATION'].includes(
+													bookingData?.booking?.status
+												) && (
+													<IconButton
+														sx={{ p: '0px', ml: '6px' }}
+														onClick={() => {
+															setAddEditWageDialogProps({
+																fieldName: profile.wage,
+																initialValue: wage[profile.wage],
+																open: true,
+															})
+														}}>
+														{updating[profile.wage] ? (
+															<CircularProgress size={24} color='primary' />
+														) : (
+															<DriveFileRenameOutlineOutlinedIcon color='primary' />
+														)}
+													</IconButton>
+												)}
 											</Stack>
 										</Stack>
 										{!(
@@ -340,15 +348,9 @@ export const CheckoutCard: FC = () => {
 													value={form.values[profile?.name]}
 													onChange={(e) => {
 														if (e.target.value === '') {
-															form.setFieldValue(
-																profile?.name,
-																e.target.value.replace(/[e\+\-\.]/gi, '')
-															)
+															form.setFieldValue(profile?.name, e.target.value)
 														} else if (Number(e.target.value) > 0) {
-															form.setFieldValue(
-																profile?.name,
-																Number(e.target.value.replace(/[e\+\-\.]/gi, ''))
-															)
+															form.setFieldValue(profile?.name, Number(e.target.value))
 														}
 													}}
 													name={profile?.name}
@@ -369,7 +371,7 @@ export const CheckoutCard: FC = () => {
 							})}
 						</Stack>
 						<Stack spacing={2} borderBottom='1px solid' py='24px'>
-							<Typography variant='body1' fontWeight={500}>
+							<Typography variant={!isMobile ? 'h4' : 'h6'} fontWeight={500}>
 								Billing Details
 							</Typography>
 							{billData?.map((i: any) => {
@@ -377,26 +379,29 @@ export const CheckoutCard: FC = () => {
 									if (discountEligible) {
 										return (
 											<Stack key={i.value} direction='row' justifyContent='space-between'>
-												<Typography color='success.dark' variant='h4' fontWeight={400}>
+												<Typography
+													color='success.dark'
+													variant={!isMobile ? 'h4' : 'body2'}
+													fontWeight={400}>
 													{i.label}
 												</Typography>
-												<Typography color='success.dark' variant='h4' fontWeight={400}>
+												<Typography
+													color='success.dark'
+													variant={!isMobile ? 'h4' : 'body2'}
+													fontWeight={400}>
 													-&#8377; {bill[i.value]}
 												</Typography>
 											</Stack>
 										)
 									}
 								} else {
-									if (i.value === 'beforeTax' && !discountEligible) {
-										return null
-									}
 									return (
 										<Stack key={i.value} direction='row' justifyContent='space-between'>
-											<Typography variant='h4' fontWeight={400}>
+											<Typography variant={!isMobile ? 'h4' : 'body2'} fontWeight={400}>
 												{i.label}
 											</Typography>
 
-											<Typography variant='h4' fontWeight={400}>
+											<Typography variant={!isMobile ? 'h4' : 'body2'} fontWeight={400}>
 												&#8377; {bill[i.value]}
 											</Typography>
 										</Stack>
@@ -408,11 +413,10 @@ export const CheckoutCard: FC = () => {
 							<Typography variant='h1' sx={{ color: 'primary.main' }}>
 								&#8377; {bill.amountPayable}
 							</Typography>
-							<LoadingButton
+							<Button
 								color='info'
 								disabled={bill.quantity <= 0}
 								onClick={handelPayment}
-								loading={loading}
 								sx={{
 									backgroundColor: '#ffffff !important',
 									color: 'common.black',
@@ -422,33 +426,38 @@ export const CheckoutCard: FC = () => {
 								}}
 								endIcon={<img src='/assets/icons/forward_round.svg' />}>
 								{bill.amountPayable !== 0 && 'Pay and'} Book Now
-							</LoadingButton>
+							</Button>
 						</Stack>
 					</Stack>
 				</Card>
 				<Stack
 					borderRadius='15px'
 					sx={{ backgroundColor: 'info.main' }}
-					direction='row'
-					alignItems='center'
+					direction={!isMobile ? 'row' : 'column'}
+					alignItems={!isMobile ? 'center' : 'flex-start'}
 					justifyContent='space-between'
-					p='30px 24px'>
+					p='30px 24px'
+					spacing={!isMobile ? '' : 4}>
 					<Typography variant='h6' color='#000'>
 						<Typography display='inline' variant='h6' fontWeight='bolder' color='#000'>
 							Have a question?
 						</Typography>{' '}
 						Here to help.
 					</Typography>
-					<Stack direction='row' columnGap={3}>
+					<Stack direction={!isMobile ? 'row' : 'column'} columnGap={3} spacing={!isMobile ? '' : 2}>
 						<Stack direction='row' alignItems='center'>
-							<img src='/assets/icons/mail.svg' />
-							<Typography component='a' href='mailto:marketing@projecthero.in' ml={1} color='#000'>
+							<Box width={'30px'} height={'30px'}>
+								<img height={'100%'} width={'100%'} src='/assets/icons/mail.svg' />
+							</Box>
+							<Typography ml={1} color='#000'>
 								marketing@projecthero.in
 							</Typography>
 						</Stack>
 						<Stack direction='row' alignItems='center'>
-							<img src='/assets/icons/phone_small.svg' />
-							<Typography component='a' href='tel:+91 9151003513' ml={1} color='#000'>
+							<Box width={'30px'} height={'30px'}>
+								<img height={'100%'} width={'100%'} src='/assets/icons/phone_small.svg' />
+							</Box>
+							<Typography ml={1} color='#000'>
 								+91-9151003513
 							</Typography>
 						</Stack>

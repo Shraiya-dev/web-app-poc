@@ -1,9 +1,7 @@
-import { Box, Button, Card, Container, Paper, Stack } from '@mui/material'
+import { Box, Card, Paper, Stack, Typography } from '@mui/material'
 import { styled } from '@mui/system'
 import { useRouter } from 'next/router'
-import { useState } from 'react'
-import { LogoutAndRedirect } from 'sdk/utils/logoutHelper'
-import { ConfirmationDialog, Navbar } from '../components'
+import { Navbar } from '../components'
 import { useMobile } from '../hooks'
 
 const intro = [
@@ -65,13 +63,8 @@ const CustomizeDashboard = styled(Box)(({ theme }) => ({
 	'.introBox': {
 		minWidth: '80%',
 	},
-	backgroundImage: 'url(/assets/icons/backgrounds/orange-bubble.svg), url(/assets/icons/backgrounds/grey-bubble.svg)',
-	backgroundPosition: 'left bottom, right top',
-	backgroundRepeat: ' no-repeat, no-repeat',
 	//mobile view styles
 	[theme.breakpoints.down('md')]: {
-		backgroundSize: '170px,150px',
-
 		flexDirection: 'column',
 		'.instruction': {
 			display: 'none',
@@ -103,63 +96,58 @@ const CustomizeDashboard = styled(Box)(({ theme }) => ({
 
 export const OnboardingLayout = ({ children, helmet = true, ...props }: any) => {
 	const isMobile = useMobile()
-	const [dialogProps, setDialogProps] = useState(false)
 	const router = useRouter()
 	return (
 		<>
 			<Navbar />
-			<ConfirmationDialog
-				title={'Leave without creating account?'}
-				caption={'You’ll not be able to book workers'}
-				open={dialogProps}
-				cancel={() => {
-					setDialogProps((p) => !p)
-				}}
-				confirm={() => {
-					LogoutAndRedirect()
-				}}
-			/>
 			<CustomizeDashboard>
-				{/* <Stack position={'absolute'} top={0} right={0}>
+				{helmet && (
+					<Stack className='helmet'>
+						<img src='/assets/icons/backgrounds/Helmet.svg' />
+					</Stack>
+				)}
+				<Stack position={'absolute'} top={0} right={0}>
 					<img src='/assets/icons/backgrounds/grey-bubble.svg' />
 				</Stack>
 				<Stack position={'absolute'} bottom={0} left={0}>
 					<img src='/assets/icons/backgrounds/orange-bubble.svg' />
-				</Stack> */}
-				<Container sx={{ display: 'flex', flex: 1, flexDirection: 'column', p: 2 }}>
-					<Button
-						onClick={!helmet ? () => router.back() : () => setDialogProps(true)}
-						sx={{ alignSelf: 'flex-start' }}
-						variant='text'
-						color='info'
-						startIcon={<img src={'/assets/icons/arrow_back.svg'} alt='back' />}>
-						Go Back
-					</Button>
-
-					<Stack className='center' spacing={5} mt={helmet ? -20 : 0}>
-						{helmet && (
-							<Stack>
-								<img src='/assets/icons/backgrounds/Helmet.svg' />
-							</Stack>
-						)}
-						{helmet && (
-							<Paper
-								component={Card}
-								elevation={4}
-								style={{
-									background: '#000',
-									padding: 24,
-									borderRadius: 8,
-									width: 'fit-content',
-									minWidth: isMobile ? 372 : 392,
-									zIndex: 2,
-								}}>
-								{children}
-							</Paper>
-						)}
-						{!helmet && <>{children}</>}
+				</Stack>
+				<Stack
+					onClick={() => {
+						router.back()
+					}}
+					direction='row'
+					sx={{
+						position: 'absolute',
+						top: '38px',
+						left: !isMobile ? '102px' : '20px',
+						cursor: 'pointer',
+						minWidth: '100%',
+					}}>
+					<img src={'/assets/icons/arrow_back.svg'} alt='back' />
+					<Typography ml={2}>Go Back</Typography>
+				</Stack>
+				{helmet && (
+					<Stack className='center'>
+						<Paper
+							component={Card}
+							elevation={4}
+							style={{
+								background: '#000',
+								padding: 24,
+								borderRadius: 8,
+								width: isMobile ? 372 : 392,
+								zIndex: 2,
+							}}>
+							{children}
+						</Paper>
 					</Stack>
-				</Container>
+				)}
+				{!helmet && (
+					<Stack mt='90px' mb='20px' className='center'>
+						{children}
+					</Stack>
+				)}
 			</CustomizeDashboard>
 		</>
 	)
