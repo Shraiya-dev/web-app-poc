@@ -131,6 +131,7 @@ export const CheckoutCard: FC = () => {
 						data?.payload?.response?.payment,
 						data?.payload?.response?.payment?.totalPaymentAmount,
 						() => {
+							debugger
 							DataLayerPush({ event: 'booking_done' })
 							sendAnalytics({
 								name: 'CreateEasyBookWorker',
@@ -142,7 +143,6 @@ export const CheckoutCard: FC = () => {
 							router.push(`/bookings/${router.query.projectId}/${router.query.bookingId}/track-workers`)
 						}
 					)
-					router.push(`/projects/${router.query.projectId}/bookings`)
 				}
 			} else {
 				DataLayerPush({ event: 'booking_done' })
@@ -154,7 +154,6 @@ export const CheckoutCard: FC = () => {
 					},
 				})
 				router.push(`/bookings/${router.query.projectId}/${router.query.bookingId}/track-workers`)
-				router.push(`/dashboard/projects/${router.query.projectId}`)
 			}
 		} catch (error: any) {
 			showSnackbar(error?.response?.data?.developerInfo, 'error')

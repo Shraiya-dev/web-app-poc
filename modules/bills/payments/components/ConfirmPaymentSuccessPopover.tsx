@@ -137,8 +137,8 @@ export const ConfirmPaymentSuccessPopover = ({
 							page: document.title,
 							url: router.asPath,
 						})
-						onClose()
 						callback()
+						onClose()
 					}}>
 					Continue
 				</Button>
