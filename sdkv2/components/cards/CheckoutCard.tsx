@@ -224,8 +224,6 @@ export const CheckoutCard: FC = () => {
 				rowGap={4}
 				style={{
 					width: !isMobile ? '766px' : '100%',
-					paddingLeft: !isMobile ? '' : '16px',
-					paddingRight: !isMobile ? '' : '16px',
 				}}>
 				<Stack>
 					<Typography fontSize={!isMobile ? '32px' : '24px'} fontWeight={600}>
