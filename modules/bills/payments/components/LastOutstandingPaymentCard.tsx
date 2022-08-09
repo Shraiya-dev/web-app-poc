@@ -3,7 +3,7 @@ import { alpha, Button, Paper, Skeleton, Stack, Typography, useTheme } from '@mu
 import { styled } from '@mui/system'
 import { useRouter } from 'next/router'
 import React, { useCallback, useEffect, useMemo, useState } from 'react'
-import { indianCurrencyFormat } from '../../../../sdk'
+import { indianCurrencyFormat, useMobile } from '../../../../sdk'
 
 import { useGetPaymentsHistoryListQuery } from '../queries/hooks'
 
@@ -50,6 +50,7 @@ const CustomPaper = styled(Paper)(({ theme }) => ({
 export const LastOutstandingPaymentCard = () => {
 	const router = useRouter()
 	const theme = useTheme()
+	const isMobile = useMobile()
 	const projectId = router.query.projectId as string
 	const lastOutStandingPaymentData = useGetPaymentsHistoryListQuery(projectId)
 	return (
@@ -63,10 +64,25 @@ export const LastOutstandingPaymentCard = () => {
 					</Stack>
 				</Skeleton>
 			) : (
-				<CustomPaper elevation={1} sx={{ maxWidth: 400, maxHeight: '144px' }}>
+				<CustomPaper
+					elevation={isMobile ? 5 : 1}
+					sx={{ minWidth: 300, maxWidth: 400, maxHeight: '144px', background: '#fff' }}>
 					<Stack>
-						<Stack className='cardHeader' direction='row' alignItems='center'>
-							<Typography variant='subtitle2'>Last Payment</Typography>
+						<Stack
+							className='cardHeader'
+							direction='row'
+							alignItems='center'
+							// style={{
+							// 	background: theme.palette.background.paper,
+							// }}
+						>
+							<Typography
+								fontFamily={'Saira,sans-serif'}
+								fontWeight={700}
+								variant='subtitle1'
+								sx={{ color: '#000' }}>
+								Last Payment
+							</Typography>
 						</Stack>
 						<Stack direction='row' alignItems='center'>
 							{lastOutStandingPaymentData.data.response.length > 0 && (
@@ -81,7 +97,11 @@ export const LastOutstandingPaymentCard = () => {
 									}}
 								/>
 							)}
-							<Typography variant='h3' sx={{ fontSize: '2.25rem', color: theme.palette.base.variant50 }}>
+							<Typography
+								fontFamily={'Saira,sans-serif'}
+								fontWeight={700}
+								variant='h2'
+								sx={{ fontSize: '2.25rem', color: theme.palette.base.variant50 }}>
 								{lastOutStandingPaymentData.data.response.length > 0
 									? indianCurrencyFormat(
 											lastOutStandingPaymentData.data.response[0].totalPaymentAmount
@@ -91,6 +111,8 @@ export const LastOutstandingPaymentCard = () => {
 						</Stack>
 						{lastOutStandingPaymentData.data.response.length > 0 && (
 							<Typography
+								fontFamily={'Karla,sans-serif'}
+								fontWeight={500}
 								variant='caption'
 								sx={{
 									color: theme.palette.base.variant50,
@@ -101,6 +123,8 @@ export const LastOutstandingPaymentCard = () => {
 						)}
 						{lastOutStandingPaymentData.data.response.length > 0 && (
 							<Typography
+								fontFamily={'Karla,sans-serif'}
+								fontWeight={500}
 								variant='caption'
 								sx={{
 									color: theme.palette.base.variant50,

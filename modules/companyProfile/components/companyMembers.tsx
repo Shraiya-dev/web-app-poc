@@ -102,9 +102,12 @@ const CompanyMembers = () => {
 									align={column.align}
 									style={{
 										minWidth: column.minWidth,
-										backgroundColor: primary.light,
+										// backgroundColor: primary.light,
+										background: '#fffCF1',
+
 										fontWeight: 900,
-									}}>
+									}}
+								>
 									{column.label}
 								</TableCell>
 							))}

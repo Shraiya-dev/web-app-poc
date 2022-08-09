@@ -86,7 +86,7 @@ const EditCompanyInfo = ({ ...props }) => {
 								error={!!checkError('GSTIN', form)}
 								helperText={checkError('GSTIN', form)}
 								inputProps={{
-									style: { textTransform: 'uppercase' },
+									style: { textTransform: 'uppercase' , color:'#000' },
 								}}
 							/>
 						</InputWrapper>
@@ -153,7 +153,8 @@ const EditCompanyInfo = ({ ...props }) => {
 
 															top: -10,
 															right: -10,
-														})}>
+														})}
+													>
 														<Close />
 													</IconButton>
 
@@ -185,6 +186,7 @@ const EditCompanyInfo = ({ ...props }) => {
 					<Stack direction='row' style={{ fontSize: '18px', paddingTop: 32 }} spacing={2}>
 						<Button
 							fullWidth
+							variant='outlined'
 							onClick={() => {
 								setIsCmpDetailsEditable((state: any) => !state)
 								ButtonClicked({
@@ -193,12 +195,13 @@ const EditCompanyInfo = ({ ...props }) => {
 									url: router.asPath,
 								})
 							}}
-							style={{
-								border: `1px solid ${primary.main}`,
-								background: primary.light,
-								color: primary.main,
-								boxShadow: 'none',
-							}}>
+							// style={{
+							// 	border: `1px solid ${primary.main}`,
+							// 	background: primary.light,
+							// 	color: primary.main,
+							// 	boxShadow: 'none',
+							// }}
+						>
 							Cancel
 						</Button>
 
@@ -224,7 +227,8 @@ const EditCompanyInfo = ({ ...props }) => {
 								!form.values.companyName ||
 								form.values.GSTINDocuments.length === 0
 							}
-							fullWidth>
+							fullWidth
+						>
 							Save
 						</LoadingButton>
 					</Stack>

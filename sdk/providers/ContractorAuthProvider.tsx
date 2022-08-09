@@ -1,7 +1,10 @@
+import { KeyboardReturn } from '@mui/icons-material'
+import { Backdrop, CircularProgress } from '@mui/material'
+import axios from 'axios'
 import { useRouter } from 'next/router'
-import { createContext, FC, useCallback, useContext, useEffect, useMemo, useReducer } from 'react'
+import { createContext, FC, useCallback, useContext, useEffect, useMemo, useReducer, useState } from 'react'
 import { Identify } from '../analytics/analyticsWrapper'
-import { createCookieInHour, getCookie } from '../analytics/helper'
+import { createCookieInHour, deleteCookie, getCookie } from '../analytics/helper'
 import {
 	emailVerification,
 	getCustomerDetails,
@@ -82,16 +85,20 @@ const ContractorAuthProvider: FC<ContractorAuthProviderProps> = ({ children, aut
 	const [state, dispatch] = useReducer(simpleReducer, authState ?? initialAuthState)
 	const router = useRouter()
 	const { showSnackbar } = useSnackbar()
-	const requestOtp = useCallback(async (phoneNumber: string) => {
-		dispatch({
-			phoneNumber: phoneNumber,
-		})
-		try {
-			return await sendOtpService(phoneNumber, USER_TYPE.CONTRACTOR)
-		} catch (error: any) {
-			showSnackbar(error.response.data.developerInfo, 'error')
-		}
-	}, [])
+	const [backdropProps, setBackdropProps] = useState({ open: false })
+	const requestOtp = useCallback(
+		async (phoneNumber: string) => {
+			dispatch({
+				phoneNumber: phoneNumber,
+			})
+			try {
+				return await sendOtpService(phoneNumber, USER_TYPE.CONTRACTOR)
+			} catch (error: any) {
+				showSnackbar(error.response.data.developerInfo, 'error')
+			}
+		},
+		[showSnackbar]
+	)
 	const getContactorUserInfo = useCallback(async () => {
 		try {
 			const { data } = await getCustomerDetails()
@@ -118,6 +125,7 @@ const ContractorAuthProvider: FC<ContractorAuthProviderProps> = ({ children, aut
 					companyName: data?.payload?.companyName ?? '',
 					onboardingStatus: data.payload?.onboardingStatus ?? ONBOARDING_STATUS.PROFILE_CREATION_PENDING,
 					GSTIN: data?.payload?.GSTIN ?? '',
+					hasProjects: data?.payload?.hasProjects ?? false,
 					customerStatus: customerStatus ?? CUSTOMER_STATUS?.REGISTERED,
 					designation: designation ?? '',
 				},
@@ -138,6 +146,7 @@ const ContractorAuthProvider: FC<ContractorAuthProviderProps> = ({ children, aut
 				organisationId: data?.payload?.linkedOrganisation?.organisationId ?? '',
 				organisationRole: data?.payload?.linkedOrganisation?.role ?? '',
 				designation: data?.payload?.designation ?? '',
+
 				customerStatus: data?.payload?.customerStatus ?? CUSTOMER_STATUS?.REGISTERED,
 				isOrganisationMembershipDeleted: data?.payload?.linkedOrganisation?.isDeleted ? 'Yes' : '',
 				onboardingStatus: data?.payload?.onboardingStatus ?? ONBOARDING_STATUS.PROFILE_CREATION_PENDING,
@@ -218,15 +227,18 @@ const ContractorAuthProvider: FC<ContractorAuthProviderProps> = ({ children, aut
 		return reSendEmailOtpService(payload)
 	}, [])
 
-	const verifyEmailOtp = useCallback(async (payload: emailOtpPayload) => {
-		try {
-			const { data } = await emailVerification(payload)
-			//getContactorUserInfo()
-			return data
-		} catch (error: any) {
-			showSnackbar(error?.response?.data?.developerInfo, 'error')
-		}
-	}, [])
+	const verifyEmailOtp = useCallback(
+		async (payload: emailOtpPayload) => {
+			try {
+				const { data } = await emailVerification(payload)
+				//getContactorUserInfo()
+				return data
+			} catch (error: any) {
+				showSnackbar(error?.response?.data?.developerInfo, 'error')
+			}
+		},
+		[showSnackbar]
+	)
 
 	useEffect(() => {
 		;(async () => {
@@ -254,6 +266,7 @@ const ContractorAuthProvider: FC<ContractorAuthProviderProps> = ({ children, aut
 						companyName: data?.payload?.companyName ?? '',
 						onboardingStatus: data?.payload?.onboardingStatus ?? '',
 						GSTIN: data?.payload?.GSTIN ?? '',
+						hasProjects: data?.payload?.hasProjects ?? false,
 						customerStatus: data?.payload?.customerStatus ?? CUSTOMER_STATUS.REGISTERED,
 						designation: data?.payload?.designation ?? '',
 					},
@@ -310,35 +323,104 @@ const ContractorAuthProvider: FC<ContractorAuthProviderProps> = ({ children, aut
 		return () => clearInterval(timer)
 	}, [])
 
+	const createEasyBooking = useCallback(
+		async (bookingDetails) => {
+			try {
+				setBackdropProps({ open: true })
+				const payload = {
+					jobType: bookingDetails.jobType,
+					city: bookingDetails.location.split(', ')[0],
+					state: bookingDetails.location.split(', ')[1],
+					requirements: {
+						HELPER: bookingDetails.isHelper
+							? {
+									count: 0,
+									wage: bookingDetails.helperWage,
+							  }
+							: undefined,
+						TECHNICIAN: bookingDetails.isTechnician
+							? {
+									count: 0,
+									wage: bookingDetails.technicianWage,
+							  }
+							: undefined,
+						SUPERVISOR: bookingDetails.isSupervisor
+							? {
+									count: 0,
+									wage: bookingDetails.supervisorWage,
+							  }
+							: undefined,
+					},
+					bookingDuration: bookingDetails.workDuration,
+				}
+				const { data, status } = await axios.post('/gateway/customer-api/projects/bookings', payload)
+				deleteCookie('discoveryBooking')
+				router.push(`/bookings/${data.payload.projectId}/${data.payload.bookingId}/checkout`)
+			} catch (error) {
+				showSnackbar('Failed to create easy booking', 'error')
+			}
+			setBackdropProps({ open: false })
+		},
+		[router, showSnackbar]
+	)
+
 	useEffect(() => {
 		if (state.user) {
-			const redirectRoute = AccessMap[state.user.onboardingStatus]
-			if (state.user.onboardingStatus !== ONBOARDING_STATUS.ONBOARDED) {
-				if (router.pathname !== redirectRoute) {
-					router.replace(redirectRoute)
+			try {
+				const discoveryBookingFromCookie = () => {
+					try {
+						const discoveryBookingFromCookie = JSON.parse(getCookie('discoveryBooking'))
+						return discoveryBookingFromCookie
+					} catch (error) {
+						return undefined
+					}
 				}
-				return
-			} else if (
-				router.pathname === '/create-organisation' &&
-				state.user.onboardingStatus === ONBOARDING_STATUS.ONBOARDED
-			) {
-				router.replace('/onboarding/success')
-				return
-			} else if (
-				router.pathname === '/onboarding/failed' &&
-				state.user.onboardingStatus === ONBOARDING_STATUS.ONBOARDED
-			) {
-				router.replace('/dashboard')
-			} else {
-				if (
-					// restricts access to any other routes except the routes included in array
-					['/dashboard', '/profile', '/worker', '/projects', '/bookings', '/account', '/onboarding'].every(
-						(item) => !router.pathname.includes(item)
-					)
-				) {
-					router.replace(redirectRoute)
-					return
+
+				if (!state.user.hasProjects && discoveryBookingFromCookie()) {
+					createEasyBooking(discoveryBookingFromCookie())
+				} else {
+					if (discoveryBookingFromCookie()) {
+						deleteCookie('discoveryBooking')
+						showSnackbar('Please create a booking inside the project', 'warning')
+					}
+					const redirectRoute = AccessMap[state.user.onboardingStatus]
+
+					if (state.user.onboardingStatus !== ONBOARDING_STATUS.ONBOARDED) {
+						if (router.pathname !== redirectRoute) {
+							router.replace(redirectRoute)
+						}
+						return
+					} else if (
+						router.pathname === '/create-organisation' &&
+						state.user.onboardingStatus === ONBOARDING_STATUS.ONBOARDED
+					) {
+						router.replace('/onboarding/success')
+						return
+					} else if (
+						router.pathname === '/onboarding/failed' &&
+						state.user.onboardingStatus === ONBOARDING_STATUS.ONBOARDED
+					) {
+						router.replace('/dashboard')
+					} else {
+						if (
+							// restricts access to any other routes except the routes included in array
+							[
+								'/dashboard',
+								'/profile',
+								'/worker',
+								'/projects',
+								'/bookings',
+								'/account',
+								'/onboarding',
+							].every((item) => !router.pathname.includes(item))
+						) {
+							router.replace(redirectRoute)
+							return
+						}
+					}
 				}
+			} catch (error) {
+				console.log(error)
 			}
 		}
 		// eslint-disable-next-line react-hooks/exhaustive-deps
@@ -369,7 +451,14 @@ const ContractorAuthProvider: FC<ContractorAuthProviderProps> = ({ children, aut
 			reSendEmailOtp,
 		]
 	)
-	return <Provider value={authProviderValue}>{children}</Provider>
+	return (
+		<Provider value={authProviderValue}>
+			{children}
+			<Backdrop {...backdropProps}>
+				<CircularProgress />
+			</Backdrop>
+		</Provider>
+	)
 }
 
 export const useContractorAuth = () => useContext(ContractorAuthContext)

@@ -1,9 +1,10 @@
-import { FileDownloadOutlined } from '@mui/icons-material'
 import { LoadingButton } from '@mui/lab'
 import {
 	alpha,
+	Box,
 	Button,
 	Chip,
+	Divider,
 	Paper,
 	Stack,
 	Table,
@@ -20,7 +21,7 @@ import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns'
 import { format, parse } from 'date-fns'
 import { useRouter } from 'next/router'
 import { useCallback, useEffect, useState } from 'react'
-import { colors } from '../../sdk'
+import { colors, primary, useMobile } from '../../sdk'
 import { ButtonClicked } from '../../sdk/analytics/analyticsWrapper'
 import { DateStack } from '../../sdk/components/date/DateStack'
 import { StyledTableHeadCell } from '../../sdk/styledComponents/Tables'
@@ -32,6 +33,7 @@ import { WorkReportStatus } from './types'
 export const WorkReport = () => {
 	const { workReportResponse, isLoading, approveWorkReport, downloadWorkReport } = useWorkReport()
 	const router = useRouter()
+	const isMobile = useMobile()
 	const handelStatusFilter = useCallback(
 		(key: WorkReportStatus) => {
 			let queryArr = (router.query.status as string)?.split(',') ?? []
@@ -66,9 +68,31 @@ export const WorkReport = () => {
 	return (
 		<>
 			<ApproveConfirmationDialog {...approveConfirmationDialogProps} />
-
 			<Stack>
-				<Stack direction='row' py={1} spacing={1} alignItems='center' sx={{ overflowX: 'auto' }}>
+				<Stack
+					direction='row'
+					py={1}
+					spacing={1}
+					alignItems='center'
+					sx={{
+						overflowX: 'auto',
+
+						'&.scrollhost::-webkit-scrollbar': {
+							display: 'none',
+						},
+						'&.scrollhost ::-moz-scrollbar ': {
+							display: 'none',
+						},
+
+						'&.scrollhost': {
+							overflow: 'auto',
+							'-ms-overflow-style': 'none',
+							scrollbarColor: 'transparent transparent' /*just hides the scrollbar for firefox */,
+						},
+						'&::-webkit-scrollbar': {
+							display: 'none',
+						},
+					}}>
 					{StatusFilterOptions.map((item) => (
 						<Chip
 							key={item.value}
@@ -101,6 +125,7 @@ export const WorkReport = () => {
 					<LocalizationProvider dateAdapter={AdapterDateFns}>
 						<DesktopDatePicker
 							disableFuture
+							// components={{}}
 							label='From date'
 							inputFormat='dd/MM/yy'
 							mask='__/__/__'
@@ -124,8 +149,27 @@ export const WorkReport = () => {
 											py: 0.6,
 										},
 									}}
+									style={{
+										background: '#2e2e2e',
+									}}
 								/>
 							)}
+							PaperProps={{
+								sx: {
+									'& .MuiCalendarPicker-root': {
+										background: '#fff',
+									},
+									'& .css-1u04tdt': {
+										color: '#000',
+									},
+									'& .MuiButtonBase-root': {
+										color: '#000',
+									},
+									'& .MuiSvgIcon-root': {
+										color: '#000',
+									},
+								},
+							}}
 						/>
 						<DesktopDatePicker
 							disableFuture
@@ -157,8 +201,27 @@ export const WorkReport = () => {
 											py: 0.6,
 										},
 									}}
+									style={{
+										background: '#2e2e2e',
+									}}
 								/>
 							)}
+							PaperProps={{
+								sx: {
+									'& .MuiCalendarPicker-root': {
+										background: '#fff',
+									},
+									'& .css-1u04tdt': {
+										color: '#000',
+									},
+									'& .MuiButtonBase-root': {
+										color: '#000',
+									},
+									'& .MuiSvgIcon-root': {
+										color: '#000',
+									},
+								},
+							}}
 						/>
 					</LocalizationProvider>
 					<Button
@@ -171,83 +234,290 @@ export const WorkReport = () => {
 					</Button>
 				</Stack>
 				<Stack mt={2}>
-					<TableContainer component={Paper} sx={{ height: 'calc(100vh - 230px)' }}>
-						<Table stickyHeader>
-							<TableHead>
-								<TableRow>
-									{TableHeaderList.map((item) => (
-										<StyledTableHeadCell key={item.label as any} sx={item.sx}>
-											<Typography noWrap fontWeight={600}>
-												{item.label}
-											</Typography>
-										</StyledTableHeadCell>
-									))}
-								</TableRow>
-							</TableHead>
-							<TableBody sx={{ overflowY: 'auto' }}>
-								{workReportResponse?.response?.dwrDetails?.map((item) => (
-									<TableRow
-										key={item?.dwrId}
-										sx={{
-											cursor: 'pointer',
-											'&:hover': {
-												backgroundColor: colors.AliceBlue,
-											},
-										}}
-										onClick={() => {
-											router.push(`/projects/${router.query.projectId}/attendance/${item?._id}`)
-										}}>
-										<TableCell
+					{!isMobile ? (
+						<TableContainer component={Paper} sx={{ height: 'calc(100vh - 230px)' }}>
+							<Table stickyHeader>
+								<TableHead>
+									<TableRow>
+										{TableHeaderList.map((item, index) => (
+											<StyledTableHeadCell
+												key={String(item.label)}
+												sx={item.sx}
+												style={{
+													background: '#fffCF1',
+												}}>
+												<Typography noWrap fontWeight={600} sx={{ color: '#000' }}>
+													{item.label}
+												</Typography>
+											</StyledTableHeadCell>
+										))}
+									</TableRow>
+								</TableHead>
+								<TableBody sx={{ overflowY: 'auto' }}>
+									{workReportResponse?.response?.dwrDetails?.map((item) => (
+										<TableRow
+											key={item?.dwrId}
 											sx={{
-												position: 'sticky',
-												left: 0,
-												backgroundColor: '#ffffff',
-												width: 80,
+												cursor: 'pointer',
 												'&:hover': {
 													backgroundColor: colors.AliceBlue,
 												},
+											}}
+											onClick={() => {
+												router.push(
+													`/projects/${router.query.projectId}/attendance/${item?._id}`
+												)
 											}}>
-											<DateStack date={item?.date} />
-										</TableCell>
-										<TableCell>
-											<Stack>
-												<Typography color='secondary.main' variant='body1'>
-													{item?.presentPercentage ?? 'NA'}
-												</Typography>
+											<TableCell
+												sx={{
+													position: 'sticky',
+													left: 0,
+													// backgroundColor: '#ffffff',
+													width: 80,
+													'&:hover': {
+														backgroundColor: colors.AliceBlue,
+													},
+												}}>
+												<DateStack date={item?.date} />
+											</TableCell>
+											<TableCell>
+												<Stack>
+													<Typography
+														color='secondary.main'
+														variant='body1'
+														sx={{ color: '#000' }}>
+														{item?.presentPercentage ?? 'NA'}
+													</Typography>
 
-												<Typography variant='body2' color={`grey.600`}>
-													{item?.totalPresent ?? 'NA'} / {item?.totalCount ?? 'NA'}
+													<Typography
+														variant='body2'
+														color={`grey.600`}
+														sx={{ color: primary.darkGrey }}>
+														{item?.totalPresent ?? 'NA'} / {item?.totalCount ?? 'NA'}
+													</Typography>
+												</Stack>
+											</TableCell>
+											<TableCell>
+												<Typography color='secondary.main' sx={{ color: '#000' }}>
+													{item?.avgShiftHours ?? 'NA'}
 												</Typography>
+											</TableCell>
+											<TableCell>
+												<Typography color='secondary.main' sx={{ color: '#000' }}>
+													{item?.totalOtHours ?? 'NA'}
+												</Typography>
+											</TableCell>
+											<TableCell>
+												<Typography color='secondary.main' sx={{ color: '#000' }}>
+													{item?.avgOTHours ?? 'NA'}
+												</Typography>
+											</TableCell>
+											<TableCell>
+												<Chip
+													size='small'
+													variant='filled'
+													sx={(theme) => ({
+														px: 1,
+														backgroundColor: alpha(
+															WorkReportStatusColor[
+																item?.status ?? WorkReportStatus.DRAFT
+															],
+															0.2
+														),
+														// color: '#000'
+														fontSize: '12px',
+														fontWeight: '500',
+													})}
+													label={WorkReportStatusLabel[item?.status]}
+												/>
+											</TableCell>
+											<TableCell sx={{ maxWidth: 150, zIndex: 1000 }}>
+												<Stack direction='row' spacing={1} justifyContent='flex-end'>
+													{item.status === WorkReportStatus.PENDING_APPROVAL && (
+														<LoadingButton
+															variant='contained'
+															loading={isLoading.approving[item.dwrId]}
+															size={'small'}
+															onClick={(e) => {
+																e.stopPropagation()
+																ButtonClicked({
+																	action: 'Approve Daily Work Report',
+																	page: 'Work report List',
+																	url: router.asPath,
+																})
+
+																setApproveConfirmationDialogProps({
+																	open: true,
+																	confirm: () => {
+																		approveWorkReport(item.dwrId)
+																		setApproveConfirmationDialogProps({
+																			open: false,
+																		})
+																	},
+																	cancel: () => {
+																		setApproveConfirmationDialogProps({
+																			open: false,
+																		})
+																	},
+																	date: item.date,
+																})
+															}}>
+															Approve
+														</LoadingButton>
+													)}
+													<LoadingButton
+														loading={isLoading.downloading[item.dwrId]}
+														size={'small'}
+														onClick={(e) => {
+															ButtonClicked({
+																action: 'Download Daily Work Report',
+																page: 'Work report List',
+																url: router.asPath,
+															})
+															e.stopPropagation()
+															downloadWorkReport(item.dwrId, item.date)
+														}}>
+														<img
+															width={'100%'}
+															height={'100%'}
+															src={'/assets/icons/buttonDownload.svg'}
+															alt=''
+														/>
+													</LoadingButton>
+												</Stack>
+											</TableCell>
+										</TableRow>
+									))}
+								</TableBody>
+							</Table>
+						</TableContainer>
+					) : (
+						<Box>
+							{workReportResponse?.response?.dwrDetails?.map((item) => {
+								return (
+									<>
+										<Box
+											key={item?.dwrId}
+											onClick={() => {
+												router.push(
+													`/projects/${router.query.projectId}/attendance/${item?._id}`
+												)
+											}}
+											sx={{
+												background: '#fff',
+												width: '100%',
+												marginTop: '24px',
+												py: 2,
+												borderRadius: 2,
+											}}>
+											{/* card header  */}
+											<Stack direction={'row'} justifyContent={'space-between'} px={1.5}>
+												<Stack direction={'row'} spacing={2}>
+													<DateStack date={item?.date} />
+													<Stack direction={'column'}>
+														<Stack direction={'row'} alignItems={'center'} spacing={0.6}>
+															<Typography
+																color='#000'
+																fontWeight={600}
+																variant='subtitle2'>
+																{item?.presentPercentage ?? 'NA'}
+															</Typography>
+															<Typography
+																variant='subtitle2'
+																color={`grey.600`}
+																sx={{ fontSize: '11px' }}>
+																({item?.totalPresent ?? 'NA'} /{' '}
+																{item?.totalCount ?? 'NA'})
+															</Typography>
+														</Stack>
+
+														<Typography
+															color='secondary.main'
+															variant='subtitle2'
+															fontSize={'11px'}
+															fontWeight={400}>
+															Attendance %
+														</Typography>
+													</Stack>
+												</Stack>
+												<Stack direction={'row'}>
+													<Chip
+														size='small'
+														variant='filled'
+														sx={(theme) => ({
+															px: 1,
+															backgroundColor: alpha(
+																WorkReportStatusColor[
+																	item?.status ?? WorkReportStatus.DRAFT
+																],
+																0.2
+															),
+															fontSize: '11px',
+															fontWeight: '500',
+														})}
+														label={WorkReportStatusLabel[item?.status]}
+													/>
+												</Stack>
 											</Stack>
-										</TableCell>
-										<TableCell>
-											<Typography color='secondary.main'>
-												{item?.avgShiftHours ?? 'NA'}
-											</Typography>
-										</TableCell>
-										<TableCell>
-											<Typography color='secondary.main'>{item?.totalOtHours ?? 'NA'}</Typography>
-										</TableCell>
-										<TableCell>
-											<Typography color='secondary.main'>{item?.avgOTHours ?? 'NA'}</Typography>
-										</TableCell>
-										<TableCell>
-											<Chip
-												size='small'
-												variant='filled'
-												sx={(theme) => ({
-													px: 1,
-													backgroundColor: alpha(
-														WorkReportStatusColor[item?.status ?? WorkReportStatus.DRAFT],
-														0.2
-													),
-												})}
-												label={WorkReportStatusLabel[item?.status]}
-											/>
-										</TableCell>
-										<TableCell sx={{ maxWidth: 150, zIndex: 1000 }}>
-											<Stack direction='row' spacing={1} justifyContent='flex-end'>
-												{item.status === WorkReportStatus.PENDING_APPROVAL && (
+											{/* card center  */}
+											<Box
+												sx={{
+													margin: '12px 0',
+												}}>
+												<Stack
+													direction={'row'}
+													justifyContent={'space-between'}
+													sx={{
+														borderRadius: '8px',
+														background: '#F9F9F9',
+														p: '8px',
+													}}>
+													<Stack direction={'column'} spacing={0.5}>
+														<Typography
+															variant='subtitle2'
+															sx={{ fontSize: '10px', color: '#061F48B2' }}>
+															Avg Shift Duration
+														</Typography>
+														<Typography
+															variant='subtitle2'
+															sx={{ fontSize: '12px', color: '#000000' }}>
+															{item?.avgShiftHours ?? 'NA'}
+														</Typography>
+													</Stack>
+													<Stack direction={'column'} spacing={0.5}>
+														<Typography
+															variant='subtitle2'
+															sx={{ fontSize: '10px', color: '#061F48B2' }}>
+															Total OT
+														</Typography>
+														<Typography
+															variant='subtitle2'
+															sx={{ fontSize: '12px', color: '#000000' }}>
+															{item?.totalOtHours ?? 'NA'}
+														</Typography>
+													</Stack>
+													<Stack direction={'column'} spacing={0.5}>
+														<Typography
+															variant='subtitle2'
+															sx={{ fontSize: '10px', color: '#061F48B2' }}>
+															Avg OT
+														</Typography>
+														<Typography
+															variant='subtitle2'
+															sx={{ fontSize: '12px', color: '#000000' }}>
+															{item?.avgOTHours ?? 'NA'}
+														</Typography>
+													</Stack>
+												</Stack>
+											</Box>
+											<Stack
+												direction='row'
+												spacing={1}
+												justifyContent='space-between'
+												sx={{
+													marginBottom: '15px',
+												}}>
+												{item.status === WorkReportStatus.PENDING_APPROVAL ? (
 													<LoadingButton
 														variant='contained'
 														loading={isLoading.approving[item.dwrId]}
@@ -264,16 +534,22 @@ export const WorkReport = () => {
 																open: true,
 																confirm: () => {
 																	approveWorkReport(item.dwrId)
-																	setApproveConfirmationDialogProps({ open: false })
+																	setApproveConfirmationDialogProps({
+																		open: false,
+																	})
 																},
 																cancel: () => {
-																	setApproveConfirmationDialogProps({ open: false })
+																	setApproveConfirmationDialogProps({
+																		open: false,
+																	})
 																},
 																date: item.date,
 															})
 														}}>
 														Approve
 													</LoadingButton>
+												) : (
+													<div></div>
 												)}
 												<LoadingButton
 													loading={isLoading.downloading[item.dwrId]}
@@ -287,15 +563,22 @@ export const WorkReport = () => {
 														e.stopPropagation()
 														downloadWorkReport(item.dwrId, item.date)
 													}}>
-													<FileDownloadOutlined />
+													<img
+														width={'100%'}
+														height={'100%'}
+														src={'/assets/icons/buttonDownload.svg'}
+														alt=''
+													/>
 												</LoadingButton>
 											</Stack>
-										</TableCell>
-									</TableRow>
-								))}
-							</TableBody>
-						</Table>
-					</TableContainer>
+										</Box>
+
+										<Divider />
+									</>
+								)
+							})}
+						</Box>
+					)}
 				</Stack>
 			</Stack>
 		</>

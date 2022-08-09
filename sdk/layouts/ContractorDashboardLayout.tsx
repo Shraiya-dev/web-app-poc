@@ -1,14 +1,15 @@
 import DashboardIcon from '@mui/icons-material/Dashboard'
+import DashboardRoundedIcon from '@mui/icons-material/DashboardRounded'
 import LogoutIcon from '@mui/icons-material/Logout'
 import PersonIcon from '@mui/icons-material/Person'
-import { Box, Drawer, IconButton, List, ListItem, ListItemIcon, ListItemText, Stack } from '@mui/material'
+import { Box, Button, Drawer, IconButton, List, ListItem, ListItemIcon, ListItemText, Stack } from '@mui/material'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
 import React from 'react'
 import logo from '../../public/assets/icons/BrandLogo.svg'
 import MenuIcon from '../../public/assets/icons/MenuIcon.svg'
 import { DrawerItem } from '../components/drawerItem'
-import { theme } from '../constants'
+import { primary, theme } from '../constants'
 import { useMobile } from '../hooks/useMobile'
 import { useContractorAuth } from '../providers'
 import { Analytic } from '../analytics'
@@ -16,6 +17,7 @@ import { NavigationTabClicked } from '../analytics/analyticsWrapper'
 import BusinessIcon from '@mui/icons-material/Business'
 import Link from 'next/link'
 import { clearCookie } from '../analytics/helper'
+import { ArrowBackIos } from '@mui/icons-material'
 
 //always update when you change the app bar height into the onlyCssWeNeed file
 
@@ -61,23 +63,25 @@ const ContractorDashboardLayout = ({ children }: any) => {
 	}
 
 	return (
-		<>
+		<Box
+			sx={{
+				background: theme.palette.background.default,
+			}}>
 			<Box
 				style={{
 					padding: isMobile ? 8 : 16,
 					marginLeft: isMobile ? 0 : theme.spacing(33),
-					background: theme.palette.background.default,
 					//width: '100vw',
-					height: '100vh',
+					minHeight: '100vh',
 				}}>
 				{isMobile ? (
 					<Stack direction='row' p={1}>
-						{isMobile && (
+						{/* {isMobile && (
 							<IconButton onClick={toggleDrawer}>
 								<Image src={MenuIcon} alt='menu' color='black' />
 							</IconButton>
-						)}
-						<Link href='/dashboard' passHref>
+						)} */}
+						{/* <Link href='/dashboard' passHref>
 							<a>
 								<Image
 									priority
@@ -87,90 +91,103 @@ const ContractorDashboardLayout = ({ children }: any) => {
 									width={isMobile ? 100 : 162}
 								/>
 							</a>
-						</Link>
+						</Link> */}
 					</Stack>
 				) : (
 					''
 				)}
 				{children}
 			</Box>
-			<Drawer
-				anchor={'left'}
-				open={isSideBarToggle}
-				onClose={toggleDrawer}
-				variant={isMobile ? 'temporary' : 'permanent'}
-				PaperProps={{ style: { boxShadow: 'none' } }}>
-				<Box width={APP_DRAWER_WIDTH} m={2}>
-					<Stack direction={'row'} alignItems={'center'} mb={8} spacing={12}>
-						<Image alt='logo' src={logo} height={52} width={isMobile ? 100 : 162} />
-						{isMobile && (
-							<IconButton onClick={toggleDrawer}>
-								<Image src={MenuIcon} alt='menu' color='black' />
-							</IconButton>
-						)}
-					</Stack>
-					<List>
-						<DrawerItem
-							icon={<DashboardIcon />}
-							path={
-								DASHBOARD
-								// // router?.pathname === PROJECT_DETAILS
-								// // 	? `/dashboard/projects/${router?.query?.projectId}`
-								// // 	: router.pathname === BOOKING_LIST
-								// // 	? `/dashboard/projects/bookings/list/${router?.query?.projectId}`
-								// // 	: router.pathname === BOOKING_DETAILS
-								// // 	? `/dashboard/projects/bookings/${router?.query?.projectId}/${router.query.bookingId}/bookingDetails`
-								// 	: DASHBOARD
-							}
-							title='Dashboard'
-							route={
-								router?.pathname === PROJECT_DETAILS
-									? PROJECT_DETAILS
-									: router?.pathname === BOOKING_LIST
-									? BOOKING_LIST
-									: router?.pathname === BOOKING_DETAILS
-									? BOOKING_DETAILS
-									: DASHBOARD
-							}
-							toggleDrawer={toggleDrawer}
-						/>
+			{!isMobile && (
+				<Drawer
+					anchor={'left'}
+					open={isSideBarToggle}
+					onClose={toggleDrawer}
+					variant={isMobile ? 'temporary' : 'permanent'}
+					PaperProps={{
+						style: {
+							boxShadow: 'none',
+						},
+					}}>
+					<Box width={APP_DRAWER_WIDTH} m={2}>
+						<Stack direction={'row'} alignItems={'center'} mb={8} spacing={12}>
+							<Image alt='logo' src={logo} height={52} width={isMobile ? 100 : 162} />
+							{isMobile && (
+								<Button
+									color='primary'
+									onClick={toggleDrawer}
+									variant='text'
+									startIcon={<ArrowBackIos fontSize='large' sx={{ color: '#fff' }} />}
+								/>
+							)}
+						</Stack>
+						<List>
+							<DrawerItem
+								icon={<DashboardRoundedIcon />}
+								path={
+									DASHBOARD
+									// // router?.pathname === PROJECT_DETAILS
+									// // 	? `/dashboard/projects/${router?.query?.projectId}`
+									// // 	: router.pathname === BOOKING_LIST
+									// // 	? `/dashboard/projects/bookings/list/${router?.query?.projectId}`
+									// // 	: router.pathname === BOOKING_DETAILS
+									// // 	? `/dashboard/projects/bookings/${router?.query?.projectId}/${router.query.bookingId}/bookingDetails`
+									// 	: DASHBOARD
+								}
+								title='Dashboard'
+								route={
+									router?.pathname === PROJECT_DETAILS
+										? PROJECT_DETAILS
+										: router?.pathname === BOOKING_LIST
+										? BOOKING_LIST
+										: router?.pathname === BOOKING_DETAILS
+										? BOOKING_DETAILS
+										: DASHBOARD
+								}
+								toggleDrawer={toggleDrawer}
+							/>
 
-						<DrawerItem
-							icon={<PersonIcon />}
-							path={`/profile/details`}
-							title='Company Profile'
-							route={PROFILE}
-							toggleDrawer={toggleDrawer}
-						/>
+							{/* <DrawerItem
+								icon={<PersonIcon />}
+								path={`/profile/details`}
+								title='Company Profile'
+								route={PROFILE}
+								toggleDrawer={toggleDrawer}
+							/> */}
 
-						<DrawerItem
-							icon={<BusinessIcon />}
-							path='/account'
-							title='Account'
-							route={'/account'}
-							toggleDrawer={toggleDrawer}
-						/>
-						{/* <DrawerItem icon={<AccountTreeOutlined />} path='/dashboard' title='Projects' /> */}
+							<DrawerItem
+								icon={<BusinessIcon />}
+								path='/account'
+								title='Account'
+								route={'/account'}
+								toggleDrawer={toggleDrawer}
+							/>
+							{/* <DrawerItem icon={<AccountTreeOutlined />} path='/dashboard' title='Projects' /> */}
 
-						<ListItem
-							button
-							onClick={handleLogout}
-							style={{
-								position: 'fixed',
-								width: APP_DRAWER_WIDTH,
-								marginBottom: 16,
-								bottom: 0,
-								borderRadius: 40,
-							}}>
-							<ListItemIcon>
-								<LogoutIcon />
-							</ListItemIcon>
-							<ListItemText>Logout</ListItemText>
-						</ListItem>
-					</List>
-				</Box>
-			</Drawer>
-		</>
+							<ListItem
+								button
+								onClick={handleLogout}
+								style={{
+									position: 'fixed',
+									width: APP_DRAWER_WIDTH,
+									marginBottom: 16,
+									bottom: 0,
+									borderRadius: 40,
+								}}>
+								<ListItemIcon>
+									<LogoutIcon
+										sx={{
+											color: '#b2b2b2',
+										}}
+									/>
+								</ListItemIcon>
+								<ListItemText sx={{ color: '#b2b2b2' }}>Logout</ListItemText>
+							</ListItem>
+						</List>
+					</Box>
+				</Drawer>
+			)}
+		</Box>
 	)
 }
 

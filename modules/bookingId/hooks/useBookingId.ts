@@ -19,6 +19,8 @@ export const useBookingId = () => {
 	const [bookingSummary, setBookingSummary] = useState<BookingPreview>()
 	const [jobCards, setJobCards] = useState<Array<JobCard>>([])
 
+	const [jobCardsLength, setJobCardsLength] = useState(jobCards.length)
+
 	const [pageNumber, SetPageNumber] = useState('')
 	const [hasMore, setHasMore] = useState(false)
 
@@ -26,6 +28,10 @@ export const useBookingId = () => {
 		router.query.tab = value
 		router.replace(router)
 	}
+
+	useEffect(() => {
+		setJobCardsLength(jobCards?.length)
+	}, [jobCards, jobCardsLength])
 
 	const getBookingInfo = useCallback(async () => {
 		const { bookingId, projectId, ...rest } = router.query
@@ -72,6 +78,7 @@ export const useBookingId = () => {
 							skillType: item?.jobCard?.skillType,
 							jobCardState: item?.jobCard?.jobCardState,
 							workerImage: item?.worker?.profilePicture,
+							phoneNumber: item?.worker?.phoneNumber.toString().slice(3),
 						}
 						return jobCard
 					})
@@ -114,5 +121,6 @@ export const useBookingId = () => {
 		SetPageNumber: SetPageNumber,
 		hasMore: hasMore,
 		setJobCards: setJobCards,
+		jobCardsLength: jobCardsLength,
 	}
 }

@@ -1,4 +1,4 @@
-import { Button, Grid, Paper, Stack, Typography } from '@mui/material'
+import { Box, Button, Card, Grid, Paper, Stack, Typography } from '@mui/material'
 import { styled } from '@mui/system'
 import { primary, theme } from '../../constants'
 import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined'
@@ -47,9 +47,10 @@ const CustomPaper = styled(Paper)(({ theme }) => ({
 		background: 'rgba(238, 250, 255, 0.6)',
 		boxShadow: 'none',
 		fontSize: 14,
-		fontWeight: 700,
+		fontWeight: 500,
 		padding: 8,
 		//backgroundOpacity: 0.6,
+		fontFamily: 'Saira,sans-serif',
 		height: 32,
 	},
 	'.info': {
@@ -60,7 +61,7 @@ const CustomPaper = styled(Paper)(({ theme }) => ({
 	'.subInfo': {
 		fontSize: 11,
 		textAlign: 'center',
-		color: theme.palette.secondary.main,
+		// color: theme.palette.secondary.main,
 	},
 	'.projectName': {
 		fontSize: 20,
@@ -73,7 +74,7 @@ const CustomPaper = styled(Paper)(({ theme }) => ({
 	},
 	'.location': {
 		fontSize: 12,
-		color: theme.palette.secondary.main,
+		color: primary.properDark,
 		clear: 'both',
 		display: 'inline-block',
 		overflow: 'hidden',
@@ -106,10 +107,20 @@ export const ProjectCard = ({ ...props }) => {
 						url: router.asPath,
 					})
 				}}>
-				<Typography className='projectName'>{project?.name || ''}</Typography>
-				<Typography className='location'>
-					{' '}
-					<LocationOnOutlinedIcon style={{ verticalAlign: 'middle', fontSize: 12, marginBottom: 4 }} />{' '}
+				<Typography
+					className='projectName'
+					color={'#000'}
+					sx={{
+						fontFamily: 'Saira , sans-serif',
+						fontWeight: '900',
+						fontSize: '20px',
+					}}>
+					{project?.name || ''}
+				</Typography>
+				<Typography className='location' color={'#333333'} sx={{ fontFamily: 'Karla , sans-darif' }}>
+					<LocationOnOutlinedIcon
+						style={{ verticalAlign: 'middle', fontSize: 12, marginBottom: 4, color: '#333333' }}
+					/>
 					{`${project?.city}, ${project?.state}`}
 				</Typography>
 
@@ -117,19 +128,41 @@ export const ProjectCard = ({ ...props }) => {
 					<Grid item xs={6} md={6} justifyContent={'center'}>
 						<Stack justifyContent={'center'}>
 							<Image src={employeeIcon} />
-							<Typography fontSize={28} textAlign={'center'}>
+							<Typography
+								fontSize={28}
+								textAlign={'center'}
+								color={'#000'}
+								fontFamily={'Saira,sans-serif'}
+								fontWeight={600}>
 								{project?.employee || 0}
 							</Typography>
-							<Typography className='subInfo'>Employees</Typography>
+							<Typography
+								className='subInfo'
+								color={'#000'}
+								fontFamily={'Karla ,sans-serif'}
+								fontWeight={500}>
+								Employees
+							</Typography>
 						</Stack>
 					</Grid>
 					<Grid item xs={6} md={6} justifyContent={'center'}>
 						<Stack justifyContent={'center'}>
 							<Image src={bookingIcon} />
-							<Typography fontSize={28} textAlign={'center'}>
+							<Typography
+								fontSize={28}
+								textAlign={'center'}
+								color={'#000'}
+								fontFamily={'Saira,sans-serif'}
+								fontWeight={600}>
 								{project?.bookingCount || 0}
 							</Typography>
-							<Typography className='subInfo'>Bookings</Typography>
+							<Typography
+								className='subInfo'
+								color={'#000'}
+								fontFamily={'Karla ,sans-serif'}
+								fontWeight={500}>
+								Bookings
+							</Typography>
 						</Stack>
 					</Grid>
 				</Grid>
@@ -148,6 +181,10 @@ export const ProjectCard = ({ ...props }) => {
 							projectId: project?.projectId,
 							url: router.asPath,
 						})
+					}}
+					style={{
+						background: theme.palette.primary.light,
+						color: '#000',
 					}}>
 					Book Workers
 				</Button>

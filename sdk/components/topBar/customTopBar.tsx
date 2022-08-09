@@ -6,14 +6,17 @@ import { useMobile } from '../../hooks'
 import { useContractorAuth } from '../../providers'
 import MenuIcon from '../../../public/assets/icons/MenuIcon.svg'
 
-const APP_BAR_BG_COLOR = primary.light
+const APP_BAR_BG_COLOR = primary.darkGrey
 
 const CustomAppBar = styled(Box)(() => ({
-	//backgroundColor: APP_BAR_BG_COLOR,
-	//minHeight: 84,
-	'.toolbar': {
-		padding: 0,
+	minHeight: 84,
+	display: 'flex',
+	alignItems: 'center',
+	justifyContent: 'space-between',
 
+	'.toolbar': {
+		// padding: 0,
+		paddingLeft: 16,
 		flex: 1,
 		justifyContent: 'space-between',
 		border: 'none',
@@ -29,7 +32,13 @@ export const CustomTopBar = ({ children }: any) => {
 	const isMobile = useMobile()
 
 	return (
-		<CustomAppBar>
+		<CustomAppBar
+			sx={{
+				backgroundColor: !isMobile ? APP_BAR_BG_COLOR : primary.properDark,
+				left: isMobile ? 0 : '',
+				right: isMobile ? 0 : '',
+				mt: isMobile ? '-24px' : '',
+			}}>
 			<Box style={{ marginLeft: 0, padding: 0 }}>
 				<Toolbar className='toolbar'>
 					<Stack width={1} direction={'row'}>
@@ -43,6 +52,30 @@ export const CustomTopBar = ({ children }: any) => {
 					</Stack>
 				</Toolbar>
 			</Box>
+			{!isMobile && (
+				<Stack direction={'row'} spacing={2} pr={2}>
+					<Stack direction={'row'} spacing={1} alignItems={'center'}>
+						<img height={25} src='/assets/icons/mail.svg' />
+						<Typography
+							component='a'
+							href='mailto:marketing@projecthero.in'
+							fontFamily={'Karla,sans-serif'}
+							fontWeight={700}>
+							marketing@projecthero.in
+						</Typography>
+					</Stack>
+					<Stack direction={'row'} spacing={1} alignItems={'center'}>
+						<img height={25} src='/assets/icons/phone.svg' />
+						<Typography
+							component='a'
+							href='tel:+91 9151003513'
+							fontFamily={'Karla,sans-serif'}
+							fontWeight={700}>
+							+91-9151003513
+						</Typography>
+					</Stack>
+				</Stack>
+			)}
 		</CustomAppBar>
 	)
 }

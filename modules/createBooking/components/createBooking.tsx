@@ -14,7 +14,7 @@ import { createBooking } from '../apis/apis'
 import useCreateBooking from '../hooks/useCreateBooking'
 import { jobTypeInfo, moreJobType, projectDuration, tags } from '../utils/helperData'
 import ConfirmCancel from './confirmCancel'
-import BookingSvg from '../../../public/assets/icons/booking.svg'
+import BookingSvg from '../../../public/assets/icons/project.svg'
 import { TopBanner } from '../../../sdk/components/banner/formBanner'
 import { useRouter } from 'next/router'
 import { Analytic } from '../../../sdk/analytics'
@@ -48,7 +48,6 @@ const CustomBookingStyle = styled(Box)(({ theme }) => ({
 
 	'.stickyBottomBox': {
 		position: 'sticky',
-
 		bottom: 0,
 		marginTop: 50,
 
@@ -58,11 +57,11 @@ const CustomBookingStyle = styled(Box)(({ theme }) => ({
 	'.header': {
 		fontSize: 36,
 		fontWeight: 600,
-		color: theme.palette.primary.main,
+		color: primary.properDark,
 	},
 	'.subHeader': {
 		fontSize: 18,
-		color: theme.palette.primary.main,
+		color: primary.properDark,
 		fontWeight: 400,
 	},
 	'.subInfo': {
@@ -83,10 +82,9 @@ const CustomBookingStyle = styled(Box)(({ theme }) => ({
 		left: 0,
 		right: 0,
 		width: '100%',
-
+		background: primary.properDark,
 		paddingBottom: 16,
 		paddingTop: 16,
-		background: 'white',
 		overflow: 'hidden',
 	},
 	'.loadingcta': {
@@ -96,6 +94,9 @@ const CustomBookingStyle = styled(Box)(({ theme }) => ({
 		background: theme.palette.primary.main,
 		color: 'white',
 		width: '10rem',
+		'& :hover': {
+			background: theme.palette.primary.light,
+		},
 	},
 	'.prevCta': {
 		width: '10rem',
@@ -239,6 +240,10 @@ export const CreateBooking = () => {
 			''
 		)
 	}
+	useEffect(() => {
+		console.log(isSubmittable)
+	}, [])
+
 	return (
 		<CustomBookingStyle>
 			<TopBanner
@@ -284,10 +289,10 @@ export const CreateBooking = () => {
 																? theme.palette.primary.light
 																: 'white',
 
-														border:
-															selectedJob === info?.value
-																? `2px solid ${theme.palette.primary.main}`
-																: `1px solid ${theme.palette.secondary.light}`,
+														// border:
+														// 	selectedJob === info?.value
+														// 		? `2px solid ${theme.palette.primary.main}`
+														// 		: `1px solid ${theme.palette.secondary.light}`,
 													}}>
 													<Box>
 														<Image src={info?.icon} />
@@ -299,7 +304,6 @@ export const CreateBooking = () => {
 										)
 									})}
 								</Grid>
-
 								{isMore && (
 									<Grid container item rowSpacing={2} columnSpacing={2}>
 										{moreJobType.map((info, index) => {
@@ -348,13 +352,19 @@ export const CreateBooking = () => {
 										style={{ textTransform: 'none' }}>
 										{isMore ? (
 											<Box>
-												<Typography className='view' display='inline' color={'primary.main'}>
+												<Typography
+													className='view'
+													display='inline'
+													color={theme.palette.info.main}>
 													View Less <KeyboardArrowUpIcon />
 												</Typography>
 											</Box>
 										) : (
 											<Box>
-												<Typography className='view' display='inline' color={'primary.main'}>
+												<Typography
+													className='view'
+													display='inline'
+													color={theme.palette.info.main}>
 													View More <KeyboardArrowDownIcon />
 												</Typography>
 											</Box>
@@ -379,7 +389,7 @@ export const CreateBooking = () => {
 																? theme.palette.primary.light
 																: 'white',
 															color: form.values.tags.includes(item)
-																? theme.palette.primary.main
+																? primary.properDark
 																: '',
 
 															border: form.values.tags.includes(item)
@@ -445,14 +455,13 @@ export const CreateBooking = () => {
 															float: 'right',
 															margin: 16,
 															fontSize: 16,
-															color: 'rgba(6, 31, 72, 0.7)',
 														}}>
 														{info?.label}
 													</Typography>
 												</Grid>
-												<Grid item xs={12} sm={12} md={2.5}>
+												{/* <Grid item xs={12} sm={12} md={2.5}>
 													<TextField
-														label={`${info?.label} Required`}
+														// label={`${info?.label} Required`}
 														placeholder={`Enter ${info?.label}`}
 														id={info?.name}
 														name={info?.name}
@@ -471,10 +480,10 @@ export const CreateBooking = () => {
 														onBlur={form.handleBlur}
 														error={!!checkError(`${info?.name}`, form)}
 													/>
-												</Grid>
+												</Grid> */}
 												<Grid item xs={12} sm={12} md={4}>
 													<TextField
-														label='Daily wage (Rs.)'
+														// label='Daily wage (Rs.)'
 														placeholder='Enter wage'
 														id={info?.wage}
 														name={info?.wage}
@@ -491,6 +500,11 @@ export const CreateBooking = () => {
 														fullWidth
 														onBlur={form.handleBlur}
 														error={!!checkError(`${info?.wage}`, form)}
+														// sx={{
+														// 	'& .MuiFormLabel-root': {
+														// 		color: theme.palette.primary.dark
+														// 	},
+														// }}
 													/>
 												</Grid>
 											</Grid>
@@ -542,8 +556,8 @@ export const CreateBooking = () => {
 
 													color:
 														projectDurationInfo === info?.value
-															? theme.palette.primary.main
-															: '',
+															? primary.properDark
+															: primary.properDark,
 													marginRight: 10,
 													textTransform: 'none',
 													minWidth: 50,
@@ -561,7 +575,7 @@ export const CreateBooking = () => {
 								</Grid>
 							</InputWrapper>
 
-							<InputWrapper id='shiftTiming' label='Shift Timing'>
+							{/* <InputWrapper id='shiftTiming' label='Shift Timing'>
 								<Grid item container rowGap={1}>
 									<Button
 										className='borderCta'
@@ -595,7 +609,7 @@ export const CreateBooking = () => {
 
 											height: 35,
 											width: 100,
-											color: primary.main,
+											color: primary.properDark,
 											boxShadow: 'none',
 										}}
 										onClick={() => handleShiftTiming('Custom')}>
@@ -637,283 +651,10 @@ export const CreateBooking = () => {
 								)}
 							</InputWrapper>
 
-							{/* TODO: Check if form level state is required */}
 							<InputWrapper id='deployTime' label='Expected Time To Deployment'>
 								<Typography>14 days</Typography>
-							</InputWrapper>
+							</InputWrapper>*/}
 						</Stack>
-
-						{/* Project Details */}
-
-						{/* {step === 2 && (
-								<Stack spacing={5}>
-									<Box>
-										<InputWrapper id='startdate' label='Start Date'>
-											<Grid container spacing={4}>
-												<Grid item xs={12} sm={12} md={6} lg={6}>
-													<LocalizationProvider dateAdapter={AdapterDateFns}>
-														<DatePicker
-															minDate={form.initialValues.StartDate}
-															value={form.values.StartDate}
-															onChange={(value) => form.setFieldValue('StartDate', value)}
-															renderInput={(params) => (
-																<TextField {...params} fullWidth />
-															)}
-															inputFormat='dd/MM/yyyy'
-														/>
-													</LocalizationProvider>
-												</Grid>
-											</Grid>
-										</InputWrapper>
-									</Box>
-
-									<Box>
-										<InputWrapper id='projectDuration' label='Project Duration'>
-											<Grid container spacing={4}>
-												<Grid container item rowGap={1}>
-													{projectDuration.map((info, index) => {
-														return (
-															<Button
-																className='borderCta'
-																key={index}
-																style={{
-																	background:
-																		projectDurationInfo === info?.label
-																			? theme.palette.primary.light
-																			: 'white',
-
-																	color: '#061F48',
-																	marginRight: 10,
-																	textTransform: 'none',
-																	minWidth: 50,
-																}}
-																onClick={() => handleProjectDuration(info?.label)}>
-																{info?.label}
-															</Button>
-														)
-													})}
-												</Grid>
-											</Grid>
-										</InputWrapper>
-									</Box>
-
-									<Box>
-										<InputWrapper id='shiftTiming' label='Shift Timing'>
-											<Grid container spacing={4}>
-												<Grid item container>
-													<Button
-														className='borderCta'
-														style={{
-															borderRadius: 4,
-															padding: 4,
-															background:
-																shiftTiming === 'default'
-																	? theme.palette.primary.light
-																	: 'white',
-
-															color: 'black',
-															marginRight: 10,
-															minWidth: 50,
-														}}
-														onClick={() => handleShiftTiming('default')}>
-														{fixTiming}
-													</Button>
-
-													<Button
-														className='borderCta'
-														style={{
-															background:
-																shiftTiming === 'Custom'
-																	? theme.palette.primary.light
-																	: 'white',
-
-															height: 35,
-															width: 100,
-															color: 'black',
-														}}
-														onClick={() => handleShiftTiming('Custom')}>
-														Custom
-													</Button>
-												</Grid>
-											</Grid>
-
-											{shiftTiming === 'Custom' && (
-												<Grid container spacing={4} style={{ marginTop: 10 }}>
-													<Grid item xs={12} sm={12} md={6} lg={6}>
-														<CustomTimePicker
-															form={form}
-															error={!!checkError('startTime', form)}
-															labelId={'startTime'}
-															id={'startTime'}
-															name={'startTime'}
-															value={form.values.startTime}
-															timeOptions={'am'}
-															onChange={(e: any) => {
-																form.handleChange(e)
-															}}
-														/>
-													</Grid>
-													<Grid item xs={12} sm={12} md={6} lg={6}>
-														<CustomTimePicker
-															form={form}
-															error={!!checkError('endTime', form)}
-															labelId={'endTime'}
-															id={'endTime'}
-															name={'endTime'}
-															value={form.values.endTime}
-															timeOptions={'pm'}
-															onChange={(e: any) => {
-																form.handleChange(e)
-															}}
-														/>
-													</Grid>
-												</Grid>
-											)}
-										</InputWrapper>
-									</Box>
-
-									<Box>
-										<Grid container columnSpacing={2} rowSpacing={5}>
-											<Grid item xs={12} sm={12} md={6} lg={6} display='block'>
-												<InputWrapper id='state' label='State'>
-													<Select
-														error={!!checkError('state', form)}
-														labelId='state'
-														id='state'
-														name='state'
-														value={form.values.state}
-														//autoWidth={true}
-														onChange={(e) => {
-															form.handleChange(e)
-														}}
-														required={true}
-														fullWidth>
-														<MenuItem value={'none'}>Select State</MenuItem>
-														{getSelectOptions(StatesOptions)}
-													</Select>
-												</InputWrapper>
-											</Grid>
-											<Grid item xs={12} sm={12} md={6} lg={6} display='block'>
-												<InputWrapper id='city' label='City'>
-													<Select
-														labelId='city'
-														id='city'
-														name='city'
-														error={!!checkError('city', form)}
-														value={form.values.city}
-														disabled={form.values.state === 'none'}
-														onChange={(e) => {
-															form.handleChange(e)
-														}}
-														fullWidth>
-														<MenuItem value={'none'}>Select city</MenuItem>
-														{CityOptions[form.values.state || 'none'].map((item: any) => {
-															return (
-																<MenuItem key={item.label} value={item.value}>
-																	{item?.label}
-																</MenuItem>
-															)
-														})}
-													</Select>
-												</InputWrapper>
-											</Grid>
-										</Grid>
-									</Box>
-
-									<Box>
-										<InputWrapper id='siteAddress' label='Site Address'>
-											<Grid container spacing={2}>
-												<Grid item xs={12} sm={12} md={12} lg={12}>
-													<TextField
-														placeholder='Enter Here'
-														id='siteAddress'
-														name='siteAddress'
-														value={form.values.siteAddress}
-														onChange={form.handleChange}
-														minRows={4}
-														maxRows={4}
-														multiline
-														fullWidth
-														onBlur={form.handleBlur}
-														error={!!checkError(`siteAddress`, form)}
-														helperText={checkError(`siteAddress`, form)}
-													/>
-												</Grid>
-											</Grid>
-										</InputWrapper>
-									</Box>
-								</Stack>
-							)}
-							{/* Contact Details */}
-
-						{/* {step === 3 && (
-								<Stack spacing={5}>
-									<Box>
-										<InputWrapper id='name' label='Name'>
-											<Grid container>
-												<Grid item xs={12} sm={12} md={6} lg={6}>
-													<TextField
-														id='name'
-														name='name'
-														value={form.values.name}
-														onChange={form.handleChange}
-														placeholder='Enter Your Full Name'
-														fullWidth
-														onBlur={form.handleBlur}
-														error={!!checkError(`name`, form)}
-														helperText={checkError(`name`, form)}
-													/>
-												</Grid>
-											</Grid>
-										</InputWrapper>
-									</Box>
-
-									<Box>
-										<InputWrapper id='companyEmail' label='Email'>
-											<Grid container>
-												<Grid item xs={12} sm={12} md={6} lg={6}>
-													<TextField
-														id='companyEmail'
-														name='companyEmail'
-														onChange={form.handleChange}
-														value={form.values.companyEmail}
-														placeholder='Enter Email'
-														fullWidth
-														onBlur={form.handleBlur}
-														error={!!checkError(`companyEmail`, form)}
-														helperText={checkError(`companyEmail`, form)}
-													/>
-												</Grid>
-											</Grid>
-										</InputWrapper>
-									</Box>
-
-									<Box>
-										<InputWrapper id='phoneNumber' label='Phone Number'>
-											<Grid container>
-												<Grid item xs={12} sm={12} md={6} lg={6}>
-													<PhoneField
-														id='phoneNumber'
-														name='phoneNumber'
-														onChange={(e: any) => {
-															if (e.target.value.length <= 10) {
-																form.handleChange(e)
-															}
-														}}
-														value={form.values.phoneNumber}
-														type='tel'
-														placeholder='Enter PhoneNumber'
-														fullWidth
-														onBlur={form.handleBlur}
-														error={!!checkError(`phoneNumber`, form)}
-														helperText={checkError(`phoneNumber`, form)}
-													/>
-												</Grid>
-											</Grid>
-										</InputWrapper>
-									</Box>
-								</Stack>
-							)} */}
 
 						<Box className='stickyBottomBox'>
 							<Paper
@@ -921,23 +662,25 @@ export const CreateBooking = () => {
 								variant='outlined'
 								sx={{ paddingRight: isMobile ? '6%' : '12%' }}>
 								<Stack direction={'row'} justifyContent={'flex-end'}>
-									{/* {(step === 2 || step === 3) && (
-											<Button className='prevCta' onClick={handlePrev}>
-												Previous
-											</Button>
-										)} */}
-
 									<LoadingButton
 										className='loadingcta'
 										type='submit'
-										variant='contained'
+										variant={!!isSubmittable ? 'contained' : 'outlined'}
 										loading={loading}
-										disabled={!!isSubmittable || loading}
+										disabled={
+											form.values.jobType === '' ||
+											!(
+												form.values.helperWages ||
+												form.values.supervisorWages ||
+												form.values.technicianWages
+											)
+										}
 										// onClick={() => handleNext()}
 										style={{
 											minWidth: '10rem',
 											marginRight: isMobile ? '' : '14%',
-											background: isSubmittable || loading ? '#cccccc' : '',
+											background: !!isSubmittable || loading ? theme.palette.primary.dark : '',
+											color: '#000',
 										}}>
 										{'Create Booking'}
 									</LoadingButton>
@@ -946,12 +689,6 @@ export const CreateBooking = () => {
 						</Box>
 					</form>
 				</Box>
-
-				{/* {step === 2 && (
-					<Box style={{ verticalAlign: 'middle' }}>
-						<BookingSuccess />
-					</Box>
-				)} */}
 			</Container>
 		</CustomBookingStyle>
 	)

@@ -1,4 +1,3 @@
-export * from './BookingCards'
 export * from './StatisticsCard'
 export * from './BookingCard'
 export * from './BookingSummaryCard'

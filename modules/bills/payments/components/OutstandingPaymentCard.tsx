@@ -8,7 +8,7 @@ import { useGetOuststandingPaymentQuery } from '../queries/hooks'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
 import CurrencyRupeeIcon from '@mui/icons-material/CurrencyRupee'
 import { OutstandingPaymentPopover } from './OutstandingPaymentPopover'
-import { indianCurrencyFormat } from '../../../../sdk'
+import { indianCurrencyFormat, primary, useMobile } from '../../../../sdk'
 import { ButtonClicked } from 'sdk/analytics/analyticsWrapper'
 
 const CustomPaper = styled(Paper)(({ theme }) => ({
@@ -54,6 +54,7 @@ const CustomPaper = styled(Paper)(({ theme }) => ({
 export const OutstandiongPaymentCard = ({ tooltipTitle }: { tooltipTitle: TooltipProps['title'] }) => {
 	const router = useRouter()
 	const theme = useTheme()
+	const isMobile = useMobile()
 	const projectId = router.query.projectId as string
 	const outStandingPaymentData = useGetOuststandingPaymentQuery(projectId)
 	const [showPopover, setShowPopver] = useState(false)
@@ -75,12 +76,27 @@ export const OutstandiongPaymentCard = ({ tooltipTitle }: { tooltipTitle: Toolti
 					</Stack>
 				</Skeleton>
 			) : (
-				<CustomPaper elevation={1} sx={{ maxWidth: 400 }}>
+				<CustomPaper
+					elevation={isMobile ? 5 : 1}
+					sx={{ minWidth: 300, maxWidth: 400, minHeight: '144px', background: '#fff' }}>
 					<Stack direction='row' justifyContent='space-between' flex={1}>
 						<Stack flex={1}>
 							<Stack flex={1}>
-								<Stack className='cardHeader' direction='row' alignItems='center'>
-									<Typography variant='subtitle2'>Total Outstanding</Typography>
+								<Stack
+									className='cardHeader'
+									direction='row'
+									alignItems='center'
+									// style={{
+									// 	background: theme.palette.background.paper,
+									// }}
+								>
+									<Typography
+										fontFamily={'Saira,sans-serif'}
+										fontWeight={700}
+										variant='subtitle1'
+										sx={{ color: '#000' }}>
+										Total Outstanding
+									</Typography>
 									<Tooltip
 										title={tooltipTitle}
 										sx={{ background: theme.palette.base.variant70 }}
@@ -109,13 +125,19 @@ export const OutstandiongPaymentCard = ({ tooltipTitle }: { tooltipTitle: Toolti
 										}}
 									/>
 									<Typography
-										variant='h4'
+										fontFamily={'Saira,sans-serif'}
+										fontWeight={700}
+										fontSize={'36px'}
+										variant='h2'
 										sx={{ fontSize: '2.25rem', color: theme.palette.green.dark }}>
 										{indianCurrencyFormat(outStandingPaymentData.data.payload.amount)}
 									</Typography>
 								</Stack>
 							</Stack>
-							<Typography variant='body2' sx={{ fontSize: '13px', color: theme.palette.base.variant60 }}>
+							<Typography
+								variant='body2'
+								fontWeight={500}
+								sx={{ fontSize: '13px', color: theme.palette.base.variant60 }}>
 								{outStandingPaymentData.data.payload.amount >= 0
 									? 'Pay full or custom amount'
 									: 'It will be adjusted in future bills'}
@@ -132,7 +154,6 @@ export const OutstandiongPaymentCard = ({ tooltipTitle }: { tooltipTitle: Toolti
 								size='medium'
 								//disabled={outStandingPaymentData.data.payload.amount===0}
 								sx={{
-									background: theme.palette.button.secondary,
 									paddingTop: theme.spacing(2),
 									paddingBottom: theme.spacing(2),
 									paddingLeft: theme.spacing(3),
@@ -148,7 +169,7 @@ export const OutstandiongPaymentCard = ({ tooltipTitle }: { tooltipTitle: Toolti
 									})
 									showPaymentPopover()
 								}}>
-								<Typography variant='subtitle2' sx={{ color: theme.palette.textCTA.white }}>
+								<Typography variant='subtitle2' sx={{ color: primary.properDark }}>
 									Pay
 								</Typography>
 							</Button>

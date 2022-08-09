@@ -24,7 +24,7 @@ import Image from 'next/image'
 import { useRouter } from 'next/router'
 import { useEffect, useReducer, useState } from 'react'
 import { DataLayerPush, HyperLink, LinkButton } from 'sdk'
-import { ButtonClicked } from 'sdk/analytics/analyticsWrapper'
+import { sendAnalytics } from 'sdk/analytics/analyticsWrapper'
 import { contactUsSection, navbar } from 'sdk/data'
 export const Navbar = () => {
 	const [menuRefs, dispatchMenuRefs] = useReducer((p: any, n: any) => ({ ...p, ...n }), {})
@@ -38,7 +38,7 @@ export const Navbar = () => {
 	return (
 		<>
 			<AppBar position='fixed' elevation={0}>
-				<Container>
+				<Container disableGutters>
 					<Toolbar sx={{ justifyContent: 'space-between' }} disableGutters>
 						<Stack direction='row' spacing={2} alignItems='center'>
 							<IconButton
@@ -142,15 +142,17 @@ export const Navbar = () => {
 								<Image src={navbar.brandImage} width={150} height={27} alt='Project hero' />
 							</HyperLink>
 						</Stack>
-						<NavWrapper direction='row' spacing={{ xs: 0, md: 4 }} alignItems='center'>
+						<NavWrapper direction='row' spacing={{ xs: 0, md: 3 }} alignItems='center'>
 							{navbar.navLinks.map((navItem, i) => {
 								if (navItem.type === 'button_link') {
 									return (
 										<LinkButton
+											variant='text'
 											key={i}
-											color='secondary'
+											startIcon={navItem?.icon}
 											sx={(theme) => ({
 												fontWeight: 700,
+												color: 'common.white',
 												[theme.breakpoints.down('md')]: { display: 'none' },
 											})}
 											href={navItem.link}
@@ -158,6 +160,33 @@ export const Navbar = () => {
 											{navItem.label}
 										</LinkButton>
 									)
+								} else if (navItem.type === 'scroll_link') {
+									if (router.pathname === '/')
+										return (
+											<LinkButton
+												variant='text'
+												key={i}
+												startIcon={navItem?.icon}
+												sx={(theme) => ({
+													fontWeight: 700,
+													color: 'common.white',
+													[theme.breakpoints.down('md')]: { display: 'none' },
+												})}
+												onClick={() => {
+													sendAnalytics({
+														name: 'EasyBookWorker',
+														action: 'ButtonClick',
+														metaData: {
+															origin: 'how It Works Section',
+														},
+													})
+												}}
+												href={navItem.link}
+												className={router.pathname === navItem.link ? 'active' : ''}>
+												{navItem.label}
+											</LinkButton>
+										)
+									else return null
 								} else if (navItem.type === 'support_menu') {
 									return (
 										<Button
@@ -283,10 +312,10 @@ export const Navbar = () => {
 											color='primary'
 											onClick={() => {
 												DataLayerPush({ event: 'book_worker_home_header' })
-												ButtonClicked({
-													page: document.title,
-													action: 'Book Workers',
-													url: router.asPath,
+												sendAnalytics({
+													name: 'BookWorker',
+													action: 'ButtonClick',
+													metaData: { origin: 'navbar' },
 												})
 											}}
 											sx={{ fontWeight: 700, borderRadius: '8px !important' }}

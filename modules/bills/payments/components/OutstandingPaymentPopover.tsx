@@ -20,7 +20,7 @@ import { styled } from '@mui/system'
 import { useRouter } from 'next/router'
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 
-import { indianCurrencyFormat, isEmptyObject, useContractorAuth } from '../../../../sdk'
+import { envs, indianCurrencyFormat, isEmptyObject, primary, useContractorAuth } from '../../../../sdk'
 import logo from '../../../../public/assets/icons/BrandLogo.svg'
 import {
 	cancelPaymentApi,
@@ -31,6 +31,7 @@ import {
 import { useCancelPaymentMutation, useConfirmPaymentMutation, useCreatePaymentMutation } from '../queries/hooks'
 import { ConfirmPaymentSuccessPopover } from './ConfirmPaymentSuccessPopover'
 import { ButtonClicked } from 'sdk/analytics/analyticsWrapper'
+import CheckCircleOutlineRoundedIcon from '@mui/icons-material/CheckCircleOutlineRounded'
 
 const CustomDialog = styled(Dialog)(({ theme }) => ({
 	'& .MuiDialog-paper': {
@@ -107,6 +108,7 @@ export const OutstandingPaymentPopover = ({
 		projectId,
 	})
 	const { user } = useContractorAuth()
+	const [inputProps, setInputProps] = useState({})
 	const createPaymentOrder = () => {
 		createPaymentOrderMutation.mutate(
 			{
@@ -158,7 +160,7 @@ export const OutstandingPaymentPopover = ({
 	}, [confirmPaymentDetails])
 	const makePayment = async () => {
 		var options = {
-			key: 'rzp_live_EjKSlAc9GcAw7S',
+			key: envs.RAZOR_PAY_KEY,
 			name: 'Project Hero',
 			currency: 'INR',
 			amount: originalSelected ? payAmount * 100 : customAmount ? parseInt(customAmount) * 100 : payAmount * 100,
@@ -219,7 +221,13 @@ export const OutstandingPaymentPopover = ({
 			/>
 			<CustomDialog fullScreen={fullScreen} open={open} maxWidth='xs' fullWidth onClose={hideModal}>
 				<DialogTitle>
-					<Typography variant={'h6'}>Confirm & Pay</Typography>
+					<Typography
+						variant={'h6'}
+						sx={{
+							color: primary.properDark,
+						}}>
+						Confirm & Pay
+					</Typography>
 				</DialogTitle>
 				<DialogContent>
 					<Stack direction='row' justifyContent='space-between'>
@@ -239,15 +247,26 @@ export const OutstandingPaymentPopover = ({
 											border: '2px solid #efefef',
 											borderRadius: 2,
 											borderColor: amount === String(payAmount) ? 'primary.main' : undefined,
-											backgroundColor: amount === String(payAmount) ? 'primary.light' : undefined,
+											backgroundColor: amount === String(payAmount) ? 'primary.main' : undefined,
 											mr: 0,
 										}}
 										value={payAmount}
-										control={<Radio />}
+										control={
+											<Radio
+												style={{
+													color: '#000',
+												}}
+												checkedIcon={<CheckCircleOutlineRoundedIcon />}
+											/>
+										}
 										label={
 											<Stack>
-												<Typography variant='h6'>{payAmount}</Typography>
-												<Typography variant='caption'>Total outstanding amount</Typography>
+												<Typography variant='h6' sx={{ color: primary.properDark }}>
+													{payAmount}
+												</Typography>
+												<Typography variant='caption' sx={{ color: primary.properDark }}>
+													Total outstanding amount
+												</Typography>
 											</Stack>
 										}
 									/>
@@ -261,10 +280,9 @@ export const OutstandingPaymentPopover = ({
 											border: '2px solid #efefef',
 											borderRadius: 2,
 											mr: 0,
-
 											borderColor: amount === String(customAmount) ? 'primary.main' : undefined,
 											backgroundColor:
-												amount === String(customAmount) ? 'primary.light' : undefined,
+												amount === String(customAmount) ? 'primary.main' : undefined,
 											'.MuiFormControlLabel-label': {
 												flex: 1,
 												'*': {
@@ -273,16 +291,40 @@ export const OutstandingPaymentPopover = ({
 											},
 										}}
 										value={customAmount}
-										control={<Radio />}
+										control={
+											<Radio
+												style={{
+													color: '#000',
+												}}
+												checkedIcon={<CheckCircleOutlineRoundedIcon />}
+											/>
+										}
 										inputMode='numeric'
+										onFocus={() => {
+											setInputProps({
+												background: '#ebf8fe',
+												borderRadius: '8px',
+												color: primary.properDark,
+												px: 4,
+											})
+										}}
+										onBlur={() => {
+											setInputProps({})
+										}}
 										label={
 											<TextField
-												fullWidth
 												variant='standard'
 												placeholder='Enter Amount'
 												value={customAmount}
 												onChange={handleChange}
-												style={{ zIndex: '999' }}
+												style={{
+													zIndex: '999',
+													color: primary.properDark,
+													width: '50%',
+												}}
+												inputProps={{
+													sx: inputProps,
+												}}
 											/>
 										}
 									/>
@@ -302,13 +344,11 @@ export const OutstandingPaymentPopover = ({
 							paddingRight: theme.spacing(3),
 							borderRadius: '72px',
 							maxHeight: '3rem',
-							border: `1px solid ${theme.palette.textCTA.blue}`,
-							background: theme.palette.button.primary,
 						}}
 						onClick={() => {
 							hideModal()
 						}}>
-						<Typography variant='subtitle2' sx={{ color: theme.palette.textCTA.blue }}>
+						<Typography variant='subtitle2' sx={{ color: primary.properDark }}>
 							Cancel
 						</Typography>
 					</Button>
@@ -316,7 +356,7 @@ export const OutstandingPaymentPopover = ({
 						variant='contained'
 						disabled={payAmount <= 0 && (!amount || amount === '0' || parseInt(amount) <= 0)}
 						sx={{
-							background: theme.palette.button.secondary,
+							// background: theme.palette.button.secondary,
 							paddingTop: theme.spacing(2),
 							paddingBottom: theme.spacing(2),
 							paddingLeft: theme.spacing(3),
@@ -332,17 +372,17 @@ export const OutstandingPaymentPopover = ({
 							})
 							createPaymentOrder()
 						}}>
-						<Typography variant='subtitle2' sx={{ color: theme.palette.textCTA.white }}>
+						<Typography variant='subtitle2' sx={{ color: primary.properDark }}>
 							Pay
 						</Typography>
 						<CurrencyRupeeIcon
 							sx={{
 								fontSize: 'inherit',
 								cursor: 'pointer',
-								fill: theme.palette.textCTA.white,
+								fill: primary.properDark,
 							}}
 						/>
-						<Typography variant='subtitle2' sx={{ color: theme.palette.textCTA.white }}>
+						<Typography variant='subtitle2' sx={{ color: primary.properDark }}>
 							{originalSelected
 								? indianCurrencyFormat(payAmount.toString())
 								: indianCurrencyFormat(customAmount.toString() || payAmount.toString())}

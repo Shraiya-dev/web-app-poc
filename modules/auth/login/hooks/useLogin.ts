@@ -2,8 +2,8 @@ import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import { useContractorAuth, useSnackbar } from '../../../../sdk'
 import { useFormik } from 'formik'
-import { Analytic } from '../../../../sdk/analytics'
-import { ButtonClicked } from '../../../../sdk/analytics/analyticsWrapper'
+import { Analytic, DataLayerPush } from '../../../../sdk/analytics'
+import { ButtonClicked, sendAnalytics } from '../../../../sdk/analytics/analyticsWrapper'
 
 const initialLoginState = {
 	status: 'idle',
@@ -52,6 +52,11 @@ const useLogin = () => {
 		onSubmit: async (values) => {
 			// Analytic.page()
 			setLoading(true)
+			DataLayerPush({ event: 'mobile_registration' })
+			sendAnalytics({
+				name: 'requestPhoneOtp',
+				action: 'ButtonClick',
+			})
 			requestOtp(`+91${values?.phoneNumber}`)
 				.then((res) => {
 					if (res?.data?.success) {

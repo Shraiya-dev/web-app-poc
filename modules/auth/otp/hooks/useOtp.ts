@@ -3,7 +3,7 @@ import { useRouter } from 'next/router'
 import { useContractorAuth, useSnackbar } from '../../../../sdk'
 import { useFormik } from 'formik'
 import { Analytic, DataLayerPush } from '../../../../sdk/analytics'
-import { ButtonClicked } from '../../../../sdk/analytics/analyticsWrapper'
+import { ButtonClicked, sendAnalytics } from '../../../../sdk/analytics/analyticsWrapper'
 
 const initialOtpState = {
 	status: 'idle',
@@ -50,10 +50,10 @@ const useOtp = () => {
 		},
 
 		onSubmit: (values) => {
-			ButtonClicked({
-				action: 'Verify OTP',
-				page: 'Login',
-				url: router.asPath,
+			DataLayerPush({ event: 'mobile_verification' })
+			sendAnalytics({
+				name: 'verifiedPhoneOtp',
+				action: 'ButtonClick',
 			})
 
 			if (validateOtpField(otp) === 'valid') {

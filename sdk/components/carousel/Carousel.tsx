@@ -1,10 +1,12 @@
-import { IconButton, MobileStepper, MobileStepperProps, Stack } from '@mui/material'
+import { ArrowBack, ArrowForward, ArrowRight } from '@mui/icons-material'
+import { Box, IconButton, MobileStepper, MobileStepperProps, Stack } from '@mui/material'
 import { useEffect, useMemo, useState } from 'react'
 import SwipeableViews from 'react-swipeable-views'
 import { autoPlay } from 'react-swipeable-views-utils'
 interface CarouselProps {
 	componentPerView: number
 	items: any[]
+	mobileStepper?: boolean
 	slideDelay?: number
 	mobileStepperPosition?: 'top' | 'static' | 'bottom'
 }
@@ -13,6 +15,7 @@ const AutoPlaySwipeableViews = autoPlay(SwipeableViews)
 export const Carousel = ({
 	items,
 	componentPerView,
+	mobileStepper = true,
 	slideDelay = 5000,
 	mobileStepperPosition = 'bottom',
 }: CarouselProps) => {
@@ -35,7 +38,7 @@ export const Carousel = ({
 
 	return (
 		<>
-			{mobileStepperPosition === 'top' && maxSteps > 1 && (
+			{mobileStepper && mobileStepperPosition === 'top' && maxSteps > 1 && (
 				<MobileStepper
 					position={'static'}
 					color='common.white'
@@ -54,21 +57,33 @@ export const Carousel = ({
 					activeStep={activeStep}
 				/>
 			)}
-			<AutoPlaySwipeableViews
-				interval={slideDelay}
-				index={activeStep}
-				onChangeIndex={(i) => setActiveStep(i)}
-				scrolling=''
-				enableMouseEvents>
-				{contentPerSlide.map((items: any[], index) => (
-					<Stack direction='row' key={index} justifyContent='space-evenly'>
-						{items.map((com, id) => {
-							return com
-						})}
-					</Stack>
-				))}
-			</AutoPlaySwipeableViews>
-			{mobileStepperPosition === 'bottom' && maxSteps > 1 && (
+			<Stack direction='row' alignItems='center'>
+				{!mobileStepper && (
+					<IconButton disabled={activeStep === 0} onClick={() => setActiveStep((p) => p - 1)}>
+						<ArrowBack color='primary' />
+					</IconButton>
+				)}
+				<AutoPlaySwipeableViews
+					interval={slideDelay}
+					index={activeStep}
+					onChangeIndex={(i) => setActiveStep(i)}
+					scrolling=''
+					enableMouseEvents>
+					{contentPerSlide.map((items: any[], index) => (
+						<Stack direction='row' key={index} justifyContent='space-evenly'>
+							{items.map((com, id) => {
+								return com
+							})}
+						</Stack>
+					))}
+				</AutoPlaySwipeableViews>
+				{!mobileStepper && (
+					<IconButton disabled={activeStep >= maxSteps - 1} onClick={() => setActiveStep((p) => p + 1)}>
+						<ArrowForward color='primary' />
+					</IconButton>
+				)}
+			</Stack>
+			{mobileStepper && mobileStepperPosition === 'bottom' && maxSteps > 1 && (
 				<MobileStepper
 					position={'static'}
 					color='common.white'

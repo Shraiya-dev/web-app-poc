@@ -1,13 +1,10 @@
-import { Box, Grid, Paper, Stack, Typography } from '@mui/material'
+import { Box, Button, Card, Container, Paper, Stack } from '@mui/material'
 import { styled } from '@mui/system'
-import Image from 'next/image'
-import React from 'react'
-import { SvgBrandLogo } from '../components'
-import Banner from '../../public/assets/icons/Banner.svg'
+import { useRouter } from 'next/router'
+import { useState } from 'react'
+import { LogoutAndRedirect } from 'sdk/utils/logoutHelper'
+import { ConfirmationDialog, Navbar } from '../components'
 import { useMobile } from '../hooks'
-import logo from '../../public/assets/icons/BrandLogo.svg'
-import onboardingSvg from '../../public/assets/icons/onboardingBack.svg'
-import { primary } from '../constants'
 
 const intro = [
 	{
@@ -28,34 +25,34 @@ const intro = [
 ]
 
 const CustomizeDashboard = styled(Box)(({ theme }) => ({
-	minHeight: '100vh',
+	minHeight: 'calc(100vh - 65px)',
 	minWidth: '100vw',
 	display: 'flex',
+	marginTop: '65px',
+	position: 'relative',
+
+	'.helmet': {
+		position: 'absolute',
+		top: '15%',
+		left: '50%',
+		transform: 'translate(-50%,0)',
+	},
 
 	'.center': {
 		flex: 1,
 		paddingTop: 24,
 		justifyContent: 'center',
-		backgroundColor: theme.palette.primary.light,
 		alignItems: 'center',
-		backgroundImage: ' url(assets/icons/onboardingBack.svg) ',
-		backgroundPosition: 'center',
-		backgroundRepeat: 'no-repeat',
-		backgroundSize: 'cover',
+		// backgroundImage: ' url(/assets/icons/backgrounds/onboarding-background.svg) ',
+		// backgroundPosition: 'center center',
+		// backgroundRepeat: 'no-repeat',
+		// backgroundSize: 'cover',
+		// objectFit: 'contain',
 
 		//backgroundImage:onboardingSvg,
 		// backgroundImage: `url(${onboardingSvg})`,
 	},
 
-	'.left': {
-		backgroundColor: theme.palette.primary.main,
-		flex: 1,
-		justifyContent: 'space-evenly',
-		alignItems: 'center',
-	},
-	'.right': {
-		flex: 1,
-	},
 	'.logoContainer': {
 		display: 'flex',
 		justifyContent: 'center',
@@ -68,8 +65,13 @@ const CustomizeDashboard = styled(Box)(({ theme }) => ({
 	'.introBox': {
 		minWidth: '80%',
 	},
+	backgroundImage: 'url(/assets/icons/backgrounds/orange-bubble.svg), url(/assets/icons/backgrounds/grey-bubble.svg)',
+	backgroundPosition: 'left bottom, right top',
+	backgroundRepeat: ' no-repeat, no-repeat',
 	//mobile view styles
 	[theme.breakpoints.down('md')]: {
+		backgroundSize: '170px,150px',
+
 		flexDirection: 'column',
 		'.instruction': {
 			display: 'none',
@@ -90,52 +92,75 @@ const CustomizeDashboard = styled(Box)(({ theme }) => ({
 			maxHeight: 124,
 			alignItems: 'start',
 		},
+		'.helmet': {
+			position: 'absolute',
+			top: '10%',
+			left: '50%',
+			// transform:'translate(-50%,0)'
+		},
 	},
 }))
 
-export const OnboardingLayout = ({ children, ...props }: any) => {
+export const OnboardingLayout = ({ children, helmet = true, ...props }: any) => {
 	const isMobile = useMobile()
+	const [dialogProps, setDialogProps] = useState(false)
+	const router = useRouter()
 	return (
-		<CustomizeDashboard>
-			<Stack direction={'row'} alignItems={'center'} mb={8} style={{ position: 'absolute', margin: 24 }}>
-				<Image alt='logo' src={logo} />
-			</Stack>
-			{/* <Stack className='left'>
-				<Stack alignItems='flex-start'>
-					<Box className='logoContainer'>
-						
-						<Image src={Banner} alt='' className='brandLogo' width={300} height={200} />
-					</Box>
-					<Stack mt={8} width='fit-content' className='instruction'>
-						{intro.map((x, index) => {
-							return (
-								<Stack
-									mt={2}
-									direction='row'
-									spacing={5}
-									width={'100%'}
-									key={index}
-									mb={2}
-									alignItems='center'>
-									
-									<svg height='20' width='20'>
-										<circle cx='10' cy='10' r='10' fill='#ffffff' />
-									</svg>
-									<Typography variant='h4' color={'white'} fontSize={24} fontWeight={600}>
-										{x.label}
-									</Typography>
-								</Stack>
-							)
-						})}
-					</Stack>
+		<>
+			<Navbar />
+			<ConfirmationDialog
+				title={'Leave without creating account?'}
+				caption={'You’ll not be able to book workers'}
+				open={dialogProps}
+				cancel={() => {
+					setDialogProps((p) => !p)
+				}}
+				confirm={() => {
+					LogoutAndRedirect()
+				}}
+			/>
+			<CustomizeDashboard>
+				{/* <Stack position={'absolute'} top={0} right={0}>
+					<img src='/assets/icons/backgrounds/grey-bubble.svg' />
 				</Stack>
-			</Stack> */}
+				<Stack position={'absolute'} bottom={0} left={0}>
+					<img src='/assets/icons/backgrounds/orange-bubble.svg' />
+				</Stack> */}
+				<Container sx={{ display: 'flex', flex: 1, flexDirection: 'column', p: 2 }}>
+					<Button
+						onClick={!helmet ? () => router.back() : () => setDialogProps(true)}
+						sx={{ alignSelf: 'flex-start' }}
+						variant='text'
+						color='info'
+						startIcon={<img src={'/assets/icons/arrow_back.svg'} alt='back' />}>
+						Go Back
+					</Button>
 
-			<Stack className='center'>
-				<Paper elevation={4} style={{ padding: 24, borderRadius: 8, width: isMobile ? 372 : 392, zIndex: 2 }}>
-					{children}
-				</Paper>
-			</Stack>
-		</CustomizeDashboard>
+					<Stack className='center' spacing={5} mt={helmet ? -20 : 0}>
+						{helmet && (
+							<Stack>
+								<img src='/assets/icons/backgrounds/Helmet.svg' />
+							</Stack>
+						)}
+						{helmet && (
+							<Paper
+								component={Card}
+								elevation={4}
+								style={{
+									background: '#000',
+									padding: 24,
+									borderRadius: 8,
+									width: 'fit-content',
+									minWidth: isMobile ? 372 : 392,
+									zIndex: 2,
+								}}>
+								{children}
+							</Paper>
+						)}
+						{!helmet && <>{children}</>}
+					</Stack>
+				</Container>
+			</CustomizeDashboard>
+		</>
 	)
 }

@@ -12,20 +12,21 @@ export const CustomToggle = ({ ...props }) => {
 					textTransform: 'none',
 					boxShadow: 'none',
 
-					color: infoValues ? theme.palette.primary.main : theme.palette.secondary.main,
-					border: infoValues
-						? `2px solid ${theme.palette.primary.main}`
-						: `1px solid ${theme.palette.secondary.light}`,
+					color: infoValues ? primary.properDark : primary.properDark,
+					// border: infoValues
+					// 	? `2px solid ${theme.palette.primary.main}`
+					// 	: `1px solid ${theme.palette.secondary.light}`,
 					background: infoValues ? theme.palette.primary.light : 'white',
 					'&:hover': {
-						color: theme.palette.primary.main,
+						color: primary.properDark,
 						background: theme.palette.primary.light,
 						boxShadow: 'none',
 					},
 				}}
 				onClick={() => {
 					form.setFieldValue(name, true)
-				}}>
+				}}
+			>
 				Yes
 			</Button>
 			<Button
@@ -35,24 +36,22 @@ export const CustomToggle = ({ ...props }) => {
 					textTransform: 'none',
 					boxShadow: 'none',
 
-					color:
-						!infoValues && infoValues !== undefined
-							? theme.palette.primary.main
-							: theme.palette.secondary.main,
-					border:
-						!infoValues && infoValues !== undefined
-							? `2px solid ${theme.palette.primary.main}`
-							: `1px solid ${theme.palette.secondary.light}`,
+					color: !infoValues && infoValues !== undefined ? primary.properDark : primary.properDark,
+					// border:
+					// 	!infoValues && infoValues !== undefined
+					// 		? `2px solid ${theme.palette.primary.main}`
+					// 		: `1px solid ${theme.palette.secondary.light}`,
 					background: !infoValues && infoValues !== undefined ? theme.palette.primary.light : 'white',
 					'&:hover': {
-						color: theme.palette.primary.main,
+						color: primary.properDark,
 						background: theme.palette.primary.light,
 						boxShadow: 'none',
 					},
 				}}
 				onClick={() => {
 					form.setFieldValue(name, false)
-				}}>
+				}}
+			>
 				No
 			</Button>
 		</Stack>

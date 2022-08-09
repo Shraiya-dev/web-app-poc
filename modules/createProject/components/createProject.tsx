@@ -1,4 +1,5 @@
 import { Add, Close } from '@mui/icons-material'
+import CancelRoundedIcon from '@mui/icons-material/CancelRounded'
 import { LoadingButton } from '@mui/lab'
 import {
 	Box,
@@ -17,7 +18,7 @@ import {
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
 import ProjectSvg from '../../../public/assets/icons/project.svg'
-import { checkError, getSelectOptions, InputWrapper, primary, theme, useSnackbar } from '../../../sdk'
+import { checkError, getSelectOptions, InputWrapper, primary, theme, useMobile, useSnackbar } from '../../../sdk'
 import { Analytic } from '../../../sdk/analytics'
 import { TopBanner } from '../../../sdk/components/banner/formBanner'
 import { FileInput } from '../../../sdk/components/Input/fileInput'
@@ -38,11 +39,11 @@ const CustomProjectStyle = styled(Box)(({ theme }) => ({
 	'.header': {
 		fontSize: 36,
 		fontWeight: 600,
-		color: theme.palette.primary.main,
+		color: primary.properDark,
 	},
 	'.subHeader': {
 		fontSize: 18,
-		color: theme.palette.primary.main,
+		color: primary.properDark,
 		fontWeight: 400,
 	},
 
@@ -60,7 +61,7 @@ const CustomProjectStyle = styled(Box)(({ theme }) => ({
 		bottom: 0,
 		left: 0,
 		right: 0,
-
+		background: primary.properDark,
 		padding: 16,
 
 		//background: 'white',
@@ -104,6 +105,8 @@ export const CreateProject = () => {
 	} = useCreateProject()
 
 	const router = useRouter()
+
+	const isMobile = useMobile()
 
 	useEffect(() => {
 		if (step === 1) {
@@ -196,7 +199,8 @@ export const CreateProject = () => {
 											form.setFieldValue('city', 'none')
 										}}
 										required={true}
-										fullWidth>
+										fullWidth
+									>
 										<MenuItem value={'none'}>Select State</MenuItem>
 										{getSelectOptions(StatesOptions)}
 									</Select>
@@ -215,7 +219,8 @@ export const CreateProject = () => {
 										onChange={(e) => {
 											form.handleChange(e)
 										}}
-										fullWidth>
+										fullWidth
+									>
 										<MenuItem value={'none'}>Select city</MenuItem>
 										{CityOptions[form.values.state].map((item: any) => {
 											return (
@@ -288,6 +293,7 @@ export const CreateProject = () => {
 														width: 32,
 														height: 32,
 														fontWeight: 100,
+														color: '#fff',
 													}}
 												/>
 											)
@@ -308,7 +314,8 @@ export const CreateProject = () => {
 														sx={{
 															position: 'relative',
 															marginLeft: 1,
-														}}>
+														}}
+													>
 														<IconButton
 															// disabled={formDisabled}
 															size='small'
@@ -319,14 +326,14 @@ export const CreateProject = () => {
 																)
 															}}
 															sx={(theme) => ({
-																backgroundColor: theme.palette.grey[100],
-																color: primary.main,
+																color: '#fff',
 																position: 'absolute',
-																//zIndex: 100,
+																// zIndex: 100,
 																top: -10,
 																right: -10,
-															})}>
-															<Close />
+															})}
+														>
+															<CancelRoundedIcon />
 														</IconButton>
 
 														<img
@@ -360,7 +367,8 @@ export const CreateProject = () => {
 										name='overTimeFactor'
 										value={form.values.overTimeFactor}
 										onChange={form.handleChange}
-										fullWidth>
+										fullWidth
+									>
 										<MenuItem value={'none'}>Select over time wage</MenuItem>
 										{getSelectOptions(overTimefactor)}
 									</Select>
@@ -409,6 +417,7 @@ export const CreateProject = () => {
 															width: 32,
 															height: 32,
 															fontWeight: 100,
+															color: '#fff',
 														}}
 													/>
 												)
@@ -429,7 +438,8 @@ export const CreateProject = () => {
 															sx={{
 																position: 'relative',
 																marginLeft: 1,
-															}}>
+															}}
+														>
 															<IconButton
 																// disabled={formDisabled}
 																size='small'
@@ -442,14 +452,15 @@ export const CreateProject = () => {
 																	)
 																}}
 																sx={(theme) => ({
-																	backgroundColor: theme.palette.grey[100],
+																	// backgroundColor: theme.palette.grey[100],
 																	color: primary.main,
 																	position: 'absolute',
 																	//zIndex: 100,
 																	top: -10,
 																	right: -10,
-																})}>
-																<Close />
+																})}
+															>
+																<CancelRoundedIcon />
 															</IconButton>
 
 															<img
@@ -485,7 +496,8 @@ export const CreateProject = () => {
 										<Button
 											variant='outlined'
 											onClick={handlePrev}
-											style={{ minWidth: '10em', float: 'right', display: 'flex' }}>
+											style={{ minWidth: '10em', float: 'right', display: 'flex' }}
+										>
 											Go Back
 										</Button>
 									)}
@@ -502,8 +514,9 @@ export const CreateProject = () => {
 											// isSubmitable || loading ?  : theme.palette.primary.main,
 											opacity: !!isSubmitable || loading ? 0.4 : 1,
 											minWidth: '10em',
-											color: 'white',
-										}}>
+											color: primary.properDark,
+										}}
+									>
 										{step === 2 ? 'Create Project' : 'Continue'}
 									</LoadingButton>
 								</Stack>

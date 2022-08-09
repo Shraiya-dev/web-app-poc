@@ -2,7 +2,8 @@ import React, { useState } from 'react'
 import { useRouter } from 'next/router'
 
 // Material UI
-import { Dialog, DialogContent, Button, Typography, Stack, Box, Grid } from '@mui/material'
+import { Dialog, DialogContent, Button, Typography, Stack, Box, Grid, Card, Paper } from '@mui/material'
+import { primary } from 'sdk'
 
 const ConfirmCancel = ({ ...props }) => {
 	const { onCloseDialog, setOncloseDialog, header, buttonLabel } = props
@@ -14,10 +15,12 @@ const ConfirmCancel = ({ ...props }) => {
 
 	return (
 		<Dialog style={{ zIndex: 1800 }} open={onCloseDialog} keepMounted onClose={handleCancel}>
-			<Box>
+			<Box component={Paper}>
 				<DialogContent>
-					<Typography variant='h5'>{header}</Typography>
-					<Typography style={{ marginBottom: 30, marginTop: 10, fontSize: 14 }}>
+					<Typography variant='h5' color={primary.properDark}>
+						{header}
+					</Typography>
+					<Typography color={'#4d4d4d'} style={{ marginBottom: 30, marginTop: 10, fontSize: 14 }}>
 						Your changes will not be saved
 					</Typography>
 					<Stack direction={'row'} justifyContent={'flex-end'} style={{ width: '100%', paddingLeft: 20 }}>

@@ -1,34 +1,30 @@
-import { FormatQuote } from '@mui/icons-material'
-import {
-	Card,
-	CardContent,
-	CardMedia,
-	Chip,
-	Grid,
-	List,
-	ListItem,
-	ListItemIcon,
-	ListItemText,
-	Paper,
-	Stack,
-	Typography,
-} from '@mui/material'
-import { ContactUsSection } from 'landing/components'
-import Image from 'next/image'
+import { ArrowCircleLeftOutlined, ArrowCircleRightOutlined, Circle } from '@mui/icons-material'
+
+import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord'
+import { Box, Button, Card, Grid, List, ListItem, Stack, Typography } from '@mui/material'
+import { useKeenSlider } from 'keen-slider/react'
 import { useRouter } from 'next/router'
+import { useState } from 'react'
+import 'keen-slider/keen-slider.min.css'
+
 import {
-	AppStoreImage,
-	Carousel,
+	ButtonClicked,
+	CarouselV2,
 	DataLayerPush,
 	externalLinks,
-	FloatingUnderLineHeading,
-	HyperLink,
 	LinkButton,
+	primary,
 	Section,
+	sendAnalytics,
 	useMobile,
 } from 'sdk'
-import { ButtonClicked } from 'sdk/analytics/analyticsWrapper'
+import { HeroDiscoveryMetaData } from 'sdk/data/discoverHero'
 import { homePage } from 'sdk/data/home'
+import { sliceIntoChunks } from 'sdk/utils/arrayHelpers'
+import { CreateBookingCard, JobCategoryCard } from 'sdkv2/components'
+import { WorkerCard } from 'sdkv2/components/cards/WorkerCard'
+
+const animation = { duration: 25000, easing: (t: number) => t }
 
 export const Home = () => {
 	const {
@@ -44,146 +40,179 @@ export const Home = () => {
 	} = homePage
 	const isMobile = useMobile()
 	const router = useRouter()
+	const [sliderRef] = useKeenSlider<HTMLDivElement>({
+		loop: true,
+		renderMode: 'performance',
+		drag: false,
+		slides: { perView: 'auto' },
+		created(s) {
+			s.moveToIdx(5, true, animation)
+		},
+		updated(s) {
+			s.moveToIdx(s.track.details.abs + 5, true, animation)
+		},
+		animationEnded(s) {
+			s.moveToIdx(s.track.details.abs + 5, true, animation)
+		},
+	})
+
+	const [jobTypeForCarousal, setJobTypeForCarousal] = useState('MASON')
 	return (
 		<>
 			<Section>
-				<Grid container>
-					<Grid item flex={1} xs={5} display={{ xs: 'none', md: 'flex' }}>
-						<Stack alignItems='flex-start' spacing={5}>
-							<Typography variant='h4'>
-								India&apos;s largest <strong>skilled construction workforce marketplace</strong>
+				<Grid container spacing={2}>
+					<Grid item xs={12} md={7.5}>
+						<Stack justifyContent='space-between' spacing={2}>
+							<Stack alignItems={'center'} direction={{ md: 'row' }} justifyContent='space-between'>
+								<Box
+									sx={{
+										marginTop: { xs: 2, md: 6 },
+										width: '48%',
+									}}>
+									<img width='100%' src='/assets/landingv2/heroSection/heroImg1.png' />
+								</Box>
+								<Box
+									sx={{
+										marginBottom: { xs: 2, md: 6 },
+										width: '48%',
+									}}>
+									<img width='100%' src='/assets/landingv2/heroSection/heroImg2.png' />
+								</Box>
+							</Stack>
+							<Typography variant='h1' lineHeight='1.5'>
+								India&apos;s Largest & Most Trusted Platform to{' '}
+								<Typography display='inline' variant='h1' color='primary.main'>
+									Hire Construction Workers
+								</Typography>
+								{!isMobile && (
+									<img
+										style={{ marginLeft: 30, marginBottom: -30 }}
+										src='/assets/landingv2/heroSection/curlyArrow.svg'
+									/>
+								)}
 							</Typography>
-							{/*<LinkButton href='/hero/plans' sx={{ px: 6 }} variant='outlined'>
-									View Plans
-								</LinkButton>*/}
-							<Stack direction='row' spacing={5}>
-								<Stack direction='row' spacing={2}>
-									<Image
-										src='/assets/landing/statIcon.svg'
-										width={55}
-										height={55}
-										alt='hero Banner'
-									/>
-									<Stack>
-										<Typography color='base.variant70' fontWeight={700}>
-											4 Lac+
-										</Typography>
-										<Typography color='base.variant70'>workforce</Typography>
-									</Stack>
-								</Stack>
-								<Stack direction='row' spacing={2}>
-									<Image
-										src='/assets/landing/thunderIcon.svg'
-										width={55}
-										height={55}
-										alt='hero Banner'
-									/>
-									<Stack>
-										<Typography color='warning.main' fontWeight={700}>
-											10+ Job
-										</Typography>
-										<Typography color='warning.main'>categories</Typography>
-									</Stack>
-								</Stack>
+							<Stack direction='row' alignItems={'center'} spacing={3} mt='auto'>
+								<img width={50} src='/assets/landingv2/heroSection/workerGreen.svg' />
+								<Typography variant='h5'>
+									<strong>4 Lac+</strong> construction workforce available
+								</Typography>
 							</Stack>
 						</Stack>
 					</Grid>
-					<Grid
-						item
-						xs={5}
-						md={3}
-						sx={(theme) => ({
-							img: {
-								width: '125%',
-								[theme.breakpoints.down('md')]: {
-									width: '120%',
-								},
-							},
-						})}>
-						<picture>
-							<source media='(min-width:900px)' srcSet='/assets/landing/bannerImage.png' />
-							<source media='(max-width:900px)' srcSet='/assets/landing/mobileBaner.png' />
-							<img src='/assets/landing/mobileBaner.png' alt='Flowers' />
-						</picture>
-					</Grid>
-					<Grid item xs={7} md={4}>
-						<Stack alignItems='center' flex={1} pt={5} spacing={3}>
-							<Chip
-								sx={(theme) => ({
-									borderRadius: '12px',
-									color: 'success.dark',
-									backgroundColor: 'success.light',
-									fontSize: 14,
-									whiteSpace: 'break-spaces',
-									[theme.breakpoints.down('md')]: {
-										fontSize: 10,
-									},
-								})}
-								variant='filled'
-								label='Submit your Booking requirement now!'
-							/>
-							<Stack>
-								<Typography
-									fontSize={{ xs: 12, md: 14 }}
-									variant='h6'
-									textAlign='center'
-									fontWeight={600}>
-									Get Construction Workforce ASAP!
-								</Typography>
-								<Typography fontSize={{ xs: 12, md: 14 }} textAlign='center'>
-									30 Days* No Questions Asked Refund Policy{' '}
-								</Typography>
-							</Stack>
-							<LinkButton
-								size='large'
-								variant='contained'
-								color='primary'
-								href='/login'
-								onClick={() => {
-									DataLayerPush({
-										event: 'book_worker_home_hero',
-									})
-									ButtonClicked({
-										page: document.title,
-										action: 'Book Workers',
-										url: router.asPath,
-									})
-								}}
-								sx={{ px: 4 }}>
-								Book Workers
-							</LinkButton>
-						</Stack>
+					<Grid item xs={12} md={4.5} justifyContent='center' id='book-worker'>
+						<CreateBookingCard />
 					</Grid>
 				</Grid>
 			</Section>
-			<Section>
-				<Grid container spacing={{ xs: 2, md: 4 }}>
-					{jobSection.jobs.map((item) => (
-						<Grid item key={item.image} xs={6} md={2.4}>
-							<Stack
-								flex={1}
-								alignItems='center'
-								spacing={1}
-								sx={(theme) => ({
-									'>img': {
-										width: 200,
-										height: 100,
-									},
-									[theme.breakpoints.down('md')]: {
-										'>img': {
-											width: 150,
-											height: 70,
-										},
-									},
-								})}>
-								<img style={{ borderRadius: '12px' }} src={item.image} alt='' />
-								<Typography>{item.label}</Typography>
-							</Stack>
-						</Grid>
+			<Section backgroundColor='#000000'>
+				<Box ref={sliderRef} className='keen-slider'>
+					{jobSection.tagLine.map((item, index, arr) => (
+						<Typography
+							sx={{ minWidth: 'fit-content' }}
+							display='flex'
+							alignItems='center'
+							key={index}
+							className='keen-slider__slide'>
+							<Typography noWrap variant='h6' color='common.white'>
+								{item}
+							</Typography>
+							<Circle sx={{ fontSize: 8, color: 'common.white', mx: 2 }} />
+						</Typography>
 					))}
-				</Grid>
+				</Box>
+				<Stack p={3}>
+					<Typography variant='h2' color='common.white'>
+						Explore{' '}
+						<Typography variant='h2' color='primary' display='inline'>
+							Job Categories
+						</Typography>{' '}
+						and Book Workers{' '}
+						<Typography variant='h2' color='primary' display='inline'>
+							in a minute
+						</Typography>
+					</Typography>
+				</Stack>
+				{/* <Tabs
+					onChange={(e, v) => setJobTypeForCarousal(v)}
+					value={jobTypeForCarousal}
+					variant='fullWidth'
+					scrollButtons={false}
+					ScrollButtonComponent={(props) => {
+						if (props.direction === 'left' && !props.disabled) {
+							return (
+								<Button variant='text' {...props}>
+									<ArrowCircleLeftOutlined fontSize={'large'} sx={{ color: 'common.white' }} />
+								</Button>
+							)
+						} else if (props.direction === 'right' && !props.disabled) {
+							return (
+								<Button variant='text' {...props}>
+									<ArrowCircleRightOutlined fontSize={'large'} sx={{ color: 'common.white' }} />
+								</Button>
+							)
+						} else {
+							return null
+						}
+					}}>
+					<CarouselV2
+						componentPerView={5}
+						items={jobSection.jobs.map((item) => (
+							<Tab
+								value={item.value}
+								key={item.label}
+								sx={{ color: 'common.white', textTransform: 'none' }}
+								label={<JobCategoryCard src={item.image} label={item.label} />}
+							/>
+						))}
+					/>
+				</Tabs> */}
+
+				<CarouselV2
+					componentPerView={isMobile ? 2 : 7}
+					mobileStepperPosition='center'
+					icons={{
+						left: <ArrowCircleLeftOutlined sx={{ color: 'common.white', fontSize: 40 }} />,
+						right: <ArrowCircleRightOutlined sx={{ color: 'common.white', fontSize: 40 }} />,
+					}}
+					items={jobSection.jobs.map((item) => (
+						<Button
+							onClick={(e) => setJobTypeForCarousal(item.value)}
+							variant='text'
+							value={item.value}
+							key={item.label}
+							sx={(theme) => ({
+								color: 'common.white',
+								borderRadius: 0.5,
+								textTransform: 'none',
+								borderBottom:
+									jobTypeForCarousal === item.value
+										? `5px solid ${theme.palette.primary.main}`
+										: undefined,
+							})}>
+							<JobCategoryCard src={item.image} label={item.label} />
+						</Button>
+					))}
+				/>
+				<CarouselV2
+					mobileStepperPosition={isMobile ? 'bottom' : 'center'}
+					componentPerView={1}
+					items={sliceIntoChunks(HeroDiscoveryMetaData[jobTypeForCarousal], isMobile ? 2 : 6).map(
+						(slide, index) => {
+							return (
+								<Grid key={index} container py={3} spacing={2}>
+									{slide.map((item: any) => (
+										<Grid xs={11} mx={'auto'} md={4} item key={item.workerId}>
+											<WorkerCard worker={item} />
+										</Grid>
+									))}
+								</Grid>
+							)
+						}
+					)}
+					slideDelay={5000}
+				/>
 			</Section>
-			<Section className='hide-on-mobile' backgroundColor={bookingJourneySection.backgroundColor}>
+			{/* <Section className='hide-on-mobile' backgroundColor={bookingJourneySection.backgroundColor}>
 				<Stack spacing={2}>
 					<Typography variant='h4' textAlign='center' color={bookingJourneySection.sectionTitle.color}>
 						{bookingJourneySection?.sectionTitle.children}
@@ -205,8 +234,51 @@ export const Home = () => {
 						))}
 					</Grid>
 				</Stack>
+			</Section> */}
+
+			<Section backgroundColor='#F7F7F7' id='how-it-works'>
+				<Box pt={'24px'} pb={'66px'}>
+					<Stack direction={'column'} mb={'32px'}>
+						<Typography variant='h1'>{homePage.howItWorksSection.heading}</Typography>
+						<Typography variant='h4'>{homePage.howItWorksSection.subHeading}</Typography>
+					</Stack>
+					<Box mb={'66px'}>
+						<LinkButton
+							variant='contained'
+							sx={homePage.howItWorksSection.buttonSx}
+							href={homePage.howItWorksSection.buttonText.link}
+							onClick={() => {
+								DataLayerPush({ event: 'book_hero_home_footer' })
+								sendAnalytics({
+									name: 'howItWorks',
+									action: 'ButtonClick',
+									metaData: {
+										origin: 'Navbar',
+									},
+								})
+							}}>
+							{homePage.howItWorksSection.buttonText.text}
+						</LinkButton>
+					</Box>
+					<Box
+						sx={{
+							width: '100%',
+						}}>
+						<Box
+							component={'img'}
+							sx={{
+								content: {
+									xs: `url(${'/assets/landingv2/heroSection/howitworksMobile.svg'})`,
+									md: `url(${'/assets/landingv2/heroSection/howitworks.svg'})`,
+								},
+								width: '100%',
+							}}
+						/>
+					</Box>
+				</Box>
 			</Section>
-			<Section backgroundColor={benefitFromHeroSection.backgroundColor}>
+
+			{/* <Section backgroundColor={benefitFromHeroSection.backgroundColor}>
 				<Carousel
 					componentPerView={isMobile ? 1 : 3}
 					items={[
@@ -233,9 +305,91 @@ export const Home = () => {
 						)),
 					]}
 				/>
+			</Section> */}
+
+			{/* why you should hire section */}
+
+			<Section backgroundColor='#000'>
+				<Box
+					sx={{
+						padding: '46px 0 70px 0',
+					}}>
+					<Grid
+						container
+						sx={{
+							flexDirection: { xs: 'column', md: 'row' },
+						}}>
+						<Grid
+							item
+							md={6}
+							xs={12}
+							sx={{
+								mb: { xs: 6 },
+							}}>
+							<Stack direction={'column'} spacing={4}>
+								<Box>{homePage.whyYouShouldHire.left.heading}</Box>
+								<Box>
+									<LinkButton
+										sx={homePage.whyYouShouldHire.left.buttonSx}
+										href={homePage.howItWorksSection.buttonText.link}
+										onClick={() => {
+											DataLayerPush({ event: 'book_hero_home_footer' })
+											sendAnalytics({
+												name: 'EasyBookWorker',
+												action: 'ButtonClick',
+												metaData: {
+													origin: 'why You Should Hire section',
+												},
+											})
+										}}>
+										{homePage.whyYouShouldHire.left.buttonText.text}
+									</LinkButton>
+								</Box>
+							</Stack>
+						</Grid>
+
+						<Grid item xs={6}>
+							<Grid
+								container
+								spacing={4}
+								sx={{
+									width: { xs: 'fit-content' },
+								}}>
+								{homePage.whyYouShouldHire.right.item.map((data, index) => {
+									return (
+										<Grid key={index} item xs={12} md={6}>
+											<Stack direction={'row'} spacing={2} width={'310px'}>
+												<Box sx={homePage.whyYouShouldHire.right.indexSx}>
+													<Typography variant='h2' color={'#EFC430'}>
+														0{index + 1}
+													</Typography>
+												</Box>
+												<Box>
+													<Stack direction={'column'} sx={{ color: '#fff' }} spacing={2}>
+														<Typography
+															variant='h4'
+															sx={{
+																color: homePage.whyYouShouldHire.right.itemTextColor,
+															}}>
+															{data.heading}
+														</Typography>
+														<Typography variant='h5'>{data.desc}</Typography>
+													</Stack>
+												</Box>
+											</Stack>
+										</Grid>
+									)
+								})}
+							</Grid>
+						</Grid>
+					</Grid>
+				</Box>
 			</Section>
+
+			{/* end why you should hire section */}
+
 			{/* hire your construction section  */}
-			<Section backgroundImage={hireConstructionSection.backgroundImage}>
+			{/* <Section backgroundImage={hireConstructionSection.backgroundImage}>
 				<Stack
 					direction='row'
 					sx={{
@@ -296,196 +450,251 @@ export const Home = () => {
 						})}
 					</Grid>
 				</Stack>
-			</Section>
-			<Section backgroundColor={supportCarouselSection.backgroundColor}>
-				<Carousel
-					componentPerView={isMobile ? 1 : 3}
-					items={[
-						...supportCarouselSection.carouselContent.map((item, index) => (
-							<Stack
-								width={350}
-								height={80}
-								key={index}
-								sx={{
-									position: 'relative',
-									borderRadius: '12px',
-								}}>
-								<HyperLink href={item.link}>
-									<Image
+			</Section> */}
+
+			{/* hero advantage section */}
+
+			<Section
+				backgroundColor='#F7F7F7'
+				sx={{
+					backgroundImage: !isMobile
+						? `url(${'/assets/landingv2/heroSection/heroAdvantage.svg'})`
+						: `url(${'/assets/landingv2/heroSection/heroAdvantageMobile.svg'})`,
+					backgroundRepeat: 'no-repeat',
+					backgroundPosition: !isMobile ? 'right' : 'right bottom',
+					minHeight: !isMobile ? '600px' : '880px',
+				}}>
+				<Box
+					sx={{
+						p: '46px 0px',
+						overflowX: 'hidden',
+					}}>
+					<Grid container spacing={8}>
+						<Grid item xs={12} md={6}>
+							<Stack direction={'column'} spacing={4}>
+								<Stack direction={'column'} spacing={2}>
+									<Box>{homePage.HeroAdvantage.Heading}</Box>
+									<Box>{homePage.HeroAdvantage.subHeading}</Box>
+								</Stack>
+								<Box>
+									<LinkButton
+										href={homePage.HeroAdvantage.buttonText.link}
+										sx={{
+											p: '20px 66px',
+											fontWeight: '900',
+										}}
+										// href='/login'
 										onClick={() => {
-											DataLayerPush({
-												event: 'book_worker_home_card',
+											DataLayerPush({ event: 'book_hero_home_footer' })
+											sendAnalytics({
+												name: 'EasyBookWorker',
+												action: 'ButtonClick',
+												metaData: {
+													origin: 'Hero Advantage section',
+												},
+											})
+										}}>
+										{homePage.HeroAdvantage.buttonText.text}
+									</LinkButton>
+								</Box>
+							</Stack>
+						</Grid>
+						<Grid item xs={12} md={6}>
+							{/* <Box>
+								<img src='/assets/landingv2/heroSection/heroAdvantage.svg' alt='' />
+							</Box> */}
+						</Grid>
+					</Grid>
+				</Box>
+			</Section>
+
+			<Section backgroundColor='#000'>
+				<Box
+					sx={{
+						p: '46px 0 60px 0',
+					}}>
+					<Grid container spacing={2}>
+						<Grid item xs={12} md={6}>
+							<Stack direction={'column'}>
+								<Box mb={'14px'}>{homePage.heroApp.heading}</Box>
+								<Box mb={'40px'}>{homePage.heroApp.desc}</Box>
+								<List sx={{ color: '#fff' }}>
+									{homePage.heroApp.list.map((data, index) => {
+										return (
+											<ListItem key={index} sx={{ mb: '24px' }}>
+												<Stack direction={'row'} spacing={1.5} alignItems={'center'}>
+													<FiberManualRecordIcon
+														sx={{
+															fontSize: '8px',
+														}}
+													/>
+													<Typography variant='h4' sx={{ fontWeight: 400, fontSize: '20px' }}>
+														{data.item}
+													</Typography>
+												</Stack>
+											</ListItem>
+										)
+									})}
+								</List>
+								<Typography variant='h4' color={'#fff'}>
+									Download Now!
+								</Typography>
+								<Box mt={'20px'} sx={{ cursor: 'pointer' }}>
+									<a
+										href={externalLinks.heroApp}
+										onClick={() => {
+											ButtonClicked({
+												page: document.title,
+												action: 'App store link',
+												url: router.asPath,
+											})
+											sendAnalytics({
+												name: 'heroAppPlayStore',
+												action: 'ButtonClick',
+												metaData: {
+													origin: 'Hero App section',
+												},
 											})
 										}}
-										src={item.image}
-										layout='fill'
+										target='_blank'
+										rel='noopener noreferrer'>
+										<img src='/assets/landingv2/heroSection/googlebutton.svg' alt='' />
+									</a>
+								</Box>
+							</Stack>
+						</Grid>
+						<Grid item xs={12} md={6}>
+							<Stack direction={'row'} justifyContent={'center'} alignItems='flex-end'>
+								<Box sx={{ maxWidth: '75%', maxHeight: '100%', mr: '-25%', zIndex: '4' }}>
+									<img
+										width={'100%'}
+										height={'100%'}
+										src='/assets/landingv2/heroSection/mobile2.svg'
+										alt=''
 									/>
-								</HyperLink>
+								</Box>
+								<Box
+									sx={{
+										maxWidth: '65%',
+										maxHeight: '90%',
+										zIndex: '2',
+										mb: { md: 1.8, xs: 1.2 },
+									}}>
+									<img
+										width={'100%'}
+										height={'100%'}
+										src='/assets/landingv2/heroSection/mobile1.svg'
+										alt=''
+									/>
+								</Box>
 							</Stack>
-						)),
-					]}
-				/>
+						</Grid>
+					</Grid>
+				</Box>
 			</Section>
-			{/* ph advantage section  */}
 
-			<Section>
-				<Stack direction='column'>
-					<FloatingUnderLineHeading variant='h3' underlinePosition='flex-start'>
-						{phAdvantage.heading}
-					</FloatingUnderLineHeading>
-					<Typography variant='subtitle1' sx={{ maxWidth: 600 }}>
-						{phAdvantage.description}
-					</Typography>
-					<Grid container mt={10}>
-						{phAdvantage.advantage.map((data, index) => {
-							return (
-								<Grid key={index} item xs={12} md={2.4}>
-									<Stack
-										direction={{ xs: 'row', md: 'column' }}
-										spacing={2}
-										p={2}
-										alignItems='center'
-										justifyContent='center'
-										sx={(theme) => ({
-											height: '231px',
-											width: '214px',
-											border: '1px solid #BABABA',
-											borderRadius: '12px',
-											marginBottom: '0px',
-											transition: '0.3s all ease',
-											':hover': {
-												boxShadow: '10px 10px 30px -10px #aaaaaa',
-											},
-											[theme.breakpoints.down('md')]: {
-												height: '120px',
-												width: '100%',
-												marginBottom: '20px',
-											},
-										})}>
-										<img src={data.svg} alt='' height={'107px'} width='97px' />
-										<Stack flex={1} direction={'column'} sx={{ padding: '0 10px' }}>
-											<Typography variant='h6'>{data.header}</Typography>
-											<Typography variant='subtitle2'>{data.description}</Typography>
-										</Stack>
-									</Stack>
-								</Grid>
-							)
-						})}
-					</Grid>
-				</Stack>
-			</Section>
-			<Section backgroundColor={phApp.backgroundColor}>
-				<Grid container>
-					<Grid item xs={12} md={5} minHeight={270}>
-						<Stack spacing={4}>
-							<Stack>
-								<FloatingUnderLineHeading variant='h3' underlinePosition='flex-start'>
-									{phApp.heading}
-								</FloatingUnderLineHeading>
-								<Typography sx={{ my: 2 }} color={'grey.A700'}>
-									{phApp.description}
-								</Typography>
-							</Stack>
-							<List>
-								{phApp.bulletPoints.map((item, index) => {
-									return (
-										<ListItem key={index} sx={{ px: 0 }}>
-											<ListItemIcon>{phApp.bulletPointIcon}</ListItemIcon>
-											<ListItemText>{item}</ListItemText>
-										</ListItem>
-									)
-								})}
-							</List>
-							<Stack display={{ xs: 'none', md: 'flex' }}>
-								<Typography sx={{ mb: 2 }} color={'grey.A700'}>
-									Download our app from
-								</Typography>
-								<a href={externalLinks.heroApp} target='_blank' rel='noopener noreferrer'>
-									<img src={AppStoreImage} width={190} />
-								</a>
-							</Stack>
+			{/* what are you section  */}
+
+			<Section backgroundColor='#F7F7F7'>
+				<Box
+					sx={{
+						padding: '46px 0px',
+						userSelect: 'none',
+					}}>
+					<Stack
+						direction={'column'}
+						spacing={4}
+						sx={(theme) => ({
+							width: '100%',
+							'.leftQuote': { position: 'absolute', zIndex: -1, top: -40, left: -60 },
+							'.rightQuote': { position: 'absolute', bottom: -30, right: 0 },
+							'.helmet': {
+								marginRight: '20%',
+							},
+							[theme.breakpoints.down('md')]: {
+								'.leftQuote': { display: 'none' },
+								'.rightQuote': { display: 'none' },
+								'.helmet': { display: 'none' },
+							},
+						})}>
+						<Stack direction='row' justifyContent={'space-between'}>
+							{homePage.customerReview.heading}
+							<img className='helmet' src='/assets/icons/backgrounds/Helmet.svg' />
 						</Stack>
-					</Grid>
-					<Grid item xs={12} md={7} minHeight={270}>
-						<Image src={phApp.appImage} layout='fill' />
-					</Grid>
-					<Grid item xs={12} md={7} flexDirection='column' mt={2} display={{ xs: 'flex', md: 'none' }}>
-						<LinkButton variant='contained' fullWidth href={externalLinks.heroApp}>
-							GET THE APP NOW
-						</LinkButton>
-					</Grid>
-				</Grid>
+						<CarouselV2
+							componentPerView={1}
+							items={homePage.customerReview.cards.map((item, index) => {
+								return (
+									<Stack
+										key={item.by}
+										py={5}
+										mx={2}
+										position='relative'
+										direction={'row'}
+										justifyContent={'center'}>
+										<Card
+											sx={(theme) => ({
+												display: 'flex',
+												flexDirection: isMobile ? 'column' : 'row',
+												maxWidth: 800,
+												zIndex: 12,
+												position: 'relative',
+												overflow: 'visible',
+												backgroundColor: theme.palette.primary.main,
+											})}>
+											<img className='leftQuote' src='/assets/landingv2/icons/quoteup.svg' />
+											<img className='rightQuote' src='/assets/landingv2/icons/quotedown.svg' />
+
+											<Stack
+												height={{ xs: 450, md: 350 }}
+												spacing={3}
+												p={4}
+												alignItems='center'
+												justifyContent='center'>
+												<Typography
+													textAlign='center'
+													variant='h5'
+													fontWeight='500'
+													color={primary.properDark}>
+													{item.testimonial}
+												</Typography>
+												<Typography
+													textAlign='center'
+													variant='h5'
+													fontWeight='600'
+													color={primary.properDark}>
+													- {item.by}
+												</Typography>
+											</Stack>
+										</Card>
+									</Stack>
+								)
+							})}
+						/>
+
+						<Stack
+							direction={'row'}
+							spacing={2}
+							justifyContent={'space-between'}
+							sx={{
+								overflowX: 'scroll',
+								width: !isMobile ? '100%' : '100%',
+								mt: '50px',
+								'&::-webkit-scrollbar': {
+									display: 'none',
+								},
+							}}>
+							{homePage.customerReview.ImageList.map((val, index) => {
+								return (
+									<ListItem key={index}>
+										<img src={val.src} alt='' />
+									</ListItem>
+								)
+							})}
+						</Stack>
+					</Stack>
+				</Box>
 			</Section>
-			<Section backgroundImage={customerSayingSection.backgroundImage} sx={{ py: 8 }}>
-				<FloatingUnderLineHeading variant='h3' underlinePosition='flex-start'>
-					{customerSayingSection.title}
-				</FloatingUnderLineHeading>
-				<Carousel
-					componentPerView={isMobile ? 1 : 2}
-					items={[
-						...customerSayingSection.carouselContent.map((item, index) => (
-							<Paper
-								elevation={3}
-								key={index}
-								sx={(theme) => ({
-									position: 'relative',
-									borderRadius: '12px',
-									width: '45%',
-									margin: '5%',
-									[theme.breakpoints.down('md')]: {
-										width: '90%',
-									},
-								})}>
-								<Stack p={3} alignItems='center' minHeight={270}>
-									<Typography
-										fontSize={(theme) => ({
-											xs: theme.typography.h6.fontSize,
-											md: theme.typography.h4.fontSize,
-										})}
-										fontWeight={700}>
-										{item.title}
-									</Typography>
-									<FormatQuote color='primary' sx={{ my: 1 }} />
-									<Typography
-										textAlign='center'
-										fontSize={(theme) => ({
-											xs: theme.typography.caption.fontSize,
-											md: theme.typography.body1.fontSize,
-										})}>
-										{item.description}
-									</Typography>
-								</Stack>
-							</Paper>
-						)),
-					]}
-				/>
-			</Section>
-			<Section backgroundColor={clientCarouselSection.backgroundColor}>
-				<Stack alignItems='center'>
-					<FloatingUnderLineHeading variant='h4' textAlign='center' sx={{ margin: 'auto' }}>
-						{clientCarouselSection.heading}
-					</FloatingUnderLineHeading>
-				</Stack>
-				<Carousel
-					componentPerView={isMobile ? 1 : 3}
-					items={[
-						...clientCarouselSection.carouselContent.map((item, index) => (
-							<Stack
-								width={350}
-								height={80}
-								key={index}
-								sx={{
-									position: 'relative',
-									borderRadius: '12px',
-								}}>
-								<Image src={item} layout='fill' />
-							</Stack>
-						)),
-					]}
-				/>
-			</Section>
-			{/* have a question section */}
-			<ContactUsSection />
 		</>
 	)
 }

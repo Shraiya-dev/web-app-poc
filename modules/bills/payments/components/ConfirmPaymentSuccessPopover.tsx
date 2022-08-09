@@ -60,11 +60,13 @@ export const ConfirmPaymentSuccessPopover = ({
 	totalPaymentAmount,
 	transactionTime,
 	onClose,
+	callback,
 }: {
 	open: boolean
 	paymentId: string
 	totalPaymentAmount: number
 	transactionTime: string
+	callback?: any
 	onClose: () => void
 }) => {
 	const router = useRouter()
@@ -128,15 +130,7 @@ export const ConfirmPaymentSuccessPopover = ({
 				<Button
 					variant='contained'
 					//disabled={outStandingPaymentData.data.payload.amount===0}
-					sx={{
-						background: theme.palette.button.secondary,
-						paddingTop: theme.spacing(2),
-						paddingBottom: theme.spacing(2),
-						paddingLeft: theme.spacing(3),
-						paddingRight: theme.spacing(3),
-						borderRadius: '72px',
-						maxHeight: '3rem',
-					}}
+
 					onClick={() => {
 						ButtonClicked({
 							action: 'Continue on Payment success',
@@ -144,10 +138,9 @@ export const ConfirmPaymentSuccessPopover = ({
 							url: router.asPath,
 						})
 						onClose()
+						callback()
 					}}>
-					<Typography variant='subtitle2' sx={{ color: theme.palette.textCTA.white }}>
-						Continue
-					</Typography>
+					Continue
 				</Button>
 			</DialogActions>
 		</CustomDialog>

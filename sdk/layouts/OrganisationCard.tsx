@@ -20,7 +20,7 @@ export const OnboardingCard = ({
 	const [dialogProps, setDialogProps] = useState(false)
 	return (
 		<>
-			{confirmation && (
+			{false && (
 				<ConfirmationDialog
 					title={title}
 					caption={caption}
@@ -34,7 +34,7 @@ export const OnboardingCard = ({
 				/>
 			)}
 			<Stack>
-				{confirmation && (
+				{false && (
 					<Stack direction='row'>
 						<IconButton color='primary' onClick={() => setDialogProps(true)}>
 							<Close />
