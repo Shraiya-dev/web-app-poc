@@ -161,7 +161,7 @@ export const Navbar = () => {
 										</LinkButton>
 									)
 								} else if (navItem.type === 'scroll_link') {
-									if (router.pathname === '')
+									if (router.pathname === '/')
 										return (
 											<LinkButton
 												variant='text'

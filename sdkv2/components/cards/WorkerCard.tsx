@@ -12,7 +12,7 @@ interface Props {
 }
 export const WorkerCard: FC<Props> = ({ worker }) => {
 	return (
-		<Card sx={{ flex: 1, display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
+		<Card sx={{ flex: 1, display: 'flex', flexDirection: 'column', overflow: 'hidden', width: '100%' }}>
 			<Stack flex={1} direction='row' p={2} spacing={2}>
 				<Stack>
 					<Avatar sx={{ width: 100, height: 100 }} src={worker?.profileImage} />
@@ -33,7 +33,7 @@ export const WorkerCard: FC<Props> = ({ worker }) => {
 						<BusinessRounded />
 
 						<Typography flex={1} variant='h5' fontWeight={100}>
-							<strong>{worker?.experience}</strong> years experience
+							<strong>{worker?.experience ?? '5-8'}</strong> years experience
 						</Typography>
 					</Stack>
 				</Stack>

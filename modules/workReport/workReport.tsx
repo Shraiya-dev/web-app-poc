@@ -92,8 +92,7 @@ export const WorkReport = () => {
 						'&::-webkit-scrollbar': {
 							display: 'none',
 						},
-					}}
-				>
+					}}>
 					{StatusFilterOptions.map((item) => (
 						<Chip
 							key={item.value}
@@ -230,8 +229,7 @@ export const WorkReport = () => {
 						variant='outlined'
 						onClick={() => {
 							router.replace(router.asPath.split('?')[0])
-						}}
-					>
+						}}>
 						clear
 					</Button>
 				</Stack>
@@ -247,8 +245,7 @@ export const WorkReport = () => {
 												sx={item.sx}
 												style={{
 													background: '#fffCF1',
-												}}
-											>
+												}}>
 												<Typography noWrap fontWeight={600} sx={{ color: '#000' }}>
 													{item.label}
 												</Typography>
@@ -270,8 +267,7 @@ export const WorkReport = () => {
 												router.push(
 													`/projects/${router.query.projectId}/attendance/${item?._id}`
 												)
-											}}
-										>
+											}}>
 											<TableCell
 												sx={{
 													position: 'sticky',
@@ -281,8 +277,7 @@ export const WorkReport = () => {
 													'&:hover': {
 														backgroundColor: colors.AliceBlue,
 													},
-												}}
-											>
+												}}>
 												<DateStack date={item?.date} />
 											</TableCell>
 											<TableCell>
@@ -290,16 +285,14 @@ export const WorkReport = () => {
 													<Typography
 														color='secondary.main'
 														variant='body1'
-														sx={{ color: '#000' }}
-													>
+														sx={{ color: '#000' }}>
 														{item?.presentPercentage ?? 'NA'}
 													</Typography>
 
 													<Typography
 														variant='body2'
 														color={`grey.600`}
-														sx={{ color: primary.darkGrey }}
-													>
+														sx={{ color: primary.darkGrey }}>
 														{item?.totalPresent ?? 'NA'} / {item?.totalCount ?? 'NA'}
 													</Typography>
 												</Stack>
@@ -368,8 +361,7 @@ export const WorkReport = () => {
 																	},
 																	date: item.date,
 																})
-															}}
-														>
+															}}>
 															Approve
 														</LoadingButton>
 													)}
@@ -384,8 +376,7 @@ export const WorkReport = () => {
 															})
 															e.stopPropagation()
 															downloadWorkReport(item.dwrId, item.date)
-														}}
-													>
+														}}>
 														<img
 															width={'100%'}
 															height={'100%'}
@@ -418,8 +409,7 @@ export const WorkReport = () => {
 												marginTop: '24px',
 												py: 2,
 												borderRadius: 2,
-											}}
-										>
+											}}>
 											{/* card header  */}
 											<Stack direction={'row'} justifyContent={'space-between'} px={1.5}>
 												<Stack direction={'row'} spacing={2}>
@@ -429,15 +419,13 @@ export const WorkReport = () => {
 															<Typography
 																color='#000'
 																fontWeight={600}
-																variant='subtitle2'
-															>
+																variant='subtitle2'>
 																{item?.presentPercentage ?? 'NA'}
 															</Typography>
 															<Typography
 																variant='subtitle2'
 																color={`grey.600`}
-																sx={{ fontSize: '11px' }}
-															>
+																sx={{ fontSize: '11px' }}>
 																({item?.totalPresent ?? 'NA'} /{' '}
 																{item?.totalCount ?? 'NA'})
 															</Typography>
@@ -447,8 +435,7 @@ export const WorkReport = () => {
 															color='secondary.main'
 															variant='subtitle2'
 															fontSize={'11px'}
-															fontWeight={400}
-														>
+															fontWeight={400}>
 															Attendance %
 														</Typography>
 													</Stack>
@@ -476,8 +463,7 @@ export const WorkReport = () => {
 											<Box
 												sx={{
 													margin: '12px 0',
-												}}
-											>
+												}}>
 												<Stack
 													direction={'row'}
 													justifyContent={'space-between'}
@@ -485,47 +471,40 @@ export const WorkReport = () => {
 														borderRadius: '8px',
 														background: '#F9F9F9',
 														p: '8px',
-													}}
-												>
+													}}>
 													<Stack direction={'column'} spacing={0.5}>
 														<Typography
 															variant='subtitle2'
-															sx={{ fontSize: '10px', color: '#061F48B2' }}
-														>
+															sx={{ fontSize: '10px', color: '#061F48B2' }}>
 															Avg Shift Duration
 														</Typography>
 														<Typography
 															variant='subtitle2'
-															sx={{ fontSize: '12px', color: '#000000' }}
-														>
+															sx={{ fontSize: '12px', color: '#000000' }}>
 															{item?.avgShiftHours ?? 'NA'}
 														</Typography>
 													</Stack>
 													<Stack direction={'column'} spacing={0.5}>
 														<Typography
 															variant='subtitle2'
-															sx={{ fontSize: '10px', color: '#061F48B2' }}
-														>
+															sx={{ fontSize: '10px', color: '#061F48B2' }}>
 															Total OT
 														</Typography>
 														<Typography
 															variant='subtitle2'
-															sx={{ fontSize: '12px', color: '#000000' }}
-														>
+															sx={{ fontSize: '12px', color: '#000000' }}>
 															{item?.totalOtHours ?? 'NA'}
 														</Typography>
 													</Stack>
 													<Stack direction={'column'} spacing={0.5}>
 														<Typography
 															variant='subtitle2'
-															sx={{ fontSize: '10px', color: '#061F48B2' }}
-														>
+															sx={{ fontSize: '10px', color: '#061F48B2' }}>
 															Avg OT
 														</Typography>
 														<Typography
 															variant='subtitle2'
-															sx={{ fontSize: '12px', color: '#000000' }}
-														>
+															sx={{ fontSize: '12px', color: '#000000' }}>
 															{item?.avgOTHours ?? 'NA'}
 														</Typography>
 													</Stack>
@@ -537,8 +516,7 @@ export const WorkReport = () => {
 												justifyContent='space-between'
 												sx={{
 													marginBottom: '15px',
-												}}
-											>
+												}}>
 												{item.status === WorkReportStatus.PENDING_APPROVAL ? (
 													<LoadingButton
 														variant='contained'
@@ -567,8 +545,7 @@ export const WorkReport = () => {
 																},
 																date: item.date,
 															})
-														}}
-													>
+														}}>
 														Approve
 													</LoadingButton>
 												) : (
@@ -585,8 +562,7 @@ export const WorkReport = () => {
 														})
 														e.stopPropagation()
 														downloadWorkReport(item.dwrId, item.date)
-													}}
-												>
+													}}>
 													<img
 														width={'100%'}
 														height={'100%'}

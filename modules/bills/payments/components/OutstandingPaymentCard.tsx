@@ -78,8 +78,7 @@ export const OutstandiongPaymentCard = ({ tooltipTitle }: { tooltipTitle: Toolti
 			) : (
 				<CustomPaper
 					elevation={isMobile ? 5 : 1}
-					sx={{ minWidth: 300, maxWidth: 400, minHeight: '144px', background: '#fff' }}
-				>
+					sx={{ minWidth: 300, maxWidth: 400, minHeight: '144px', background: '#fff' }}>
 					<Stack direction='row' justifyContent='space-between' flex={1}>
 						<Stack flex={1}>
 							<Stack flex={1}>
@@ -95,8 +94,7 @@ export const OutstandiongPaymentCard = ({ tooltipTitle }: { tooltipTitle: Toolti
 										fontFamily={'Saira,sans-serif'}
 										fontWeight={700}
 										variant='subtitle1'
-										sx={{ color: '#000' }}
-									>
+										sx={{ color: '#000' }}>
 										Total Outstanding
 									</Typography>
 									<Tooltip
@@ -109,8 +107,7 @@ export const OutstandiongPaymentCard = ({ tooltipTitle }: { tooltipTitle: Toolti
 													backgroundColor: theme.palette.base.variant70,
 												},
 											},
-										}}
-									>
+										}}>
 										<HelpOutlineIcon
 											sx={{ fontSize: 16, cursor: 'pointer', marginLeft: theme.spacing(1) }}
 										/>
@@ -132,8 +129,7 @@ export const OutstandiongPaymentCard = ({ tooltipTitle }: { tooltipTitle: Toolti
 										fontWeight={700}
 										fontSize={'36px'}
 										variant='h2'
-										sx={{ fontSize: '2.25rem', color: theme.palette.green.dark }}
-									>
+										sx={{ fontSize: '2.25rem', color: theme.palette.green.dark }}>
 										{indianCurrencyFormat(outStandingPaymentData.data.payload.amount)}
 									</Typography>
 								</Stack>
@@ -141,8 +137,7 @@ export const OutstandiongPaymentCard = ({ tooltipTitle }: { tooltipTitle: Toolti
 							<Typography
 								variant='body2'
 								fontWeight={500}
-								sx={{ fontSize: '13px', color: theme.palette.base.variant60 }}
-							>
+								sx={{ fontSize: '13px', color: theme.palette.base.variant60 }}>
 								{outStandingPaymentData.data.payload.amount >= 0
 									? 'Pay full or custom amount'
 									: 'It will be adjusted in future bills'}
@@ -173,8 +168,7 @@ export const OutstandiongPaymentCard = ({ tooltipTitle }: { tooltipTitle: Toolti
 										url: router.pathname,
 									})
 									showPaymentPopover()
-								}}
-							>
+								}}>
 								<Typography variant='subtitle2' sx={{ color: primary.properDark }}>
 									Pay
 								</Typography>

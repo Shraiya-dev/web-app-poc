@@ -225,8 +225,7 @@ export const OutstandingPaymentPopover = ({
 						variant={'h6'}
 						sx={{
 							color: primary.properDark,
-						}}
-					>
+						}}>
 						Confirm & Pay
 					</Typography>
 				</DialogTitle>
@@ -238,8 +237,7 @@ export const OutstandingPaymentPopover = ({
 									aria-labelledby='demo-radio-buttons-group-label'
 									value={amount}
 									onChange={handleRadio}
-									name='radio-buttons-group'
-								>
+									name='radio-buttons-group'>
 									<FormControlLabel
 										sx={{
 											flexDirection: 'row-reverse',
@@ -349,8 +347,7 @@ export const OutstandingPaymentPopover = ({
 						}}
 						onClick={() => {
 							hideModal()
-						}}
-					>
+						}}>
 						<Typography variant='subtitle2' sx={{ color: primary.properDark }}>
 							Cancel
 						</Typography>
@@ -374,8 +371,7 @@ export const OutstandingPaymentPopover = ({
 								url: router.asPath,
 							})
 							createPaymentOrder()
-						}}
-					>
+						}}>
 						<Typography variant='subtitle2' sx={{ color: primary.properDark }}>
 							Pay
 						</Typography>

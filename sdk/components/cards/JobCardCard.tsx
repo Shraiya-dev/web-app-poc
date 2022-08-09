@@ -45,8 +45,7 @@ export const JobCardCard = ({ jobCard }: JobCardCardProps) => {
 				<Stack flex={1} direction='column' alignItems='center' height='100%'>
 					<Stack
 						position='relative'
-						sx={{ height: '33%', width: '33%', borderRadius: '50%', overflow: 'hidden' }}
-					>
+						sx={{ height: '33%', width: '33%', borderRadius: '50%', overflow: 'hidden' }}>
 						<img
 							width={'100%'}
 							height={'100%'}
@@ -64,8 +63,7 @@ export const JobCardCard = ({ jobCard }: JobCardCardProps) => {
 								textOverflow='ellipsis'
 								whiteSpace='nowrap'
 								overflow='hidden'
-								color={primary.properDark}
-							>
+								color={primary.properDark}>
 								{jobCard.WorkerName ?? 'No Name'}
 							</Typography>
 
@@ -77,8 +75,7 @@ export const JobCardCard = ({ jobCard }: JobCardCardProps) => {
 								fontWeight={500}
 								className='vAlignCenter'
 								variant='body2'
-								color={primary.properDark}
-							>
+								color={primary.properDark}>
 								{/* <EngineeringIcon fontSize='inherit' /> */}
 								<Icon fontSize='inherit' style={{ display: 'flex' }}>
 									<Image src={WorkerIcon} />
@@ -90,8 +87,7 @@ export const JobCardCard = ({ jobCard }: JobCardCardProps) => {
 								fontWeight={500}
 								className='vAlignCenter'
 								variant='body2'
-								color={primary.properDark}
-							>
+								color={primary.properDark}>
 								{/* <LocationOn fontSize='inherit' /> */}
 								<Icon fontSize='inherit' style={{ display: 'flex' }}>
 									<Image src={LocationIcon} />
@@ -103,8 +99,7 @@ export const JobCardCard = ({ jobCard }: JobCardCardProps) => {
 								fontWeight={500}
 								className='vAlignCenter'
 								variant='body2'
-								color={primary.properDark}
-							>
+								color={primary.properDark}>
 								{/* <EqualizerRounded fontSize='inherit' /> */}
 								<Icon fontSize='inherit' style={{ display: 'flex' }}>
 									<Image src={ExperienceIcon} />
@@ -116,8 +111,7 @@ export const JobCardCard = ({ jobCard }: JobCardCardProps) => {
 						<Button
 							onClick={() => {
 								window.open('tel:9575418224')
-							}}
-						>
+							}}>
 							<Stack spacing={1} direction={'row'} alignItems={'center'}>
 								<Box>
 									<img src='/assets/icons/buttonCall.svg' />
@@ -126,8 +120,7 @@ export const JobCardCard = ({ jobCard }: JobCardCardProps) => {
 									fontFamily={'Karla,sans-serif'}
 									fontWeight={700}
 									variant='body1'
-									color={primary.properDark}
-								>
+									color={primary.properDark}>
 									Call {jobCard.phoneNumber ?? ' 	'}
 								</Typography>
 							</Stack>
@@ -161,8 +154,7 @@ export const JobCardCard = ({ jobCard }: JobCardCardProps) => {
 										textOverflow='ellipsis'
 										whiteSpace='nowrap'
 										overflow='hidden'
-										color={primary.properDark}
-									>
+										color={primary.properDark}>
 										{jobCard.WorkerName ?? 'No Name'}
 									</Typography>
 								</Box>
@@ -171,8 +163,7 @@ export const JobCardCard = ({ jobCard }: JobCardCardProps) => {
 									fontWeight={500}
 									className='vAlignCenter'
 									variant='body2'
-									color={primary.properDark}
-								>
+									color={primary.properDark}>
 									{/* <EngineeringIcon fontSize='inherit' /> */}
 									<Icon fontSize='inherit' style={{ display: 'flex' }}>
 										<Image src={WorkerIcon} />
@@ -184,8 +175,7 @@ export const JobCardCard = ({ jobCard }: JobCardCardProps) => {
 									fontWeight={500}
 									className='vAlignCenter'
 									variant='body2'
-									color={primary.properDark}
-								>
+									color={primary.properDark}>
 									{/* <LocationOn fontSize='inherit' /> */}
 									<Icon fontSize='inherit' style={{ display: 'flex' }}>
 										<Image src={LocationIcon} />
@@ -197,8 +187,7 @@ export const JobCardCard = ({ jobCard }: JobCardCardProps) => {
 									fontWeight={500}
 									className='vAlignCenter'
 									variant='body2'
-									color={primary.properDark}
-								>
+									color={primary.properDark}>
 									{/* <EqualizerRounded fontSize='inherit' /> */}
 									<Icon fontSize='inherit' style={{ display: 'flex' }}>
 										<Image src={ExperienceIcon} />
@@ -214,8 +203,7 @@ export const JobCardCard = ({ jobCard }: JobCardCardProps) => {
 							size='small'
 							onClick={() => {
 								window.open('tel:9575418224')
-							}}
-						>
+							}}>
 							<Stack spacing={0.5} direction={'row'} alignItems={'center'} px={4.5}>
 								<Box sx={{ position: 'relative', top: '3px' }}>
 									<img src='/assets/icons/buttonCall.svg' />
@@ -224,8 +212,7 @@ export const JobCardCard = ({ jobCard }: JobCardCardProps) => {
 									fontFamily={'Karla,sans-serif'}
 									variant='body1'
 									color={primary.properDark}
-									fontWeight={700}
-								>
+									fontWeight={700}>
 									Call {jobCard.phoneNumber ?? ' 	'}
 								</Typography>
 							</Stack>

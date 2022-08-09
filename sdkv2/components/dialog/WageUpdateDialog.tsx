@@ -19,12 +19,14 @@ export const AddEditWage = ({
 	initialValue,
 	fieldName,
 	confirm,
+	edit,
 }: {
 	open: boolean
 	close: any
 	confirm: any
 	fieldName: string
 	initialValue: number
+	edit?: boolean
 }) => {
 	const [fieldData, setFieldData] = useState<number>(initialValue)
 
@@ -37,7 +39,7 @@ export const AddEditWage = ({
 							<CloseOutlinedIcon sx={{ color: primary.properDark, fontSize: '36px' }} />
 						</IconButton>
 						<Typography color={primary.properDark} sx={{ width: '100%' }} variant='h2'>
-							Update
+							{!edit ? 'Add' : 'Update'} {fieldName.replace('wage', '')}
 						</Typography>
 					</Stack>
 				</DialogTitle>
@@ -52,7 +54,6 @@ export const AddEditWage = ({
 							focused={false}
 							type='number'
 							placeholder='Enter wages'
-							name={fieldName}
 							error={!(fieldData > 0 && fieldData <= 2000)}
 							value={fieldData}
 							helperText={'Wage should be between 1 and 2000'}

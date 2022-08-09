@@ -255,14 +255,22 @@ export const ProjectDashboard = () => {
 							<Stack direction={'column'} spacing={3}>
 								<Stack direction={'row'} spacing={1.3} alignItems={'center'}>
 									<img height={25} src='/assets/icons/mail.svg' />
-									<Typography fontFamily={'Karla,sans-serif'} fontWeight={700}>
+									<Typography
+										component={'a'}
+										href='mailto:marketing@projecthero.in'
+										fontFamily={'Karla,sans-serif'}
+										fontWeight={700}>
 										marketing@projecthero.in
 									</Typography>
 								</Stack>
 								<Stack direction={'row'} spacing={1.3} alignItems={'center'}>
 									<img height={25} src='/assets/icons/phone.svg' />
-									<Typography fontFamily={'Karla,sans-serif'} fontWeight={700}>
-										+91-9151003513
+									<Typography
+										component={'a'}
+										href='tel:+91-9151003513'
+										fontFamily={'Karla,sans-serif'}
+										fontWeight={700}>
+										+91 9151003513
 									</Typography>
 								</Stack>
 							</Stack>

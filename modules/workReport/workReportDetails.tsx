@@ -83,8 +83,7 @@ export const WorkReportDetails = () => {
 						justifyContent='space-between'
 						sx={{
 							background: primary.darkGrey,
-						}}
-					>
+						}}>
 						<Stack spacing={5} direction={isMobile ? 'column' : 'row'}>
 							<Stack direction='row'>
 								<IconButton color='primary' onClick={router.back}>
@@ -99,8 +98,7 @@ export const WorkReportDetails = () => {
 										fontFamily={'Karla ,sans-serif'}
 										fontWeight={700}
 										variant='caption'
-										color={primary.light}
-									>
+										color={primary.light}>
 										{projectDetails?.name}
 									</Typography>
 								</Stack>
@@ -109,8 +107,7 @@ export const WorkReportDetails = () => {
 								direction={isMobile ? 'column' : 'row'}
 								alignItems='flex-start'
 								pl={isMobile ? 12 : 0}
-								spacing={2}
-							>
+								spacing={2}>
 								<Chip
 									variant='filled'
 									sx={(theme) => ({
@@ -141,8 +138,7 @@ export const WorkReportDetails = () => {
 							alignItems='center'
 							justifyContent={isMobile ? 'center' : undefined}
 							spacing={1}
-							mt={1}
-						>
+							mt={1}>
 							{workReportByIDResponse?.response?.status === WorkReportStatus.PENDING_APPROVAL && (
 								<>
 									<LoadingButton
@@ -166,8 +162,7 @@ export const WorkReportDetails = () => {
 												},
 												date: workReportByIDResponse?.response?.date,
 											})
-										}}
-									>
+										}}>
 										Approve
 									</LoadingButton>
 
@@ -175,8 +170,7 @@ export const WorkReportDetails = () => {
 										loading={isLoading.disputing}
 										disabled={rasingDispute}
 										variant='outlined'
-										onClick={() => setRasingDispute(true)}
-									>
+										onClick={() => setRasingDispute(true)}>
 										Raise Dispute
 									</LoadingButton>
 								</>
@@ -195,8 +189,7 @@ export const WorkReportDetails = () => {
 										router.query.workReportId as string,
 										workReportByIDResponse?.response?.date ?? ''
 									)
-								}}
-							>
+								}}>
 								<FileDownloadOutlined />
 							</LoadingButton>
 						</Stack>
@@ -208,8 +201,7 @@ export const WorkReportDetails = () => {
 								display: 'flex',
 								justifyContent: 'flex-end',
 								height: 203,
-							}}
-						>
+							}}>
 							<form
 								style={{ width: '100%', display: 'flex', justifyContent: 'flex-end' }}
 								onSubmit={async (e) => {
@@ -223,15 +215,13 @@ export const WorkReportDetails = () => {
 										description: disputeReason,
 									})
 									setRasingDispute(false)
-								}}
-							>
+								}}>
 								<Stack
 									maxWidth={isMobile ? undefined : 600}
 									p={2}
 									flex={1}
 									alignItems='flex-end'
-									spacing={2}
-								>
+									spacing={2}>
 									<TextField
 										value={disputeReason}
 										fullWidth
@@ -247,16 +237,14 @@ export const WorkReportDetails = () => {
 											size='small'
 											variant='outlined'
 											sx={{ backgroundColor: 'common.white' }}
-											onClick={() => setRasingDispute(false)}
-										>
+											onClick={() => setRasingDispute(false)}>
 											Cancel
 										</Button>
 										<Button
 											size='small'
 											type='submit'
 											variant='contained'
-											disabled={!!!disputeReason}
-										>
+											disabled={!!!disputeReason}>
 											Submit
 										</Button>
 									</Stack>
@@ -269,8 +257,7 @@ export const WorkReportDetails = () => {
 							direction={isMobile ? 'column' : 'row'}
 							justifyContent='space-between'
 							spacing={1}
-							alignItems='stretch'
-						>
+							alignItems='stretch'>
 							<form
 								onSubmit={async (e) => {
 									e.preventDefault()
@@ -278,8 +265,7 @@ export const WorkReportDetails = () => {
 									delete router.query.pageNumber
 
 									await router.replace(router, undefined, { shallow: true })
-								}}
-							>
+								}}>
 								<Stack direction='row' spacing={1}>
 									<TextField
 										size='small'
@@ -314,8 +300,7 @@ export const WorkReportDetails = () => {
 										variant='outlined'
 										onClick={() => {
 											router.replace(router.asPath.split('?')[0])
-										}}
-									>
+										}}>
 										clear
 									</Button>
 								</Stack>
@@ -323,8 +308,7 @@ export const WorkReportDetails = () => {
 							<Stack
 								direction='row'
 								alignItems='center'
-								justifyContent={isMobile ? 'space-between' : undefined}
-							>
+								justifyContent={isMobile ? 'space-between' : undefined}>
 								<Typography variant='subtitle2'>
 									Rows per page: {workReportByIDResponse?.response?.workerDetails?.length ?? 10}
 								</Typography>
@@ -349,8 +333,7 @@ export const WorkReportDetails = () => {
 										: rasingDispute
 										? 'calc(100vh - 400px)'
 										: 'calc(100vh - 170px)',
-								}}
-							>
+								}}>
 								<Table stickyHeader>
 									<TableHead>
 										<TableRow>
@@ -360,8 +343,7 @@ export const WorkReportDetails = () => {
 													sx={item.sx}
 													style={{
 														background: '#fffCF1',
-													}}
-												>
+													}}>
 													<Typography noWrap fontWeight={600} color={primary.properDark}>
 														{item.label}
 													</Typography>
@@ -379,23 +361,20 @@ export const WorkReportDetails = () => {
 												'&:hover': {
 													backgroundColor: colors.AliceBlue,
 												},
-											}}
-										>
+											}}>
 											<TableCell
 												sx={{
 													position: 'sticky',
 													left: 0,
 													width: 80,
 													background: colors.FloralWhite,
-												}}
-											></TableCell>
+												}}></TableCell>
 											<TableCell
 												sx={{
 													position: 'sticky',
 													left: 80,
 													background: colors.FloralWhite,
-												}}
-											></TableCell>
+												}}></TableCell>
 											<TableCell></TableCell>
 											<TableCell></TableCell>
 											<TableCell>
@@ -411,8 +390,7 @@ export const WorkReportDetails = () => {
 													<Typography
 														sx={{ color: primary.darkGrey }}
 														variant='caption'
-														noWrap
-													>
+														noWrap>
 														Attendance %
 													</Typography>
 												</Stack>
@@ -445,8 +423,7 @@ export const WorkReportDetails = () => {
 													'&:hover': {
 														backgroundColor: colors.AliceBlue,
 													},
-												}}
-											>
+												}}>
 												<TableCell
 													sx={{
 														position: 'sticky',
@@ -458,8 +435,7 @@ export const WorkReportDetails = () => {
 														'&:hover': {
 															backgroundColor: colors.AliceBlue,
 														},
-													}}
-												>
+													}}>
 													<Avatar
 														sx={{ width: 48, height: 48 }}
 														src={item.profilePicture ?? '/assets/icons/workerIcon.svg'}
@@ -473,8 +449,7 @@ export const WorkReportDetails = () => {
 														'&:hover': {
 															backgroundColor: colors.AliceBlue,
 														},
-													}}
-												>
+													}}>
 													<Typography color={primary.properDark}>
 														{item?.name ?? 'NA'}
 													</Typography>
@@ -580,8 +555,7 @@ export const WorkReportDetails = () => {
 										description: disputeReason,
 									})
 									handleMobileRasingDispute()
-								}}
-							>
+								}}>
 								<Stack direction={'column'} sx={{ width: '100%' }}>
 									<TextField
 										value={disputeReason}
@@ -602,16 +576,14 @@ export const WorkReportDetails = () => {
 											size='small'
 											variant='outlined'
 											sx={{ backgroundColor: 'common.white' }}
-											onClick={handleMobileRasingDispute}
-										>
+											onClick={handleMobileRasingDispute}>
 											Cancel
 										</Button>
 										<Button
 											size='small'
 											type='submit'
 											variant='contained'
-											disabled={!!!disputeReason}
-										>
+											disabled={!!!disputeReason}>
 											Submit
 										</Button>
 									</Stack>
@@ -623,8 +595,7 @@ export const WorkReportDetails = () => {
 					<Box
 						sx={{
 							height: '100vh',
-						}}
-					>
+						}}>
 						<Box>
 							<Stack
 								direction={'column'}
@@ -632,8 +603,7 @@ export const WorkReportDetails = () => {
 								sx={{
 									pt: 2,
 									pb: 1,
-								}}
-							>
+								}}>
 								<Stack direction={'row'} justifyContent={'flex-start'} alignItems={'center'} px={2}>
 									<Stack direction={'row'} mb={2}>
 										<IconButton color='primary' onClick={router.back}>
@@ -659,8 +629,7 @@ export const WorkReportDetails = () => {
 								alignItems={'center'}
 								sx={{
 									paddingLeft: '115px',
-								}}
-							>
+								}}>
 								<Chip
 									variant='filled'
 									sx={(theme) => ({
@@ -715,8 +684,7 @@ export const WorkReportDetails = () => {
 							sx={{
 								height: 'calc(100vh - 265px)',
 								overflowY: 'scroll',
-							}}
-						>
+							}}>
 							{workReportByIDResponse?.response?.workerDetails?.map((item, index) => {
 								return (
 									<>
@@ -725,8 +693,7 @@ export const WorkReportDetails = () => {
 											sx={{
 												mx: '10px',
 												mt: '20px',
-											}}
-										>
+											}}>
 											<Stack direction={'row'} justifyContent={'space-between'} p={'16px'}>
 												<Stack direction={'row'} spacing={1.3}>
 													<Avatar
@@ -739,15 +706,13 @@ export const WorkReportDetails = () => {
 															<Typography
 																variant='caption'
 																color={primary.light}
-																sx={{ fontWeight: '400' }}
-															>
+																sx={{ fontWeight: '400' }}>
 																{JobTypeLabel[item?.jobType as JOB_TYPES]}/
 															</Typography>
 															<Typography
 																variant='caption'
 																color={primary.light}
-																sx={{ fontWeight: '400' }}
-															>
+																sx={{ fontWeight: '400' }}>
 																{SkillTypeLabel[item?.skillType as WORKER_TYPES]}
 															</Typography>
 														</Stack>
@@ -785,8 +750,7 @@ export const WorkReportDetails = () => {
 													px: 2,
 													pt: 1,
 													borderRadius: '8px',
-												}}
-											>
+												}}>
 												<Grid container>
 													<Grid item xs={4}>
 														<Stack direction={'column'}>
@@ -795,8 +759,7 @@ export const WorkReportDetails = () => {
 																color={primary.properDark}
 																sx={{
 																	fontWeight: '400',
-																}}
-															>
+																}}>
 																Check-In
 															</Typography>
 															<Typography variant='caption' color={primary.properDark}>
@@ -811,8 +774,7 @@ export const WorkReportDetails = () => {
 																color={primary.properDark}
 																sx={{
 																	fontWeight: '400',
-																}}
-															>
+																}}>
 																OT Check-In
 															</Typography>
 															<Typography variant='caption' color={primary.properDark}>
@@ -827,8 +789,7 @@ export const WorkReportDetails = () => {
 																color={primary.properDark}
 																sx={{
 																	fontWeight: '400',
-																}}
-															>
+																}}>
 																Hours
 															</Typography>
 															<Typography variant='caption' color={primary.properDark}>
@@ -845,8 +806,7 @@ export const WorkReportDetails = () => {
 																color={primary.properDark}
 																sx={{
 																	fontWeight: '400',
-																}}
-															>
+																}}>
 																Check-Out
 															</Typography>
 															<Typography variant='caption' color={primary.properDark}>
@@ -861,8 +821,7 @@ export const WorkReportDetails = () => {
 																color={primary.properDark}
 																sx={{
 																	fontWeight: '400',
-																}}
-															>
+																}}>
 																OT Check-Out
 															</Typography>
 															<Typography variant='caption' color={primary.properDark}>
@@ -877,8 +836,7 @@ export const WorkReportDetails = () => {
 																color={primary.properDark}
 																sx={{
 																	fontWeight: '400',
-																}}
-															>
+																}}>
 																OT Hours
 															</Typography>
 															<Typography variant='caption' color={primary.properDark}>
@@ -907,8 +865,7 @@ export const WorkReportDetails = () => {
 								bottom: 0,
 								width: '100%',
 								py: 2,
-							}}
-						>
+							}}>
 							{workReportByIDResponse?.response?.status === WorkReportStatus.PENDING_APPROVAL && (
 								<>
 									<LoadingButton
@@ -932,8 +889,7 @@ export const WorkReportDetails = () => {
 												},
 												date: workReportByIDResponse?.response?.date,
 											})
-										}}
-									>
+										}}>
 										Approve
 									</LoadingButton>
 									<LoadingButton
@@ -942,8 +898,7 @@ export const WorkReportDetails = () => {
 										variant='outlined'
 										onClick={() => {
 											setMobileRasingDispute(true)
-										}}
-									>
+										}}>
 										Raise Dispute
 									</LoadingButton>
 								</>
@@ -963,8 +918,7 @@ export const WorkReportDetails = () => {
 										router.query.workReportId as string,
 										workReportByIDResponse?.response?.date ?? ''
 									)
-								}}
-							>
+								}}>
 								<FileDownloadOutlined />
 							</LoadingButton>
 						</Stack>

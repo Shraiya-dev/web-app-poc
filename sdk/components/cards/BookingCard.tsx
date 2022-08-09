@@ -141,8 +141,7 @@ export const BookingCard = ({ booking }: BookingCardProps) => {
 							variant='h5'
 							fontWeight={700}
 							fontFamily={'Saira,sans-serif'}
-							sx={{ verticalAlign: 'middle', margin: 1, color: primary.properDark }}
-						>
+							sx={{ verticalAlign: 'middle', margin: 1, color: primary.properDark }}>
 							{totalCount} {JobTypeLabel[booking?.booking?.jobType]}
 						</Typography>
 					</Box>
@@ -158,8 +157,7 @@ export const BookingCard = ({ booking }: BookingCardProps) => {
 						fontSize: 12,
 						marginLeft: 32,
 						color: primary.properDark,
-					}}
-				>
+					}}>
 					ID: {booking?.booking?.bookingId}
 				</Typography>
 
@@ -203,8 +201,7 @@ export const BookingCard = ({ booking }: BookingCardProps) => {
 							fontWeight={600}
 							mr={1}
 							fontSize={16}
-							color={primary.properDark}
-						>
+							color={primary.properDark}>
 							{requiredHelper} / {helperCount}
 						</Typography>
 					</Stack>
@@ -222,8 +219,7 @@ export const BookingCard = ({ booking }: BookingCardProps) => {
 							fontWeight={600}
 							mr={1}
 							fontSize={16}
-							color={primary.properDark}
-						>
+							color={primary.properDark}>
 							{requiredTechnician} / {technicianCount}
 						</Typography>
 					</Stack>
@@ -242,8 +238,7 @@ export const BookingCard = ({ booking }: BookingCardProps) => {
 							fontSize={16}
 							fontFamily={'Saira,sans-serif'}
 							fontWeight={600}
-							color={primary.properDark}
-						>
+							color={primary.properDark}>
 							{requiredSupervisor} / {supervisorCount}
 						</Typography>
 					</Stack>
@@ -339,13 +334,11 @@ export const BookingCard = ({ booking }: BookingCardProps) => {
 						justifyContent='center'
 						sx={{
 							width: '100%',
-						}}
-					>
+						}}>
 						<Box width={'70%'}>
 							<Link
 								href={`/bookings/${router.query.projectId}/${booking.booking?.bookingId}/track-workers`}
-								passHref
-							>
+								passHref>
 								<Button
 									className='cta'
 									fullWidth
@@ -363,8 +356,7 @@ export const BookingCard = ({ booking }: BookingCardProps) => {
 										color: primary.properDark,
 										fontFamily: 'Saira,sans-serif',
 										fontWeight: 600,
-									}}
-								>
+									}}>
 									View Applications
 								</Button>
 							</Link>

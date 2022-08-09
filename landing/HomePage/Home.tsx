@@ -76,6 +76,7 @@ export const Home = () => {
 			s.moveToIdx(s.track.details.abs + 5, true, animation)
 		},
 	})
+
 	const [jobTypeForCarousal, setJobTypeForCarousal] = useState('MASON')
 	return (
 		<>
@@ -152,11 +153,11 @@ export const Home = () => {
 						</Typography>
 					</Typography>
 				</Stack>
-				<Tabs
-					sx={{ mx: { md: -5 } }}
+				{/* <Tabs
 					onChange={(e, v) => setJobTypeForCarousal(v)}
 					value={jobTypeForCarousal}
-					variant='scrollable'
+					variant='fullWidth'
+					scrollButtons={false}
 					ScrollButtonComponent={(props) => {
 						if (props.direction === 'left' && !props.disabled) {
 							return (
@@ -174,15 +175,45 @@ export const Home = () => {
 							return null
 						}
 					}}>
-					{jobSection.jobs.map((item) => (
-						<Tab
+					<CarouselV2
+						componentPerView={5}
+						items={jobSection.jobs.map((item) => (
+							<Tab
+								value={item.value}
+								key={item.label}
+								sx={{ color: 'common.white', textTransform: 'none' }}
+								label={<JobCategoryCard src={item.image} label={item.label} />}
+							/>
+						))}
+					/>
+				</Tabs> */}
+
+				<CarouselV2
+					componentPerView={isMobile ? 2 : 7}
+					mobileStepperPosition='center'
+					icons={{
+						left: <ArrowCircleLeftOutlined sx={{ color: 'common.white', fontSize: 40 }} />,
+						right: <ArrowCircleRightOutlined sx={{ color: 'common.white', fontSize: 40 }} />,
+					}}
+					items={jobSection.jobs.map((item) => (
+						<Button
+							onClick={(e) => setJobTypeForCarousal(item.value)}
+							variant='text'
 							value={item.value}
 							key={item.label}
-							sx={{ color: 'common.white', textTransform: 'none' }}
-							label={<JobCategoryCard src={item.image} label={item.label} />}
-						/>
+							sx={(theme) => ({
+								color: 'common.white',
+								borderRadius: 0.5,
+								textTransform: 'none',
+								borderBottom:
+									jobTypeForCarousal === item.value
+										? `5px solid ${theme.palette.primary.main}`
+										: undefined,
+							})}>
+							<JobCategoryCard src={item.image} label={item.label} />
+						</Button>
 					))}
-				</Tabs>
+				/>
 				<CarouselV2
 					mobileStepperPosition={isMobile ? 'bottom' : 'center'}
 					componentPerView={1}
@@ -191,7 +222,7 @@ export const Home = () => {
 							return (
 								<Grid key={index} container py={3} spacing={2}>
 									{slide.map((item: any) => (
-										<Grid md={4} item key={item.workerId}>
+										<Grid xs={11} mx={'auto'} md={4} item key={item.workerId}>
 											<WorkerCard worker={item} />
 										</Grid>
 									))}
@@ -437,7 +468,7 @@ export const Home = () => {
 						? `url(${'/assets/landingv2/heroSection/heroAdvantage.svg'})`
 						: `url(${'/assets/landingv2/heroSection/heroAdvantageMobile.svg'})`,
 					backgroundRepeat: 'no-repeat',
-					backgroundPosition: !isMobile ? 'right' : 'bottom',
+					backgroundPosition: !isMobile ? 'right' : 'right bottom',
 					minHeight: !isMobile ? '600px' : '880px',
 				}}>
 				<Box
@@ -584,60 +615,53 @@ export const Home = () => {
 						</Stack>
 						<CarouselV2
 							componentPerView={1}
-							items={[homePage.customerReview, homePage.customerReview, homePage.customerReview].map(
-								(item, index) => {
-									return (
-										<Stack
-											py={5}
-											key={index}
-											position='relative'
-											direction={'row'}
-											justifyContent={'center'}>
-											<Card
-												sx={{
-													display: 'flex',
-													flexDirection: isMobile ? 'column' : 'row',
-													maxWidth: 800,
-													zIndex: 12,
-													position: 'relative',
-													overflow: 'visible',
-													height: isMobile ? 500 : 300,
-												}}>
-												<img className='leftQuote' src='/assets/landingv2/icons/quoteup.svg' />
-												<img
-													className='rightQuote'
-													src='/assets/landingv2/icons/quotedown.svg'
-												/>
-												<Stack
-													direction={{ md: 'row', xs: 'column' }}
-													flex={1}
-													overflow='hidden'>
-													<Box
-														sx={{
-															backgroundImage: `url(${item.card.cardImageSrc})`,
-															backgroundSize: 'cover',
-															backgroundOrigin: 'center',
-															width: { xs: '100%', md: '33%' },
-															height: { xs: 300, md: '100%' },
-														}}></Box>
-													<CardContent
-														sx={{
-															flex: 1,
-															background: theme.palette.primary.main,
-															display: 'flex',
-															justifyContent: 'center',
-															alignItems: 'center',
-														}}>
-														<Typography variant='body2' color={primary.properDark}>
-															{item.card.cardText}
-														</Typography>
-													</CardContent>
-												</Stack>
-											</Card>
-										</Stack>
-									)
-								}
-							)}
+							items={homePage.customerReview.cards.map((item, index) => {
+								return (
+									<Stack
+										key={item.by}
+										py={5}
+										mx={2}
+										position='relative'
+										direction={'row'}
+										justifyContent={'center'}>
+										<Card
+											sx={(theme) => ({
+												display: 'flex',
+												flexDirection: isMobile ? 'column' : 'row',
+												maxWidth: 800,
+												zIndex: 12,
+												position: 'relative',
+												overflow: 'visible',
+												backgroundColor: theme.palette.primary.main,
+											})}>
+											<img className='leftQuote' src='/assets/landingv2/icons/quoteup.svg' />
+											<img className='rightQuote' src='/assets/landingv2/icons/quotedown.svg' />
+
+											<Stack
+												height={{ xs: 450, md: 350 }}
+												spacing={3}
+												p={4}
+												alignItems='center'
+												justifyContent='center'>
+												<Typography
+													textAlign='center'
+													variant='h5'
+													fontWeight='500'
+													color={primary.properDark}>
+													{item.testimonial}
+												</Typography>
+												<Typography
+													textAlign='center'
+													variant='h5'
+													fontWeight='600'
+													color={primary.properDark}>
+													- {item.by}
+												</Typography>
+											</Stack>
+										</Card>
+									</Stack>
+								)
+							})}
 						/>
 
 						<Stack

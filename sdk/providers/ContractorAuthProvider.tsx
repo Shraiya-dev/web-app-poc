@@ -1,7 +1,8 @@
 import { KeyboardReturn } from '@mui/icons-material'
+import { Backdrop, CircularProgress } from '@mui/material'
 import axios from 'axios'
 import { useRouter } from 'next/router'
-import { createContext, FC, useCallback, useContext, useEffect, useMemo, useReducer } from 'react'
+import { createContext, FC, useCallback, useContext, useEffect, useMemo, useReducer, useState } from 'react'
 import { Identify } from '../analytics/analyticsWrapper'
 import { createCookieInHour, deleteCookie, getCookie } from '../analytics/helper'
 import {
@@ -84,6 +85,7 @@ const ContractorAuthProvider: FC<ContractorAuthProviderProps> = ({ children, aut
 	const [state, dispatch] = useReducer(simpleReducer, authState ?? initialAuthState)
 	const router = useRouter()
 	const { showSnackbar } = useSnackbar()
+	const [backdropProps, setBackdropProps] = useState({ open: false })
 	const requestOtp = useCallback(
 		async (phoneNumber: string) => {
 			dispatch({
@@ -324,6 +326,7 @@ const ContractorAuthProvider: FC<ContractorAuthProviderProps> = ({ children, aut
 	const createEasyBooking = useCallback(
 		async (bookingDetails) => {
 			try {
+				setBackdropProps({ open: true })
 				const payload = {
 					jobType: bookingDetails.jobType,
 					city: bookingDetails.location.split(', ')[0],
@@ -356,6 +359,7 @@ const ContractorAuthProvider: FC<ContractorAuthProviderProps> = ({ children, aut
 			} catch (error) {
 				showSnackbar('Failed to create easy booking', 'error')
 			}
+			setBackdropProps({ open: false })
 		},
 		[router, showSnackbar]
 	)
@@ -447,7 +451,14 @@ const ContractorAuthProvider: FC<ContractorAuthProviderProps> = ({ children, aut
 			reSendEmailOtp,
 		]
 	)
-	return <Provider value={authProviderValue}>{children}</Provider>
+	return (
+		<Provider value={authProviderValue}>
+			{children}
+			<Backdrop {...backdropProps}>
+				<CircularProgress />
+			</Backdrop>
+		</Provider>
+	)
 }
 
 export const useContractorAuth = () => useContext(ContractorAuthContext)

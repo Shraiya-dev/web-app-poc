@@ -66,8 +66,7 @@ export const LastOutstandingPaymentCard = () => {
 			) : (
 				<CustomPaper
 					elevation={isMobile ? 5 : 1}
-					sx={{ minWidth: 300, maxWidth: 400, maxHeight: '144px', background: '#fff' }}
-				>
+					sx={{ minWidth: 300, maxWidth: 400, maxHeight: '144px', background: '#fff' }}>
 					<Stack>
 						<Stack
 							className='cardHeader'
@@ -81,8 +80,7 @@ export const LastOutstandingPaymentCard = () => {
 								fontFamily={'Saira,sans-serif'}
 								fontWeight={700}
 								variant='subtitle1'
-								sx={{ color: '#000' }}
-							>
+								sx={{ color: '#000' }}>
 								Last Payment
 							</Typography>
 						</Stack>
@@ -103,8 +101,7 @@ export const LastOutstandingPaymentCard = () => {
 								fontFamily={'Saira,sans-serif'}
 								fontWeight={700}
 								variant='h2'
-								sx={{ fontSize: '2.25rem', color: theme.palette.base.variant50 }}
-							>
+								sx={{ fontSize: '2.25rem', color: theme.palette.base.variant50 }}>
 								{lastOutStandingPaymentData.data.response.length > 0
 									? indianCurrencyFormat(
 											lastOutStandingPaymentData.data.response[0].totalPaymentAmount
@@ -120,8 +117,7 @@ export const LastOutstandingPaymentCard = () => {
 								sx={{
 									color: theme.palette.base.variant50,
 									fontWeight: theme.typography.fontWeightBold,
-								}}
-							>
+								}}>
 								Transaction ID: {lastOutStandingPaymentData.data.response[0].paymentId}
 							</Typography>
 						)}
@@ -133,8 +129,7 @@ export const LastOutstandingPaymentCard = () => {
 								sx={{
 									color: theme.palette.base.variant50,
 									fontWeight: theme.typography.fontWeightBold,
-								}}
-							>
+								}}>
 								{lastOutStandingPaymentData.data.response[0].transactionTime}
 							</Typography>
 						)}

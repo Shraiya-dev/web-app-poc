@@ -45,15 +45,15 @@ export const Footer = () => {
 									<Typography variant='h3' color={footer.textColor}>
 										{footer.tagLine}
 									</Typography>
-									<Button
-										href='/login'
+									<LinkButton
+										href='/#book-worker'
 										onClick={() => {
 											DataLayerPush({ event: 'book_hero_home_footer' })
 										}}
 										variant='contained'
 										sx={{ fontSize: '14px', p: '20px 66px', fontWeight: '900' }}>
 										Book Workers Now
-									</Button>
+									</LinkButton>
 								</Stack>
 							</Stack>
 							<Stack mt={'40px'} direction={'column'} alignItems={'flex-start'} width={'100%'}>
@@ -117,13 +117,25 @@ export const Footer = () => {
 							<Stack mt={'46px'} direction={'column'} spacing={2}>
 								<Stack direction={'row'} alignItems={'center'} spacing={2}>
 									<img src='/assets/landingv2/heroSection/mail.svg' />
-									<Typography variant='subtitle2' color={'#fff'} fontSize={'18px'} fontWeight={700}>
+									<Typography
+										component='a'
+										href='mailto:marketing@projecthero.in'
+										variant='subtitle2'
+										color={'#fff'}
+										fontSize={'18px'}
+										fontWeight={700}>
 										marketing@projecthero.in
 									</Typography>
 								</Stack>
 								<Stack direction={'row'} alignItems={'center'} spacing={2}>
 									<img src='/assets/landingv2/heroSection/phone.svg' />
-									<Typography variant='subtitle2' color={'#fff'} fontSize={'18px'} fontWeight={700}>
+									<Typography
+										component='a'
+										href='tel:+91 9151003513'
+										variant='subtitle2'
+										color={'#fff'}
+										fontSize={'18px'}
+										fontWeight={700}>
 										+91-9151003513
 									</Typography>
 								</Stack>
@@ -252,7 +264,7 @@ export const Footer = () => {
 						</Box>
 					</Stack>
 					<Stack direction={'row'} justifyContent={'flex-start'} mt={4}>
-						<Button
+						<LinkButton
 							href='/#book-worker'
 							onClick={() => {
 								DataLayerPush({ event: 'book_hero_home_footer' })
@@ -260,7 +272,7 @@ export const Footer = () => {
 							variant='contained'
 							sx={{ fontSize: '14px', p: '10px 35px', fontWeight: '900' }}>
 							Book Workers Now
-						</Button>
+						</LinkButton>
 					</Stack>
 					<Stack direction={'column'} mt={6}>
 						<Typography variant='h2' color={'#fff'}>
@@ -274,13 +286,25 @@ export const Footer = () => {
 					<Stack mt={'46px'} direction={'column'} spacing={2}>
 						<Stack direction={'row'} alignItems={'center'} spacing={2}>
 							<img src='/assets/landingv2/heroSection/mail.svg' />
-							<Typography variant='subtitle2' color={'#fff'} fontSize={'18px'} fontWeight={700}>
+							<Typography
+								component='a'
+								href='mailto:marketing@projecthero.in'
+								variant='subtitle2'
+								color={'#fff'}
+								fontSize={'18px'}
+								fontWeight={700}>
 								marketing@projecthero.in
 							</Typography>
 						</Stack>
 						<Stack direction={'row'} alignItems={'center'} spacing={2}>
 							<img src='/assets/landingv2/heroSection/phone.svg' />
-							<Typography variant='subtitle2' color={'#fff'} fontSize={'18px'} fontWeight={700}>
+							<Typography
+								component='a'
+								href='tel:+91 9151003513'
+								variant='subtitle2'
+								color={'#fff'}
+								fontSize={'18px'}
+								fontWeight={700}>
 								+91-9151003513
 							</Typography>
 						</Stack>

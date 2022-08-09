@@ -15,6 +15,7 @@ import {
 import React, { FC, useState } from 'react'
 import { ListChildComponentProps, VariableSizeList } from 'react-window'
 import { allCityList } from 'sdk/constants'
+import { capitalize } from 'sdk/utils'
 import { Dropdown, InputWrapper, useEasyBooking } from 'sdkv2/components'
 import { JobType, projectDuration } from 'sdkv2/constants'
 
@@ -35,7 +36,7 @@ export const CreateBookingCard: FC<Props> = () => {
 						<Typography variant='h3'>
 							First{' '}
 							<Typography variant='h3' color='primary.main' display='inline'>
-								15 worker
+								15 applications
 							</Typography>{' '}
 							profiles for FREE!
 						</Typography>
@@ -51,8 +52,8 @@ export const CreateBookingCard: FC<Props> = () => {
 											disableListWrap
 											ListboxComponent={ListboxComponent}
 											options={allCityList}
-											value={form.values.location as any}
-											isOptionEqualToValue={(opt, v) => v?.value === opt?.value}
+											value={capitalize(form.values.location ?? '') as any}
+											isOptionEqualToValue={(opt, v) => v?.value?.toLowerCase() === opt?.value}
 											onChange={(e, v) => {
 												form.setFieldValue('location', v?.value)
 											}}
@@ -91,7 +92,7 @@ export const CreateBookingCard: FC<Props> = () => {
 											<>
 												Work Duration
 												<Typography display='inline' color='grey.A400'>
-													*minimum 1 month
+													&nbsp;*minimum 1 month
 												</Typography>
 											</>
 										}>

@@ -126,12 +126,14 @@ export const CheckoutCard: FC = () => {
 				if (data?.payload?.response?.payment) {
 					await initiatePayment(
 						data?.payload?.response?.payment,
-						data?.payload?.response?.payment?.totalPaymentAmount
+						data?.payload?.response?.payment?.totalPaymentAmount,
+						() => {
+							router.push(`/projects/${router.query.projectId}/bookings`)
+						}
 					)
-					router.push(`/projects/${router.query.projectId}/bookings`)
 				}
 			} else {
-				router.push(`/dashboard/projects/${router.query.projectId}/bookings`)
+				router.push(`/projects/${router.query.projectId}/bookings`)
 			}
 		} catch (error: any) {
 			showSnackbar(error?.response?.data?.developerInfo, 'error')
@@ -251,24 +253,27 @@ export const CheckoutCard: FC = () => {
 													Wage: &#8377; {`${wage ? wage[profile.wage] : 0} per day`}
 												</Typography>
 
-												{bookingData?.booking?.peopleRequired[profile.job.toUpperCase()] ===
-													0 && (
-													<IconButton
-														sx={{ p: '0px', ml: '6px' }}
-														onClick={() => {
-															setAddEditWageDialogProps({
-																fieldName: profile.wage,
-																initialValue: wage[profile.wage],
-																open: true,
-															})
-														}}>
-														{updating[profile.wage] ? (
-															<CircularProgress size={24} color='primary' />
-														) : (
-															<DriveFileRenameOutlineOutlinedIcon color='primary' />
-														)}
-													</IconButton>
-												)}
+												{bookingData?.booking?.peopleRequired[profile?.job?.toUpperCase()] ===
+													0 &&
+													bookingData?.booking?.rateCard[profile?.job?.toUpperCase()] &&
+													bookingData?.booking?.rateCard[profile?.job?.toUpperCase()] !==
+														0 && (
+														<IconButton
+															sx={{ p: '0px', ml: '6px' }}
+															onClick={() => {
+																setAddEditWageDialogProps({
+																	fieldName: profile.wage,
+																	initialValue: wage[profile.wage],
+																	open: true,
+																})
+															}}>
+															{updating[profile.wage] ? (
+																<CircularProgress size={24} color='primary' />
+															) : (
+																<DriveFileRenameOutlineOutlinedIcon color='primary' />
+															)}
+														</IconButton>
+													)}
 											</Stack>
 										</Stack>
 										{!(
@@ -412,13 +417,13 @@ export const CheckoutCard: FC = () => {
 					<Stack direction='row' columnGap={3}>
 						<Stack direction='row' alignItems='center'>
 							<img src='/assets/icons/mail.svg' />
-							<Typography ml={1} color='#000'>
+							<Typography component='a' href='mailto:marketing@projecthero.in' ml={1} color='#000'>
 								marketing@projecthero.in
 							</Typography>
 						</Stack>
 						<Stack direction='row' alignItems='center'>
 							<img src='/assets/icons/phone_small.svg' />
-							<Typography ml={1} color='#000'>
+							<Typography component='a' href='tel:+91 9151003513' ml={1} color='#000'>
 								+91-9151003513
 							</Typography>
 						</Stack>

@@ -38,8 +38,7 @@ export const CustomTopBar = ({ children }: any) => {
 				left: isMobile ? 0 : '',
 				right: isMobile ? 0 : '',
 				mt: isMobile ? '-24px' : '',
-			}}
-		>
+			}}>
 			<Box style={{ marginLeft: 0, padding: 0 }}>
 				<Toolbar className='toolbar'>
 					<Stack width={1} direction={'row'}>
@@ -57,13 +56,21 @@ export const CustomTopBar = ({ children }: any) => {
 				<Stack direction={'row'} spacing={2} pr={2}>
 					<Stack direction={'row'} spacing={1} alignItems={'center'}>
 						<img height={25} src='/assets/icons/mail.svg' />
-						<Typography fontFamily={'Karla,sans-serif'} fontWeight={700}>
+						<Typography
+							component='a'
+							href='mailto:marketing@projecthero.in'
+							fontFamily={'Karla,sans-serif'}
+							fontWeight={700}>
 							marketing@projecthero.in
 						</Typography>
 					</Stack>
 					<Stack direction={'row'} spacing={1} alignItems={'center'}>
 						<img height={25} src='/assets/icons/phone.svg' />
-						<Typography fontFamily={'Karla,sans-serif'} fontWeight={700}>
+						<Typography
+							component='a'
+							href='tel:+91 9151003513'
+							fontFamily={'Karla,sans-serif'}
+							fontWeight={700}>
 							+91-9151003513
 						</Typography>
 					</Stack>

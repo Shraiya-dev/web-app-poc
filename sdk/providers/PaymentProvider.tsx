@@ -41,7 +41,9 @@ const PaymentProvider: FC<any> = ({ children, authState }) => {
 	const [state, dispatch] = useReducer(simpleReducer, initialState)
 	const { user } = useContractorAuth()
 	const router = useRouter()
-
+	const [callbacks, setCallbacks] = useState({
+		success: () => {},
+	})
 	const projectId = router.query.projectId as string
 
 	const confirmPaymentOrderMutation = useConfirmPaymentMutation({
@@ -56,6 +58,7 @@ const PaymentProvider: FC<any> = ({ children, authState }) => {
 		paymentId: '',
 		totalPaymentAmount: 0,
 		transactionTime: '',
+		callback: () => {},
 	})
 	const confirmPaymentOrder = useCallback(
 		async (order, razorPayDetails) => {
@@ -76,6 +79,7 @@ const PaymentProvider: FC<any> = ({ children, authState }) => {
 									paymentId: data?.data?.payload?.paymentId,
 									totalPaymentAmount: data?.data?.payload?.totalPaymentAmount,
 									transactionTime: data?.data?.payload?.transactionTime,
+									callback: callbacks?.success,
 								})
 								dispatch({
 									showConfirmationModel: true,
@@ -100,11 +104,12 @@ const PaymentProvider: FC<any> = ({ children, authState }) => {
 	}, [state, cancelPaymentOrderMutation, projectId])
 
 	const initiatePayment = useCallback(
-		async (order, amount) => {
+		async (order, amount, successCallback) => {
 			return new Promise((resolve, reject) => {
 				dispatch({
 					order: order,
 				})
+				setCallbacks({ success: successCallback })
 				var options = {
 					key: envs.RAZOR_PAY_KEY,
 					name: constants.name,

@@ -139,23 +139,50 @@ export const homePage = {
 			<Typography variant='h2' fontSize={'32px'} fontWeight={600}>
 				What are our
 				<br />{' '}
-				<Typography display='inline' variant='h2' color='primary.main'>
+				<Typography display='inline' fontSize={'32px'} variant='h2' color='primary.main'>
 					Customers saying
 				</Typography>{' '}
 				about us?
 			</Typography>
 		),
-		card: {
-			cardImageSrc: '/assets/landingv2/heroSection/customer.png',
-			cardText:
-				'We are one of the largest interior Fit-out companies in India and require skilled and unskilled workers in bulk. Earlier, we used to hire via labor contractors but the labor quality and reliability was a major issue. ',
-			cardStyleSx: {
-				background: '#EFC41A',
-				width: '60%',
-				height: '307px',
-				borderRadius: '15px',
+		cards: [
+			{
+				cardImageSrc: '/assets/landingv2/heroSection/customer.png',
+				testimonial: (
+					<>
+						I am a small contractor who was looking to hire 5 masons. I was struggling to get the masons on
+						time. But, when I booked workers on Project Hero, I was impressed by the vast inventory they
+						have! I can get as many worker applications as I want and I only need to pay for what I am
+						consuming. Project Hero has changed the construction workforce hiring ecosystem!
+					</>
+				),
+				by: 'Yogesh Yadav, Contractor, Jabalpur',
 			},
-		},
+			{
+				cardImageSrc: '/assets/landingv2/heroSection/customer.png',
+				testimonial: (
+					<>
+						I was building a commercial project and was unable to get shuttering carpenters! I saw the
+						Project Hero ad and booked 30 target applications. Within 1 hour, workers started applying to my
+						booking. I gave a call to all the workers and hired 5 of them! The workers are professional and
+						skilled. I am very happy with Project Hero.
+					</>
+				),
+				by: 'Anil Dubey, Contractor, Delhi',
+			},
+			{
+				cardImageSrc: '/assets/landingv2/heroSection/customer.png',
+				testimonial: (
+					<>
+						Project Hero has given a new way of hiring. Now whenever I want a construction workforce, I just
+						go to Projecthero.in and book workers based on the number of target applications. I call,
+						negotiate, and hire them asap! The workers are skilled, and they are eager to work. This system
+						of hiring is the BEST!
+					</>
+				),
+				by: 'Aakash Gupta, Contractor, Bangalore',
+			},
+		],
 		ImageList: [
 			{ src: '/assets/landingv2/heroSection/capicite.svg' },
 			{ src: '/assets/landingv2/heroSection/l&t.svg' },
@@ -321,17 +348,17 @@ export const homePage = {
 				value: 'PLUMBING',
 			},
 			{
-				image: '/assets/landing/plumbing.png',
+				image: '/assets/landing/gypsum.png',
 				label: 'Gypsum',
 				value: 'GYPSUM',
 			},
 			{
-				image: '/assets/landing/plumbing.png',
+				image: '/assets/landing/hvac.png',
 				label: 'HVAC',
 				value: 'HVAC',
 			},
 			{
-				image: '/assets/landing/plumbing.png',
+				image: '/assets/landing/aliminium.png',
 				label: 'Aluminium Fabricator',
 				value: 'ALUMINIUM_FABRICATOR',
 			},

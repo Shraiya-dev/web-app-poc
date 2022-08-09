@@ -60,11 +60,13 @@ export const ConfirmPaymentSuccessPopover = ({
 	totalPaymentAmount,
 	transactionTime,
 	onClose,
+	callback,
 }: {
 	open: boolean
 	paymentId: string
 	totalPaymentAmount: number
 	transactionTime: string
+	callback: any
 	onClose: () => void
 }) => {
 	const router = useRouter()
@@ -143,7 +145,7 @@ export const ConfirmPaymentSuccessPopover = ({
 							page: document.title,
 							url: router.asPath,
 						})
-						onClose()
+						callback()
 					}}>
 					<Typography variant='subtitle2' sx={{ color: theme.palette.textCTA.white }}>
 						Continue
