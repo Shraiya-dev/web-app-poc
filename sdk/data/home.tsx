@@ -92,8 +92,7 @@ export const homePage = {
 				We solve all your construction workforce requirement needs starting from hiring, management and
 				retention of workers. Our unique contractor web-app gives you the capability to book, call and hire
 				workers. You can also <strong>track your worker&apos;s attendance, generate daily wage reports</strong>{' '}
-				and
-				<strong>pay salaries to your workers in just 2 clicks.</strong>
+				and <strong>pay salaries to your workers in just 2 clicks.</strong>
 			</Typography>
 		),
 		buttonText: { text: 'Book Workers Now', link: '/#book-worker' },

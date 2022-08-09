@@ -1,50 +1,28 @@
-import { ArrowCircleLeftOutlined, ArrowCircleRightOutlined, Circle, FormatQuote } from '@mui/icons-material'
+import { ArrowCircleLeftOutlined, ArrowCircleRightOutlined, Circle } from '@mui/icons-material'
+
+import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord'
+import { Box, Button, Card, Grid, List, ListItem, Stack, Typography } from '@mui/material'
+import { useKeenSlider } from 'keen-slider/react'
+import { useRouter } from 'next/router'
+import { useState } from 'react'
+import 'keen-slider/keen-slider.min.css'
 
 import {
-	Box,
-	Button,
-	Card,
-	CardContent,
-	CardMedia,
-	Grid,
-	List,
-	ListItem,
-	ListItemIcon,
-	ListItemText,
-	Paper,
-	Stack,
-	styled,
-	Tab,
-	Tabs,
-	Typography,
-} from '@mui/material'
-import { ContactUsSection } from 'landing/components'
-import Image from 'next/image'
-import { useRouter } from 'next/router'
-import {
-	AppStoreImage,
 	ButtonClicked,
-	Carousel,
 	CarouselV2,
 	DataLayerPush,
 	externalLinks,
-	FloatingUnderLineHeading,
-	HyperLink,
 	LinkButton,
 	primary,
 	Section,
 	sendAnalytics,
-	theme,
 	useMobile,
 } from 'sdk'
+import { HeroDiscoveryMetaData } from 'sdk/data/discoverHero'
 import { homePage } from 'sdk/data/home'
+import { sliceIntoChunks } from 'sdk/utils/arrayHelpers'
 import { CreateBookingCard, JobCategoryCard } from 'sdkv2/components'
 import { WorkerCard } from 'sdkv2/components/cards/WorkerCard'
-import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord'
-import { useKeenSlider } from 'keen-slider/react'
-import { HeroDiscoveryMetaData } from 'sdk/data/discoverHero'
-import { sliceIntoChunks } from 'sdk/utils/arrayHelpers'
-import { useState } from 'react'
 
 const animation = { duration: 25000, easing: (t: number) => t }
 
