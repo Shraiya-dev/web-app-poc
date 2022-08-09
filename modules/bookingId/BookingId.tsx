@@ -9,7 +9,7 @@ import WorkerTracking from './components/workerTracking'
 import Image from 'next/image'
 import { JobTypeIcon } from '../createBooking/utils'
 import BookingInfo from './components/bookingInfo'
-import { HorizontalTabClicked } from '../../sdk/analytics/analyticsWrapper'
+import { HorizontalTabClicked, sendAnalytics } from '../../sdk/analytics/analyticsWrapper'
 import { useCallback, useEffect, useState } from 'react'
 
 export const BookingId = () => {
@@ -87,6 +87,15 @@ export const BookingId = () => {
 							{!isMobile && (
 								<Button
 									href={`/bookings/${router.query.projectId}/${router.query.bookingId}/checkout`}
+									onClick={() => {
+										sendAnalytics({
+											name: 'getMoreApplication',
+											action: 'ButtonClick',
+											metaData: {
+												origin: 'Booking Detail view',
+											},
+										})
+									}}
 									sx={{ fontSize: '14px', fontWeight: 800, fontFamily: 'Karla,sans-serif' }}>
 									+ Get More Application
 								</Button>
@@ -117,6 +126,15 @@ export const BookingId = () => {
 						<Button
 							href={`/bookings/${router.query.projectId}/${router.query.bookingId}/checkout`}
 							size='small'
+							onClick={() => {
+								sendAnalytics({
+									name: 'getMoreApplication',
+									action: 'ButtonClick',
+									metaData: {
+										origin: 'Booking Detail view',
+									},
+								})
+							}}
 							sx={{ fontSize: '14px', fontWeight: 800, fontFamily: 'karla,sans-serif' }}>
 							+ Get More Application
 						</Button>

@@ -135,6 +135,9 @@ const EventTypes = {
 	howItWorks: 'How It Works',
 	requestPhoneOtp: 'Request Phone OTP',
 	verifiedPhoneOtp: 'verified Phone OTP',
+	getMoreApplication: 'Get More Applications',
+	initiatePayment: 'Initiate Payment',
+	cancelPayment: 'Cancel Payment',
 }
 
 //Define a new action type here if needed

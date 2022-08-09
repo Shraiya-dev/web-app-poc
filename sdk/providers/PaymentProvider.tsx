@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router'
 import { createContext, FC, useCallback, useContext, useEffect, useMemo, useReducer, useState } from 'react'
-import { envs, useContractorAuth } from 'sdk'
+import { envs, sendAnalytics, useContractorAuth } from 'sdk'
 import logo from '../../public/assets/icons/BrandLogo.svg'
 import {
 	cancelPaymentApi,
@@ -100,6 +100,13 @@ const PaymentProvider: FC<any> = ({ children, authState }) => {
 			paymentId: state.order?.paymentId,
 			orderId: state.order?.orderId,
 		}
+		sendAnalytics({
+			name: 'cancelPayment',
+			action: 'ButtonClick',
+			metaData: {
+				...params,
+			},
+		})
 		cancelPaymentOrderMutation.mutate({ projectId: projectId, params })
 	}, [state, cancelPaymentOrderMutation, projectId])
 

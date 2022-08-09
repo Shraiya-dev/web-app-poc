@@ -127,6 +127,13 @@ export const CheckoutCard: FC = () => {
 			const { data } = await postEasyBookingOrder(payload)
 			if (data?.payload?.response?.state === 'CONFIRMED') {
 				if (data?.payload?.response?.payment) {
+					sendAnalytics({
+						name: 'initiatePayment',
+						action: 'ButtonClick',
+						metaData: {
+							origin: 'Booking checkout card',
+						},
+					})
 					await initiatePayment(
 						data?.payload?.response?.payment,
 						data?.payload?.response?.payment?.totalPaymentAmount,
@@ -206,7 +213,6 @@ export const CheckoutCard: FC = () => {
 										  }
 										: undefined,
 								},
-								shiftTime: '09:30 AM-06:30 PM',
 								bookingDuration: bookingData?.booking?.schedule?.bookingDuration,
 							})
 							await getBookingDetail()

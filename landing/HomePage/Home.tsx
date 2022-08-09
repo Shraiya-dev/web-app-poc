@@ -250,10 +250,10 @@ export const Home = () => {
 							onClick={() => {
 								DataLayerPush({ event: 'book_hero_home_footer' })
 								sendAnalytics({
-									name: 'howItWorks',
+									name: 'EasyBookWorker',
 									action: 'ButtonClick',
 									metaData: {
-										origin: 'Navbar',
+										origin: 'How it Works section',
 									},
 								})
 							}}>
@@ -543,11 +543,6 @@ export const Home = () => {
 									<a
 										href={externalLinks.heroApp}
 										onClick={() => {
-											ButtonClicked({
-												page: document.title,
-												action: 'App store link',
-												url: router.asPath,
-											})
 											sendAnalytics({
 												name: 'heroAppPlayStore',
 												action: 'ButtonClick',
