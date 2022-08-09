@@ -284,25 +284,27 @@ export const CheckoutCard: FC = () => {
 													Wage: &#8377; {`${wage ? wage[profile.wage] : 0}/day`}
 												</Typography>
 
-												{['RECEIVED', 'CONFIRMATION'].includes(
-													bookingData?.booking?.status
-												) && (
-													<IconButton
-														sx={{ p: '0px' }}
-														onClick={() => {
-															setAddEditWageDialogProps({
-																fieldName: profile.wage,
-																initialValue: wage[profile.wage],
-																open: true,
-															})
-														}}>
-														{updating[profile.wage] ? (
-															<CircularProgress size={24} color='primary' />
-														) : (
-															<DriveFileRenameOutlineOutlinedIcon color='primary' />
-														)}
-													</IconButton>
-												)}
+												{bookingData?.booking?.peopleRequired[profile?.job?.toUpperCase()] ===
+													0 &&
+													bookingData?.booking?.rateCard[profile?.job?.toUpperCase()] &&
+													bookingData?.booking?.rateCard[profile?.job?.toUpperCase()] !==
+														0 && (
+														<IconButton
+															sx={{ p: '0px' }}
+															onClick={() => {
+																setAddEditWageDialogProps({
+																	fieldName: profile.wage,
+																	initialValue: wage[profile.wage],
+																	open: true,
+																})
+															}}>
+															{updating[profile.wage] ? (
+																<CircularProgress size={24} color='primary' />
+															) : (
+																<DriveFileRenameOutlineOutlinedIcon color='primary' />
+															)}
+														</IconButton>
+													)}
 											</Stack>
 										</Stack>
 										{!(
