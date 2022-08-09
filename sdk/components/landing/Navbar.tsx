@@ -28,6 +28,7 @@ import { DataLayerPush, HyperLink, LinkButton } from 'sdk'
 import { sendAnalytics } from 'sdk/analytics/analyticsWrapper'
 import { primary } from 'sdk'
 import { contactUsSection, navbar } from 'sdk/data'
+import Link from 'next/link'
 export const Navbar = () => {
 	const [menuRefs, dispatchMenuRefs] = useReducer((p: any, n: any) => ({ ...p, ...n }), {})
 	const router = useRouter()
@@ -41,7 +42,7 @@ export const Navbar = () => {
 		<>
 			<AppBar position='fixed' elevation={0}>
 				<Container disableGutters>
-					<Toolbar sx={{ justifyContent: 'space-between', zIndex: 10 }} disableGutters>
+					<Toolbar sx={{ justifyContent: 'space-between', zIndex: 12 }} disableGutters>
 						<Stack
 							direction='row'
 							spacing={2}
@@ -96,7 +97,7 @@ export const Navbar = () => {
 										},
 									}}
 									style={{
-										zIndex: 1,
+										zIndex: 10,
 									}}>
 									<List>
 										<Stack
@@ -157,9 +158,11 @@ export const Navbar = () => {
 														src={'/assets/landingv2/user.svg'}
 													/>
 												</Box>
-												<Typography variant='h2' color={'#fff'}>
-													Login
-												</Typography>
+												<Link href='/login'>
+													<Typography variant='h2' color={'#fff'}>
+														Login
+													</Typography>
+												</Link>
 											</Stack>
 										</Box>
 										<Divider

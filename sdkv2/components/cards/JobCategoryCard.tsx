@@ -8,10 +8,9 @@ interface Props {
 }
 export const JobCategoryCard: FC<Props> = ({ src, active, label }) => {
 	return (
-		<Stack alignItems='center' spacing={2} p={2}>
-			<Avatar sx={{ width: 100, height: 100 }} src={src} />
-			<Typography>{label}</Typography>
-			<Divider />
+		<Stack alignItems='center' spacing={2}>
+			<Avatar sx={{ width: 60, height: 60 }} src={src} />
+			<Typography fontSize={'12px'}>{label}</Typography>
 		</Stack>
 	)
 }

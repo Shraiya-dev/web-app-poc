@@ -11,8 +11,8 @@ export const homePage = {
 		buttonText: { text: 'Book Workers Now', link: '/#book-worker' },
 		buttonSx: {
 			height: '62px',
+			fontSize: { md: '20px', sm: '14px' },
 			fontWeight: '800',
-			padding: '20px 64px',
 		},
 	},
 	whyYouShouldHire: {
@@ -25,9 +25,14 @@ export const homePage = {
 			),
 			buttonText: { text: 'Book Workers Now', link: '/#book-worker' },
 			buttonSx: {
-				padding: '20px 64px',
 				color: '#000',
 				fontWeight: '700',
+				fontSize: { md: '20px', sx: '14px' },
+				background: '#fff',
+				border: '2px solid #EFC430',
+				'&:hover': {
+					background: '#fff',
+				},
 			},
 		},
 		right: {

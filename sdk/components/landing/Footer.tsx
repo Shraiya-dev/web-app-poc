@@ -58,7 +58,7 @@ export const Footer = () => {
 											})
 										}}
 										variant='contained'
-										sx={{ fontSize: '14px', p: '20px 66px', fontWeight: '900' }}>
+										sx={{ fontSize: '20px', p: '14px 64px', fontWeight: '900' }}>
 										Book Workers Now
 									</LinkButton>
 								</Stack>
@@ -230,11 +230,11 @@ export const Footer = () => {
 											<InstagramIcon sx={{ color: '#fff' }} />
 										</a>
 									</IconButton>
-									<IconButton>
+									{/* <IconButton>
 										<a href='' target='blank'>
 											<TwitterIcon sx={{ color: '#fff' }} />
 										</a>
-									</IconButton>
+									</IconButton> */}
 									<IconButton>
 										<a href={externalLinks.linkedIn} target='blank'>
 											<LinkedInIcon sx={{ color: '#fff' }} />
@@ -284,7 +284,7 @@ export const Footer = () => {
 								})
 							}}
 							variant='contained'
-							sx={{ fontSize: '14px', p: '10px 35px', fontWeight: '900' }}>
+							sx={{ fontSize: '14px', p: '13px 45px', fontWeight: '900' }}>
 							Book Workers Now
 						</LinkButton>
 					</Stack>
