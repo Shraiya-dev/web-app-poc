@@ -242,7 +242,7 @@ export const CheckoutCard: FC = () => {
 					</Typography>
 				</Stack>
 				<Card sx={{ borderRadius: '15px' }}>
-					<Stack p={3} minWidth={!isMobile ? '766px' : '100%'}>
+					<Stack p={{ xs: 2, md: 3 }} minWidth={!isMobile ? '766px' : '100%'}>
 						<Stack spacing={'4px'}>
 							{discountEligible && (
 								<Typography variant='h3' fontWeight={600}>
@@ -274,21 +274,21 @@ export const CheckoutCard: FC = () => {
 							{ProfileCardData?.map((profile: any) => {
 								return (
 									<Stack key={profile.job} borderBottom='1px solid' py='28px' direction='row'>
-										<img src={profile.img} />
-										<Stack flexGrow={1} spacing='12px' ml={2}>
+										<img src={profile.img} width={isMobile ? 50 : 70} />
+										<Stack flexGrow={1} spacing='12px' ml={{ xs: 1, md: 2 }}>
 											<Typography variant='h5' fontWeight={500}>
 												{profile.job}
 											</Typography>
 											<Stack direction='row' alignItems='center'>
 												<Typography variant='subtitle2' fontWeight={400}>
-													Wage: &#8377; {`${wage ? wage[profile.wage] : 0} per day`}
+													Wage: &#8377; {`${wage ? wage[profile.wage] : 0}/day`}
 												</Typography>
 
 												{['RECEIVED', 'CONFIRMATION'].includes(
 													bookingData?.booking?.status
 												) && (
 													<IconButton
-														sx={{ p: '0px', ml: '6px' }}
+														sx={{ p: '0px' }}
 														onClick={() => {
 															setAddEditWageDialogProps({
 																fieldName: profile.wage,
@@ -432,7 +432,7 @@ export const CheckoutCard: FC = () => {
 				</Card>
 				<Stack
 					borderRadius='15px'
-					sx={{ backgroundColor: 'info.main' }}
+					sx={{ backgroundColor: 'info.main', zIndex: 1 }}
 					direction={!isMobile ? 'row' : 'column'}
 					alignItems={!isMobile ? 'center' : 'flex-start'}
 					justifyContent='space-between'
