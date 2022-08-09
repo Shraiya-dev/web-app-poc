@@ -131,7 +131,6 @@ export const CheckoutCard: FC = () => {
 						data?.payload?.response?.payment,
 						data?.payload?.response?.payment?.totalPaymentAmount,
 						() => {
-							debugger
 							DataLayerPush({ event: 'booking_done' })
 							sendAnalytics({
 								name: 'CreateEasyBookWorker',
