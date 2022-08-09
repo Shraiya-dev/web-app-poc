@@ -107,13 +107,13 @@ export const Identify = async ({ ...props }: Identify) => {
 
 export const getPageData = (): { name: string } => {
 	// @ts-ignore comment to disable type checking for a line in TypeScript.
-	return document.pageData
+	return document?.pageData
 }
 export const setPageData = (data: PageStaticData) => {
 	if (window) {
 		// @ts-ignore comment to disable type checking for a line in TypeScript.
 		window.document.pageData = {
-			name: data.pageName,
+			name: data?.pageName,
 		}
 	}
 }

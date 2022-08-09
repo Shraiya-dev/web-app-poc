@@ -89,20 +89,11 @@ export const homePage = {
 		),
 		subHeading: (
 			<Typography variant='h5' fontSize={'16px'} fontWeight={400}>
-				We solve all your construction workforce requirement needs <br /> starting from hiring, management and
-				retention of workers. Our <br />
-				unique contractor web-app gives you the capability to book, call <br />
-				and hire workers. You can also{' '}
-				<span style={{ fontWeight: '700' }}>
-					{' '}
-					track your worker&#39;s attendance, <br />
-					generate daily wage reports
-				</span>{' '}
-				and{' '}
-				<span style={{ fontWeight: '700' }}>
-					pay salaries to your workers in <br />
-					just 2 clicks.
-				</span>
+				We solve all your construction workforce requirement needs starting from hiring, management and
+				retention of workers. Our unique contractor web-app gives you the capability to book, call and hire
+				workers. You can also <strong>track your worker&apos;s attendance, generate daily wage reports</strong>{' '}
+				and
+				<strong>pay salaries to your workers in just 2 clicks.</strong>
 			</Typography>
 		),
 		buttonText: { text: 'Book Workers Now', link: '/#book-worker' },

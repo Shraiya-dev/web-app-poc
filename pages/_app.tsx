@@ -142,7 +142,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 		return (
 			<>
 				<CommonHead />
-				<SEO {...pageStaticData.seo} />
+				{pageStaticData?.seo && <SEO {...pageStaticData.seo} />}
 
 				<QueryClientProvider client={queryClient}>
 					<ThemeProvider theme={landingTheme}>
@@ -173,7 +173,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 	return (
 		<>
 			<CommonHead />
-			<SEO {...pageStaticData.seo} />
+			{pageStaticData?.seo && <SEO {...pageStaticData.seo} />}
 			<QueryClientProvider client={queryClient}>
 				<ThemeProvider theme={theme}>
 					<CssBaseline />
