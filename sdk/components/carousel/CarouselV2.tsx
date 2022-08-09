@@ -51,7 +51,10 @@ export const CarouselV2 = ({
 		})
 	}, [maxSteps])
 	return (
-		<Stack>
+		<Stack
+			sx={{
+				mb: 6,
+			}}>
 			{mobileStepperPosition === 'top' && (
 				<Stack direction='row' justifyContent='center'>
 					<IconButton onClick={handelPrev}>{icons.left}</IconButton>
@@ -71,7 +74,7 @@ export const CarouselV2 = ({
 					scrolling=''
 					enableMouseEvents>
 					{contentPerSlide.map((items: any[], index) => (
-						<Stack direction='row' key={index} justifyContent='space-evenly'>
+						<Stack direction='row' key={index} alignItems={'flex-start'} justifyContent='space-evenly'>
 							{items.map((com, id) => {
 								return com
 							})}
