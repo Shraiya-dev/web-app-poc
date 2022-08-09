@@ -2,6 +2,7 @@ import { ArrowDropDown, ArrowDropUp } from '@mui/icons-material'
 import MenuIcon from '@mui/icons-material/Menu'
 import {
 	AppBar,
+	Box,
 	Button,
 	Container,
 	Divider,
@@ -25,6 +26,7 @@ import { useRouter } from 'next/router'
 import { useEffect, useReducer, useState } from 'react'
 import { DataLayerPush, HyperLink, LinkButton } from 'sdk'
 import { sendAnalytics } from 'sdk/analytics/analyticsWrapper'
+import { primary } from 'sdk'
 import { contactUsSection, navbar } from 'sdk/data'
 export const Navbar = () => {
 	const [menuRefs, dispatchMenuRefs] = useReducer((p: any, n: any) => ({ ...p, ...n }), {})
@@ -39,8 +41,17 @@ export const Navbar = () => {
 		<>
 			<AppBar position='fixed' elevation={0}>
 				<Container disableGutters>
-					<Toolbar sx={{ justifyContent: 'space-between' }} disableGutters>
-						<Stack direction='row' spacing={2} alignItems='center'>
+					<Toolbar sx={{ justifyContent: 'space-between', zIndex: 10 }} disableGutters>
+						<Stack
+							direction='row'
+							spacing={2}
+							alignItems='center'
+							justifyContent={'space-between'}
+							width={'100%'}
+							px={2}>
+							<HyperLink href='/'>
+								<Image src={navbar.brandImage} width={120} height={27} alt='Project hero' />
+							</HyperLink>
 							<IconButton
 								sx={(theme) => ({
 									display: 'none',
@@ -52,49 +63,114 @@ export const Navbar = () => {
 									borderRadius: 2,
 								})}
 								onClick={() => setNavbarOpen((p) => !p)}>
-								<MenuIcon
-									sx={(theme) => ({
-										fontSize: theme.typography.h3.fontSize,
-									})}
-									color='primary'
-								/>
+								<Stack
+									direction={'row'}
+									justifyContent={'flex-end'}
+									alignItems={'center'}
+									spacing={2.5}>
+									<Stack direction={'row'} spacing={1}>
+										<Box height={23.5} width={23.5}>
+											<img height={'100%'} width={'100%'} src='/assets/icons/phone.svg' alt='' />
+										</Box>
+										<Typography variant='subtitle2' color={'#fff'} fontWeight={700}>
+											+91-9151003513
+										</Typography>
+									</Stack>
+									<Box width={28} height={28}>
+										<img
+											width={'100%'}
+											height={'100%'}
+											src='/assets/landingv2/icons/menuIcon.svg'
+											alt=''
+										/>
+									</Box>
+								</Stack>
+
 								<Drawer
-									anchor='left'
+									anchor='right'
 									open={navbarOpen}
 									PaperProps={{
 										sx: {
-											width: 300,
+											width: 280,
+											background: primary.properDark,
 										},
+									}}
+									style={{
+										zIndex: 1,
 									}}>
 									<List>
-										<ListItem>
-											<HyperLink href='/'>
-												<Image
-													src={navbar.brandImage}
-													width={150}
-													height={27}
-													alt='Project hero'
+										<Stack
+											direction={'row'}
+											justifyContent={'flex-end'}
+											px={3}
+											pt={2}
+											spacing={4}
+											alignItems={'center'}>
+											<Stack direction={'row'} spacing={1}>
+												<Box height={23.5} width={23.5}>
+													<img
+														height={'100%'}
+														width={'100%'}
+														src='/assets/icons/phone.svg'
+														alt=''
+													/>
+												</Box>
+												<Typography variant='subtitle2' color={'#fff'} fontWeight={700}>
+													+91-9151003513
+												</Typography>
+											</Stack>
+											<Box width={28} height={28}>
+												<img
+													width={'100%'}
+													height={'100%'}
+													src='/assets/landingv2/icons/menuIcon.svg'
+													alt=''
 												/>
-											</HyperLink>
-										</ListItem>
-										{navbar.navLinks.map((navItem, i) => {
-											if (navItem.type === 'button_link') {
-												return (
-													<HyperLink key={i} href={navItem.link}>
-														<ListItem
-															color='secondary'
-															sx={(theme) => ({
-																fontWeight: 700,
-															})}>
-															<ListItemAvatar>{navItem?.icon}</ListItemAvatar>
-															<ListItemText>{navItem.label}</ListItemText>
-														</ListItem>
-													</HyperLink>
-												)
-											}
-										})}
-										<Divider sx={{ my: 2 }} />
-										<Typography variant='h4' color='primary' textAlign={'center'}>
+											</Box>
+										</Stack>
+										<Box mt={5}>
+											{/* {navbar.navLinks.map((navItem, i) => {
+												if (navItem.type === 'button_link') {
+													return (
+														<HyperLink key={i} href={navItem.link}>
+															<ListItem
+																color='secondary'
+																sx={(theme) => ({
+																	fontWeight: 700,
+																})}>
+																<ListItemAvatar>{navItem?.icon}</ListItemAvatar>
+																<ListItemText>
+																	<Typography color={'#fff'}>
+																		{navItem.label}
+																	</Typography>
+																</ListItemText>
+															</ListItem>
+														</HyperLink>
+													)
+												}
+											})} */}
+											<Stack direction={'row'} spacing={1.5} alignItems={'center'} px={2}>
+												<Box width={45} height={45}>
+													<img
+														height={'100%'}
+														width={'100%'}
+														src={'/assets/landingv2/user.svg'}
+													/>
+												</Box>
+												<Typography variant='h2' color={'#fff'}>
+													Login
+												</Typography>
+											</Stack>
+										</Box>
+										<Divider
+											sx={{
+												my: 2,
+												background: '#f7f7f7',
+												border: '1px solid #4c4c4c',
+												zIndex: '0',
+											}}
+										/>
+										{/* <Typography variant='h4' color={'#fff'} textAlign={'center'}>
 											Contact us{' '}
 										</Typography>
 										<ListItem
@@ -134,13 +210,38 @@ export const Navbar = () => {
 													</Typography>
 												</Stack>
 											</ListItemText>
-										</ListItem>
+										</ListItem> */}
+										<Stack direction={'column'} spacing={3} px={2.4} mt={'30px'}>
+											<Stack direction={'row'} spacing={1}>
+												<Box height={23.5} width={23.5}>
+													<img
+														height={'100%'}
+														width={'100%'}
+														src='/assets/icons/mail.svg'
+														alt=''
+													/>
+												</Box>
+												<Typography variant='subtitle2' color={'#fff'} fontWeight={700}>
+													marketing@projecthero.in
+												</Typography>
+											</Stack>
+											<Stack direction={'row'} spacing={1}>
+												<Box height={23.5} width={23.5}>
+													<img
+														height={'100%'}
+														width={'100%'}
+														src='/assets/icons/phone.svg'
+														alt=''
+													/>
+												</Box>
+												<Typography variant='subtitle2' color={'#fff'} fontWeight={700}>
+													+91-9151003513
+												</Typography>
+											</Stack>
+										</Stack>
 									</List>
 								</Drawer>
 							</IconButton>
-							<HyperLink href='/'>
-								<Image src={navbar.brandImage} width={150} height={27} alt='Project hero' />
-							</HyperLink>
 						</Stack>
 						<NavWrapper direction='row' spacing={{ xs: 0, md: 3 }} alignItems='center'>
 							{navbar.navLinks.map((navItem, i) => {
