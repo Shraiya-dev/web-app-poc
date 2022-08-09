@@ -171,8 +171,25 @@ export const Home = () => {
 					componentPerView={isMobile ? 2 : 7}
 					mobileStepperPosition='center'
 					icons={{
-						left: <ArrowCircleLeftOutlined sx={{ color: 'common.white', fontSize: 40 }} />,
-						right: <ArrowCircleRightOutlined sx={{ color: 'common.white', fontSize: 40 }} />,
+						left: (
+							<ArrowCircleLeftOutlined
+								sx={{
+									color: 'common.white',
+									fontSize: 40,
+								}}
+							/>
+						),
+						right: (
+							<ArrowCircleRightOutlined
+								sx={{
+									color: 'common.white',
+									fontSize: 40,
+									position: !isMobile ? '' : 'absolute',
+									top: !isMobile ? '' : '75px',
+									right: !isMobile ? '' : '8px',
+								}}
+							/>
+						),
 					}}
 					items={jobSection.jobs.map((item) => (
 						<Button
