@@ -143,6 +143,8 @@ export const ProjectDetails: FC<Props> = () => {
 											/>
 										)
 									)
+								} else if (tab === 'details') {
+									return null
 								}
 								return (
 									<Tab
@@ -203,6 +205,8 @@ export const ProjectDetails: FC<Props> = () => {
 												/>
 											)
 										)
+									} else if (tab === 'details') {
+										return null
 									}
 									return (
 										<Tab

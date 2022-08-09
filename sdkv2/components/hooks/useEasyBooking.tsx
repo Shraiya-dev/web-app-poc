@@ -1,11 +1,15 @@
 import { useFormik } from 'formik'
 import { useRouter } from 'next/router'
-import { useCallback, useState } from 'react'
-import { createCookieInHour } from 'sdk/analytics'
+import { useEffect, useMemo } from 'react'
+import { createCookieInHour, getCookie } from 'sdk/analytics'
 import { useFormikProps } from 'sdk/hooks'
 import * as Yup from 'yup'
 export const useEasyBooking = () => {
 	const router = useRouter()
+	const handleSubmit = async (values: any) => {
+		createCookieInHour('discoveryBooking', JSON.stringify(values), 45)
+		router.push('/login')
+	}
 	const form = useFormik({
 		initialValues: {
 			location: '',
@@ -57,11 +61,14 @@ export const useEasyBooking = () => {
 			handleSubmit(values)
 		},
 	})
-
-	const handleSubmit = async (values: any) => {
-		createCookieInHour('discoveryBooking', JSON.stringify(values), 45)
-		router.push('/login')
-	}
+	useEffect(() => {
+		try {
+			const discoveryBookingFromCookie = JSON.parse(getCookie('discoveryBooking'))
+			form.setValues(discoveryBookingFromCookie)
+		} catch (error) {
+			console.log(error)
+		}
+	}, [])
 
 	const formikProps = useFormikProps(form)
 	return { form, formikProps }

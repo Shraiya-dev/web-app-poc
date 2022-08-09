@@ -25,6 +25,7 @@ import {
 	AppStoreImage,
 	ButtonClicked,
 	Carousel,
+	CarouselV2,
 	DataLayerPush,
 	externalLinks,
 	FloatingUnderLineHeading,
@@ -40,6 +41,9 @@ import { CreateBookingCard, JobCategoryCard } from 'sdkv2/components'
 import { WorkerCard } from 'sdkv2/components/cards/WorkerCard'
 import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord'
 import { useKeenSlider } from 'keen-slider/react'
+import { HeroDiscoveryMetaData } from 'sdk/data/discoverHero'
+import { sliceIntoChunks } from 'sdk/utils/arrayHelpers'
+import { useState } from 'react'
 
 const animation = { duration: 25000, easing: (t: number) => t }
 
@@ -72,6 +76,7 @@ export const Home = () => {
 			s.moveToIdx(s.track.details.abs + 5, true, animation)
 		},
 	})
+	const [jobTypeForCarousal, setJobTypeForCarousal] = useState('MASON')
 	return (
 		<>
 			<Section>
@@ -148,8 +153,9 @@ export const Home = () => {
 					</Typography>
 				</Stack>
 				<Tabs
-					sx={{ mx: !isMobile ? -2 : 1, overflowX: 'hidden' }}
-					value='Masons'
+					sx={{ mx: { md: -5 } }}
+					onChange={(e, v) => setJobTypeForCarousal(v)}
+					value={jobTypeForCarousal}
 					variant='scrollable'
 					ScrollButtonComponent={(props) => {
 						if (props.direction === 'left' && !props.disabled) {
@@ -170,20 +176,31 @@ export const Home = () => {
 					}}>
 					{jobSection.jobs.map((item) => (
 						<Tab
-							value={item.label}
+							value={item.value}
 							key={item.label}
-							sx={{ color: 'common.white' }}
+							sx={{ color: 'common.white', textTransform: 'none' }}
 							label={<JobCategoryCard src={item.image} label={item.label} />}
 						/>
 					))}
 				</Tabs>
-				<Grid container py={3} spacing={2}>
-					{jobSection.workers.map((item) => (
-						<Grid md={4} item key={item.workerId}>
-							<WorkerCard worker={item as any} />
-						</Grid>
-					))}
-				</Grid>
+				<CarouselV2
+					mobileStepperPosition={isMobile ? 'bottom' : 'center'}
+					componentPerView={1}
+					items={sliceIntoChunks(HeroDiscoveryMetaData[jobTypeForCarousal], isMobile ? 2 : 6).map(
+						(slide, index) => {
+							return (
+								<Grid key={index} container py={3} spacing={2}>
+									{slide.map((item: any) => (
+										<Grid md={4} item key={item.workerId}>
+											<WorkerCard worker={item} />
+										</Grid>
+									))}
+								</Grid>
+							)
+						}
+					)}
+					slideDelay={5000}
+				/>
 			</Section>
 			{/* <Section className='hide-on-mobile' backgroundColor={bookingJourneySection.backgroundColor}>
 				<Stack spacing={2}>
@@ -216,15 +233,15 @@ export const Home = () => {
 						<Typography variant='h4'>{homePage.howItWorksSection.subHeading}</Typography>
 					</Stack>
 					<Box mb={'66px'}>
-						<Button
+						<LinkButton
 							variant='contained'
 							sx={homePage.howItWorksSection.buttonSx}
-							href='/login'
+							href={homePage.howItWorksSection.buttonText.link}
 							onClick={() => {
 								DataLayerPush({ event: 'book_hero_home_footer' })
 							}}>
 							{homePage.howItWorksSection.buttonText.text}
-						</Button>
+						</LinkButton>
 					</Box>
 					<Box
 						sx={{
@@ -295,14 +312,14 @@ export const Home = () => {
 							<Stack direction={'column'} spacing={4}>
 								<Box>{homePage.whyYouShouldHire.left.heading}</Box>
 								<Box>
-									<Button
+									<LinkButton
 										sx={homePage.whyYouShouldHire.left.buttonSx}
-										href='/login'
+										href={homePage.howItWorksSection.buttonText.link}
 										onClick={() => {
 											DataLayerPush({ event: 'book_hero_home_footer' })
 										}}>
 										{homePage.whyYouShouldHire.left.buttonText.text}
-									</Button>
+									</LinkButton>
 								</Box>
 							</Stack>
 						</Grid>

@@ -2,7 +2,7 @@ import { FormHelperText, InputLabel, TextFieldProps } from '@mui/material'
 import { Box } from '@mui/system'
 import { FC } from 'react'
 interface Props {
-	label?: string
+	label?: any
 	helperText?: string
 	fullWidth?: boolean
 }

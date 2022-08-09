@@ -217,12 +217,12 @@ export const Footer = () => {
 										</a>
 									</IconButton>
 									<IconButton>
-										<a href='' target='blank'>
+										<a href={externalLinks.linkedIn} target='blank'>
 											<LinkedInIcon sx={{ color: '#fff' }} />
 										</a>
 									</IconButton>
 									<IconButton>
-										<a href='' target='blank'>
+										<a href={externalLinks.facebook} target='blank'>
 											<FacebookIcon sx={{ color: '#fff' }} />
 										</a>
 									</IconButton>{' '}
@@ -253,7 +253,7 @@ export const Footer = () => {
 					</Stack>
 					<Stack direction={'row'} justifyContent={'flex-start'} mt={4}>
 						<Button
-							href='/login'
+							href='/#book-worker'
 							onClick={() => {
 								DataLayerPush({ event: 'book_hero_home_footer' })
 							}}
@@ -316,18 +316,18 @@ export const Footer = () => {
 								<InstagramIcon sx={{ color: '#fff' }} />
 							</a>
 						</IconButton>
-						<IconButton>
+						{/* <IconButton>
 							<a href='' target='blank'>
 								<TwitterIcon sx={{ color: '#fff' }} />
 							</a>
-						</IconButton>
+						</IconButton> */}
 						<IconButton>
-							<a href='' target='blank'>
+							<a href={externalLinks.linkedIn} target='blank'>
 								<LinkedInIcon sx={{ color: '#fff' }} />
 							</a>
 						</IconButton>
 						<IconButton>
-							<a href='' target='blank'>
+							<a href={externalLinks.facebook} target='blank'>
 								<FacebookIcon sx={{ color: '#fff' }} />
 							</a>
 						</IconButton>{' '}

@@ -66,16 +66,14 @@ const ContractorDashboardLayout = ({ children }: any) => {
 		<Box
 			sx={{
 				background: theme.palette.background.default,
-			}}
-		>
+			}}>
 			<Box
 				style={{
 					padding: isMobile ? 8 : 16,
 					marginLeft: isMobile ? 0 : theme.spacing(33),
 					//width: '100vw',
 					minHeight: '100vh',
-				}}
-			>
+				}}>
 				{isMobile ? (
 					<Stack direction='row' p={1}>
 						{/* {isMobile && (
@@ -110,8 +108,7 @@ const ContractorDashboardLayout = ({ children }: any) => {
 						style: {
 							boxShadow: 'none',
 						},
-					}}
-				>
+					}}>
 					<Box width={APP_DRAWER_WIDTH} m={2}>
 						<Stack direction={'row'} alignItems={'center'} mb={8} spacing={12}>
 							<Image alt='logo' src={logo} height={52} width={isMobile ? 100 : 162} />
@@ -150,13 +147,13 @@ const ContractorDashboardLayout = ({ children }: any) => {
 								toggleDrawer={toggleDrawer}
 							/>
 
-							<DrawerItem
+							{/* <DrawerItem
 								icon={<PersonIcon />}
 								path={`/profile/details`}
 								title='Company Profile'
 								route={PROFILE}
 								toggleDrawer={toggleDrawer}
-							/>
+							/> */}
 
 							<DrawerItem
 								icon={<BusinessIcon />}
@@ -176,8 +173,7 @@ const ContractorDashboardLayout = ({ children }: any) => {
 									marginBottom: 16,
 									bottom: 0,
 									borderRadius: 40,
-								}}
-							>
+								}}>
 								<ListItemIcon>
 									<LogoutIcon
 										sx={{

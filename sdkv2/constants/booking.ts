@@ -25,7 +25,7 @@ export const JobType = [
 ]
 
 export const projectDuration = [
-	{ label: 'Less than 30 days', value: 'LESS_THAN_THIRTY' },
+	// { label: 'Less than 30 days', value: 'LESS_THAN_THIRTY' },
 	{ label: '30-45 days', value: 'THIRTY_TO_FORTY_FIVE' },
 	{ label: '45-90 days', value: 'FORTY_FIVE_TO_NINETY' },
 	{ label: '90-150 days', value: 'NINETY_TO_ONE_FIFTY' },

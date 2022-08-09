@@ -1,5 +1,5 @@
 import { CircularProgress, Grid, Pagination, Stack, Typography } from '@mui/material'
-import { BottomLayout, JobCardCard, primary, theme, useMobile } from '../../../sdk'
+import { BottomLayout, JobCardCard, primary, useMobile } from '../../../sdk'
 
 import { useRouter } from 'next/router'
 import { useEffect, useMemo } from 'react'
@@ -113,14 +113,21 @@ const WorkerTracking = ({ handleRequiredTotal }: handleLength) => {
 										fontWeight={700}
 										variant='h4'
 										color={primary.yellow}>
-										You can see workers here when allocation starts
+										We have made your booking live on our Hero App
+									</Typography>
+									<Typography
+										fontFamily={'Saira,sans-serif'}
+										fontWeight={700}
+										variant='h4'
+										color={primary.yellow}>
+										You will see the application as soon as any Hero applies!
 									</Typography>
 								</Stack>
 							) : (
 								<Grid container spacing={3}>
 									{jobCards.map((jobCardInfo, index) => {
 										return (
-											<Grid item xs={12} md={3} key={index}>
+											<Grid item xs={12} md={4} key={index}>
 												<JobCardCard jobCard={jobCardInfo} />
 											</Grid>
 										)
