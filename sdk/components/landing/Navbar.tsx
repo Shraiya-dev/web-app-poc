@@ -278,10 +278,10 @@ export const Navbar = () => {
 												})}
 												onClick={() => {
 													sendAnalytics({
-														name: 'EasyBookWorker',
+														name: 'howItWorks',
 														action: 'ButtonClick',
 														metaData: {
-															origin: 'how It Works Section',
+															origin: 'Navbar',
 														},
 													})
 												}}

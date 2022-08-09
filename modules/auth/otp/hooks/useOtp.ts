@@ -1,8 +1,8 @@
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 import { useRouter } from 'next/router'
 import { useContractorAuth, useSnackbar } from '../../../../sdk'
 import { useFormik } from 'formik'
-import { Analytic, DataLayerPush } from '../../../../sdk/analytics'
+import { Analytic, DataLayerPush, getCookie } from '../../../../sdk/analytics'
 import { ButtonClicked, sendAnalytics } from '../../../../sdk/analytics/analyticsWrapper'
 
 const initialOtpState = {
@@ -43,7 +43,14 @@ const useOtp = () => {
 				showSnackbar(error, 'error')
 			})
 	}
-
+	const discoveryBookingFromCookie = useMemo(() => {
+		try {
+			const discoveryBookingFromCookie = JSON.parse(getCookie('discoveryBooking'))
+			return discoveryBookingFromCookie
+		} catch (error) {
+			return undefined
+		}
+	}, [])
 	const form = useFormik({
 		initialValues: {
 			otp: '',
@@ -54,6 +61,9 @@ const useOtp = () => {
 			sendAnalytics({
 				name: 'verifiedPhoneOtp',
 				action: 'ButtonClick',
+				metaData: {
+					origin: discoveryBookingFromCookie ? 'Easy Book Worker flow' : undefined,
+				},
 			})
 
 			if (validateOtpField(otp) === 'valid') {

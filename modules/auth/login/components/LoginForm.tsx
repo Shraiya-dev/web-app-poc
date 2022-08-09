@@ -2,9 +2,9 @@ import LoadingButton from '@mui/lab/LoadingButton'
 import { Box, Button, InputLabel, Stack, styled, Typography } from '@mui/material'
 
 import { useRouter } from 'next/router'
-import { useEffect } from 'react'
+import { useEffect, useMemo } from 'react'
 import { InputWrapper } from 'sdkv2/components'
-import { checkError } from '../../../../sdk'
+import { checkError, getCookie } from '../../../../sdk'
 import { PhoneField } from '../../../../sdk/components/Input/PhoneField'
 import useLogin from '../hooks/useLogin'
 

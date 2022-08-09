@@ -259,7 +259,6 @@ export const homePage = {
 			'Soham Nisha just hired 22 Carpenters',
 			'Sandananda Malti just hired 71 Electricianss',
 			'Kailashnath Uttara just hired 81 Aluminium Fabricators',
-			'Satyakam Shetty just hired 0 Electricianss',
 			'Habib Rammohan just hired 18 Bar Benders',
 			'Kaushik Gala just hired 93 Carpenters',
 			'Dabeet Gavaskar just hired 58 Welder Fitters',

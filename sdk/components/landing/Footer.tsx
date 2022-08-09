@@ -71,10 +71,12 @@ export const Footer = () => {
 									<a
 										href={externalLinks.heroApp}
 										onClick={() => {
-											ButtonClicked({
-												page: document.title,
-												action: 'App store link',
-												url: router.asPath,
+											sendAnalytics({
+												name: 'heroAppPlayStore',
+												action: 'ButtonClick',
+												metaData: {
+													origin: 'Footer',
+												},
 											})
 										}}
 										target='_blank'
@@ -231,10 +233,10 @@ export const Footer = () => {
 										</a>
 									</IconButton>
 									{/* <IconButton>
-										<a href='' target='blank'>
-											<TwitterIcon sx={{ color: '#fff' }} />
-										</a>
-									</IconButton> */}
+											<a href='' target='blank'>
+												<TwitterIcon sx={{ color: '#fff' }} />
+											</a>
+										</IconButton> */}
 									<IconButton>
 										<a href={externalLinks.linkedIn} target='blank'>
 											<LinkedInIcon sx={{ color: '#fff' }} />

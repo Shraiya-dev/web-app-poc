@@ -1,8 +1,8 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useMemo } from 'react'
 import { useRouter } from 'next/router'
 import { useContractorAuth, useSnackbar } from '../../../../sdk'
 import { useFormik } from 'formik'
-import { Analytic, DataLayerPush } from '../../../../sdk/analytics'
+import { Analytic, DataLayerPush, getCookie } from '../../../../sdk/analytics'
 import { ButtonClicked, sendAnalytics } from '../../../../sdk/analytics/analyticsWrapper'
 
 const initialLoginState = {
@@ -29,7 +29,14 @@ const useLogin = () => {
 			url: router.asPath,
 		})
 	}
-
+	const discoveryBookingFromCookie = useMemo(() => {
+		try {
+			const discoveryBookingFromCookie = JSON.parse(getCookie('discoveryBooking'))
+			return discoveryBookingFromCookie
+		} catch (error) {
+			return undefined
+		}
+	}, [])
 	const form = useFormik({
 		initialValues: {
 			phoneNumber: '',
@@ -53,9 +60,13 @@ const useLogin = () => {
 			// Analytic.page()
 			setLoading(true)
 			DataLayerPush({ event: 'mobile_registration' })
+
 			sendAnalytics({
 				name: 'requestPhoneOtp',
 				action: 'ButtonClick',
+				metaData: {
+					origin: discoveryBookingFromCookie ? 'Easy Book Worker flow' : undefined,
+				},
 			})
 			requestOtp(`+91${values?.phoneNumber}`)
 				.then((res) => {
