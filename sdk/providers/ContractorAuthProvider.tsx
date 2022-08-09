@@ -77,7 +77,7 @@ const ContractorAuthContext = createContext<AuthProviderValue>({
 })
 const { Provider, Consumer } = ContractorAuthContext
 
-const fullYearDays = 365
+const cookieExpireTime = 45
 interface ContractorAuthProviderProps {
 	authState?: AuthState
 }
@@ -132,7 +132,7 @@ const ContractorAuthProvider: FC<ContractorAuthProviderProps> = ({ children, aut
 			})
 
 			if (getCookie('isUTMParamIdentified') !== '') {
-				createCookieInHour('isUTMParamIdentified', true, fullYearDays)
+				createCookieInHour('isUTMParamIdentified', true, cookieExpireTime)
 			}
 
 			await Identify({
@@ -175,7 +175,7 @@ const ContractorAuthProvider: FC<ContractorAuthProviderProps> = ({ children, aut
 					})
 
 					if (getCookie('isUTMParamIdentified') !== '') {
-						createCookieInHour('isUTMParamIdentified', true, fullYearDays)
+						createCookieInHour('isUTMParamIdentified', true, cookieExpireTime)
 					}
 					await Identify({
 						userType: 'customer',
@@ -288,7 +288,7 @@ const ContractorAuthProvider: FC<ContractorAuthProviderProps> = ({ children, aut
 					onboardingStatus: data?.payload?.onboardingStatus ?? ONBOARDING_STATUS.PROFILE_CREATION_PENDING,
 				})
 				if (getCookie('isUTMParamIdentified') !== '') {
-					createCookieInHour('isUTMParamIdentified', true, fullYearDays)
+					createCookieInHour('isUTMParamIdentified', true, cookieExpireTime)
 				}
 			} catch (error: any) {
 				console.log('error', error)

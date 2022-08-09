@@ -108,7 +108,7 @@ const Page: NextPage = () => {
 						onClick={() => {
 							ButtonClicked({
 								action: 'Khula Manch',
-								page: 'projecthero.in',
+								page: document.title,
 								url: router.asPath,
 							})
 						}}
@@ -136,5 +136,5 @@ const Page: NextPage = () => {
 }
 export default Page
 
-const pageUrl = '/about-us'
+const pageUrl = '/KhulaManch'
 export const getStaticProps: GetStaticProps = staticRenderingProvider(pageUrl).getStaticProps
