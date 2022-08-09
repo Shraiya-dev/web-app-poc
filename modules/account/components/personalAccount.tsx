@@ -25,8 +25,7 @@ const PersonalAccount = () => {
 								fontSize: 26,
 								fontWeight: 700,
 								color: theme.palette.secondary.main,
-							}}
-						>
+							}}>
 							Account
 						</Typography>
 					</Stack>
@@ -44,8 +43,7 @@ const PersonalAccount = () => {
 										color: primary.properDark,
 									},
 								}}
-								onClick={handleEdit}
-							>
+								onClick={handleEdit}>
 								Edit Profile
 							</Button>
 						)}

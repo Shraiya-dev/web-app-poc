@@ -3,6 +3,7 @@ import { useRouter } from 'next/router'
 import { useEffect } from 'react'
 import { JobCardState, primary, theme, useMobile, WORKER_TYPES } from '../../../sdk'
 import { useBookingId } from '../hooks'
+import CancelIcon from '@mui/icons-material/Cancel'
 
 const Filters = ({ ...props }) => {
 	const { filterTags, setJobCards, jobCards, page, form } = props
@@ -46,7 +47,6 @@ const Filters = ({ ...props }) => {
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [form.values.skillType, form.values.jobCardState])
 
-
 	return (
 		<Grid item xs={12} md={12}>
 			<Stack direction='row' pb={1} overflow={'auto'}>
@@ -72,6 +72,7 @@ const Filters = ({ ...props }) => {
 							key={item.value}
 							label={item.label}
 							clickable
+							deleteIcon={<CancelIcon style={{ color: '#EFC530' }} />}
 							onClick={
 								!form.values.tags.includes(item.value)
 									? () => {
