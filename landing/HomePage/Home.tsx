@@ -592,6 +592,7 @@ export const Home = () => {
 				<Box
 					sx={{
 						padding: '46px 0px',
+						userSelect: 'none',
 					}}>
 					<Stack
 						direction={'column'}
