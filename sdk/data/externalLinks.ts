@@ -3,5 +3,5 @@ export const externalLinks = {
 	instaGram: 'https://www.instagram.com/projectheroworkers/?hl=en',
 	youtube: 'https://www.youtube.com/channel/UCHlSIBRIUwMken0qGPtVE-g/videos',
 	facebook: 'https://business.facebook.com/ondemandlabour/?business_id=183447649994401',
-	linkedIn: 'https://www.linkedin.com/company/projectheroes/',
+	linkedIn: 'https://www.linkedin.com/company/projectheroes/	',
 }
