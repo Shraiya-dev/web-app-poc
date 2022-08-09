@@ -232,11 +232,11 @@ export const Footer = () => {
 											<InstagramIcon sx={{ color: '#fff' }} />
 										</a>
 									</IconButton>
-									<IconButton>
-										<a href='' target='blank'>
-											<TwitterIcon sx={{ color: '#fff' }} />
-										</a>
-									</IconButton>
+									{/* <IconButton>
+											<a href='' target='blank'>
+												<TwitterIcon sx={{ color: '#fff' }} />
+											</a>
+										</IconButton> */}
 									<IconButton>
 										<a href={externalLinks.linkedIn} target='blank'>
 											<LinkedInIcon sx={{ color: '#fff' }} />
