@@ -562,38 +562,84 @@ export const Home = () => {
 					sx={{
 						padding: '46px 0px',
 					}}>
-					<Stack direction={'column'} spacing={4} sx={{ width: '100%' }}>
-						<Box>{homePage.customerReview.heading}</Box>
-						<Stack direction={'row'} justifyContent={'center'}>
-							<Card
-								sx={{
-									display: 'flex',
-									flexDirection: isMobile ? 'column' : 'row',
-									maxWidth: 800,
-									height: isMobile ? 500 : 300,
-								}}>
-								<CardMedia
-									component='img'
-									sx={{
-										background: 'cover',
-									}}
-									height={isMobile ? '300' : '300'}
-									image={homePage.customerReview.card.cardImageSrc}
-								/>
-								<CardContent
-									sx={{
-										background: theme.palette.primary.main,
-										display: 'flex',
-										justifyContent: 'center',
-										alignItems: 'center',
-										height: isMobile ? 500 : 300,
-									}}>
-									<Typography variant='body2' color={primary.properDark}>
-										{homePage.customerReview.card.cardText}
-									</Typography>
-								</CardContent>
-							</Card>
+					<Stack
+						direction={'column'}
+						spacing={4}
+						sx={(theme) => ({
+							width: '100%',
+							'.leftQuote': { position: 'absolute', zIndex: -1, top: -40, left: -60 },
+							'.rightQuote': { position: 'absolute', bottom: -30, right: 0 },
+							'.helmet': {
+								marginRight: '20%',
+							},
+							[theme.breakpoints.down('md')]: {
+								'.leftQuote': { display: 'none' },
+								'.rightQuote': { display: 'none' },
+								'.helmet': { display: 'none' },
+							},
+						})}>
+						<Stack direction='row' justifyContent={'space-between'}>
+							{homePage.customerReview.heading}
+							<img className='helmet' src='/assets/icons/backgrounds/Helmet.svg' />
 						</Stack>
+						<CarouselV2
+							componentPerView={1}
+							items={[homePage.customerReview, homePage.customerReview, homePage.customerReview].map(
+								(item, index) => {
+									return (
+										<Stack
+											py={5}
+											key={index}
+											position='relative'
+											direction={'row'}
+											justifyContent={'center'}>
+											<Card
+												sx={{
+													display: 'flex',
+													flexDirection: isMobile ? 'column' : 'row',
+													maxWidth: 800,
+													zIndex: 12,
+													position: 'relative',
+													overflow: 'visible',
+													height: isMobile ? 500 : 300,
+												}}>
+												<img className='leftQuote' src='/assets/landingv2/icons/quoteup.svg' />
+												<img
+													className='rightQuote'
+													src='/assets/landingv2/icons/quotedown.svg'
+												/>
+												<Stack
+													direction={{ md: 'row', xs: 'column' }}
+													flex={1}
+													overflow='hidden'>
+													<Box
+														sx={{
+															backgroundImage: `url(${item.card.cardImageSrc})`,
+															backgroundSize: 'cover',
+															backgroundOrigin: 'center',
+															width: { xs: '100%', md: '33%' },
+															height: { xs: 300, md: '100%' },
+														}}></Box>
+													<CardContent
+														sx={{
+															flex: 1,
+															background: theme.palette.primary.main,
+															display: 'flex',
+															justifyContent: 'center',
+															alignItems: 'center',
+														}}>
+														<Typography variant='body2' color={primary.properDark}>
+															{item.card.cardText}
+														</Typography>
+													</CardContent>
+												</Stack>
+											</Card>
+										</Stack>
+									)
+								}
+							)}
+						/>
+
 						<Stack
 							direction={'row'}
 							spacing={2}

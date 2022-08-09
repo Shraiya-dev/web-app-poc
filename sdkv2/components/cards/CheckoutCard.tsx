@@ -12,6 +12,7 @@ import { usePayment } from 'sdk/providers/PaymentProvider'
 import { AddEditWage } from '../dialog'
 import { useFormikProps } from 'sdk/hooks'
 import { Add } from '@mui/icons-material'
+import { LoadingButton } from '@mui/lab'
 
 const ProfileCardData = [
 	{
@@ -313,9 +314,15 @@ export const CheckoutCard: FC = () => {
 													value={form.values[profile?.name]}
 													onChange={(e) => {
 														if (e.target.value === '') {
-															form.setFieldValue(profile?.name, e.target.value)
+															form.setFieldValue(
+																profile?.name,
+																e.target.value.replace(/[e\+\-\.]/gi, '')
+															)
 														} else if (Number(e.target.value) > 0) {
-															form.setFieldValue(profile?.name, Number(e.target.value))
+															form.setFieldValue(
+																profile?.name,
+																Number(e.target.value.replace(/[e\+\-\.]/gi, ''))
+															)
 														}
 													}}
 													name={profile?.name}
@@ -372,7 +379,7 @@ export const CheckoutCard: FC = () => {
 							<Typography variant='h1' sx={{ color: 'primary.main' }}>
 								&#8377; {bill.amountPayable}
 							</Typography>
-							<Button
+							<LoadingButton
 								color='info'
 								disabled={bill.quantity <= 0}
 								onClick={handelPayment}
@@ -385,7 +392,7 @@ export const CheckoutCard: FC = () => {
 								}}
 								endIcon={<img src='/assets/icons/forward_round.svg' />}>
 								{bill.amountPayable !== 0 && 'Pay and'} Book Now
-							</Button>
+							</LoadingButton>
 						</Stack>
 					</Stack>
 				</Card>

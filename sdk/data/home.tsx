@@ -138,7 +138,11 @@ export const homePage = {
 		heading: (
 			<Typography variant='h2' fontSize={'32px'} fontWeight={600}>
 				What are our
-				<br /> <span style={{ color: 'EFC430' }}>Customers saying</span> about us?
+				<br />{' '}
+				<Typography display='inline' variant='h2' color='primary.main'>
+					Customers saying
+				</Typography>{' '}
+				about us?
 			</Typography>
 		),
 		card: {

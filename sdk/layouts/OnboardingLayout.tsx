@@ -1,5 +1,6 @@
 import { Box, Button, Card, Container, Paper, Stack } from '@mui/material'
 import { styled } from '@mui/system'
+import { useRouter } from 'next/router'
 import { useState } from 'react'
 import { LogoutAndRedirect } from 'sdk/utils/logoutHelper'
 import { ConfirmationDialog, Navbar } from '../components'
@@ -103,7 +104,7 @@ const CustomizeDashboard = styled(Box)(({ theme }) => ({
 export const OnboardingLayout = ({ children, helmet = true, ...props }: any) => {
 	const isMobile = useMobile()
 	const [dialogProps, setDialogProps] = useState(false)
-
+	const router = useRouter()
 	return (
 		<>
 			<Navbar />
@@ -127,7 +128,7 @@ export const OnboardingLayout = ({ children, helmet = true, ...props }: any) => 
 				</Stack> */}
 				<Container sx={{ display: 'flex', flex: 1, flexDirection: 'column', p: 2 }}>
 					<Button
-						onClick={() => setDialogProps(true)}
+						onClick={!helmet ? () => router.back() : () => setDialogProps(true)}
 						sx={{ alignSelf: 'flex-start' }}
 						variant='text'
 						color='info'
