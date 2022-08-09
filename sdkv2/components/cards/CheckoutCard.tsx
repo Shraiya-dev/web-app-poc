@@ -82,8 +82,9 @@ export const CheckoutCard: FC = () => {
 	const router = useRouter()
 	const { initiatePayment } = usePayment()
 	const { showSnackbar } = useSnackbar()
-
+	const [loading, setLoading] = useState(false)
 	const handelPayment = useCallback(async () => {
+		setLoading(true)
 		const payload = {
 			source: {
 				id: router.query.bookingId,
@@ -124,20 +125,24 @@ export const CheckoutCard: FC = () => {
 			const { data } = await postEasyBookingOrder(payload)
 			if (data?.payload?.response?.state === 'CONFIRMED') {
 				if (data?.payload?.response?.payment) {
+					setLoading(false)
+
 					await initiatePayment(
 						data?.payload?.response?.payment,
 						data?.payload?.response?.payment?.totalPaymentAmount,
 						() => {
-							router.push(`/projects/${router.query.projectId}/bookings`)
+							debugger
+							router.push(`/bookings/${router.query.projectId}/${router.query.bookingId}/track-workers`)
 						}
 					)
 				}
 			} else {
-				router.push(`/projects/${router.query.projectId}/bookings`)
+				router.push(`/bookings/${router.query.projectId}/${router.query.bookingId}/track-workers`)
 			}
 		} catch (error: any) {
 			showSnackbar(error?.response?.data?.developerInfo, 'error')
 		}
+		setLoading(false)
 	}, [
 		bill.amountPayable,
 		bookingData?.booking?.jobType,
@@ -366,6 +371,9 @@ export const CheckoutCard: FC = () => {
 										)
 									}
 								} else {
+									if (i.value === 'beforeTax' && !discountEligible) {
+										return null
+									}
 									return (
 										<Stack key={i.value} direction='row' justifyContent='space-between'>
 											<Typography variant='h4' fontWeight={400}>
@@ -388,6 +396,7 @@ export const CheckoutCard: FC = () => {
 								color='info'
 								disabled={bill.quantity <= 0}
 								onClick={handelPayment}
+								loading={loading}
 								sx={{
 									backgroundColor: '#ffffff !important',
 									color: 'common.black',
