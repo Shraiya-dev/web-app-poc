@@ -1,5 +1,5 @@
 import { GetStaticPathsResult, GetStaticPropsContext, GetStaticPropsResult } from 'next'
-import { getMetaData } from 'sdk/data/Seo'
+import { getPageStaticData } from 'sdk/data/Seo'
 
 export const staticRenderingProvider = (
 	pageUrl: string
@@ -16,7 +16,7 @@ export const staticRenderingProvider = (
 		},
 		getStaticProps: async ({ params }: GetStaticPropsContext) => {
 			return {
-				props: { seoData: getMetaData(pageUrl, params) },
+				props: { pageStaticData: getPageStaticData(pageUrl, params) },
 				revalidate: 3600, //in seconds
 			}
 		},

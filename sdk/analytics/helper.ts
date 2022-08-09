@@ -56,9 +56,9 @@ export const deleteCookie = (name: string) => {
 	document.cookie = `${name}=; Path=/;Domain = ${domain}; expires=${new Date().toUTCString()};`
 }
 
-export const getUtmObject = () => {
+export const getUtmObject = (): any | undefined => {
+	let queryObj = undefined
 	try {
-		let queryObj
 		if (typeof window !== `undefined`) {
 			const utmParams = getCookie('utmParams')
 
@@ -80,6 +80,5 @@ export const getUtmObject = () => {
 		clearCookie()
 		console.log(error)
 	}
-
-	return {}
+	return queryObj
 }

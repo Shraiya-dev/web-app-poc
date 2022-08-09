@@ -66,7 +66,7 @@ export const ConfirmPaymentSuccessPopover = ({
 	paymentId: string
 	totalPaymentAmount: number
 	transactionTime: string
-	callback: any
+	callback?: any
 	onClose: () => void
 }) => {
 	const router = useRouter()

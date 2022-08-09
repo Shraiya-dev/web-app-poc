@@ -24,7 +24,7 @@ import Image from 'next/image'
 import { useRouter } from 'next/router'
 import { useEffect, useReducer, useState } from 'react'
 import { DataLayerPush, HyperLink, LinkButton } from 'sdk'
-import { ButtonClicked } from 'sdk/analytics/analyticsWrapper'
+import { sendAnalytics } from 'sdk/analytics/analyticsWrapper'
 import { contactUsSection, navbar } from 'sdk/data'
 export const Navbar = () => {
 	const [menuRefs, dispatchMenuRefs] = useReducer((p: any, n: any) => ({ ...p, ...n }), {})
@@ -172,6 +172,15 @@ export const Navbar = () => {
 													color: 'common.white',
 													[theme.breakpoints.down('md')]: { display: 'none' },
 												})}
+												onClick={() => {
+													sendAnalytics({
+														name: 'EasyBookWorker',
+														action: 'ButtonClick',
+														metaData: {
+															origin: 'how It Works Section',
+														},
+													})
+												}}
 												href={navItem.link}
 												className={router.pathname === navItem.link ? 'active' : ''}>
 												{navItem.label}
@@ -303,10 +312,10 @@ export const Navbar = () => {
 											color='primary'
 											onClick={() => {
 												DataLayerPush({ event: 'book_worker_home_header' })
-												ButtonClicked({
-													page: document.title,
-													action: 'Book Workers',
-													url: router.asPath,
+												sendAnalytics({
+													name: 'BookWorker',
+													action: 'ButtonClick',
+													metaData: { origin: 'navbar' },
 												})
 											}}
 											sx={{ fontWeight: 700, borderRadius: '8px !important' }}

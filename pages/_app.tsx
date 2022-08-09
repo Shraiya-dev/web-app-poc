@@ -1,7 +1,6 @@
 /* eslint-disable @next/next/next-script-for-ga */
 import { ThemeProvider } from '@mui/material/styles'
 import axios, { AxiosError, AxiosResponse } from 'axios'
-import 'keen-slider/keen-slider.min.css'
 import type { AppProps } from 'next/app'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
@@ -12,9 +11,13 @@ import {
 	ContractorAuthProvider,
 	envs,
 	GlobalCssProvider,
+	Identify,
 	logOutService,
+	NewAnalyticsPage,
+	PageStaticData,
 	refreshTokenService,
 	SEO,
+	setPageData,
 	SnackbarProvider,
 	theme,
 	USER_TYPE,
@@ -25,10 +28,10 @@ const queryClient = new QueryClient()
 
 import { landingTheme } from 'sdk/constants/landingTheme'
 import { SplashProvider } from 'sdk/providers/SplashProvider'
-import { Identify, NewAnalyticsPage } from '../sdk/analytics/analyticsWrapper'
-import { createCookieInHour, getCookie } from '../sdk/analytics/helper'
+
 import { CssBaseline } from '@mui/material'
 import { PaymentProvider } from 'sdk/providers/PaymentProvider'
+import { createCookieInHour, getCookie } from '../sdk/analytics/helper'
 //=====================initializing axios interceptor=======================
 
 axios.defaults.baseURL = envs.SERVER_URL
@@ -94,7 +97,10 @@ function MyApp({ Component, pageProps }: AppProps) {
 	const router = useRouter()
 	const fullYearDays = 365
 	const cookieExpiryDays = 45
-	const { seoData } = pageProps
+	const { pageStaticData } = pageProps as { pageStaticData: PageStaticData }
+	useEffect(() => {
+		setPageData(pageStaticData)
+	}, [pageStaticData])
 	useEffect(() => {
 		if (router.isReady) {
 			const utmParams = router.asPath.includes('utm_')
@@ -136,7 +142,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 		return (
 			<>
 				<CommonHead />
-				<SEO {...seoData} />
+				<SEO {...pageStaticData.seo} />
 
 				<QueryClientProvider client={queryClient}>
 					<ThemeProvider theme={landingTheme}>
@@ -167,7 +173,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 	return (
 		<>
 			<CommonHead />
-			<SEO {...seoData} />
+			<SEO {...pageStaticData.seo} />
 			<QueryClientProvider client={queryClient}>
 				<ThemeProvider theme={theme}>
 					<CssBaseline />

@@ -2,7 +2,7 @@ import { Stack, Box, Typography, Button, Divider, Grid, IconButton } from '@mui/
 import Image from 'next/image'
 import { useRouter } from 'next/router'
 import { DataLayerPush } from 'sdk/analytics'
-import { ButtonClicked } from 'sdk/analytics/analyticsWrapper'
+import { ButtonClicked, sendAnalytics } from 'sdk/analytics/analyticsWrapper'
 import { AppStoreImage } from 'sdk/constants'
 import { externalLinks, footer } from 'sdk/data'
 import { useMobile } from 'sdk/hooks'
@@ -49,6 +49,13 @@ export const Footer = () => {
 										href='/#book-worker'
 										onClick={() => {
 											DataLayerPush({ event: 'book_hero_home_footer' })
+											sendAnalytics({
+												name: 'EasyBookWorker',
+												action: 'ButtonClick',
+												metaData: {
+													origin: 'Footer',
+												},
+											})
 										}}
 										variant='contained'
 										sx={{ fontSize: '14px', p: '20px 66px', fontWeight: '900' }}>
@@ -268,6 +275,13 @@ export const Footer = () => {
 							href='/#book-worker'
 							onClick={() => {
 								DataLayerPush({ event: 'book_hero_home_footer' })
+								sendAnalytics({
+									name: 'EasyBookWorker',
+									action: 'ButtonClick',
+									metaData: {
+										origin: 'Footer',
+									},
+								})
 							}}
 							variant='contained'
 							sx={{ fontSize: '14px', p: '10px 35px', fontWeight: '900' }}>

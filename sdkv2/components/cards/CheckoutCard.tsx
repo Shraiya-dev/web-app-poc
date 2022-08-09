@@ -13,6 +13,7 @@ import { AddEditWage } from '../dialog'
 import { useFormikProps } from 'sdk/hooks'
 import { Add } from '@mui/icons-material'
 import { LoadingButton } from '@mui/lab'
+import { DataLayerPush, sendAnalytics } from 'sdk/analytics'
 
 const ProfileCardData = [
 	{
@@ -131,12 +132,27 @@ export const CheckoutCard: FC = () => {
 						data?.payload?.response?.payment,
 						data?.payload?.response?.payment?.totalPaymentAmount,
 						() => {
-							debugger
+							DataLayerPush({ event: 'booking_done' })
+							sendAnalytics({
+								name: 'CreateEasyBookWorker',
+								action: 'ButtonClick',
+								metaData: {
+									step: 'Booking Complete',
+								},
+							})
 							router.push(`/bookings/${router.query.projectId}/${router.query.bookingId}/track-workers`)
 						}
 					)
 				}
 			} else {
+				DataLayerPush({ event: 'booking_done' })
+				sendAnalytics({
+					name: 'CreateEasyBookWorker',
+					action: 'ButtonClick',
+					metaData: {
+						step: 'Booking Complete',
+					},
+				})
 				router.push(`/bookings/${router.query.projectId}/${router.query.bookingId}/track-workers`)
 			}
 		} catch (error: any) {

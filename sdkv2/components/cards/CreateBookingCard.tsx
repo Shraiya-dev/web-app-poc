@@ -14,6 +14,7 @@ import {
 } from '@mui/material'
 import React, { FC, useState } from 'react'
 import { ListChildComponentProps, VariableSizeList } from 'react-window'
+import { DataLayerPush, sendAnalytics } from 'sdk/analytics'
 import { allCityList } from 'sdk/constants'
 import { capitalize } from 'sdk/utils'
 import { Dropdown, InputWrapper, useEasyBooking } from 'sdkv2/components'
@@ -120,6 +121,19 @@ export const CreateBookingCard: FC<Props> = () => {
 													form.values['workDuration'] === 'none'
 												)
 											) {
+												DataLayerPush({ event: 'basic_info' })
+												sendAnalytics({
+													name: 'CreateEasyBookWorker',
+													action: 'ButtonClick',
+													metaData: {
+														step: 'basic info',
+														values: {
+															location: form.values.location,
+															workDuration: form.values.workDuration,
+															jobType: form.values.jobType,
+														},
+													},
+												})
 												setStep(1)
 											} else {
 												form.setTouched({

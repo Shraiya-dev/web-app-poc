@@ -1,12 +1,21 @@
 import { useFormik } from 'formik'
 import { useRouter } from 'next/router'
 import { useEffect, useMemo } from 'react'
-import { createCookieInHour, getCookie } from 'sdk/analytics'
+import { createCookieInHour, DataLayerPush, getCookie, sendAnalytics } from 'sdk/analytics'
 import { useFormikProps } from 'sdk/hooks'
 import * as Yup from 'yup'
 export const useEasyBooking = () => {
 	const router = useRouter()
 	const handleSubmit = async (values: any) => {
+		DataLayerPush({ event: 'booking_requirement' })
+		sendAnalytics({
+			name: 'CreateEasyBookWorker',
+			action: 'ButtonClick',
+			metaData: {
+				step: 'Submit Requirements',
+				values: values,
+			},
+		})
 		createCookieInHour('discoveryBooking', JSON.stringify(values), 45)
 		router.push('/login')
 	}

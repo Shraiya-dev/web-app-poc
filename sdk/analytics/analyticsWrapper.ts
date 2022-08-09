@@ -1,7 +1,8 @@
 import { NextRouter } from 'next/router'
+import { PageStaticData } from 'sdk/types'
 import { Analytic } from './analytics'
-import { getUtmObject, PathName } from './helper'
-
+import { getUtmObject } from './helper'
+//old version
 interface ButtonClicked {
 	action: string
 	page: string
@@ -102,33 +103,61 @@ export const Identify = async ({ ...props }: Identify) => {
 	}
 }
 
-export const AnalyticsPage = (router: any) => {
-	let routeName =
-		router.route === '/profile/[tab]'
-			? `Profile - ${router.query.tab}`
-			: router.route === '/projects/[projectId]/[tab]'
-			? `Project - ${router.query.tab}`
-			: router.route === '/bookings/[projectId]/[bookingId]/[tab]'
-			? `Bookings - ${router.query.tab === 'track-workers' ? 'Track Workers' : router.query.tab}`
-			: PathName[router.route ?? '/dashboard']
-	// const pageRoute = router.asPath.split('/').filter((item: string) => item !== '')[0] + ' - ' + router.asPath
-	const utmInfo = getUtmObject()
-	if ((router.route = 'KhulaManch')) {
-		routeName = 'Khula Manch' + router.route
-	}
-	if (utmInfo) {
-		Analytic.page({ name: routeName, utmParams: utmInfo })
-	} else {
-		Analytic.page({ name: routeName })
+// new version
+
+export const getPageData = (): { name: string } => {
+	// @ts-ignore comment to disable type checking for a line in TypeScript.
+	return document.pageData
+}
+export const setPageData = (data: PageStaticData) => {
+	if (window) {
+		// @ts-ignore comment to disable type checking for a line in TypeScript.
+		window.document.pageData = {
+			name: data.pageName,
+		}
 	}
 }
-
 export const NewAnalyticsPage = (router: NextRouter) => {
-	const routeName = document.title
+	const { name } = getPageData()
 	const utmInfo = getUtmObject()
 	if (utmInfo) {
-		Analytic.page({ name: routeName, utmParams: utmInfo })
+		Analytic.page({ name: name, utmParams: utmInfo })
 	} else {
-		Analytic.page({ name: routeName })
+		Analytic.page({ name: name })
 	}
+}
+//Define a new event here
+const EventTypes = {
+	BookWorker: 'Book Worker',
+	EasyBookWorker: 'Easy Book Worker',
+	CreateEasyBookWorker: 'Create Easy Book Worker',
+	heroAppPlayStore: 'Open HeroApp Play Store',
+	howItWorks: 'How It Works',
+	requestPhoneOtp: 'Request Phone OTP',
+	verifiedPhoneOtp: 'verified Phone OTP',
+}
+
+//Define a new action type here if needed
+const ActionTypes = {
+	ButtonClick: 'Button Click',
+	CardClick: 'Card Click',
+	HorizontalTabClick: 'Horizontal Tab Click',
+	NavigationTabClicked: 'Navigation Tab Clicked',
+}
+
+export const sendAnalytics = async (event: {
+	name: keyof typeof EventTypes
+	action: keyof typeof ActionTypes
+	metaData?: any
+}) => {
+	const utmInfo = getUtmObject()
+	const { name, action, metaData } = event
+	const payload = {
+		action: ActionTypes[action],
+		metaData: metaData,
+		page: getPageData().name,
+		url: document.location.pathname,
+		utmParams: utmInfo,
+	}
+	return await Analytic.track(EventTypes[name], payload)
 }

@@ -33,6 +33,7 @@ import {
 	LinkButton,
 	primary,
 	Section,
+	sendAnalytics,
 	theme,
 	useMobile,
 } from 'sdk'
@@ -270,6 +271,13 @@ export const Home = () => {
 							href={homePage.howItWorksSection.buttonText.link}
 							onClick={() => {
 								DataLayerPush({ event: 'book_hero_home_footer' })
+								sendAnalytics({
+									name: 'howItWorks',
+									action: 'ButtonClick',
+									metaData: {
+										origin: 'Navbar',
+									},
+								})
 							}}>
 							{homePage.howItWorksSection.buttonText.text}
 						</LinkButton>
@@ -348,6 +356,13 @@ export const Home = () => {
 										href={homePage.howItWorksSection.buttonText.link}
 										onClick={() => {
 											DataLayerPush({ event: 'book_hero_home_footer' })
+											sendAnalytics({
+												name: 'EasyBookWorker',
+												action: 'ButtonClick',
+												metaData: {
+													origin: 'why You Should Hire section',
+												},
+											})
 										}}>
 										{homePage.whyYouShouldHire.left.buttonText.text}
 									</LinkButton>
@@ -493,6 +508,13 @@ export const Home = () => {
 										// href='/login'
 										onClick={() => {
 											DataLayerPush({ event: 'book_hero_home_footer' })
+											sendAnalytics({
+												name: 'EasyBookWorker',
+												action: 'ButtonClick',
+												metaData: {
+													origin: 'Hero Advantage section',
+												},
+											})
 										}}>
 										{homePage.HeroAdvantage.buttonText.text}
 									</LinkButton>
@@ -547,6 +569,13 @@ export const Home = () => {
 												page: document.title,
 												action: 'App store link',
 												url: router.asPath,
+											})
+											sendAnalytics({
+												name: 'heroAppPlayStore',
+												action: 'ButtonClick',
+												metaData: {
+													origin: 'Hero App section',
+												},
 											})
 										}}
 										target='_blank'
