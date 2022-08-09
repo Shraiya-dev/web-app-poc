@@ -54,8 +54,7 @@ export const DrawerItem = ({ ...props }) => {
 						borderRadius: 40,
 						marginBottom: 16,
 					}}
-					onClick={handleClick}
-				>
+					onClick={handleClick}>
 					<ListItemIcon style={{ color: router.route === route ? '#000' : '#b2b2b2' }}>{icon}</ListItemIcon>
 					<ListItemText>
 						{' '}
@@ -64,8 +63,7 @@ export const DrawerItem = ({ ...props }) => {
 								fontFamily: 'Karla, sans-serif',
 								fontWeight: '700',
 								color: router.route === route ? '#000' : '#b2b2b2',
-							}}
-						>
+							}}>
 							{title}
 						</Typography>
 					</ListItemText>

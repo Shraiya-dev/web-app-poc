@@ -9,7 +9,6 @@ import useOtp from '../hooks/useOtp'
 const CustomOTPStyles = styled(Box)(({ theme }) => ({
 	display: 'flex',
 	justifyContent: 'center',
-	padding: 16,
 
 	'.headerInfo': {
 		paddingBottom: 8,
@@ -65,14 +64,8 @@ export const OTPVerification = ({ ...props }) => {
 					<Typography className='headerInfo'>Verify Mobile</Typography>
 
 					<Typography className='subInfo'>
-						Enter{' '}
-						<Box fontWeight='1000' fontStyle={'bolder'} display='inline' color={'#fff'}>
-							OTP
-						</Box>{' '}
-						sent to your mobile number{' '}
-						<Box fontWeight='1000' display='inline' color={'#fff'}>
-							{phoneNumber}
-						</Box>
+						Enter <strong>OTP</strong> sent to your mobile number
+						<br /> <strong>{phoneNumber}</strong>
 					</Typography>
 
 					<OtpInput

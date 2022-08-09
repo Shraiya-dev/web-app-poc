@@ -1,7 +1,8 @@
-import { Box, Button, Card, Container, Paper, Stack, Typography } from '@mui/material'
+import { Box, Button, Card, Container, Paper, Stack } from '@mui/material'
 import { styled } from '@mui/system'
-import { useRouter } from 'next/router'
-import { Navbar } from '../components'
+import { useState } from 'react'
+import { LogoutAndRedirect } from 'sdk/utils/logoutHelper'
+import { ConfirmationDialog, Navbar } from '../components'
 import { useMobile } from '../hooks'
 
 const intro = [
@@ -101,10 +102,22 @@ const CustomizeDashboard = styled(Box)(({ theme }) => ({
 
 export const OnboardingLayout = ({ children, helmet = true, ...props }: any) => {
 	const isMobile = useMobile()
-	const router = useRouter()
+	const [dialogProps, setDialogProps] = useState(false)
+
 	return (
 		<>
 			<Navbar />
+			<ConfirmationDialog
+				title={'Leave without creating account?'}
+				caption={'You’ll not be able to book workers'}
+				open={dialogProps}
+				cancel={() => {
+					setDialogProps((p) => !p)
+				}}
+				confirm={() => {
+					LogoutAndRedirect()
+				}}
+			/>
 			<CustomizeDashboard>
 				{/* <Stack position={'absolute'} top={0} right={0}>
 					<img src='/assets/icons/backgrounds/grey-bubble.svg' />
@@ -114,6 +127,7 @@ export const OnboardingLayout = ({ children, helmet = true, ...props }: any) => 
 				</Stack> */}
 				<Container sx={{ display: 'flex', flex: 1, flexDirection: 'column', p: 2 }}>
 					<Button
+						onClick={() => setDialogProps(true)}
 						sx={{ alignSelf: 'flex-start' }}
 						variant='text'
 						color='info'

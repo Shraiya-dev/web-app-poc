@@ -25,6 +25,7 @@ import {
 	AppStoreImage,
 	ButtonClicked,
 	Carousel,
+	CarouselV2,
 	DataLayerPush,
 	externalLinks,
 	FloatingUnderLineHeading,
@@ -152,7 +153,7 @@ export const Home = () => {
 					</Typography>
 				</Stack>
 				<Tabs
-					sx={{ mx: -5 }}
+					sx={{ mx: { md: -5 } }}
 					onChange={(e, v) => setJobTypeForCarousal(v)}
 					value={jobTypeForCarousal}
 					variant='scrollable'
@@ -182,7 +183,8 @@ export const Home = () => {
 						/>
 					))}
 				</Tabs>
-				<Carousel
+				<CarouselV2
+					mobileStepperPosition={isMobile ? 'bottom' : 'center'}
 					componentPerView={1}
 					items={sliceIntoChunks(HeroDiscoveryMetaData[jobTypeForCarousal], isMobile ? 2 : 6).map(
 						(slide, index) => {

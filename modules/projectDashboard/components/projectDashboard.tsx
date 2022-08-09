@@ -29,6 +29,7 @@ import MenuIcon from '../../../public/assets/icons/MenuIcon.svg'
 import logo from '../../../public/assets/icons/BrandLogo.svg'
 import LogoutIcon from '@mui/icons-material/Logout'
 import { ArrowBackIos } from '@mui/icons-material'
+import { useEffect } from 'react'
 
 const CustomProjectDashBoard = styled(Box)(({ theme }) => ({
 	padding: 4,
@@ -66,6 +67,12 @@ export const ProjectDashboard = () => {
 			: 'Dashboard'
 
 	const { loading, projects, user } = useProjectDashboard()
+	useEffect(() => {
+		if (projects.projects.length === 1) {
+			router.push(`/projects/${projects.projects[0].projectId}/bookings`)
+		}
+	}, [projects])
+
 	const { logOut, isSideBarToggle, updateIsSideBarToggle } = useContractorAuth()
 
 	const toggleDrawer = () => {

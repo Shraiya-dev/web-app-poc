@@ -154,7 +154,7 @@ const useCreateBooking = () => {
 							event: 'worker_booked',
 						})
 
-						router.push(`/projects/${router?.query?.projectId}/bookings/${res.data.payload.bookingId}`)
+						router.push(`/bookings/${router?.query?.projectId}/${res.data.payload.bookingId}/checkout`)
 					}
 				})
 				.catch((error: any) => {
