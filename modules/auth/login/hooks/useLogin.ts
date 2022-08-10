@@ -59,7 +59,10 @@ const useLogin = () => {
 		onSubmit: async (values) => {
 			// Analytic.page()
 			setLoading(true)
-			DataLayerPush({ event: 'mobile_registration' })
+			DataLayerPush({
+				event: discoveryBookingFromCookie ? 'discovery_request_login' : 'organic_request_login',
+				phoneNumber: '+91' + values?.phoneNumber,
+			})
 
 			sendAnalytics({
 				name: 'requestPhoneOtp',
