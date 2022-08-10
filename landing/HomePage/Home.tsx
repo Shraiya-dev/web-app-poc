@@ -79,9 +79,14 @@ export const Home = () => {
 									<img width='100%' src='/assets/landingv2/heroSection/heroImg2.png' />
 								</Box>
 							</Stack>
-							<Typography variant='h1' lineHeight='1.5'>
+							<Typography variant='h1' lineHeight='1.5' fontFamily={'Saira ,sans-serif'} fontWeight={600}>
 								India&apos;s Largest & Most Trusted Platform to{' '}
-								<Typography display='inline' variant='h1' color='primary.main'>
+								<Typography
+									display='inline'
+									variant='h1'
+									color='primary.main'
+									fontFamily={'Saira ,sans-serif'}
+									fontWeight={600}>
 									Hire Construction Workers
 								</Typography>
 								{!isMobile && (
@@ -168,11 +173,31 @@ export const Home = () => {
 				</Tabs> */}
 
 				<CarouselV2
-					componentPerView={isMobile ? 2 : 7}
+					componentPerView={isMobile ? 3 : 7}
 					mobileStepperPosition='center'
 					icons={{
-						left: <ArrowCircleLeftOutlined sx={{ color: 'common.white', fontSize: 40 }} />,
-						right: <ArrowCircleRightOutlined sx={{ color: 'common.white', fontSize: 40 }} />,
+						left: (
+							<ArrowCircleLeftOutlined
+								sx={{
+									color: 'common.white',
+									fontSize: 40,
+									position: !isMobile ? '' : 'absolute',
+									top: !isMobile ? '' : '70px',
+									left: !isMobile ? '' : '8px',
+								}}
+							/>
+						),
+						right: (
+							<ArrowCircleRightOutlined
+								sx={{
+									color: 'common.white',
+									fontSize: 40,
+									position: !isMobile ? '' : 'absolute',
+									top: !isMobile ? '' : '70px',
+									right: !isMobile ? '' : '8px',
+								}}
+							/>
+						),
 					}}
 					items={jobSection.jobs.map((item) => (
 						<Button
@@ -192,6 +217,7 @@ export const Home = () => {
 							<JobCategoryCard src={item.image} label={item.label} />
 						</Button>
 					))}
+					slideDelay={5000000}
 				/>
 				<CarouselV2
 					mobileStepperPosition={isMobile ? 'bottom' : 'center'}
@@ -256,6 +282,9 @@ export const Home = () => {
 										origin: 'How it Works section',
 									},
 								})
+							}}
+							style={{
+								padding: !isMobile ? '14px 64px' : '13px 45px',
 							}}>
 							{homePage.howItWorksSection.buttonText.text}
 						</LinkButton>
@@ -344,6 +373,9 @@ export const Home = () => {
 													origin: 'why You Should Hire section',
 												},
 											})
+										}}
+										style={{
+											padding: !isMobile ? '14px 64px' : '15px 45px',
 										}}>
 										{homePage.whyYouShouldHire.left.buttonText.text}
 									</LinkButton>
@@ -483,8 +515,9 @@ export const Home = () => {
 									<LinkButton
 										href={homePage.HeroAdvantage.buttonText.link}
 										sx={{
-											p: '20px 66px',
+											p: !isMobile ? '14px 64px' : '13px 45px',
 											fontWeight: '900',
+											fontSize: !isMobile ? '20px' : '14px',
 										}}
 										// href='/login'
 										onClick={() => {

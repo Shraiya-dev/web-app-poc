@@ -3,6 +3,7 @@ import { Box, IconButton, MobileStepper, MobileStepperProps, Stack } from '@mui/
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import SwipeableViews from 'react-swipeable-views'
 import { autoPlay } from 'react-swipeable-views-utils'
+import { useMobile } from 'sdk/hooks'
 interface CarouselProps {
 	componentPerView: number
 	items: any[]
@@ -13,6 +14,7 @@ interface CarouselProps {
 }
 
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews)
+
 export const CarouselV2 = ({
 	items,
 	componentPerView,
@@ -21,6 +23,7 @@ export const CarouselV2 = ({
 	icons = { left: <ArrowBack color='primary' />, right: <ArrowForward color='primary' /> },
 	mobileStepperPosition = 'bottom',
 }: CarouselProps) => {
+	const isMobile = useMobile()
 	const contentPerSlide = useMemo(() => {
 		const slides: any[] = []
 		let i = 0
@@ -51,7 +54,10 @@ export const CarouselV2 = ({
 		})
 	}, [maxSteps])
 	return (
-		<Stack>
+		<Stack
+			sx={{
+				mb: 6,
+			}}>
 			{mobileStepperPosition === 'top' && (
 				<Stack direction='row' justifyContent='center'>
 					<IconButton onClick={handelPrev}>{icons.left}</IconButton>
@@ -60,10 +66,12 @@ export const CarouselV2 = ({
 			)}
 			<Stack direction='row' alignItems='center'>
 				{mobileStepperPosition === 'center' && (
-					<IconButton sx={{ display: { xs: 'none', md: 'flex' } }} onClick={handelPrev}>
-						{icons.left}
-					</IconButton>
+					// <IconButton sx={{ display: { xs: 'flex', md: 'flex' } }} onClick={handelPrev}>
+					// 	{icons.left}
+					// </IconButton>
+					<IconButton onClick={handelPrev}>{icons.left}</IconButton>
 				)}
+
 				<AutoPlaySwipeableViews
 					interval={slideDelay}
 					index={activeStep}
@@ -71,7 +79,12 @@ export const CarouselV2 = ({
 					scrolling=''
 					enableMouseEvents>
 					{contentPerSlide.map((items: any[], index) => (
-						<Stack direction='row' key={index} justifyContent='space-evenly'>
+						<Stack
+							direction='row'
+							key={index}
+							alignItems={isMobile ? 'flex-start' : 'center'}
+							justifyContent={isMobile ? 'flex-start' : 'space-evenly'}
+							spacing={isMobile ? 6 : 0}>
 							{items.map((com, id) => {
 								return com
 							})}
