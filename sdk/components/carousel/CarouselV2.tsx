@@ -76,7 +76,12 @@ export const CarouselV2 = ({
 					scrolling=''
 					enableMouseEvents>
 					{contentPerSlide.map((items: any[], index) => (
-						<Stack direction='row' key={index} alignItems={'flex-start'} justifyContent='space-evenly'>
+						<Stack
+							direction='row'
+							key={index}
+							alignItems={'flex-start'}
+							justifyContent='flex-start'
+							spacing={6}>
 							{items.map((com, id) => {
 								return com
 							})}
