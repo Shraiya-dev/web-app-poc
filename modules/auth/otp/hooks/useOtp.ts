@@ -58,8 +58,10 @@ const useOtp = () => {
 
 		onSubmit: (values) => {
 			setLoading(true)
-
-			DataLayerPush({ event: 'mobile_verification' })
+			DataLayerPush({
+				event: discoveryBookingFromCookie ? 'discovery_otp_verification' : 'organic_otp_verification',
+				phoneNumber: '+91' + phoneNumber,
+			})
 			sendAnalytics({
 				name: 'verifiedPhoneOtp',
 				action: 'ButtonClick',
@@ -76,10 +78,13 @@ const useOtp = () => {
 								...prevValues,
 								status: res?.success,
 							}))
-							DataLayerPush({ event: 'mobile_verification_done' })
-							setTimeout(() => {
-								setLoading(false)
-							}, 500)
+							DataLayerPush({
+								event: discoveryBookingFromCookie
+									? 'discovery_otp_verification'
+									: 'organic_otp_verification',
+								phoneNumber: '+91' + phoneNumber,
+							})
+							setLoading(false)
 						} else {
 							setOtpState((prevValues: any) => ({
 								...prevValues,
