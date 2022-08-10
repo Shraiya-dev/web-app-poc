@@ -162,12 +162,14 @@ const PaymentProvider: FC<any> = ({ children, authState }) => {
 	return (
 		<Provider value={paymentProviderValue}>
 			{children}
-			<ConfirmPaymentSuccessPopover
-				{...paymentSuccessDialogProps}
-				onClose={() => {
-					setPaymentSuccessDialogProps((p) => ({ ...p, open: false }))
-				}}
-			/>
+			{paymentSuccessDialogProps.open && (
+				<ConfirmPaymentSuccessPopover
+					{...paymentSuccessDialogProps}
+					onClose={() => {
+						setPaymentSuccessDialogProps((p) => ({ ...p, open: false }))
+					}}
+				/>
+			)}
 		</Provider>
 	)
 }
