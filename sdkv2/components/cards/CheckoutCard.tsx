@@ -280,11 +280,10 @@ export const CheckoutCard: FC = () => {
 					</Typography>
 				</Stack>
 				<Card sx={{ borderRadius: '15px' }}>
-					{loading?.discount ? (
+					{loading?.booking ? (
 						<>
 							<Stack minHeight={500} alignItems='center' justifyContent='center' flex={1}>
-								<Skeleton variant='rectangular' width={'100%'} height={118} />
-								<Skeleton variant='rectangular' width={'100%'} height={118} />
+								<CircularProgress size={70} />
 							</Stack>
 						</>
 					) : (
