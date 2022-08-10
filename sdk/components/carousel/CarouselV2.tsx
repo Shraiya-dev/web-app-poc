@@ -63,10 +63,12 @@ export const CarouselV2 = ({
 			)}
 			<Stack direction='row' alignItems='center'>
 				{mobileStepperPosition === 'center' && (
-					<IconButton sx={{ display: { xs: 'none', md: 'flex' } }} onClick={handelPrev}>
-						{icons.left}
-					</IconButton>
+					// <IconButton sx={{ display: { xs: 'flex', md: 'flex' } }} onClick={handelPrev}>
+					// 	{icons.left}
+					// </IconButton>
+					<IconButton onClick={handelPrev}>{icons.left}</IconButton>
 				)}
+
 				<AutoPlaySwipeableViews
 					interval={slideDelay}
 					index={activeStep}

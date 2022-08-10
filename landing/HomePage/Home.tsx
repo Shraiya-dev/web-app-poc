@@ -181,6 +181,9 @@ export const Home = () => {
 								sx={{
 									color: 'common.white',
 									fontSize: 40,
+									position: !isMobile ? '' : 'absolute',
+									top: !isMobile ? '' : '70px',
+									left: !isMobile ? '' : '8px',
 								}}
 							/>
 						),
@@ -214,6 +217,7 @@ export const Home = () => {
 							<JobCategoryCard src={item.image} label={item.label} />
 						</Button>
 					))}
+					slideDelay={5000000}
 				/>
 				<CarouselV2
 					mobileStepperPosition={isMobile ? 'bottom' : 'center'}
