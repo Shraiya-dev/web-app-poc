@@ -1,6 +1,6 @@
 import { useFormik } from 'formik'
 import { useRouter } from 'next/router'
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useReducer, useState } from 'react'
 import { useSnackbar } from 'sdk'
 import { getBookingDetails, getDiscountEligibilityService } from '../apis'
 
@@ -8,9 +8,9 @@ export const useCheckout = () => {
 	const router = useRouter()
 	const [bookingData, setBookingData] = useState<any>()
 	const [discountEligible, setDiscountEligible] = useState(false)
-
 	const { showSnackbar } = useSnackbar()
 	const [wage, setWage] = useState<any>()
+	const [loading, dispatchLoading] = useReducer((p: any, n: any) => ({ ...p, ...n }), {})
 	const form = useFormik<any>({
 		initialValues: {
 			qtyHelper: 0,
@@ -20,16 +20,20 @@ export const useCheckout = () => {
 		onSubmit: async (values: any) => {},
 	})
 	const getDiscountEligibility = useCallback(async () => {
-		const { bookingId, projectId, ...rest } = router?.query
+		dispatchLoading({ discount: true })
+		const { bookingId, projectId } = router?.query
 		try {
 			const { data } = await getDiscountEligibilityService()
+
 			setDiscountEligible(data?.payload?.response?.isEligible)
 		} catch (error: any) {
 			showSnackbar(error?.response?.data?.developerInfo, 'error')
 		}
+		dispatchLoading({ discount: false })
 	}, [router?.query, showSnackbar])
 	const getBookingDetail = useCallback(async () => {
-		const { bookingId, projectId, ...rest } = router?.query
+		const { bookingId, projectId } = router?.query
+		dispatchLoading({ booking: true })
 		try {
 			const { data } = await getBookingDetails(bookingId, projectId)
 			setBookingData(data?.payload)
@@ -46,6 +50,7 @@ export const useCheckout = () => {
 		} catch (error: any) {
 			showSnackbar(error?.response?.data?.developerInfo, 'error')
 		}
+		dispatchLoading({ booking: false })
 	}, [router?.query, showSnackbar])
 
 	useEffect(() => {
@@ -56,8 +61,10 @@ export const useCheckout = () => {
 
 	return {
 		form,
+		loading,
 		wage,
 		getBookingDetail,
+		dispatchLoading,
 		bookingData,
 		setWage,
 		discountEligible,

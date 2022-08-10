@@ -194,6 +194,14 @@ export const CreateBookingCard: FC<Props> = () => {
 													}}
 													placeholder='Enter Wage'
 													{...formikProps('helperWage')}
+													onChange={(e) => {
+														form.setFieldValue(
+															e.target.name,
+															e.target.value !== ''
+																? parseInt(e.target.value)
+																: e.target.value
+														)
+													}}
 												/>
 											</Stack>
 											<Stack
@@ -223,6 +231,14 @@ export const CreateBookingCard: FC<Props> = () => {
 													type='number'
 													placeholder='Enter Wage'
 													{...formikProps('technicianWage')}
+													onChange={(e) => {
+														form.setFieldValue(
+															e.target.name,
+															e.target.value !== ''
+																? parseInt(e.target.value)
+																: e.target.value
+														)
+													}}
 													InputProps={{
 														startAdornment: (
 															<InputAdornment position='start'>&#8377;</InputAdornment>
@@ -260,6 +276,14 @@ export const CreateBookingCard: FC<Props> = () => {
 													type='number'
 													placeholder='Enter Wage'
 													{...formikProps('supervisorWage')}
+													onChange={(e) => {
+														form.setFieldValue(
+															e.target.name,
+															e.target.value !== ''
+																? parseInt(e.target.value)
+																: e.target.value
+														)
+													}}
 													InputProps={{
 														startAdornment: (
 															<InputAdornment position='start'>&#8377;</InputAdornment>

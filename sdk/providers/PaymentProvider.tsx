@@ -41,9 +41,7 @@ const PaymentProvider: FC<any> = ({ children, authState }) => {
 	const [state, dispatch] = useReducer(simpleReducer, initialState)
 	const { user } = useContractorAuth()
 	const router = useRouter()
-	const [callbacks, setCallbacks] = useState({
-		success: () => {},
-	})
+	const [callbacks, setCallbacks] = useState<any>()
 	const projectId = router.query.projectId as string
 
 	const confirmPaymentOrderMutation = useConfirmPaymentMutation({
@@ -61,7 +59,7 @@ const PaymentProvider: FC<any> = ({ children, authState }) => {
 		callback: () => {},
 	})
 	const confirmPaymentOrder = useCallback(
-		async (order, razorPayDetails) => {
+		async (order, razorPayDetails, successCallback) => {
 			return new Promise((res, rej) => {
 				const params: confirmPaymentApi = {
 					paymentId: order?.paymentId,
@@ -79,7 +77,7 @@ const PaymentProvider: FC<any> = ({ children, authState }) => {
 									paymentId: data?.data?.payload?.paymentId,
 									totalPaymentAmount: data?.data?.payload?.totalPaymentAmount,
 									transactionTime: data?.data?.payload?.transactionTime,
-									callback: callbacks?.success,
+									callback: successCallback,
 								})
 								dispatch({
 									showConfirmationModel: true,
@@ -111,12 +109,11 @@ const PaymentProvider: FC<any> = ({ children, authState }) => {
 	}, [state, cancelPaymentOrderMutation, projectId])
 
 	const initiatePayment = useCallback(
-		async (order, amount, successCallback) => {
+		async (order, amount, successCallback, failureCallback) => {
 			return new Promise((resolve, reject) => {
 				dispatch({
 					order: order,
 				})
-				setCallbacks({ success: successCallback })
 				var options = {
 					key: envs.RAZOR_PAY_KEY,
 					name: constants.name,
@@ -129,12 +126,13 @@ const PaymentProvider: FC<any> = ({ children, authState }) => {
 						dispatch({
 							razorPayDetails: response,
 						})
-						await confirmPaymentOrder(order, response)
+						await confirmPaymentOrder(order, response, successCallback)
 						resolve(undefined)
 					},
 					modal: {
 						escape: false,
 						ondismiss: function () {
+							failureCallback()
 							cancelPaymentOrder()
 						},
 					},
@@ -161,12 +159,14 @@ const PaymentProvider: FC<any> = ({ children, authState }) => {
 	return (
 		<Provider value={paymentProviderValue}>
 			{children}
-			<ConfirmPaymentSuccessPopover
-				{...paymentSuccessDialogProps}
-				onClose={() => {
-					setPaymentSuccessDialogProps((p) => ({ ...p, open: false }))
-				}}
-			/>
+			{paymentSuccessDialogProps.open && (
+				<ConfirmPaymentSuccessPopover
+					{...paymentSuccessDialogProps}
+					onClose={() => {
+						setPaymentSuccessDialogProps((p) => ({ ...p, open: false }))
+					}}
+				/>
+			)}
 		</Provider>
 	)
 }
