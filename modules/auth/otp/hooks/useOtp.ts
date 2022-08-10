@@ -50,6 +50,8 @@ const useOtp = () => {
 		},
 
 		onSubmit: (values) => {
+			setLoading(true)
+
 			DataLayerPush({ event: 'mobile_verification' })
 			sendAnalytics({
 				name: 'verifiedPhoneOtp',
@@ -57,7 +59,6 @@ const useOtp = () => {
 			})
 
 			if (validateOtpField(otp) === 'valid') {
-				setLoading(true)
 				verifyOtp(`${phoneNumber}`, otp.otp)
 					.then((res) => {
 						if (res?.success === true) {
@@ -66,7 +67,9 @@ const useOtp = () => {
 								status: res?.success,
 							}))
 							DataLayerPush({ event: 'mobile_verification_done' })
-							setLoading(false)
+							setTimeout(() => {
+								setLoading(false)
+							}, 500)
 						} else {
 							setOtpState((prevValues: any) => ({
 								...prevValues,
@@ -74,7 +77,9 @@ const useOtp = () => {
 								status: false,
 								error: 'Invalid OTP',
 							}))
-							setLoading(false)
+							setTimeout(() => {
+								setLoading(false)
+							}, 500)
 						}
 					})
 					.catch((err) => {
@@ -85,7 +90,9 @@ const useOtp = () => {
 							status: false,
 							error: 'Invalid OTP',
 						}))
-						setLoading(false)
+						setTimeout(() => {
+							setLoading(false)
+						}, 500)
 					})
 			} else {
 				setOtpState((prevValues: any) => ({
