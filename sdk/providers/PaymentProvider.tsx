@@ -167,6 +167,7 @@ const PaymentProvider: FC<any> = ({ children, authState }) => {
 					{...paymentSuccessDialogProps}
 					onClose={() => {
 						setPaymentSuccessDialogProps((p) => ({ ...p, open: false }))
+						setCallbacks()
 					}}
 				/>
 			)}
