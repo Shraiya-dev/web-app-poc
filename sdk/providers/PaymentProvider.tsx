@@ -41,9 +41,7 @@ const PaymentProvider: FC<any> = ({ children, authState }) => {
 	const [state, dispatch] = useReducer(simpleReducer, initialState)
 	const { user } = useContractorAuth()
 	const router = useRouter()
-	const [callbacks, setCallbacks] = useState({
-		success: () => {},
-	})
+	const [callbacks, setCallbacks] = useState<any>()
 	const projectId = router.query.projectId as string
 
 	const confirmPaymentOrderMutation = useConfirmPaymentMutation({
@@ -61,7 +59,7 @@ const PaymentProvider: FC<any> = ({ children, authState }) => {
 		callback: () => {},
 	})
 	const confirmPaymentOrder = useCallback(
-		async (order, razorPayDetails) => {
+		async (order, razorPayDetails, successCallback) => {
 			return new Promise((res, rej) => {
 				const params: confirmPaymentApi = {
 					paymentId: order?.paymentId,
@@ -79,7 +77,7 @@ const PaymentProvider: FC<any> = ({ children, authState }) => {
 									paymentId: data?.data?.payload?.paymentId,
 									totalPaymentAmount: data?.data?.payload?.totalPaymentAmount,
 									transactionTime: data?.data?.payload?.transactionTime,
-									callback: callbacks?.success,
+									callback: successCallback,
 								})
 								dispatch({
 									showConfirmationModel: true,
@@ -116,7 +114,6 @@ const PaymentProvider: FC<any> = ({ children, authState }) => {
 				dispatch({
 					order: order,
 				})
-				setCallbacks({ success: successCallback })
 				var options = {
 					key: envs.RAZOR_PAY_KEY,
 					name: constants.name,
@@ -129,7 +126,7 @@ const PaymentProvider: FC<any> = ({ children, authState }) => {
 						dispatch({
 							razorPayDetails: response,
 						})
-						await confirmPaymentOrder(order, response)
+						await confirmPaymentOrder(order, response, successCallback)
 						resolve(undefined)
 					},
 					modal: {
@@ -167,7 +164,6 @@ const PaymentProvider: FC<any> = ({ children, authState }) => {
 					{...paymentSuccessDialogProps}
 					onClose={() => {
 						setPaymentSuccessDialogProps((p) => ({ ...p, open: false }))
-						setCallbacks()
 					}}
 				/>
 			)}
