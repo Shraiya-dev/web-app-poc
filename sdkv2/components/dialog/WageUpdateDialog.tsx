@@ -6,6 +6,7 @@ import {
 	DialogContent,
 	DialogTitle,
 	IconButton,
+	InputAdornment,
 	Stack,
 	TextField,
 	Typography,
@@ -20,6 +21,7 @@ export const AddEditWage = ({
 	fieldName,
 	confirm,
 	edit,
+	initialQuantity,
 }: {
 	open: boolean
 	close: any
@@ -27,58 +29,66 @@ export const AddEditWage = ({
 	fieldName: string
 	initialValue: number
 	edit?: boolean
+	initialQuantity: number
 }) => {
 	const [fieldData, setFieldData] = useState<number>(initialValue)
+	const [quantity, setQuantity] = useState<number>(initialQuantity)
 
 	return (
 		<>
-			<Dialog open={open} fullWidth maxWidth='xs'>
-				<DialogTitle component={Stack} sx={{ textAlign: 'center' }}>
-					<Stack alignItems='flex-start'>
-						<IconButton onClick={() => close()} sx={{ p: '0px' }}>
+			<Dialog open={open} PaperProps={{ sx: { borderRadius: '20px' } }}>
+				<Stack p={2} spacing={3} alignItems='center'>
+					<Stack width='100%' alignItems='center'>
+						<IconButton onClick={() => close()} sx={{ p: '0px', alignSelf: 'flex-end' }}>
 							<CloseOutlinedIcon sx={{ color: primary.properDark, fontSize: '36px' }} />
 						</IconButton>
-						<Typography color={primary.properDark} sx={{ width: '100%' }} variant='h2'>
+						<Typography textAlign='center' color={primary.properDark} variant='h2'>
 							{!edit ? 'Add' : 'Update'} {fieldName.replace('wage', '')}
 						</Typography>
 					</Stack>
-				</DialogTitle>
-				<DialogContent>
-					<Stack direction='row' justifyContent='space-between' alignItems='flex-start' spacing={2}>
-						<Typography color='common.black' mt={2}>
-							Wage
-						</Typography>
-						<TextField
-							color='primary'
-							fullWidth
-							focused={false}
-							type='number'
-							placeholder='Enter wages'
-							error={!(fieldData > 0 && fieldData <= 2000)}
-							value={fieldData}
-							helperText={'Wage should be between 1 and 2000'}
-							onChange={(e: any) =>
-								setFieldData(() => {
-									if (e.target.value === '') {
-										return e.target.value
-									} else if (Number(e.target.value) > 0 && Number(e.target.value) <= 2000) {
-										return Number(e.target.value)
-									}
-								})
-							}
-						/>
-					</Stack>
+					<TextField
+						color='primary'
+						fullWidth
+						value={quantity}
+						type='number'
+						label='Enter Number'
+						placeholder='Enter wages'
+						onChange={(e: any) => {
+							setQuantity(parseInt(e.target.value))
+						}}
+					/>
+					<TextField
+						color='primary'
+						fullWidth
+						type='number'
+						label='Enter Wage'
+						placeholder='Enter wages'
+						error={!(fieldData > 0 && fieldData <= 2000)}
+						value={fieldData}
+						helperText={'Wage should be between 1 and 2000'}
+						InputProps={{
+							startAdornment: <InputAdornment position='start'>&#8377;</InputAdornment>,
+							endAdornment: <InputAdornment position='start'>/ day</InputAdornment>,
+						}}
+						onChange={(e: any) =>
+							setFieldData(() => {
+								if (e.target.value === '') {
+									return e.target.value
+								} else if (parseInt(e.target.value) > 0 && parseInt(e.target.value) <= 2000) {
+									return parseInt(e.target.value)
+								}
+							})
+						}
+					/>
 					{/* <TextField fullWidth placeholder='Enter Wages' /> */}
-				</DialogContent>
-				<DialogActions sx={{ p: '24px' }}>
 					<Button
-						onClick={() => confirm(fieldName, fieldData)}
+						onClick={() => confirm(fieldName, fieldData, quantity)}
 						fullWidth
 						disabled={!(fieldData > 0 && fieldData <= 2000)}
 						sx={{ fontSize: '16px', fontWeight: 700 }}>
 						update
 					</Button>
-				</DialogActions>
+				</Stack>
 			</Dialog>
 		</>
 	)
