@@ -7,7 +7,12 @@ import * as Yup from 'yup'
 export const useEasyBooking = () => {
 	const router = useRouter()
 	const handleSubmit = async (values: any) => {
-		DataLayerPush({ event: 'booking_requirement' })
+		DataLayerPush({
+			event: 'booking_requirement',
+			helperWage: values.helperWage,
+			technicianWage: values.technicianWage,
+			supervisorWage: values.supervisorWage,
+		})
 		sendAnalytics({
 			name: 'CreateEasyBookWorker',
 			action: 'ButtonClick',

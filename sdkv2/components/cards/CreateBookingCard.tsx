@@ -121,7 +121,12 @@ export const CreateBookingCard: FC<Props> = () => {
 													form.values['workDuration'] === 'none'
 												)
 											) {
-												DataLayerPush({ event: 'basic_info' })
+												DataLayerPush({
+													event: 'basic_info',
+													location: form.values.location,
+													jobType: form.values.jobType,
+													workDuration: form.values.workDuration,
+												})
 												sendAnalytics({
 													name: 'CreateEasyBookWorker',
 													action: 'ButtonClick',

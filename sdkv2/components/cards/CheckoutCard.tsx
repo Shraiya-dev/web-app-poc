@@ -7,7 +7,7 @@ import DriveFileRenameOutlineOutlinedIcon from '@mui/icons-material/DriveFileRen
 import { postEasyBookingOrder, updateWages } from 'modules/bookingId/apis'
 import { useCheckout } from 'modules/bookingId/hooks/useCheckout'
 import { useRouter } from 'next/router'
-import { useSnackbar } from 'sdk/providers'
+import { useContractorAuth, useSnackbar } from 'sdk/providers'
 import { usePayment } from 'sdk/providers/PaymentProvider'
 import { AddEditWage } from '../dialog'
 import { useFormikProps, useMobile } from 'sdk/hooks'
@@ -85,6 +85,7 @@ export const CheckoutCard: FC = () => {
 	const { showSnackbar } = useSnackbar()
 
 	const isMobile = useMobile()
+	const { user } = useContractorAuth()
 
 	const handelPayment = useCallback(async () => {
 		const payload = {
@@ -136,9 +137,24 @@ export const CheckoutCard: FC = () => {
 					})
 					await initiatePayment(
 						data?.payload?.response?.payment,
-						data?.payload?.response?.payment?.totalPaymentAmount,
+						data?.payload?.response?.payment?.amountPayable,
 						() => {
-							DataLayerPush({ event: 'booking_done' })
+							DataLayerPush({
+								event: 'booking_done',
+								phoneNumber: user?.phoneNumber,
+								amount: bill?.amountPayable,
+								discountEligible: discountEligible,
+								discount: bill?.discount,
+								currency: 'INR',
+								eventInfo: {
+									helperCount: form.values['qtyHelper'],
+									supervisorCount: form.values['qtySupervisor'],
+									technicianCount: form.values['qtyTechnician'],
+									helperWage: wage['wageHelper'],
+									supervisorWage: wage['wageSupervisor'],
+									technicianWage: wage['wageTechnician'],
+								},
+							})
 							sendAnalytics({
 								name: 'CreateEasyBookWorker',
 								action: 'ButtonClick',
@@ -151,7 +167,22 @@ export const CheckoutCard: FC = () => {
 					)
 				}
 			} else {
-				DataLayerPush({ event: 'booking_done' })
+				DataLayerPush({
+					event: 'booking_done',
+					phoneNumber: user?.phoneNumber,
+					amount: bill?.amountPayable,
+					discountEligible: discountEligible,
+					discount: bill?.discount,
+					currency: 'INR',
+					eventInfo: {
+						helperCount: form.values['qtyHelper'],
+						supervisorCount: form.values['qtySupervisor'],
+						technicianCount: form.values['qtyTechnician'],
+						helperWage: wage['wageHelper'],
+						supervisorWage: wage['wageSupervisor'],
+						technicianWage: wage['wageTechnician'],
+					},
+				})
 				sendAnalytics({
 					name: 'CreateEasyBookWorker',
 					action: 'ButtonClick',
@@ -166,14 +197,15 @@ export const CheckoutCard: FC = () => {
 		}
 	}, [
 		bill.amountPayable,
+		bill?.discount,
 		bookingData?.booking?.jobType,
 		discountEligible,
-		form.values.qtyHelper,
-		form.values.qtySupervisor,
-		form.values.qtyTechnician,
+		form.values,
 		initiatePayment,
 		router,
 		showSnackbar,
+		user?.phoneNumber,
+		wage,
 	])
 	const formikProps = useFormikProps<any>(form)
 	return (
