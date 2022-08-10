@@ -62,14 +62,22 @@ export const BookingId = () => {
 									height={24}
 									style={{ verticalAlign: 'middle' }}
 								/>
-								<Stack direction={'column'}>
-									<Typography
-										variant='h5'
-										fontWeight={700}
-										sx={{ verticalAlign: 'middle', margin: 1 }}>
-										{length ?? 0} / {total}{' '}
-										{JobTypeLabel[bookingSummary?.booking?.jobType || 'GYPSUM']}
-									</Typography>
+								<Stack direction={'column'} spacing={1}>
+									<Stack direction={'column'}>
+										<Typography variant='h5' fontWeight={700} sx={{ verticalAlign: 'middle' }}>
+											{length ?? 0} / {total}{' '}
+											{JobTypeLabel[bookingSummary?.booking?.jobType || 'GYPSUM']}
+										</Typography>
+										<Typography
+											sx={{
+												fontSize: 12,
+												color: theme.palette.secondary.main,
+												fontFamily: 'Karla,sans-serif',
+												fontWeight: '500',
+											}}>
+											ID:&nbsp;{bookingSummary?.booking?.bookingId}
+										</Typography>
+									</Stack>
 
 									<LinearProgress
 										color='error'

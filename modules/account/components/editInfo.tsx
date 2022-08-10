@@ -56,8 +56,7 @@ const EditInfo = ({ ...props }) => {
 								id='designation'
 								name='designation'
 								value={form.values.designation}
-								onChange={form.handleChange}
-							>
+								onChange={form.handleChange}>
 								<MenuItem value={'none'}>Select Designation</MenuItem>
 								{getSelectOptions(companyRoles)}
 							</Select>
@@ -86,20 +85,33 @@ const EditInfo = ({ ...props }) => {
 						>
 							Cancel
 						</Button>
-
-						<LoadingButton
-							//type='submit'
-							loading={loading}
-							variant='contained'
-							disabled={loading || !form.isValid}
-							fullWidth
-							onClick={() => {
-								handleSubmit()
-								setIsAccountEditable((state: any) => !state)
-							}}
-						>
-							Save
-						</LoadingButton>
+						{form.isValid ? (
+							<LoadingButton
+								loading={loading}
+								variant='contained'
+								disabled={loading || !form.isValid}
+								fullWidth
+								onClick={() => {
+									handleSubmit()
+									setIsAccountEditable((state: any) => !state)
+								}}>
+								Save
+							</LoadingButton>
+						) : (
+							<Button
+								variant='contained'
+								fullWidth
+								sx={{
+									background: '#AFAFAF',
+									color: '#fff',
+									'&:hover': {
+										color: '#fff',
+										background: '#AFAFAF',
+									},
+								}}>
+								Save
+							</Button>
+						)}
 					</Stack>
 				</form>
 			</Stack>
