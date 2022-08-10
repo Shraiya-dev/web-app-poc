@@ -258,6 +258,7 @@ export const Navbar = () => {
 												fontWeight: 700,
 												color: 'common.white',
 												[theme.breakpoints.down('md')]: { display: 'none' },
+												whiteSpace: 'nowrap',
 											})}
 											href={navItem.link}
 											className={router.pathname === navItem.link ? 'active' : ''}>
@@ -275,6 +276,7 @@ export const Navbar = () => {
 													fontWeight: 700,
 													color: 'common.white',
 													[theme.breakpoints.down('md')]: { display: 'none' },
+													whiteSpace: 'nowrap',
 												})}
 												onClick={() => {
 													sendAnalytics({
