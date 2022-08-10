@@ -117,13 +117,15 @@ export const setPageData = (data: PageStaticData) => {
 		}
 	}
 }
+export const getDeviceType = () => (navigator && navigator.maxTouchPoints > 0 ? 'mobile' : 'desktop')
+
 export const NewAnalyticsPage = (router: NextRouter) => {
 	const { name } = getPageData()
 	const utmInfo = getUtmObject()
 	if (utmInfo) {
-		Analytic.page({ name: name, utmParams: utmInfo })
+		Analytic.page({ name: name, utmParams: utmInfo, deviceType: getDeviceType() })
 	} else {
-		Analytic.page({ name: name })
+		Analytic.page({ name: name, deviceType: getDeviceType() })
 	}
 }
 //Define a new event here
@@ -161,6 +163,7 @@ export const sendAnalytics = async (event: {
 		page: getPageData().name,
 		url: document.location.pathname,
 		utmParams: utmInfo,
+		deviceType: getDeviceType(),
 	}
 	return await Analytic.track(EventTypes[name], payload)
 }
