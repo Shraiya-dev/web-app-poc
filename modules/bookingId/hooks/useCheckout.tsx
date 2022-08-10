@@ -10,7 +10,7 @@ export const useCheckout = () => {
 	const [discountEligible, setDiscountEligible] = useState(false)
 	const { showSnackbar } = useSnackbar()
 	const [wage, setWage] = useState<any>()
-	const [loading, dispatchLoading] = useReducer((p, n) => ({ ...p, ...n }), {})
+	const [loading, dispatchLoading] = useReducer((p: any, n: any) => ({ ...p, ...n }), {})
 	const form = useFormik<any>({
 		initialValues: {
 			qtyHelper: 0,
@@ -24,6 +24,7 @@ export const useCheckout = () => {
 		const { bookingId, projectId } = router?.query
 		try {
 			const { data } = await getDiscountEligibilityService()
+
 			setDiscountEligible(data?.payload?.response?.isEligible)
 		} catch (error: any) {
 			showSnackbar(error?.response?.data?.developerInfo, 'error')
@@ -63,6 +64,7 @@ export const useCheckout = () => {
 		loading,
 		wage,
 		getBookingDetail,
+		dispatchLoading,
 		bookingData,
 		setWage,
 		discountEligible,

@@ -69,7 +69,10 @@ export const ProjectDashboard = () => {
 	const { loading, projects, user } = useProjectDashboard()
 	useEffect(() => {
 		if (projects.projects.length === 1) {
+			localStorage.setItem('noBack', String(true))
 			router.push(`/projects/${projects.projects[0].projectId}/bookings`)
+		} else {
+			localStorage.removeItem('noBack')
 		}
 	}, [projects])
 

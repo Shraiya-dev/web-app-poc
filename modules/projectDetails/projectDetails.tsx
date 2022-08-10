@@ -15,7 +15,7 @@ import { useProjectDetails } from './hooks/useProjectDetails'
 import { WorkReport } from '../workReport'
 import { Bills } from '../bills'
 import { LocationOnOutlined } from '@mui/icons-material'
-import { FC, useEffect } from 'react'
+import { FC, useEffect, useMemo } from 'react'
 import { BottomLayout } from 'sdk/layouts/BottomLayout'
 interface Props {}
 export const tabList: { [key in string]: string } = {
@@ -28,7 +28,14 @@ export const ProjectDetails: FC<Props> = () => {
 	const { selectedTab, handleTabSelection, projectDetails, enterpriseStatus } = useProjectDetails()
 	const isMobile = useMobile()
 	const router = useRouter()
-
+	const noBack = useMemo(() => {
+		if (typeof window === 'undefined') return false
+		const val = localStorage?.getItem('noBack')
+		if (val === 'true') {
+			return true
+		}
+		return false
+	}, [])
 	return (
 		<>
 			<CustomTopBar>
@@ -45,15 +52,18 @@ export const ProjectDetails: FC<Props> = () => {
 									fontWeight: 700,
 									color: theme.palette.secondary.main,
 								}}>
-								<ArrowBackIosNewIcon
-									onClick={() => router.push('/dashboard')}
-									sx={{
-										verticalAlign: 'middle',
-										color: '#fff',
-										fontSize: 24,
-										cursor: 'pointer',
-									}}
-								/>
+								{/* if noBack is true remove back button else show back button  */}
+								{!noBack && (
+									<ArrowBackIosNewIcon
+										onClick={() => router.push('/dashboard')}
+										sx={{
+											verticalAlign: 'middle',
+											color: '#fff',
+											fontSize: 24,
+											cursor: 'pointer',
+										}}
+									/>
+								)}
 							</Typography>
 						</Box>
 						<Stack>
@@ -91,17 +101,6 @@ export const ProjectDetails: FC<Props> = () => {
 							display: 'none',
 						},
 					}}>
-					{/* <Typography color={primary.main}>
-				<ArrowBackIosNewIcon
-							onClick={() => router.back()}
-							sx={{
-								verticalAlign: 'middle',
-								color: primary.main,
-								fontSize: isMobile ? 16 : 24,
-								cursor: 'pointer',
-							}}
-						/> &nbsp;Back
-				</Typography> */}
 					{!isMobile ? (
 						<Tabs
 							TabIndicatorProps={{

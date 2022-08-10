@@ -111,7 +111,7 @@ const PaymentProvider: FC<any> = ({ children, authState }) => {
 	}, [state, cancelPaymentOrderMutation, projectId])
 
 	const initiatePayment = useCallback(
-		async (order, amount, successCallback) => {
+		async (order, amount, successCallback, failureCallback) => {
 			return new Promise((resolve, reject) => {
 				dispatch({
 					order: order,
@@ -135,6 +135,7 @@ const PaymentProvider: FC<any> = ({ children, authState }) => {
 					modal: {
 						escape: false,
 						ondismiss: function () {
+							failureCallback()
 							cancelPaymentOrder()
 						},
 					},

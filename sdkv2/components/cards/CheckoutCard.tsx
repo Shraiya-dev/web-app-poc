@@ -13,6 +13,7 @@ import { useFormikProps, useMobile } from 'sdk/hooks'
 import { useSnackbar } from 'sdk/providers'
 import { usePayment } from 'sdk/providers/PaymentProvider'
 import { AddEditWage } from '../dialog'
+import { LoadingButton } from '@mui/lab'
 
 const ProfileCardData = [
 	{
@@ -63,7 +64,8 @@ export const CheckoutCard: FC = () => {
 		edit: false,
 	})
 	const [updating, setUpdating] = useState<any>({})
-	const { form, wage, bookingData, setWage, discountEligible, getBookingDetail, loading } = useCheckout()
+	const { form, wage, bookingData, setWage, discountEligible, getBookingDetail, loading, dispatchLoading } =
+		useCheckout()
 	const bill: any = useMemo(() => {
 		const quantity = form.values['qtyHelper'] + form.values['qtyTechnician'] + form.values['qtySupervisor']
 		const subTotal = quantity * 50
@@ -88,6 +90,7 @@ export const CheckoutCard: FC = () => {
 	const isMobile = useMobile()
 
 	const handelPayment = useCallback(async () => {
+		dispatchLoading({ payment: true })
 		const payload = {
 			source: {
 				id: router.query.bookingId,
@@ -139,6 +142,8 @@ export const CheckoutCard: FC = () => {
 						data?.payload?.response?.payment,
 						data?.payload?.response?.payment?.totalPaymentAmount,
 						() => {
+							dispatchLoading({ payment: false })
+
 							DataLayerPush({ event: 'booking_done' })
 							sendAnalytics({
 								name: 'CreateEasyBookWorker',
@@ -148,6 +153,9 @@ export const CheckoutCard: FC = () => {
 								},
 							})
 							router.push(`/bookings/${router.query.projectId}/${router.query.bookingId}/track-workers`)
+						},
+						() => {
+							dispatchLoading({ payment: false })
 						}
 					)
 				}
@@ -441,7 +449,8 @@ export const CheckoutCard: FC = () => {
 									<Typography variant='h1' sx={{ color: 'primary.main' }}>
 										&#8377; {bill.amountPayable}
 									</Typography>
-									<Button
+									<LoadingButton
+										loading={loading?.payment}
 										color='info'
 										disabled={bill.quantity <= 0}
 										onClick={handelPayment}
@@ -454,7 +463,7 @@ export const CheckoutCard: FC = () => {
 										}}
 										endIcon={<img src='/assets/icons/forward_round.svg' />}>
 										{bill.amountPayable !== 0 && 'Pay and'} Book Now
-									</Button>
+									</LoadingButton>
 								</Stack>
 							</Stack>
 						</>
