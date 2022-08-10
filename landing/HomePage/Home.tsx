@@ -181,6 +181,9 @@ export const Home = () => {
 								sx={{
 									color: 'common.white',
 									fontSize: 40,
+									position: !isMobile ? '' : 'absolute',
+									top: !isMobile ? '' : '70px',
+									left: !isMobile ? '' : '8px',
 								}}
 							/>
 						),
@@ -214,6 +217,7 @@ export const Home = () => {
 							<JobCategoryCard src={item.image} label={item.label} />
 						</Button>
 					))}
+					slideDelay={5000000}
 				/>
 				<CarouselV2
 					mobileStepperPosition={isMobile ? 'bottom' : 'center'}
@@ -270,7 +274,7 @@ export const Home = () => {
 							sx={homePage.howItWorksSection.buttonSx}
 							href={homePage.howItWorksSection.buttonText.link}
 							onClick={() => {
-								DataLayerPush({ event: 'book_hero_home_footer' })
+								DataLayerPush({ event: 'discovery_book_worker', origin: 'how_it_works_section' })
 								sendAnalytics({
 									name: 'EasyBookWorker',
 									action: 'ButtonClick',
@@ -358,7 +362,10 @@ export const Home = () => {
 										sx={homePage.whyYouShouldHire.left.buttonSx}
 										href={homePage.howItWorksSection.buttonText.link}
 										onClick={() => {
-											DataLayerPush({ event: 'book_hero_home_footer' })
+											DataLayerPush({
+												event: 'discovery_book_worker',
+												origin: 'why_you_should_hire_section',
+											})
 											sendAnalytics({
 												name: 'EasyBookWorker',
 												action: 'ButtonClick',
@@ -514,7 +521,10 @@ export const Home = () => {
 										}}
 										// href='/login'
 										onClick={() => {
-											DataLayerPush({ event: 'book_hero_home_footer' })
+											DataLayerPush({
+												event: 'discovery_book_worker',
+												origin: 'hero_advantage_section',
+											})
 											sendAnalytics({
 												name: 'EasyBookWorker',
 												action: 'ButtonClick',

@@ -54,7 +54,7 @@ export const Dashboard = () => {
 				alignItems={isMobile ? 'stretch' : 'center'}
 				spacing={1}>
 				<Stack direction='row' justifyContent='space-between'>
-					<Button
+					{/* <Button
 						onClick={handelDrawerToggle}
 						//color='inherit'
 						//disabled={bookings.totalBookings <= 0}
@@ -92,7 +92,7 @@ export const Dashboard = () => {
 									: theme.palette.secondary.main,
 						}}>
 						{`Filters & Sort`}
-					</Button>
+					</Button> */}
 					{isMobile && (
 						<Link href={`/projects/${router?.query?.projectId}/bookings/create`} passHref>
 							<a>
@@ -142,7 +142,7 @@ export const Dashboard = () => {
 				<Stack mt={4}>
 					{bookings.totalBookings === 0 ? (
 						<Stack flex={1} mt={20} direction={'column'} spacing={4} alignItems='center'>
-							<Typography variant='h4' color={theme.palette.secondary.light}>
+							<Typography variant='h4' color={theme.palette.primary.main}>
 								No booking. Create a booking to hire workers.
 							</Typography>
 							{/* <Button onClick={handleBookingForm}>Book Workers</Button> */}

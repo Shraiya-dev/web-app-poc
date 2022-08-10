@@ -1,6 +1,6 @@
-import { Box, Button, Stack, styled, Typography } from '@mui/material'
+import LoadingButton from '@mui/lab/LoadingButton'
+import { Box, Button, CircularProgress, Stack, styled, Typography } from '@mui/material'
 
-import { LoadingButton } from '@mui/lab'
 import { useRouter } from 'next/router'
 import OtpInput from 'react-otp-input'
 import { ButtonClicked } from '../../../../sdk/analytics/analyticsWrapper'
@@ -102,15 +102,39 @@ export const OTPVerification = ({ ...props }) => {
 						{status === 'loading' ? <CircularProgress size={30} /> : `Verify OTP`}
 					</Button> */}
 
-					<LoadingButton
-						type='submit'
-						loading={loading}
-						disabled={loading}
-						variant='contained'
-						fullWidth
-						sx={{ marginTop: 6 }}>
-						{`Verify OTP`}
-					</LoadingButton>
+					{loading ? (
+						<Button
+							fullWidth
+							sx={{
+								marginTop: 6,
+							}}>
+							<Box
+								sx={{
+									display: 'flex',
+									justifyContent: 'center',
+									alignItems: 'center',
+									height: '20px',
+								}}>
+								<CircularProgress
+									size={'medium'}
+									sx={{
+										color: '#000',
+										width: '30px',
+										height: '30px',
+									}}
+								/>
+							</Box>
+						</Button>
+					) : (
+						<LoadingButton
+							type='submit'
+							disabled={loading}
+							variant='contained'
+							fullWidth
+							sx={{ marginTop: 6, background: '#efc430' }}>
+							{`Verify OTP`}
+						</LoadingButton>
+					)}
 
 					{/* <Typography
 						sx={{ textDecoration: 'underline', textAlign: 'center', cursor: 'pointer' }}
