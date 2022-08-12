@@ -3,12 +3,12 @@ import { useRouter } from 'next/router'
 import { useCallback, useEffect, useState } from 'react'
 import { isValidGSTIN, useContractorAuth, useSnackbar } from '../../../sdk'
 import { uploadImage } from '../../createProject/apis'
-import { getOrganisationDetails, getOrganisationMembers } from '../apis/apis'
+import { checkValidGSTIN, getOrganisationDetails, getOrganisationMembers } from '../apis/apis'
 
 interface OrgDetails {
 	companyName: string
 	GSTIN: string
-	GSTINDocuments: string[]
+	// GSTINDocuments: string[]
 }
 
 const useCompanyDetails = () => {
@@ -20,6 +20,9 @@ const useCompanyDetails = () => {
 	const { user, getContactorUserInfo } = useContractorAuth()
 	const [orgDetails, setOrgDetails] = useState<OrgDetails>()
 	const [orgMemberDetails, setOrgMemberDetails] = useState([])
+
+	const [isValidGST, setIsValidGST] = useState<boolean>(false)
+	const [validGSTResponse, setValidGSTResponse] = useState<String>('')
 
 	const { showSnackbar } = useSnackbar()
 
@@ -33,15 +36,15 @@ const useCompanyDetails = () => {
 				const { data, status } = await getOrganisationDetails(orgId)
 				if (status === 200) {
 					setOrgDetails({
-						companyName: data.payload.organisation.companyName,
-						GSTIN: data.payload.organisation.GSTIN,
-						GSTINDocuments: [data.payload.organisation.GstinCertificate],
+						companyName: data.payload.companyName,
+						GSTIN: data.payload.GSTIN,
+						// GSTINDocuments: [data.payload.GstinCertificate],
 					})
 
 					form.setValues({
-						companyName: data.payload.organisation.companyName ?? '',
-						GSTIN: data.payload.organisation.GSTIN ?? '',
-						GSTINDocuments: [data.payload.organisation.GstinCertificate] ?? [],
+						companyName: data.payload.companyName ?? '',
+						GSTIN: data.payload.GSTIN ?? '',
+						// GSTINDocuments: [data.payload.GstinCertificate] ?? [],
 					})
 				}
 			}
@@ -72,7 +75,7 @@ const useCompanyDetails = () => {
 		initialValues: {
 			companyName: orgDetails?.companyName ?? '',
 			GSTIN: orgDetails?.GSTIN ?? '',
-			GSTINDocuments: orgDetails?.GSTINDocuments ?? [],
+			// GSTINDocuments: orgDetails?.GSTINDocuments ?? [],
 		},
 
 		validate: (values) => {
@@ -86,13 +89,13 @@ const useCompanyDetails = () => {
 				errors.GSTIN = 'Required'
 			}
 
-			if (values.GSTINDocuments.length === 0) {
-				errors.GSTINDocuments = 'Required'
-			}
+			// if (values.GSTINDocuments.length === 0) {
+			// 	errors.GSTINDocuments = 'Required'
+			// }
 
-			if (!isValidGSTIN(values.GSTIN.toUpperCase())) {
-				errors.GSTIN = 'Enter Valid GSTIN Number'
-			}
+			// if (!isValidGSTIN(values.GSTIN.toUpperCase())) {
+			// 	errors.GSTIN = 'Enter Valid GSTIN Number'
+			// }
 
 			return errors
 		},
@@ -133,15 +136,35 @@ const useCompanyDetails = () => {
 				showSnackbar('Failed to upload Image', 'error')
 			}
 
-			form.setFieldValue('GSTINDocuments', [
-				...uploadSuccess.map(({ data }) => {
-					return data.payload.url
-				}),
-			])
+			// form.setFieldValue('GSTINDocuments', [
+			// 	...uploadSuccess.map(({ data }) => {
+			// 		return data.payload.url
+			// 	}),
+			// ])
 			setIsGSTINDocUploaded(() => false)
 		},
 		[form, showSnackbar]
 	)
+
+	const getGSTDetail = useCallback(async () => {
+		const payload = { GSTIN: form.values.GSTIN }
+		try {
+			const { data, status } = await checkValidGSTIN(payload)
+			if (status === 200) {
+				setIsValidGST(true)
+				showSnackbar('GSTIN is valid', 'success')
+				setValidGSTResponse(data?.payload?.tradeName)
+				console.log(data.payload.tradeName)
+			} else {
+				setIsValidGST(false)
+				showSnackbar(data?.messageToUser, 'error')
+			}
+		} catch (error) {
+			setIsValidGST(false)
+			console.log(error)
+			showSnackbar('Invalid GST', 'error')
+		}
+	}, [form, showSnackbar])
 
 	// useEffect(() => {
 	// 	getOrgDetails()
@@ -164,6 +187,11 @@ const useCompanyDetails = () => {
 		setOrgDetails,
 		getOrgDetails,
 		getMemberDetails,
+		user,
+		getGSTDetail,
+		isValidGST,
+		validGSTResponse,
+		setIsValidGST,
 	}
 }
 

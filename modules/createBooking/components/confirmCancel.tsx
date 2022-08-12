@@ -24,7 +24,14 @@ const ConfirmCancel = ({ ...props }) => {
 						Your changes will not be saved
 					</Typography>
 					<Stack direction={'row'} justifyContent={'flex-end'} style={{ width: '100%', paddingLeft: 20 }}>
-						<Button variant='outlined' onClick={handleCancel} style={{ marginRight: 10 }}>
+						<Button
+							variant='outlined'
+							onClick={handleCancel}
+							style={{
+								marginRight: 10,
+								color: primary.properDark,
+								border: '1px solid #000',
+							}}>
 							{`Continue`}
 						</Button>
 						<Button onClick={() => router.back()}> Leave</Button>

@@ -64,9 +64,13 @@ export const BookingId = () => {
 								/>
 								<Stack direction={'column'} spacing={1}>
 									<Stack direction={'column'}>
-										<Typography variant='h5' fontWeight={700} sx={{ verticalAlign: 'middle' }}>
+										<Typography
+											variant='h4'
+											fontFamily={'Saira,sans-serif'}
+											fontWeight={700}
+											sx={{ verticalAlign: 'middle' }}>
 											{length ?? 0} / {total}{' '}
-											{JobTypeLabel[bookingSummary?.booking?.jobType || 'GYPSUM']}
+											{JobTypeLabel[bookingSummary?.booking?.jobType || 'GYPSUM']} Application
 										</Typography>
 										<Typography
 											sx={{

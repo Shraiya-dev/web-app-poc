@@ -19,6 +19,7 @@ import { TopBanner } from '../../../sdk/components/banner/formBanner'
 import { useRouter } from 'next/router'
 import { Analytic } from '../../../sdk/analytics'
 import { ButtonClicked } from '../../../sdk/analytics/analyticsWrapper'
+import CancelIcon from '@mui/icons-material/Cancel'
 
 const CustomBookingStyle = styled(Box)(({ theme }) => ({
 	'.main': {
@@ -193,17 +194,23 @@ export const CreateBooking = () => {
 	]
 
 	useEffect(() => {
+		// let canSubmit: boolean =
+		// 	!!form.values.jobType ||
+		// 	!form.isValid ||
+		// 	!!form.values.BookingDuration ||
+		// 	!form.values.startTime ||
+		// 	!form.values.endTime ||
+		// 	form.values.startTime === 'none' ||
+		// 	form.values.endTime === 'none'
+
 		let canSubmit: boolean =
-			!form.values.jobType ||
-			!form.isValid ||
-			!form.values.BookingDuration ||
-			!form.values.startTime ||
-			!form.values.endTime ||
-			form.values.startTime === 'none' ||
-			form.values.endTime === 'none'
+			!!form.values.jobType &&
+			(!!form.values.helperWages || !!form.values.technicianWages || !!form.values.supervisorWages) &&
+			(form.values.tags.length > 0 ? true : false) &&
+			!!form.values.BookingDuration
 
 		setIsSubmittable(canSubmit)
-	}, [form])
+	}, [form, isSubmittable])
 
 	const handleMoreJobType = () => {
 		setIsmore((state) => !state)
@@ -240,9 +247,9 @@ export const CreateBooking = () => {
 			''
 		)
 	}
-	useEffect(() => {
-		console.log(isSubmittable)
-	}, [])
+	// useEffect(() => {
+	// 	console.log(isSubmittable)
+	// }, [isSubmittable])
 
 	return (
 		<CustomBookingStyle>
@@ -403,6 +410,7 @@ export const CreateBooking = () => {
 														key={item}
 														label={item}
 														clickable
+														deleteIcon={<CancelIcon style={{ color: '#000' }} />}
 														onClick={
 															!form.values.tags.includes(item)
 																? () => {
@@ -665,21 +673,16 @@ export const CreateBooking = () => {
 									<LoadingButton
 										className='loadingcta'
 										type='submit'
-										variant={!!isSubmittable ? 'contained' : 'outlined'}
+										variant='contained'
 										loading={loading}
-										disabled={
-											form.values.jobType === '' ||
-											!(
-												form.values.helperWages ||
-												form.values.supervisorWages ||
-												form.values.technicianWages
-											)
-										}
+										disabled={!isSubmittable}
 										// onClick={() => handleNext()}
 										style={{
 											minWidth: '10rem',
 											marginRight: isMobile ? '' : '14%',
-											background: !!isSubmittable || loading ? theme.palette.primary.dark : '',
+											background: isSubmittable
+												? theme.palette.primary.main
+												: theme.palette.primary.dark,
 											color: '#000',
 										}}>
 										{'Create Booking'}
