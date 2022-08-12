@@ -22,10 +22,8 @@ export const BookingId = () => {
 	const supervisorCount = bookingSummary?.booking?.peopleRequired?.SUPERVISOR ?? 0
 	const total = helperCount + technicianCount + supervisorCount
 
-	const [length, setLength] = useState(0)
-	const handleRequiredTotal = useCallback((value) => {
-		setLength(value)
-	}, [])
+	const [appliedWorkerCount, setAppliedWorkerCount] = useState(0)
+	
 
 	return (
 		<>
@@ -65,7 +63,7 @@ export const BookingId = () => {
 								<Stack direction={'column'} spacing={1}>
 									<Stack direction={'column'}>
 										<Typography variant='h5' fontWeight={700} sx={{ verticalAlign: 'middle' }}>
-											{length ?? 0} / {total}{' '}
+											{appliedWorkerCount ?? 0} / {total}{' '}
 											{JobTypeLabel[bookingSummary?.booking?.jobType || 'GYPSUM']}
 										</Typography>
 										<Typography
@@ -82,7 +80,7 @@ export const BookingId = () => {
 									<LinearProgress
 										color='error'
 										variant='determinate'
-										value={(length * 100) / total}
+										value={(appliedWorkerCount * 100) / total}
 										sx={{
 											height: '8px',
 											borderRadius: '10px',
@@ -209,7 +207,7 @@ export const BookingId = () => {
 						overflowY: 'auto',
 						position: 'relative',
 					}}>
-					<WorkerTracking handleRequiredTotal={handleRequiredTotal} />
+					<WorkerTracking handleRequiredTotal={setAppliedWorkerCount} />
 					{/* <Dashboard /> */}
 				</TabPanel>
 				<TabPanel

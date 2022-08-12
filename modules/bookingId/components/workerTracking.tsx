@@ -1,10 +1,11 @@
 import { CircularProgress, Grid, Pagination, Stack, Typography } from '@mui/material'
-import { BottomLayout, JobCardCard, primary, useMobile } from '../../../sdk'
+import { BottomLayout, JobCardCard, primary, useMobile, WORKER_APPLICATION_STATUS, WORKER_TYPES } from '../../../sdk'
 
 import { useRouter } from 'next/router'
 import { useEffect, useMemo } from 'react'
 import { useBookingId } from '../hooks'
 import Filters from './filters'
+import { ChipFilter } from './ChipFilter'
 
 interface handleLength {
 	handleRequiredTotal: (jobCardsLength: any) => void
@@ -24,7 +25,6 @@ const WorkerTracking = ({ handleRequiredTotal }: handleLength) => {
 		hasMore,
 		getJobCards,
 		setJobCards,
-		form,
 	} = useBookingId()
 
 	const { helperCount, technicianCount, supervisorCount, totalCount } = useMemo(() => {
@@ -42,39 +42,17 @@ const WorkerTracking = ({ handleRequiredTotal }: handleLength) => {
 
 	handleRequiredTotal(totalCount ?? 0)
 
-	const filterTags = [
-		// {
-		// 	label: `Applied(${
-		// 		(bookingSummary?.stats?.jobCardCounts?.WORKER_APPLIED ?? 0) +
-		// 		(bookingSummary?.stats?.jobCardCounts?.ACCEPTED ?? 0)
-		// 	})`,
-		// 	value: 'WORKER_APPLIED',
-		// },
-		// {
-		// 	label: `Ready To Deploy(${bookingSummary?.stats?.jobCardCounts?.READY_TO_DEPLOY ?? 0})`,
-		// 	value: 'READY_TO_DEPLOY',
-		// },
-		// {
-		// 	label: `Deployed(${
-		// 		(bookingSummary?.stats?.jobCardCounts?.DEPLOYMENT_COMPLETE ?? 0) +
-		// 		(bookingSummary?.stats?.jobCardCounts?.COMPLETED ?? 0)
-		// 	})`,
-		// 	value: 'DEPLOYMENT_COMPLETE',
-		// },
-		{ label: `Supervisor`, value: 'SUPERVISOR' },
+	const skillFilterOptions: { label: string; value: WORKER_TYPES }[] = [
+		{ label: `Supervisor`, value: WORKER_TYPES.SUPERVISOR },
+		{ label: `Helper`, value: WORKER_TYPES.HELPER },
+		{ label: `Technician`, value: WORKER_TYPES.TECHNICIAN },
+	]
+
+	const workerCardStatusFilterOptions: { label: string; value: WORKER_APPLICATION_STATUS }[] = [
+		{ label: ``, value: WORKER_APPLICATION_STATUS.COULD_NOT_CONNECT },
 		{ label: `Helper`, value: 'HELPER' },
 		{ label: `Technician`, value: 'TECHNICIAN' },
 	]
-
-	useEffect(() => {
-		router.push(
-			{
-				query: { ...router.query, pageNumber: `1` },
-			},
-			undefined,
-			{}
-		)
-	}, [form.values.skillType, form.values.jobCardState])
 
 	useEffect(() => {
 		let pageNumber = `${Number(router.query.pageNumber) > 0 ? Number(router.query.pageNumber) - 1 : '0'}`
@@ -84,20 +62,20 @@ const WorkerTracking = ({ handleRequiredTotal }: handleLength) => {
 	return (
 		<>
 			<Stack>
-				<Grid container>
-					<Grid item xs={12} md={12} justifyContent='space-between' alignItems='center'>
-						<Filters
-							filterTags={filterTags}
-							setJobCards={setJobCards}
-							jobCards={jobCards}
-							page={pageNumber}
-							form={form}
-						/>
-					</Grid>
-					{/* <Grid item xs={12} md={3} alignItems='center'>
-					<SearchField name='name' fullWidth placeholder='Search a worker' size='small' />
-				</Grid> */}
-				</Grid>
+				{isMobile ? (
+					<></>
+				) : (
+					<Stack spacing={2}>
+						<Stack direction='row' spacing={2} alignItems='center'>
+							<Typography noWrap>Skills :</Typography>
+							<ChipFilter filterKey='skillType' filterOptions={skillFilterOptions} />
+						</Stack>
+						<Stack direction='row' spacing={2} alignItems='center'>
+							<Typography noWrap>Status :</Typography>
+							<ChipFilter filterKey='status' filterOptions={workerCardStatusFilterOptions} />
+						</Stack>
+					</Stack>
+				)}
 
 				<Stack>
 					{isLoading ? (
@@ -135,7 +113,7 @@ const WorkerTracking = ({ handleRequiredTotal }: handleLength) => {
 								</Grid>
 							)}
 
-							{jobCards.length > 0 && (
+							{jobCards.length > 1 && (
 								<Stack p={4} alignItems='center'>
 									<Pagination
 										page={router.query.pageNumber ? Number(router.query.pageNumber) : 1}

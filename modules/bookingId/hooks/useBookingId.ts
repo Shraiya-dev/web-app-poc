@@ -91,21 +91,6 @@ export const useBookingId = () => {
 		},
 		[router.query.skillType, router.query.jobCardState, router.query.projectId]
 	)
-
-	const form = useFormik<FilterForm>({
-		initialValues: {
-			tags: [],
-			skillType: [],
-			jobCardState: [],
-		},
-		onSubmit: (values) => {
-			router.push(router, undefined, {
-				shallow: true,
-				scroll: true,
-			})
-		},
-	})
-
 	useEffect(() => {
 		getBookingInfo()
 	}, [getBookingInfo])
@@ -116,7 +101,6 @@ export const useBookingId = () => {
 		getJobCards: getJobCards,
 		isLoading: isLoading,
 		handleTabSelection: handleTabSelection,
-		form: form,
 		pageNumber: pageNumber,
 		SetPageNumber: SetPageNumber,
 		hasMore: hasMore,
