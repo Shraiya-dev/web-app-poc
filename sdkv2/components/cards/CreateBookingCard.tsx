@@ -37,7 +37,7 @@ export const CreateBookingCard: FC<Props> = () => {
 						<Typography variant='h3'>
 							First{' '}
 							<Typography variant='h3' color='primary.main' display='inline'>
-								15 applications
+								15 HERO applications
 							</Typography>{' '}
 							for FREE!
 						</Typography>
