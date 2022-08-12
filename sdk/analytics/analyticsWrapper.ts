@@ -90,16 +90,15 @@ export const NavigationTabClicked = ({ ...props }: NavigationTabClicked) => {
 	}
 }
 
-export const Identify = async ({ ...props }: Identify) => {
-	const indentityInfo = Object.fromEntries(Object.entries(props).filter(([_, v]) => v.length > 0))
-
-	const { customerId, ...rest } = indentityInfo
-
+export const Identify = async (props?: Identify) => {
 	const utmInfo = getUtmObject()
-	if (utmInfo) {
+	if (props) {
+		const { customerId, ...rest } = props
 		Analytic.identify(customerId, { ...rest, utmParams: utmInfo })
 	} else {
-		Analytic.identify(customerId, { ...rest })
+		Analytic.identify({
+			utmParams: utmInfo,
+		})
 	}
 }
 
