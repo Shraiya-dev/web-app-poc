@@ -1,10 +1,24 @@
-import { CircularProgress, Grid, Pagination, Stack, Typography } from '@mui/material'
+import {
+	Button,
+	Checkbox,
+	CircularProgress,
+	Drawer,
+	FormControlLabel,
+	FormGroup,
+	Grid,
+	IconButton,
+	Pagination,
+	Stack,
+	Typography,
+} from '@mui/material'
 import { BottomLayout, JobCardCard, primary, useMobile, WORKER_APPLICATION_STATUS, WORKER_TYPES } from '../../../sdk'
 
 import { useRouter } from 'next/router'
-import { useEffect, useMemo } from 'react'
+import { FC, useEffect, useMemo, useState } from 'react'
 import { useBookingId } from '../hooks'
 import { ChipFilter } from './ChipFilter'
+import { truncate } from 'fs/promises'
+import { Close } from '@mui/icons-material'
 
 interface handleLength {
 	handleRequiredTotal: (jobCardsLength: any) => void
@@ -61,12 +75,55 @@ const WorkerTracking = ({ handleRequiredTotal }: handleLength) => {
 		let pageNumber = `${Number(router.query.pageNumber) > 0 ? Number(router.query.pageNumber) - 1 : '0'}`
 		getJobCards(pageNumber)
 	}, [getJobCards, router.query.pageNumber])
-
+	const [filterDrawer, setFilterDrawer] = useState<{
+		open: boolean
+		options: { label: string; value: any }[]
+		filterKey: string
+		title: string
+	}>({
+		open: true,
+		options: [],
+		filterKey: '',
+		title: '',
+	})
 	return (
 		<>
 			<Stack spacing={2}>
 				{isMobile ? (
-					<></>
+					<Stack direction='row' spacing={2}>
+						<Button
+							variant='outlined'
+							color='info'
+							sx={{ borderRadius: 3 }}
+							onClick={() =>
+								setFilterDrawer({
+									open: true,
+									filterKey: 'skillType',
+									options: skillFilterOptions,
+									title: 'Select Skill',
+								})
+							}>
+							Select Skill
+						</Button>
+						<Button
+							variant='outlined'
+							color='info'
+							sx={{ borderRadius: 3 }}
+							onClick={() =>
+								setFilterDrawer({
+									open: true,
+									filterKey: 'contractorFeedbackCode',
+									options: workerCardStatusFilterOptions,
+									title: 'Select Status',
+								})
+							}>
+							Select Status
+						</Button>
+						<FilterDrawer
+							{...filterDrawer}
+							onClose={() => setFilterDrawer((p) => ({ ...p, open: false }))}
+						/>
+					</Stack>
 				) : (
 					<Stack spacing={2}>
 						<Stack direction='row' spacing={2} alignItems='center'>
@@ -112,38 +169,40 @@ const WorkerTracking = ({ handleRequiredTotal }: handleLength) => {
 					</Stack>
 				)}
 
-				{isLoading ? (
-					<Stack p={5} alignItems='center'>
-						<CircularProgress size={50} />
-					</Stack>
-				) : jobCards.length === 0 ? (
-					<Stack flex={1} mt={20} direction={'column'} alignItems='center'>
-						<Typography
-							fontFamily={'Saira,sans-serif'}
-							fontWeight={700}
-							variant='h4'
-							color={primary.yellow}>
-							We have made your booking live on our Hero App
-						</Typography>
-						<Typography
-							fontFamily={'Saira,sans-serif'}
-							fontWeight={700}
-							variant='h4'
-							color={primary.yellow}>
-							You will see the application as soon as any Hero applies!
-						</Typography>
-					</Stack>
-				) : (
-					<Grid container spacing={2}>
-						{jobCards.map((jobCardInfo, index) => {
-							return (
-								<Grid item xs={12} md={4} key={index}>
-									<JobCardCard jobCard={jobCardInfo} updateJobCard={updateContractorFeedback} />
-								</Grid>
-							)
-						})}
-					</Grid>
-				)}
+				<Stack>
+					{isLoading ? (
+						<Stack p={5} alignItems='center'>
+							<CircularProgress size={50} />
+						</Stack>
+					) : jobCards.length === 0 ? (
+						<Stack flex={1} mt={20} direction={'column'} alignItems='center'>
+							<Typography
+								fontFamily={'Saira,sans-serif'}
+								fontWeight={700}
+								variant='h4'
+								color={primary.yellow}>
+								We have made your booking live on our Hero App
+							</Typography>
+							<Typography
+								fontFamily={'Saira,sans-serif'}
+								fontWeight={700}
+								variant='h4'
+								color={primary.yellow}>
+								You will see the application as soon as any Hero applies!
+							</Typography>
+						</Stack>
+					) : (
+						<Grid container spacing={2}>
+							{jobCards.map((jobCardInfo, index) => {
+								return (
+									<Grid item xs={12} md={4} key={index}>
+										<JobCardCard jobCard={jobCardInfo} updateJobCard={updateContractorFeedback} />
+									</Grid>
+								)
+							})}
+						</Grid>
+					)}
+				</Stack>
 
 				{/* <FilterDrawer open={openFilterDrawer} onClose={handelDrawerToggle} /> */}
 
@@ -179,3 +238,83 @@ const WorkerTracking = ({ handleRequiredTotal }: handleLength) => {
 }
 
 export default WorkerTracking
+
+interface Props {
+	open: boolean
+	options: { label: string; value: any }[]
+	filterKey: string
+	title: string
+	onClose: () => void
+}
+export const FilterDrawer: FC<Props> = ({ filterKey, open, options, title, onClose }) => {
+	const router = useRouter()
+	const [filterSelected, setFilterSelected] = useState<any[]>([])
+	useEffect(() => {
+		setFilterSelected([...((router.query[filterKey] as string)?.split(',') ?? [])])
+	}, [filterKey, router.query])
+	return (
+		<Drawer
+			onClose={onClose}
+			open={open}
+			anchor='bottom'
+			PaperProps={{
+				sx: {
+					borderRadius: ' 12px 12px 0 0',
+					backgroundColor: '#FFFFFF',
+					p: 2,
+				},
+			}}>
+			<Stack direction='row' alignItems='center' justifyContent='space-between'>
+				<Typography variant='h3' color='common.black'>
+					{title}
+				</Typography>
+				<IconButton onClick={onClose} sx={{ color: 'common.black' }}>
+					<Close />
+				</IconButton>
+			</Stack>
+			<Stack minHeight={300}>
+				<FormGroup>
+					{options.map((option) => (
+						<FormControlLabel
+							checked={filterSelected.includes(option.value)}
+							onChange={(e, checked) => {
+								if (checked) {
+									setFilterSelected((p) => [...p, option.value])
+								} else {
+									setFilterSelected((p) => p.filter((item) => item !== option.value))
+								}
+							}}
+							key={option.value}
+							control={<Checkbox />}
+							label={option.label}
+							componentsProps={{
+								typography: {
+									color: 'common.black',
+								},
+							}}
+						/>
+					))}
+				</FormGroup>
+			</Stack>
+			<Stack direction='row' justifyContent='space-evenly' spacing={2}>
+				<Button fullWidth variant='outlined' color='inherit' onClick={onClose}>
+					Cancel
+				</Button>
+				<Button
+					fullWidth
+					onClick={() => {
+						if (filterSelected.length === 0) {
+							delete router.query[filterKey]
+						} else {
+							router.query[filterKey] = filterSelected.join(',')
+						}
+
+						router.push(router)
+						onClose()
+					}}>
+					Apply
+				</Button>
+			</Stack>
+		</Drawer>
+	)
+}

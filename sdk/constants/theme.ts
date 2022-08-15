@@ -238,7 +238,7 @@ let themeDef = createTheme({
 
 		MuiIconButton: {
 			defaultProps: {
-				style: {
+				sx: {
 					color: '#fff',
 				},
 			},

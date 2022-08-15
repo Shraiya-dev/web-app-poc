@@ -74,6 +74,17 @@ export const JobCardCard = ({ jobCard, updateJobCard }: JobCardCardProps) => {
 						/>
 					</Stack>
 					<Stack direction={'column'} spacing={1} flex={1} alignItems={{ xs: 'flex-start', md: 'center' }}>
+						<Typography
+							mb={1}
+							variant='h5'
+							fontFamily={'Saira,sans-serif'}
+							fontWeight={700}
+							textOverflow='ellipsis'
+							whiteSpace='nowrap'
+							overflow='hidden'
+							color={primary.properDark}>
+							{jobCard.WorkerName ?? 'No Name'}
+						</Typography>
 						{false ? (
 							<CircularProgress size={20} />
 						) : (
@@ -109,18 +120,6 @@ export const JobCardCard = ({ jobCard, updateJobCard }: JobCardCardProps) => {
 								emptyState={{ label: 'Select Status', value: 'none' }}
 							/>
 						)}
-						<Typography
-							mb={1}
-							variant='h5'
-							fontFamily={'Saira,sans-serif'}
-							fontWeight={700}
-							textOverflow='ellipsis'
-							whiteSpace='nowrap'
-							overflow='hidden'
-							color={primary.properDark}>
-							{jobCard.WorkerName ?? 'No Name'}
-						</Typography>
-
 						<Typography
 							fontFamily={'Karla,sans-serif'}
 							fontWeight={500}
