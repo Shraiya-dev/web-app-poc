@@ -6,7 +6,7 @@ import { isPincodeValid, useSnackbar } from '../../../sdk'
 import { DataLayerPush } from '../../../sdk/analytics'
 import { ButtonClicked } from '../../../sdk/analytics/analyticsWrapper'
 import { JobBenefits } from '../../../sdk/types/jobBenefits'
-import { createProject, uploadImage } from '../apis/apis'
+import { createProject, updateProject, uploadImage } from '../apis/apis'
 
 interface CreateProjectForm {
 	// Project Info
@@ -58,7 +58,7 @@ const useCreateProject = () => {
 		form.setFieldValue('projectName', projectInformation?.name ?? '')
 		form.setFieldValue('state', projectInformation?.state ?? 'none')
 		form.setFieldValue('city', projectInformation?.city ?? 'none')
-		form.setFieldValue('pinCode', projectInformation?.pinCode ?? '')
+		form.setFieldValue('pinCode', projectInformation?.pincode ?? '')
 		form.setFieldValue('siteAddress', projectInformation?.siteAddress ?? '')
 		form.setFieldValue('sitePhotos', projectInformation?.images?.site ?? [])
 		form.setFieldValue('overTimeFactor', projectInformation?.overTime?.rate ?? 'none')
@@ -225,29 +225,47 @@ const useCreateProject = () => {
 			},
 		}
 
-		createProject(payload)
-			.then((res) => {
-				if (res?.status === 200) {
-					setIsSubmitable(false)
-					setLoading(false)
-					DataLayerPush({
-						event: 'project_created',
-					})
+		if (isProjectId) {
+			updateProject(payload, router.query.projectId)
+				.then((res) => {
+					if (res?.status === 200) {
+						setIsSubmitable(false)
+						setLoading(false)
+						DataLayerPush({
+							event: 'project_created',
+						})
 
-					showSnackbar('Project Created Successfully', 'success')
-					if (!isProjectId) {
-						router.push('/dashboard')
-					} else {
+						showSnackbar('Project Created Successfully', 'success')
+
 						router.push(`/projects/${router.query.projectId}/details`)
 					}
-				}
-				//setStep((state) => state + 1)
-			})
-			.catch((error: any) => {
-				showSnackbar(error?.response?.data?.developerInfo, 'error')
-				console.log(error)
-				setLoading(false)
-			})
+				})
+				.catch((error: any) => {
+					showSnackbar(error?.response?.data?.developerInfo, 'error')
+					console.log(error)
+					setLoading(false)
+				})
+		} else {
+			createProject(payload)
+				.then((res) => {
+					if (res?.status === 200) {
+						setIsSubmitable(false)
+						setLoading(false)
+						DataLayerPush({
+							event: 'project_created',
+						})
+
+						showSnackbar('Project Created Successfully', 'success')
+						router.push('/dashboard')
+					}
+					//setStep((state) => state + 1)
+				})
+				.catch((error: any) => {
+					showSnackbar(error?.response?.data?.developerInfo, 'error')
+					console.log(error)
+					setLoading(false)
+				})
+		}
 
 		setLoading(false)
 	}
