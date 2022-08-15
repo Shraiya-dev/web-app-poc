@@ -75,7 +75,12 @@ const WorkerTracking = ({ handleRequiredTotal }: handleLength) => {
 						</Stack>
 						<Stack direction='row' spacing={2} alignItems='center'>
 							<Typography noWrap>Status :</Typography>
-							<ChipFilter filterKey='status' filterOptions={workerCardStatusFilterOptions} />
+							<ChipFilter
+								selectedColor='success'
+								filterKey='status'
+								chipStyle='filled'
+								filterOptions={workerCardStatusFilterOptions}
+							/>
 						</Stack>
 					</Stack>
 				)}

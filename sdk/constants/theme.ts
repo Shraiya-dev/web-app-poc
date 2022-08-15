@@ -164,7 +164,7 @@ let themeDef = createTheme({
 			main: '#fff',
 			light: '#fff',
 			dark: '#fff',
-			contrastText: '#fff',
+			contrastText: '#000',
 		},
 		warning: {
 			main: '#E58A51',

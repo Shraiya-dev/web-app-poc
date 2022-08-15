@@ -1,3 +1,4 @@
+import { Close } from '@mui/icons-material'
 import { Chip, PaletteOptions, Stack } from '@mui/material'
 import { useRouter } from 'next/router'
 import { FC, useCallback, useDebugValue } from 'react'
@@ -18,7 +19,6 @@ export const ChipFilter: FC<Props> = ({
 
 	const handelAddFilter = useCallback(
 		(newFilter: string) => {
-			debugger
 			const filterValues = router.query[filterKey] as string
 			if (filterValues) {
 				router.query[filterKey] = [...filterValues?.split(','), newFilter].join(',')
@@ -64,12 +64,13 @@ export const ChipFilter: FC<Props> = ({
 				<Chip
 					variant={chipStyle}
 					color={isFilterAdded(value) ? selectedColor : 'info'}
-					sx={{ borderRadius: 2 }}
+					sx={{ borderRadius: 2, height: 36 }}
 					key={value}
 					label={label}
 					clickable
 					onClick={isFilterAdded(value) ? undefined : (e) => handelAddFilter(value)}
 					onDelete={isFilterAdded(value) ? (e) => handelDeleteFilter(value) : undefined}
+					deleteIcon={<Close />}
 				/>
 			))}
 		</Stack>
