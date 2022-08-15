@@ -235,7 +235,7 @@ const useCreateProject = () => {
 							event: 'project_created',
 						})
 
-						showSnackbar('Project Created Successfully', 'success')
+						showSnackbar('Project Uploaded Successfully', 'success')
 
 						router.push(`/projects/${router.query.projectId}/details`)
 					}
