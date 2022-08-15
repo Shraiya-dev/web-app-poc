@@ -90,16 +90,15 @@ export const NavigationTabClicked = ({ ...props }: NavigationTabClicked) => {
 	}
 }
 
-export const Identify = async ({ ...props }: Identify) => {
-	const indentityInfo = Object.fromEntries(Object.entries(props).filter(([_, v]) => v.length > 0))
-
-	const { customerId, ...rest } = indentityInfo
-
+export const Identify = async (props?: Identify) => {
 	const utmInfo = getUtmObject()
-	if (utmInfo) {
+	if (props) {
+		const { customerId, ...rest } = props
 		Analytic.identify(customerId, { ...rest, utmParams: utmInfo })
 	} else {
-		Analytic.identify(customerId, { ...rest })
+		Analytic.identify({
+			utmParams: utmInfo,
+		})
 	}
 }
 
@@ -122,11 +121,7 @@ export const getDeviceType = () => (navigator && navigator.maxTouchPoints > 0 ? 
 export const NewAnalyticsPage = (router: NextRouter) => {
 	const { name } = getPageData()
 	const utmInfo = getUtmObject()
-	if (utmInfo) {
-		Analytic.page({ name: name, utmParams: utmInfo, deviceType: getDeviceType() })
-	} else {
-		Analytic.page({ name: name, deviceType: getDeviceType() })
-	}
+	Analytic.page(name, { utmParams: utmInfo, deviceType: getDeviceType() })
 }
 //Define a new event here
 const EventTypes = {

@@ -74,7 +74,6 @@ axios.interceptors.response.use(
 					}
 
 					localStorage.setItem('accessToken', data.data.accessToken)
-					// Analytic.page()
 					return window.location.reload()
 				} catch (error) {
 					return logOutService()

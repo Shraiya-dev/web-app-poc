@@ -57,7 +57,6 @@ const useLogin = () => {
 			return errors
 		},
 		onSubmit: async (values) => {
-			// Analytic.page()
 			setLoading(true)
 			DataLayerPush({
 				event: discoveryBookingFromCookie ? 'discovery_request_login' : 'organic_request_login',
