@@ -30,27 +30,24 @@ const useCompanyDetails = () => {
 		setSelectedTab(value)
 	}
 
-	const getOrgDetails = useCallback(
-		async (orgId: any) => {
-			if (orgId) {
-				const { data, status } = await getOrganisationDetails(orgId)
-				if (status === 200) {
-					setOrgDetails({
-						companyName: data.payload.companyName,
-						GSTIN: data.payload.GSTIN,
-						// GSTINDocuments: [data.payload.GstinCertificate],
-					})
+	const getOrgDetails = useCallback(async () => {
+		if (true) {
+			const { data, status } = await getOrganisationDetails()
+			if (status === 200) {
+				setOrgDetails({
+					companyName: data.payload.companyName,
+					GSTIN: data.payload.GSTIN,
+					// GSTINDocuments: [data.payload.GstinCertificate],
+				})
 
-					form.setValues({
-						companyName: data.payload.companyName ?? '',
-						GSTIN: data.payload.GSTIN ?? '',
-						// GSTINDocuments: [data.payload.GstinCertificate] ?? [],
-					})
-				}
+				form.setValues({
+					companyName: data.payload.companyName ?? '',
+					GSTIN: data.payload.GSTIN ?? '',
+					// GSTINDocuments: [data.payload.GstinCertificate] ?? [],
+				})
 			}
-		},
-		[user?.organisationId]
-	)
+		}
+	}, [user?.organisationId])
 
 	const getMemberDetails = useCallback(async () => {
 		const orgId = user?.organisationId

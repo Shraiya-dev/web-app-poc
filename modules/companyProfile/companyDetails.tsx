@@ -37,8 +37,7 @@ const CompanyDetails = () => {
 								fontWeight: 700,
 								color: theme.palette.secondary.main,
 								fontFamily: 'Saira,sans-serif',
-							}}
-						>
+							}}>
 							Company Profile
 						</Typography>
 						<Typography
@@ -46,8 +45,7 @@ const CompanyDetails = () => {
 								fontSize: 14,
 								color: theme.palette.secondary.main,
 								fontFamily: 'Karla,sans-serif',
-							}}
-						>
+							}}>
 							{user?.companyName}
 						</Typography>
 					</Stack>
@@ -62,8 +60,7 @@ const CompanyDetails = () => {
 									},
 								}}
 								value={selectedTab}
-								onChange={handleTabSelection}
-							>
+								onChange={handleTabSelection}>
 								<Tab
 									sx={{
 										fontSize: '18px',
@@ -83,7 +80,7 @@ const CompanyDetails = () => {
 									}}
 								/>
 
-								<Tab
+								{/* <Tab
 									sx={{
 										fontSize: '18px',
 										textTransform: 'none',
@@ -100,7 +97,7 @@ const CompanyDetails = () => {
 											url: router.asPath,
 										})
 									}}
-								/>
+								/> */}
 							</Tabs>
 						</Box>
 
@@ -111,11 +108,10 @@ const CompanyDetails = () => {
 								overflowY: 'auto',
 								position: 'relative',
 								paddingTop: 8,
-							}}
-						>
+							}}>
 							<CompanyInfo />
 						</TabPanel>
-
+						{/* 
 						<TabPanel
 							value='members'
 							style={{
@@ -126,7 +122,7 @@ const CompanyDetails = () => {
 							}}
 						>
 							<CompanyMembers />
-						</TabPanel>
+						</TabPanel> */}
 					</TabContext>
 				</Stack>
 			</CompanyDetailsStyle>

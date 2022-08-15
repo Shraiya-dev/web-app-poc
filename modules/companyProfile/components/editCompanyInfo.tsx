@@ -52,16 +52,20 @@ const EditCompanyInfo = ({ ...props }) => {
 		router.push('/profile/details')
 	}, [form])
 
+	// useEffect(() => {
+	// 	if (user?.organisationId) {
+	// 		getOrgDetails(user?.organisationId)
+	// 	} else {
+	// 		getCustomerDetails()
+	// 			.then((res) => getOrgDetails(res?.data?.payload?.linkedOrganisation?.organisationId))
+	// 			.catch((error) => {
+	// 				console.log('error', error)
+	// 			})
+	// 	}
+	// }, [])
+
 	useEffect(() => {
-		if (user?.organisationId) {
-			getOrgDetails(user?.organisationId)
-		} else {
-			getCustomerDetails()
-				.then((res) => getOrgDetails(res?.data?.payload?.linkedOrganisation?.organisationId))
-				.catch((error) => {
-					console.log('error', error)
-				})
-		}
+		getOrgDetails()
 	}, [])
 
 	return (

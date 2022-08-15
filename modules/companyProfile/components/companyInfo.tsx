@@ -11,7 +11,7 @@ const CompanyInfoStyle = styled(Box)(({ theme }) => ({
 }))
 
 const CompanyInfo = () => {
-	const { isCmpDetailsEditable, setIsCmpDetailsEditable, handleEdit, user } = useCompanyDetails()
+	const { isCmpDetailsEditable, setIsCmpDetailsEditable, handleEdit	 } = useCompanyDetails()
 
 	return (
 		<CompanyInfoStyle>

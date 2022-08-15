@@ -4,7 +4,7 @@ export const updateOrganisation = (payload: any) => {
 	return axios.put(`/gateway/customer-api/customers/profile`, payload)
 }
 
-export const getOrganisationDetails = (orgId: any) => {
+export const getOrganisationDetails = () => {
 	return axios.get(`/gateway/customer-api/customers/profile`)
 }
 
