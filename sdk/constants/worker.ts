@@ -8,13 +8,13 @@ export const WorkerTypeLabel: Partial<{
 	TECHNICIAN: 'Technician',
 }
 
-export const WorkerApplicationStatusLabel: Partial<{
+export const WorkerApplicationStatusLabel: {
 	[key in WORKER_APPLICATION_STATUS]: string
-}> = {
-	COULD_NOT_CONNECT: 'COULD_NOT_CONNECT',
-	INCORRECT: 'INCORRECT',
-	REJECTED: 'REJECTED',
-	IN_PROGRESS: 'IN_PROGRESS',
-	HIRED: 'HIRED',
-	WORK_STARTED: 'WORK_STARTED',
+} = {
+	COULD_NOT_CONNECT: 'Could not connect',
+	INCORRECT: 'Incorrect Profile',
+	REJECTED: 'Rejected',
+	IN_PROGRESS: 'In progress',
+	HIRED: 'Hired',
+	WORK_STARTED: 'Work Started',
 }

@@ -23,7 +23,6 @@ export const BookingId = () => {
 	const total = helperCount + technicianCount + supervisorCount
 
 	const [appliedWorkerCount, setAppliedWorkerCount] = useState(0)
-	
 
 	return (
 		<>
@@ -201,6 +200,7 @@ export const BookingId = () => {
 				</Box>
 				<TabPanel
 					value='track-workers'
+					sx={{ p: 2 }}
 					style={{
 						height: isMobile ? 'calc( 100vh - 320px )' : '',
 

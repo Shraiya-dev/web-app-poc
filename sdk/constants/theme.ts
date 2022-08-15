@@ -319,11 +319,11 @@ let themeDef = createTheme({
 		MuiSelect: {
 			defaultProps: {
 				MenuProps: {
-					style: {
+					sx: {
 						maxHeight: 400,
 					},
 				},
-				style: {
+				sx: {
 					background: '#fff',
 				},
 

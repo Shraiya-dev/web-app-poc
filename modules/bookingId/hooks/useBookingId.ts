@@ -2,7 +2,7 @@ import axios from 'axios'
 import { useFormik } from 'formik'
 import { useRouter } from 'next/router'
 import { useCallback, useEffect, useState } from 'react'
-import { BookingPreview, BookingDetailsPreview, JobCard, useSnackbar } from '../../../sdk'
+import { BookingPreview, BookingDetailsPreview, JobCard, useSnackbar, WORKER_APPLICATION_STATUS } from '../../../sdk'
 import { getBookingDetails, getWorkerDetails } from '../apis'
 
 interface FilterForm {
@@ -68,6 +68,7 @@ export const useBookingId = () => {
 				setJobCards(
 					jobCardData.map((item: any, index: any) => {
 						const jobCard: JobCard = {
+							jobCardId: item?.jobCard?.jobCardId,
 							workerId: item?.jobCard?.workerId,
 							WorkerName: item?.worker?.name ?? 'No Name',
 							jobType: item?.jobCard?.jobType,
@@ -91,6 +92,25 @@ export const useBookingId = () => {
 		},
 		[router.query.skillType, router.query.jobCardState, router.query.projectId]
 	)
+	const updateContractorFeedback = useCallback(
+		async (value: WORKER_APPLICATION_STATUS, jobCard: JobCard) => {
+			const { bookingId, projectId, ...rest } = router.query
+
+			try {
+				const res = await axios.post(
+					`/gateway/customer-api/projects/${projectId}/bookings/${bookingId}/job-cards/${jobCard?.jobCardId}/contractor-feedback`,
+					{ code: value }
+				)
+				let pageNumber = `${Number(router.query.pageNumber) > 0 ? Number(router.query.pageNumber) - 1 : '0'}`
+				await getJobCards(pageNumber)
+			} catch (error: any) {
+				console.log(error)
+
+				showSnackbar(error?.response?.data?.developerInfo, 'error')
+			}
+		},
+		[getJobCards, router.query, showSnackbar]
+	)
 	useEffect(() => {
 		getBookingInfo()
 	}, [getBookingInfo])
@@ -106,5 +126,6 @@ export const useBookingId = () => {
 		hasMore: hasMore,
 		setJobCards: setJobCards,
 		jobCardsLength: jobCardsLength,
+		updateContractorFeedback: updateContractorFeedback,
 	}
 }

@@ -69,8 +69,7 @@ const ContractorDashboardLayout = ({ children }: any) => {
 			}}>
 			<Box
 				style={{
-					padding: isMobile ? 8 : 16,
-					marginLeft: isMobile ? 0 : theme.spacing(33),
+					marginLeft: isMobile ? 0 : theme.spacing(35),
 					//width: '100vw',
 					minHeight: '100vh',
 				}}>

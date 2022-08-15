@@ -4,7 +4,6 @@ import { BottomLayout, JobCardCard, primary, useMobile, WORKER_APPLICATION_STATU
 import { useRouter } from 'next/router'
 import { useEffect, useMemo } from 'react'
 import { useBookingId } from '../hooks'
-import Filters from './filters'
 import { ChipFilter } from './ChipFilter'
 
 interface handleLength {
@@ -21,6 +20,7 @@ const WorkerTracking = ({ handleRequiredTotal }: handleLength) => {
 		bookingSummary,
 		isLoading,
 		SetPageNumber,
+		updateContractorFeedback,
 		pageNumber,
 		hasMore,
 		getJobCards,
@@ -64,7 +64,7 @@ const WorkerTracking = ({ handleRequiredTotal }: handleLength) => {
 
 	return (
 		<>
-			<Stack>
+			<Stack spacing={2}>
 				{isMobile ? (
 					<></>
 				) : (
@@ -72,12 +72,39 @@ const WorkerTracking = ({ handleRequiredTotal }: handleLength) => {
 						<Stack direction='row' spacing={2} alignItems='center'>
 							<Typography noWrap>Skills :</Typography>
 							<ChipFilter filterKey='skillType' filterOptions={skillFilterOptions} />
+							{/* <Pagination
+								sx={{ alignSelf: 'flex-end' }}
+								page={router.query.pageNumber ? Number(router.query.pageNumber) : 1}
+								hidePrevButton={
+									!Number(router.query.pageNumber) || Number(router.query.pageNumber) === 1
+								}
+								hideNextButton={!hasMore}
+								count={hasMore ? 35 : Number(router.query.pageNumber)}
+								siblingCount={0}
+								disabled={isLoading}
+								boundaryCount={0}
+								showFirstButton={false}
+								showLastButton={false}
+								color='primary'
+								onChange={(e, page) => {
+									router.push(
+										{
+											query: { ...router.query, pageNumber: page },
+										},
+										undefined,
+										{}
+									)
+									let pageNum = page - 1 + ''
+
+									SetPageNumber(`${pageNum}`)
+								}}
+							/> */}
 						</Stack>
 						<Stack direction='row' spacing={2} alignItems='center'>
 							<Typography noWrap>Status :</Typography>
 							<ChipFilter
 								selectedColor='success'
-								filterKey='status'
+								filterKey='contractorFeedbackCode'
 								chipStyle='filled'
 								filterOptions={workerCardStatusFilterOptions}
 							/>
@@ -85,75 +112,39 @@ const WorkerTracking = ({ handleRequiredTotal }: handleLength) => {
 					</Stack>
 				)}
 
-				<Stack>
-					{isLoading ? (
-						<Stack p={5} alignItems='center'>
-							<CircularProgress size={50} />
-						</Stack>
-					) : (
-						<Stack mt={4}>
-							{jobCards.length === 0 ? (
-								<Stack flex={1} mt={20} direction={'column'} alignItems='center'>
-									<Typography
-										fontFamily={'Saira,sans-serif'}
-										fontWeight={700}
-										variant='h4'
-										color={primary.yellow}>
-										We have made your booking live on our Hero App
-									</Typography>
-									<Typography
-										fontFamily={'Saira,sans-serif'}
-										fontWeight={700}
-										variant='h4'
-										color={primary.yellow}>
-										You will see the application as soon as any Hero applies!
-									</Typography>
-								</Stack>
-							) : (
-								<Grid container spacing={3}>
-									{jobCards.map((jobCardInfo, index) => {
-										return (
-											<Grid item xs={12} md={4} key={index}>
-												<JobCardCard jobCard={jobCardInfo} />
-											</Grid>
-										)
-									})}
+				{isLoading ? (
+					<Stack p={5} alignItems='center'>
+						<CircularProgress size={50} />
+					</Stack>
+				) : jobCards.length === 0 ? (
+					<Stack flex={1} mt={20} direction={'column'} alignItems='center'>
+						<Typography
+							fontFamily={'Saira,sans-serif'}
+							fontWeight={700}
+							variant='h4'
+							color={primary.yellow}>
+							We have made your booking live on our Hero App
+						</Typography>
+						<Typography
+							fontFamily={'Saira,sans-serif'}
+							fontWeight={700}
+							variant='h4'
+							color={primary.yellow}>
+							You will see the application as soon as any Hero applies!
+						</Typography>
+					</Stack>
+				) : (
+					<Grid container spacing={2}>
+						{jobCards.map((jobCardInfo, index) => {
+							return (
+								<Grid item xs={12} md={4} key={index}>
+									<JobCardCard jobCard={jobCardInfo} updateJobCard={updateContractorFeedback} />
 								</Grid>
-							)}
+							)
+						})}
+					</Grid>
+				)}
 
-							{jobCards.length > 1 && (
-								<Stack p={4} alignItems='center'>
-									<Pagination
-										page={router.query.pageNumber ? Number(router.query.pageNumber) : 1}
-										hidePrevButton={
-											!Number(router.query.pageNumber) || Number(router.query.pageNumber) === 1
-										}
-										hideNextButton={!hasMore}
-										count={hasMore ? 35 : Number(router.query.pageNumber)}
-										siblingCount={0}
-										disabled={isLoading}
-										boundaryCount={0}
-										showFirstButton={false}
-										showLastButton={false}
-										color='primary'
-										onChange={(e, page) => {
-											router.push(
-												{
-													query: { ...router.query, pageNumber: `${page}` },
-												},
-												undefined,
-												{}
-											)
-											let pageNum = page - 1 + ''
-
-											SetPageNumber(`${pageNum}`)
-										}}
-									/>
-								</Stack>
-							)}
-						</Stack>
-					)}
-				</Stack>
 				{/* <FilterDrawer open={openFilterDrawer} onClose={handelDrawerToggle} /> */}
 
 				{/* {hasMore && (
