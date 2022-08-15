@@ -1,8 +1,8 @@
 import { useFormik } from 'formik'
 import { useRouter } from 'next/router'
 import { useCallback, useEffect, useState } from 'react'
-import { JOB_TYPES, useContractorAuth, validateEmail, useSnackbar } from '../../../sdk'
-import { Analytic, DataLayerPush } from '../../../sdk/analytics'
+import { JOB_TYPES, useContractorAuth, useSnackbar } from '../../../sdk'
+import { DataLayerPush } from '../../../sdk/analytics'
 import { ButtonClicked } from '../../../sdk/analytics/analyticsWrapper'
 import { createBooking, getProjectDetails } from '../apis'
 

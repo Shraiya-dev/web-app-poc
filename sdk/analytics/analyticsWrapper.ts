@@ -121,7 +121,7 @@ export const getDeviceType = () => (navigator && navigator.maxTouchPoints > 0 ? 
 export const NewAnalyticsPage = (router: NextRouter) => {
 	const { name } = getPageData()
 	const utmInfo = getUtmObject()
-	Analytic.page(name, name, { utmParams: utmInfo, deviceType: getDeviceType() })
+	Analytic.page(name, { utmParams: utmInfo, deviceType: getDeviceType() })
 }
 //Define a new event here
 const EventTypes = {
