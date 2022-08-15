@@ -14,6 +14,7 @@ import LocationIcon from '../../../public/assets/icons/location.svg'
 import ExperienceIcon from '../../../public/assets/icons/experience.svg'
 import WorkerIcon from '../../../public/assets/icons/workerIcon.svg'
 import { useMobile } from 'sdk/hooks'
+import { sendAnalytics } from 'sdk/analytics'
 
 const CustomPaper = styled(Paper)(({ theme }) => ({
 	overflow: 'hidden',
@@ -110,7 +111,7 @@ export const JobCardCard = ({ jobCard }: JobCardCardProps) => {
 						</Stack>
 						<Button
 							onClick={() => {
-								window.open('tel:9575418224')
+								window.open(`tel:${jobCard.phoneNumber}`)
 							}}>
 							<Stack spacing={1} direction={'row'} alignItems={'center'}>
 								<Box>
@@ -202,7 +203,12 @@ export const JobCardCard = ({ jobCard }: JobCardCardProps) => {
 						<Button
 							size='small'
 							onClick={() => {
-								window.open('tel:9575418224')
+								sendAnalytics({
+									name: 'contactWorker',
+									action: 'ButtonClick',
+									metaData: { ...jobCard },
+								})
+								window.open(`tel:${jobCard.phoneNumber}`)
 							}}>
 							<Stack spacing={0.5} direction={'row'} alignItems={'center'} px={4.5}>
 								<Box sx={{ position: 'relative', top: '3px' }}>
