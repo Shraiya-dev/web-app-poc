@@ -71,7 +71,7 @@ export const JobCardCard = ({ jobCard, updateJobCard }: JobCardCardProps) => {
 						height='100%'>
 						<Stack>
 							<Avatar
-								sx={{ width: 150, height: 150 }}
+								sx={{ width: { xs: 100, md: 150 }, height: { xs: 100, md: 150 } }}
 								src={
 									jobCard?.workerImage?.length > 0
 										? jobCard?.workerImage
