@@ -1,4 +1,6 @@
 import {
+	Badge,
+	Box,
 	Button,
 	Checkbox,
 	CircularProgress,
@@ -93,8 +95,17 @@ const WorkerTracking = ({ handleRequiredTotal }: handleLength) => {
 					<Stack direction='row' spacing={2}>
 						<Button
 							variant='outlined'
+							startIcon={
+								router.query['skillType'] ? (
+									<Badge
+										sx={{ marginLeft: -1 }}
+										badgeContent={((router.query['skillType'] as string) ?? '').split(',').length}
+										color='primary'
+									/>
+								) : undefined
+							}
 							color='info'
-							sx={{ borderRadius: 3 }}
+							sx={{ borderRadius: 3, pl: router.query['skillType'] ? 4 : undefined }}
 							onClick={() =>
 								setFilterDrawer({
 									open: true,
@@ -108,7 +119,18 @@ const WorkerTracking = ({ handleRequiredTotal }: handleLength) => {
 						<Button
 							variant='outlined'
 							color='info'
-							sx={{ borderRadius: 3 }}
+							startIcon={
+								router.query['contractorFeedbackCode'] ? (
+									<Badge
+										sx={{ marginLeft: -1 }}
+										badgeContent={
+											((router.query['contractorFeedbackCode'] as string) ?? '').split(',').length
+										}
+										color='primary'
+									/>
+								) : undefined
+							}
+							sx={{ borderRadius: 3, pl: router.query['contractorFeedbackCode'] ? 4 : undefined }}
 							onClick={() =>
 								setFilterDrawer({
 									open: true,
