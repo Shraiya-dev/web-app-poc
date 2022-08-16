@@ -15,6 +15,7 @@ import {
 	styled,
 	TextField,
 } from '@mui/material'
+import { useProjectInfo } from 'modules/ProjectInfo/hooks/useProjectInfo'
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
 import ProjectSvg from '../../../public/assets/icons/project.svg'
@@ -102,6 +103,7 @@ export const CreateProject = () => {
 		setOncloseDialog,
 		isUploadingImages,
 		loading,
+		isProjectId,
 	} = useCreateProject()
 
 	const router = useRouter()
@@ -142,7 +144,15 @@ export const CreateProject = () => {
 			<Box>
 				{step !== 3 && (
 					<TopBanner
-						header={step === 1 ? 'New Project' : 'Worker Benefits'}
+						header={
+							step === 1
+								? isProjectId
+									? 'Edit Project'
+									: 'New Project'
+								: isProjectId
+								? 'Edit Worker Benefits'
+								: 'Worker Benefits'
+						}
 						subHeader={step === 1 ? `Tell us project details` : `Add worker benefits for the project `}
 						bannerSvg={ProjectSvg}
 						onClick={() => {
@@ -199,8 +209,7 @@ export const CreateProject = () => {
 											form.setFieldValue('city', 'none')
 										}}
 										required={true}
-										fullWidth
-									>
+										fullWidth>
 										<MenuItem value={'none'}>Select State</MenuItem>
 										{getSelectOptions(StatesOptions)}
 									</Select>
@@ -219,8 +228,7 @@ export const CreateProject = () => {
 										onChange={(e) => {
 											form.handleChange(e)
 										}}
-										fullWidth
-									>
+										fullWidth>
 										<MenuItem value={'none'}>Select city</MenuItem>
 										{CityOptions[form.values.state].map((item: any) => {
 											return (
@@ -314,8 +322,7 @@ export const CreateProject = () => {
 														sx={{
 															position: 'relative',
 															marginLeft: 1,
-														}}
-													>
+														}}>
 														<IconButton
 															// disabled={formDisabled}
 															size='small'
@@ -331,8 +338,7 @@ export const CreateProject = () => {
 																// zIndex: 100,
 																top: -10,
 																right: -10,
-															})}
-														>
+															})}>
 															<CancelRoundedIcon />
 														</IconButton>
 
@@ -367,8 +373,7 @@ export const CreateProject = () => {
 										name='overTimeFactor'
 										value={form.values.overTimeFactor}
 										onChange={form.handleChange}
-										fullWidth
-									>
+										fullWidth>
 										<MenuItem value={'none'}>Select over time wage</MenuItem>
 										{getSelectOptions(overTimefactor)}
 									</Select>
@@ -438,8 +443,7 @@ export const CreateProject = () => {
 															sx={{
 																position: 'relative',
 																marginLeft: 1,
-															}}
-														>
+															}}>
 															<IconButton
 																// disabled={formDisabled}
 																size='small'
@@ -458,8 +462,7 @@ export const CreateProject = () => {
 																	//zIndex: 100,
 																	top: -10,
 																	right: -10,
-																})}
-															>
+																})}>
 																<CancelRoundedIcon />
 															</IconButton>
 
@@ -496,8 +499,7 @@ export const CreateProject = () => {
 										<Button
 											variant='outlined'
 											onClick={handlePrev}
-											style={{ minWidth: '10em', float: 'right', display: 'flex' }}
-										>
+											style={{ minWidth: '10em', float: 'right', display: 'flex' }}>
 											Go Back
 										</Button>
 									)}
@@ -515,9 +517,8 @@ export const CreateProject = () => {
 											opacity: !!isSubmitable || loading ? 0.4 : 1,
 											minWidth: '10em',
 											color: primary.properDark,
-										}}
-									>
-										{step === 2 ? 'Create Project' : 'Continue'}
+										}}>
+										{step === 2 ? (isProjectId ? 'Update Project' : 'Create Project') : 'Continue'}
 									</LoadingButton>
 								</Stack>
 							</Grid>

@@ -32,7 +32,16 @@ export const ConfirmationDialog = ({ title, caption, open, confirm, cancel }: Co
 					<Button variant='contained' onClick={() => confirm()}>
 						Leave
 					</Button>
-					<Button variant='outlined' onClick={() => cancel()}>
+					<Button
+						variant='outlined'
+						onClick={() => cancel()}
+						sx={{
+							color: primary.properDark,
+							border: '1px solid #000',
+							'&:hover': {
+								border: '1px solid #000',
+							},
+						}}>
 						Cancel
 					</Button>
 				</Stack>

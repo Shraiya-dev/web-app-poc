@@ -106,8 +106,7 @@ const CompanyMembers = () => {
 										background: '#fffCF1',
 
 										fontWeight: 900,
-									}}
-								>
+									}}>
 									{column.label}
 								</TableCell>
 							))}

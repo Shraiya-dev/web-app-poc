@@ -146,13 +146,13 @@ const ContractorDashboardLayout = ({ children }: any) => {
 								toggleDrawer={toggleDrawer}
 							/>
 
-							{/* <DrawerItem
+							<DrawerItem
 								icon={<PersonIcon />}
 								path={`/profile/details`}
 								title='Company Profile'
 								route={PROFILE}
 								toggleDrawer={toggleDrawer}
-							/> */}
+							/>
 
 							<DrawerItem
 								icon={<BusinessIcon />}
