@@ -56,7 +56,11 @@ const EditInfo = ({ ...props }) => {
 								id='designation'
 								name='designation'
 								value={form.values.designation}
-								onChange={form.handleChange}>
+								onChange={form.handleChange}
+								sx={{
+									background: '#fff',
+									color: '#000 !important',
+								}}>
 								<MenuItem value={'none'}>Select Designation</MenuItem>
 								{getSelectOptions(companyRoles)}
 							</Select>

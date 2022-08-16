@@ -9,6 +9,7 @@ import {
 	theme,
 	useContractorAuth,
 	useMobile,
+	useSnackbar,
 } from '../../../sdk'
 
 import { ButtonClicked } from '../../../sdk/analytics/analyticsWrapper'
@@ -33,10 +34,13 @@ const EditCompanyInfo = ({ ...props }) => {
 		isValidGST,
 		validGSTResponse,
 		setIsValidGST,
+		hasUpdateValue,
+		setHasUpdateValue,
 	} = useCompanyDetails()
 	const { isCmpDetailsEditable, setIsCmpDetailsEditable } = props
 	const router = useRouter()
 	const { user } = useContractorAuth()
+	const { showSnackbar } = useSnackbar()
 
 	const isMobile = useMobile()
 
@@ -47,9 +51,22 @@ const EditCompanyInfo = ({ ...props }) => {
 			// GstinCertificate: form.values.GSTINDocuments[0],
 		}
 		const orgId = user?.organisationId
-		const { data } = await updateOrganisation(payload)
+
+		try {
+			const { data, status } = await updateOrganisation(payload)
+
+			if (status === 200) {
+				showSnackbar('Updated Successfully', 'success')
+				setIsCmpDetailsEditable(false)
+				router.push('/profile/details')
+			} else {
+				showSnackbar(`${data?.messageToUser}`, 'error')
+			}
+		} catch (error) {
+			showSnackbar(`Unable to Update`, 'error')
+		}
+
 		//	getOrgDetails()
-		router.push('/profile/details')
 	}, [form])
 
 	// useEffect(() => {
@@ -78,7 +95,10 @@ const EditCompanyInfo = ({ ...props }) => {
 								id='companyName'
 								name='companyName'
 								value={form.values.companyName}
-								onChange={form.handleChange}
+								onChange={(e) => {
+									form.handleChange(e)
+									setHasUpdateValue(true)
+								}}
 								onBlur={form.handleBlur}
 								placeholder='Full Name'
 								error={!!checkError('companyName', form)}
@@ -95,6 +115,7 @@ const EditCompanyInfo = ({ ...props }) => {
 									onChange={(e) => {
 										if (e.target.value.length <= 15) {
 											form.handleChange(e)
+											setHasUpdateValue(true)
 										}
 									}}
 									onBlur={form.handleBlur}
@@ -236,13 +257,12 @@ const EditCompanyInfo = ({ ...props }) => {
 							Cancel
 						</Button>
 
-						{isValidGST && form.isValid ? (
+						{hasUpdateValue && form.isValid ? (
 							<LoadingButton
 								//type='submit'
 								onClick={async () => {
 									await updateOrg()
 									//getOrgDetails()
-									setIsCmpDetailsEditable((state: any) => !state)
 
 									ButtonClicked({
 										action: 'Save Edit Profile',
