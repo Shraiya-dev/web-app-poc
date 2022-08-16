@@ -23,6 +23,7 @@ const useCompanyDetails = () => {
 
 	const [isValidGST, setIsValidGST] = useState<boolean>(false)
 	const [validGSTResponse, setValidGSTResponse] = useState<String>('')
+	const [hasUpdateValue, setHasUpdateValue] = useState<boolean>(false)
 
 	const { showSnackbar } = useSnackbar()
 
@@ -189,6 +190,8 @@ const useCompanyDetails = () => {
 		isValidGST,
 		validGSTResponse,
 		setIsValidGST,
+		hasUpdateValue,
+		setHasUpdateValue,
 	}
 }
 

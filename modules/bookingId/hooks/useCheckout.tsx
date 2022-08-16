@@ -14,6 +14,7 @@ export interface Discount {
 	amount?: number
 	title?: string
 }
+import * as Yup from 'yup'
 export const useCheckout = () => {
 	const router = useRouter()
 	const [bookingData, setBookingData] = useState<any>()
@@ -27,6 +28,7 @@ export const useCheckout = () => {
 			qtyTechnician: 0,
 			qtySupervisor: 0,
 		},
+
 		onSubmit: async (values: any) => {},
 	})
 	const getDiscountEligibility = useCallback(async () => {
@@ -35,7 +37,6 @@ export const useCheckout = () => {
 		try {
 			const { data } = await getDiscountEligibilityService()
 
-			setDiscountDetails(data?.payload?.response)
 		} catch (error: any) {
 			showSnackbar(error?.response?.data?.developerInfo, 'error')
 		}
@@ -77,6 +78,5 @@ export const useCheckout = () => {
 		dispatchLoading,
 		bookingData,
 		setWage,
-		discountDetails,
 	}
 }
