@@ -47,24 +47,6 @@ const ProfileCardData = [
 		name: 'qtySupervisor',
 	},
 ]
-const billData = [
-	{
-		label: 'Subtotal',
-		value: 'subTotal',
-	},
-	{
-		label: 'Discount (First 15 applications free)',
-		value: 'discount',
-	},
-	{
-		label: 'Before Taxes',
-		value: 'beforeTax',
-	},
-	{
-		label: 'Taxes Applicable (GST@18%)',
-		value: 'tax',
-	},
-]
 
 export const CheckoutCard: FC = () => {
 	const [addEditWageDialogProps, setAddEditWageDialogProps] = useState({
@@ -82,7 +64,7 @@ export const CheckoutCard: FC = () => {
 		const subTotal = quantity * 50
 		const discount = discountDetails?.isEligible
 			? subTotal > (discountDetails?.discount?.quantity ?? 15) * 50
-				? 750
+				? (discountDetails?.discount?.quantity ?? 15) * 50
 				: subTotal
 			: 0
 		const beforeTax = subTotal - discount
@@ -97,7 +79,27 @@ export const CheckoutCard: FC = () => {
 			amountPayable: amountPayable,
 		}
 	}, [discountDetails?.discount?.quantity, discountDetails?.isEligible, form.values])
-
+	const billData = useMemo(
+		() => [
+			{
+				label: 'Subtotal',
+				value: 'subTotal',
+			},
+			{
+				label: `Discount (First ${discountDetails?.discount?.quantity} applications free)`,
+				value: 'discount',
+			},
+			{
+				label: 'Before Taxes',
+				value: 'beforeTax',
+			},
+			{
+				label: 'Taxes Applicable (GST@18%)',
+				value: 'tax',
+			},
+		],
+		[discountDetails?.discount?.quantity]
+	)
 	const router = useRouter()
 	const { initiatePayment } = usePayment()
 	const { showSnackbar } = useSnackbar()
@@ -315,7 +317,7 @@ export const CheckoutCard: FC = () => {
 												fontWeight={600}
 												color='primary.main'>
 												{' '}
-												15 Hero applications
+												{discountDetails?.discount?.quantity} Hero applications
 											</Typography>{' '}
 											are FREE!
 										</Typography>

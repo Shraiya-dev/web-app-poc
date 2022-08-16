@@ -36,7 +36,7 @@ export const useCheckout = () => {
 		const { bookingId, projectId } = router?.query
 		try {
 			const { data } = await getDiscountEligibilityService()
-
+			setDiscountDetails(data?.payload?.response)
 		} catch (error: any) {
 			showSnackbar(error?.response?.data?.developerInfo, 'error')
 		}
@@ -78,5 +78,6 @@ export const useCheckout = () => {
 		dispatchLoading,
 		bookingData,
 		setWage,
+		discountDetails,
 	}
 }
