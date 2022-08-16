@@ -1,8 +1,7 @@
-import React, { useState } from 'react'
 import { useRouter } from 'next/router'
 
 // Material UI
-import { Dialog, DialogContent, Button, Typography, Stack, Box, Grid, Card, Paper } from '@mui/material'
+import { Box, Button, Dialog, DialogContent, Paper, Stack, Typography } from '@mui/material'
 import { primary } from 'sdk'
 
 const ConfirmCancel = ({ ...props }) => {
