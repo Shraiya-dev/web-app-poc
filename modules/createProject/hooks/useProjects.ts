@@ -36,6 +36,7 @@ const useCreateProject = () => {
 	const [shiftTiming, setShiftTiming] = useState('')
 	const [onCloseDialog, setOncloseDialog] = useState(false)
 	const [loading, setLoading] = useState(false)
+	const [isEditable, setIsEditable] = useState(false)
 
 	const [isUploadingImages, setIsUploadingImages] = useState({
 		site: false,
@@ -290,6 +291,63 @@ const useCreateProject = () => {
 		}
 	}
 
+	const ProjectUpdate = useCallback(
+		(projectId) => {
+			const benefit = []
+
+			if (form.values.pfAvailable === true) {
+				benefit.push(JobBenefits.PF)
+			}
+
+			if (form.values.esiProvided === true) {
+				benefit.push(JobBenefits.INSURANCE)
+			}
+
+			if (form.values.foodProvided === true) {
+				benefit.push(JobBenefits.FOOD)
+			}
+
+			if (form.values.pfAvailable === true) {
+				benefit.push(JobBenefits.PF)
+			}
+
+			if (form.values.accomodationProvided === true) {
+				benefit.push(JobBenefits.ACCOMODATION)
+			}
+			const payload = {
+				name: form.values.projectName,
+				siteAddress: form.values.siteAddress,
+				city: form.values.city,
+				state: form.values.state,
+				pincode: form.values.pinCode,
+				overTime: {
+					rate: form.values.overTimeFactor,
+				},
+				benefits: benefit,
+				images: {
+					accommodations: form.values.accomodationPhotos,
+					site: form.values.sitePhotos,
+				},
+			}
+
+			updateProject(payload, projectId)
+				.then((res) => {
+					if (res?.status === 200) {
+						setIsEditable(!isEditable)
+						showSnackbar('Project Uploaded Successfully', 'success')
+						// router.push(`/projects/${router.query.projectId}/details`)
+						// setTimeout(() => {}, 5000)
+					}
+				})
+				.catch((error: any) => {
+					showSnackbar(error?.response?.data?.developerInfo, 'error')
+					console.log(error)
+					setLoading(false)
+				})
+		},
+		[form]
+	)
+
 	return {
 		form,
 		step,
@@ -313,6 +371,9 @@ const useCreateProject = () => {
 		loading,
 		setLoading,
 		isProjectId,
+		ProjectUpdate,
+		isEditable,
+		setIsEditable,
 	}
 }
 

@@ -337,6 +337,7 @@ let themeDef = createTheme({
 				},
 				sx: {
 					background: '#fff',
+					color: '#000 !important',
 				},
 
 				IconComponent: KeyboardArrowDownRounded,

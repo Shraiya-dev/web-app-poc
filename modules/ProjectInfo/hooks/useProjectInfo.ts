@@ -45,5 +45,6 @@ export const useProjectInfo = () => {
 		setProjectInfo: setProjectInfo,
 		loading,
 		setLoading,
+		getProjectInfo,
 	}
 }
