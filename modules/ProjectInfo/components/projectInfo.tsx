@@ -66,8 +66,12 @@ const ProjectInfo = ({ setProjectName }: any) => {
 	}, [isEditable, getProjectInfo])
 
 	useEffect(() => {
-		setProjectName(projectInfo?.name)
-	}, [projectInfo?.name, setProjectName])
+		setProjectName({
+			name: projectInfo?.name,
+			state: projectInfo?.state,
+			city: projectInfo?.city,
+		})
+	}, [projectInfo?.name, projectInfo?.state, projectInfo?.city, setProjectName])
 
 	return (
 		<>
@@ -326,7 +330,7 @@ const ProjectInfo = ({ setProjectName }: any) => {
 								{form.values.sitePhotos?.map((url: any, index: any) => {
 									return (
 										<>
-											<Grid item xs={3} md={2} key={index}>
+											<Grid item xs={3} md={3} key={index}>
 												<Box
 													sx={{
 														position: 'relative',
@@ -464,7 +468,7 @@ const ProjectInfo = ({ setProjectName }: any) => {
 															}}
 															sx={(theme) => ({
 																// backgroundColor: theme.palette.grey[100],
-																color: primary.main,
+																color: '#fff',
 																position: 'absolute',
 																//zIndex: 100,
 																top: -10,
