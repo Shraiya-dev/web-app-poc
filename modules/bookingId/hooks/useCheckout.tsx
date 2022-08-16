@@ -3,11 +3,21 @@ import { useRouter } from 'next/router'
 import { useCallback, useEffect, useReducer, useState } from 'react'
 import { useSnackbar } from 'sdk'
 import { getBookingDetails, getDiscountEligibilityService } from '../apis'
+export interface DiscountDetails {
+	isEligible: boolean
+	discount?: Discount
+}
 
+export interface Discount {
+	code?: string
+	quantity?: number
+	amount?: number
+	title?: string
+}
 export const useCheckout = () => {
 	const router = useRouter()
 	const [bookingData, setBookingData] = useState<any>()
-	const [discountEligible, setDiscountEligible] = useState(false)
+	const [discountDetails, setDiscountDetails] = useState<DiscountDetails>()
 	const { showSnackbar } = useSnackbar()
 	const [wage, setWage] = useState<any>()
 	const [loading, dispatchLoading] = useReducer((p: any, n: any) => ({ ...p, ...n }), {})
@@ -25,7 +35,7 @@ export const useCheckout = () => {
 		try {
 			const { data } = await getDiscountEligibilityService()
 
-			setDiscountEligible(data?.payload?.response?.isEligible)
+			setDiscountDetails(data?.payload?.response)
 		} catch (error: any) {
 			showSnackbar(error?.response?.data?.developerInfo, 'error')
 		}
@@ -67,6 +77,6 @@ export const useCheckout = () => {
 		dispatchLoading,
 		bookingData,
 		setWage,
-		discountEligible,
+		discountDetails,
 	}
 }
