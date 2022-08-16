@@ -3,7 +3,7 @@ import { useRouter } from 'next/router'
 import { useCallback, useEffect, useReducer, useState } from 'react'
 import { useSnackbar } from 'sdk'
 import { getBookingDetails, getDiscountEligibilityService } from '../apis'
-
+import * as Yup from 'yup'
 export const useCheckout = () => {
 	const router = useRouter()
 	const [bookingData, setBookingData] = useState<any>()
@@ -17,6 +17,7 @@ export const useCheckout = () => {
 			qtyTechnician: 0,
 			qtySupervisor: 0,
 		},
+
 		onSubmit: async (values: any) => {},
 	})
 	const getDiscountEligibility = useCallback(async () => {

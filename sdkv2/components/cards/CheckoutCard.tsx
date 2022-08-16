@@ -1,6 +1,17 @@
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline'
 import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline'
-import { Box, Button, Card, CircularProgress, IconButton, Skeleton, Stack, TextField, Typography } from '@mui/material'
+import {
+	Box,
+	Button,
+	Card,
+	CircularProgress,
+	FormHelperText,
+	IconButton,
+	Skeleton,
+	Stack,
+	TextField,
+	Typography,
+} from '@mui/material'
 import { FC, useCallback, useMemo, useState } from 'react'
 // import BookingSuccess from 'modules/createBooking/components/bookingsuccess'
 import { Add } from '@mui/icons-material'
@@ -391,14 +402,19 @@ export const CheckoutCard: FC = () => {
 												) : (
 													<Stack direction='row' alignItems='center'>
 														<IconButton
-															onClick={(e) =>
-																form.setFieldValue(
-																	profile?.name,
-																	Number(form.values[profile.name] - 1) > 0
-																		? Number(form.values[profile.name] - 1)
-																		: 0
-																)
-															}>
+															onClick={(e) => {
+																if (
+																	form.values[profile.name] <= 999 &&
+																	form.values[profile.name] > 0
+																) {
+																	form.setFieldValue(
+																		profile?.name,
+																		Number(form.values[profile.name] - 1) > 0
+																			? Number(form.values[profile.name] - 1)
+																			: 0
+																	)
+																}
+															}}>
 															<RemoveCircleOutlineIcon sx={{ color: 'primary.main' }} />
 														</IconButton>
 														<TextField
@@ -415,18 +431,25 @@ export const CheckoutCard: FC = () => {
 																form.setFieldValue(
 																	e.target.name,
 																	e.target.value !== ''
-																		? parseInt(e.target.value)
+																		? parseInt(e.target.value) > 999
+																			? 999
+																			: parseInt(e.target.value)
 																		: e.target.value
 																)
 															}}
 														/>
 														<IconButton
-															onClick={(e) =>
-																form.setFieldValue(
-																	profile?.name,
-																	Number(form.values[profile.name] + 1)
-																)
-															}>
+															onClick={(e) => {
+																if (
+																	form.values[profile.name] < 999 &&
+																	form.values[profile.name] >= 0
+																) {
+																	form.setFieldValue(
+																		profile?.name,
+																		Number(form.values[profile.name] + 1)
+																	)
+																}
+															}}>
 															<AddCircleOutlineIcon sx={{ color: 'primary.main' }} />
 														</IconButton>
 													</Stack>
