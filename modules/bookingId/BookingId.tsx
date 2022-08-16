@@ -22,10 +22,7 @@ export const BookingId = () => {
 	const supervisorCount = bookingSummary?.booking?.peopleRequired?.SUPERVISOR ?? 0
 	const total = helperCount + technicianCount + supervisorCount
 
-	const [length, setLength] = useState(0)
-	const handleRequiredTotal = useCallback((value) => {
-		setLength(value)
-	}, [])
+	const [appliedWorkerCount, setAppliedWorkerCount] = useState(0)
 
 	return (
 		<>
@@ -64,13 +61,9 @@ export const BookingId = () => {
 								/>
 								<Stack direction={'column'} spacing={1}>
 									<Stack direction={'column'}>
-										<Typography
-											variant='h4'
-											fontFamily={'Saira,sans-serif'}
-											fontWeight={700}
-											sx={{ verticalAlign: 'middle' }}>
-											{length ?? 0} / {total}{' '}
-											{JobTypeLabel[bookingSummary?.booking?.jobType || 'GYPSUM']} Application
+										<Typography variant='h5' fontWeight={700} sx={{ verticalAlign: 'middle' }}>
+											{appliedWorkerCount ?? 0} / {total}{' '}
+											{JobTypeLabel[bookingSummary?.booking?.jobType || 'GYPSUM']}
 										</Typography>
 										<Typography
 											sx={{
@@ -86,7 +79,7 @@ export const BookingId = () => {
 									<LinearProgress
 										color='error'
 										variant='determinate'
-										value={(length * 100) / total}
+										value={(appliedWorkerCount * 100) / total}
 										sx={{
 											height: '8px',
 											borderRadius: '10px',
@@ -207,13 +200,14 @@ export const BookingId = () => {
 				</Box>
 				<TabPanel
 					value='track-workers'
+					sx={{ p: 2 }}
 					style={{
 						height: isMobile ? 'calc( 100vh - 320px )' : '',
 
 						overflowY: 'auto',
 						position: 'relative',
 					}}>
-					<WorkerTracking handleRequiredTotal={handleRequiredTotal} />
+					<WorkerTracking handleRequiredTotal={setAppliedWorkerCount} />
 					{/* <Dashboard /> */}
 				</TabPanel>
 				<TabPanel

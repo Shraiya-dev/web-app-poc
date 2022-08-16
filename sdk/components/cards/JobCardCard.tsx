@@ -1,48 +1,67 @@
-import { Engineering, EqualizerRounded, LocationOn } from '@mui/icons-material'
-import { Box, Button, Card, Chip, Grid, Icon, Paper, Stack, Typography } from '@mui/material'
-import { styled } from '@mui/system'
+import { CircularProgress, Icon, Paper, Select, Stack, Typography } from '@mui/material'
 import Image from 'next/image'
-import Link from 'next/link'
-import { useRouter } from 'next/router'
-import { JobCardStateLabel, primary } from '../../constants'
-import { JobCard, JobCardState } from '../../types'
-import { JobCardStatusChip } from '../chips/jobCardStatusChip'
-import EngineeringIcon from '@mui/icons-material/Engineering'
-import { WorkerTypeLabel } from '../../constants/workerType'
-import WorkerType from '../../../public/assets/icons/workerType.svg'
-import LocationIcon from '../../../public/assets/icons/location.svg'
-import ExperienceIcon from '../../../public/assets/icons/experience.svg'
-import WorkerIcon from '../../../public/assets/icons/workerIcon.svg'
+import { useState } from 'react'
 import { useMobile } from 'sdk/hooks'
+import { Dropdown } from 'sdkv2/components'
+import ExperienceIcon from '../../../public/assets/icons/experience.svg'
+import LocationIcon from '../../../public/assets/icons/location.svg'
+import WorkerIcon from '../../../public/assets/icons/workerIcon.svg'
+import { primary, theme } from '../../constants'
+import { WorkerApplicationStatusLabel, WorkerTypeLabel } from '../../constants/worker'
+import { JobCard, WORKER_APPLICATION_STATUS } from '../../types'
+import { LinkButton } from '../button'
 
-const CustomPaper = styled(Paper)(({ theme }) => ({
-	overflow: 'hidden',
-	flex: 1,
-	padding: '14px 0 16px 0',
-	'.profileImage': {
-		width: 125,
-		backgroundPosition: 'center',
-		backgroundFit: 'cover',
-		backgroundRepeat: 'no-repeat',
-	},
-
-	'.vAlignCenter': {
-		display: 'flex',
-		alignItems: 'center',
-		fontSize: '14px',
-		fontWeight: '500',
-	},
-}))
 interface JobCardCardProps {
 	jobCard: JobCard
+	updateJobCard: (value: WORKER_APPLICATION_STATUS, jobCard: JobCard) => Promise<any>
 }
 
-export const JobCardCard = ({ jobCard }: JobCardCardProps) => {
-	const isMobile = useMobile()
+const ApplicationStatusColorMap: { [key in WORKER_APPLICATION_STATUS]: string } = {
+	[WORKER_APPLICATION_STATUS.COULD_NOT_CONNECT]: '#F69E5433',
+	[WORKER_APPLICATION_STATUS.WORK_STARTED]: '#EFC41A4D',
+	[WORKER_APPLICATION_STATUS.HIRED]: '#0FAF7F33',
+	[WORKER_APPLICATION_STATUS.REJECTED]: '#EA5A4D33',
+	[WORKER_APPLICATION_STATUS.INCORRECT_PROFILE]: '#EA5A4D33',
+	[WORKER_APPLICATION_STATUS.IN_PROGRESS]: '#F69E5433',
+}
+const ApplicationStatusOptions: { label: string; value: WORKER_APPLICATION_STATUS }[] = [
+	{
+		label: WorkerApplicationStatusLabel[WORKER_APPLICATION_STATUS.COULD_NOT_CONNECT],
+		value: WORKER_APPLICATION_STATUS.COULD_NOT_CONNECT,
+	},
+	{
+		label: WorkerApplicationStatusLabel[WORKER_APPLICATION_STATUS.WORK_STARTED],
+		value: WORKER_APPLICATION_STATUS.WORK_STARTED,
+	},
+	{
+		label: WorkerApplicationStatusLabel[WORKER_APPLICATION_STATUS.HIRED],
+		value: WORKER_APPLICATION_STATUS.HIRED,
+	},
+	{
+		label: WorkerApplicationStatusLabel[WORKER_APPLICATION_STATUS.REJECTED],
+		value: WORKER_APPLICATION_STATUS.REJECTED,
+	},
+	{
+		label: WorkerApplicationStatusLabel[WORKER_APPLICATION_STATUS.INCORRECT_PROFILE],
+		value: WORKER_APPLICATION_STATUS.INCORRECT_PROFILE,
+	},
+	{
+		label: WorkerApplicationStatusLabel[WORKER_APPLICATION_STATUS.IN_PROGRESS],
+		value: WORKER_APPLICATION_STATUS.IN_PROGRESS,
+	},
+]
+
+export const JobCardCard = ({ jobCard, updateJobCard }: JobCardCardProps) => {
 	return (
-		<CustomPaper elevation={1}>
-			{!isMobile ? (
-				<Stack flex={1} direction='column' alignItems='center' height='100%'>
+		<Paper elevation={1} sx={{ flex: 1, borderRadius: 2 }}>
+			<Stack spacing={2} alignItems='center' p={2}>
+				<Stack
+					flex={1}
+					width='100%'
+					direction={{ xs: 'row', md: 'column' }}
+					spacing={2}
+					alignItems='center'
+					height='100%'>
 					<Stack
 						position='relative'
 						sx={{ height: '33%', width: '33%', borderRadius: '50%', overflow: 'hidden' }}>
@@ -54,172 +73,110 @@ export const JobCardCard = ({ jobCard }: JobCardCardProps) => {
 							}
 						/>
 					</Stack>
-					<Stack direction={'column'} flex={1} maxWidth='calc(100% - 33%)' p={2} alignItems='center'>
-						<Stack mb={1} direction='row' justifyContent='center'>
-							<Typography
-								variant='h6'
-								fontFamily={'Saira,sans-serif'}
-								fontWeight={600}
-								textOverflow='ellipsis'
-								whiteSpace='nowrap'
-								overflow='hidden'
-								color={primary.properDark}>
-								{jobCard.WorkerName ?? 'No Name'}
-							</Typography>
+					<Stack direction={'column'} spacing={1} flex={1} alignItems={{ xs: 'flex-start', md: 'center' }}>
+						<Typography
+							mb={1}
+							variant='h5'
+							fontFamily={'Saira,sans-serif'}
+							fontWeight={700}
+							textOverflow='ellipsis'
+							whiteSpace='nowrap'
+							overflow='hidden'
+							color={primary.properDark}>
+							{jobCard.WorkerName ?? 'No Name'}
+						</Typography>
+						{false ? (
+							<CircularProgress size={20} />
+						) : (
+							<Dropdown
+								variant='filled'
+								value={jobCard.contractorFeedbackCode ?? 'none'}
+								options={ApplicationStatusOptions}
+								disableUnderline
+								onChange={(e) => updateJobCard(e.target.value as WORKER_APPLICATION_STATUS, jobCard)}
+								sx={{
+									backgroundColor: jobCard.contractorFeedbackCode
+										? ApplicationStatusColorMap[
+												jobCard.contractorFeedbackCode ??
+													WORKER_APPLICATION_STATUS.COULD_NOT_CONNECT
+										  ]
+										: '#0000000D',
+									borderRadius: 30,
+									'>div': {
+										color: '#000000',
 
-							{/* <JobCardStatusChip jobCardState={jobCard.jobCardState} sx={{ verticalAlign: 'middle' }} /> */}
-						</Stack>
-						<Stack direction={'column'} flex={1} mb={'40px'} spacing={1} alignItems={'center'}>
-							<Typography
-								fontFamily={'Karla,sans-serif'}
-								fontWeight={500}
-								className='vAlignCenter'
-								variant='body2'
-								color={primary.properDark}>
-								{/* <EngineeringIcon fontSize='inherit' /> */}
-								<Icon fontSize='inherit' style={{ display: 'flex' }}>
-									<Image src={WorkerIcon} />
-								</Icon>
-								&nbsp;{WorkerTypeLabel[jobCard.skillType]}
-							</Typography>
-							<Typography
-								fontFamily={'Karla,sans-serif'}
-								fontWeight={500}
-								className='vAlignCenter'
-								variant='body2'
-								color={primary.properDark}>
-								{/* <LocationOn fontSize='inherit' /> */}
-								<Icon fontSize='inherit' style={{ display: 'flex' }}>
-									<Image src={LocationIcon} />
-								</Icon>
-								&nbsp;{jobCard.city}, {jobCard.state}
-							</Typography>
-							<Typography
-								fontFamily={'Karla,sans-serif'}
-								fontWeight={500}
-								className='vAlignCenter'
-								variant='body2'
-								color={primary.properDark}>
-								{/* <EqualizerRounded fontSize='inherit' /> */}
-								<Icon fontSize='inherit' style={{ display: 'flex' }}>
-									<Image src={ExperienceIcon} />
-								</Icon>
-								&nbsp;{jobCard.experience} Years
-								{/* Years Of Experience */}
-							</Typography>
-						</Stack>
-						<Button
-							onClick={() => {
-								window.open('tel:9575418224')
-							}}>
-							<Stack spacing={1} direction={'row'} alignItems={'center'}>
-								<Box>
-									<img src='/assets/icons/buttonCall.svg' />
-								</Box>
-								<Typography
-									fontFamily={'Karla,sans-serif'}
-									fontWeight={700}
-									variant='body1'
-									color={primary.properDark}>
-									Call {jobCard.phoneNumber ?? ' 	'}
-								</Typography>
-							</Stack>
-						</Button>
+										px: 2,
+										py: 1,
+									},
+									'&:hover': {
+										backgroundColor: jobCard.contractorFeedbackCode
+											? ApplicationStatusColorMap[
+													jobCard.contractorFeedbackCode ??
+														WORKER_APPLICATION_STATUS.COULD_NOT_CONNECT
+											  ]
+											: '#0000000D',
+									},
+									'&.Mui-focused': {
+										backgroundColor: jobCard.contractorFeedbackCode
+											? ApplicationStatusColorMap[
+													jobCard.contractorFeedbackCode ??
+														WORKER_APPLICATION_STATUS.COULD_NOT_CONNECT
+											  ]
+											: '#0000000D',
+									},
+								}}
+								emptyState={{ label: 'Select Status', value: 'none' }}
+							/>
+						)}
+						<Typography
+							fontFamily={'Karla,sans-serif'}
+							fontWeight={500}
+							className='vAlignCenter'
+							variant='body2'
+							color={primary.properDark}>
+							{/* <EngineeringIcon fontSize='inherit' /> */}
+							<Icon fontSize='inherit' style={{ display: 'flex' }}>
+								<Image src={WorkerIcon} />
+							</Icon>
+							&nbsp;{WorkerTypeLabel[jobCard.skillType]}
+						</Typography>
+						<Typography
+							fontFamily={'Karla,sans-serif'}
+							fontWeight={500}
+							className='vAlignCenter'
+							variant='body2'
+							color={primary.properDark}>
+							{/* <LocationOn fontSize='inherit' /> */}
+							<Icon fontSize='inherit' style={{ display: 'flex' }}>
+								<Image src={LocationIcon} />
+							</Icon>
+							&nbsp;{jobCard.city}, {jobCard.state}
+						</Typography>
+						<Typography
+							fontFamily={'Karla,sans-serif'}
+							fontWeight={500}
+							className='vAlignCenter'
+							variant='body2'
+							color={primary.properDark}>
+							{/* <EqualizerRounded fontSize='inherit' /> */}
+							<Icon fontSize='inherit' style={{ display: 'flex' }}>
+								<Image src={ExperienceIcon} />
+							</Icon>
+							&nbsp;{jobCard.experience} Years
+							{/* Years Of Experience */}
+						</Typography>
 					</Stack>
 				</Stack>
-			) : (
-				<Stack direction={'column'} spacing={2}>
-					<Grid container>
-						<Grid item xs={5} pl={1.2}>
-							<Box sx={{ height: '104px', width: '127px', borderRadius: 1.5, overflow: 'hidden' }}>
-								<img
-									width={'100%'}
-									height={'100%'}
-									src={
-										jobCard?.workerImage?.length > 0
-											? jobCard?.workerImage
-											: '/assets/icons/workerIcon.svg'
-									}
-								/>
-							</Box>
-						</Grid>
-						<Grid item xs={7}>
-							<Stack direction={'column'} spacing={0.9}>
-								{' '}
-								<Box pl={0.5}>
-									<Typography
-										variant='h6'
-										fontFamily={'Saira,sans-serif'}
-										fontWeight={600}
-										textOverflow='ellipsis'
-										whiteSpace='nowrap'
-										overflow='hidden'
-										color={primary.properDark}>
-										{jobCard.WorkerName ?? 'No Name'}
-									</Typography>
-								</Box>
-								<Typography
-									fontFamily={'Karla,sans-serif'}
-									fontWeight={500}
-									className='vAlignCenter'
-									variant='body2'
-									color={primary.properDark}>
-									{/* <EngineeringIcon fontSize='inherit' /> */}
-									<Icon fontSize='inherit' style={{ display: 'flex' }}>
-										<Image src={WorkerIcon} />
-									</Icon>
-									&nbsp;{WorkerTypeLabel[jobCard.skillType]}
-								</Typography>
-								<Typography
-									fontFamily={'Karla,sans-serif'}
-									fontWeight={500}
-									className='vAlignCenter'
-									variant='body2'
-									color={primary.properDark}>
-									{/* <LocationOn fontSize='inherit' /> */}
-									<Icon fontSize='inherit' style={{ display: 'flex' }}>
-										<Image src={LocationIcon} />
-									</Icon>
-									&nbsp;{jobCard.city}, {jobCard.state}
-								</Typography>
-								<Typography
-									fontFamily={'Karla,sans-serif'}
-									fontWeight={500}
-									className='vAlignCenter'
-									variant='body2'
-									color={primary.properDark}>
-									{/* <EqualizerRounded fontSize='inherit' /> */}
-									<Icon fontSize='inherit' style={{ display: 'flex' }}>
-										<Image src={ExperienceIcon} />
-									</Icon>
-									&nbsp;{jobCard.experience} Years
-									{/* Years Of Experience */}
-								</Typography>
-							</Stack>
-						</Grid>
-					</Grid>
-					<Stack direction={'row'} justifyContent={'center'}>
-						<Button
-							size='small'
-							onClick={() => {
-								window.open('tel:9575418224')
-							}}>
-							<Stack spacing={0.5} direction={'row'} alignItems={'center'} px={4.5}>
-								<Box sx={{ position: 'relative', top: '3px' }}>
-									<img src='/assets/icons/buttonCall.svg' />
-								</Box>
-								<Typography
-									fontFamily={'Karla,sans-serif'}
-									variant='body1'
-									color={primary.properDark}
-									fontWeight={700}>
-									Call {jobCard.phoneNumber ?? ' 	'}
-								</Typography>
-							</Stack>
-						</Button>
-					</Stack>
-				</Stack>
-			)}
-		</CustomPaper>
+				{jobCard.phoneNumber && (
+					<LinkButton
+						sx={{ px: 5, py: 0.7 }}
+						startIcon={<img src='/assets/icons/buttonCall.svg' />}
+						href={`tel:${jobCard.phoneNumber}`}
+						onClick={() => {}}>
+						Call {jobCard.phoneNumber ?? ' 	'}
+					</LinkButton>
+				)}
+			</Stack>
+		</Paper>
 	)
 }
