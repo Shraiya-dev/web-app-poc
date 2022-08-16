@@ -21,7 +21,7 @@ const ApplicationStatusColorMap: { [key in WORKER_APPLICATION_STATUS]: string } 
 	[WORKER_APPLICATION_STATUS.WORK_STARTED]: '#EFC41A4D',
 	[WORKER_APPLICATION_STATUS.HIRED]: '#0FAF7F33',
 	[WORKER_APPLICATION_STATUS.REJECTED]: '#EA5A4D33',
-	[WORKER_APPLICATION_STATUS.INCORRECT]: '#EA5A4D33',
+	[WORKER_APPLICATION_STATUS.INCORRECT_PROFILE]: '#EA5A4D33',
 	[WORKER_APPLICATION_STATUS.IN_PROGRESS]: '#F69E5433',
 }
 const ApplicationStatusOptions: { label: string; value: WORKER_APPLICATION_STATUS }[] = [
@@ -42,8 +42,8 @@ const ApplicationStatusOptions: { label: string; value: WORKER_APPLICATION_STATU
 		value: WORKER_APPLICATION_STATUS.REJECTED,
 	},
 	{
-		label: WorkerApplicationStatusLabel[WORKER_APPLICATION_STATUS.INCORRECT],
-		value: WORKER_APPLICATION_STATUS.INCORRECT,
+		label: WorkerApplicationStatusLabel[WORKER_APPLICATION_STATUS.INCORRECT_PROFILE],
+		value: WORKER_APPLICATION_STATUS.INCORRECT_PROFILE,
 	},
 	{
 		label: WorkerApplicationStatusLabel[WORKER_APPLICATION_STATUS.IN_PROGRESS],
@@ -90,7 +90,7 @@ export const JobCardCard = ({ jobCard, updateJobCard }: JobCardCardProps) => {
 						) : (
 							<Dropdown
 								variant='filled'
-								value={'none'}
+								value={jobCard.contractorFeedbackCode ?? 'none'}
 								options={ApplicationStatusOptions}
 								disableUnderline
 								onChange={(e) => updateJobCard(e.target.value as WORKER_APPLICATION_STATUS, jobCard)}
@@ -107,6 +107,14 @@ export const JobCardCard = ({ jobCard, updateJobCard }: JobCardCardProps) => {
 
 										px: 2,
 										py: 1,
+									},
+									'&:hover': {
+										backgroundColor: jobCard.contractorFeedbackCode
+											? ApplicationStatusColorMap[
+													jobCard.contractorFeedbackCode ??
+														WORKER_APPLICATION_STATUS.COULD_NOT_CONNECT
+											  ]
+											: '#0000000D',
 									},
 									'&.Mui-focused': {
 										backgroundColor: jobCard.contractorFeedbackCode

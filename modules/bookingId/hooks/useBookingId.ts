@@ -69,6 +69,7 @@ export const useBookingId = () => {
 					jobCardData.map((item: any, index: any) => {
 						const jobCard: JobCard = {
 							jobCardId: item?.jobCard?.jobCardId,
+							contractorFeedbackCode: item?.jobCard?.contractorFeedback?.code,
 							workerId: item?.jobCard?.workerId,
 							WorkerName: item?.worker?.name ?? 'No Name',
 							jobType: item?.jobCard?.jobType,
@@ -90,7 +91,7 @@ export const useBookingId = () => {
 			setIsLoading(false)
 			// eslint-disable-next-line react-hooks/exhaustive-deps
 		},
-		[router.query.skillType, router.query.jobCardState, router.query.projectId]
+		[router.query, showSnackbar]
 	)
 	const updateContractorFeedback = useCallback(
 		async (value: WORKER_APPLICATION_STATUS, jobCard: JobCard) => {
