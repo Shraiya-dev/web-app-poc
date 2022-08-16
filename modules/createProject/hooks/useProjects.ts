@@ -63,15 +63,15 @@ const useCreateProject = () => {
 		form.setFieldValue('siteAddress', projectInformation?.siteAddress ?? '')
 		form.setFieldValue('sitePhotos', projectInformation?.images?.site ?? [])
 		form.setFieldValue('overTimeFactor', projectInformation?.overTime?.rate ?? 'none')
-		form.setFieldValue('pfAvailable', projectInformation?.hasPF ?? undefined)
-		form.setFieldValue('esiProvided', projectInformation?.hasESI ?? undefined)
-		form.setFieldValue('accomodationProvided', projectInformation?.images?.accommodations.length > 0 ?? undefined)
+		form.setFieldValue('pfAvailable', projectInformation?.benefits?.includes('PF') ?? undefined)
+		form.setFieldValue('esiProvided', projectInformation?.benefits?.includes('ESI') ?? undefined)
+		form.setFieldValue('accomodationProvided', projectInformation?.benefits?.includes('ACCOMODATION') ?? undefined)
 		form.setFieldValue('foodProvided', projectInformation?.benefits?.includes('FOOD') ?? undefined)
 		form.setFieldValue('accomodationPhotos', projectInformation?.images?.accommodations ?? [])
 	}, [projectInformation])
 
 	useEffect(() => {
-		console.log(projectInformation)
+		// console.log(projectInformation)
 		fillFormEditValues()
 	}, [isProjectId, projectInformation])
 

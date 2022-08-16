@@ -78,7 +78,7 @@ export const ProjectDetails: FC<Props> = () => {
 									fontFamily: 'Saira,sans-serif',
 								}}>
 								{/* {projectDetails?.name} */}
-								{projectName}
+								{projectName?.name}
 							</Typography>
 							<Typography
 								sx={{
@@ -88,7 +88,7 @@ export const ProjectDetails: FC<Props> = () => {
 								}}
 								textTransform='capitalize'>
 								<LocationOnOutlined style={{ fontSize: 12, verticalAlign: 'middle' }} />
-								&nbsp;{projectDetails?.city} , {projectDetails?.state}
+								&nbsp;{projectName?.city} , {projectName?.state}
 							</Typography>
 						</Stack>
 					</Stack>
