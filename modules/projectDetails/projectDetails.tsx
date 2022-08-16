@@ -17,6 +17,7 @@ import { Bills } from '../bills'
 import { LocationOnOutlined } from '@mui/icons-material'
 import { FC, useEffect, useMemo } from 'react'
 import { BottomLayout } from 'sdk/layouts/BottomLayout'
+import useCreateProject from 'modules/createProject/hooks/useProjects'
 interface Props {}
 export const tabList: { [key in string]: string } = {
 	'work-report': 'Work Report',
@@ -25,7 +26,8 @@ export const tabList: { [key in string]: string } = {
 	bills: 'Bills',
 }
 export const ProjectDetails: FC<Props> = () => {
-	const { selectedTab, handleTabSelection, projectDetails, enterpriseStatus } = useProjectDetails()
+	const { selectedTab, handleTabSelection, projectDetails, enterpriseStatus, projectName, setProjectName } =
+		useProjectDetails()
 	const isMobile = useMobile()
 	const router = useRouter()
 	const noBack = useMemo(() => {
@@ -36,6 +38,7 @@ export const ProjectDetails: FC<Props> = () => {
 		}
 		return false
 	}, [])
+
 	return (
 		<>
 			<CustomTopBar>
@@ -74,7 +77,8 @@ export const ProjectDetails: FC<Props> = () => {
 									color: theme.palette.secondary.main,
 									fontFamily: 'Saira,sans-serif',
 								}}>
-								{projectDetails?.name}
+								{/* {projectDetails?.name} */}
+								{projectName}
 							</Typography>
 							<Typography
 								sx={{
@@ -287,7 +291,7 @@ export const ProjectDetails: FC<Props> = () => {
 						overflowY: 'auto',
 						position: 'relative',
 					}}>
-					<ProjectInfo />
+					<ProjectInfo setProjectName={setProjectName} />
 				</TabPanel>
 			</TabContext>
 			{isMobile && <BottomLayout />}
