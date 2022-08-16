@@ -1,8 +1,7 @@
 import axios from 'axios'
-import { useFormik } from 'formik'
 import { useRouter } from 'next/router'
 import { useCallback, useEffect, useState } from 'react'
-import { BookingPreview, BookingDetailsPreview, JobCard, useSnackbar, WORKER_APPLICATION_STATUS } from '../../../sdk'
+import { BookingPreview, JobCard, useSnackbar, WORKER_APPLICATION_STATUS } from '../../../sdk'
 import { getBookingDetails, getWorkerDetails } from '../apis'
 
 interface FilterForm {
@@ -105,9 +104,7 @@ export const useBookingId = () => {
 				let pageNumber = `${Number(router.query.pageNumber) > 0 ? Number(router.query.pageNumber) - 1 : '0'}`
 				await getJobCards(pageNumber)
 			} catch (error: any) {
-				console.log(error)
-
-				showSnackbar(error?.response?.data?.developerInfo, 'error')
+				showSnackbar(error?.response?.data?.messageToUser || 'Failed to Update Application', 'error')
 			}
 		},
 		[getJobCards, router.query, showSnackbar]

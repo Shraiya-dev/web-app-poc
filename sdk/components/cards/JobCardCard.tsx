@@ -1,4 +1,4 @@
-import { CircularProgress, Icon, Paper, Stack, Typography } from '@mui/material'
+import { Avatar, CircularProgress, Icon, Paper, Stack, Typography } from '@mui/material'
 import Image from 'next/image'
 import { useState } from 'react'
 import { Dropdown } from 'sdkv2/components'
@@ -69,12 +69,9 @@ export const JobCardCard = ({ jobCard, updateJobCard }: JobCardCardProps) => {
 						spacing={2}
 						alignItems='center'
 						height='100%'>
-						<Stack
-							position='relative'
-							sx={{ height: '33%', width: '33%', borderRadius: '50%', overflow: 'hidden' }}>
-							<img
-								width={'100%'}
-								height={'100%'}
+						<Stack>
+							<Avatar
+								sx={{ width: 150, height: 150 }}
 								src={
 									jobCard?.workerImage?.length > 0
 										? jobCard?.workerImage
