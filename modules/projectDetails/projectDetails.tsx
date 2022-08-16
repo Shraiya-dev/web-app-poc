@@ -143,7 +143,18 @@ export const ProjectDetails: FC<Props> = () => {
 										)
 									)
 								} else if (tab === 'details') {
-									return null
+									return (
+										<Tab
+											sx={{
+												fontSize: '18px',
+												textTransform: 'none',
+												fontFamily: 'Karla,sans-serif',
+												fontWeight: 700,
+											}}
+											value='details'
+											label='Project Details'
+										/>
+									)
 								}
 								return (
 									<Tab

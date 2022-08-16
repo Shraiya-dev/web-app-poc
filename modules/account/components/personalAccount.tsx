@@ -51,12 +51,24 @@ const PersonalAccount = () => {
 
 					<Stack>
 						{isAccountEditable ? (
-							<EditInfo
-								setIsAccountEditable={setIsAccountEditable}
-								isAccountEditable={isAccountEditable}
-							/>
+							<Box
+								sx={{
+									maxHeight: isMobile ? 'calc(100vh - 180px)' : '',
+									overflowY: isMobile ? 'scroll' : '',
+								}}>
+								<EditInfo
+									setIsAccountEditable={setIsAccountEditable}
+									isAccountEditable={isAccountEditable}
+								/>
+							</Box>
 						) : (
-							<DisplayInfo />
+							<Box
+								sx={{
+									maxHeight: isMobile ? 'calc(100vh - 180px)' : '',
+									overflowY: isMobile ? 'scroll' : '',
+								}}>
+								<DisplayInfo />
+							</Box>
 						)}
 					</Stack>
 				</Stack>

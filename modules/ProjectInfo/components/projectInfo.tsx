@@ -1,6 +1,7 @@
 import { Box, Button, CircularProgress, Grid, IconButton, Paper, Stack, Typography } from '@mui/material'
+import { useRouter } from 'next/router'
 import { useState } from 'react'
-import { InputWrapper } from '../../../sdk'
+import { ButtonClicked, InputWrapper } from '../../../sdk'
 import { TextWrapper } from '../../../sdk/components/Input/TextWrapper'
 import ViewImage from '../../../sdk/components/viewImage/viewImage'
 import { JobBenefits } from '../../../sdk/types/jobBenefits'
@@ -8,6 +9,7 @@ import { overTimeLabel } from '../../createBooking/utils'
 import { useProjectInfo } from '../hooks/useProjectInfo'
 
 const ProjectInfo = () => {
+	const router = useRouter()
 	const { projectInfo, loading } = useProjectInfo()
 	const [viewSiteImg, setViewSiteImg] = useState(false)
 	const [viewAccomodationImg, setViewAccomodationImg] = useState(false)
@@ -39,7 +41,16 @@ const ProjectInfo = () => {
 						<Typography fontWeight={700} fontSize={24} pb={2}>
 							Site
 						</Typography>
-						{/* <Button variant='outlined'>Edit Project</Button> */}
+						<Button
+							variant='contained'
+							onClick={() => {
+								router.push({
+									pathname: '/projects/create',
+									query: { projectId: router.query.projectId },
+								})
+							}}>
+							Edit Project
+						</Button>
 					</Stack>
 					<Stack spacing={5}>
 						<TextWrapper id={'siteAddress'} label='Site Address'>

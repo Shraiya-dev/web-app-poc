@@ -1,11 +1,12 @@
 import { useFormik } from 'formik'
+import { useProjectInfo } from 'modules/ProjectInfo/hooks/useProjectInfo'
 import { useRouter } from 'next/router'
-import { useCallback, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { isPincodeValid, useSnackbar } from '../../../sdk'
 import { DataLayerPush } from '../../../sdk/analytics'
 import { ButtonClicked } from '../../../sdk/analytics/analyticsWrapper'
 import { JobBenefits } from '../../../sdk/types/jobBenefits'
-import { createProject, uploadImage } from '../apis/apis'
+import { createProject, updateProject, uploadImage } from '../apis/apis'
 
 interface CreateProjectForm {
 	// Project Info
@@ -42,6 +43,36 @@ const useCreateProject = () => {
 	})
 	const { showSnackbar } = useSnackbar()
 	const router = useRouter()
+	const { projectInfo } = useProjectInfo()
+	const [projectInformation, setProjectInformation] = useState<any>(projectInfo)
+	const [isProjectId, setIsProjectId] = useState(false)
+
+	useEffect(() => {
+		if (router.query.projectId !== undefined && projectInfo !== undefined) {
+			setIsProjectId(true)
+			setProjectInformation(projectInfo)
+		}
+	}, [router, projectInfo])
+
+	const fillFormEditValues = useCallback(() => {
+		form.setFieldValue('projectName', projectInformation?.name ?? '')
+		form.setFieldValue('state', projectInformation?.state ?? 'none')
+		form.setFieldValue('city', projectInformation?.city ?? 'none')
+		form.setFieldValue('pinCode', projectInformation?.pincode ?? '')
+		form.setFieldValue('siteAddress', projectInformation?.siteAddress ?? '')
+		form.setFieldValue('sitePhotos', projectInformation?.images?.site ?? [])
+		form.setFieldValue('overTimeFactor', projectInformation?.overTime?.rate ?? 'none')
+		form.setFieldValue('pfAvailable', projectInformation?.hasPF ?? undefined)
+		form.setFieldValue('esiProvided', projectInformation?.hasESI ?? undefined)
+		form.setFieldValue('accomodationProvided', projectInformation?.images?.accommodations.length > 0 ?? undefined)
+		form.setFieldValue('foodProvided', projectInformation?.benefits?.includes('FOOD') ?? undefined)
+		form.setFieldValue('accomodationPhotos', projectInformation?.images?.accommodations ?? [])
+	}, [projectInformation])
+
+	useEffect(() => {
+		console.log(projectInformation)
+		fillFormEditValues()
+	}, [isProjectId, projectInformation])
 
 	const handlePrev = () => {
 		if (step > 1) {
@@ -194,25 +225,47 @@ const useCreateProject = () => {
 			},
 		}
 
-		createProject(payload)
-			.then((res) => {
-				if (res?.status === 200) {
-					setIsSubmitable(false)
-					setLoading(false)
-					DataLayerPush({
-						event: 'project_created',
-					})
+		if (isProjectId) {
+			updateProject(payload, router.query.projectId)
+				.then((res) => {
+					if (res?.status === 200) {
+						setIsSubmitable(false)
+						setLoading(false)
+						DataLayerPush({
+							event: 'project_created',
+						})
 
-					showSnackbar('Project Created Successfully', 'success')
-					router.push('/dashboard')
-				}
-				//setStep((state) => state + 1)
-			})
-			.catch((error: any) => {
-				showSnackbar(error?.response?.data?.developerInfo, 'error')
-				console.log(error)
-				setLoading(false)
-			})
+						showSnackbar('Project Uploaded Successfully', 'success')
+
+						router.push(`/projects/${router.query.projectId}/details`)
+					}
+				})
+				.catch((error: any) => {
+					showSnackbar(error?.response?.data?.developerInfo, 'error')
+					console.log(error)
+					setLoading(false)
+				})
+		} else {
+			createProject(payload)
+				.then((res) => {
+					if (res?.status === 200) {
+						setIsSubmitable(false)
+						setLoading(false)
+						DataLayerPush({
+							event: 'project_created',
+						})
+
+						showSnackbar('Project Created Successfully', 'success')
+						router.push('/dashboard')
+					}
+					//setStep((state) => state + 1)
+				})
+				.catch((error: any) => {
+					showSnackbar(error?.response?.data?.developerInfo, 'error')
+					console.log(error)
+					setLoading(false)
+				})
+		}
 
 		setLoading(false)
 	}
@@ -259,6 +312,7 @@ const useCreateProject = () => {
 		setOncloseDialog,
 		loading,
 		setLoading,
+		isProjectId,
 	}
 }
 

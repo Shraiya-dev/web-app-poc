@@ -1,4 +1,4 @@
-import { Box, Button, CircularProgress, Grid, IconButton, Stack, styled, TextField } from '@mui/material'
+import { Box, Button, CircularProgress, Grid, IconButton, Stack, styled, TextField, Typography } from '@mui/material'
 import {
 	checkError,
 	CompanyNameField,
@@ -6,6 +6,7 @@ import {
 	getCustomerDetails,
 	InputWrapper,
 	primary,
+	theme,
 	useContractorAuth,
 	useMobile,
 } from '../../../sdk'
@@ -16,12 +17,23 @@ import { LoadingButton } from '@mui/lab'
 import useCompanyDetails from '../hooks/useCompanyDetails'
 import { Add, Close } from '@mui/icons-material'
 import { useCallback, useEffect } from 'react'
-import { updateOrganisation } from '../apis/apis'
+import { checkValidGSTIN, updateOrganisation } from '../apis/apis'
 
 const EditCompanyInfoStyle = styled(Box)(({ theme }) => ({}))
 
 const EditCompanyInfo = ({ ...props }) => {
-	const { form, loading, isGSTINDocUploaded, uploadFiles, getOrgDetails, orgDetails } = useCompanyDetails()
+	const {
+		form,
+		loading,
+		isGSTINDocUploaded,
+		uploadFiles,
+		getOrgDetails,
+		orgDetails,
+		getGSTDetail,
+		isValidGST,
+		validGSTResponse,
+		setIsValidGST,
+	} = useCompanyDetails()
 	const { isCmpDetailsEditable, setIsCmpDetailsEditable } = props
 	const router = useRouter()
 	const { user } = useContractorAuth()
@@ -32,24 +44,28 @@ const EditCompanyInfo = ({ ...props }) => {
 		const payload = {
 			companyName: form.values.companyName,
 			GSTIN: form.values.GSTIN.toUpperCase(),
-			GstinCertificate: form.values.GSTINDocuments[0],
+			// GstinCertificate: form.values.GSTINDocuments[0],
 		}
 		const orgId = user?.organisationId
-		const { data } = await updateOrganisation(payload, orgId)
+		const { data } = await updateOrganisation(payload)
 		//	getOrgDetails()
 		router.push('/profile/details')
 	}, [form])
 
+	// useEffect(() => {
+	// 	if (user?.organisationId) {
+	// 		getOrgDetails(user?.organisationId)
+	// 	} else {
+	// 		getCustomerDetails()
+	// 			.then((res) => getOrgDetails(res?.data?.payload?.linkedOrganisation?.organisationId))
+	// 			.catch((error) => {
+	// 				console.log('error', error)
+	// 			})
+	// 	}
+	// }, [])
+
 	useEffect(() => {
-		if (user?.organisationId) {
-			getOrgDetails(user?.organisationId)
-		} else {
-			getCustomerDetails()
-				.then((res) => getOrgDetails(res?.data?.payload?.linkedOrganisation?.organisationId))
-				.catch((error) => {
-					console.log('error', error)
-				})
-		}
+		getOrgDetails()
 	}, [])
 
 	return (
@@ -71,27 +87,43 @@ const EditCompanyInfo = ({ ...props }) => {
 							/>
 						</InputWrapper>
 
-						<InputWrapper id='GSTIN' label='GSTIN'>
-							<TextField
-								id='GSTIN'
-								name='GSTIN'
-								onChange={(e) => {
-									if (e.target.value.length <= 15) {
-										form.handleChange(e)
-									}
-								}}
-								onBlur={form.handleBlur}
-								value={form.values.GSTIN}
-								placeholder='15 Digits GSTIN'
-								error={!!checkError('GSTIN', form)}
-								helperText={checkError('GSTIN', form)}
-								inputProps={{
-									style: { textTransform: 'uppercase' , color:'#000' },
-								}}
-							/>
-						</InputWrapper>
+						<Stack direction={'column'} spacing={1}>
+							<InputWrapper id='GSTIN' label='GSTIN'>
+								<TextField
+									id='GSTIN'
+									name='GSTIN'
+									onChange={(e) => {
+										if (e.target.value.length <= 15) {
+											form.handleChange(e)
+										}
+									}}
+									onBlur={form.handleBlur}
+									value={form.values.GSTIN}
+									placeholder='15 Digits GSTIN'
+									error={!!checkError('GSTIN', form)}
+									helperText={checkError('GSTIN', form)}
+									inputProps={{
+										style: { textTransform: 'uppercase', color: '#000' },
+									}}
+								/>
+							</InputWrapper>
+							{isValidGST && (
+								<Typography variant='subtitle2' sx={{ color: '#fff' }}>
+									{validGSTResponse}
+								</Typography>
+							)}
 
-						<InputWrapper id='GSTINDoc' label='Upload GSTIN Certificate'>
+							<Button
+								size='small'
+								style={{
+									width: '50%',
+								}}
+								onClick={getGSTDetail}>
+								Validate GSTIN
+							</Button>
+						</Stack>
+
+						{/* <InputWrapper id='GSTINDoc' label='Upload GSTIN Certificate'>
 							<Grid container item xs={12} sm={12} md={12} lg={12} rowSpacing={1}>
 								<FileInput
 									sx={{
@@ -153,8 +185,7 @@ const EditCompanyInfo = ({ ...props }) => {
 
 															top: -10,
 															right: -10,
-														})}
-													>
+														})}>
 														<Close />
 													</IconButton>
 
@@ -180,7 +211,7 @@ const EditCompanyInfo = ({ ...props }) => {
 									)
 								})}
 							</Grid>
-						</InputWrapper>
+						</InputWrapper> */}
 					</Stack>
 
 					<Stack direction='row' style={{ fontSize: '18px', paddingTop: 32 }} spacing={2}>
@@ -205,32 +236,48 @@ const EditCompanyInfo = ({ ...props }) => {
 							Cancel
 						</Button>
 
-						<LoadingButton
-							//type='submit'
-							onClick={async () => {
-								await updateOrg()
-								//getOrgDetails()
-								setIsCmpDetailsEditable((state: any) => !state)
+						{isValidGST && form.isValid ? (
+							<LoadingButton
+								//type='submit'
+								onClick={async () => {
+									await updateOrg()
+									//getOrgDetails()
+									setIsCmpDetailsEditable((state: any) => !state)
 
-								ButtonClicked({
-									action: 'Save Edit Profile',
-									page: 'Company Profile',
-									url: router.asPath,
-								})
-							}}
-							loading={loading}
-							variant='contained'
-							disabled={
-								loading ||
-								!form.isValid ||
-								!form.values.GSTIN ||
-								!form.values.companyName ||
-								form.values.GSTINDocuments.length === 0
-							}
-							fullWidth
-						>
-							Save
-						</LoadingButton>
+									ButtonClicked({
+										action: 'Save Edit Profile',
+										page: 'Company Profile',
+										url: router.asPath,
+									})
+								}}
+								loading={loading}
+								variant='contained'
+								disabled={
+									loading || !form.isValid || !form.values.GSTIN || !form.values.companyName
+									// form.values.GSTINDocuments.length === 0
+								}
+								style={{
+									background: theme.palette.primary.main,
+									color: primary.properDark,
+								}}
+								fullWidth>
+								Save
+							</LoadingButton>
+						) : (
+							<Button
+								variant='contained'
+								fullWidth
+								sx={{
+									background: '#AFAFAF',
+									color: '#fff',
+									'&:hover': {
+										color: '#fff',
+										background: '#AFAFAF',
+									},
+								}}>
+								Save
+							</Button>
+						)}
 					</Stack>
 				</form>
 			</Stack>
