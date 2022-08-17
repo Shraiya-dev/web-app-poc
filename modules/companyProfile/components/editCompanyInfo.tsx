@@ -115,7 +115,7 @@ const EditCompanyInfo = ({ ...props }) => {
 									onChange={(e) => {
 										if (e.target.value.length <= 15) {
 											form.handleChange(e)
-											setHasUpdateValue(true)
+											setHasUpdateValue(false)
 										}
 									}}
 									onBlur={form.handleBlur}

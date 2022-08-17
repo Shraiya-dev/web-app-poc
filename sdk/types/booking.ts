@@ -101,6 +101,7 @@ export interface CustomerBookingDetailsClientResponse {
 
 	status?: BOOKING_STATES
 	createdAt: Date
+	bookingType: String
 }
 
 export interface BookingsWorkerInfo {

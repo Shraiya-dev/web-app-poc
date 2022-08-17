@@ -170,7 +170,7 @@ const BookingInfo = ({ ...props }: BookingInfo) => {
 
 							<TextWrapper
 								id={'workerRequired'}
-								label={`Workers Required & Daily Wage`}
+								label={`Workers Required & Daily Wagehhhh`}
 								toolTip={'Daily wage per worker'}>
 								{workerType.map((item, index) => {
 									return (
@@ -186,10 +186,9 @@ const BookingInfo = ({ ...props }: BookingInfo) => {
 											<Box minWidth={50} style={{ verticalAlign: 'middle' }} mt={0.8}>
 												{item?.count ?? 0}
 											</Box>
-											<Box
-												minWidth={20}
-												style={{ verticalAlign: 'middle' }}
-												mt={0.8}>{`Rs. ${item?.wage}`}</Box>
+											<Box minWidth={20} style={{ verticalAlign: 'middle' }} mt={0.8}>{`Rs. ${
+												item?.wage ?? 0
+											}`}</Box>
 										</Stack>
 									)
 								})}

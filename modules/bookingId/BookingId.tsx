@@ -89,7 +89,7 @@ export const BookingId = () => {
 								</Stack>
 							</Stack>
 
-							{!isMobile && (
+							{!isMobile && bookingSummary?.booking?.bookingType === 'LIMITED_DISCOVERY' && (
 								<Button
 									href={`/bookings/${router.query.projectId}/${router.query.bookingId}/checkout`}
 									onClick={() => {
@@ -105,7 +105,6 @@ export const BookingId = () => {
 									+ Get More Application
 								</Button>
 							)}
-
 							{/* <StatusChip
 								bookingState={bookingSummary?.booking?.status}
 								sx={{ verticalAlign: 'middle', marginTop: 1, marginLeft: 3 }}
@@ -126,7 +125,7 @@ export const BookingId = () => {
 			)}
 
 			<TabContext value={router.query.tab as string}>
-				{isMobile && (
+				{isMobile && bookingSummary?.booking?.bookingType === 'LIMITED_DISCOVERY' && (
 					<Box pt={2} pl={2}>
 						<Button
 							href={`/bookings/${router.query.projectId}/${router.query.bookingId}/checkout`}
