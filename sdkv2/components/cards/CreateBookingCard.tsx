@@ -53,8 +53,12 @@ export const CreateBookingCard: FC<Props> = () => {
 											disableListWrap
 											ListboxComponent={ListboxComponent}
 											options={allCityList}
-											value={capitalize(form.values.location ?? '') as any}
-											isOptionEqualToValue={(opt, v) => v?.value?.toLowerCase() === opt?.value}
+											getOptionLabel={(options) => options.label}
+											isOptionEqualToValue={(opt, v) => v.value === opt?.value}
+											value={{
+												label: capitalize(form.values.location ?? ''),
+												value: form.values.location ?? '',
+											}}
 											onChange={(e, v) => {
 												form.setFieldValue('location', v?.value)
 											}}

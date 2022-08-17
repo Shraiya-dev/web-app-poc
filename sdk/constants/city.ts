@@ -6515,7 +6515,7 @@ export const allCityList: any = [
 	},
 	{
 		id: '1074',
-		label: 'Srisailam Project (Right Flank Colony) Townshi, Andhra Pradesh',
+		label: 'Srisailam Project (Right Flank Colony) Township, Andhra Pradesh',
 		value: 'srisailam project (right flank colony) township, andhra pradesh',
 	},
 	{
@@ -10055,8 +10055,8 @@ export const allCityList: any = [
 	},
 	{
 		id: '1099',
-		label: 'Morinda, India, Punjab',
-		value: 'morinda, india, punjab',
+		label: 'Morinda, Punjab',
+		value: 'morinda, punjab',
 	},
 	{
 		id: '1145',

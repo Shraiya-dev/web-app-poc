@@ -87,9 +87,7 @@ export const useEasyBooking = () => {
 		try {
 			const discoveryBookingFromCookie = JSON.parse(getCookie('discoveryBooking'))
 			form.setValues(discoveryBookingFromCookie)
-		} catch (error) {
-			console.log(error)
-		}
+		} catch (error) {}
 	}, [])
 
 	const formikProps = useFormikProps(form)
