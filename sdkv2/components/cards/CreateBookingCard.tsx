@@ -32,7 +32,7 @@ export const CreateBookingCard: FC<Props> = () => {
 	return (
 		<>
 			<Card elevation={16}>
-				<Stack p={4}>
+				<Stack px={{ xs: 2, md: 4 }} py={4}>
 					<Stack>
 						<Typography variant='h3'>
 							First{' '}
@@ -45,7 +45,7 @@ export const CreateBookingCard: FC<Props> = () => {
 						<Typography variant='caption'>*after receiving 15 applications</Typography>
 					</Stack>
 					<form onSubmit={form.handleSubmit}>
-						<Stack spacing={2.5} my={2} alignItems='flex-start' pr={step === 0 ? 6 : 3}>
+						<Stack spacing={2.5} my={2} alignItems='flex-start' pr={step === 0 ? 6 : { xs: 0, md: 3 }}>
 							{step === 0 && (
 								<>
 									<InputWrapper fullWidth label='Select Location'>
@@ -159,7 +159,7 @@ export const CreateBookingCard: FC<Props> = () => {
 							{step === 1 && (
 								<>
 									<InputWrapper fullWidth label='Specify booking details'>
-										<Stack spacing={3} mt={2} pr={{ md: 5 }}>
+										<Stack spacing={3} mt={2} pr={{ xs: 0, md: 5 }}>
 											<Stack
 												direction='row'
 												justifyContent='space-between'
@@ -182,14 +182,31 @@ export const CreateBookingCard: FC<Props> = () => {
 												/>
 												<TextField
 													disabled={!form.values.isHelper}
-													sx={{ maxWidth: 200 }}
+													sx={{
+														maxWidth: { xs: '56%', md: 200 },
+														'input::-webkit-input-placeholder': {
+															fontSize: { xs: '12px', md: '16px' },
+														},
+													}}
 													type='number'
 													InputProps={{
 														startAdornment: (
-															<InputAdornment position='start'>&#8377;</InputAdornment>
+															<InputAdornment
+																position='start'
+																sx={{
+																	fontSize: { xs: '12px', md: '16px' },
+																}}>
+																&#8377;
+															</InputAdornment>
 														),
 														endAdornment: (
-															<InputAdornment position='start'>/ day</InputAdornment>
+															<InputAdornment
+																position='start'
+																sx={{
+																	fontSize: { xs: '12px', md: '16px' },
+																}}>
+																/ day
+															</InputAdornment>
 														),
 													}}
 													placeholder='Enter Wage'
@@ -227,7 +244,12 @@ export const CreateBookingCard: FC<Props> = () => {
 
 												<TextField
 													disabled={!form.values.isTechnician}
-													sx={{ maxWidth: 200 }}
+													sx={{
+														maxWidth: { xs: '56%', md: 200 },
+														'input::-webkit-input-placeholder': {
+															fontSize: { xs: '12px', md: '16px' },
+														},
+													}}
 													type='number'
 													placeholder='Enter Wage'
 													{...formikProps('technicianWage')}
@@ -241,10 +263,22 @@ export const CreateBookingCard: FC<Props> = () => {
 													}}
 													InputProps={{
 														startAdornment: (
-															<InputAdornment position='start'>&#8377;</InputAdornment>
+															<InputAdornment
+																position='start'
+																sx={{
+																	fontSize: { xs: '12px', md: '16px' },
+																}}>
+																&#8377;
+															</InputAdornment>
 														),
 														endAdornment: (
-															<InputAdornment position='start'>/ day</InputAdornment>
+															<InputAdornment
+																position='start'
+																sx={{
+																	fontSize: { xs: '12px', md: '16px' },
+																}}>
+																/ day
+															</InputAdornment>
 														),
 													}}
 												/>
@@ -272,7 +306,12 @@ export const CreateBookingCard: FC<Props> = () => {
 
 												<TextField
 													disabled={!form.values.isSupervisor}
-													sx={{ maxWidth: 200 }}
+													sx={{
+														maxWidth: { xs: '56%', md: 200 },
+														'input::-webkit-input-placeholder': {
+															fontSize: { xs: '12px', md: '16px' },
+														},
+													}}
 													type='number'
 													placeholder='Enter Wage'
 													{...formikProps('supervisorWage')}
@@ -286,10 +325,22 @@ export const CreateBookingCard: FC<Props> = () => {
 													}}
 													InputProps={{
 														startAdornment: (
-															<InputAdornment position='start'>&#8377;</InputAdornment>
+															<InputAdornment
+																position='start'
+																sx={{
+																	fontSize: { xs: '12px', md: '16px' },
+																}}>
+																&#8377;
+															</InputAdornment>
 														),
 														endAdornment: (
-															<InputAdornment position='start'>/ day</InputAdornment>
+															<InputAdornment
+																position='start'
+																sx={{
+																	fontSize: { xs: '12px', md: '16px' },
+																}}>
+																/ day
+															</InputAdornment>
 														),
 													}}
 												/>

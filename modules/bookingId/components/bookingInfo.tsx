@@ -170,7 +170,7 @@ const BookingInfo = ({ ...props }: BookingInfo) => {
 
 							<TextWrapper
 								id={'workerRequired'}
-								label={`Workers Required & Daily Wagehhhh`}
+								label={`Workers Required & Daily Wage`}
 								toolTip={'Daily wage per worker'}>
 								{workerType.map((item, index) => {
 									return (

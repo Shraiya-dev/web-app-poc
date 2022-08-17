@@ -189,6 +189,9 @@ export const CreateProject = () => {
 										placeholder='Enter project name'
 										fullWidth
 										value={form.values.projectName}
+										// onBlur={() => {
+										// 	form.setFieldValue('projectName', form?.values?.projectName?.trim())
+										// }}
 										onChange={(e) => {
 											form.handleChange(e)
 										}}
