@@ -21,7 +21,15 @@ export const useEasyBooking = () => {
 				values: values,
 			},
 		})
-		createCookieInHour('discoveryBooking', JSON.stringify(values), 45)
+		createCookieInHour(
+			'discoveryBooking',
+			JSON.stringify({
+				...values,
+				city: values.location.split(', ')[0],
+				state: values.location.split(', ')[1],
+			}),
+			45
+		)
 		router.push('/login')
 	}
 	const form = useFormik({
@@ -78,10 +86,11 @@ export const useEasyBooking = () => {
 	useEffect(() => {
 		try {
 			const discoveryBookingFromCookie = JSON.parse(getCookie('discoveryBooking'))
-			form.setValues(discoveryBookingFromCookie)
-		} catch (error) {
-			console.log(error)
-		}
+			form.setValues({
+				...discoveryBookingFromCookie,
+				location: `${discoveryBookingFromCookie.city}, ${discoveryBookingFromCookie.state}`,
+			})
+		} catch (error) {}
 	}, [])
 
 	const formikProps = useFormikProps(form)

@@ -329,8 +329,8 @@ const ContractorAuthProvider: FC<ContractorAuthProviderProps> = ({ children, aut
 				setBackdropProps({ open: true })
 				const payload = {
 					jobType: bookingDetails.jobType,
-					city: bookingDetails.location.split(', ')[0],
-					state: bookingDetails.location.split(', ')[1],
+					city: bookingDetails.city,
+					state: bookingDetails.state,
 					requirements: {
 						HELPER: bookingDetails.isHelper
 							? {
