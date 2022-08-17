@@ -21,7 +21,15 @@ export const useEasyBooking = () => {
 				values: values,
 			},
 		})
-		createCookieInHour('discoveryBooking', JSON.stringify(values), 45)
+		createCookieInHour(
+			'discoveryBooking',
+			JSON.stringify({
+				...values,
+				city: values.location.split(', ')[0],
+				state: values.location.split(', ')[1],
+			}),
+			45
+		)
 		router.push('/login')
 	}
 	const form = useFormik({
