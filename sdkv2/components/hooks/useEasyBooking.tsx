@@ -86,7 +86,10 @@ export const useEasyBooking = () => {
 	useEffect(() => {
 		try {
 			const discoveryBookingFromCookie = JSON.parse(getCookie('discoveryBooking'))
-			form.setValues(discoveryBookingFromCookie)
+			form.setValues({
+				...discoveryBookingFromCookie,
+				location: `${discoveryBookingFromCookie.city}, ${discoveryBookingFromCookie.state}`,
+			})
 		} catch (error) {}
 	}, [])
 
