@@ -114,6 +114,9 @@ const useCreateProject = () => {
 			if (values.pinCode && !isPincodeValid(values.pinCode)) {
 				errors.pinCode = 'Enter Valid pincode'
 			}
+			if (values.projectName.trim().length <= 0) {
+				errors.projectName = 'Enter valid Project Name'
+			}
 			//errors.pinCode = 'Enter Valid pincode'
 
 			return errors
