@@ -152,14 +152,13 @@ const useCompanyDetails = () => {
 				setIsValidGST(true)
 				showSnackbar('GSTIN is valid', 'success')
 				setValidGSTResponse(data?.payload?.tradeName)
-				console.log(data.payload.tradeName)
+				setHasUpdateValue(true)
 			} else {
 				setIsValidGST(false)
 				showSnackbar(data?.messageToUser, 'error')
 			}
 		} catch (error) {
 			setIsValidGST(false)
-			console.log(error)
 			showSnackbar('Invalid GST', 'error')
 		}
 	}, [form, showSnackbar])
