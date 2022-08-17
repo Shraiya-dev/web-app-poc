@@ -11,6 +11,8 @@ body {
 	background-color: '#FFFFFF';
 	font-family: 'Mulish', Roboto, Oxygen, sans-serif;
 	width: 100vw;
+	height: 100vh;
+	max-width: 100%;
 	overflow-x: hidden;
 	/* always update according tpp bar height  */
 	min-height: calc(100vh - 84px);

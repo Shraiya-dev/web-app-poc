@@ -199,11 +199,10 @@ export const BookingId = () => {
 				</Box>
 				<TabPanel
 					value='track-workers'
-					sx={{ p: 2 }}
-					style={{
-						height: isMobile ? 'calc( 100vh - 320px )' : '',
-
+					sx={{
+						height: { xs: 'calc( 100vh - 240px )', md: '' },
 						overflowY: 'auto',
+						p: 2,
 						position: 'relative',
 					}}>
 					<WorkerTracking handleRequiredTotal={setAppliedWorkerCount} />
@@ -211,10 +210,10 @@ export const BookingId = () => {
 				</TabPanel>
 				<TabPanel
 					value='details'
-					style={{
-						height: isMobile ? 'calc( 100vh - 320px )' : '',
-
+					sx={{
+						height: { xs: 'calc( 100vh - 240px )', md: '' },
 						overflowY: 'auto',
+						p: 2,
 						position: 'relative',
 					}}>
 					{bookingSummary ? <BookingInfo bookingInfo={bookingSummary} loading={isLoading} /> : ''}

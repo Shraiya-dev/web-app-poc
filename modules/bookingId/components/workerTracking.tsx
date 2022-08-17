@@ -67,7 +67,6 @@ const WorkerTracking = ({ handleRequiredTotal }: handleLength) => {
 	const workerCardStatusFilterOptions: { label: string; value: WORKER_APPLICATION_STATUS }[] = [
 		{ label: `Could not connect`, value: WORKER_APPLICATION_STATUS.COULD_NOT_CONNECT },
 		{ label: `Hired`, value: WORKER_APPLICATION_STATUS.HIRED },
-		{ label: `Incorrect profile`, value: WORKER_APPLICATION_STATUS.INCORRECT_PROFILE },
 		{ label: `In progress`, value: WORKER_APPLICATION_STATUS.IN_PROGRESS },
 		{ label: `Rejected`, value: WORKER_APPLICATION_STATUS.REJECTED },
 		{ label: `Work Started`, value: WORKER_APPLICATION_STATUS.WORK_STARTED },
@@ -148,7 +147,7 @@ const WorkerTracking = ({ handleRequiredTotal }: handleLength) => {
 					</Stack>
 				) : (
 					<Stack spacing={2}>
-						<Stack direction='row' spacing={2} alignItems='center'>
+						<Stack direction='row' flexWrap={'wrap'} spacing={2} alignItems='center'>
 							<Typography noWrap>Skills :</Typography>
 							<ChipFilter filterKey='skillType' filterOptions={skillFilterOptions} />
 							{/* <Pagination
@@ -179,7 +178,7 @@ const WorkerTracking = ({ handleRequiredTotal }: handleLength) => {
 								}}
 							/> */}
 						</Stack>
-						<Stack direction='row' spacing={2} alignItems='center'>
+						<Stack direction='row' flexWrap={'wrap'} spacing={2} alignItems='center'>
 							<Typography noWrap>Status :</Typography>
 							<ChipFilter
 								selectedColor='success'
@@ -217,7 +216,7 @@ const WorkerTracking = ({ handleRequiredTotal }: handleLength) => {
 						<Grid container spacing={2}>
 							{jobCards.map((jobCardInfo, index) => {
 								return (
-									<Grid item xs={12} md={4} key={index}>
+									<Grid item xs={12} sm={6} lg={4} xl={3} key={index}>
 										<JobCardCard jobCard={jobCardInfo} updateJobCard={updateContractorFeedback} />
 									</Grid>
 								)
@@ -331,7 +330,7 @@ export const FilterDrawer: FC<Props> = ({ filterKey, open, options, title, onClo
 							router.query[filterKey] = filterSelected.join(',')
 						}
 
-						router.push(router)
+						router.replace(router)
 						onClose()
 					}}>
 					Apply

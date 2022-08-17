@@ -159,7 +159,7 @@ export const ProjectDashboard = () => {
 					) : (
 						<Grid container spacing={3}>
 							{projects.projects.length === 0 ? (
-								<Grid item xs={12} md={3}>
+								<Grid item xs={12} sm={6} md={4} lg={3}>
 									<Paper className='info'>
 										<Stack
 											justifyContent={'center'}
@@ -194,7 +194,7 @@ export const ProjectDashboard = () => {
 							) : (
 								projects.projects.map((project, index) => {
 									return (
-										<Grid item xs={12} md={3} key={index}>
+										<Grid item xs={12} sm={6} md={4} lg={3} key={index}>
 											<ProjectCard project={project} />
 										</Grid>
 									)

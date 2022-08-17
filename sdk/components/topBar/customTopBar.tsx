@@ -34,10 +34,10 @@ export const CustomTopBar = ({ children }: any) => {
 	return (
 		<CustomAppBar
 			sx={{
-				backgroundColor: !isMobile ? APP_BAR_BG_COLOR : primary.properDark,
-				left: isMobile ? 0 : '',
-				right: isMobile ? 0 : '',
-				mt: isMobile ? '-24px' : '',
+				backgroundColor: { md: APP_BAR_BG_COLOR, xs: primary.properDark },
+				left: { xs: 0, md: undefined },
+				right: { xs: 0, md: undefined },
+				mt: { xs: -3, md: 0 },
 			}}>
 			<Box style={{ marginLeft: 0, padding: 0 }}>
 				<Toolbar className='toolbar'>
@@ -52,30 +52,29 @@ export const CustomTopBar = ({ children }: any) => {
 					</Stack>
 				</Toolbar>
 			</Box>
-			{!isMobile && (
-				<Stack direction={'row'} spacing={2} pr={2}>
-					<Stack direction={'row'} spacing={1} alignItems={'center'}>
-						<img height={25} src='/assets/icons/mail.svg' />
-						<Typography
-							component='a'
-							href='mailto:marketing@projecthero.in'
-							fontFamily={'Karla,sans-serif'}
-							fontWeight={700}>
-							marketing@projecthero.in
-						</Typography>
-					</Stack>
-					<Stack direction={'row'} spacing={1} alignItems={'center'}>
-						<img height={25} src='/assets/icons/phone.svg' />
-						<Typography
-							component='a'
-							href='tel:+91 9151003513'
-							fontFamily={'Karla,sans-serif'}
-							fontWeight={700}>
-							+91-9151003513
-						</Typography>
-					</Stack>
+
+			<Stack display={{ xs: 'none', md: 'flex' }} direction={{ md: 'column', lg: 'row' }} spacing={2} mr={2}>
+				<Stack direction={'row'} spacing={1} alignItems={'center'}>
+					<img height={25} src='/assets/icons/mail.svg' />
+					<Typography
+						component='a'
+						href='mailto:marketing@projecthero.in'
+						fontFamily={'Karla,sans-serif'}
+						fontWeight={700}>
+						marketing@projecthero.in
+					</Typography>
 				</Stack>
-			)}
+				<Stack direction={'row'} spacing={1} alignItems={'center'}>
+					<img height={25} src='/assets/icons/phone.svg' />
+					<Typography
+						component='a'
+						href='tel:+91 9151003513'
+						fontFamily={'Karla,sans-serif'}
+						fontWeight={700}>
+						+91-9151003513
+					</Typography>
+				</Stack>
+			</Stack>
 		</CustomAppBar>
 	)
 }
