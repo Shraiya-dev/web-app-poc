@@ -106,7 +106,7 @@ export const ProjectDashboard = () => {
 					)}
 					<Stack direction={'column'}>
 						<Typography
-							style={{
+							sx={{
 								fontSize: 26,
 								fontWeight: 600,
 								fontFamily: 'Saira, sans-serif',
@@ -114,7 +114,7 @@ export const ProjectDashboard = () => {
 							}}>
 							Dashboard
 						</Typography>
-						<Typography style={{ fontSize: 14, color: theme.palette.secondary.main }}>
+						<Typography sx={{ fontSize: 14, color: theme.palette.secondary.main }}>
 							{user?.companyName}
 						</Typography>
 					</Stack>
@@ -123,7 +123,7 @@ export const ProjectDashboard = () => {
 			<CustomProjectDashBoard>
 				<Stack direction={'row'} pt={3} pb={3}>
 					<Typography
-						style={{
+						sx={{
 							fontFamily: 'Saira, sans-serif',
 							fontWeight: '700',
 							fontSize: 22,
@@ -131,9 +131,9 @@ export const ProjectDashboard = () => {
 						}}>
 						Projects{' '}
 						<Button
-							startIcon={<AddCircleOutlineIcon style={{ verticalAlign: 'middle' }} />}
+							startIcon={<AddCircleOutlineIcon sx={{ verticalAlign: 'middle' }} />}
 							variant='text'
-							style={{ verticalAlign: 'middle' }}
+							sx={{ verticalAlign: 'middle' }}
 							onClick={() => {
 								ButtonClicked({
 									action: 'Add Project',
@@ -171,10 +171,10 @@ export const ProjectDashboard = () => {
 												})
 												router.push('/projects/create')
 											}}
-											style={{ cursor: 'pointer' }}>
+											sx={{ cursor: 'pointer' }}>
 											<Stack direction={'row'} justifyContent={'center'} pb={1}>
 												<AddCircleOutlineIcon
-													style={{
+													sx={{
 														verticalAlign: 'middle',
 														color: primary.properDark,
 														fontSize: 56,
@@ -186,7 +186,7 @@ export const ProjectDashboard = () => {
 											</Typography>
 										</Stack>
 
-										<Stack direction={'row'} justifyContent={'flex-end'} style={{ marginLeft: 60 }}>
+										<Stack direction={'row'} justifyContent={'flex-end'} sx={{ marginLeft: 60 }}>
 											<Image src={EmptyProject} />
 										</Stack>
 									</Paper>
@@ -229,7 +229,7 @@ export const ProjectDashboard = () => {
 					onClose={toggleDrawer}
 					variant={isMobile ? 'temporary' : 'permanent'}
 					PaperProps={{
-						style: {
+						sx: {
 							boxShadow: 'none',
 							background: primary.darkGrey,
 						},
@@ -284,7 +284,7 @@ export const ProjectDashboard = () => {
 							}}
 						>
 							<ListItem
-								style={{
+								sx={{
 									// position: 'fixed',
 									width: APP_DRAWER_WIDTH,
 									// marginBottom: 16,

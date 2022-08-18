@@ -1,36 +1,160 @@
 import {
 	Autocomplete,
+	Box,
 	Button,
 	Card,
 	Checkbox,
+	Dialog,
+	DialogContent,
 	FormControlLabel,
+	IconButton,
 	InputAdornment,
+	InputLabel,
 	ListSubheader,
 	Stack,
+	Step,
+	StepLabel,
+	Stepper,
 	TextField,
 	Typography,
 	useMediaQuery,
 	useTheme,
 } from '@mui/material'
-import React, { FC, useState } from 'react'
+import React, { FC, useCallback, useState } from 'react'
 import { ListChildComponentProps, VariableSizeList } from 'react-window'
 import { DataLayerPush, sendAnalytics } from 'sdk/analytics'
 import { allCityList } from 'sdk/constants'
 import { capitalize } from 'sdk/utils'
 import { Dropdown, InputWrapper, useEasyBooking } from 'sdkv2/components'
 import { JobType, projectDuration } from 'sdkv2/constants'
+import StepConnector, { stepConnectorClasses } from '@mui/material/StepConnector'
+import { styled } from '@mui/material/styles'
+import { StepIconProps } from '@mui/material/StepIcon'
+import CheckCircleIcon from '@mui/icons-material/CheckCircle'
+import AdjustOutlinedIcon from '@mui/icons-material/AdjustOutlined'
+import RadioButtonUncheckedIcon from '@mui/icons-material/RadioButtonUnchecked'
+import CloseIcon from '@mui/icons-material/Close'
+import { Label } from '@mui/icons-material'
+import { OTPVerification } from 'modules/auth/otp/components/OtpVerification'
+import { LoginForm } from 'modules/auth/login/components/LoginForm'
 
 interface Props {}
+
+const QontoConnector = styled(StepConnector)(({ theme }) => ({
+	[`&.${stepConnectorClasses.alternativeLabel}`]: {
+		top: 10,
+		left: 'calc(-50% + 8px)',
+		right: 'calc(50% + 8px)',
+	},
+	[`&.${stepConnectorClasses.active}`]: {
+		[`& .${stepConnectorClasses.line}`]: {
+			borderColor: '#4db07f',
+		},
+	},
+	[`&.${stepConnectorClasses.completed}`]: {
+		[`& .${stepConnectorClasses.line}`]: {
+			borderColor: '#4db07f',
+		},
+	},
+	[`& .${stepConnectorClasses.line}`]: {
+		borderColor: theme.palette.mode === 'dark' ? theme.palette.grey[800] : '#4db07f',
+		borderTopWidth: 3,
+		borderRadius: 1,
+	},
+}))
+
+const QontoStepIconRoot = styled('div')<{ ownerState: { active?: boolean } }>(({ theme, ownerState }) => ({
+	color: theme.palette.mode === 'dark' ? theme.palette.grey[700] : '#4db07f',
+	display: 'flex',
+	height: 22,
+	alignItems: 'center',
+	...(ownerState.active && {
+		color: '#4db07f',
+	}),
+	'& .QontoStepIcon-completedIcon': {
+		color: '#4db07f',
+		zIndex: 1,
+		fontSize: 20,
+	},
+}))
+
+function QontoStepIcon(props: StepIconProps) {
+	const { active, completed, className } = props
+
+	return (
+		<QontoStepIconRoot ownerState={{ active }} className={className}>
+			{completed ? (
+				<CheckCircleIcon className='QontoStepIcon-completedIcon' />
+			) : active ? (
+				<AdjustOutlinedIcon className='QontoStepIcon-completedIcon' />
+			) : (
+				<RadioButtonUncheckedIcon className='QontoStepIcon-completedIcon' />
+			)}
+		</QontoStepIconRoot>
+	)
+}
+
+const stepsName = ['Booking Details', 'Wage Details', 'Contact', 'Order Placed']
+
 export const CreateBookingCard: FC<Props> = () => {
 	const [step, setStep] = useState<number>(0)
 	const { form, formikProps } = useEasyBooking()
+	const [activeStepValue, setActiveStepValue] = useState<number>(0)
+	const [openDialogBox, setOpenDialogBox] = useState<boolean>(false)
+	const [isRegister, setIsRegister] = useState<boolean>(false)
+	const froHome = true
 	// const [wageDisable, setWageDisable] = useState({
 	// 	helperWage: false,
 	// 	technicianWage: false,
 	// 	supervisorWage: false,
 	// })
+
+	const handleDialogBox = useCallback(() => {
+		setOpenDialogBox(false)
+	}, [])
+
 	return (
 		<>
+			<Dialog onClose={handleDialogBox} open={openDialogBox}>
+				<DialogContent
+					sx={{
+						paddingX: 4,
+					}}>
+					<Stack direction={'row'} justifyContent={'flex-start'}>
+						<IconButton onClick={handleDialogBox}>
+							<CloseIcon />
+						</IconButton>
+					</Stack>
+					<Stepper alternativeLabel activeStep={activeStepValue} connector={<QontoConnector />}>
+						{stepsName.map((label) => (
+							<Step key={label}>
+								<StepLabel
+									StepIconComponent={QontoStepIcon}
+									sx={{
+										// whiteSpace: 'nowrap',
+										fontSize: '10px !important',
+									}}>
+									{label}
+								</StepLabel>
+							</Step>
+						))}
+					</Stepper>
+					{!isRegister ? (
+						<LoginForm fromHome={true} setActiveStepValue={setActiveStepValue} />
+					) : (
+						<OTPVerification />
+					)}
+
+					{/* <Stack>
+						<Button
+							onClick={() => {
+								setIsRegister(true)
+							}}>
+							Register
+						</Button>
+					</Stack> */}
+				</DialogContent>
+			</Dialog>
 			<Card elevation={16}>
 				<Stack px={{ xs: 2, md: 4 }} py={4}>
 					<Stack>
@@ -44,7 +168,25 @@ export const CreateBookingCard: FC<Props> = () => {
 						<Typography mt={2}>Only Rs 50 per HERO Application</Typography>
 						<Typography variant='caption'>*after receiving 15 applications</Typography>
 					</Stack>
-					<form onSubmit={form.handleSubmit}>
+					<Stack my={2}>
+						<Stepper alternativeLabel activeStep={activeStepValue} connector={<QontoConnector />}>
+							{stepsName.map((label) => (
+								<Step key={label}>
+									<StepLabel
+										StepIconComponent={QontoStepIcon}
+										sx={{
+											// whiteSpace: 'nowrap',
+											fontSize: '10px !important',
+										}}>
+										{label}
+									</StepLabel>
+								</Step>
+							))}
+						</Stepper>
+					</Stack>
+					<form
+					// onSubmit={form.handleSubmit}
+					>
 						<Stack spacing={2.5} my={2} alignItems='flex-start' pr={step === 0 ? 6 : { xs: 0, md: 3 }}>
 							{step === 0 && (
 								<>
@@ -117,6 +259,10 @@ export const CreateBookingCard: FC<Props> = () => {
 											)
 										}
 										onClick={(e) => {
+											if (activeStepValue !== 4) {
+												setActiveStepValue(1)
+											}
+
 											if (
 												!(
 													form.errors['location'] ||
@@ -354,7 +500,11 @@ export const CreateBookingCard: FC<Props> = () => {
 									<Button
 										size='large'
 										variant='contained'
-										type='submit'
+										// type='submit'
+										onClick={() => {
+											setOpenDialogBox(true)
+											setActiveStepValue(2)
+										}}
 										disabled={
 											!form.dirty ||
 											!form.isValid ||

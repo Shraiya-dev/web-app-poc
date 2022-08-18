@@ -124,7 +124,10 @@ const EditCompanyInfo = ({ ...props }) => {
 									error={!!checkError('GSTIN', form)}
 									helperText={checkError('GSTIN', form)}
 									inputProps={{
-										style: { textTransform: 'uppercase', color: '#000' },
+										sx: {
+											textTransform: 'uppercase',
+											color: '#000',
+										},
 									}}
 								/>
 							</InputWrapper>
@@ -136,7 +139,7 @@ const EditCompanyInfo = ({ ...props }) => {
 
 							<Button
 								size='small'
-								style={{
+								sx={{
 									width: '50%',
 								}}
 								onClick={getGSTDetail}>
@@ -235,7 +238,13 @@ const EditCompanyInfo = ({ ...props }) => {
 						</InputWrapper> */}
 					</Stack>
 
-					<Stack direction='row' style={{ fontSize: '18px', paddingTop: 32 }} spacing={2}>
+					<Stack
+						direction='row'
+						sx={{
+							fontSize: '18px',
+							paddingTop: 6,
+						}}
+						spacing={2}>
 						<Button
 							fullWidth
 							variant='outlined'
@@ -276,7 +285,7 @@ const EditCompanyInfo = ({ ...props }) => {
 									loading || !form.isValid || !form.values.GSTIN || !form.values.companyName
 									// form.values.GSTINDocuments.length === 0
 								}
-								style={{
+								sx={{
 									background: theme.palette.primary.main,
 									color: primary.properDark,
 								}}

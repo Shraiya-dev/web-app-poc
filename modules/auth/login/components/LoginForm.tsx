@@ -41,7 +41,7 @@ const CustomLoginStyles = styled(Box)(({ theme }) => ({
 
 export const LoginForm = ({ ...props }) => {
 	const { form, loading, error, isRegister, handleLogin, status } = useLogin()
-	const { isOtpSent, setIsOtpSent } = props
+	const { isOtpSent, setIsOtpSent, fromHome, setActiveStepValue } = props
 
 	const router = useRouter()
 
@@ -55,9 +55,14 @@ export const LoginForm = ({ ...props }) => {
 		<form onSubmit={form.handleSubmit}>
 			<CustomLoginStyles>
 				<Stack spacing={3} width='100%'>
-					<Typography textAlign='center' fontSize={34} variant='h1'>
-						{isRegister ? 'Register' : 'Login'}
-					</Typography>
+					{!!fromHome ? (
+						''
+					) : (
+						<Typography textAlign='center' fontSize={34} variant='h1'>
+							{isRegister ? 'Register' : 'Login'}
+						</Typography>
+					)}
+
 					<InputWrapper label='Phone Number'>
 						<PhoneField
 							error={!!checkError('phoneNumber', form)}

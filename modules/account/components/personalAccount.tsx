@@ -21,10 +21,11 @@ const PersonalAccount = () => {
 				<CustomTopBar>
 					<Stack m={2}>
 						<Typography
-							style={{
+							sx={{
 								fontSize: 26,
 								fontWeight: 700,
 								color: theme.palette.secondary.main,
+								fontFamily: 'Saira ,sans-serif',
 							}}>
 							Account
 						</Typography>
