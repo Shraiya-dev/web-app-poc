@@ -129,42 +129,26 @@ export const Navbar = () => {
 												/>
 											</Box>
 										</Stack>
-										<Box mt={5}>
-											{/* {navbar.navLinks.map((navItem, i) => {
-												if (navItem.type === 'button_link') {
-													return (
-														<HyperLink key={i} href={navItem.link}>
-															<ListItem
-																color='secondary'
-																sx={(theme) => ({
-																	fontWeight: 700,
-																})}>
-																<ListItemAvatar>{navItem?.icon}</ListItemAvatar>
-																<ListItemText>
-																	<Typography color={'#fff'}>
-																		{navItem.label}
-																	</Typography>
-																</ListItemText>
-															</ListItem>
-														</HyperLink>
-													)
-												}
-											})} */}
-											<Stack direction={'row'} spacing={1.5} alignItems={'center'} px={2}>
-												<Box width={45} height={45}>
-													<img
-														height={'100%'}
-														width={'100%'}
-														src={'/assets/landingv2/user.svg'}
-													/>
-												</Box>
-												<Link href='/login'>
-													<Typography variant='h2' color={'#fff'}>
-														Login
-													</Typography>
-												</Link>
-											</Stack>
-										</Box>
+										<LinkButton
+											variant='text'
+											color='info'
+											startIcon={<img src={'/assets/landingv2/user.svg'} />}
+											sx={(theme) => ({
+												mx: 2,
+												mt: 2,
+												fontWeight: 700,
+												color: 'common.white',
+												whiteSpace: 'nowrap',
+											})}
+											onClick={() => {
+												sendAnalytics({
+													name: 'navbarLogin',
+													action: 'ButtonClick',
+												})
+											}}
+											href={'/login'}>
+											Login
+										</LinkButton>
 										<Divider
 											sx={{
 												my: 2,
@@ -260,6 +244,14 @@ export const Navbar = () => {
 												[theme.breakpoints.down('md')]: { display: 'none' },
 												whiteSpace: 'nowrap',
 											})}
+											onClick={() => {
+												if (navItem.label === 'Login') {
+													sendAnalytics({
+														name: 'navbarLogin',
+														action: 'ButtonClick',
+													})
+												}
+											}}
 											href={navItem.link}
 											className={router.pathname === navItem.link ? 'active' : ''}>
 											{navItem.label}
