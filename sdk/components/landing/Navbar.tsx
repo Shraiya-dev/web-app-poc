@@ -134,34 +134,41 @@ export const Navbar = () => {
 												/>
 											</Box>
 										</Stack>
-										<LinkButton
-											variant='text'
-											color='info'
-											startIcon={<img src={'/assets/landingv2/user.svg'} />}
-											sx={(theme) => ({
-												mx: 2,
-												mt: 2,
-												fontWeight: 700,
-												color: 'common.white',
-												whiteSpace: 'nowrap',
-											})}
-											onClick={() => {
-												sendAnalytics({
-													name: 'navbarLogin',
-													action: 'ButtonClick',
-												})
-											}}
-											href={'/login'}>
-											Login
-										</LinkButton>
-										<Divider
-											sx={{
-												my: 2,
-												background: '#f7f7f7',
-												border: '1px solid #4c4c4c',
-												zIndex: '0',
-											}}
-										/>
+										{user ? (
+											''
+										) : (
+											<>
+												<LinkButton
+													variant='text'
+													color='info'
+													startIcon={<img src={'/assets/landingv2/user.svg'} />}
+													sx={(theme) => ({
+														mx: 2,
+														mt: 2,
+														fontWeight: 700,
+														color: 'common.white',
+														whiteSpace: 'nowrap',
+													})}
+													onClick={() => {
+														sendAnalytics({
+															name: 'navbarLogin',
+															action: 'ButtonClick',
+														})
+													}}
+													href={'/login'}>
+													Login
+												</LinkButton>
+												<Divider
+													sx={{
+														my: 2,
+														background: '#f7f7f7',
+														border: '1px solid #4c4c4c',
+														zIndex: '0',
+													}}
+												/>
+											</>
+										)}
+
 										{/* <Typography variant='h4' color={'#fff'} textAlign={'center'}>
 											Contact us{' '}
 										</Typography>
@@ -279,14 +286,6 @@ export const Navbar = () => {
 														[theme.breakpoints.down('md')]: { display: 'none' },
 														whiteSpace: 'nowrap',
 													})}
-													onClick={() => {
-														// if (navItem.label === 'Login') {
-														// 	sendAnalytics({
-														// 		name: 'navbarLogin',
-														// 		action: 'ButtonClick',
-														// 	})
-														// }
-													}}
 													href={navItem.link}
 													className={router.pathname === navItem.link ? 'active' : ''}>
 													{navItem.label}
