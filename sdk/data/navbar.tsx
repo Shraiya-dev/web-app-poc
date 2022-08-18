@@ -32,5 +32,11 @@ export const navbar: Navbar = {
 			icon: <img src={'/assets/landingv2/user.svg'} />,
 			link: '/login',
 		},
+		{
+			type: 'button_link',
+			label: 'marketing@projecthero.in',
+			icon: <img height={'30px'} width={'30px'} src='/assets/icons/mail.svg' />,
+			link: 'mailto:marketing@projecthero.in',
+		},
 	],
 }
