@@ -31,20 +31,26 @@ const DisplayCompanyInfo = ({ ...props }) => {
 		setViewDoc((state) => !state)
 	}
 
+	// useEffect(() => {
+	// 	if (user?.organisationId) {
+	// 		getOrgDetails(user?.organisationId)
+	// 	} else {
+	// 		getCustomerDetails()
+	// 			.then((res) => getOrgDetails(res?.data?.payload?.linkedOrganisation?.organisationId))
+	// 			.catch((error) => {
+	// 				console.log('error', error)
+	// 			})
+	// 	}
+	// deepakphero code
+	// }, [])
+
 	useEffect(() => {
-		if (user?.organisationId) {
-			getOrgDetails(user?.organisationId)
-		} else {
-			getCustomerDetails()
-				.then((res) => getOrgDetails(res?.data?.payload?.linkedOrganisation?.organisationId))
-				.catch((error) => {
-					console.log('error', error)
-				})
-		}
+		getOrgDetails()
 	}, [])
+
 	return (
 		<DisplayCompanyInfoStyle>
-			<ViewImage open={viewDoc} onClick={handleView} imageSrc={orgDetails?.GSTINDocuments ?? ''} />
+			{/* <ViewImage open={viewDoc} onClick={handleView} imageSrc={orgDetails?.GSTINDocuments ?? ''} /> */}
 
 			<Stack spacing={3}>
 				<TextWrapper id='companyName' label='Company Name'>
@@ -55,7 +61,7 @@ const DisplayCompanyInfo = ({ ...props }) => {
 					<Typography className='info'>{orgDetails?.GSTIN ? orgDetails?.GSTIN : '_'}</Typography>
 				</TextWrapper>
 			</Stack>
-			{orgDetails?.GSTINDocuments ? (
+			{/* {orgDetails?.GSTINDocuments ? (
 				<Typography className='GstinCertificate' display={'flex'} onClick={handleView}>
 					View GSTIN Certificate{' '}
 					<Icon style={{ display: 'flex', verticalAlign: 'middle', marginLeft: 8, fontSize: 26 }}>
@@ -64,7 +70,7 @@ const DisplayCompanyInfo = ({ ...props }) => {
 				</Typography>
 			) : (
 				<Typography>_</Typography>
-			)}
+			)} */}
 		</DisplayCompanyInfoStyle>
 	)
 }

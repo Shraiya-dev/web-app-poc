@@ -142,7 +142,7 @@ export const BookingCard = ({ booking }: BookingCardProps) => {
 							fontWeight={700}
 							fontFamily={'Saira,sans-serif'}
 							sx={{ verticalAlign: 'middle', margin: 1, color: primary.properDark }}>
-							{totalCount} {JobTypeLabel[booking?.booking?.jobType]}
+							{totalCount} {JobTypeLabel[booking?.booking?.jobType]} Application
 						</Typography>
 					</Box>
 					{/* <StatusChip bookingState={booking?.booking?.status} sx={{ verticalAlign: 'middle' }} /> */}

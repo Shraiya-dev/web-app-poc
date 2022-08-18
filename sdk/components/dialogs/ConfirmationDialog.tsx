@@ -7,21 +7,29 @@ export interface ConfirmationDialogProps {
 	open: boolean
 	confirm: Function
 	cancel: Function
+	confirmationLabel?: string
 }
-export const ConfirmationDialog = ({ title, caption, open, confirm, cancel }: ConfirmationDialogProps) => {
+export const ConfirmationDialog = ({
+	title,
+	caption,
+	open,
+	confirm,
+	cancel,
+	confirmationLabel = 'Leave',
+}: ConfirmationDialogProps) => {
 	return (
 		<Dialog maxWidth={'xs'} fullWidth open={open} PaperProps={{ sx: { borderRadius: 3 } }}>
 			<Stack p={2} spacing={2}>
 				<Stack>
 					<Stack spacing={2}>
 						{title && (
-							<Typography variant='h6' color={primary.properDark}>
+							<Typography variant='h5' color={primary.properDark}>
 								{' '}
 								{title}
 							</Typography>
 						)}
 						{caption && (
-							<Typography variant='caption' color={primary.properDark}>
+							<Typography variant='body2' color={primary.darkGrey}>
 								{' '}
 								{caption}
 							</Typography>
@@ -30,9 +38,18 @@ export const ConfirmationDialog = ({ title, caption, open, confirm, cancel }: Co
 				</Stack>
 				<Stack direction='row-reverse' spacing={2}>
 					<Button variant='contained' onClick={() => confirm()}>
-						Leave
+						{confirmationLabel}
 					</Button>
-					<Button variant='outlined' onClick={() => cancel()}>
+					<Button
+						variant='outlined'
+						onClick={() => cancel()}
+						sx={{
+							color: primary.properDark,
+							border: '1px solid #000',
+							'&:hover': {
+								border: '1px solid #000',
+							},
+						}}>
 						Cancel
 					</Button>
 				</Stack>

@@ -7,7 +7,6 @@ export const staticRenderingProvider = (
 	getStaticPaths: (context: GetStaticPropsContext) => Promise<GetStaticPathsResult>
 	getStaticProps: (context: GetStaticPropsContext) => Promise<GetStaticPropsResult<any>>
 } => {
-	
 	return {
 		getStaticPaths: async (context: GetStaticPropsContext) => {
 			return {
@@ -16,7 +15,6 @@ export const staticRenderingProvider = (
 			}
 		},
 		getStaticProps: async ({ params }: GetStaticPropsContext) => {
-			console.log(`Building slug: ${params}`)
 			return {
 				props: { pageStaticData: getPageStaticData(pageUrl, params) },
 				revalidate: 3600, //in seconds

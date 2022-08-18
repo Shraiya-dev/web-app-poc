@@ -1,10 +1,23 @@
-import { CircularProgress, Grid, Pagination, Stack, Typography } from '@mui/material'
-import { BottomLayout, JobCardCard, primary, useMobile } from '../../../sdk'
+import {
+	Badge,
+	Button,
+	Checkbox,
+	CircularProgress,
+	Drawer,
+	FormControlLabel,
+	FormGroup,
+	Grid,
+	IconButton,
+	Stack,
+	Typography,
+} from '@mui/material'
+import { BottomLayout, JobCardCard, primary, useMobile, WORKER_APPLICATION_STATUS, WORKER_TYPES } from '../../../sdk'
 
+import { Close } from '@mui/icons-material'
 import { useRouter } from 'next/router'
-import { useEffect, useMemo } from 'react'
+import { FC, useEffect, useMemo, useState } from 'react'
 import { useBookingId } from '../hooks'
-import Filters from './filters'
+import { ChipFilter } from './ChipFilter'
 
 interface handleLength {
 	handleRequiredTotal: (jobCardsLength: any) => void
@@ -20,11 +33,11 @@ const WorkerTracking = ({ handleRequiredTotal }: handleLength) => {
 		bookingSummary,
 		isLoading,
 		SetPageNumber,
+		updateContractorFeedback,
 		pageNumber,
 		hasMore,
 		getJobCards,
 		setJobCards,
-		form,
 	} = useBookingId()
 
 	const { helperCount, technicianCount, supervisorCount, totalCount } = useMemo(() => {
@@ -42,132 +55,173 @@ const WorkerTracking = ({ handleRequiredTotal }: handleLength) => {
 
 	handleRequiredTotal(totalCount ?? 0)
 
-	const filterTags = [
-		// {
-		// 	label: `Applied(${
-		// 		(bookingSummary?.stats?.jobCardCounts?.WORKER_APPLIED ?? 0) +
-		// 		(bookingSummary?.stats?.jobCardCounts?.ACCEPTED ?? 0)
-		// 	})`,
-		// 	value: 'WORKER_APPLIED',
-		// },
-		// {
-		// 	label: `Ready To Deploy(${bookingSummary?.stats?.jobCardCounts?.READY_TO_DEPLOY ?? 0})`,
-		// 	value: 'READY_TO_DEPLOY',
-		// },
-		// {
-		// 	label: `Deployed(${
-		// 		(bookingSummary?.stats?.jobCardCounts?.DEPLOYMENT_COMPLETE ?? 0) +
-		// 		(bookingSummary?.stats?.jobCardCounts?.COMPLETED ?? 0)
-		// 	})`,
-		// 	value: 'DEPLOYMENT_COMPLETE',
-		// },
-		{ label: `Supervisor`, value: 'SUPERVISOR' },
-		{ label: `Helper`, value: 'HELPER' },
-		{ label: `Technician`, value: 'TECHNICIAN' },
+	const skillFilterOptions: { label: string; value: WORKER_TYPES }[] = [
+		{ label: `Supervisor`, value: WORKER_TYPES.SUPERVISOR },
+		{ label: `Helper`, value: WORKER_TYPES.HELPER },
+		{ label: `Technician`, value: WORKER_TYPES.TECHNICIAN },
 	]
 
-	useEffect(() => {
-		router.push(
-			{
-				query: { ...router.query, pageNumber: `1` },
-			},
-			undefined,
-			{}
-		)
-	}, [form.values.skillType, form.values.jobCardState])
+	const workerCardStatusFilterOptions: { label: string; value: WORKER_APPLICATION_STATUS }[] = [
+		{ label: `Could not connect`, value: WORKER_APPLICATION_STATUS.COULD_NOT_CONNECT },
+		{ label: `Hired`, value: WORKER_APPLICATION_STATUS.HIRED },
+		{ label: `In progress`, value: WORKER_APPLICATION_STATUS.IN_PROGRESS },
+		{ label: `Rejected`, value: WORKER_APPLICATION_STATUS.REJECTED },
+		{ label: `Work Started`, value: WORKER_APPLICATION_STATUS.WORK_STARTED },
+	]
 
 	useEffect(() => {
 		let pageNumber = `${Number(router.query.pageNumber) > 0 ? Number(router.query.pageNumber) - 1 : '0'}`
 		getJobCards(pageNumber)
 	}, [getJobCards, router.query.pageNumber])
-
+	const [filterDrawer, setFilterDrawer] = useState<{
+		open: boolean
+		options: { label: string; value: any }[]
+		filterKey: string
+		title: string
+	}>({
+		open: false,
+		options: [],
+		filterKey: '',
+		title: '',
+	})
 	return (
 		<>
-			<Stack>
-				<Grid container>
-					<Grid item xs={12} md={12} justifyContent='space-between' alignItems='center'>
-						<Filters
-							filterTags={filterTags}
-							setJobCards={setJobCards}
-							jobCards={jobCards}
-							page={pageNumber}
-							form={form}
+			<Stack spacing={2}>
+				{isMobile ? (
+					<Stack direction='row' spacing={2}>
+						<Button
+							variant='outlined'
+							startIcon={
+								router.query['skillType'] ? (
+									<Badge
+										sx={{ marginLeft: -1 }}
+										badgeContent={((router.query['skillType'] as string) ?? '').split(',').length}
+										color='primary'
+									/>
+								) : undefined
+							}
+							color='info'
+							sx={{ borderRadius: 3, pl: router.query['skillType'] ? 4 : undefined }}
+							onClick={() =>
+								setFilterDrawer({
+									open: true,
+									filterKey: 'skillType',
+									options: skillFilterOptions,
+									title: 'Select Skill',
+								})
+							}>
+							Select Skill
+						</Button>
+						<Button
+							variant='outlined'
+							color='info'
+							startIcon={
+								router.query['contractorFeedbackCode'] ? (
+									<Badge
+										sx={{ marginLeft: -1 }}
+										badgeContent={
+											((router.query['contractorFeedbackCode'] as string) ?? '').split(',').length
+										}
+										color='primary'
+									/>
+								) : undefined
+							}
+							sx={{ borderRadius: 3, pl: router.query['contractorFeedbackCode'] ? 4 : undefined }}
+							onClick={() =>
+								setFilterDrawer({
+									open: true,
+									filterKey: 'contractorFeedbackCode',
+									options: workerCardStatusFilterOptions,
+									title: 'Select Status',
+								})
+							}>
+							Select Status
+						</Button>
+						<FilterDrawer
+							{...filterDrawer}
+							onClose={() => setFilterDrawer((p) => ({ ...p, open: false }))}
 						/>
-					</Grid>
-					{/* <Grid item xs={12} md={3} alignItems='center'>
-					<SearchField name='name' fullWidth placeholder='Search a worker' size='small' />
-				</Grid> */}
-				</Grid>
+					</Stack>
+				) : (
+					<Stack spacing={2}>
+						<Stack direction='row' flexWrap={'wrap'} spacing={2} alignItems='center'>
+							<Typography noWrap>Skills :</Typography>
+							<ChipFilter filterKey='skillType' filterOptions={skillFilterOptions} />
+							{/* <Pagination
+								sx={{ alignSelf: 'flex-end' }}
+								page={router.query.pageNumber ? Number(router.query.pageNumber) : 1}
+								hidePrevButton={
+									!Number(router.query.pageNumber) || Number(router.query.pageNumber) === 1
+								}
+								hideNextButton={!hasMore}
+								count={hasMore ? 35 : Number(router.query.pageNumber)}
+								siblingCount={0}
+								disabled={isLoading}
+								boundaryCount={0}
+								showFirstButton={false}
+								showLastButton={false}
+								color='primary'
+								onChange={(e, page) => {
+									router.push(
+										{
+											query: { ...router.query, pageNumber: page },
+										},
+										undefined,
+										{}
+									)
+									let pageNum = page - 1 + ''
+
+									SetPageNumber(`${pageNum}`)
+								}}
+							/> */}
+						</Stack>
+						<Stack direction='row' flexWrap={'wrap'} spacing={2} alignItems='center'>
+							<Typography noWrap>Status :</Typography>
+							<ChipFilter
+								selectedColor='success'
+								filterKey='contractorFeedbackCode'
+								chipStyle='filled'
+								filterOptions={workerCardStatusFilterOptions}
+							/>
+						</Stack>
+					</Stack>
+				)}
 
 				<Stack>
 					{isLoading ? (
 						<Stack p={5} alignItems='center'>
 							<CircularProgress size={50} />
 						</Stack>
-					) : (
-						<Stack mt={4}>
-							{jobCards.length === 0 ? (
-								<Stack flex={1} mt={20} direction={'column'} alignItems='center'>
-									<Typography
-										fontFamily={'Saira,sans-serif'}
-										fontWeight={700}
-										variant='h4'
-										color={primary.yellow}>
-										We have made your booking live on our Hero App
-									</Typography>
-									<Typography
-										fontFamily={'Saira,sans-serif'}
-										fontWeight={700}
-										variant='h4'
-										color={primary.yellow}>
-										You will see the application as soon as any Hero applies!
-									</Typography>
-								</Stack>
-							) : (
-								<Grid container spacing={3}>
-									{jobCards.map((jobCardInfo, index) => {
-										return (
-											<Grid item xs={12} md={4} key={index}>
-												<JobCardCard jobCard={jobCardInfo} />
-											</Grid>
-										)
-									})}
-								</Grid>
-							)}
-
-							{jobCards.length > 0 && (
-								<Stack p={4} alignItems='center'>
-									<Pagination
-										page={router.query.pageNumber ? Number(router.query.pageNumber) : 1}
-										hidePrevButton={
-											!Number(router.query.pageNumber) || Number(router.query.pageNumber) === 1
-										}
-										hideNextButton={!hasMore}
-										count={hasMore ? 35 : Number(router.query.pageNumber)}
-										siblingCount={0}
-										disabled={isLoading}
-										boundaryCount={0}
-										showFirstButton={false}
-										showLastButton={false}
-										color='primary'
-										onChange={(e, page) => {
-											router.push(
-												{
-													query: { ...router.query, pageNumber: `${page}` },
-												},
-												undefined,
-												{}
-											)
-											let pageNum = page - 1 + ''
-
-											SetPageNumber(`${pageNum}`)
-										}}
-									/>
-								</Stack>
-							)}
+					) : jobCards.length === 0 ? (
+						<Stack flex={1} mt={20} direction={'column'} alignItems='center'>
+							<Typography
+								fontFamily={'Saira,sans-serif'}
+								fontWeight={700}
+								variant='h4'
+								color={primary.yellow}>
+								We have made your booking live on our Hero App
+							</Typography>
+							<Typography
+								fontFamily={'Saira,sans-serif'}
+								fontWeight={700}
+								variant='h4'
+								color={primary.yellow}>
+								You will see the application as soon as any Hero applies!
+							</Typography>
 						</Stack>
+					) : (
+						<Grid container spacing={2}>
+							{jobCards.map((jobCardInfo, index) => {
+								return (
+									<Grid item xs={12} sm={6} lg={4} xl={3} key={index}>
+										<JobCardCard jobCard={jobCardInfo} updateJobCard={updateContractorFeedback} />
+									</Grid>
+								)
+							})}
+						</Grid>
 					)}
 				</Stack>
+
 				{/* <FilterDrawer open={openFilterDrawer} onClose={handelDrawerToggle} /> */}
 
 				{/* {hasMore && (
@@ -202,3 +256,83 @@ const WorkerTracking = ({ handleRequiredTotal }: handleLength) => {
 }
 
 export default WorkerTracking
+
+interface Props {
+	open: boolean
+	options: { label: string; value: any }[]
+	filterKey: string
+	title: string
+	onClose: () => void
+}
+export const FilterDrawer: FC<Props> = ({ filterKey, open, options, title, onClose }) => {
+	const router = useRouter()
+	const [filterSelected, setFilterSelected] = useState<any[]>([])
+	useEffect(() => {
+		setFilterSelected([...((router.query[filterKey] as string)?.split(',') ?? [])])
+	}, [filterKey, router.query])
+	return (
+		<Drawer
+			onClose={onClose}
+			open={open}
+			anchor='bottom'
+			PaperProps={{
+				sx: {
+					borderRadius: ' 12px 12px 0 0',
+					backgroundColor: '#FFFFFF',
+					p: 2,
+				},
+			}}>
+			<Stack direction='row' alignItems='center' justifyContent='space-between'>
+				<Typography variant='h3' color='common.black'>
+					{title}
+				</Typography>
+				<IconButton onClick={onClose} sx={{ color: 'common.black' }}>
+					<Close />
+				</IconButton>
+			</Stack>
+			<Stack minHeight={300}>
+				<FormGroup>
+					{options.map((option) => (
+						<FormControlLabel
+							checked={filterSelected.includes(option.value)}
+							onChange={(e, checked) => {
+								if (checked) {
+									setFilterSelected((p) => [...p, option.value])
+								} else {
+									setFilterSelected((p) => p.filter((item) => item !== option.value))
+								}
+							}}
+							key={option.value}
+							control={<Checkbox />}
+							label={option.label}
+							componentsProps={{
+								typography: {
+									color: 'common.black',
+								},
+							}}
+						/>
+					))}
+				</FormGroup>
+			</Stack>
+			<Stack direction='row' justifyContent='space-evenly' spacing={2}>
+				<Button fullWidth variant='outlined' color='inherit' onClick={onClose}>
+					Cancel
+				</Button>
+				<Button
+					fullWidth
+					onClick={() => {
+						if (filterSelected.length === 0) {
+							delete router.query[filterKey]
+						} else {
+							router.query[filterKey] = filterSelected.join(',')
+						}
+
+						router.replace(router)
+						onClose()
+					}}>
+					Apply
+				</Button>
+			</Stack>
+		</Drawer>
+	)
+}

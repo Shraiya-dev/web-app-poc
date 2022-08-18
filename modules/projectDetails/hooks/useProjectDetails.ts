@@ -12,6 +12,11 @@ export const useProjectDetails = () => {
 	const [enterpriseStatus, setEnterpriseStatus] = useState<any>()
 	const [isLoading, setIsLoading] = useState(false)
 	const { showSnackbar } = useSnackbar()
+	const [projectName, setProjectName] = useState({
+		name: '',
+		state: '',
+		city: '',
+	})
 
 	const projectId = router.query.projectId
 	const handleTabSelection = (e: any, value: any) => {
@@ -37,6 +42,11 @@ export const useProjectDetails = () => {
 			const { data } = await getProjectDetails(projectId)
 			setProjectDetails(data?.payload?.project)
 			setEnterpriseStatus(data?.payload?.organisation?.organisation?.isEnterprise ?? false)
+			setProjectName({
+				name: data?.payload?.project?.name,
+				state: data?.payload?.project?.state,
+				city: data?.payload?.project?.city,
+			})
 		} catch (error: any) {
 			showSnackbar(error?.response?.data?.developerInfo, 'error')
 		}
@@ -54,5 +64,7 @@ export const useProjectDetails = () => {
 		projectDetails: projectDetails,
 		setProjectDetails: setProjectDetails,
 		enterpriseStatus: enterpriseStatus,
+		projectName,
+		setProjectName,
 	}
 }

@@ -1,16 +1,16 @@
-import { Box, Button, CircularProgress, LinearProgress, Stack, Tab, Tabs, Typography } from '@mui/material'
-import { useRouter } from 'next/router'
-import { JobTypeLabel, LinkButton, primary, StatusChip, theme, useMobile } from '../../sdk'
-import { CustomTopBar } from '../../sdk/components/topBar/customTopBar'
-import { useBookingId } from './hooks'
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew'
 import { TabContext, TabPanel } from '@mui/lab'
-import WorkerTracking from './components/workerTracking'
+import { Box, Button, CircularProgress, LinearProgress, Stack, Tab, Tabs, Typography } from '@mui/material'
 import Image from 'next/image'
+import { useRouter } from 'next/router'
+import { useState } from 'react'
+import { JobTypeLabel, theme, useMobile } from '../../sdk'
+import { HorizontalTabClicked, sendAnalytics } from '../../sdk/analytics/analyticsWrapper'
+import { CustomTopBar } from '../../sdk/components/topBar/customTopBar'
 import { JobTypeIcon } from '../createBooking/utils'
 import BookingInfo from './components/bookingInfo'
-import { HorizontalTabClicked, sendAnalytics } from '../../sdk/analytics/analyticsWrapper'
-import { useCallback, useEffect, useState } from 'react'
+import WorkerTracking from './components/workerTracking'
+import { useBookingId } from './hooks'
 
 export const BookingId = () => {
 	const router = useRouter()
@@ -22,10 +22,7 @@ export const BookingId = () => {
 	const supervisorCount = bookingSummary?.booking?.peopleRequired?.SUPERVISOR ?? 0
 	const total = helperCount + technicianCount + supervisorCount
 
-	const [length, setLength] = useState(0)
-	const handleRequiredTotal = useCallback((value) => {
-		setLength(value)
-	}, [])
+	const [appliedWorkerCount, setAppliedWorkerCount] = useState(0)
 
 	return (
 		<>
@@ -65,7 +62,7 @@ export const BookingId = () => {
 								<Stack direction={'column'} spacing={1}>
 									<Stack direction={'column'}>
 										<Typography variant='h5' fontWeight={700} sx={{ verticalAlign: 'middle' }}>
-											{length ?? 0} / {total}{' '}
+											{appliedWorkerCount ?? 0} / {total}{' '}
 											{JobTypeLabel[bookingSummary?.booking?.jobType || 'GYPSUM']}
 										</Typography>
 										<Typography
@@ -82,7 +79,7 @@ export const BookingId = () => {
 									<LinearProgress
 										color='error'
 										variant='determinate'
-										value={(length * 100) / total}
+										value={(appliedWorkerCount * 100) / total}
 										sx={{
 											height: '8px',
 											borderRadius: '10px',
@@ -92,7 +89,7 @@ export const BookingId = () => {
 								</Stack>
 							</Stack>
 
-							{!isMobile && (
+							{!isMobile && bookingSummary?.booking?.bookingType === 'LIMITED_DISCOVERY' && (
 								<Button
 									href={`/bookings/${router.query.projectId}/${router.query.bookingId}/checkout`}
 									onClick={() => {
@@ -108,7 +105,6 @@ export const BookingId = () => {
 									+ Get More Application
 								</Button>
 							)}
-
 							{/* <StatusChip
 								bookingState={bookingSummary?.booking?.status}
 								sx={{ verticalAlign: 'middle', marginTop: 1, marginLeft: 3 }}
@@ -129,7 +125,7 @@ export const BookingId = () => {
 			)}
 
 			<TabContext value={router.query.tab as string}>
-				{isMobile && (
+				{isMobile && bookingSummary?.booking?.bookingType === 'LIMITED_DISCOVERY' && (
 					<Box pt={2} pl={2}>
 						<Button
 							href={`/bookings/${router.query.projectId}/${router.query.bookingId}/checkout`}
@@ -203,21 +199,21 @@ export const BookingId = () => {
 				</Box>
 				<TabPanel
 					value='track-workers'
-					style={{
-						height: isMobile ? 'calc( 100vh - 320px )' : '',
-
+					sx={{
+						height: { xs: 'calc( 100vh - 240px )', md: '' },
 						overflowY: 'auto',
+						p: 2,
 						position: 'relative',
 					}}>
-					<WorkerTracking handleRequiredTotal={handleRequiredTotal} />
+					<WorkerTracking handleRequiredTotal={setAppliedWorkerCount} />
 					{/* <Dashboard /> */}
 				</TabPanel>
 				<TabPanel
 					value='details'
-					style={{
-						height: isMobile ? 'calc( 100vh - 320px )' : '',
-
+					sx={{
+						height: { xs: 'calc( 100vh - 240px )', md: '' },
 						overflowY: 'auto',
+						p: 2,
 						position: 'relative',
 					}}>
 					{bookingSummary ? <BookingInfo bookingInfo={bookingSummary} loading={isLoading} /> : ''}

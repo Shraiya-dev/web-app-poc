@@ -164,7 +164,7 @@ let themeDef = createTheme({
 			main: '#fff',
 			light: '#fff',
 			dark: '#fff',
-			contrastText: '#fff',
+			contrastText: '#000',
 		},
 		warning: {
 			main: '#E58A51',
@@ -238,7 +238,7 @@ let themeDef = createTheme({
 
 		MuiIconButton: {
 			defaultProps: {
-				style: {
+				sx: {
 					color: '#fff',
 				},
 			},
@@ -254,7 +254,7 @@ let themeDef = createTheme({
 		MuiPaper: {
 			defaultProps: {
 				//variant: 'outlined',
-				style: {
+				sx: {
 					boxShadow: '1px 1px 1px 1px rgba(0, 0, 0, 0.08)',
 				},
 			},
@@ -264,7 +264,19 @@ let themeDef = createTheme({
 				disableUnderline: true,
 			},
 		},
-
+		MuiCheckbox: {
+			defaultProps: {
+				checkedIcon: (
+					<svg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'>
+						<rect x='2' y='2' width='20' height='20' rx='3.5' fill='#EFC41A' />
+						<path
+							d='M18 6.24641C17.4594 5.82766 16.7031 5.95579 16.3094 6.53079L10.6875 14.7558L7.59063 11.4027C7.13438 10.8839 6.36875 10.8589 5.88125 11.3464C5.39375 11.8308 5.36875 12.6464 5.82813 13.162C5.82813 13.162 9.59063 17.337 10.1313 17.7558C10.6719 18.1745 11.4281 18.0464 11.8219 17.4714L18.2688 8.04329C18.6625 7.46516 18.5406 6.66204 18 6.24641Z'
+							fill='black'
+						/>
+					</svg>
+				),
+			},
+		},
 		MuiGrid: {
 			defaultProps: {
 				display: 'flex',
@@ -319,12 +331,13 @@ let themeDef = createTheme({
 		MuiSelect: {
 			defaultProps: {
 				MenuProps: {
-					style: {
+					sx: {
 						maxHeight: 400,
 					},
 				},
-				style: {
+				sx: {
 					background: '#fff',
+					color: '#000 !important',
 				},
 
 				IconComponent: KeyboardArrowDownRounded,
@@ -332,7 +345,7 @@ let themeDef = createTheme({
 		},
 		MuiList: {
 			defaultProps: {
-				style: {
+				sx: {
 					background: '#000',
 				},
 			},

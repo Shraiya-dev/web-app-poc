@@ -1,6 +1,17 @@
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline'
 import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline'
-import { Box, Button, Card, CircularProgress, IconButton, Skeleton, Stack, TextField, Typography } from '@mui/material'
+import {
+	Box,
+	Button,
+	Card,
+	CircularProgress,
+	FormHelperText,
+	IconButton,
+	Skeleton,
+	Stack,
+	TextField,
+	Typography,
+} from '@mui/material'
 import { FC, useCallback, useMemo, useState } from 'react'
 // import BookingSuccess from 'modules/createBooking/components/bookingsuccess'
 import { Add } from '@mui/icons-material'
@@ -36,24 +47,6 @@ const ProfileCardData = [
 		name: 'qtySupervisor',
 	},
 ]
-const billData = [
-	{
-		label: 'Subtotal',
-		value: 'subTotal',
-	},
-	{
-		label: 'Discount (First 15 applications free)',
-		value: 'discount',
-	},
-	{
-		label: 'Before Taxes',
-		value: 'beforeTax',
-	},
-	{
-		label: 'Taxes Applicable (GST@18%)',
-		value: 'tax',
-	},
-]
 
 export const CheckoutCard: FC = () => {
 	const [addEditWageDialogProps, setAddEditWageDialogProps] = useState({
@@ -64,12 +57,16 @@ export const CheckoutCard: FC = () => {
 		edit: false,
 	})
 	const [updating, setUpdating] = useState<any>({})
-	const { form, wage, bookingData, setWage, discountEligible, getBookingDetail, loading, dispatchLoading } =
+	const { form, wage, bookingData, setWage, discountDetails, getBookingDetail, loading, dispatchLoading } =
 		useCheckout()
 	const bill: any = useMemo(() => {
 		const quantity = form.values['qtyHelper'] + form.values['qtyTechnician'] + form.values['qtySupervisor']
 		const subTotal = quantity * 50
-		const discount = discountEligible ? (subTotal > 750 ? 750 : subTotal) : 0
+		const discount = discountDetails?.isEligible
+			? subTotal > (discountDetails?.discount?.quantity ?? 15) * 50
+				? (discountDetails?.discount?.quantity ?? 15) * 50
+				: subTotal
+			: 0
 		const beforeTax = subTotal - discount
 		const tax = beforeTax * 0.18
 		const amountPayable = beforeTax + tax
@@ -81,8 +78,32 @@ export const CheckoutCard: FC = () => {
 			tax: tax,
 			amountPayable: amountPayable,
 		}
-	}, [discountEligible, form.values])
-
+	}, [discountDetails?.discount?.quantity, discountDetails?.isEligible, form.values])
+	const billData = useMemo(
+		() => [
+			{
+				label: 'Subtotal',
+				value: 'subTotal',
+			},
+			{
+				label: `Discount (${
+					discountDetails?.discount?.quantity && discountDetails?.discount?.quantity < 15
+						? 'Remaining'
+						: 'First'
+				} ${discountDetails?.discount?.quantity} applications free)`,
+				value: 'discount',
+			},
+			{
+				label: 'Before Taxes',
+				value: 'beforeTax',
+			},
+			{
+				label: 'Taxes Applicable (GST@18%)',
+				value: 'tax',
+			},
+		],
+		[discountDetails?.discount?.quantity]
+	)
 	const router = useRouter()
 	const { initiatePayment } = usePayment()
 	const { showSnackbar } = useSnackbar()
@@ -100,7 +121,7 @@ export const CheckoutCard: FC = () => {
 			buyerType: 'CONTRACTOR_PROJECT',
 			sellerType: 'PROJECT_HERO',
 			discount: {
-				isDiscounted: discountEligible,
+				isDiscounted: !!discountDetails?.isEligible,
 				discountCode: 'NEWUSER15',
 			},
 			total: bill.amountPayable,
@@ -147,7 +168,7 @@ export const CheckoutCard: FC = () => {
 								event: 'booking_done',
 								phoneNumber: user?.phoneNumber,
 								amount: bill?.amountPayable,
-								discountEligible: discountEligible,
+								discountEligible: !!discountDetails?.isEligible,
 								discount: bill?.discount,
 								currency: 'INR',
 								eventInfo: {
@@ -166,7 +187,7 @@ export const CheckoutCard: FC = () => {
 									step: 'Booking Complete',
 								},
 							})
-							router.push(`/bookings/${router.query.projectId}/${router.query.bookingId}/track-workers`)
+							router.replace(`/projects/${router.query.projectId}/bookings`)
 						},
 						() => {
 							dispatchLoading({ payment: false })
@@ -178,7 +199,7 @@ export const CheckoutCard: FC = () => {
 					event: 'booking_done',
 					phoneNumber: user?.phoneNumber,
 					amount: bill?.amountPayable,
-					discountEligible: discountEligible,
+					discountEligible: !!discountDetails?.isEligible,
 					discount: bill?.discount,
 					currency: 'INR',
 					eventInfo: {
@@ -197,7 +218,7 @@ export const CheckoutCard: FC = () => {
 						step: 'Booking Complete',
 					},
 				})
-				router.push(`/bookings/${router.query.projectId}/${router.query.bookingId}/track-workers`)
+				router.replace(`/projects/${router.query.projectId}/bookings`)
 			}
 		} catch (error: any) {
 			showSnackbar(error?.response?.data?.developerInfo, 'error')
@@ -206,7 +227,8 @@ export const CheckoutCard: FC = () => {
 		bill.amountPayable,
 		bill?.discount,
 		bookingData?.booking?.jobType,
-		discountEligible,
+		discountDetails?.isEligible,
+		dispatchLoading,
 		form.values,
 		initiatePayment,
 		router,
@@ -290,25 +312,45 @@ export const CheckoutCard: FC = () => {
 						<>
 							<Stack p={{ xs: 2, md: 3 }} minWidth={!isMobile ? '766px' : '100%'}>
 								<Stack spacing={'4px'}>
-									{discountEligible && (
+									{!!discountDetails?.isEligible &&
+										15 - (discountDetails?.discount?.quantity ?? 0) !== 0 && (
+											<Typography
+												display='inline'
+												variant='h5'
+												color='success.dark'
+												fontWeight={600}>
+												<Typography display='inline' color='common.white'>
+													You have availed
+												</Typography>{' '}
+												{15 - (discountDetails?.discount?.quantity ?? 0)}/15 free applications
+											</Typography>
+										)}
+									{!!discountDetails?.isEligible ? (
 										<Typography variant='h3' fontWeight={600}>
-											First
+											{discountDetails?.discount?.quantity &&
+											discountDetails?.discount?.quantity < 15
+												? 'Remaining'
+												: 'First'}
 											<Typography
 												display='inline'
 												variant='h3'
 												fontWeight={600}
 												color='primary.main'>
 												{' '}
-												15 Hero applications
+												{discountDetails?.discount?.quantity} Hero applications
 											</Typography>{' '}
 											are FREE!
 										</Typography>
+									) : (
+										<Typography variant='h3' fontWeight={600}>
+											Your Booking Details
+										</Typography>
 									)}
 									<Typography variant='body1' fontWeight={400}>
-										₹50 per application thereafter
+										₹50 per application {!!discountDetails?.isEligible && 'thereafter'}
 									</Typography>
 								</Stack>
-								<Stack>
+								<Stack mt={2}>
 									<Typography variant='body1' fontWeight={600}>
 										You have selected
 										<Typography
@@ -391,14 +433,19 @@ export const CheckoutCard: FC = () => {
 												) : (
 													<Stack direction='row' alignItems='center'>
 														<IconButton
-															onClick={(e) =>
-																form.setFieldValue(
-																	profile?.name,
-																	Number(form.values[profile.name] - 1) > 0
-																		? Number(form.values[profile.name] - 1)
-																		: 0
-																)
-															}>
+															onClick={(e) => {
+																if (
+																	form.values[profile.name] <= 999 &&
+																	form.values[profile.name] > 0
+																) {
+																	form.setFieldValue(
+																		profile?.name,
+																		Number(form.values[profile.name] - 1) > 0
+																			? Number(form.values[profile.name] - 1)
+																			: 0
+																	)
+																}
+															}}>
 															<RemoveCircleOutlineIcon sx={{ color: 'primary.main' }} />
 														</IconButton>
 														<TextField
@@ -415,18 +462,25 @@ export const CheckoutCard: FC = () => {
 																form.setFieldValue(
 																	e.target.name,
 																	e.target.value !== ''
-																		? parseInt(e.target.value)
+																		? parseInt(e.target.value) > 999
+																			? 999
+																			: parseInt(e.target.value)
 																		: e.target.value
 																)
 															}}
 														/>
 														<IconButton
-															onClick={(e) =>
-																form.setFieldValue(
-																	profile?.name,
-																	Number(form.values[profile.name] + 1)
-																)
-															}>
+															onClick={(e) => {
+																if (
+																	form.values[profile.name] < 999 &&
+																	form.values[profile.name] >= 0
+																) {
+																	form.setFieldValue(
+																		profile?.name,
+																		Number(form.values[profile.name] + 1)
+																	)
+																}
+															}}>
 															<AddCircleOutlineIcon sx={{ color: 'primary.main' }} />
 														</IconButton>
 													</Stack>
@@ -441,7 +495,7 @@ export const CheckoutCard: FC = () => {
 									</Typography>
 									{billData?.map((i: any) => {
 										if (i.value === 'discount') {
-											if (discountEligible) {
+											if (discountDetails?.isEligible) {
 												return (
 													<Stack key={i.value} direction='row' justifyContent='space-between'>
 														<Typography
