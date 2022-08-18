@@ -325,7 +325,7 @@ export const CheckoutCard: FC = () => {
 												{15 - (discountDetails?.discount?.quantity ?? 0)}/15 free applications
 											</Typography>
 										)}
-									{!!discountDetails?.isEligible && (
+									{!!discountDetails?.isEligible ? (
 										<Typography variant='h3' fontWeight={600}>
 											{discountDetails?.discount?.quantity &&
 											discountDetails?.discount?.quantity < 15
@@ -341,12 +341,16 @@ export const CheckoutCard: FC = () => {
 											</Typography>{' '}
 											are FREE!
 										</Typography>
+									) : (
+										<Typography variant='h3' fontWeight={600}>
+											Your Booking Details
+										</Typography>
 									)}
 									<Typography variant='body1' fontWeight={400}>
-										₹50 per application thereafter
+										₹50 per application {!!discountDetails?.isEligible && 'thereafter'}
 									</Typography>
 								</Stack>
-								<Stack>
+								<Stack mt={2}>
 									<Typography variant='body1' fontWeight={600}>
 										You have selected
 										<Typography
