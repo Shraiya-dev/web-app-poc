@@ -83,6 +83,7 @@ const usePersonalAccount = () => {
 					page: 'Account',
 					url: router.asPath,
 				})
+				showSnackbar('Updated Successfully', 'success')
 			})
 			.catch((error: any) => {
 				showSnackbar(error?.response?.data?.developerInfo, 'error')
