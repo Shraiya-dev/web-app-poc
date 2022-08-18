@@ -501,7 +501,13 @@ const ProjectInfo = ({ setProjectName }: any) => {
 						</InputWrapper>
 					</Stack>
 
-					<Stack direction={'row'} justifyContent={'space-between'} width={'50%'} mt={4}>
+					<Stack
+						direction={'row'}
+						justifyContent={'space-between'}
+						mt={4}
+						sx={{
+							width: { xs: '100%', md: '50%' },
+						}}>
 						<Button
 							variant='outlined'
 							onClick={() => {

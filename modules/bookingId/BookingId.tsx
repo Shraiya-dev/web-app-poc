@@ -201,7 +201,8 @@ export const BookingId = () => {
 				<TabPanel
 					value='track-workers'
 					sx={{
-						height: { xs: 'calc( 100vh - 240px )', md: '' },
+						maxHeight: { xs: 'calc( 100vh - 260px )', md: '' },
+						minHeight: { xs: 'calc( 100vh - 260px )', md: '' },
 						overflowY: 'auto',
 						p: 2,
 						position: 'relative',
@@ -212,7 +213,7 @@ export const BookingId = () => {
 				<TabPanel
 					value='details'
 					sx={{
-						height: { xs: 'calc( 100vh - 240px )', md: '' },
+						height: { xs: 'calc( 100vh - 205px )', md: '' },
 						overflowY: 'auto',
 						p: 2,
 						position: 'relative',

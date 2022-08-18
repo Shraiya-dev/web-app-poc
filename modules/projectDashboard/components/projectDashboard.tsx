@@ -121,7 +121,13 @@ export const ProjectDashboard = () => {
 				</Stack>
 			</CustomTopBar>
 			<CustomProjectDashBoard>
-				<Stack direction={'row'} pt={3} pb={3}>
+				<Stack
+					direction={'row'}
+					pt={3}
+					pb={3}
+					sx={{
+						px: { xs: 2, md: '' },
+					}}>
 					<Typography
 						sx={{
 							fontFamily: 'Saira, sans-serif',
@@ -148,9 +154,10 @@ export const ProjectDashboard = () => {
 				</Stack>
 				<Stack
 					sx={{
-						maxHeight: isMobile ? 'calc(100vh - 280px)' : '',
-						minHeight: isMobile ? 'calc(100vh - 280px)' : '',
+						maxHeight: isMobile ? 'calc(100vh - 235px)' : '',
+						minHeight: isMobile ? 'calc(100vh - 235px)' : '',
 						overflowY: isMobile ? 'scroll' : '',
+						padding: { xs: 2, md: '' },
 					}}>
 					{loading ? (
 						<Stack p={5} alignItems='center' textAlign={'center'}>

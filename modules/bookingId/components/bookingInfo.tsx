@@ -157,7 +157,11 @@ const BookingInfo = ({ ...props }: BookingInfo) => {
 								</CardContent>
 							</Card>
 						</Stack>
-						<Stack spacing={5}>
+						<Stack
+							spacing={5}
+							sx={{
+								p: { xs: 2, md: '' },
+							}}>
 							<TextWrapper id={'trade'} label='Trade'>
 								{JobTypeLabel[bookingInfo?.booking?.jobType || 'GYPSUM']}
 							</TextWrapper>
