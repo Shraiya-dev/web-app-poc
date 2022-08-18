@@ -58,6 +58,7 @@ export const BookingId = () => {
 									width={24}
 									height={24}
 									style={{ verticalAlign: 'middle' }}
+									alt=''
 								/>
 								<Stack direction={'column'} spacing={1}>
 									<Stack direction={'column'}>
@@ -148,7 +149,7 @@ export const BookingId = () => {
 				<Box sx={{ borderBottom: 1, borderColor: 'divider', margin: 3, marginBottom: 0, marginTop: 3 }}>
 					<Tabs
 						TabIndicatorProps={{
-							style: {
+							sx: {
 								height: '3px',
 							},
 						}}
