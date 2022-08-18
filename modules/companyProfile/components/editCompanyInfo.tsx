@@ -124,7 +124,7 @@ const EditCompanyInfo = ({ ...props }) => {
 									error={!!checkError('GSTIN', form)}
 									helperText={checkError('GSTIN', form)}
 									inputProps={{
-										style: { textTransform: 'uppercase', color: '#000' },
+										sx: { textTransform: 'uppercase', color: '#000' },
 									}}
 								/>
 							</InputWrapper>
@@ -136,7 +136,7 @@ const EditCompanyInfo = ({ ...props }) => {
 
 							<Button
 								size='small'
-								style={{
+								sx={{
 									width: '50%',
 								}}
 								onClick={getGSTDetail}>
@@ -157,7 +157,7 @@ const EditCompanyInfo = ({ ...props }) => {
 									icon={
 										isGSTINDocUploaded ? (
 											<CircularProgress
-												style={{
+												sx={{
 													textAlign: 'center',
 													justifyContent: 'center',
 													width: 32,
@@ -167,7 +167,7 @@ const EditCompanyInfo = ({ ...props }) => {
 											/>
 										) : (
 											<Add
-												style={{
+												sx={{
 													textAlign: 'center',
 													justifyContent: 'center',
 													width: 32,
@@ -211,7 +211,7 @@ const EditCompanyInfo = ({ ...props }) => {
 													</IconButton>
 
 													<img
-														style={{
+														sx={{
 															height: 84,
 															width: 84,
 															objectFit: 'cover',
@@ -235,7 +235,7 @@ const EditCompanyInfo = ({ ...props }) => {
 						</InputWrapper> */}
 					</Stack>
 
-					<Stack direction='row' style={{ fontSize: '18px', paddingTop: 32 }} spacing={2}>
+					<Stack direction='row' sx={{ fontSize: '18px', paddingTop: 4 }} spacing={2}>
 						<Button
 							fullWidth
 							variant='outlined'
@@ -247,7 +247,7 @@ const EditCompanyInfo = ({ ...props }) => {
 									url: router.asPath,
 								})
 							}}
-							// style={{
+							// sx={{
 							// 	border: `1px solid ${primary.main}`,
 							// 	background: primary.light,
 							// 	color: primary.main,
@@ -276,7 +276,7 @@ const EditCompanyInfo = ({ ...props }) => {
 									loading || !form.isValid || !form.values.GSTIN || !form.values.companyName
 									// form.values.GSTINDocuments.length === 0
 								}
-								style={{
+								sx={{
 									background: theme.palette.primary.main,
 									color: primary.properDark,
 								}}

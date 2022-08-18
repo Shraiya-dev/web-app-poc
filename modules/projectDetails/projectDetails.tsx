@@ -50,7 +50,7 @@ export const ProjectDetails: FC<Props> = () => {
 								top: 4,
 							}}>
 							<Typography
-								style={{
+								sx={{
 									fontSize: isMobile ? 18 : 26,
 									fontWeight: 700,
 									color: theme.palette.secondary.main,
@@ -183,7 +183,7 @@ export const ProjectDetails: FC<Props> = () => {
 							}}>
 							<Tabs
 								TabIndicatorProps={{
-									style: {
+									sx: {
 										height: '3px',
 									},
 								}}
@@ -242,7 +242,7 @@ export const ProjectDetails: FC<Props> = () => {
 				<TabPanel
 					value='bookings'
 					sx={{
-						padding: { xs: 0, md: 3 },
+						padding: { xs: 1, md: 3 },
 						maxHeight: { xs: 'calc( 100vh - 230px )', md: '' },
 						minHeight: { xs: 'calc( 100vh - 230px )', md: '' },
 						overflowY: 'auto',
@@ -279,7 +279,7 @@ export const ProjectDetails: FC<Props> = () => {
 				<TabPanel
 					value='details'
 					sx={{
-						padding: { xs: 0, md: 3 },
+						padding: { xs: 1, md: 3 },
 
 						maxHeight: { xs: 'calc( 100vh - 230px )', md: '' },
 						minHeight: { xs: 'calc( 100vh - 230px )', md: '' },

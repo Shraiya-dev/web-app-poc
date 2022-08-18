@@ -36,11 +36,11 @@ export const BookingId = () => {
 						<Stack direction={'row'} spacing={4} alignItems={'center'}>
 							<Stack direction={'row'} spacing={2}>
 								<Typography
-									style={{
+									sx={{
 										fontSize: 26,
 										fontWeight: 700,
 										color: theme.palette.secondary.main,
-										paddingRight: 8,
+										paddingRight: 1,
 									}}>
 									<ArrowBackIosNewIcon
 										onClick={() => router.push(`/projects/${router.query.projectId}/bookings`)}
