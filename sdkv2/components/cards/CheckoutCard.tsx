@@ -245,11 +245,26 @@ export const CheckoutCard: FC = () => {
 					{...addEditWageDialogProps}
 					confirm={async (key: string, newWage: number, newQuantity: number) => {
 						let updateWage: any = {}
+
 						setWage((p: any) => {
 							const a = { ...p, [key]: newWage }
 							updateWage = a
+							sendAnalytics({
+								name: 'editWage',
+								action: 'ButtonClick',
+								metaData: {
+									origin: 'Checkout page',
+									oldWage: {
+										[key]: p[key],
+									},
+									newWage: {
+										[key]: newWage,
+									},
+								},
+							})
 							return a
 						})
+
 						form.setFieldValue(key.replace('wage', 'qty'), newQuantity)
 						setAddEditWageDialogProps((p: any) => ({ ...p, open: false }))
 						setUpdating((p: any) => ({ ...p, [key]: true }))

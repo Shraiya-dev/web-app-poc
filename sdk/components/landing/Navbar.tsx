@@ -28,6 +28,7 @@ import { DataLayerPush, HyperLink, LinkButton } from 'sdk'
 import { sendAnalytics } from 'sdk/analytics/analyticsWrapper'
 import { primary } from 'sdk'
 import { contactUsSection, navbar } from 'sdk/data'
+import { useContractorAuth } from 'sdk'
 import Link from 'next/link'
 export const Navbar = () => {
 	const [menuRefs, dispatchMenuRefs] = useReducer((p: any, n: any) => ({ ...p, ...n }), {})
@@ -37,6 +38,10 @@ export const Navbar = () => {
 	useEffect(() => {
 		!isMobile && setNavbarOpen(false)
 	}, [isMobile])
+
+	const { user } = useContractorAuth()
+
+	console.log(user)
 
 	return (
 		<>
@@ -232,31 +237,88 @@ export const Navbar = () => {
 						</Stack>
 						<NavWrapper direction='row' spacing={{ xs: 0, md: 3 }} alignItems='center'>
 							{navbar.navLinks.map((navItem, i) => {
+								console.log(!user)
 								if (navItem.type === 'button_link') {
-									return (
-										<LinkButton
-											variant='text'
-											key={i}
-											startIcon={navItem?.icon}
-											sx={(theme) => ({
-												fontWeight: 700,
-												color: 'common.white',
-												[theme.breakpoints.down('md')]: { display: 'none' },
-												whiteSpace: 'nowrap',
-											})}
-											onClick={() => {
-												if (navItem.label === 'Login') {
-													sendAnalytics({
-														name: 'navbarLogin',
-														action: 'ButtonClick',
-													})
-												}
-											}}
-											href={navItem.link}
-											className={router.pathname === navItem.link ? 'active' : ''}>
-											{navItem.label}
-										</LinkButton>
-									)
+									if (navItem.label === 'Login') {
+										return (
+											!user && (
+												<LinkButton
+													variant='text'
+													key={i}
+													startIcon={navItem?.icon}
+													sx={(theme) => ({
+														fontWeight: 700,
+														color: 'common.white',
+														[theme.breakpoints.down('md')]: { display: 'none' },
+														whiteSpace: 'nowrap',
+													})}
+													onClick={() => {
+														if (navItem.label === 'Login') {
+															sendAnalytics({
+																name: 'navbarLogin',
+																action: 'ButtonClick',
+															})
+														}
+													}}
+													href={navItem.link}
+													className={router.pathname === navItem.link ? 'active' : ''}>
+													{navItem.label}
+												</LinkButton>
+											)
+										)
+									} else if (navItem.label === 'marketing@projecthero.in') {
+										return (
+											!!user && (
+												<LinkButton
+													variant='text'
+													key={i}
+													startIcon={navItem?.icon}
+													sx={(theme) => ({
+														fontWeight: 700,
+														color: 'common.white',
+														[theme.breakpoints.down('md')]: { display: 'none' },
+														whiteSpace: 'nowrap',
+													})}
+													onClick={() => {
+														// if (navItem.label === 'Login') {
+														// 	sendAnalytics({
+														// 		name: 'navbarLogin',
+														// 		action: 'ButtonClick',
+														// 	})
+														// }
+													}}
+													href={navItem.link}
+													className={router.pathname === navItem.link ? 'active' : ''}>
+													{navItem.label}
+												</LinkButton>
+											)
+										)
+									} else {
+										return (
+											<LinkButton
+												variant='text'
+												key={i}
+												startIcon={navItem?.icon}
+												sx={(theme) => ({
+													fontWeight: 700,
+													color: 'common.white',
+													[theme.breakpoints.down('md')]: { display: 'none' },
+													whiteSpace: 'nowrap',
+												})}
+												onClick={() => {
+													if (navItem.label === 'Login') {
+														sendAnalytics({
+															name: 'navbarLogin',
+															action: 'ButtonClick',
+														})
+													}
+												}}
+												href={navItem.link}
+												className={router.pathname === navItem.link ? 'active' : ''}>
+												{navItem.label}
+											</LinkButton>
+										)
+									}
 								} else if (navItem.type === 'scroll_link') {
 									if (router.pathname === '/')
 										return (

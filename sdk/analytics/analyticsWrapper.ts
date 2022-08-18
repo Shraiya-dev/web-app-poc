@@ -137,6 +137,7 @@ const EventTypes = {
 	cancelPayment: 'Cancel Payment',
 	contactWorker: 'Contact Worker',
 	navbarLogin: 'Navbar Login',
+	editWage: 'Edit wage',
 }
 
 //Define a new action type here if needed
