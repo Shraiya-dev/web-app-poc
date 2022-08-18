@@ -119,7 +119,7 @@ export const ProjectCard = ({ ...props }) => {
 				</Typography>
 				<Typography className='location' color={'#333333'} sx={{ fontFamily: 'Karla , sans-darif' }}>
 					<LocationOnOutlinedIcon
-						style={{ verticalAlign: 'middle', fontSize: 12, marginBottom: 4, color: '#333333' }}
+						sx={{ verticalAlign: 'middle', fontSize: 12, marginBottom: 0.1, color: '#333333' }}
 					/>
 					{`${project?.city}, ${project?.state}`}
 				</Typography>
@@ -182,9 +182,9 @@ export const ProjectCard = ({ ...props }) => {
 							url: router.asPath,
 						})
 					}}
-					style={{
-						background: theme.palette.primary.light,
-						color: '#000',
+					sx={{
+						background: `${theme.palette.primary.light} !important`,
+						color: '#000 !important',
 					}}>
 					Book Workers
 				</Button>

@@ -100,7 +100,7 @@ const CompanyMembers = () => {
 								<TableCell
 									key={column.id}
 									align={column.align}
-									style={{
+									sx={{
 										minWidth: column.minWidth,
 										// backgroundColor: primary.light,
 										background: '#fffCF1',
@@ -122,15 +122,15 @@ const CompanyMembers = () => {
 								<TableCell>{row?.phoneNumber}</TableCell>
 
 								{/* TODO: Change logic to render */}
-								<TableCell style={{ textTransform: 'capitalize' }}>
+								<TableCell sx={{ textTransform: 'capitalize' }}>
 									{/* {row?.designation ? designationLabel[row?.designation] : '_'} */}
 									{row?.designation ? mapInfo(row?.designation)?.label : '_'}
 								</TableCell>
-								<TableCell style={{ textTransform: 'capitalize' }}>
+								<TableCell sx={{ textTransform: 'capitalize' }}>
 									{/* {row?.designation ? designationLabel[row?.designation] : '_'} */}
 									{Roles[row?.linkedOrganisation?.role]}
 								</TableCell>
-								<TableCell style={{ textTransform: 'capitalize' }}>
+								<TableCell sx={{ textTransform: 'capitalize' }}>
 									{row?.linkedOrganisation?.isDeleted ? 'Inactive' : 'Active'}
 								</TableCell>
 							</TableRow>

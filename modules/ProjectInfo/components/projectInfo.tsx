@@ -116,7 +116,7 @@ const ProjectInfo = ({ setProjectName }: any) => {
 						</TextWrapper>
 
 						<TextWrapper id='sitePhotos' label='Site Photos'>
-							<Grid container onClick={() => handleSiteView()} style={{ cursor: 'pointer' }}>
+							<Grid container onClick={() => handleSiteView()} sx={{ cursor: 'pointer' }}>
 								{projectInfo?.images?.site?.map((url: any, index: any) => {
 									return (
 										<Grid item key={index}>
@@ -161,7 +161,7 @@ const ProjectInfo = ({ setProjectName }: any) => {
 
 						{projectInfo?.benefits?.includes(JobBenefits?.ACCOMODATION) && (
 							<TextWrapper id='accomodationPhotos' label='Accommodation Photos'>
-								<Grid container onClick={() => handleAccomodationView()} style={{ cursor: 'pointer' }}>
+								<Grid container onClick={() => handleAccomodationView()} sx={{ cursor: 'pointer' }}>
 									{projectInfo?.images?.accommodations?.map((url: any, index: any) => {
 										return (
 											<Grid item key={index}>
@@ -298,7 +298,7 @@ const ProjectInfo = ({ setProjectName }: any) => {
 									icon={
 										isUploadingImages.site ? (
 											<CircularProgress
-												style={{
+												sx={{
 													textAlign: 'center',
 													justifyContent: 'center',
 													width: 32,
@@ -308,7 +308,7 @@ const ProjectInfo = ({ setProjectName }: any) => {
 											/>
 										) : (
 											<Add
-												style={{
+												sx={{
 													textAlign: 'center',
 													justifyContent: 'center',
 													width: 32,
@@ -417,7 +417,7 @@ const ProjectInfo = ({ setProjectName }: any) => {
 										icon={
 											isUploadingImages.accomodation ? (
 												<CircularProgress
-													style={{
+													sx={{
 														textAlign: 'center',
 														justifyContent: 'center',
 														width: 32,
@@ -427,7 +427,7 @@ const ProjectInfo = ({ setProjectName }: any) => {
 												/>
 											) : (
 												<Add
-													style={{
+													sx={{
 														textAlign: 'center',
 														justifyContent: 'center',
 														width: 32,
@@ -501,13 +501,19 @@ const ProjectInfo = ({ setProjectName }: any) => {
 						</InputWrapper>
 					</Stack>
 
-					<Stack direction={'row'} justifyContent={'space-between'} width={'50%'} mt={4}>
+					<Stack
+						direction={'row'}
+						justifyContent={'space-between'}
+						mt={4}
+						sx={{
+							width: { xs: '100%', md: '50%' },
+						}}>
 						<Button
 							variant='outlined'
 							onClick={() => {
 								setIsEditable(!isEditable)
 							}}
-							style={{ minWidth: '10em', float: 'right', display: 'flex' }}>
+							sx={{ minWidth: '10em', float: 'right', display: 'flex' }}>
 							Cancel
 						</Button>
 
@@ -517,7 +523,7 @@ const ProjectInfo = ({ setProjectName }: any) => {
 								ProjectUpdate(router.query.projectId)
 							}}
 							loading={loading}
-							style={{
+							sx={{
 								background: theme.palette.primary.main,
 								opacity: !!isSubmitable || loading ? 0.4 : 1,
 								minWidth: '10em',

@@ -71,7 +71,7 @@ export const Dashboard = () => {
 									)
 								}>
 								<TuneIcon
-								//style={{ color: router.query.status || router.query.jobType ? primary.main : '' }}
+								//sx={{ color: router.query.status || router.query.jobType ? primary.main : '' }}
 								/>
 							</Badge>
 						}
