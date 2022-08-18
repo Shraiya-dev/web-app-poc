@@ -1,6 +1,5 @@
 import {
 	Badge,
-	Box,
 	Button,
 	Checkbox,
 	CircularProgress,
@@ -9,18 +8,16 @@ import {
 	FormGroup,
 	Grid,
 	IconButton,
-	Pagination,
 	Stack,
 	Typography,
 } from '@mui/material'
 import { BottomLayout, JobCardCard, primary, useMobile, WORKER_APPLICATION_STATUS, WORKER_TYPES } from '../../../sdk'
 
+import { Close } from '@mui/icons-material'
 import { useRouter } from 'next/router'
 import { FC, useEffect, useMemo, useState } from 'react'
 import { useBookingId } from '../hooks'
 import { ChipFilter } from './ChipFilter'
-import { truncate } from 'fs/promises'
-import { Close } from '@mui/icons-material'
 
 interface handleLength {
 	handleRequiredTotal: (jobCardsLength: any) => void

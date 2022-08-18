@@ -183,7 +183,7 @@ export const CheckoutCard: FC = () => {
 									step: 'Booking Complete',
 								},
 							})
-							router.push(`/bookings/${router.query.projectId}/${router.query.bookingId}/track-workers`)
+							router.replace(`/projects/${router.query.projectId}/bookings`)
 						},
 						() => {
 							dispatchLoading({ payment: false })
@@ -214,7 +214,7 @@ export const CheckoutCard: FC = () => {
 						step: 'Booking Complete',
 					},
 				})
-				router.push(`/bookings/${router.query.projectId}/${router.query.bookingId}/track-workers`)
+				router.replace(`/projects/${router.query.projectId}/bookings`)
 			}
 		} catch (error: any) {
 			showSnackbar(error?.response?.data?.developerInfo, 'error')
@@ -308,9 +308,25 @@ export const CheckoutCard: FC = () => {
 						<>
 							<Stack p={{ xs: 2, md: 3 }} minWidth={!isMobile ? '766px' : '100%'}>
 								<Stack spacing={'4px'}>
+									{!!discountDetails?.isEligible &&
+										15 - (discountDetails?.discount?.quantity ?? 0) !== 0 && (
+											<Typography
+												display='inline'
+												variant='h5'
+												color='success.dark'
+												fontWeight={600}>
+												<Typography display='inline' color='common.white'>
+													You have availed
+												</Typography>{' '}
+												{15 - (discountDetails?.discount?.quantity ?? 0)}/15 free applications
+											</Typography>
+										)}
 									{!!discountDetails?.isEligible && (
 										<Typography variant='h3' fontWeight={600}>
-											First
+											{discountDetails?.discount?.quantity &&
+											discountDetails?.discount?.quantity < 15
+												? 'Remaining'
+												: 'First'}
 											<Typography
 												display='inline'
 												variant='h3'

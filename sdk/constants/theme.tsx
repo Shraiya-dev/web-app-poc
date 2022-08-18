@@ -206,7 +206,7 @@ let themeDef = createTheme({
 	breakpoints: {
 		values: {
 			xl: 1536,
-			lg: 1200,
+			lg: 1350,
 			md: 900,
 			sm: 600,
 			xs: 0,
@@ -254,7 +254,7 @@ let themeDef = createTheme({
 		MuiPaper: {
 			defaultProps: {
 				//variant: 'outlined',
-				style: {
+				sx: {
 					boxShadow: '1px 1px 1px 1px rgba(0, 0, 0, 0.08)',
 				},
 			},
@@ -345,7 +345,7 @@ let themeDef = createTheme({
 		},
 		MuiList: {
 			defaultProps: {
-				style: {
+				sx: {
 					background: '#000',
 				},
 			},
