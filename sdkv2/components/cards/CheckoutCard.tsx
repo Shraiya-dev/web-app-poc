@@ -86,7 +86,11 @@ export const CheckoutCard: FC = () => {
 				value: 'subTotal',
 			},
 			{
-				label: `Discount (First ${discountDetails?.discount?.quantity} applications free)`,
+				label: `Discount (${
+					discountDetails?.discount?.quantity && discountDetails?.discount?.quantity < 15
+						? 'Remaining'
+						: 'First'
+				} ${discountDetails?.discount?.quantity} applications free)`,
 				value: 'discount',
 			},
 			{
