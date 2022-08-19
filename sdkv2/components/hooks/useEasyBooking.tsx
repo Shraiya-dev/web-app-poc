@@ -1,11 +1,13 @@
 import { useFormik } from 'formik'
 import { useRouter } from 'next/router'
-import { useEffect, useMemo } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { createCookieInHour, DataLayerPush, getCookie, sendAnalytics } from 'sdk/analytics'
 import { useFormikProps } from 'sdk/hooks'
 import * as Yup from 'yup'
 export const useEasyBooking = () => {
 	const router = useRouter()
+	const [loading, setLoading] = useState<boolean>(false)
+	const [isSubmittable, setIsSubmittable] = useState<boolean>(false)
 	const handleSubmit = async (values: any) => {
 		DataLayerPush({
 			event: 'booking_requirement',
@@ -30,16 +32,31 @@ export const useEasyBooking = () => {
 			}),
 			45
 		)
-		router.push('/login')
+		// router.push('/login')
+		console.log(values)
 	}
 	const form = useFormik({
 		initialValues: {
-			location: '',
 			jobType: 'none',
+
+			BookingDuration: '',
+			StartDate: new Date(),
+
+			helper: 0,
+			supervisor: 0,
+			technician: 0,
+
+			helperWage: 0,
+			technicianWage: 0,
+			supervisorWage: 0,
+
+			location: '',
 			workDuration: 'none',
-			helperWage: undefined,
-			technicianWage: undefined,
-			supervisorWage: undefined,
+			tags: [],
+			startTime: 'none',
+			endTime: 'none',
+			shiftTime: '',
+
 			isHelper: false,
 			isTechnician: false,
 			isSupervisor: false,
@@ -94,5 +111,5 @@ export const useEasyBooking = () => {
 	}, [])
 
 	const formikProps = useFormikProps(form)
-	return { form, formikProps }
+	return { form, formikProps, loading, isSubmittable, setIsSubmittable }
 }

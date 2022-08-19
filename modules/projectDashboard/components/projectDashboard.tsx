@@ -30,6 +30,7 @@ import logo from '../../../public/assets/icons/BrandLogo.svg'
 import LogoutIcon from '@mui/icons-material/Logout'
 import { ArrowBackIos } from '@mui/icons-material'
 import { useEffect } from 'react'
+import { route } from 'next/dist/server/router'
 
 const CustomProjectDashBoard = styled(Box)(({ theme }) => ({
 	padding: 4,
@@ -94,6 +95,10 @@ export const ProjectDashboard = () => {
 		clearCookie()
 		logOut()
 	}
+
+	// useEffect(() => {
+	// 	if (projects.projects.length > 0) router.push(`/bookings/create`)
+	// }, [projects])
 
 	return (
 		<>
