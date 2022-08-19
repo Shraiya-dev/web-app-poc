@@ -125,7 +125,6 @@ export const CheckoutCard: FC = () => {
 		if (user?.email) {
 			setEmailId(user?.email)
 		}
-		console.log(user)
 	}, [user])
 
 	const handleEmailDialogBox = useCallback(() => {
@@ -593,8 +592,13 @@ export const CheckoutCard: FC = () => {
 										loading={loading?.payment}
 										color='info'
 										disabled={bill.quantity <= 0}
-										// onClick={handelPayment}
-										onClick={handleEmailDialogBox}
+										onClick={() => {
+											if (user?.email) {
+												handelPayment(user?.email)
+											} else {
+												handleEmailDialogBox()
+											}
+										}}
 										sx={{
 											backgroundColor: '#ffffff !important',
 											color: 'common.black',
