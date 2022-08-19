@@ -81,7 +81,7 @@ export const VerifyEmailOtp = () => {
 				<EmailOtpVerification handleChangeEmail={handleChangeEmail} />
 			) : (
 				<>
-					<BackButton onClick={() => router.push('https://www.projecthero.in/')} />
+					<BackButton onClick={() => router.push('/')} />
 
 					<Typography className='headerInfo'>Edit Email</Typography>
 					<form onSubmit={form.handleSubmit}>

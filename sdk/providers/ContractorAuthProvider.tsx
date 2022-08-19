@@ -78,6 +78,17 @@ const ContractorAuthContext = createContext<AuthProviderValue>({
 const { Provider, Consumer } = ContractorAuthContext
 
 const cookieExpireTime = 45
+const PublicPages = [
+	'/',
+	'/about-us',
+	'/contact-us',
+	'/privacy-policy',
+	'/refund-policy',
+	'/tnc',
+	'/faq',
+	'/hero/plans',
+	'/KhulaManch',
+]
 interface ContractorAuthProviderProps {
 	authState?: AuthState
 }
@@ -245,7 +256,8 @@ const ContractorAuthProvider: FC<ContractorAuthProviderProps> = ({ children, aut
 			const accessToken = localStorage.getItem('accessToken')
 			const refreshToken = localStorage.getItem('refreshToken')
 			const phoneNumber = localStorage.getItem('phoneNumber')
-			if (!(accessToken || refreshToken || phoneNumber)) {
+			if (!(accessToken && refreshToken && phoneNumber)) {
+				if (PublicPages.includes(router.pathname)) return
 				logOutService()
 				return
 			}
@@ -304,6 +316,7 @@ const ContractorAuthProvider: FC<ContractorAuthProviderProps> = ({ children, aut
 	//logic for redirect based on state and update userInfo
 	useEffect(() => {
 		if (!(state.accessToken && state.refreshToken && state.phoneNumber)) {
+			if (PublicPages.includes(router.pathname)) return
 			logOutService()
 			return
 		}
@@ -405,6 +418,7 @@ const ContractorAuthProvider: FC<ContractorAuthProviderProps> = ({ children, aut
 						if (
 							// restricts access to any other routes except the routes included in array
 							[
+								...PublicPages,
 								'/dashboard',
 								'/profile',
 								'/worker',

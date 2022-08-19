@@ -2,22 +2,12 @@ import { ArrowCircleLeftOutlined, ArrowCircleRightOutlined, Circle } from '@mui/
 
 import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord'
 import { Box, Button, Card, Grid, List, ListItem, Stack, Typography } from '@mui/material'
+import 'keen-slider/keen-slider.min.css'
 import { useKeenSlider } from 'keen-slider/react'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
-import 'keen-slider/keen-slider.min.css'
 
-import {
-	ButtonClicked,
-	CarouselV2,
-	DataLayerPush,
-	externalLinks,
-	LinkButton,
-	primary,
-	Section,
-	sendAnalytics,
-	useMobile,
-} from 'sdk'
+import { CarouselV2, DataLayerPush, externalLinks, LinkButton, primary, Section, sendAnalytics, useMobile } from 'sdk'
 import { HeroDiscoveryMetaData } from 'sdk/data/discoverHero'
 import { homePage } from 'sdk/data/home'
 import { sliceIntoChunks } from 'sdk/utils/arrayHelpers'
@@ -27,17 +17,7 @@ import { WorkerCard } from 'sdkv2/components/cards/WorkerCard'
 const animation = { duration: 25000, easing: (t: number) => t }
 
 export const Home = () => {
-	const {
-		jobSection,
-		bookingJourneySection,
-		benefitFromHeroSection,
-		supportCarouselSection,
-		customerSayingSection,
-		hireConstructionSection,
-		phAdvantage,
-		phApp,
-		clientCarouselSection,
-	} = homePage
+	const { jobSection } = homePage
 	const isMobile = useMobile()
 	const router = useRouter()
 	const [sliderRef] = useKeenSlider<HTMLDivElement>({
