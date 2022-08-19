@@ -72,6 +72,8 @@ export const ProjectDashboard = () => {
 		if (projects.projects.length === 1) {
 			localStorage.setItem('noBack', String(true))
 			router.push(`/projects/${projects.projects[0].projectId}/bookings`)
+		} else if (projects.projects.length > 0) {
+			router.push(`/bookings/create`)
 		} else {
 			localStorage.removeItem('noBack')
 		}
@@ -95,10 +97,6 @@ export const ProjectDashboard = () => {
 		clearCookie()
 		logOut()
 	}
-
-	// useEffect(() => {
-	// 	if (projects.projects.length > 0) router.push(`/bookings/create`)
-	// }, [projects])
 
 	return (
 		<>

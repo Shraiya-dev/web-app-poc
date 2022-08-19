@@ -386,11 +386,24 @@ export const EasyBooking = () => {
 										helperText={formikProps('location').helperText}
 										placeholder='Select Location'
 										{...params}
-										style={{
-											color: '#fff !important',
+										sx={{
+											color: '#000 !important',
+											background: '#fff !important',
 										}}
 									/>
 								)}
+								sx={{
+									width: { xs: '100%', md: '50%' },
+									'& .MuiInputBase-root': {
+										color: '#000!important',
+									},
+									'& .MuiSvgIcon-root': {
+										color: '#000',
+									},
+									'& .MuiButtonBase-root': {
+										color: '#000',
+									},
+								}}
 								renderOption={(props, option) => [props, option.label] as React.ReactNode}
 								renderGroup={(params) => params as unknown as React.ReactNode}
 							/>
