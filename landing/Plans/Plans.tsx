@@ -204,7 +204,7 @@ export const Plans: FC = () => {
 										borderRadius: 4,
 										overflowY: 'auto',
 										position: 'relative',
-										width: isMobile ? '100%' : '24%',
+										width: { xs: '100%', md: '24%' },
 										m: 1,
 										boxShadow: '0px 0px 10px rgba(6, 99, 246, 0.15);',
 									}}>

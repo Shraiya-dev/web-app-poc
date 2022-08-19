@@ -126,7 +126,10 @@ const CompanyDetails = () => {
 					</TabContext>
 				</Stack>
 			</CompanyDetailsStyle>
-			{isMobile && <BottomLayout />}
+
+			<Box sx={{ display: { xs: 'block', md: 'none' } }}>
+				<BottomLayout />
+			</Box>
 		</>
 	)
 }
