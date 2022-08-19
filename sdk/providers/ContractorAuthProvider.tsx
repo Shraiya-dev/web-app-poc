@@ -415,10 +415,10 @@ const ContractorAuthProvider: FC<ContractorAuthProviderProps> = ({ children, aut
 					) {
 						router.replace('/dashboard')
 					} else {
-						if (
+						if (!PublicPages.every((item) => router.pathname !== item)) {
+						} else if (
 							// restricts access to any other routes except the routes included in array
 							[
-								...PublicPages,
 								'/dashboard',
 								'/profile',
 								'/worker',
