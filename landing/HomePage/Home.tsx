@@ -472,12 +472,13 @@ export const Home = () => {
 			<Section
 				backgroundColor='#F7F7F7'
 				sx={{
-					backgroundImage: !isMobile
-						? `url(${'/assets/landingv2/heroSection/heroAdvantage.svg'})`
-						: `url(${'/assets/landingv2/heroSection/heroAdvantageMobile.svg'})`,
 					backgroundRepeat: 'no-repeat',
-					backgroundPosition: !isMobile ? 'right' : 'right bottom',
-					minHeight: !isMobile ? '600px' : '880px',
+					backgroundImage: {
+						md: `url(${'/assets/landingv2/heroSection/heroAdvantage.svg'})`,
+						xs: `url(${'/assets/landingv2/heroSection/heroAdvantageMobile.svg'})`,
+					},
+					backgroundPosition: { md: 'right', xs: 'right bottom' },
+					minHeight: { md: '600px', xs: '880px' },
 				}}>
 				<Box
 					sx={{
@@ -495,9 +496,9 @@ export const Home = () => {
 									<LinkButton
 										href={homePage.HeroAdvantage.buttonText.link}
 										sx={{
-											p: !isMobile ? '14px 64px' : '13px 45px',
+											p: { md: '14px 64px', xs: '13px 45px' },
 											fontWeight: '900',
-											fontSize: !isMobile ? '20px' : '14px',
+											fontSize: { md: '20px', xs: '14px' },
 										}}
 										// href='/login'
 										onClick={() => {
@@ -649,7 +650,7 @@ export const Home = () => {
 										<Card
 											sx={(theme) => ({
 												display: 'flex',
-												flexDirection: isMobile ? 'column' : 'row',
+												flexDirection: { sx: 'column', md: 'row' },
 												maxWidth: 800,
 												zIndex: 12,
 												position: 'relative',
@@ -692,7 +693,7 @@ export const Home = () => {
 							justifyContent={'space-between'}
 							sx={{
 								overflowX: 'scroll',
-								width: !isMobile ? '100%' : '100%',
+								width: '100%',
 								mt: '50px',
 								'&::-webkit-scrollbar': {
 									display: 'none',
