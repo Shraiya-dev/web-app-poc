@@ -49,6 +49,8 @@ const EditCompanyInfo = ({ ...props }) => {
 		setHasUpdateValue,
 		isGSTLoaded,
 		setLoading,
+		showGSTValidate,
+		setShowGSTValidate,
 	} = useCompanyDetails()
 	const { isCmpDetailsEditable, setIsCmpDetailsEditable } = props
 	const router = useRouter()
@@ -102,6 +104,15 @@ const EditCompanyInfo = ({ ...props }) => {
 		getOrgDetails()
 	}, [])
 
+	useEffect(() => {
+		if (form.values.GSTIN === '') {
+			setHasUpdateValue(true)
+			setShowGSTValidate(true)
+		} else {
+			setHasUpdateValue(false)
+		}
+	}, [form.values.GSTIN])
+
 	return (
 		<EditCompanyInfoStyle>
 			<Stack spacing={3} width={isMobile ? '100%' : '25%'}>
@@ -113,8 +124,8 @@ const EditCompanyInfo = ({ ...props }) => {
 								name='companyName'
 								value={form.values.companyName}
 								onChange={(e) => {
-									form.handleChange(e)
 									setHasUpdateValue(true)
+									form.handleChange(e)
 								}}
 								onBlur={form.handleBlur}
 								placeholder='Full Name'
@@ -132,7 +143,7 @@ const EditCompanyInfo = ({ ...props }) => {
 									onChange={(e) => {
 										if (e.target.value.length <= 15) {
 											form.handleChange(e)
-											setHasUpdateValue(false)
+											setShowGSTValidate(false)
 										}
 									}}
 									onBlur={form.handleBlur}
@@ -151,6 +162,7 @@ const EditCompanyInfo = ({ ...props }) => {
 													fullWidth
 													variant='contained'
 													size='small'
+													disabled={showGSTValidate}
 													onClick={getGSTDetail}>
 													Validate
 												</LoadingButton>
@@ -294,10 +306,6 @@ const EditCompanyInfo = ({ ...props }) => {
 								}}
 								loading={loading}
 								variant='contained'
-								disabled={
-									loading || !form.isValid || !form.values.GSTIN || !form.values.companyName
-									// form.values.GSTINDocuments.length === 0
-								}
 								sx={{
 									background: theme.palette.primary.main,
 									color: primary.properDark,

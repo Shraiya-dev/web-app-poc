@@ -25,6 +25,7 @@ const useCompanyDetails = () => {
 	const [validGSTResponse, setValidGSTResponse] = useState<String>('')
 	const [hasUpdateValue, setHasUpdateValue] = useState<boolean>(false)
 	const [isGSTLoaded, setIsGSTLoaded] = useState<boolean>(false)
+	const [showGSTValidate, setShowGSTValidate] = useState<boolean>(true)
 
 	const { showSnackbar } = useSnackbar()
 
@@ -84,9 +85,9 @@ const useCompanyDetails = () => {
 				errors.company = 'Required'
 			}
 
-			if (!values.GSTIN) {
-				errors.GSTIN = 'Required'
-			}
+			// if (!values.GSTIN) {
+			// 	errors.GSTIN = 'Required'
+			// }
 
 			// if (values.GSTINDocuments.length === 0) {
 			// 	errors.GSTINDocuments = 'Required'
@@ -156,6 +157,7 @@ const useCompanyDetails = () => {
 				setValidGSTResponse(data?.payload?.tradeName)
 				setHasUpdateValue(true)
 				setIsGSTLoaded(false)
+				setShowGSTValidate(true)
 			} else {
 				setIsValidGST(false)
 				showSnackbar(data?.messageToUser, 'error')
@@ -198,6 +200,8 @@ const useCompanyDetails = () => {
 		setHasUpdateValue,
 		isGSTLoaded,
 		setLoading,
+		showGSTValidate,
+		setShowGSTValidate,
 	}
 }
 
