@@ -15,7 +15,6 @@ export const useEasyBooking = () => {
 		initialValues: {
 			jobType: 'none',
 
-			BookingDuration: '',
 			StartDate: new Date(),
 
 			helper: 0,
@@ -28,7 +27,6 @@ export const useEasyBooking = () => {
 
 			location: '',
 			workDuration: 'none',
-			tags: [],
 			startTime: 'none',
 			endTime: 'none',
 			shiftTime: '',

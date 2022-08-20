@@ -204,7 +204,7 @@ export const EasyBooking = () => {
 		let canSubmit: boolean =
 			!!form.values.jobType &&
 			(!!form.values.helperWage || !!form.values.technicianWage || !!form.values.supervisorWage) &&
-			!!form.values.BookingDuration
+			!!form.values.workDuration
 
 		setIsSubmittable(canSubmit)
 	}, [form, isSubmittable])
@@ -220,7 +220,7 @@ export const EasyBooking = () => {
 
 	const handleProjectDuration = (info: any) => {
 		setProjectDuration(info)
-		form.setFieldValue('BookingDuration', info)
+		form.setFieldValue('workDuration', info)
 	}
 
 	const getErrorString = () => {
@@ -472,7 +472,7 @@ export const EasyBooking = () => {
 								id='workerType'
 								label={`Workers Required & Daily Wage`}
 								toolTip={'Daily wage per worker'}>
-								{getErrorString()}
+								{/* {getErrorString()} */}
 								<Grid container spacing={4}>
 									{workerType.map((info, index) => {
 										return (
@@ -559,9 +559,9 @@ export const EasyBooking = () => {
 								</Grid>
 							</InputWrapper>
 
-							<InputWrapper id='BookingDuration' label='Job Duration'>
+							<InputWrapper id='workDuration' label='Job Duration'>
 								<Grid container item rowGap={1}>
-									{projectDuration.map((info, index) => {
+									{projectDuration.map((info: any, index: any) => {
 										return (
 											<Button
 												className='borderCta'
