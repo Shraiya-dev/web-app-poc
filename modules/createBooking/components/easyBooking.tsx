@@ -6,6 +6,7 @@ import {
 	Chip,
 	Container,
 	Grid,
+	InputAdornment,
 	ListSubheader,
 	Paper,
 	Stack,
@@ -21,11 +22,20 @@ import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
 import React, { useEffect, useState } from 'react'
-import { allCityList, ButtonClicked, capitalize, checkError, InputWrapper, primary, theme, useMobile } from 'sdk'
+import {
+	allCityList,
+	ButtonClicked,
+	capitalize,
+	checkError,
+	InputWrapper,
+	primary,
+	theme,
+	useContractorAuth,
+	useMobile,
+} from 'sdk'
 import { TopBanner } from 'sdk/components/banner/formBanner'
-import { useEasyBooking } from 'sdkv2/components'
 import BookingSvg from '../../../public/assets/icons/project.svg'
-import { jobTypeInfo, moreJobType, projectDuration, tags } from '../utils'
+import { jobTypeInfo, moreJobType, projectDuration } from '../utils'
 import ConfirmCancel from './confirmCancel'
 import CancelIcon from '@mui/icons-material/Cancel'
 import Helper from '../../../public/assets/icons/helper.svg'
@@ -33,6 +43,7 @@ import Supervisor from '../../../public/assets/icons/supervisor.svg'
 import Technician from '../../../public/assets/icons/technician.svg'
 import { LoadingButton } from '@mui/lab'
 import { ListChildComponentProps, VariableSizeList } from 'react-window'
+import { useEasyBookingInternal } from 'sdkv2/components/hooks/useEasyBookingInternal'
 
 const CustomBookingStyle = styled(Box)(({ theme }) => ({
 	'.main': {
@@ -151,8 +162,9 @@ export const EasyBooking = () => {
 	const [isMore, setIsmore] = useState(false)
 	const router = useRouter()
 	const isMobile = useMobile()
+	const { user } = useContractorAuth()
 
-	const { form, loading, isSubmittable, setIsSubmittable, formikProps } = useEasyBooking()
+	const { form, formikProps, isSubmittable, setIsSubmittable } = useEasyBookingInternal()
 
 	const workerType = [
 		{
@@ -162,9 +174,8 @@ export const EasyBooking = () => {
 			isPresent: form.values.isHelper,
 			CheckboxName: 'isHelper',
 			wage: 'helperWage',
-			formvalue: form.values.helper,
 			wageformvalue: form.values.helperWage,
-			error: form.errors.helper,
+			error: form.errors.isHelper,
 		},
 		{
 			label: 'Technician',
@@ -173,9 +184,8 @@ export const EasyBooking = () => {
 			name: 'technician',
 			CheckboxName: 'isTechnician',
 			wage: 'technicianWage',
-			formvalue: form.values.technician,
 			wageformvalue: form.values.technicianWage,
-			error: form.errors.technician,
+			error: form.errors.isTechnician,
 		},
 
 		{
@@ -185,9 +195,8 @@ export const EasyBooking = () => {
 			CheckboxName: 'isSupervisor',
 			name: 'supervisor',
 			wage: 'supervisorWage',
-			formvalue: form.values.supervisor,
 			wageformvalue: form.values.supervisorWage,
-			error: form.errors.supervisor,
+			error: form.errors.isSupervisor,
 		},
 	]
 
@@ -203,15 +212,15 @@ export const EasyBooking = () => {
 
 		let canSubmit: boolean =
 			!!form.values.jobType &&
-			(!!form.values.helperWage || !!form.values.technicianWage || !!form.values.supervisorWage) &&
-			!!form.values.workDuration
+			(!!form.values.isHelper || !!form.values.isTechnician || !!form.values.isSupervisor) &&
+			!!form.values.workDuration &&
+			!!form.values.location
 
 		setIsSubmittable(canSubmit)
 	}, [form, isSubmittable])
 
 	const handleJobClick = (info: any) => {
 		form.setFieldValue('jobType', info)
-		form.setFieldValue('tags', [])
 		setSelectedjob(info)
 	}
 	const handleMoreJobType = () => {
@@ -224,9 +233,9 @@ export const EasyBooking = () => {
 	}
 
 	const getErrorString = () => {
-		return form.errors.helper ||
-			form.errors.technician ||
-			form.errors.supervisor ||
+		return form.errors.isHelper ||
+			form.errors.isTechnician ||
+			form.errors.isSupervisor ||
 			form.errors.helperWage ||
 			form.errors.technicianWage ||
 			form.errors.supervisorWage ? (
@@ -254,7 +263,7 @@ export const EasyBooking = () => {
 					})
 				}}
 				// visibleCloseIcon={step === 1}
-				visibleCloseIcon
+				visibleCloseIcon={!user?.hasProjects}
 				linkHeader={''}
 				link={`/projects/${router.query.projectId}/bookings`}
 			/>
@@ -532,7 +541,11 @@ export const EasyBooking = () => {
 														placeholder='Enter wage'
 														id={info?.wage}
 														name={info?.wage}
-														value={info?.wageformvalue > 0 ? info?.wageformvalue : ''}
+														value={
+															info?.wageformvalue && info?.wageformvalue > 0
+																? info?.wageformvalue
+																: ''
+														}
 														type='tel'
 														disabled={!info.isPresent}
 														onChange={(e: any) => {
@@ -542,6 +555,21 @@ export const EasyBooking = () => {
 																	Number(e.target.value)
 																)
 															}
+														}}
+														InputProps={{
+															endAdornment: (
+																<InputAdornment position='end'>/day</InputAdornment>
+															),
+															startAdornment: (
+																<InputAdornment position='start'>
+																	<Typography
+																		sx={{
+																			color: '#57cca5 !important',
+																		}}>
+																		&#8377;
+																	</Typography>
+																</InputAdornment>
+															),
 														}}
 														fullWidth
 														onBlur={form.handleBlur}
@@ -603,7 +631,7 @@ export const EasyBooking = () => {
 										className='loadingcta'
 										type='submit'
 										variant='contained'
-										loading={loading}
+										// loading={loading}
 										disabled={!isSubmittable}
 										// onClick={() => handleNext()}
 										style={{

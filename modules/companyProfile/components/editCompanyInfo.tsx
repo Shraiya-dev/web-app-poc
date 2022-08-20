@@ -1,4 +1,15 @@
-import { Box, Button, CircularProgress, Grid, IconButton, Stack, styled, TextField, Typography } from '@mui/material'
+import {
+	Box,
+	Button,
+	CircularProgress,
+	Grid,
+	IconButton,
+	InputAdornment,
+	Stack,
+	styled,
+	TextField,
+	Typography,
+} from '@mui/material'
 import {
 	checkError,
 	CompanyNameField,
@@ -36,6 +47,8 @@ const EditCompanyInfo = ({ ...props }) => {
 		setIsValidGST,
 		hasUpdateValue,
 		setHasUpdateValue,
+		isGSTLoaded,
+		setLoading,
 	} = useCompanyDetails()
 	const { isCmpDetailsEditable, setIsCmpDetailsEditable } = props
 	const router = useRouter()
@@ -45,6 +58,7 @@ const EditCompanyInfo = ({ ...props }) => {
 	const isMobile = useMobile()
 
 	const updateOrg = useCallback(async () => {
+		setLoading(true)
 		const payload = {
 			companyName: form.values.companyName,
 			GSTIN: form.values.GSTIN.toUpperCase(),
@@ -59,15 +73,18 @@ const EditCompanyInfo = ({ ...props }) => {
 				showSnackbar('Updated Successfully', 'success')
 				setIsCmpDetailsEditable(false)
 				router.push('/profile/details')
+				setLoading(false)
 			} else {
 				showSnackbar(`${data?.messageToUser}`, 'error')
+				setLoading(false)
 			}
 		} catch (error) {
 			showSnackbar(`Unable to Update`, 'error')
+			setLoading(false)
 		}
 
 		//	getOrgDetails()
-	}, [form])
+	}, [form, loading])
 
 	// useEffect(() => {
 	// 	if (user?.organisationId) {
@@ -126,6 +143,20 @@ const EditCompanyInfo = ({ ...props }) => {
 									inputProps={{
 										sx: { textTransform: 'uppercase', color: '#000' },
 									}}
+									InputProps={{
+										endAdornment: (
+											<InputAdornment position='end'>
+												<LoadingButton
+													loading={isGSTLoaded}
+													fullWidth
+													variant='contained'
+													size='small'
+													onClick={getGSTDetail}>
+													Validate
+												</LoadingButton>
+											</InputAdornment>
+										),
+									}}
 								/>
 							</InputWrapper>
 							{isValidGST && (
@@ -133,15 +164,6 @@ const EditCompanyInfo = ({ ...props }) => {
 									{validGSTResponse}
 								</Typography>
 							)}
-
-							<Button
-								size='small'
-								sx={{
-									width: '50%',
-								}}
-								onClick={getGSTDetail}>
-								Validate GSTIN
-							</Button>
 						</Stack>
 
 						{/* <InputWrapper id='GSTINDoc' label='Upload GSTIN Certificate'>
@@ -157,7 +179,7 @@ const EditCompanyInfo = ({ ...props }) => {
 									icon={
 										isGSTINDocUploaded ? (
 											<CircularProgress
-												sx={{
+												style={{
 													textAlign: 'center',
 													justifyContent: 'center',
 													width: 32,
@@ -167,7 +189,7 @@ const EditCompanyInfo = ({ ...props }) => {
 											/>
 										) : (
 											<Add
-												sx={{
+												style={{
 													textAlign: 'center',
 													justifyContent: 'center',
 													width: 32,
@@ -211,7 +233,7 @@ const EditCompanyInfo = ({ ...props }) => {
 													</IconButton>
 
 													<img
-														sx={{
+														style={{
 															height: 84,
 															width: 84,
 															objectFit: 'cover',

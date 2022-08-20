@@ -69,15 +69,15 @@ export const ProjectDashboard = () => {
 
 	const { loading, projects, user } = useProjectDashboard()
 	useEffect(() => {
-		if (projects.projects.length === 1) {
+		if (user && !user?.hasProjects) {
+			router.push(`/bookings/create`)
+		} else if (projects.projects.length === 1) {
 			localStorage.setItem('noBack', String(true))
 			router.push(`/projects/${projects.projects[0].projectId}/bookings`)
-		} else if (projects.projects.length > 0) {
-			router.push(`/bookings/create`)
 		} else {
 			localStorage.removeItem('noBack')
 		}
-	}, [projects])
+	}, [projects, router])
 
 	const { logOut, isSideBarToggle, updateIsSideBarToggle } = useContractorAuth()
 
