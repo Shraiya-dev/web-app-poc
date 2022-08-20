@@ -39,7 +39,7 @@ interface AuthProviderValue extends AuthState {
 	updateIsSideBarToggle: (isSideBarToggle: boolean) => {}
 	requestEmailOtp: () => Promise<any>
 	reSendEmailOtp: (payload: { token: string }) => Promise<any>
-
+	createEasyBooking: (bookingDetails: any) => Promise<any>
 	verifyEmailOtp: (payload: emailOtpPayload) => Promise<any>
 }
 
@@ -72,7 +72,7 @@ const ContractorAuthContext = createContext<AuthProviderValue>({
 	updateIsSideBarToggle: () => false,
 	requestEmailOtp: () => Promise.resolve(null),
 	reSendEmailOtp: (payload: { token: string }) => Promise.resolve(null),
-
+	createEasyBooking: () => Promise.resolve(null),
 	verifyEmailOtp: () => Promise.resolve(null),
 })
 const { Provider, Consumer } = ContractorAuthContext
@@ -438,6 +438,7 @@ const ContractorAuthProvider: FC<ContractorAuthProviderProps> = ({ children, aut
 			requestEmailOtp: requestEmailOtp,
 			verifyEmailOtp: verifyEmailOtp,
 			reSendEmailOtp: reSendEmailOtp,
+			createEasyBooking: createEasyBooking,
 		}),
 		[
 			state,
@@ -449,6 +450,7 @@ const ContractorAuthProvider: FC<ContractorAuthProviderProps> = ({ children, aut
 			requestEmailOtp,
 			verifyEmailOtp,
 			reSendEmailOtp,
+			createEasyBooking,
 		]
 	)
 	return (

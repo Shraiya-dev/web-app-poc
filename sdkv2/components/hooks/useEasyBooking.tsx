@@ -3,38 +3,14 @@ import { useRouter } from 'next/router'
 import { useEffect, useMemo, useState } from 'react'
 import { createCookieInHour, DataLayerPush, getCookie, sendAnalytics } from 'sdk/analytics'
 import { useFormikProps } from 'sdk/hooks'
+import { useContractorAuth } from 'sdk/providers'
 import * as Yup from 'yup'
 export const useEasyBooking = () => {
 	const router = useRouter()
 	const [loading, setLoading] = useState<boolean>(false)
+	const { createEasyBooking } = useContractorAuth()
 	const [isSubmittable, setIsSubmittable] = useState<boolean>(false)
-	const handleSubmit = async (values: any) => {
-		DataLayerPush({
-			event: 'booking_requirement',
-			helperWage: values.helperWage,
-			technicianWage: values.technicianWage,
-			supervisorWage: values.supervisorWage,
-		})
-		sendAnalytics({
-			name: 'CreateEasyBookWorker',
-			action: 'ButtonClick',
-			metaData: {
-				step: 'Submit Requirements',
-				values: values,
-			},
-		})
-		createCookieInHour(
-			'discoveryBooking',
-			JSON.stringify({
-				...values,
-				city: values.location.split(', ')[0],
-				state: values.location.split(', ')[1],
-			}),
-			45
-		)
-		// router.push('/login')
-		console.log(values)
-	}
+
 	const form = useFormik({
 		initialValues: {
 			jobType: 'none',
@@ -95,10 +71,7 @@ export const useEasyBooking = () => {
 			}),
 		}),
 
-		onSubmit: (values) => {
-			// createCookieInHour('discoveryBooking', JSON.stringify(values), 45)
-			handleSubmit(values)
-		},
+		onSubmit: createEasyBooking,
 	})
 	useEffect(() => {
 		try {
