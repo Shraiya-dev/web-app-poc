@@ -64,6 +64,10 @@ const PageStaticData: { [key in string]: PageStaticData } = {
 		pageName: 'Check out',
 		seo: { title: 'Check out ', description: 'Check out' },
 	},
+	'/bookings/create': {
+		pageName: 'Easy Booking',
+		seo: { title: 'Easy Booking', description: 'Easy Booking' },
+	},
 
 	'/404': { pageName: 'Not Found', seo: { title: 'Not Found', description: 'Not Found' } },
 }

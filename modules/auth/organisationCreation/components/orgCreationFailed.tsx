@@ -42,7 +42,7 @@ const OrgCreationFailed = () => {
 				sx={{ marginTop: 6 }}
 				fullWidth
 				onClick={() => {
-					router.replace('https://www.projecthero.in/contact-us')
+					router.replace('/contact-us')
 					ButtonClicked({
 						action: 'Contact Projecthero',
 						page: 'Organisation Linking Failed',

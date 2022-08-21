@@ -39,7 +39,7 @@ interface AuthProviderValue extends AuthState {
 	updateIsSideBarToggle: (isSideBarToggle: boolean) => {}
 	requestEmailOtp: () => Promise<any>
 	reSendEmailOtp: (payload: { token: string }) => Promise<any>
-
+	createEasyBooking: (bookingDetails: any) => Promise<any>
 	verifyEmailOtp: (payload: emailOtpPayload) => Promise<any>
 }
 
@@ -72,12 +72,23 @@ const ContractorAuthContext = createContext<AuthProviderValue>({
 	updateIsSideBarToggle: () => false,
 	requestEmailOtp: () => Promise.resolve(null),
 	reSendEmailOtp: (payload: { token: string }) => Promise.resolve(null),
-
+	createEasyBooking: () => Promise.resolve(null),
 	verifyEmailOtp: () => Promise.resolve(null),
 })
 const { Provider, Consumer } = ContractorAuthContext
 
 const cookieExpireTime = 45
+const PublicPages = [
+	'/',
+	'/about-us',
+	'/contact-us',
+	'/privacy-policy',
+	'/refund-policy',
+	'/tnc',
+	'/faq',
+	'/hero/plans',
+	'/KhulaManch',
+]
 interface ContractorAuthProviderProps {
 	authState?: AuthState
 }
@@ -245,7 +256,8 @@ const ContractorAuthProvider: FC<ContractorAuthProviderProps> = ({ children, aut
 			const accessToken = localStorage.getItem('accessToken')
 			const refreshToken = localStorage.getItem('refreshToken')
 			const phoneNumber = localStorage.getItem('phoneNumber')
-			if (!(accessToken || refreshToken || phoneNumber)) {
+			if (!(accessToken && refreshToken && phoneNumber)) {
+				if (PublicPages.includes(router.pathname)) return
 				logOutService()
 				return
 			}
@@ -304,6 +316,7 @@ const ContractorAuthProvider: FC<ContractorAuthProviderProps> = ({ children, aut
 	//logic for redirect based on state and update userInfo
 	useEffect(() => {
 		if (!(state.accessToken && state.refreshToken && state.phoneNumber)) {
+			if (PublicPages.includes(router.pathname)) return
 			logOutService()
 			return
 		}
@@ -402,7 +415,8 @@ const ContractorAuthProvider: FC<ContractorAuthProviderProps> = ({ children, aut
 					) {
 						router.replace('/dashboard')
 					} else {
-						if (
+						if (!PublicPages.every((item) => router.pathname !== item)) {
+						} else if (
 							// restricts access to any other routes except the routes included in array
 							[
 								'/dashboard',
@@ -438,6 +452,7 @@ const ContractorAuthProvider: FC<ContractorAuthProviderProps> = ({ children, aut
 			requestEmailOtp: requestEmailOtp,
 			verifyEmailOtp: verifyEmailOtp,
 			reSendEmailOtp: reSendEmailOtp,
+			createEasyBooking: createEasyBooking,
 		}),
 		[
 			state,
@@ -449,6 +464,7 @@ const ContractorAuthProvider: FC<ContractorAuthProviderProps> = ({ children, aut
 			requestEmailOtp,
 			verifyEmailOtp,
 			reSendEmailOtp,
+			createEasyBooking,
 		]
 	)
 	return (

@@ -288,7 +288,7 @@ export const CreateProject = () => {
 										icon={
 											isUploadingImages.site ? (
 												<CircularProgress
-													style={{
+													sx={{
 														textAlign: 'center',
 														justifyContent: 'center',
 														width: 32,
@@ -298,7 +298,7 @@ export const CreateProject = () => {
 												/>
 											) : (
 												<Add
-													style={{
+													sx={{
 														textAlign: 'center',
 														justifyContent: 'center',
 														width: 32,
@@ -409,7 +409,7 @@ export const CreateProject = () => {
 											icon={
 												isUploadingImages.accomodation ? (
 													<CircularProgress
-														style={{
+														sx={{
 															textAlign: 'center',
 															justifyContent: 'center',
 															width: 32,
@@ -419,7 +419,7 @@ export const CreateProject = () => {
 													/>
 												) : (
 													<Add
-														style={{
+														sx={{
 															textAlign: 'center',
 															justifyContent: 'center',
 															width: 32,
@@ -502,7 +502,7 @@ export const CreateProject = () => {
 										<Button
 											variant='outlined'
 											onClick={handlePrev}
-											style={{ minWidth: '10em', float: 'right', display: 'flex' }}>
+											sx={{ minWidth: '10em', float: 'right', display: 'flex' }}>
 											Go Back
 										</Button>
 									)}
@@ -514,12 +514,12 @@ export const CreateProject = () => {
 										onClick={handleNext}
 										loading={loading}
 										disabled={!!isSubmitable || loading}
-										style={{
-											background: theme.palette.primary.main,
+										sx={{
+											background: `${theme.palette.primary.main} !important`,
 											// isSubmitable || loading ?  : theme.palette.primary.main,
-											opacity: !!isSubmitable || loading ? 0.4 : 1,
+											opacity: !!isSubmitable || loading ? 0.5 : 1,
 											minWidth: '10em',
-											color: primary.properDark,
+											color: `${primary.properDark}!important`,
 										}}>
 										{step === 2 ? (isProjectId ? 'Update Project' : 'Create Project') : 'Continue'}
 									</LoadingButton>

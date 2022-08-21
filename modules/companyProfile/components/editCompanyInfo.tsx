@@ -1,4 +1,15 @@
-import { Box, Button, CircularProgress, Grid, IconButton, Stack, styled, TextField, Typography } from '@mui/material'
+import {
+	Box,
+	Button,
+	CircularProgress,
+	Grid,
+	IconButton,
+	InputAdornment,
+	Stack,
+	styled,
+	TextField,
+	Typography,
+} from '@mui/material'
 import {
 	checkError,
 	CompanyNameField,
@@ -36,6 +47,10 @@ const EditCompanyInfo = ({ ...props }) => {
 		setIsValidGST,
 		hasUpdateValue,
 		setHasUpdateValue,
+		isGSTLoaded,
+		setLoading,
+		showGSTValidate,
+		setShowGSTValidate,
 	} = useCompanyDetails()
 	const { isCmpDetailsEditable, setIsCmpDetailsEditable } = props
 	const router = useRouter()
@@ -45,6 +60,7 @@ const EditCompanyInfo = ({ ...props }) => {
 	const isMobile = useMobile()
 
 	const updateOrg = useCallback(async () => {
+		setLoading(true)
 		const payload = {
 			companyName: form.values.companyName,
 			GSTIN: form.values.GSTIN.toUpperCase(),
@@ -59,15 +75,18 @@ const EditCompanyInfo = ({ ...props }) => {
 				showSnackbar('Updated Successfully', 'success')
 				setIsCmpDetailsEditable(false)
 				router.push('/profile/details')
+				setLoading(false)
 			} else {
 				showSnackbar(`${data?.messageToUser}`, 'error')
+				setLoading(false)
 			}
 		} catch (error) {
 			showSnackbar(`Unable to Update`, 'error')
+			setLoading(false)
 		}
 
 		//	getOrgDetails()
-	}, [form])
+	}, [form, loading])
 
 	// useEffect(() => {
 	// 	if (user?.organisationId) {
@@ -85,6 +104,15 @@ const EditCompanyInfo = ({ ...props }) => {
 		getOrgDetails()
 	}, [])
 
+	useEffect(() => {
+		if (form.values.GSTIN === '') {
+			setHasUpdateValue(true)
+			setShowGSTValidate(true)
+		} else {
+			setHasUpdateValue(false)
+		}
+	}, [form.values.GSTIN])
+
 	return (
 		<EditCompanyInfoStyle>
 			<Stack spacing={3} width={isMobile ? '100%' : '25%'}>
@@ -96,8 +124,8 @@ const EditCompanyInfo = ({ ...props }) => {
 								name='companyName'
 								value={form.values.companyName}
 								onChange={(e) => {
-									form.handleChange(e)
 									setHasUpdateValue(true)
+									form.handleChange(e)
 								}}
 								onBlur={form.handleBlur}
 								placeholder='Full Name'
@@ -115,7 +143,7 @@ const EditCompanyInfo = ({ ...props }) => {
 									onChange={(e) => {
 										if (e.target.value.length <= 15) {
 											form.handleChange(e)
-											setHasUpdateValue(false)
+											setShowGSTValidate(false)
 										}
 									}}
 									onBlur={form.handleBlur}
@@ -124,10 +152,22 @@ const EditCompanyInfo = ({ ...props }) => {
 									error={!!checkError('GSTIN', form)}
 									helperText={checkError('GSTIN', form)}
 									inputProps={{
-										sx: {
-											textTransform: 'uppercase',
-											color: '#000',
-										},
+										sx: { textTransform: 'uppercase', color: '#000' },
+									}}
+									InputProps={{
+										endAdornment: (
+											<InputAdornment position='end'>
+												<LoadingButton
+													loading={isGSTLoaded}
+													fullWidth
+													variant='contained'
+													size='small'
+													disabled={showGSTValidate}
+													onClick={getGSTDetail}>
+													Validate
+												</LoadingButton>
+											</InputAdornment>
+										),
 									}}
 								/>
 							</InputWrapper>
@@ -136,15 +176,6 @@ const EditCompanyInfo = ({ ...props }) => {
 									{validGSTResponse}
 								</Typography>
 							)}
-
-							<Button
-								size='small'
-								sx={{
-									width: '50%',
-								}}
-								onClick={getGSTDetail}>
-								Validate GSTIN
-							</Button>
 						</Stack>
 
 						{/* <InputWrapper id='GSTINDoc' label='Upload GSTIN Certificate'>
@@ -238,13 +269,7 @@ const EditCompanyInfo = ({ ...props }) => {
 						</InputWrapper> */}
 					</Stack>
 
-					<Stack
-						direction='row'
-						sx={{
-							fontSize: '18px',
-							paddingTop: 6,
-						}}
-						spacing={2}>
+					<Stack direction='row' sx={{ fontSize: '18px', paddingTop: 4 }} spacing={2}>
 						<Button
 							fullWidth
 							variant='outlined'
@@ -256,7 +281,7 @@ const EditCompanyInfo = ({ ...props }) => {
 									url: router.asPath,
 								})
 							}}
-							// style={{
+							// sx={{
 							// 	border: `1px solid ${primary.main}`,
 							// 	background: primary.light,
 							// 	color: primary.main,

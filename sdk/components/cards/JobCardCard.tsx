@@ -102,6 +102,20 @@ export const JobCardCard = ({ jobCard, updateJobCard }: JobCardCardProps) => {
 									variant='filled'
 									value={jobCard.contractorFeedbackCode ?? 'none'}
 									options={ApplicationStatusOptions}
+									MenuProps={{
+										PaperProps: {
+											sx: {
+												background: '#ffffff',
+												color: '#000000 ',
+												ul: {
+													backgroundColor: '#ffffff',
+													li: {
+														color: '#000',
+													},
+												},
+											},
+										},
+									}}
 									disableUnderline
 									onChange={(e) => {
 										const value = e.target.value as WORKER_APPLICATION_STATUS

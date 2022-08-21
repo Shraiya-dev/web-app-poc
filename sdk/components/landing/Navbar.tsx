@@ -28,6 +28,7 @@ import { DataLayerPush, HyperLink, LinkButton } from 'sdk'
 import { sendAnalytics } from 'sdk/analytics/analyticsWrapper'
 import { primary } from 'sdk'
 import { contactUsSection, navbar } from 'sdk/data'
+import { useContractorAuth } from 'sdk'
 import Link from 'next/link'
 export const Navbar = () => {
 	const [menuRefs, dispatchMenuRefs] = useReducer((p: any, n: any) => ({ ...p, ...n }), {})
@@ -37,6 +38,10 @@ export const Navbar = () => {
 	useEffect(() => {
 		!isMobile && setNavbarOpen(false)
 	}, [isMobile])
+
+	const { user } = useContractorAuth()
+
+	console.log(user)
 
 	return (
 		<>
@@ -129,50 +134,41 @@ export const Navbar = () => {
 												/>
 											</Box>
 										</Stack>
-										<Box mt={5}>
-											{/* {navbar.navLinks.map((navItem, i) => {
-												if (navItem.type === 'button_link') {
-													return (
-														<HyperLink key={i} href={navItem.link}>
-															<ListItem
-																color='secondary'
-																sx={(theme) => ({
-																	fontWeight: 700,
-																})}>
-																<ListItemAvatar>{navItem?.icon}</ListItemAvatar>
-																<ListItemText>
-																	<Typography color={'#fff'}>
-																		{navItem.label}
-																	</Typography>
-																</ListItemText>
-															</ListItem>
-														</HyperLink>
-													)
-												}
-											})} */}
-											<Stack direction={'row'} spacing={1.5} alignItems={'center'} px={2}>
-												<Box width={45} height={45}>
-													<img
-														height={'100%'}
-														width={'100%'}
-														src={'/assets/landingv2/user.svg'}
-													/>
-												</Box>
-												<Link href='/login'>
-													<Typography variant='h2' color={'#fff'}>
-														Login
-													</Typography>
-												</Link>
-											</Stack>
-										</Box>
-										<Divider
-											sx={{
-												my: 2,
-												background: '#f7f7f7',
-												border: '1px solid #4c4c4c',
-												zIndex: '0',
-											}}
-										/>
+										{user ? (
+											''
+										) : (
+											<>
+												<LinkButton
+													variant='text'
+													color='info'
+													startIcon={<img src={'/assets/landingv2/user.svg'} />}
+													sx={(theme) => ({
+														mx: 2,
+														mt: 2,
+														fontWeight: 700,
+														color: 'common.white',
+														whiteSpace: 'nowrap',
+													})}
+													onClick={() => {
+														sendAnalytics({
+															name: 'navbarLogin',
+															action: 'ButtonClick',
+														})
+													}}
+													href={'/login'}>
+													Login
+												</LinkButton>
+												<Divider
+													sx={{
+														my: 2,
+														background: '#f7f7f7',
+														border: '1px solid #4c4c4c',
+														zIndex: '0',
+													}}
+												/>
+											</>
+										)}
+
 										{/* <Typography variant='h4' color={'#fff'} textAlign={'center'}>
 											Contact us{' '}
 										</Typography>
@@ -248,23 +244,80 @@ export const Navbar = () => {
 						</Stack>
 						<NavWrapper direction='row' spacing={{ xs: 0, md: 3 }} alignItems='center'>
 							{navbar.navLinks.map((navItem, i) => {
+								console.log(!user)
 								if (navItem.type === 'button_link') {
-									return (
-										<LinkButton
-											variant='text'
-											key={i}
-											startIcon={navItem?.icon}
-											sx={(theme) => ({
-												fontWeight: 700,
-												color: 'common.white',
-												[theme.breakpoints.down('md')]: { display: 'none' },
-												whiteSpace: 'nowrap',
-											})}
-											href={navItem.link}
-											className={router.pathname === navItem.link ? 'active' : ''}>
-											{navItem.label}
-										</LinkButton>
-									)
+									if (navItem.label === 'Login') {
+										return (
+											!user && (
+												<LinkButton
+													variant='text'
+													key={i}
+													startIcon={navItem?.icon}
+													sx={(theme) => ({
+														fontWeight: 700,
+														color: 'common.white',
+														[theme.breakpoints.down('md')]: { display: 'none' },
+														whiteSpace: 'nowrap',
+													})}
+													onClick={() => {
+														if (navItem.label === 'Login') {
+															sendAnalytics({
+																name: 'navbarLogin',
+																action: 'ButtonClick',
+															})
+														}
+													}}
+													href={navItem.link}
+													className={router.pathname === navItem.link ? 'active' : ''}>
+													{navItem.label}
+												</LinkButton>
+											)
+										)
+									} else if (navItem.label === 'marketing@projecthero.in') {
+										return (
+											!!user && (
+												<LinkButton
+													variant='text'
+													key={i}
+													startIcon={navItem?.icon}
+													sx={(theme) => ({
+														fontWeight: 700,
+														color: 'common.white',
+														[theme.breakpoints.down('md')]: { display: 'none' },
+														whiteSpace: 'nowrap',
+													})}
+													href={navItem.link}
+													className={router.pathname === navItem.link ? 'active' : ''}>
+													{navItem.label}
+												</LinkButton>
+											)
+										)
+									} else {
+										return (
+											<LinkButton
+												variant='text'
+												key={i}
+												startIcon={navItem?.icon}
+												sx={(theme) => ({
+													fontWeight: 700,
+													color: 'common.white',
+													[theme.breakpoints.down('md')]: { display: 'none' },
+													whiteSpace: 'nowrap',
+												})}
+												onClick={() => {
+													if (navItem.label === 'Login') {
+														sendAnalytics({
+															name: 'navbarLogin',
+															action: 'ButtonClick',
+														})
+													}
+												}}
+												href={navItem.link}
+												className={router.pathname === navItem.link ? 'active' : ''}>
+												{navItem.label}
+											</LinkButton>
+										)
+									}
 								} else if (navItem.type === 'scroll_link') {
 									if (router.pathname === '/')
 										return (

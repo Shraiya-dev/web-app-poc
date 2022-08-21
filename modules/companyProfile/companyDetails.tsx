@@ -104,7 +104,7 @@ const CompanyDetails = () => {
 						<TabPanel
 							value='details'
 							sx={{
-								height: 'calc( 100vh - 190px )',
+								height: 'calc( 100vh - 160px )',
 								overflowY: 'auto',
 								position: 'relative',
 								paddingTop: 1,

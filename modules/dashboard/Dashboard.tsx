@@ -71,7 +71,7 @@ export const Dashboard = () => {
 									)
 								}>
 								<TuneIcon
-								//style={{ color: router.query.status || router.query.jobType ? primary.main : '' }}
+								//sx={{ color: router.query.status || router.query.jobType ? primary.main : '' }}
 								/>
 							</Badge>
 						}
@@ -156,7 +156,7 @@ export const Dashboard = () => {
 						<Grid container spacing={3}>
 							{bookings.bookings.map((bookingInfo, index) => {
 								return (
-									<Grid item xs={12} md={4} key={index}>
+									<Grid item xs={12} sm={6} lg={4} key={index}>
 										<BookingCard booking={bookingInfo} />
 									</Grid>
 								)

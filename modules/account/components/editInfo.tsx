@@ -67,7 +67,7 @@ const EditInfo = ({ ...props }) => {
 						</InputWrapper>
 					</Stack>
 
-					<Stack direction='row' sx={{ fontSize: '18px', paddingTop: 32 }} spacing={2}>
+					<Stack direction='row' sx={{ fontSize: '18px', paddingTop: 6 }} spacing={2}>
 						<Button
 							variant='outlined'
 							fullWidth

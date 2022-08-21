@@ -254,7 +254,7 @@ let themeDef = createTheme({
 		MuiPaper: {
 			defaultProps: {
 				//variant: 'outlined',
-				style: {
+				sx: {
 					boxShadow: '1px 1px 1px 1px rgba(0, 0, 0, 0.08)',
 				},
 			},
@@ -345,7 +345,7 @@ let themeDef = createTheme({
 		},
 		MuiList: {
 			defaultProps: {
-				style: {
+				sx: {
 					background: '#000',
 				},
 			},

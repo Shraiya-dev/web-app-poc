@@ -64,7 +64,7 @@ const DisplayCompanyInfo = ({ ...props }) => {
 			{/* {orgDetails?.GSTINDocuments ? (
 				<Typography className='GstinCertificate' display={'flex'} onClick={handleView}>
 					View GSTIN Certificate{' '}
-					<Icon style={{ display: 'flex', verticalAlign: 'middle', marginLeft: 8, fontSize: 26 }}>
+					<Icon sx={{ display: 'flex', verticalAlign: 'middle', marginLeft: 8, fontSize: 26 }}>
 						<Image src={forWardIcon} />
 					</Icon>
 				</Typography>

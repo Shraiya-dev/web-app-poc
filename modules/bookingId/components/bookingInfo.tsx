@@ -157,7 +157,11 @@ const BookingInfo = ({ ...props }: BookingInfo) => {
 								</CardContent>
 							</Card>
 						</Stack>
-						<Stack spacing={5}>
+						<Stack
+							spacing={5}
+							sx={{
+								p: { xs: 2, md: '' },
+							}}>
 							<TextWrapper id={'trade'} label='Trade'>
 								{JobTypeLabel[bookingInfo?.booking?.jobType || 'GYPSUM']}
 							</TextWrapper>
@@ -176,17 +180,17 @@ const BookingInfo = ({ ...props }: BookingInfo) => {
 									return (
 										<Stack key={index} direction={'row'} pb={1}>
 											<Box minWidth={50}>
-												<Icon style={{ fontSize: 32, verticalAlign: 'middle' }}>
-													<Image src={item.icon} style={{ width: 32, height: 32 }} />
+												<Icon sx={{ fontSize: 32, verticalAlign: 'middle' }}>
+													<Image src={item.icon} style={{ width: 32, height: 32 }} alt='' />
 												</Icon>
 											</Box>
-											<Box minWidth={100} style={{ verticalAlign: 'middle' }} mt={0.8}>
+											<Box minWidth={100} sx={{ verticalAlign: 'middle' }} mt={0.8}>
 												{item?.label}
 											</Box>
-											<Box minWidth={50} style={{ verticalAlign: 'middle' }} mt={0.8}>
+											<Box minWidth={50} sx={{ verticalAlign: 'middle' }} mt={0.8}>
 												{item?.count ?? 0}
 											</Box>
-											<Box minWidth={20} style={{ verticalAlign: 'middle' }} mt={0.8}>{`Rs. ${
+											<Box minWidth={20} sx={{ verticalAlign: 'middle' }} mt={0.8}>{`Rs. ${
 												item?.wage ?? 0
 											}`}</Box>
 										</Stack>

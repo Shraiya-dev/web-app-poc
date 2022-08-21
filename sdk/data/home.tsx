@@ -182,8 +182,6 @@ export const homePage = {
 			{ src: '/assets/landingv2/heroSection/capicite.svg' },
 			{ src: '/assets/landingv2/heroSection/l&t.svg' },
 			{ src: '/assets/landingv2/heroSection/oberoi.svg' },
-			{ src: '/assets/landingv2/heroSection/capicite.svg' },
-			{ src: '/assets/landingv2/heroSection/l&t.svg' },
 		],
 	},
 

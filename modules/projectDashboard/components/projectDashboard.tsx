@@ -30,6 +30,7 @@ import logo from '../../../public/assets/icons/BrandLogo.svg'
 import LogoutIcon from '@mui/icons-material/Logout'
 import { ArrowBackIos } from '@mui/icons-material'
 import { useEffect } from 'react'
+import { route } from 'next/dist/server/router'
 
 const CustomProjectDashBoard = styled(Box)(({ theme }) => ({
 	padding: 4,
@@ -68,13 +69,15 @@ export const ProjectDashboard = () => {
 
 	const { loading, projects, user } = useProjectDashboard()
 	useEffect(() => {
-		if (projects.projects.length === 1) {
+		if (user && !user?.hasProjects) {
+			router.push(`/bookings/create`)
+		} else if (projects.projects.length === 1) {
 			localStorage.setItem('noBack', String(true))
 			router.push(`/projects/${projects.projects[0].projectId}/bookings`)
 		} else {
 			localStorage.removeItem('noBack')
 		}
-	}, [projects])
+	}, [projects, router])
 
 	const { logOut, isSideBarToggle, updateIsSideBarToggle } = useContractorAuth()
 
@@ -121,7 +124,13 @@ export const ProjectDashboard = () => {
 				</Stack>
 			</CustomTopBar>
 			<CustomProjectDashBoard>
-				<Stack direction={'row'} pt={3} pb={3}>
+				<Stack
+					direction={'row'}
+					pt={3}
+					pb={3}
+					sx={{
+						px: { xs: 2, md: '' },
+					}}>
 					<Typography
 						sx={{
 							fontFamily: 'Saira, sans-serif',
@@ -148,9 +157,10 @@ export const ProjectDashboard = () => {
 				</Stack>
 				<Stack
 					sx={{
-						maxHeight: isMobile ? 'calc(100vh - 280px)' : '',
-						minHeight: isMobile ? 'calc(100vh - 280px)' : '',
+						maxHeight: isMobile ? 'calc(100vh - 235px)' : '',
+						minHeight: isMobile ? 'calc(100vh - 235px)' : '',
 						overflowY: isMobile ? 'scroll' : '',
+						padding: { xs: 2, md: '' },
 					}}>
 					{loading ? (
 						<Stack p={5} alignItems='center' textAlign={'center'}>
@@ -159,7 +169,7 @@ export const ProjectDashboard = () => {
 					) : (
 						<Grid container spacing={3}>
 							{projects.projects.length === 0 ? (
-								<Grid item xs={12} md={3}>
+								<Grid item xs={12} sm={6} md={4} lg={3}>
 									<Paper className='info'>
 										<Stack
 											justifyContent={'center'}
@@ -194,7 +204,7 @@ export const ProjectDashboard = () => {
 							) : (
 								projects.projects.map((project, index) => {
 									return (
-										<Grid item xs={12} md={3} key={index}>
+										<Grid item xs={12} sm={6} md={4} lg={3} key={index}>
 											<ProjectCard project={project} />
 										</Grid>
 									)

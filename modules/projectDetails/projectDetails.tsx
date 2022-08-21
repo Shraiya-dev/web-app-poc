@@ -20,9 +20,9 @@ import { BottomLayout } from 'sdk/layouts/BottomLayout'
 import useCreateProject from 'modules/createProject/hooks/useProjects'
 interface Props {}
 export const tabList: { [key in string]: string } = {
-	'work-report': 'Work Report',
 	bookings: 'Bookings',
 	details: 'Project Details',
+	'work-report': 'Work Report',
 	bills: 'Bills',
 }
 export const ProjectDetails: FC<Props> = () => {
@@ -50,7 +50,7 @@ export const ProjectDetails: FC<Props> = () => {
 								top: 4,
 							}}>
 							<Typography
-								style={{
+								sx={{
 									fontSize: isMobile ? 18 : 26,
 									fontWeight: 700,
 									color: theme.palette.secondary.main,
@@ -71,8 +71,8 @@ export const ProjectDetails: FC<Props> = () => {
 						</Box>
 						<Stack>
 							<Typography
-								style={{
-									fontSize: isMobile ? 18 : 26,
+								sx={{
+									fontSize: { xs: 18, md: 26 },
 									fontWeight: 700,
 									color: theme.palette.secondary.main,
 									fontFamily: 'Saira,sans-serif',
@@ -87,7 +87,7 @@ export const ProjectDetails: FC<Props> = () => {
 									fontFamily: 'Saira,sans-serif',
 								}}
 								textTransform='capitalize'>
-								<LocationOnOutlined style={{ fontSize: 12, verticalAlign: 'middle' }} />
+								<LocationOnOutlined sx={{ fontSize: 12, verticalAlign: 'middle' }} />
 								&nbsp;{projectName?.city} , {projectName?.state}
 							</Typography>
 						</Stack>
@@ -108,7 +108,7 @@ export const ProjectDetails: FC<Props> = () => {
 					{!isMobile ? (
 						<Tabs
 							TabIndicatorProps={{
-								style: {
+								sx: {
 									height: '3px',
 								},
 							}}
@@ -183,7 +183,7 @@ export const ProjectDetails: FC<Props> = () => {
 							}}>
 							<Tabs
 								TabIndicatorProps={{
-									style: {
+									sx: {
 										height: '3px',
 									},
 								}}
@@ -220,7 +220,18 @@ export const ProjectDetails: FC<Props> = () => {
 											)
 										)
 									} else if (tab === 'details') {
-										return null
+										return (
+											<Tab
+												sx={{
+													fontSize: '18px',
+													textTransform: 'none',
+													fontFamily: 'Karla,sans-serif',
+													fontWeight: 700,
+												}}
+												value='details'
+												label='Project Details'
+											/>
+										)
 									}
 									return (
 										<Tab
@@ -242,24 +253,21 @@ export const ProjectDetails: FC<Props> = () => {
 				<TabPanel
 					value='bookings'
 					sx={{
-						padding: isMobile ? 1 : 3,
-					}}
-					style={{
-						maxHeight: isMobile ? 'calc( 100vh - 230px )' : '',
-						minHeight: isMobile ? 'calc( 100vh - 230px )' : '',
+						padding: { xs: 2, md: 3 },
+						maxHeight: { xs: 'calc( 100vh - 182px )', md: '' },
+						minHeight: { xs: 'calc( 100vh - 182px )', md: '' },
 						overflowY: 'auto',
 						position: 'relative',
 					}}>
 					<Dashboard />
 				</TabPanel>
 				<TabPanel
-					sx={{
-						padding: isMobile ? 0 : 3,
-					}}
 					value='work-report'
-					style={{
-						maxHeight: isMobile ? 'calc( 100vh - 230px )' : '',
-						minHeight: isMobile ? 'calc( 100vh - 230px )' : '',
+					sx={{
+						padding: { xs: 2, md: 3 },
+
+						maxHeight: { xs: 'calc( 100vh - 182px )', md: '' },
+						minHeight: { xs: 'calc( 100vh - 182px )', md: '' },
 						overflowY: 'auto',
 						paddingBottom: 0,
 						position: 'relative',
@@ -267,13 +275,12 @@ export const ProjectDetails: FC<Props> = () => {
 					<WorkReport />
 				</TabPanel>
 				<TabPanel
-					sx={{
-						padding: isMobile ? 1 : 3,
-					}}
 					value='bills'
-					style={{
-						maxHeight: isMobile ? 'calc( 100vh - 230px )' : '',
-						minHeight: isMobile ? 'calc( 100vh - 230px )' : '',
+					sx={{
+						padding: { xs: 2, md: 3 },
+
+						maxHeight: { xs: 'calc( 100vh - 182px )', md: '' },
+						minHeight: { xs: 'calc( 100vh - 182px )', md: '' },
 						overflowY: 'auto',
 						paddingBottom: 0,
 						position: 'relative',
@@ -283,11 +290,10 @@ export const ProjectDetails: FC<Props> = () => {
 				<TabPanel
 					value='details'
 					sx={{
-						padding: isMobile ? 1 : 3,
-					}}
-					style={{
-						maxHeight: isMobile ? 'calc( 100vh - 230px )' : '',
-						minHeight: isMobile ? 'calc( 100vh - 230px )' : '',
+						padding: { xs: 2, md: 3 },
+
+						maxHeight: { xs: 'calc( 100vh - 182px )', md: '' },
+						minHeight: { xs: 'calc( 100vh - 182px )', md: '' },
 						overflowY: 'auto',
 						position: 'relative',
 					}}>
