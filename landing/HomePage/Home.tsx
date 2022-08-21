@@ -1,7 +1,7 @@
 import { ArrowCircleLeftOutlined, ArrowCircleRightOutlined, Circle } from '@mui/icons-material'
 
 import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord'
-import { Box, Button, Card, Grid, List, ListItem, Stack, Typography } from '@mui/material'
+import { Box, Button, Card, Grid, List, ListItem, Stack, Theme, Typography, useMediaQuery } from '@mui/material'
 import 'keen-slider/keen-slider.min.css'
 import { useKeenSlider } from 'keen-slider/react'
 import { useRouter } from 'next/router'
@@ -37,6 +37,7 @@ export const Home = () => {
 	})
 
 	const [jobTypeForCarousal, setJobTypeForCarousal] = useState('MASON')
+	const isTab = useMediaQuery((theme: Theme) => theme.breakpoints.up('sm'))
 	return (
 		<>
 			<Section>
@@ -153,7 +154,7 @@ export const Home = () => {
 				</Tabs> */}
 
 				<CarouselV2
-					componentPerView={isMobile ? 3 : 7}
+					componentPerView={isMobile ? (isTab ? 6 : 3) : 7}
 					mobileStepperPosition='center'
 					icons={{
 						left: (
@@ -202,19 +203,20 @@ export const Home = () => {
 				<CarouselV2
 					mobileStepperPosition={isMobile ? 'bottom' : 'center'}
 					componentPerView={1}
-					items={sliceIntoChunks(HeroDiscoveryMetaData[jobTypeForCarousal], isMobile ? 2 : 6).map(
-						(slide, index) => {
-							return (
-								<Grid key={index} container py={3} spacing={2}>
-									{slide.map((item: any) => (
-										<Grid xs={11} mx={'auto'} md={4} item key={item.workerId}>
-											<WorkerCard worker={item} />
-										</Grid>
-									))}
-								</Grid>
-							)
-						}
-					)}
+					items={sliceIntoChunks(
+						HeroDiscoveryMetaData[jobTypeForCarousal],
+						isMobile ? (isTab ? 4 : 2) : 6
+					).map((slide, index) => {
+						return (
+							<Grid key={index} container py={3} spacing={2}>
+								{slide.map((item: any) => (
+									<Grid xs={11} mx={'auto'} sm={6} md={6} lg={4} item key={item.workerId}>
+										<WorkerCard worker={item} />
+									</Grid>
+								))}
+							</Grid>
+						)
+					})}
 					slideDelay={5000}
 				/>
 			</Section>
@@ -471,10 +473,16 @@ export const Home = () => {
 
 			<Section
 				backgroundColor='#F7F7F7'
+				boxSx={{
+					background:
+						!isMobile &&
+						'linear-gradient(100deg, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 51%, rgba(246,242,225,1) 51%, rgba(246,242,225,1) 100%)',
+				}}
 				sx={{
 					backgroundImage: !isMobile
 						? `url(${'/assets/landingv2/heroSection/heroAdvantage.svg'})`
 						: `url(${'/assets/landingv2/heroSection/heroAdvantageMobile.svg'})`,
+					backgroundSize: isMobile ? '95%' : '50%',
 					backgroundRepeat: 'no-repeat',
 					backgroundPosition: !isMobile ? 'right' : 'right bottom',
 					minHeight: !isMobile ? '600px' : '880px',
@@ -692,7 +700,7 @@ export const Home = () => {
 							justifyContent={'space-between'}
 							sx={{
 								overflowX: 'scroll',
-								width: !isMobile ? '100%' : '100%',
+								width: '100%',
 								mt: '50px',
 								'&::-webkit-scrollbar': {
 									display: 'none',
