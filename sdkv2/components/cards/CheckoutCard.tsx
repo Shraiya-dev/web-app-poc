@@ -31,6 +31,7 @@ import { usePayment } from 'sdk/providers/PaymentProvider'
 import { AddEditWage } from '../dialog'
 import { primary } from 'sdk/constants'
 import { updateProfile } from 'sdk/apis'
+import { string } from 'yup'
 
 const ProfileCardData = [
 	{
@@ -64,6 +65,8 @@ export const CheckoutCard: FC = () => {
 	})
 
 	const [emailDialogBox, setEmailDialogBox] = useState<boolean>(false)
+	const [isLoading, setIsLoading] = useState<boolean>(false)
+	const [valid, setValid] = useState<boolean>(true)
 
 	const [updating, setUpdating] = useState<any>({})
 	const { form, wage, bookingData, setWage, discountDetails, getBookingDetail, loading, dispatchLoading } =
@@ -264,6 +267,7 @@ export const CheckoutCard: FC = () => {
 	const formikProps = useFormikProps<any>(form)
 
 	const handlePaymentProcess = useCallback(async () => {
+		setIsLoading(true)
 		let payload = { email: emailId }
 		try {
 			if (emailId) {
@@ -273,10 +277,28 @@ export const CheckoutCard: FC = () => {
 					// console.log(data.payload.payload.email)
 					setEmailId(data.payload.email)
 					handelPayment(data.payload.email)
+					handleEmailDialogBox()
+					setIsLoading(false)
 				}
 			}
-		} catch (error) {}
+		} catch (error) {
+			setIsLoading(false)
+		}
 	}, [emailId, getContactorUserInfo, handelPayment])
+
+	const handleEmail = useCallback(
+		(e) => {
+			setEmailId(e.target.value)
+			if (emailId === '') {
+				setValid(true)
+			} else if (e.target.value === '') {
+				setValid(true)
+			} else {
+				setValid(!string().email().isValidSync(e.target.value))
+			}
+		},
+		[emailId, valid]
+	)
 
 	return (
 		<>
@@ -648,16 +670,18 @@ export const CheckoutCard: FC = () => {
 								sx={{ outline: '1.8px solid #cccccc', overflow: 'hidden' }}
 								value={emailId}
 								onChange={(e) => {
-									setEmailId(e.target.value)
+									handleEmail(e)
 								}}
 							/>
-							<Button
+							<LoadingButton
 								variant='contained'
+								disabled={valid}
+								loading={isLoading}
 								onClick={() => {
 									handlePaymentProcess()
 								}}>
 								Proceed to pay
-							</Button>
+							</LoadingButton>
 						</Stack>
 					</DialogContent>
 				</Dialog>
