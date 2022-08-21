@@ -24,6 +24,8 @@ const useCompanyDetails = () => {
 	const [isValidGST, setIsValidGST] = useState<boolean>(false)
 	const [validGSTResponse, setValidGSTResponse] = useState<String>('')
 	const [hasUpdateValue, setHasUpdateValue] = useState<boolean>(false)
+	const [isGSTLoaded, setIsGSTLoaded] = useState<boolean>(false)
+	const [showGSTValidate, setShowGSTValidate] = useState<boolean>(true)
 
 	const { showSnackbar } = useSnackbar()
 
@@ -83,9 +85,9 @@ const useCompanyDetails = () => {
 				errors.company = 'Required'
 			}
 
-			if (!values.GSTIN) {
-				errors.GSTIN = 'Required'
-			}
+			// if (!values.GSTIN) {
+			// 	errors.GSTIN = 'Required'
+			// }
 
 			// if (values.GSTINDocuments.length === 0) {
 			// 	errors.GSTINDocuments = 'Required'
@@ -145,6 +147,7 @@ const useCompanyDetails = () => {
 	)
 
 	const getGSTDetail = useCallback(async () => {
+		setIsGSTLoaded(true)
 		const payload = { GSTIN: form.values.GSTIN }
 		try {
 			const { data, status } = await checkValidGSTIN(payload)
@@ -153,13 +156,17 @@ const useCompanyDetails = () => {
 				showSnackbar('GSTIN is valid', 'success')
 				setValidGSTResponse(data?.payload?.tradeName)
 				setHasUpdateValue(true)
+				setIsGSTLoaded(false)
+				setShowGSTValidate(true)
 			} else {
 				setIsValidGST(false)
 				showSnackbar(data?.messageToUser, 'error')
+				setIsGSTLoaded(false)
 			}
 		} catch (error) {
 			setIsValidGST(false)
 			showSnackbar('Invalid GST', 'error')
+			setIsGSTLoaded(false)
 		}
 	}, [form, showSnackbar])
 
@@ -191,6 +198,10 @@ const useCompanyDetails = () => {
 		setIsValidGST,
 		hasUpdateValue,
 		setHasUpdateValue,
+		isGSTLoaded,
+		setLoading,
+		showGSTValidate,
+		setShowGSTValidate,
 	}
 }
 

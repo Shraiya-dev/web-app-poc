@@ -30,6 +30,7 @@ import logo from '../../../public/assets/icons/BrandLogo.svg'
 import LogoutIcon from '@mui/icons-material/Logout'
 import { ArrowBackIos } from '@mui/icons-material'
 import { useEffect } from 'react'
+import { route } from 'next/dist/server/router'
 
 const CustomProjectDashBoard = styled(Box)(({ theme }) => ({
 	padding: 4,
@@ -68,13 +69,15 @@ export const ProjectDashboard = () => {
 
 	const { loading, projects, user } = useProjectDashboard()
 	useEffect(() => {
-		if (projects.projects.length === 1) {
+		if (user && !user?.hasProjects) {
+			router.push(`/bookings/create`)
+		} else if (projects.projects.length === 1) {
 			localStorage.setItem('noBack', String(true))
 			router.push(`/projects/${projects.projects[0].projectId}/bookings`)
 		} else {
 			localStorage.removeItem('noBack')
 		}
-	}, [projects])
+	}, [projects, router])
 
 	const { logOut, isSideBarToggle, updateIsSideBarToggle } = useContractorAuth()
 
