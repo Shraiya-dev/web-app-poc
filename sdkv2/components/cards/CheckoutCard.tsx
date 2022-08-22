@@ -456,6 +456,9 @@ export const CheckoutCard: FC = () => {
 									sx={{
 										// whiteSpace: 'nowrap',
 										fontSize: '10px !important',
+										'& .MuiStepLabel-label': {
+											color: '#fff',
+										},
 									}}>
 									{label}
 								</StepLabel>

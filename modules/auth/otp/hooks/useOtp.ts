@@ -86,6 +86,14 @@ const useOtp = () => {
 								phoneNumber: '+91' + phoneNumber,
 							})
 							setLoading(false)
+							if (!!getCookie('discoveryBooking')) {
+								router.push({
+									pathname: '',
+									query: { bookingFromStep: 3 },
+								})
+							} else {
+								router.push('/dashboard')
+							}
 						} else {
 							setOtpState((prevValues: any) => ({
 								...prevValues,

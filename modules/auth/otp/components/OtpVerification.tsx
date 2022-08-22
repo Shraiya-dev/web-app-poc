@@ -4,7 +4,7 @@ import { Box, Button, CircularProgress, Stack, styled, Typography } from '@mui/m
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
 import OtpInput from 'react-otp-input'
-import { primary, useContractorAuth } from 'sdk'
+import { getCookie, primary, useContractorAuth } from 'sdk'
 import { ButtonClicked } from '../../../../sdk/analytics/analyticsWrapper'
 import useOtp from '../hooks/useOtp'
 
@@ -60,14 +60,11 @@ export const OTPVerification = ({ ...props }) => {
 		setIsOtpSent(false)
 	}
 
-	useEffect(() => {
-		if (loading) {
-			router.push({
-				pathname: '',
-				query: { bookingFromStep: 3 },
-			})
-		}
-	}, [loading, router])
+	// useEffect(() => {
+	// 	if (loading) {
+
+	// 	}
+	// }, [loading, router])
 
 	return (
 		<CustomOTPStyles>
