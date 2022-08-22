@@ -2,9 +2,11 @@ import { Box, Button, Card, Container, Paper, Stack } from '@mui/material'
 import { styled } from '@mui/system'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
+import { primary } from 'sdk/constants'
 import { LogoutAndRedirect } from 'sdk/utils/logoutHelper'
 import { ConfirmationDialog, Navbar } from '../components'
 import { useMobile } from '../hooks'
+import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace'
 
 const intro = [
 	{
@@ -30,6 +32,7 @@ const CustomizeDashboard = styled(Box)(({ theme }) => ({
 	display: 'flex',
 	marginTop: '65px',
 	position: 'relative',
+	background: '#fff',
 
 	'.helmet': {
 		position: 'absolute',
@@ -129,10 +132,10 @@ export const OnboardingLayout = ({ children, helmet = true, ...props }: any) => 
 				<Container sx={{ display: 'flex', flex: 1, flexDirection: 'column', p: 2 }}>
 					<Button
 						onClick={!helmet ? () => router.back() : () => setDialogProps(true)}
-						sx={{ alignSelf: 'flex-start' }}
+						sx={{ alignSelf: 'flex-start', color: primary.properDark }}
 						variant='text'
 						color='info'
-						startIcon={<img src={'/assets/icons/arrow_back.svg'} alt='back' />}>
+						startIcon={<KeyboardBackspaceIcon />}>
 						Go Back
 					</Button>
 
