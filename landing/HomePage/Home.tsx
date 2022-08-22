@@ -474,9 +474,9 @@ export const Home = () => {
 			<Section
 				backgroundColor='#F7F7F7'
 				boxSx={{
-					background:
-						!isMobile &&
-						'linear-gradient(100deg, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 51%, rgba(246,242,225,1) 51%, rgba(246,242,225,1) 100%)',
+					background: !isMobile
+						? 'linear-gradient(100deg, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 51%, rgba(246,242,225,1) 51%, rgba(246,242,225,1) 100%)'
+						: undefined,
 				}}
 				sx={{
 					backgroundImage: !isMobile
