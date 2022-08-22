@@ -97,6 +97,10 @@ const ContractorAuthProvider: FC<ContractorAuthProviderProps> = ({ children, aut
 	const router = useRouter()
 	const { showSnackbar } = useSnackbar()
 	const [backdropProps, setBackdropProps] = useState({ open: false })
+	const [bookingIdDetails, setBookingIdDetails] = useState<object>({
+		bookingId: '',
+		projectId: '',
+	})
 	const requestOtp = useCallback(
 		async (phoneNumber: string) => {
 			dispatch({
@@ -368,6 +372,11 @@ const ContractorAuthProvider: FC<ContractorAuthProviderProps> = ({ children, aut
 				}
 				const { data, status } = await axios.post('/gateway/customer-api/projects/bookings', payload)
 				deleteCookie('discoveryBooking')
+				setBookingIdDetails({
+					...bookingIdDetails,
+					bookingId: `${data?.payload?.bookingId ?? ''}`,
+					projectId: `${data?.payload?.projectId ?? ''}`,
+				})
 				router.push(`/bookings/${data.payload.projectId}/${data.payload.bookingId}/checkout`)
 			} catch (error) {
 				showSnackbar('Failed to create easy booking', 'error')

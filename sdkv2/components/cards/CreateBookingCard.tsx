@@ -11,6 +11,7 @@ import {
 	InputAdornment,
 	InputLabel,
 	ListSubheader,
+	Paper,
 	Stack,
 	Step,
 	StepLabel,
@@ -101,7 +102,7 @@ export const CreateBookingCard: FC<Props> = () => {
 	const { form, formikProps } = useEasyBooking()
 	const [activeStepValue, setActiveStepValue] = useState<number>(0)
 	const [openDialogBox, setOpenDialogBox] = useState<boolean>(false)
-	const [isRegister, setIsRegister] = useState<boolean>(false)
+	const [isOtpSent, setIsOtpSent] = useState<boolean>(false)
 	const froHome = true
 	// const [wageDisable, setWageDisable] = useState({
 	// 	helperWage: false,
@@ -139,11 +140,23 @@ export const CreateBookingCard: FC<Props> = () => {
 							</Step>
 						))}
 					</Stepper>
-					{!isRegister ? (
-						<LoginForm fromHome={true} setActiveStepValue={setActiveStepValue} />
-					) : (
-						<OTPVerification />
-					)}
+					<Paper elevation={0} sx={{ p: 4 }}>
+						{!isOtpSent ? (
+							<LoginForm
+								isOtpSent={isOtpSent}
+								setIsOtpSent={setIsOtpSent}
+								fromHome={true}
+								setActiveStepValue={setActiveStepValue}
+							/>
+						) : (
+							<OTPVerification
+								isOtpSent={isOtpSent}
+								setIsOtpSent={setIsOtpSent}
+								fromHome={true}
+								setActiveStepValue={setActiveStepValue}
+							/>
+						)}
+					</Paper>
 
 					{/* <Stack>
 						<Button

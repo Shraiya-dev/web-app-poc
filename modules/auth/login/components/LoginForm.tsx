@@ -51,12 +51,20 @@ export const LoginForm = ({ ...props }) => {
 		}
 	}, [form, status])
 
+	useEffect(() => {
+		if (loading) {
+			setActiveStepValue(3)
+		}
+	}, [loading, setActiveStepValue])
+
 	return (
 		<form onSubmit={form.handleSubmit}>
 			<CustomLoginStyles>
 				<Stack spacing={3} width='100%'>
 					{!!fromHome ? (
-						''
+						<Typography variant='h1' textAlign={'center'}>
+							{isRegister ? 'Register' : 'Login'}
+						</Typography>
 					) : (
 						<Typography textAlign='center' fontSize={34} variant='h1'>
 							{isRegister ? 'Register' : 'Login'}

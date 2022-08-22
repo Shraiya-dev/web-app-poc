@@ -2,7 +2,9 @@ import LoadingButton from '@mui/lab/LoadingButton'
 import { Box, Button, CircularProgress, Stack, styled, Typography } from '@mui/material'
 
 import { useRouter } from 'next/router'
+import { useEffect } from 'react'
 import OtpInput from 'react-otp-input'
+import { useContractorAuth } from 'sdk'
 import { ButtonClicked } from '../../../../sdk/analytics/analyticsWrapper'
 import useOtp from '../hooks/useOtp'
 
@@ -46,7 +48,8 @@ const CustomOTPStyles = styled(Box)(({ theme }) => ({
 
 export const OTPVerification = ({ ...props }) => {
 	const { otp, form, status, error, handleChange, resendOTP, otpState, loading, setLoading, phoneNumber } = useOtp()
-	const { isOtpSent, setIsOtpSent } = props
+	const { isOtpSent, setIsOtpSent, fromHome, setActiveStepValue } = props
+	const { user } = useContractorAuth()
 	const router = useRouter()
 	const handleChangeNumber = () => {
 		ButtonClicked({
@@ -56,6 +59,16 @@ export const OTPVerification = ({ ...props }) => {
 		})
 		setIsOtpSent(false)
 	}
+
+	useEffect(() => {
+		if (loading) {
+			setActiveStepValue(4)
+			console.log(user)
+			// if (false) {
+			router.push(`/dashboard`)
+			// }
+		}
+	}, [loading, setActiveStepValue, router])
 
 	return (
 		<CustomOTPStyles>
