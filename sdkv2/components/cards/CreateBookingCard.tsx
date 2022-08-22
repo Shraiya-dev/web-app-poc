@@ -107,7 +107,7 @@ export const CreateBookingCard: FC<Props> = () => {
 
 	useEffect(() => {
 		console.log(activeStepValue)
-		setActiveStepValue(Number(!!router?.query?.bookingFromStep) ?? 0)
+		setActiveStepValue(Number(router?.query?.bookingFromStep) ?? 0)
 	}, [router])
 
 	// const [wageDisable, setWageDisable] = useState({
