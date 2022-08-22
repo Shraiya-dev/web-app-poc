@@ -25,6 +25,7 @@ const useOtp = () => {
 	const [otp, setOtp] = useState({ otp: '' })
 	const [loading, setLoading] = useState(false)
 	const { showSnackbar } = useSnackbar()
+	const { openLoginDialog } = useContractorAuth()
 
 	const handleChange = (otp: any) => setOtp({ otp })
 
@@ -96,6 +97,7 @@ const useOtp = () => {
 								setLoading(false)
 							}, 500)
 						}
+						openLoginDialog()
 					})
 					.catch((err) => {
 						console.log('error', error)
@@ -108,6 +110,7 @@ const useOtp = () => {
 						setTimeout(() => {
 							setLoading(false)
 						}, 500)
+						openLoginDialog()
 					})
 			} else {
 				setOtpState((prevValues: any) => ({

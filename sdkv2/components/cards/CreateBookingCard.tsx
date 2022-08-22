@@ -4,7 +4,6 @@ import {
 	Button,
 	Card,
 	Checkbox,
-	Dialog,
 	DialogContent,
 	FormControlLabel,
 	IconButton,
@@ -21,7 +20,7 @@ import {
 	useMediaQuery,
 	useTheme,
 } from '@mui/material'
-import React, { FC, useCallback, useState } from 'react'
+import React, { FC, useCallback, useEffect, useState } from 'react'
 import { ListChildComponentProps, VariableSizeList } from 'react-window'
 import { DataLayerPush, sendAnalytics } from 'sdk/analytics'
 import { allCityList } from 'sdk/constants'
@@ -38,6 +37,8 @@ import CloseIcon from '@mui/icons-material/Close'
 import { Label } from '@mui/icons-material'
 import { OTPVerification } from 'modules/auth/otp/components/OtpVerification'
 import { LoginForm } from 'modules/auth/login/components/LoginForm'
+import { useRouter } from 'next/router'
+import { useContractorAuth } from 'sdk/providers'
 
 interface Props {}
 
@@ -100,74 +101,22 @@ const stepsName = ['Booking Details', 'Wage Details', 'Contact', 'Order Placed']
 export const CreateBookingCard: FC<Props> = () => {
 	const [step, setStep] = useState<number>(0)
 	const { form, formikProps } = useEasyBooking()
-	const [activeStepValue, setActiveStepValue] = useState<number>(0)
-	const [openDialogBox, setOpenDialogBox] = useState<boolean>(false)
-	const [isOtpSent, setIsOtpSent] = useState<boolean>(false)
-	const froHome = true
+	const router = useRouter()
+	const [activeStepValue, setActiveStepValue] = useState<number>(Number(router.query.bookingFormStep) ?? 0)
+	const { openLoginDialog } = useContractorAuth()
+
+	useEffect(() => {
+		setActiveStepValue(Number(router.query.bookingFromStep) ?? 0)
+	}, [router])
+
 	// const [wageDisable, setWageDisable] = useState({
 	// 	helperWage: false,
 	// 	technicianWage: false,
 	// 	supervisorWage: false,
 	// })
 
-	const handleDialogBox = useCallback(() => {
-		setOpenDialogBox(false)
-	}, [])
-
 	return (
 		<>
-			<Dialog onClose={handleDialogBox} open={openDialogBox}>
-				<DialogContent
-					sx={{
-						paddingX: 4,
-					}}>
-					<Stack direction={'row'} justifyContent={'flex-start'}>
-						<IconButton onClick={handleDialogBox}>
-							<CloseIcon />
-						</IconButton>
-					</Stack>
-					<Stepper alternativeLabel activeStep={activeStepValue} connector={<QontoConnector />}>
-						{stepsName.map((label) => (
-							<Step key={label}>
-								<StepLabel
-									StepIconComponent={QontoStepIcon}
-									sx={{
-										// whiteSpace: 'nowrap',
-										fontSize: '10px !important',
-									}}>
-									{label}
-								</StepLabel>
-							</Step>
-						))}
-					</Stepper>
-					<Paper elevation={0} sx={{ p: 4 }}>
-						{!isOtpSent ? (
-							<LoginForm
-								isOtpSent={isOtpSent}
-								setIsOtpSent={setIsOtpSent}
-								fromHome={true}
-								setActiveStepValue={setActiveStepValue}
-							/>
-						) : (
-							<OTPVerification
-								isOtpSent={isOtpSent}
-								setIsOtpSent={setIsOtpSent}
-								fromHome={true}
-								setActiveStepValue={setActiveStepValue}
-							/>
-						)}
-					</Paper>
-
-					{/* <Stack>
-						<Button
-							onClick={() => {
-								setIsRegister(true)
-							}}>
-							Register
-						</Button>
-					</Stack> */}
-				</DialogContent>
-			</Dialog>
 			<Card elevation={16}>
 				<Stack px={{ xs: 2, md: 4 }} py={4}>
 					<Stack>
@@ -197,9 +146,7 @@ export const CreateBookingCard: FC<Props> = () => {
 							))}
 						</Stepper>
 					</Stack>
-					<form
-					// onSubmit={form.handleSubmit}
-					>
+					<form onSubmit={form.handleSubmit}>
 						<Stack spacing={2.5} my={2} alignItems='flex-start' pr={step === 0 ? 6 : { xs: 0, md: 3 }}>
 							{step === 0 && (
 								<>
@@ -272,10 +219,6 @@ export const CreateBookingCard: FC<Props> = () => {
 											)
 										}
 										onClick={(e) => {
-											if (activeStepValue !== 4) {
-												setActiveStepValue(1)
-											}
-
 											if (
 												!(
 													form.errors['location'] ||
@@ -311,6 +254,10 @@ export const CreateBookingCard: FC<Props> = () => {
 												})
 												form.validateForm()
 											}
+											router.push({
+												pathname: '',
+												query: { bookingFromStep: 1 },
+											})
 										}}
 										sx={{ width: '50%' }}
 										size='large'
@@ -513,11 +460,7 @@ export const CreateBookingCard: FC<Props> = () => {
 									<Button
 										size='large'
 										variant='contained'
-										// type='submit'
-										onClick={() => {
-											setOpenDialogBox(true)
-											setActiveStepValue(2)
-										}}
+										type='submit'
 										disabled={
 											!form.dirty ||
 											!form.isValid ||
