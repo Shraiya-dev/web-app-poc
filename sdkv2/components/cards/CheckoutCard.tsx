@@ -5,6 +5,9 @@ import {
 	Button,
 	Card,
 	CircularProgress,
+	Dialog,
+	DialogContent,
+	DialogTitle,
 	FormHelperText,
 	IconButton,
 	Skeleton,
@@ -12,9 +15,10 @@ import {
 	TextField,
 	Typography,
 } from '@mui/material'
-import { FC, useCallback, useMemo, useState } from 'react'
+import CloseIcon from '@mui/icons-material/Close'
+import { FC, useCallback, useEffect, useMemo, useState } from 'react'
 // import BookingSuccess from 'modules/createBooking/components/bookingsuccess'
-import { Add } from '@mui/icons-material'
+import { Add, ContactsOutlined } from '@mui/icons-material'
 import DriveFileRenameOutlineOutlinedIcon from '@mui/icons-material/DriveFileRenameOutlineOutlined'
 import { LoadingButton } from '@mui/lab'
 import { postEasyBookingOrder, updateWages } from 'modules/bookingId/apis'
@@ -25,6 +29,9 @@ import { useFormikProps, useMobile } from 'sdk/hooks'
 import { useContractorAuth, useSnackbar } from 'sdk/providers'
 import { usePayment } from 'sdk/providers/PaymentProvider'
 import { AddEditWage } from '../dialog'
+import { primary } from 'sdk/constants'
+import { updateProfile } from 'sdk/apis'
+import { string } from 'yup'
 
 const ProfileCardData = [
 	{
@@ -56,6 +63,11 @@ export const CheckoutCard: FC = () => {
 		initialQuantity: 0,
 		edit: false,
 	})
+
+	const [emailDialogBox, setEmailDialogBox] = useState<boolean>(false)
+	const [isLoading, setIsLoading] = useState<boolean>(false)
+	const [valid, setValid] = useState<boolean>(true)
+
 	const [updating, setUpdating] = useState<any>({})
 	const { form, wage, bookingData, setWage, discountDetails, getBookingDetail, loading, dispatchLoading } =
 		useCheckout()
@@ -109,134 +121,185 @@ export const CheckoutCard: FC = () => {
 	const { showSnackbar } = useSnackbar()
 
 	const isMobile = useMobile()
-	const { user } = useContractorAuth()
+	const { user, getContactorUserInfo } = useContractorAuth()
+	const [emailId, setEmailId] = useState<string>(user?.email ?? '')
 
-	const handelPayment = useCallback(async () => {
-		dispatchLoading({ payment: true })
-		const payload = {
-			source: {
-				id: router.query.bookingId,
-				type: 'BOOKING_TOKEN',
-			},
-			buyerType: 'CONTRACTOR_PROJECT',
-			sellerType: 'PROJECT_HERO',
-			discount: {
-				isDiscounted: !!discountDetails?.isEligible,
-				discountCode: 'NEWUSER15',
-			},
-			total: bill.amountPayable,
-			lineItems: [
-				{
-					itemName: 'HELPER',
-					quantity: form.values.qtyHelper,
-					category: bookingData?.booking?.jobType,
-					amount: 50,
-					totalAmount: form.values.qtyHelper * 50,
-				},
-				{
-					itemName: 'TECHNICIAN',
-					quantity: form.values.qtyTechnician,
-					category: bookingData?.booking?.jobType,
-					amount: 50,
-					totalAmount: form.values.qtyTechnician * 50,
-				},
-				{
-					itemName: 'SUPERVISOR',
-					quantity: form.values.qtySupervisor,
-					category: bookingData?.booking?.jobType,
-					amount: 50,
-					totalAmount: form.values.qtySupervisor * 50,
-				},
-			].filter((item) => item.quantity > 0),
+	useEffect(() => {
+		if (user?.email) {
+			setEmailId(user?.email)
 		}
-		try {
-			const { data } = await postEasyBookingOrder(payload)
-			if (data?.payload?.response?.state === 'CONFIRMED') {
-				if (data?.payload?.response?.payment) {
-					sendAnalytics({
-						name: 'initiatePayment',
-						action: 'ButtonClick',
-						metaData: {
-							origin: 'Booking checkout card',
+	}, [user])
+
+	const handleEmailDialogBox = useCallback(() => {
+		setEmailDialogBox(!emailDialogBox)
+	}, [emailDialogBox])
+
+	const handelPayment = useCallback(
+		async (email: string) => {
+			dispatchLoading({ payment: true })
+			const payload = {
+				source: {
+					id: router.query.bookingId,
+					type: 'BOOKING_TOKEN',
+				},
+				buyerType: 'CONTRACTOR_PROJECT',
+				sellerType: 'PROJECT_HERO',
+				discount: {
+					isDiscounted: !!discountDetails?.isEligible,
+					discountCode: 'NEWUSER15',
+				},
+				total: bill.amountPayable,
+				lineItems: [
+					{
+						itemName: 'HELPER',
+						quantity: form.values.qtyHelper,
+						category: bookingData?.booking?.jobType,
+						amount: 50,
+						totalAmount: form.values.qtyHelper * 50,
+					},
+					{
+						itemName: 'TECHNICIAN',
+						quantity: form.values.qtyTechnician,
+						category: bookingData?.booking?.jobType,
+						amount: 50,
+						totalAmount: form.values.qtyTechnician * 50,
+					},
+					{
+						itemName: 'SUPERVISOR',
+						quantity: form.values.qtySupervisor,
+						category: bookingData?.booking?.jobType,
+						amount: 50,
+						totalAmount: form.values.qtySupervisor * 50,
+					},
+				].filter((item) => item.quantity > 0),
+			}
+			try {
+				const { data } = await postEasyBookingOrder(payload)
+				if (data?.payload?.response?.state === 'CONFIRMED') {
+					if (data?.payload?.response?.payment) {
+						sendAnalytics({
+							name: 'initiatePayment',
+							action: 'ButtonClick',
+							metaData: {
+								origin: 'Booking checkout card',
+							},
+						})
+						await initiatePayment(
+							data?.payload?.response?.payment,
+							data?.payload?.response?.payment?.amountPayable,
+							email,
+
+							() => {
+								DataLayerPush({
+									event: 'booking_done',
+									phoneNumber: user?.phoneNumber,
+									amount: bill?.amountPayable,
+									discountEligible: !!discountDetails?.isEligible,
+									discount: bill?.discount,
+									currency: 'INR',
+									eventInfo: {
+										helperCount: form.values['qtyHelper'],
+										supervisorCount: form.values['qtySupervisor'],
+										technicianCount: form.values['qtyTechnician'],
+										helperWage: wage['wageHelper'],
+										supervisorWage: wage['wageSupervisor'],
+										technicianWage: wage['wageTechnician'],
+									},
+								})
+								sendAnalytics({
+									name: 'CreateEasyBookWorker',
+									action: 'ButtonClick',
+									metaData: {
+										step: 'Booking Complete',
+									},
+								})
+								router.replace(`/projects/${router.query.projectId}/bookings`)
+							},
+							() => {
+								dispatchLoading({ payment: false })
+							}
+						)
+					}
+				} else {
+					DataLayerPush({
+						event: 'booking_done',
+						phoneNumber: user?.phoneNumber,
+						amount: bill?.amountPayable,
+						discountEligible: !!discountDetails?.isEligible,
+						discount: bill?.discount,
+						currency: 'INR',
+						eventInfo: {
+							helperCount: form.values['qtyHelper'],
+							supervisorCount: form.values['qtySupervisor'],
+							technicianCount: form.values['qtyTechnician'],
+							helperWage: wage['wageHelper'],
+							supervisorWage: wage['wageSupervisor'],
+							technicianWage: wage['wageTechnician'],
 						},
 					})
-					await initiatePayment(
-						data?.payload?.response?.payment,
-						data?.payload?.response?.payment?.amountPayable,
-						() => {
-							DataLayerPush({
-								event: 'booking_done',
-								phoneNumber: user?.phoneNumber,
-								amount: bill?.amountPayable,
-								discountEligible: !!discountDetails?.isEligible,
-								discount: bill?.discount,
-								currency: 'INR',
-								eventInfo: {
-									helperCount: form.values['qtyHelper'],
-									supervisorCount: form.values['qtySupervisor'],
-									technicianCount: form.values['qtyTechnician'],
-									helperWage: wage['wageHelper'],
-									supervisorWage: wage['wageSupervisor'],
-									technicianWage: wage['wageTechnician'],
-								},
-							})
-							sendAnalytics({
-								name: 'CreateEasyBookWorker',
-								action: 'ButtonClick',
-								metaData: {
-									step: 'Booking Complete',
-								},
-							})
-							router.replace(`/projects/${router.query.projectId}/bookings`)
+					sendAnalytics({
+						name: 'CreateEasyBookWorker',
+						action: 'ButtonClick',
+						metaData: {
+							step: 'Booking Complete',
 						},
-						() => {
-							dispatchLoading({ payment: false })
-						}
-					)
+					})
+					router.replace(`/projects/${router.query.projectId}/bookings`)
 				}
-			} else {
-				DataLayerPush({
-					event: 'booking_done',
-					phoneNumber: user?.phoneNumber,
-					amount: bill?.amountPayable,
-					discountEligible: !!discountDetails?.isEligible,
-					discount: bill?.discount,
-					currency: 'INR',
-					eventInfo: {
-						helperCount: form.values['qtyHelper'],
-						supervisorCount: form.values['qtySupervisor'],
-						technicianCount: form.values['qtyTechnician'],
-						helperWage: wage['wageHelper'],
-						supervisorWage: wage['wageSupervisor'],
-						technicianWage: wage['wageTechnician'],
-					},
-				})
-				sendAnalytics({
-					name: 'CreateEasyBookWorker',
-					action: 'ButtonClick',
-					metaData: {
-						step: 'Booking Complete',
-					},
-				})
-				router.replace(`/projects/${router.query.projectId}/bookings`)
+			} catch (error: any) {
+				showSnackbar(error?.response?.data?.developerInfo, 'error')
 			}
-		} catch (error: any) {
-			showSnackbar(error?.response?.data?.developerInfo, 'error')
-		}
-	}, [
-		bill.amountPayable,
-		bill?.discount,
-		bookingData?.booking?.jobType,
-		discountDetails?.isEligible,
-		dispatchLoading,
-		form.values,
-		initiatePayment,
-		router,
-		showSnackbar,
-		user?.phoneNumber,
-		wage,
-	])
+		},
+		[
+			bill.amountPayable,
+			bill?.discount,
+			bookingData?.booking?.jobType,
+			discountDetails?.isEligible,
+			dispatchLoading,
+			form.values,
+			initiatePayment,
+			router,
+			showSnackbar,
+			user?.phoneNumber,
+			wage,
+		]
+	)
 	const formikProps = useFormikProps<any>(form)
+
+	const handlePaymentProcess = useCallback(async () => {
+		setIsLoading(true)
+		let payload = { email: emailId }
+		try {
+			if (emailId) {
+				const { data, status } = await updateProfile(payload)
+				await getContactorUserInfo()
+				if (status === 200) {
+					// console.log(data.payload.payload.email)
+					setEmailId(data.payload.email)
+					handelPayment(data.payload.email)
+					handleEmailDialogBox()
+					setIsLoading(false)
+				}
+			}
+		} catch (error) {
+			setIsLoading(false)
+		}
+	}, [emailId, getContactorUserInfo, handelPayment])
+
+	const handleEmail = useCallback(
+		(e) => {
+			setEmailId(e.target.value)
+			if (emailId === '') {
+				setValid(true)
+			} else if (e.target.value === '') {
+				setValid(true)
+			} else {
+				setValid(!string().email().isValidSync(e.target.value))
+			}
+		},
+		[emailId, valid]
+	)
+
 	return (
 		<>
 			{/* handleUpdateWages from useCheckout goes in  WageUpdateDialog  */}
@@ -551,7 +614,13 @@ export const CheckoutCard: FC = () => {
 										loading={loading?.payment}
 										color='info'
 										disabled={bill.quantity <= 0}
-										onClick={handelPayment}
+										onClick={() => {
+											if (user?.email) {
+												handelPayment(user?.email)
+											} else {
+												handleEmailDialogBox()
+											}
+										}}
 										sx={{
 											backgroundColor: '#ffffff !important',
 											color: 'common.black',
@@ -567,6 +636,55 @@ export const CheckoutCard: FC = () => {
 						</>
 					)}
 				</Card>
+
+				<Dialog open={emailDialogBox} onClose={handleEmailDialogBox}>
+					<DialogTitle>
+						<IconButton onClick={handleEmailDialogBox}>
+							<CloseIcon sx={{ color: primary.properDark }} />
+						</IconButton>
+					</DialogTitle>
+					<DialogContent>
+						<Stack direction={'column'} spacing={4}>
+							<Stack direction={'column'} spacing={2}>
+								<Typography
+									variant='h2'
+									fontFamily={' Saira ,sans-serif'}
+									fontWeight={700}
+									textAlign={'center'}
+									color={primary.properDark}>
+									Add Your Email
+								</Typography>
+								<Typography
+									variant='body2'
+									fontWeight={400}
+									textAlign={'center'}
+									fontFamily={'Karla , sans-serif'}
+									color={primary.properDark}>
+									We will send the copy of invoice on your email
+								</Typography>
+							</Stack>
+							<TextField
+								variant='outlined'
+								type={'email'}
+								placeholder='Enter Email'
+								sx={{ outline: '1.8px solid #cccccc', overflow: 'hidden' }}
+								value={emailId}
+								onChange={(e) => {
+									handleEmail(e)
+								}}
+							/>
+							<LoadingButton
+								variant='contained'
+								disabled={valid}
+								loading={isLoading}
+								onClick={() => {
+									handlePaymentProcess()
+								}}>
+								{bill.amountPayable !== 0 ? 'Proceed to pay' : 'Confirm and Book'}
+							</LoadingButton>
+						</Stack>
+					</DialogContent>
+				</Dialog>
 
 				<Stack
 					borderRadius='15px'
