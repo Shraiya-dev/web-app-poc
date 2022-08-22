@@ -377,6 +377,7 @@ const ContractorAuthProvider: FC<ContractorAuthProviderProps> = ({ children, aut
 					bookingId: `${data?.payload?.bookingId ?? ''}`,
 					projectId: `${data?.payload?.projectId ?? ''}`,
 				})
+
 				router.push(`/bookings/${data.payload.projectId}/${data.payload.bookingId}/checkout`)
 			} catch (error) {
 				showSnackbar('Failed to create easy booking', 'error')

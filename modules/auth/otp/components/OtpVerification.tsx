@@ -63,7 +63,7 @@ export const OTPVerification = ({ ...props }) => {
 	useEffect(() => {
 		if (loading) {
 			setActiveStepValue(4)
-			console.log(user)
+			// console.log(user)
 			// if (false) {
 			router.push(`/dashboard`)
 			// }
