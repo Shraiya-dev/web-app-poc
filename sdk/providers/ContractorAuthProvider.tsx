@@ -478,6 +478,7 @@ const ContractorAuthProvider: FC<ContractorAuthProviderProps> = ({ children, aut
 					if (discoveryBookingFromCookie()) {
 						deleteCookie('discoveryBooking')
 						showSnackbar('Please create a booking inside the project', 'warning')
+						router.push('/dashboard')
 					}
 					const redirectRoute = AccessMap[state.user.onboardingStatus]
 
@@ -529,12 +530,8 @@ const ContractorAuthProvider: FC<ContractorAuthProviderProps> = ({ children, aut
 	const [activeStepValue, setActiveStepValue] = useState<number>(Number(router?.query?.bookingFormStep) ?? 2)
 
 	const openLoginDialog = useCallback(() => {
-		setIsDialogOpen(!isDialogOpen)
-	}, [isDialogOpen])
-
-	useEffect(() => {
-		console.log(isDialogOpen)
-	}, [isDialogOpen])
+		if (!state.user) setIsDialogOpen(!isDialogOpen)
+	}, [isDialogOpen, state.user])
 
 	// const handleActiveStepValue = useCallback(() => {
 	// 	let value = router.query.bookingformStep ?? 0

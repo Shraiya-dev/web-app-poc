@@ -30,7 +30,7 @@ export const navbar: Navbar = {
 			type: 'button_link',
 			label: 'Login',
 			icon: <img src={'/assets/landingv2/user.svg'} />,
-			link: '/login',
+			link: '/',
 		},
 		{
 			type: 'button_link',

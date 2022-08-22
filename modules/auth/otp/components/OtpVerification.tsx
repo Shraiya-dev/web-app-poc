@@ -64,7 +64,7 @@ export const OTPVerification = ({ ...props }) => {
 		if (loading) {
 			router.push({
 				pathname: '',
-				query: { bookingFromStep: 4 },
+				query: { bookingFromStep: 3 },
 			})
 		}
 	}, [loading, router])
@@ -73,7 +73,11 @@ export const OTPVerification = ({ ...props }) => {
 		<CustomOTPStyles>
 			<>
 				<form onSubmit={form.handleSubmit}>
-					<Typography className='headerInfo' color={primary?.properDark}>
+					<Typography
+						className='headerInfo'
+						sx={{
+							color: !!fromHome ? primary?.properDark : '#ccc',
+						}}>
 						Verify Mobile
 					</Typography>
 

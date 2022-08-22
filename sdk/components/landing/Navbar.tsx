@@ -39,9 +39,7 @@ export const Navbar = () => {
 		!isMobile && setNavbarOpen(false)
 	}, [isMobile])
 
-	const { user } = useContractorAuth()
-
-	console.log(user)
+	const { user, openLoginDialog } = useContractorAuth()
 
 	return (
 		<>
@@ -265,6 +263,7 @@ export const Navbar = () => {
 																name: 'navbarLogin',
 																action: 'ButtonClick',
 															})
+															openLoginDialog()
 														}
 													}}
 													href={navItem.link}
