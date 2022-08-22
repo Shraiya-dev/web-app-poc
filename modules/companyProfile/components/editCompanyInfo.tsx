@@ -306,6 +306,10 @@ const EditCompanyInfo = ({ ...props }) => {
 								}}
 								loading={loading}
 								variant='contained'
+								disabled={
+									loading || !form.isValid || !form.values.GSTIN || !form.values.companyName
+									// form.values.GSTINDocuments.length === 0
+								}
 								sx={{
 									background: theme.palette.primary.main,
 									color: primary.properDark,

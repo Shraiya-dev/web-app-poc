@@ -114,11 +114,11 @@ const CompanyDetails = () => {
 						{/* 
 						<TabPanel
 							value='members'
-							style={{
-								height: 'calc( 100vh - 160px )',
+							sx={{
+								height: 'calc( 100vh - 190px )',
 								overflowY: 'auto',
 								position: 'relative',
-								paddingTop: 8,
+								paddingTop: 1,
 							}}
 						>
 							<CompanyMembers />

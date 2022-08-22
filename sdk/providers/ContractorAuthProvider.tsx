@@ -1,10 +1,30 @@
 import { KeyboardReturn } from '@mui/icons-material'
-import { Backdrop, CircularProgress } from '@mui/material'
+import {
+	Backdrop,
+	CircularProgress,
+	Dialog,
+	DialogContent,
+	IconButton,
+	Paper,
+	Stack,
+	Step,
+	StepLabel,
+	Stepper,
+	Typography,
+} from '@mui/material'
 import axios from 'axios'
 import { useRouter } from 'next/router'
 import { createContext, FC, useCallback, useContext, useEffect, useMemo, useReducer, useState } from 'react'
 import { Identify } from '../analytics/analyticsWrapper'
 import { createCookieInHour, deleteCookie, getCookie } from '../analytics/helper'
+import StepConnector, { stepConnectorClasses } from '@mui/material/StepConnector'
+import { styled } from '@mui/material/styles'
+import { StepIconProps } from '@mui/material/StepIcon'
+import CheckCircleIcon from '@mui/icons-material/CheckCircle'
+import AdjustOutlinedIcon from '@mui/icons-material/AdjustOutlined'
+import RadioButtonUncheckedIcon from '@mui/icons-material/RadioButtonUnchecked'
+import CloseIcon from '@mui/icons-material/Close'
+
 import {
 	emailVerification,
 	getCustomerDetails,
@@ -16,6 +36,8 @@ import {
 } from '../apis'
 import { CustomerDetails, CUSTOMER_STATUS, ONBOARDING_STATUS, USER_LOGIN_TYPE, USER_TYPE } from '../types'
 import { useSnackbar } from './SnackbarProvider'
+import { LoginForm } from 'modules/auth/login/components/LoginForm'
+import { OTPVerification } from 'modules/auth/otp/components/OtpVerification'
 const LoadingUniqueString = 'loading...'
 interface AuthState {
 	user: null | CustomerDetails
@@ -41,6 +63,7 @@ interface AuthProviderValue extends AuthState {
 	reSendEmailOtp: (payload: { token: string }) => Promise<any>
 	createEasyBooking: (bookingDetails: any) => Promise<any>
 	verifyEmailOtp: (payload: emailOtpPayload) => Promise<any>
+	openLoginDialog: () => any
 }
 
 const simpleReducer = (state: AuthState, payload: Partial<AuthState>) => ({
@@ -74,6 +97,7 @@ const ContractorAuthContext = createContext<AuthProviderValue>({
 	reSendEmailOtp: (payload: { token: string }) => Promise.resolve(null),
 	createEasyBooking: () => Promise.resolve(null),
 	verifyEmailOtp: () => Promise.resolve(null),
+	openLoginDialog: () => null,
 })
 const { Provider, Consumer } = ContractorAuthContext
 
@@ -92,11 +116,69 @@ const PublicPages = [
 interface ContractorAuthProviderProps {
 	authState?: AuthState
 }
+
+const QontoConnector = styled(StepConnector)(({ theme }) => ({
+	[`&.${stepConnectorClasses.alternativeLabel}`]: {
+		top: 10,
+		left: 'calc(-50% + 8px)',
+		right: 'calc(50% + 8px)',
+	},
+	[`&.${stepConnectorClasses.active}`]: {
+		[`& .${stepConnectorClasses.line}`]: {
+			borderColor: '#4db07f',
+		},
+	},
+	[`&.${stepConnectorClasses.completed}`]: {
+		[`& .${stepConnectorClasses.line}`]: {
+			borderColor: '#4db07f',
+		},
+	},
+	[`& .${stepConnectorClasses.line}`]: {
+		borderColor: theme.palette.mode === 'dark' ? theme.palette.grey[800] : '#4db07f',
+		borderTopWidth: 3,
+		borderRadius: 1,
+	},
+}))
+
+const QontoStepIconRoot = styled('div')<{ ownerState: { active?: boolean } }>(({ theme, ownerState }) => ({
+	color: theme.palette.mode === 'dark' ? theme.palette.grey[700] : '#4db07f',
+	display: 'flex',
+	height: 22,
+	alignItems: 'center',
+	...(ownerState.active && {
+		color: '#4db07f',
+	}),
+	'& .QontoStepIcon-completedIcon': {
+		color: '#4db07f',
+		zIndex: 1,
+		fontSize: 20,
+	},
+}))
+
+function QontoStepIcon(props: StepIconProps) {
+	const { active, completed, className } = props
+
+	return (
+		<QontoStepIconRoot ownerState={{ active }} className={className}>
+			{completed ? (
+				<CheckCircleIcon className='QontoStepIcon-completedIcon' />
+			) : active ? (
+				<AdjustOutlinedIcon className='QontoStepIcon-completedIcon' />
+			) : (
+				<RadioButtonUncheckedIcon className='QontoStepIcon-completedIcon' />
+			)}
+		</QontoStepIconRoot>
+	)
+}
+
+const stepsName = ['Booking Details', 'Wage Details', 'Contact', 'Order Placed']
+
 const ContractorAuthProvider: FC<ContractorAuthProviderProps> = ({ children, authState }) => {
 	const [state, dispatch] = useReducer(simpleReducer, authState ?? initialAuthState)
 	const router = useRouter()
 	const { showSnackbar } = useSnackbar()
 	const [backdropProps, setBackdropProps] = useState({ open: false })
+
 	const requestOtp = useCallback(
 		async (phoneNumber: string) => {
 			dispatch({
@@ -368,6 +450,7 @@ const ContractorAuthProvider: FC<ContractorAuthProviderProps> = ({ children, aut
 				}
 				const { data, status } = await axios.post('/gateway/customer-api/projects/bookings', payload)
 				deleteCookie('discoveryBooking')
+
 				router.push(`/bookings/${data.payload.projectId}/${data.payload.bookingId}/checkout`)
 			} catch (error) {
 				showSnackbar('Failed to create easy booking', 'error')
@@ -440,6 +523,24 @@ const ContractorAuthProvider: FC<ContractorAuthProviderProps> = ({ children, aut
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [state.user, router])
 
+	const [isDialogOpen, setIsDialogOpen] = useState<boolean>(false)
+	const [isOtpSent, setIsOtpSent] = useState<boolean>(false)
+
+	const [activeStepValue, setActiveStepValue] = useState<number>(Number(router?.query?.bookingFormStep) ?? 2)
+
+	const openLoginDialog = useCallback(() => {
+		setIsDialogOpen(!isDialogOpen)
+	}, [isDialogOpen])
+
+	useEffect(() => {
+		console.log(isDialogOpen)
+	}, [isDialogOpen])
+
+	// const handleActiveStepValue = useCallback(() => {
+	// 	let value = router.query.bookingformStep ?? 0
+	// 	setActiveStepValue(value)
+	// }, [router])
+
 	const authProviderValue: AuthProviderValue = useMemo(
 		() => ({
 			...state,
@@ -453,6 +554,7 @@ const ContractorAuthProvider: FC<ContractorAuthProviderProps> = ({ children, aut
 			verifyEmailOtp: verifyEmailOtp,
 			reSendEmailOtp: reSendEmailOtp,
 			createEasyBooking: createEasyBooking,
+			openLoginDialog: openLoginDialog,
 		}),
 		[
 			state,
@@ -465,11 +567,65 @@ const ContractorAuthProvider: FC<ContractorAuthProviderProps> = ({ children, aut
 			verifyEmailOtp,
 			reSendEmailOtp,
 			createEasyBooking,
+			openLoginDialog,
 		]
 	)
 	return (
 		<Provider value={authProviderValue}>
 			{children}
+
+			<Dialog onClose={openLoginDialog} open={isDialogOpen}>
+				<DialogContent
+					sx={{
+						paddingX: 4,
+					}}>
+					<Stack direction={'row'} justifyContent={'flex-start'}>
+						<IconButton onClick={openLoginDialog}>
+							<CloseIcon sx={{ color: '#000' }} />
+						</IconButton>
+					</Stack>
+					<Stepper
+						alternativeLabel
+						activeStep={Number(router?.query?.bookingFromStep) ?? 0}
+						connector={<QontoConnector />}>
+						{stepsName.map((label) => (
+							<Step key={label}>
+								<StepLabel
+									StepIconComponent={QontoStepIcon}
+									sx={{
+										// whiteSpace: 'nowrap',
+										fontSize: '10px !important',
+									}}>
+									<Typography
+										variant='subtitle2'
+										sx={{
+											color: '#000 !important',
+										}}>
+										{label}
+									</Typography>
+								</StepLabel>
+							</Step>
+						))}
+					</Stepper>
+					<Paper elevation={0} sx={{ p: 4 }}>
+						{!isOtpSent ? (
+							<LoginForm isOtpSent={isOtpSent} setIsOtpSent={setIsOtpSent} fromHome={true} />
+						) : (
+							<OTPVerification isOtpSent={isOtpSent} setIsOtpSent={setIsOtpSent} fromHome={true} />
+						)}
+					</Paper>
+
+					{/* <Stack>
+						<Button
+							onClick={() => {
+								setIsRegister(true)
+							}}>
+							Register
+						</Button>
+					</Stack> */}
+				</DialogContent>
+			</Dialog>
+
 			<Backdrop {...backdropProps}>
 				<CircularProgress />
 			</Backdrop>

@@ -25,7 +25,7 @@ const PersonalAccount = () => {
 								fontSize: 26,
 								fontWeight: 700,
 								color: theme.palette.secondary.main,
-								fontFamily: ' Saira , sans-serif',
+								fontFamily: 'Saira ,sans-serif',
 							}}>
 							Account
 						</Typography>

@@ -4,7 +4,7 @@ import { Box, Button, InputLabel, Stack, styled, Typography } from '@mui/materia
 import { useRouter } from 'next/router'
 import { useEffect, useMemo } from 'react'
 import { InputWrapper } from 'sdkv2/components'
-import { checkError, getCookie } from '../../../../sdk'
+import { checkError, getCookie, primary } from '../../../../sdk'
 import { PhoneField } from '../../../../sdk/components/Input/PhoneField'
 import useLogin from '../hooks/useLogin'
 
@@ -41,7 +41,7 @@ const CustomLoginStyles = styled(Box)(({ theme }) => ({
 
 export const LoginForm = ({ ...props }) => {
 	const { form, loading, error, isRegister, handleLogin, status } = useLogin()
-	const { isOtpSent, setIsOtpSent } = props
+	const { isOtpSent, setIsOtpSent, fromHome } = props
 
 	const router = useRouter()
 
@@ -51,14 +51,34 @@ export const LoginForm = ({ ...props }) => {
 		}
 	}, [form, status])
 
+	useEffect(() => {
+		if (loading) {
+			router.push({
+				pathname: '',
+				query: { bookingFromStep: 3 },
+			})
+		}
+	}, [loading, router])
+
 	return (
 		<form onSubmit={form.handleSubmit}>
 			<CustomLoginStyles>
 				<Stack spacing={3} width='100%'>
-					<Typography textAlign='center' fontSize={34} variant='h1'>
-						{isRegister ? 'Register' : 'Login'}
-					</Typography>
-					<InputWrapper label='Phone Number'>
+					{!!fromHome ? (
+						<Typography variant='h1' textAlign={'center'} color={primary?.properDark}>
+							{isRegister ? 'Register' : 'Login'}
+						</Typography>
+					) : (
+						<Typography textAlign='center' fontSize={34} variant='h1' color={primary?.properDark}>
+							{isRegister ? 'Register' : 'Login'}
+						</Typography>
+					)}
+
+					<InputWrapper
+						label='Phone Number'
+						sx={{
+							color: '#000',
+						}}>
 						<PhoneField
 							error={!!checkError('phoneNumber', form)}
 							id='phoneNumber'
@@ -67,7 +87,13 @@ export const LoginForm = ({ ...props }) => {
 							helperText={
 								checkError('phoneNumber', form) !== 'valid' ? checkError('phoneNumber', form) : ''
 							}
-							sx={{ width: '100%', mt: 1 }}
+							sx={{
+								width: '100%',
+								mt: 1,
+								'& .MuiOutlinedInput-root': {
+									outline: '1px solid #ccc',
+								},
+							}}
 							// InputProps={{
 							// 	startAdornment: <InputAdornment position='start'>+91</InputAdornment>,
 							// }}
@@ -81,7 +107,9 @@ export const LoginForm = ({ ...props }) => {
 					</LoadingButton>
 
 					<Stack className='register' direction={'row'} style={{ cursor: 'pointer' }}>
-						<Typography>{isRegister ? `Already have an account?` : `Don't have an account?`}</Typography>
+						<Typography color={primary?.properDark}>
+							{isRegister ? `Already have an account?` : `Don't have an account?`}
+						</Typography>
 						<Button
 							onClick={handleLogin}
 							variant='text'

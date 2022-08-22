@@ -1,11 +1,13 @@
 import { useFormik } from 'formik'
 import { useRouter } from 'next/router'
-import { useEffect, useMemo } from 'react'
+import { useEffect } from 'react'
 import { createCookieInHour, DataLayerPush, getCookie, sendAnalytics } from 'sdk/analytics'
 import { useFormikProps } from 'sdk/hooks'
+import { useContractorAuth } from 'sdk/providers'
 import * as Yup from 'yup'
 export const useEasyBooking = () => {
 	const router = useRouter()
+	const { openLoginDialog } = useContractorAuth()
 	const handleSubmit = async (values: any) => {
 		DataLayerPush({
 			event: 'booking_requirement',
@@ -30,7 +32,8 @@ export const useEasyBooking = () => {
 			}),
 			45
 		)
-		router.push('/login')
+		router.push({ pathname: '', query: { bookingFromStep: 2 } })
+		openLoginDialog()
 	}
 	const form = useFormik({
 		initialValues: {

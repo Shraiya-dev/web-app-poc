@@ -2,7 +2,9 @@ import LoadingButton from '@mui/lab/LoadingButton'
 import { Box, Button, CircularProgress, Stack, styled, Typography } from '@mui/material'
 
 import { useRouter } from 'next/router'
+import { useEffect } from 'react'
 import OtpInput from 'react-otp-input'
+import { primary, useContractorAuth } from 'sdk'
 import { ButtonClicked } from '../../../../sdk/analytics/analyticsWrapper'
 import useOtp from '../hooks/useOtp'
 
@@ -25,7 +27,7 @@ const CustomOTPStyles = styled(Box)(({ theme }) => ({
 		fontSize: 14,
 	},
 	'.subInfo': {
-		color: theme.palette.secondary.main,
+		color: theme.palette.secondary.dark,
 		textAlign: 'center',
 		marginBottom: 48,
 	},
@@ -46,7 +48,8 @@ const CustomOTPStyles = styled(Box)(({ theme }) => ({
 
 export const OTPVerification = ({ ...props }) => {
 	const { otp, form, status, error, handleChange, resendOTP, otpState, loading, setLoading, phoneNumber } = useOtp()
-	const { isOtpSent, setIsOtpSent } = props
+	const { isOtpSent, setIsOtpSent, fromHome } = props
+	const { user } = useContractorAuth()
 	const router = useRouter()
 	const handleChangeNumber = () => {
 		ButtonClicked({
@@ -57,13 +60,24 @@ export const OTPVerification = ({ ...props }) => {
 		setIsOtpSent(false)
 	}
 
+	useEffect(() => {
+		if (loading) {
+			router.push({
+				pathname: '',
+				query: { bookingFromStep: 4 },
+			})
+		}
+	}, [loading, router])
+
 	return (
 		<CustomOTPStyles>
 			<>
 				<form onSubmit={form.handleSubmit}>
-					<Typography className='headerInfo'>Verify Mobile</Typography>
+					<Typography className='headerInfo' color={primary?.properDark}>
+						Verify Mobile
+					</Typography>
 
-					<Typography className='subInfo'>
+					<Typography className='subInfo' color={'#ccc'}>
 						Enter <strong>OTP</strong> sent to your mobile number
 						<br /> <strong>{phoneNumber}</strong>
 					</Typography>
