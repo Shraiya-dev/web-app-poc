@@ -680,7 +680,7 @@ export const CheckoutCard: FC = () => {
 								onClick={() => {
 									handlePaymentProcess()
 								}}>
-								Proceed to pay
+								{bill.amountPayable !== 0 ? 'Proceed to pay' : 'Confirm and Book'}
 							</LoadingButton>
 						</Stack>
 					</DialogContent>
