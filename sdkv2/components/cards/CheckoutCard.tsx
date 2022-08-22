@@ -434,7 +434,7 @@ export const CheckoutCard: FC = () => {
 
 			<Stack rowGap={4} maxWidth={766}>
 				<Stack>
-					<Typography fontSize={!isMobile ? '32px' : '24px'} fontWeight={600}>
+					<Typography fontSize={!isMobile ? '32px' : '24px'} fontWeight={600} color={primary.properDark}>
 						One platform to care of all your
 						<br />
 						<Typography
@@ -447,7 +447,11 @@ export const CheckoutCard: FC = () => {
 						</Typography>
 					</Typography>
 				</Stack>
-				<Stack my={2} width={'45%'}>
+				<Stack
+					my={2}
+					sx={{
+						width: { md: '45%', xs: '100%' },
+					}}>
 					<Stepper alternativeLabel activeStep={activeStepValue} connector={<QontoConnector />}>
 						{stepsName.map((label) => (
 							<Step key={label}>
@@ -456,6 +460,9 @@ export const CheckoutCard: FC = () => {
 									sx={{
 										// whiteSpace: 'nowrap',
 										fontSize: '10px !important',
+										'& .MuiStepLabel-label': {
+											color: '#fff',
+										},
 									}}>
 									{label}
 								</StepLabel>
@@ -464,7 +471,7 @@ export const CheckoutCard: FC = () => {
 					</Stepper>
 				</Stack>
 
-				<Card sx={{ borderRadius: '15px' }}>
+				<Card sx={{ borderRadius: '15px', boxShadow: '0px 4px 35px rgba(0, 0, 0, 0.90)' }}>
 					{loading?.booking ? (
 						<>
 							<Stack minHeight={500} alignItems='center' justifyContent='center' flex={1}>
@@ -773,7 +780,7 @@ export const CheckoutCard: FC = () => {
 
 				<Stack
 					borderRadius='15px'
-					sx={{ backgroundColor: 'info.main', zIndex: 1 }}
+					sx={{ backgroundColor: 'info.main', zIndex: 1, boxShadow: '0px 4px 35px rgba(0, 0, 0, 0.90)' }}
 					direction={!isMobile ? 'row' : 'column'}
 					alignItems={!isMobile ? 'center' : 'flex-start'}
 					justifyContent='space-between'

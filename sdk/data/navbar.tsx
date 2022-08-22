@@ -1,5 +1,6 @@
 import { CalendarMonth, HelpCenterRounded, HomeRounded, InfoOutlined, PhoneInTalkRounded } from '@mui/icons-material'
 import { ReactNode } from 'react'
+import DashboardRoundedIcon from '@mui/icons-material/DashboardRounded'
 
 interface Navbar {
 	brandImage: string
@@ -34,9 +35,9 @@ export const navbar: Navbar = {
 		},
 		{
 			type: 'button_link',
-			label: 'marketing@projecthero.in',
-			icon: <img height={'30px'} width={'30px'} src='/assets/icons/mail.svg' />,
-			link: 'mailto:marketing@projecthero.in',
+			label: 'Dashboard',
+			icon: <DashboardRoundedIcon />,
+			link: '/dashboard',
 		},
 	],
 }

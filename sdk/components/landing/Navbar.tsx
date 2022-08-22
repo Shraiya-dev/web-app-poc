@@ -242,7 +242,6 @@ export const Navbar = () => {
 						</Stack>
 						<NavWrapper direction='row' spacing={{ xs: 0, md: 3 }} alignItems='center'>
 							{navbar.navLinks.map((navItem, i) => {
-								console.log(!user)
 								if (navItem.type === 'button_link') {
 									if (navItem.label === 'Login') {
 										return (
@@ -272,23 +271,24 @@ export const Navbar = () => {
 												</LinkButton>
 											)
 										)
-									} else if (navItem.label === 'marketing@projecthero.in') {
+									} else if (navItem.label === 'Dashboard') {
 										return (
 											!!user && (
-												<LinkButton
-													variant='text'
+												<Button
+													variant='contained'
 													key={i}
 													startIcon={navItem?.icon}
 													sx={(theme) => ({
 														fontWeight: 700,
-														color: 'common.white',
+														color: primary.properDark,
 														[theme.breakpoints.down('md')]: { display: 'none' },
 														whiteSpace: 'nowrap',
+														borderRadius: '20px !important',
 													})}
 													href={navItem.link}
 													className={router.pathname === navItem.link ? 'active' : ''}>
 													{navItem.label}
-												</LinkButton>
+												</Button>
 											)
 										)
 									} else {

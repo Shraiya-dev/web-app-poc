@@ -526,8 +526,7 @@ const ContractorAuthProvider: FC<ContractorAuthProviderProps> = ({ children, aut
 
 	const [isDialogOpen, setIsDialogOpen] = useState<boolean>(false)
 	const [isOtpSent, setIsOtpSent] = useState<boolean>(false)
-
-	const [activeStepValue, setActiveStepValue] = useState<number>(Number(router?.query?.bookingFormStep) ?? 2)
+	const [isDiscoveryBooking, setIsDiscoveryBooking] = useState<boolean>(false)
 
 	const openLoginDialog = useCallback(() => {
 		if (!state.user) setIsDialogOpen(!isDialogOpen)
@@ -567,6 +566,16 @@ const ContractorAuthProvider: FC<ContractorAuthProviderProps> = ({ children, aut
 			openLoginDialog,
 		]
 	)
+
+	useEffect(() => {
+		if (!!getCookie('discoveryBooking')) setIsDiscoveryBooking(true)
+		else setIsDiscoveryBooking(false)
+	}, [isDiscoveryBooking, router])
+
+	useEffect(() => {
+		console.log(isDiscoveryBooking)
+	}, [isDiscoveryBooking])
+
 	return (
 		<Provider value={authProviderValue}>
 			{children}
@@ -581,29 +590,37 @@ const ContractorAuthProvider: FC<ContractorAuthProviderProps> = ({ children, aut
 							<CloseIcon sx={{ color: '#000' }} />
 						</IconButton>
 					</Stack>
-					<Stepper
-						alternativeLabel
-						activeStep={Number(router?.query?.bookingFromStep) ?? 0}
-						connector={<QontoConnector />}>
-						{stepsName.map((label) => (
-							<Step key={label}>
-								<StepLabel
-									StepIconComponent={QontoStepIcon}
-									sx={{
-										// whiteSpace: 'nowrap',
-										fontSize: '10px !important',
-									}}>
-									<Typography
-										variant='subtitle2'
-										sx={{
-											color: '#000 !important',
-										}}>
-										{label}
-									</Typography>
-								</StepLabel>
-							</Step>
-						))}
-					</Stepper>
+
+					{!!isDiscoveryBooking ? (
+						<>
+							<Stepper
+								alternativeLabel
+								activeStep={Number(router?.query?.bookingFromStep) ?? 0}
+								connector={<QontoConnector />}>
+								{stepsName.map((label) => (
+									<Step key={label}>
+										<StepLabel
+											StepIconComponent={QontoStepIcon}
+											sx={{
+												// whiteSpace: 'nowrap',
+												fontSize: '10px !important',
+											}}>
+											<Typography
+												variant='subtitle2'
+												sx={{
+													color: '#000 !important',
+												}}>
+												{label}
+											</Typography>
+										</StepLabel>
+									</Step>
+								))}
+							</Stepper>
+						</>
+					) : (
+						''
+					)}
+
 					<Paper elevation={0} sx={{ p: 4 }}>
 						{!isOtpSent ? (
 							<LoginForm isOtpSent={isOtpSent} setIsOtpSent={setIsOtpSent} fromHome={true} />
