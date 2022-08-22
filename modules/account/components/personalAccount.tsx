@@ -54,8 +54,8 @@ const PersonalAccount = () => {
 						{isAccountEditable ? (
 							<Box
 								sx={{
-									maxHeight: isMobile ? 'calc(100vh - 180px)' : '',
-									overflowY: isMobile ? 'scroll' : '',
+									maxHeight: { sx: 'calc(100vh - 180px)', md: '' },
+									overflowY: { sx: 'scroll', md: '' },
 								}}>
 								<EditInfo
 									setIsAccountEditable={setIsAccountEditable}
@@ -65,8 +65,8 @@ const PersonalAccount = () => {
 						) : (
 							<Box
 								sx={{
-									maxHeight: isMobile ? 'calc(100vh - 180px)' : '',
-									overflowY: isMobile ? 'scroll' : '',
+									maxHeight: { sx: 'calc(100vh - 180px)', md: '' },
+									overflowY: { sx: 'scroll', md: '' },
 								}}>
 								<DisplayInfo />
 							</Box>
@@ -74,7 +74,10 @@ const PersonalAccount = () => {
 					</Stack>
 				</Stack>
 			</PersonalAccountStyle>
-			{isMobile && <BottomLayout />}
+			<Box sx={{ display: { xs: 'block', md: 'none' } }}>
+				{' '}
+				<BottomLayout />
+			</Box>
 		</>
 	)
 }

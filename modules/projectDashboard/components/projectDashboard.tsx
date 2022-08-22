@@ -102,11 +102,11 @@ export const ProjectDashboard = () => {
 		<>
 			<CustomTopBar>
 				<Stack direction={'row'} spacing={2}>
-					{isMobile && (
+					<Box sx={{ display: { xs: 'block', md: 'none' } }}>
 						<IconButton onClick={toggleDrawer}>
 							<Image src={MenuIcon} alt='menu' color='black' />
 						</IconButton>
-					)}
+					</Box>
 					<Stack direction={'column'}>
 						<Typography
 							sx={{
@@ -157,9 +157,9 @@ export const ProjectDashboard = () => {
 				</Stack>
 				<Stack
 					sx={{
-						maxHeight: isMobile ? 'calc(100vh - 235px)' : '',
-						minHeight: isMobile ? 'calc(100vh - 235px)' : '',
-						overflowY: isMobile ? 'scroll' : '',
+						maxHeight: { xs: 'calc(100vh - 235px)', md: '' },
+						minHeight: { xs: 'calc(100vh - 235px)', md: '' },
+						overflowY: { xs: 'scroll', md: 'hidden' },
 						padding: { xs: 2, md: '' },
 					}}>
 					{loading ? (
@@ -230,9 +230,11 @@ export const ProjectDashboard = () => {
 						</Stack>
 					)} */}
 			</CustomProjectDashBoard>
-			{isMobile && <BottomLayout />}
+			<Box sx={{ display: { xs: 'block', md: 'none' } }}>
+				<BottomLayout />
+			</Box>
 
-			{isMobile && (
+			<Box sx={{ display: { xs: 'block', md: 'none' } }}>
 				<Drawer
 					anchor={'left'}
 					open={isSideBarToggle}
@@ -315,7 +317,7 @@ export const ProjectDashboard = () => {
 						</List> */}
 					</Box>
 				</Drawer>
-			)}
+			</Box>
 		</>
 	)
 }
