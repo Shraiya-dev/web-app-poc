@@ -12,6 +12,9 @@ import {
 	IconButton,
 	Skeleton,
 	Stack,
+	Step,
+	StepLabel,
+	Stepper,
 	TextField,
 	Typography,
 } from '@mui/material'
@@ -32,6 +35,12 @@ import { AddEditWage } from '../dialog'
 import { primary } from 'sdk/constants'
 import { updateProfile } from 'sdk/apis'
 import { string } from 'yup'
+import StepConnector, { stepConnectorClasses } from '@mui/material/StepConnector'
+import { styled } from '@mui/material/styles'
+import { StepIconProps } from '@mui/material/StepIcon'
+import CheckCircleIcon from '@mui/icons-material/CheckCircle'
+import AdjustOutlinedIcon from '@mui/icons-material/AdjustOutlined'
+import RadioButtonUncheckedIcon from '@mui/icons-material/RadioButtonUnchecked'
 
 const ProfileCardData = [
 	{
@@ -55,6 +64,62 @@ const ProfileCardData = [
 	},
 ]
 
+const QontoConnector = styled(StepConnector)(({ theme }) => ({
+	[`&.${stepConnectorClasses.alternativeLabel}`]: {
+		top: 10,
+		left: 'calc(-50% + 8px)',
+		right: 'calc(50% + 8px)',
+	},
+	[`&.${stepConnectorClasses.active}`]: {
+		[`& .${stepConnectorClasses.line}`]: {
+			borderColor: '#4db07f',
+		},
+	},
+	[`&.${stepConnectorClasses.completed}`]: {
+		[`& .${stepConnectorClasses.line}`]: {
+			borderColor: '#4db07f',
+		},
+	},
+	[`& .${stepConnectorClasses.line}`]: {
+		borderColor: theme.palette.mode === 'dark' ? theme.palette.grey[800] : '#4db07f',
+		borderTopWidth: 3,
+		borderRadius: 1,
+	},
+}))
+
+const QontoStepIconRoot = styled('div')<{ ownerState: { active?: boolean } }>(({ theme, ownerState }) => ({
+	color: theme.palette.mode === 'dark' ? theme.palette.grey[700] : '#4db07f',
+	display: 'flex',
+	height: 22,
+	alignItems: 'center',
+	...(ownerState.active && {
+		color: '#4db07f',
+	}),
+	'& .QontoStepIcon-completedIcon': {
+		color: '#4db07f',
+		zIndex: 1,
+		fontSize: 25,
+	},
+}))
+
+function QontoStepIcon(props: StepIconProps) {
+	const { active, completed, className } = props
+
+	return (
+		<QontoStepIconRoot ownerState={{ active }} className={className}>
+			{completed ? (
+				<CheckCircleIcon className='QontoStepIcon-completedIcon' />
+			) : active ? (
+				<AdjustOutlinedIcon className='QontoStepIcon-completedIcon' />
+			) : (
+				<RadioButtonUncheckedIcon className='QontoStepIcon-completedIcon' />
+			)}
+		</QontoStepIconRoot>
+	)
+}
+
+const stepsName = ['Booking Details', 'Wage Details', 'Contact', 'Order Placed']
+
 export const CheckoutCard: FC = () => {
 	const [addEditWageDialogProps, setAddEditWageDialogProps] = useState({
 		open: false,
@@ -63,6 +128,8 @@ export const CheckoutCard: FC = () => {
 		initialQuantity: 0,
 		edit: false,
 	})
+
+	const [activeStepValue, setActiveStepValue] = useState<number>(3)
 
 	const [emailDialogBox, setEmailDialogBox] = useState<boolean>(false)
 	const [isLoading, setIsLoading] = useState<boolean>(false)
@@ -364,6 +431,7 @@ export const CheckoutCard: FC = () => {
 					}}
 				/>
 			)}
+
 			<Stack rowGap={4} maxWidth={766}>
 				<Stack>
 					<Typography fontSize={!isMobile ? '32px' : '24px'} fontWeight={600}>
@@ -379,6 +447,23 @@ export const CheckoutCard: FC = () => {
 						</Typography>
 					</Typography>
 				</Stack>
+				<Stack my={2} width={'45%'}>
+					<Stepper alternativeLabel activeStep={activeStepValue} connector={<QontoConnector />}>
+						{stepsName.map((label) => (
+							<Step key={label}>
+								<StepLabel
+									StepIconComponent={QontoStepIcon}
+									sx={{
+										// whiteSpace: 'nowrap',
+										fontSize: '10px !important',
+									}}>
+									{label}
+								</StepLabel>
+							</Step>
+						))}
+					</Stepper>
+				</Stack>
+
 				<Card sx={{ borderRadius: '15px' }}>
 					{loading?.booking ? (
 						<>

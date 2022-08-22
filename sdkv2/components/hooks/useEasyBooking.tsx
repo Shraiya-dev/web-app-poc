@@ -7,7 +7,7 @@ import { useContractorAuth } from 'sdk/providers'
 import * as Yup from 'yup'
 export const useEasyBooking = () => {
 	const router = useRouter()
-	const { openLoginDialog } = useContractorAuth()
+	const { openLoginDialog, user } = useContractorAuth()
 	const handleSubmit = async (values: any) => {
 		DataLayerPush({
 			event: 'booking_requirement',

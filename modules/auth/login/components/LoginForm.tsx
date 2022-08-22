@@ -51,25 +51,36 @@ export const LoginForm = ({ ...props }) => {
 		}
 	}, [form, status])
 
-	useEffect(() => {
-		if (loading) {
-			router.push({
-				pathname: '',
-				query: { bookingFromStep: 3 },
-			})
-		}
-	}, [loading, router])
+	// useEffect(() => {
+	// 	if (loading) {
+	// 		router.push({
+	// 			pathname: '',
+	// 			query: { bookingFromStep: 3 },
+	// 		})
+	// 	}
+	// }, [loading, router])
 
 	return (
 		<form onSubmit={form.handleSubmit}>
 			<CustomLoginStyles>
 				<Stack spacing={3} width='100%'>
 					{!!fromHome ? (
-						<Typography variant='h1' textAlign={'center'} color={primary?.properDark}>
+						<Typography
+							variant='h1'
+							textAlign={'center'}
+							sx={{
+								color: !!fromHome ? primary?.properDark : '#fff',
+							}}>
 							{isRegister ? 'Register' : 'Login'}
 						</Typography>
 					) : (
-						<Typography textAlign='center' fontSize={34} variant='h1' color={primary?.properDark}>
+						<Typography
+							textAlign='center'
+							fontSize={34}
+							variant='h1'
+							sx={{
+								color: !!fromHome ? primary?.properDark : '#ccc',
+							}}>
 							{isRegister ? 'Register' : 'Login'}
 						</Typography>
 					)}
@@ -77,7 +88,7 @@ export const LoginForm = ({ ...props }) => {
 					<InputWrapper
 						label='Phone Number'
 						sx={{
-							color: '#000',
+							color: !!fromHome ? '#000' : '#ccc',
 						}}>
 						<PhoneField
 							error={!!checkError('phoneNumber', form)}

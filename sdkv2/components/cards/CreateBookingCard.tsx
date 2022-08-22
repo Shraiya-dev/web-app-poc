@@ -100,13 +100,14 @@ const stepsName = ['Booking Details', 'Wage Details', 'Contact', 'Order Placed']
 
 export const CreateBookingCard: FC<Props> = () => {
 	const [step, setStep] = useState<number>(0)
+	const { user } = useContractorAuth()
 	const { form, formikProps } = useEasyBooking()
 	const router = useRouter()
-	const [activeStepValue, setActiveStepValue] = useState<number>(Number(router.query.bookingFormStep) ?? 0)
-	const { openLoginDialog } = useContractorAuth()
+	const [activeStepValue, setActiveStepValue] = useState<number>(0)
 
 	useEffect(() => {
-		setActiveStepValue(Number(router.query.bookingFromStep) ?? 0)
+		console.log(activeStepValue)
+		setActiveStepValue(Number(!!router?.query?.bookingFromStep) ?? 0)
 	}, [router])
 
 	// const [wageDisable, setWageDisable] = useState({
