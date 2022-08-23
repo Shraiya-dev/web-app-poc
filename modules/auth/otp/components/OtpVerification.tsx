@@ -2,18 +2,20 @@ import LoadingButton from '@mui/lab/LoadingButton'
 import { Box, Button, CircularProgress, Stack, styled, Typography } from '@mui/material'
 
 import { useRouter } from 'next/router'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import OtpInput from 'react-otp-input'
 import { getCookie, primary, useContractorAuth } from 'sdk'
+import BookingStepper from 'sdkv2/components/EasyBookingStepper/BookingStepper'
 import { ButtonClicked } from '../../../../sdk/analytics/analyticsWrapper'
 import useOtp from '../hooks/useOtp'
 
 const CustomOTPStyles = styled(Box)(({ theme }) => ({
+	minWidth: '344px',
 	display: 'flex',
 	justifyContent: 'center',
 
 	'.headerInfo': {
-		paddingBottom: 8,
+		paddingBottom: 16,
 		fontSize: 30,
 		textAlign: 'center',
 		fontWeight: 700,
@@ -29,9 +31,10 @@ const CustomOTPStyles = styled(Box)(({ theme }) => ({
 		fontSize: 14,
 	},
 	'.subInfo': {
-		color: primary?.properDark,
+		color: '#4d4d4d',
 		textAlign: 'center',
-		marginBottom: 48,
+		marginBottom: 30,
+		marginTop: 18,
 		fontFamily: 'Karla ,sans-serif',
 		fontWeight: 700,
 		fontSize: '14px',
@@ -54,6 +57,7 @@ const CustomOTPStyles = styled(Box)(({ theme }) => ({
 export const OTPVerification = ({ ...props }) => {
 	const { otp, form, status, error, handleChange, resendOTP, otpState, loading, setLoading, phoneNumber } = useOtp()
 	const { isOtpSent, setIsOtpSent, fromHome } = props
+	const [isDiscoveryBooking, setIsDiscoveryBooking] = useState<boolean>(false)
 	const { user } = useContractorAuth()
 	const router = useRouter()
 	const handleChangeNumber = () => {
@@ -65,10 +69,23 @@ export const OTPVerification = ({ ...props }) => {
 		setIsOtpSent(false)
 	}
 
+	useEffect(() => {
+		if (!!getCookie('discoveryBooking')) setIsDiscoveryBooking(true)
+		else setIsDiscoveryBooking(false)
+	}, [isDiscoveryBooking, router])
+
 	return (
 		<CustomOTPStyles>
 			<form onSubmit={form.handleSubmit}>
 				<Typography className='headerInfo'>Verify Mobile</Typography>
+
+				{!!isDiscoveryBooking ? (
+					<>
+						<BookingStepper />
+					</>
+				) : (
+					''
+				)}
 
 				<Typography className='subInfo'>
 					Enter <strong>OTP</strong> sent to your mobile number
@@ -87,6 +104,9 @@ export const OTPVerification = ({ ...props }) => {
 						border: '1px solid #000',
 						display: 'flex',
 						justifyContent: 'center',
+						'& :hover': {
+							background: 'red !important',
+						},
 					}}
 					shouldAutoFocus={true}
 					separator={<span> &nbsp;&nbsp;&nbsp;</span>}
@@ -96,6 +116,17 @@ export const OTPVerification = ({ ...props }) => {
 					containerStyle={{ justifyContent: 'center' }}
 				/>
 				<Stack className='subHeader' direction={'row'} justifyContent='center'>
+					<Button
+						onClick={handleChangeNumber}
+						variant='text'
+						sx={{
+							color: primary.properDark,
+							fontFamily: 'Karla,sans-serif',
+							fontSize: '12px',
+							fontWeight: 500,
+						}}>
+						Edit Mobile
+					</Button>
 					<Button
 						onClick={resendOTP}
 						variant='text'
@@ -107,17 +138,6 @@ export const OTPVerification = ({ ...props }) => {
 						}}>
 						Resend OTP
 					</Button>
-					<Button
-						onClick={handleChangeNumber}
-						variant='text'
-						sx={{
-							color: primary.properDark,
-							fontFamily: 'Karla,sans-serif',
-							fontSize: '12px',
-							fontWeight: 500,
-						}}>
-						Change Number
-					</Button>
 				</Stack>
 
 				{/* <Button type='submit' variant='contained' color='primary' fullWidth disabled={status === 'loading'}>
@@ -128,7 +148,8 @@ export const OTPVerification = ({ ...props }) => {
 					<Button
 						fullWidth
 						sx={{
-							marginTop: 6,
+							mt: 4,
+							mb: '19px',
 						}}>
 						<Box
 							sx={{
@@ -153,7 +174,7 @@ export const OTPVerification = ({ ...props }) => {
 						disabled={loading}
 						variant='contained'
 						fullWidth
-						sx={{ marginTop: 6, background: '#efc430' }}>
+						sx={{ marginTop: 4, background: '#efc430' }}>
 						{`Verify OTP`}
 					</LoadingButton>
 				)}

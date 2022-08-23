@@ -2,13 +2,15 @@ import LoadingButton from '@mui/lab/LoadingButton'
 import { Box, Button, Checkbox, FormControlLabel, InputLabel, Stack, styled, Typography } from '@mui/material'
 
 import { useRouter } from 'next/router'
-import { useEffect, useMemo } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { InputWrapper } from 'sdkv2/components'
+import BookingStepper from 'sdkv2/components/EasyBookingStepper/BookingStepper'
 import { checkError, getCookie, primary } from '../../../../sdk'
 import { PhoneField } from '../../../../sdk/components/Input/PhoneField'
 import useLogin from '../hooks/useLogin'
 
 const CustomLoginStyles = styled(Box)(({ theme }) => ({
+	minWidth: '344px',
 	display: 'flex',
 	justifyContent: 'center',
 
@@ -42,6 +44,7 @@ const CustomLoginStyles = styled(Box)(({ theme }) => ({
 export const LoginForm = ({ ...props }) => {
 	const { form, loading, error, isRegister, handleLogin, status } = useLogin()
 	const { isOtpSent, setIsOtpSent, fromHome } = props
+	const [isDiscoveryBooking, setIsDiscoveryBooking] = useState<boolean>(false)
 
 	const router = useRouter()
 
@@ -60,16 +63,24 @@ export const LoginForm = ({ ...props }) => {
 	// 	}
 	// }, [loading, router])
 
+	useEffect(() => {
+		if (!!getCookie('discoveryBooking')) setIsDiscoveryBooking(true)
+		else setIsDiscoveryBooking(false)
+	}, [isDiscoveryBooking, router])
+
 	return (
 		<form onSubmit={form.handleSubmit}>
 			<CustomLoginStyles>
-				<Stack spacing={1.5} width='100%' px={1.06}>
+				<Stack spacing={1.5} width='100%' px={1.06} mb={'15px'}>
 					{!!fromHome ? (
 						<Typography
 							variant='h1'
 							textAlign={'center'}
 							sx={{
 								color: !!fromHome ? primary?.properDark : '#fff',
+								fontWeight: 700,
+								fontFamily: 'Saira,sans-serif',
+								fontSize: 30,
 							}}>
 							{isRegister ? 'Register' : 'Login'}
 						</Typography>
@@ -80,16 +91,29 @@ export const LoginForm = ({ ...props }) => {
 							variant='h1'
 							sx={{
 								color: !!fromHome ? primary?.properDark : '#ccc',
+								fontWeight: 700,
+								fontFamily: 'Saira,sans-serif',
+								fontSize: 30,
 							}}>
 							{isRegister ? 'Register' : 'Login'}
 						</Typography>
 					)}
 
+					{!!isDiscoveryBooking ? (
+						<>
+							<BookingStepper />
+						</>
+					) : (
+						''
+					)}
+
 					<InputWrapper
-						label='Phone Number'
+						label='Enter Phone Number'
 						sx={{
 							color: !!fromHome ? '#000' : '#ccc',
-							my: { md: 2, xs: 1 },
+							fontFamily: 'Saira,sans-serif',
+							fontWeight: 400,
+							fontSize: '13px',
 						}}>
 						<PhoneField
 							error={!!checkError('phoneNumber', form)}
@@ -120,6 +144,9 @@ export const LoginForm = ({ ...props }) => {
 						sx={{
 							'& .MuiTypography-root': {
 								color: primary.properDark,
+							},
+							'& .MuiFormControlLabel-root': {
+								mt: '12px',
 							},
 						}}
 					/> */}
