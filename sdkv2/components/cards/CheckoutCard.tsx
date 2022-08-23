@@ -249,6 +249,10 @@ export const CheckoutCard: FC = () => {
 							action: 'ButtonClick',
 							metaData: {
 								origin: 'Booking checkout card',
+								trialBooking: bill?.amountPayable <= 0,
+								amountPayable: bill?.amountPayable,
+								discountEligible: !!discountDetails?.isEligible,
+								discount: bill?.discount,
 							},
 						})
 						await initiatePayment(

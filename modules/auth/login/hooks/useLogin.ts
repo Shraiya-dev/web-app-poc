@@ -67,7 +67,7 @@ const useLogin = () => {
 				name: 'requestPhoneOtp',
 				action: 'ButtonClick',
 				metaData: {
-					origin: discoveryBookingFromCookie ? 'Easy Book Worker flow' : undefined,
+					origin: discoveryBookingFromCookie ? 'Easy Book Worker flow' : 'Navbar login',
 				},
 			})
 			requestOtp(`+91${values?.phoneNumber}`)

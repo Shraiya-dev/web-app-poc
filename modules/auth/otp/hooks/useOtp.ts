@@ -67,7 +67,7 @@ const useOtp = () => {
 				name: 'verifiedPhoneOtp',
 				action: 'ButtonClick',
 				metaData: {
-					origin: discoveryBookingFromCookie ? 'Easy Book Worker flow' : undefined,
+					origin: discoveryBookingFromCookie ? 'Easy Book Worker flow' : 'Navbar login',
 				},
 			})
 
