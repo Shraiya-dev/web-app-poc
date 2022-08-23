@@ -10,7 +10,6 @@ import { PhoneField } from '../../../../sdk/components/Input/PhoneField'
 import useLogin from '../hooks/useLogin'
 
 const CustomLoginStyles = styled(Box)(({ theme }) => ({
-	minWidth: '344px',
 	display: 'flex',
 	justifyContent: 'center',
 

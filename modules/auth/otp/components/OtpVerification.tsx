@@ -10,7 +10,6 @@ import { ButtonClicked } from '../../../../sdk/analytics/analyticsWrapper'
 import useOtp from '../hooks/useOtp'
 
 const CustomOTPStyles = styled(Box)(({ theme }) => ({
-	minWidth: '344px',
 	display: 'flex',
 	justifyContent: 'center',
 
@@ -36,7 +35,7 @@ const CustomOTPStyles = styled(Box)(({ theme }) => ({
 		marginBottom: 30,
 		marginTop: 18,
 		fontFamily: 'Karla ,sans-serif',
-		fontWeight: 700,
+		fontWeight: 400,
 		fontSize: '14px',
 	},
 	'.cta': {
@@ -88,8 +87,8 @@ export const OTPVerification = ({ ...props }) => {
 				)}
 
 				<Typography className='subInfo'>
-					Enter <strong>OTP</strong> sent to your mobile number
-					<br /> <strong>{phoneNumber}</strong>
+					Enter <span style={{ fontWeight: 900 }}>OTP</span> sent to your mobile number
+					<br /> <strong style={{ fontWeight: 900 }}>{phoneNumber}</strong>
 				</Typography>
 
 				<OtpInput
