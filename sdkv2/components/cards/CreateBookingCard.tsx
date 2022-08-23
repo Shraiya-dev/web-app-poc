@@ -1,34 +1,74 @@
 import {
 	Autocomplete,
+	Box,
 	Button,
 	Card,
 	Checkbox,
+	DialogContent,
 	FormControlLabel,
+	IconButton,
 	InputAdornment,
+	InputLabel,
 	ListSubheader,
+	Paper,
 	Stack,
+	Step,
+	StepLabel,
+	Stepper,
 	TextField,
 	Typography,
 	useMediaQuery,
 	useTheme,
 } from '@mui/material'
-import React, { FC, useState } from 'react'
+import React, { FC, useCallback, useEffect, useState } from 'react'
 import { ListChildComponentProps, VariableSizeList } from 'react-window'
 import { DataLayerPush, sendAnalytics } from 'sdk/analytics'
-import { allCityList } from 'sdk/constants'
+import { allCityList, primary } from 'sdk/constants'
 import { capitalize } from 'sdk/utils'
 import { Dropdown, InputWrapper, useEasyBooking } from 'sdkv2/components'
 import { JobType, projectDuration } from 'sdkv2/constants'
+import StepConnector, { stepConnectorClasses } from '@mui/material/StepConnector'
+import { styled } from '@mui/material/styles'
+import { StepIconProps } from '@mui/material/StepIcon'
+import CheckCircleIcon from '@mui/icons-material/CheckCircle'
+import AdjustOutlinedIcon from '@mui/icons-material/AdjustOutlined'
+import RadioButtonUncheckedIcon from '@mui/icons-material/RadioButtonUnchecked'
+import CloseIcon from '@mui/icons-material/Close'
+import { Label } from '@mui/icons-material'
+import { OTPVerification } from 'modules/auth/otp/components/OtpVerification'
+import { LoginForm } from 'modules/auth/login/components/LoginForm'
+import { useRouter } from 'next/router'
+import { useContractorAuth } from 'sdk/providers'
+import BookingStepper from '../EasyBookingStepper/BookingStepper'
+import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace'
 
 interface Props {}
+
 export const CreateBookingCard: FC<Props> = () => {
 	const [step, setStep] = useState<number>(0)
+	const { user } = useContractorAuth()
 	const { form, formikProps } = useEasyBooking()
+	const router = useRouter()
+	const [activeStepValue, setActiveStepValue] = useState<number>(0)
+
+	useEffect(() => {
+		console.log(activeStepValue)
+		setActiveStepValue(Number(!!router?.query?.bookingFromStep) ? Number(router?.query?.bookingFromStep) : 0)
+		if (Number(router?.query?.bookingFromStep) === 0) {
+			setStep(0)
+		} else if (Number(router?.query?.bookingFromStep) >= 1) {
+			setStep(1)
+		} else {
+			setStep(0)
+		}
+	}, [router, step, activeStepValue])
+
 	// const [wageDisable, setWageDisable] = useState({
 	// 	helperWage: false,
 	// 	technicianWage: false,
 	// 	supervisorWage: false,
 	// })
+
 	return (
 		<>
 			<Card elevation={16}>
@@ -44,6 +84,27 @@ export const CreateBookingCard: FC<Props> = () => {
 						<Typography mt={2}>Only Rs 50 per HERO Application</Typography>
 						<Typography variant='caption'>*after receiving 15 applications</Typography>
 					</Stack>
+					<Stack my={2}>
+						<BookingStepper />
+					</Stack>
+					{step === 1 && (
+						<Stack direction={'row'} justifyContent={'flex-start'}>
+							<Button
+								startIcon={<KeyboardBackspaceIcon sx={{ color: '#000' }} />}
+								variant='text'
+								sx={{
+									color: primary.properDark,
+								}}
+								onClick={() => {
+									router.push({
+										pathname: '',
+										query: { bookingFromStep: 0 },
+									})
+								}}>
+								Back
+							</Button>
+						</Stack>
+					)}
 					<form onSubmit={form.handleSubmit}>
 						<Stack spacing={2.5} my={2} alignItems='flex-start' pr={step === 0 ? 6 : { xs: 0, md: 3 }}>
 							{step === 0 && (
@@ -144,6 +205,10 @@ export const CreateBookingCard: FC<Props> = () => {
 													},
 												})
 												setStep(1)
+												router.push({
+													pathname: '',
+													query: { bookingFromStep: 1 },
+												})
 											} else {
 												form.setTouched({
 													location: true,

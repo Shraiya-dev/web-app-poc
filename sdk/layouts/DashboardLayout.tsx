@@ -83,11 +83,10 @@ const DashboardLayout = ({ children, ...props }: any) => {
 				<Container className='container'>
 					<Toolbar className='toolbar'>
 						<Stack direction='row'>
-							{isMobile && (
-								<IconButton onClick={toggleDrawer}>
-									<Image src={MenuIcon} alt='menu' color='black' />
-								</IconButton>
-							)}
+							<IconButton sx={{ display: { xs: 'block', md: 'none' } }} onClick={toggleDrawer}>
+								<Image src={MenuIcon} alt='menu' color='black' />
+							</IconButton>
+
 							<Link href='/dashboard' passHref>
 								<a>
 									<Image
@@ -102,7 +101,7 @@ const DashboardLayout = ({ children, ...props }: any) => {
 						</Stack>
 
 						<Stack direction='row' spacing={2}>
-							{!isMobile && (
+							<Box sx={{ display: { xs: 'block', md: 'none' } }}>
 								<>
 									<Link href='/dashboard' passHref>
 										<a>
@@ -120,7 +119,8 @@ const DashboardLayout = ({ children, ...props }: any) => {
 										</a>
 									</Link>
 								</>
-							)}
+							</Box>
+
 							{/* <Link href='/dashboard/bookings/create' passHref>
 								<a>
 									<Button variant='contained'>Book Workers</Button>

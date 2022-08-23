@@ -26,7 +26,6 @@ import { Analytic } from '../sdk/analytics/analytics'
 import '../sdk/styles/onlyCssWeNeed.css'
 const queryClient = new QueryClient()
 
-import { landingTheme } from 'sdk/constants/landingTheme'
 import { SplashProvider } from 'sdk/providers/SplashProvider'
 
 import { CssBaseline } from '@mui/material'
@@ -119,56 +118,6 @@ function MyApp({ Component, pageProps }: AppProps) {
 		}
 	}, [router])
 
-	//if route begin with /admin redirect to admin node
-	if (
-		[
-			'/',
-			'/about-us',
-			'/contact-us',
-			'/privacy-policy',
-			'/refund-policy',
-			'/tnc',
-			'/faq',
-			'/hero/plans',
-			'/KhulaManch',
-		].includes(router.pathname)
-	) {
-		if (typeof window !== 'undefined') {
-			if (window.location.hostname.includes('booking')) {
-				window.location.pathname = '/login'
-			}
-		}
-		return (
-			<>
-				<CommonHead />
-				{pageStaticData?.seo && <SEO {...pageStaticData.seo} />}
-
-				<QueryClientProvider client={queryClient}>
-					<ThemeProvider theme={landingTheme}>
-						<GlobalCssProvider>
-							<SnackbarProvider>
-								<SplashProvider>
-									<Component {...pageProps} />
-								</SplashProvider>
-							</SnackbarProvider>
-						</GlobalCssProvider>
-					</ThemeProvider>
-				</QueryClientProvider>
-			</>
-		)
-	}
-	if (typeof window !== 'undefined') {
-		if (!window.location.hostname.includes('booking')) {
-			if (window.location.hostname.includes('localhost')) {
-			} else if (window.location.hostname.includes('stage')) {
-				window.location.replace(domain.stage + router.asPath)
-			} else if (window.location.hostname.includes('dev')) {
-				window.location.replace(domain.dev + router.asPath)
-			} else {
-				window.location.replace(domain.production + router.asPath)
-			}
-		}
-	}
 	return (
 		<>
 			<CommonHead />

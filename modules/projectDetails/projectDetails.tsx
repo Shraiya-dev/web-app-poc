@@ -50,7 +50,7 @@ export const ProjectDetails: FC<Props> = () => {
 								top: 4,
 							}}>
 							<Typography
-								style={{
+								sx={{
 									fontSize: isMobile ? 18 : 26,
 									fontWeight: 700,
 									color: theme.palette.secondary.main,
@@ -183,7 +183,7 @@ export const ProjectDetails: FC<Props> = () => {
 							}}>
 							<Tabs
 								TabIndicatorProps={{
-									style: {
+									sx: {
 										height: '3px',
 									},
 								}}
@@ -220,7 +220,18 @@ export const ProjectDetails: FC<Props> = () => {
 											)
 										)
 									} else if (tab === 'details') {
-										return null
+										return (
+											<Tab
+												sx={{
+													fontSize: '18px',
+													textTransform: 'none',
+													fontFamily: 'Karla,sans-serif',
+													fontWeight: 700,
+												}}
+												value='details'
+												label='Project Details'
+											/>
+										)
 									}
 									return (
 										<Tab
@@ -242,9 +253,9 @@ export const ProjectDetails: FC<Props> = () => {
 				<TabPanel
 					value='bookings'
 					sx={{
-						padding: { xs: 0, md: 3 },
-						maxHeight: { xs: 'calc( 100vh - 230px )', md: '' },
-						minHeight: { xs: 'calc( 100vh - 230px )', md: '' },
+						padding: { xs: 2, md: 3 },
+						maxHeight: { xs: 'calc( 100vh - 182px )', md: '' },
+						minHeight: { xs: 'calc( 100vh - 182px )', md: '' },
 						overflowY: 'auto',
 						position: 'relative',
 					}}>
@@ -253,10 +264,10 @@ export const ProjectDetails: FC<Props> = () => {
 				<TabPanel
 					value='work-report'
 					sx={{
-						padding: { xs: 0, md: 3 },
+						padding: { xs: 2, md: 3 },
 
-						maxHeight: { xs: 'calc( 100vh - 230px )', md: '' },
-						minHeight: { xs: 'calc( 100vh - 230px )', md: '' },
+						maxHeight: { xs: 'calc( 100vh - 182px )', md: '' },
+						minHeight: { xs: 'calc( 100vh - 182px )', md: '' },
 						overflowY: 'auto',
 						paddingBottom: 0,
 						position: 'relative',
@@ -266,10 +277,10 @@ export const ProjectDetails: FC<Props> = () => {
 				<TabPanel
 					value='bills'
 					sx={{
-						padding: { xs: 0, md: 3 },
+						padding: { xs: 2, md: 3 },
 
-						maxHeight: { xs: 'calc( 100vh - 230px )', md: '' },
-						minHeight: { xs: 'calc( 100vh - 230px )', md: '' },
+						maxHeight: { xs: 'calc( 100vh - 182px )', md: '' },
+						minHeight: { xs: 'calc( 100vh - 182px )', md: '' },
 						overflowY: 'auto',
 						paddingBottom: 0,
 						position: 'relative',
@@ -279,10 +290,10 @@ export const ProjectDetails: FC<Props> = () => {
 				<TabPanel
 					value='details'
 					sx={{
-						padding: { xs: 0, md: 3 },
+						padding: { xs: 2, md: 3 },
 
-						maxHeight: { xs: 'calc( 100vh - 230px )', md: '' },
-						minHeight: { xs: 'calc( 100vh - 230px )', md: '' },
+						maxHeight: { xs: 'calc( 100vh - 182px )', md: '' },
+						minHeight: { xs: 'calc( 100vh - 182px )', md: '' },
 						overflowY: 'auto',
 						position: 'relative',
 					}}>

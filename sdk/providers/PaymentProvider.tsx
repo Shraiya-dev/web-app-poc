@@ -90,7 +90,7 @@ const PaymentProvider: FC<any> = ({ children, authState }) => {
 				)
 			})
 		},
-		[confirmPaymentOrderMutation, projectId, callbacks?.success]
+		[confirmPaymentOrderMutation, projectId]
 	)
 
 	const cancelPaymentOrder = useCallback(() => {
@@ -109,7 +109,7 @@ const PaymentProvider: FC<any> = ({ children, authState }) => {
 	}, [state, cancelPaymentOrderMutation, projectId])
 
 	const initiatePayment = useCallback(
-		async (order, amount, successCallback, failureCallback) => {
+		async (order, amount, email: string, successCallback, failureCallback) => {
 			return new Promise((resolve, reject) => {
 				dispatch({
 					order: order,
@@ -138,7 +138,7 @@ const PaymentProvider: FC<any> = ({ children, authState }) => {
 					},
 					prefill: {
 						name: user?.name,
-						email: user?.email,
+						email: email,
 						contact: user?.phoneNumber,
 					},
 				}

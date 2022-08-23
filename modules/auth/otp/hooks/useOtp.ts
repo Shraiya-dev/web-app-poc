@@ -25,6 +25,7 @@ const useOtp = () => {
 	const [otp, setOtp] = useState({ otp: '' })
 	const [loading, setLoading] = useState(false)
 	const { showSnackbar } = useSnackbar()
+	const { openLoginDialog } = useContractorAuth()
 
 	const handleChange = (otp: any) => setOtp({ otp })
 
@@ -85,6 +86,14 @@ const useOtp = () => {
 								phoneNumber: '+91' + phoneNumber,
 							})
 							setLoading(false)
+							if (!!getCookie('discoveryBooking')) {
+								router.push({
+									pathname: '',
+									query: { bookingFromStep: 3 },
+								})
+							} else {
+								router.push('/dashboard')
+							}
 						} else {
 							setOtpState((prevValues: any) => ({
 								...prevValues,
@@ -96,6 +105,7 @@ const useOtp = () => {
 								setLoading(false)
 							}, 500)
 						}
+						openLoginDialog()
 					})
 					.catch((err) => {
 						console.log('error', error)
@@ -108,6 +118,7 @@ const useOtp = () => {
 						setTimeout(() => {
 							setLoading(false)
 						}, 500)
+						openLoginDialog()
 					})
 			} else {
 				setOtpState((prevValues: any) => ({

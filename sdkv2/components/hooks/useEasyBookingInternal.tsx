@@ -1,13 +1,14 @@
 import { useFormik } from 'formik'
 import { useRouter } from 'next/router'
-import { useEffect } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { createCookieInHour, DataLayerPush, getCookie, sendAnalytics } from 'sdk/analytics'
 import { useFormikProps } from 'sdk/hooks'
 import { useContractorAuth } from 'sdk/providers'
 import * as Yup from 'yup'
-export const useEasyBooking = () => {
+export const useEasyBookingInternal = () => {
 	const router = useRouter()
-	const { openLoginDialog, user } = useContractorAuth()
+	const [isSubmittable, setIsSubmittable] = useState<boolean>(false)
+	const { createEasyBooking } = useContractorAuth()
 
 	const handleSubmit = async (values: any) => {
 		DataLayerPush({
@@ -22,6 +23,7 @@ export const useEasyBooking = () => {
 			metaData: {
 				step: 'Submit Requirements',
 				values: values,
+				origin: 'dashboard',
 			},
 		})
 		createCookieInHour(
@@ -33,8 +35,16 @@ export const useEasyBooking = () => {
 			}),
 			45
 		)
-		router.push({ pathname: '', query: { bookingFromStep: 2 } })
-		openLoginDialog()
+
+		try {
+			let value = { ...values, state: values.location.split(',')[1], city: values.location.split(',')[0] }
+			const { data, status } = await createEasyBooking(value)
+			if (status === 200) {
+				router.push(`/projects/${data?.payload?.projectId}/bookings`)
+			}
+		} catch (error) {
+			console.log(error)
+		}
 	}
 	const form = useFormik({
 		initialValues: {
@@ -49,7 +59,7 @@ export const useEasyBooking = () => {
 			isSupervisor: false,
 		},
 		validate: (values) => {
-			console.log(values)
+			// console.log(values)
 		},
 		validationSchema: Yup.object({
 			location: Yup.string().required('Location is required'),
@@ -87,39 +97,7 @@ export const useEasyBooking = () => {
 			handleSubmit(values)
 		},
 	})
-	useEffect(() => {
-		try {
-			const discoveryBookingFromCookie = () => {
-				try {
-					const discoveryBookingFromCookie = JSON.parse(getCookie('discoveryBooking'))
-					return discoveryBookingFromCookie
-				} catch (error) {
-					return undefined
-				}
-			}
-			const a = discoveryBookingFromCookie()
-			form.setValues({
-				...a,
-				location: `${a.city}, ${a.state}`,
-			})
-		} catch (error) {}
-	}, [router])
-	useEffect(() => {
-		const discoveryBookingFromCookie = () => {
-			try {
-				const discoveryBookingFromCookie = JSON.parse(getCookie('discoveryBooking'))
-				return discoveryBookingFromCookie
-			} catch (error) {
-				return undefined
-			}
-		}
-		const a = discoveryBookingFromCookie()
-		if (!a) {
-			delete router.query.bookingFromStep
-			router.replace(router)
-		}
-	}, [])
 
 	const formikProps = useFormikProps(form)
-	return { form, formikProps }
+	return { form, formikProps, isSubmittable, setIsSubmittable }
 }

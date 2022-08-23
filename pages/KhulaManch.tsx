@@ -24,10 +24,10 @@ const Page: NextPage = () => {
 	return (
 		<>
 			<Box
-				style={{
+				sx={{
 					display: 'flex',
 					justifyContent: 'center',
-					margin: isMobile ? 20 : 40,
+					margin: { xs: 2.5, md: 5 },
 				}}>
 				<Stack justifyContent='center' spacing={2}>
 					<Box>
@@ -41,8 +41,8 @@ const Page: NextPage = () => {
 
 					<Typography
 						textAlign={'center'}
-						style={{
-							fontSize: isMobile ? 16 : 24,
+						sx={{
+							fontSize: { xs: 16, md: 24 },
 							fontWeight: 'bold',
 							textAlign: 'center',
 						}}>
@@ -54,7 +54,7 @@ const Page: NextPage = () => {
 							textAlign={'center'}
 							color='primary.main'
 							sx={{
-								fontSize: isMobile ? 16 : 32,
+								fontSize: { xs: 16, md: 32 },
 								fontWeight: 'bold',
 								textAlign: 'center',
 							}}>
@@ -78,7 +78,7 @@ const Page: NextPage = () => {
 												textAlign={'center'}
 												color='primary.main'
 												sx={{
-													fontSize: isMobile ? 16 : 32,
+													fontSize: { xs: 16, md: 32 },
 													fontWeight: 'bold',
 													textAlign: 'center',
 												}}>
@@ -101,7 +101,7 @@ const Page: NextPage = () => {
 						variant='contained'
 						sx={{
 							textTransform: 'none',
-							fontSize: isMobile ? 20 : 36,
+							fontSize: { xs: 20, md: 36 },
 							backgroundColor: '#CC2C49',
 						}}
 						href={meetLink}

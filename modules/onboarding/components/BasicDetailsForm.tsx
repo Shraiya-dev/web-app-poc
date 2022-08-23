@@ -77,7 +77,7 @@ export const BasicDetailsForm = () => {
 
 					{router.asPath !== '/profile' && (
 						<ArrowBackIosNewIcon
-							onClick={() => router.push('https://www.projecthero.in/')}
+							onClick={() => router.push('/')}
 							sx={{
 								verticalAlign: 'middle',
 								color: primary.main,

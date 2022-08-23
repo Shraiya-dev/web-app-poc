@@ -21,10 +21,11 @@ const PersonalAccount = () => {
 				<CustomTopBar>
 					<Stack m={2}>
 						<Typography
-							style={{
+							sx={{
 								fontSize: 26,
 								fontWeight: 700,
 								color: theme.palette.secondary.main,
+								fontFamily: 'Saira ,sans-serif',
 							}}>
 							Account
 						</Typography>
@@ -53,8 +54,8 @@ const PersonalAccount = () => {
 						{isAccountEditable ? (
 							<Box
 								sx={{
-									maxHeight: isMobile ? 'calc(100vh - 180px)' : '',
-									overflowY: isMobile ? 'scroll' : '',
+									maxHeight: { sx: 'calc(100vh - 180px)', md: '' },
+									overflowY: { sx: 'scroll', md: '' },
 								}}>
 								<EditInfo
 									setIsAccountEditable={setIsAccountEditable}
@@ -64,8 +65,8 @@ const PersonalAccount = () => {
 						) : (
 							<Box
 								sx={{
-									maxHeight: isMobile ? 'calc(100vh - 180px)' : '',
-									overflowY: isMobile ? 'scroll' : '',
+									maxHeight: { sx: 'calc(100vh - 180px)', md: '' },
+									overflowY: { sx: 'scroll', md: '' },
 								}}>
 								<DisplayInfo />
 							</Box>
@@ -73,7 +74,10 @@ const PersonalAccount = () => {
 					</Stack>
 				</Stack>
 			</PersonalAccountStyle>
-			{isMobile && <BottomLayout />}
+			<Box sx={{ display: { xs: 'block', md: 'none' } }}>
+				{' '}
+				<BottomLayout />
+			</Box>
 		</>
 	)
 }

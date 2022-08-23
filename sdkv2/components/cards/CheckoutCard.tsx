@@ -5,16 +5,23 @@ import {
 	Button,
 	Card,
 	CircularProgress,
+	Dialog,
+	DialogContent,
+	DialogTitle,
 	FormHelperText,
 	IconButton,
 	Skeleton,
 	Stack,
+	Step,
+	StepLabel,
+	Stepper,
 	TextField,
 	Typography,
 } from '@mui/material'
-import { FC, useCallback, useMemo, useState } from 'react'
+import CloseIcon from '@mui/icons-material/Close'
+import { FC, useCallback, useEffect, useMemo, useState } from 'react'
 // import BookingSuccess from 'modules/createBooking/components/bookingsuccess'
-import { Add } from '@mui/icons-material'
+import { Add, ContactsOutlined } from '@mui/icons-material'
 import DriveFileRenameOutlineOutlinedIcon from '@mui/icons-material/DriveFileRenameOutlineOutlined'
 import { LoadingButton } from '@mui/lab'
 import { postEasyBookingOrder, updateWages } from 'modules/bookingId/apis'
@@ -25,6 +32,15 @@ import { useFormikProps, useMobile } from 'sdk/hooks'
 import { useContractorAuth, useSnackbar } from 'sdk/providers'
 import { usePayment } from 'sdk/providers/PaymentProvider'
 import { AddEditWage } from '../dialog'
+import { primary } from 'sdk/constants'
+import { updateProfile } from 'sdk/apis'
+import { string } from 'yup'
+import StepConnector, { stepConnectorClasses } from '@mui/material/StepConnector'
+import { styled } from '@mui/material/styles'
+import { StepIconProps } from '@mui/material/StepIcon'
+import CheckCircleIcon from '@mui/icons-material/CheckCircle'
+import AdjustOutlinedIcon from '@mui/icons-material/AdjustOutlined'
+import RadioButtonUncheckedIcon from '@mui/icons-material/RadioButtonUnchecked'
 
 const ProfileCardData = [
 	{
@@ -48,6 +64,62 @@ const ProfileCardData = [
 	},
 ]
 
+const QontoConnector = styled(StepConnector)(({ theme }) => ({
+	[`&.${stepConnectorClasses.alternativeLabel}`]: {
+		top: 10,
+		left: 'calc(-50% + 8px)',
+		right: 'calc(50% + 8px)',
+	},
+	[`&.${stepConnectorClasses.active}`]: {
+		[`& .${stepConnectorClasses.line}`]: {
+			borderColor: '#4db07f',
+		},
+	},
+	[`&.${stepConnectorClasses.completed}`]: {
+		[`& .${stepConnectorClasses.line}`]: {
+			borderColor: '#4db07f',
+		},
+	},
+	[`& .${stepConnectorClasses.line}`]: {
+		borderColor: theme.palette.mode === 'dark' ? theme.palette.grey[800] : '#4db07f',
+		borderTopWidth: 3,
+		borderRadius: 1,
+	},
+}))
+
+const QontoStepIconRoot = styled('div')<{ ownerState: { active?: boolean } }>(({ theme, ownerState }) => ({
+	color: theme.palette.mode === 'dark' ? theme.palette.grey[700] : '#4db07f',
+	display: 'flex',
+	height: 22,
+	alignItems: 'center',
+	...(ownerState.active && {
+		color: '#4db07f',
+	}),
+	'& .QontoStepIcon-completedIcon': {
+		color: '#4db07f',
+		zIndex: 1,
+		fontSize: 25,
+	},
+}))
+
+function QontoStepIcon(props: StepIconProps) {
+	const { active, completed, className } = props
+
+	return (
+		<QontoStepIconRoot ownerState={{ active }} className={className}>
+			{completed ? (
+				<CheckCircleIcon className='QontoStepIcon-completedIcon' />
+			) : active ? (
+				<AdjustOutlinedIcon className='QontoStepIcon-completedIcon' />
+			) : (
+				<RadioButtonUncheckedIcon className='QontoStepIcon-completedIcon' />
+			)}
+		</QontoStepIconRoot>
+	)
+}
+
+const stepsName = ['Booking Details', 'Wage Details', 'Contact', 'Order Placed']
+
 export const CheckoutCard: FC = () => {
 	const [addEditWageDialogProps, setAddEditWageDialogProps] = useState({
 		open: false,
@@ -56,6 +128,13 @@ export const CheckoutCard: FC = () => {
 		initialQuantity: 0,
 		edit: false,
 	})
+
+	const [activeStepValue, setActiveStepValue] = useState<number>(3)
+
+	const [emailDialogBox, setEmailDialogBox] = useState<boolean>(false)
+	const [isLoading, setIsLoading] = useState<boolean>(false)
+	const [valid, setValid] = useState<boolean>(true)
+
 	const [updating, setUpdating] = useState<any>({})
 	const { form, wage, bookingData, setWage, discountDetails, getBookingDetail, loading, dispatchLoading } =
 		useCheckout()
@@ -109,134 +188,185 @@ export const CheckoutCard: FC = () => {
 	const { showSnackbar } = useSnackbar()
 
 	const isMobile = useMobile()
-	const { user } = useContractorAuth()
+	const { user, getContactorUserInfo } = useContractorAuth()
+	const [emailId, setEmailId] = useState<string>(user?.email ?? '')
 
-	const handelPayment = useCallback(async () => {
-		dispatchLoading({ payment: true })
-		const payload = {
-			source: {
-				id: router.query.bookingId,
-				type: 'BOOKING_TOKEN',
-			},
-			buyerType: 'CONTRACTOR_PROJECT',
-			sellerType: 'PROJECT_HERO',
-			discount: {
-				isDiscounted: !!discountDetails?.isEligible,
-				discountCode: 'NEWUSER15',
-			},
-			total: bill.amountPayable,
-			lineItems: [
-				{
-					itemName: 'HELPER',
-					quantity: form.values.qtyHelper,
-					category: bookingData?.booking?.jobType,
-					amount: 50,
-					totalAmount: form.values.qtyHelper * 50,
-				},
-				{
-					itemName: 'TECHNICIAN',
-					quantity: form.values.qtyTechnician,
-					category: bookingData?.booking?.jobType,
-					amount: 50,
-					totalAmount: form.values.qtyTechnician * 50,
-				},
-				{
-					itemName: 'SUPERVISOR',
-					quantity: form.values.qtySupervisor,
-					category: bookingData?.booking?.jobType,
-					amount: 50,
-					totalAmount: form.values.qtySupervisor * 50,
-				},
-			].filter((item) => item.quantity > 0),
+	useEffect(() => {
+		if (user?.email) {
+			setEmailId(user?.email)
 		}
-		try {
-			const { data } = await postEasyBookingOrder(payload)
-			if (data?.payload?.response?.state === 'CONFIRMED') {
-				if (data?.payload?.response?.payment) {
-					sendAnalytics({
-						name: 'initiatePayment',
-						action: 'ButtonClick',
-						metaData: {
-							origin: 'Booking checkout card',
+	}, [user])
+
+	const handleEmailDialogBox = useCallback(() => {
+		setEmailDialogBox(!emailDialogBox)
+	}, [emailDialogBox])
+
+	const handelPayment = useCallback(
+		async (email: string) => {
+			dispatchLoading({ payment: true })
+			const payload = {
+				source: {
+					id: router.query.bookingId,
+					type: 'BOOKING_TOKEN',
+				},
+				buyerType: 'CONTRACTOR_PROJECT',
+				sellerType: 'PROJECT_HERO',
+				discount: {
+					isDiscounted: !!discountDetails?.isEligible,
+					discountCode: 'NEWUSER15',
+				},
+				total: bill.amountPayable,
+				lineItems: [
+					{
+						itemName: 'HELPER',
+						quantity: form.values.qtyHelper,
+						category: bookingData?.booking?.jobType,
+						amount: 50,
+						totalAmount: form.values.qtyHelper * 50,
+					},
+					{
+						itemName: 'TECHNICIAN',
+						quantity: form.values.qtyTechnician,
+						category: bookingData?.booking?.jobType,
+						amount: 50,
+						totalAmount: form.values.qtyTechnician * 50,
+					},
+					{
+						itemName: 'SUPERVISOR',
+						quantity: form.values.qtySupervisor,
+						category: bookingData?.booking?.jobType,
+						amount: 50,
+						totalAmount: form.values.qtySupervisor * 50,
+					},
+				].filter((item) => item.quantity > 0),
+			}
+			try {
+				const { data } = await postEasyBookingOrder(payload)
+				if (data?.payload?.response?.state === 'CONFIRMED') {
+					if (data?.payload?.response?.payment) {
+						sendAnalytics({
+							name: 'initiatePayment',
+							action: 'ButtonClick',
+							metaData: {
+								origin: 'Booking checkout card',
+							},
+						})
+						await initiatePayment(
+							data?.payload?.response?.payment,
+							data?.payload?.response?.payment?.amountPayable,
+							email,
+
+							() => {
+								DataLayerPush({
+									event: 'booking_done',
+									phoneNumber: user?.phoneNumber,
+									amount: bill?.amountPayable,
+									discountEligible: !!discountDetails?.isEligible,
+									discount: bill?.discount,
+									currency: 'INR',
+									eventInfo: {
+										helperCount: form.values['qtyHelper'],
+										supervisorCount: form.values['qtySupervisor'],
+										technicianCount: form.values['qtyTechnician'],
+										helperWage: wage['wageHelper'],
+										supervisorWage: wage['wageSupervisor'],
+										technicianWage: wage['wageTechnician'],
+									},
+								})
+								sendAnalytics({
+									name: 'CreateEasyBookWorker',
+									action: 'ButtonClick',
+									metaData: {
+										step: 'Booking Complete',
+									},
+								})
+								router.replace(`/projects/${router.query.projectId}/bookings`)
+							},
+							() => {
+								dispatchLoading({ payment: false })
+							}
+						)
+					}
+				} else {
+					DataLayerPush({
+						event: 'booking_done',
+						phoneNumber: user?.phoneNumber,
+						amount: bill?.amountPayable,
+						discountEligible: !!discountDetails?.isEligible,
+						discount: bill?.discount,
+						currency: 'INR',
+						eventInfo: {
+							helperCount: form.values['qtyHelper'],
+							supervisorCount: form.values['qtySupervisor'],
+							technicianCount: form.values['qtyTechnician'],
+							helperWage: wage['wageHelper'],
+							supervisorWage: wage['wageSupervisor'],
+							technicianWage: wage['wageTechnician'],
 						},
 					})
-					await initiatePayment(
-						data?.payload?.response?.payment,
-						data?.payload?.response?.payment?.amountPayable,
-						() => {
-							DataLayerPush({
-								event: 'booking_done',
-								phoneNumber: user?.phoneNumber,
-								amount: bill?.amountPayable,
-								discountEligible: !!discountDetails?.isEligible,
-								discount: bill?.discount,
-								currency: 'INR',
-								eventInfo: {
-									helperCount: form.values['qtyHelper'],
-									supervisorCount: form.values['qtySupervisor'],
-									technicianCount: form.values['qtyTechnician'],
-									helperWage: wage['wageHelper'],
-									supervisorWage: wage['wageSupervisor'],
-									technicianWage: wage['wageTechnician'],
-								},
-							})
-							sendAnalytics({
-								name: 'CreateEasyBookWorker',
-								action: 'ButtonClick',
-								metaData: {
-									step: 'Booking Complete',
-								},
-							})
-							router.replace(`/projects/${router.query.projectId}/bookings`)
+					sendAnalytics({
+						name: 'CreateEasyBookWorker',
+						action: 'ButtonClick',
+						metaData: {
+							step: 'Booking Complete',
 						},
-						() => {
-							dispatchLoading({ payment: false })
-						}
-					)
+					})
+					router.replace(`/projects/${router.query.projectId}/bookings`)
 				}
-			} else {
-				DataLayerPush({
-					event: 'booking_done',
-					phoneNumber: user?.phoneNumber,
-					amount: bill?.amountPayable,
-					discountEligible: !!discountDetails?.isEligible,
-					discount: bill?.discount,
-					currency: 'INR',
-					eventInfo: {
-						helperCount: form.values['qtyHelper'],
-						supervisorCount: form.values['qtySupervisor'],
-						technicianCount: form.values['qtyTechnician'],
-						helperWage: wage['wageHelper'],
-						supervisorWage: wage['wageSupervisor'],
-						technicianWage: wage['wageTechnician'],
-					},
-				})
-				sendAnalytics({
-					name: 'CreateEasyBookWorker',
-					action: 'ButtonClick',
-					metaData: {
-						step: 'Booking Complete',
-					},
-				})
-				router.replace(`/projects/${router.query.projectId}/bookings`)
+			} catch (error: any) {
+				showSnackbar(error?.response?.data?.developerInfo, 'error')
 			}
-		} catch (error: any) {
-			showSnackbar(error?.response?.data?.developerInfo, 'error')
-		}
-	}, [
-		bill.amountPayable,
-		bill?.discount,
-		bookingData?.booking?.jobType,
-		discountDetails?.isEligible,
-		dispatchLoading,
-		form.values,
-		initiatePayment,
-		router,
-		showSnackbar,
-		user?.phoneNumber,
-		wage,
-	])
+		},
+		[
+			bill.amountPayable,
+			bill?.discount,
+			bookingData?.booking?.jobType,
+			discountDetails?.isEligible,
+			dispatchLoading,
+			form.values,
+			initiatePayment,
+			router,
+			showSnackbar,
+			user?.phoneNumber,
+			wage,
+		]
+	)
 	const formikProps = useFormikProps<any>(form)
+
+	const handlePaymentProcess = useCallback(async () => {
+		setIsLoading(true)
+		let payload = { email: emailId }
+		try {
+			if (emailId) {
+				const { data, status } = await updateProfile(payload)
+				await getContactorUserInfo()
+				if (status === 200) {
+					// console.log(data.payload.payload.email)
+					setEmailId(data.payload.email)
+					handelPayment(data.payload.email)
+					handleEmailDialogBox()
+					setIsLoading(false)
+				}
+			}
+		} catch (error) {
+			setIsLoading(false)
+		}
+	}, [emailId, getContactorUserInfo, handelPayment])
+
+	const handleEmail = useCallback(
+		(e) => {
+			setEmailId(e.target.value)
+			if (emailId === '') {
+				setValid(true)
+			} else if (e.target.value === '') {
+				setValid(true)
+			} else {
+				setValid(!string().email().isValidSync(e.target.value))
+			}
+		},
+		[emailId, valid]
+	)
+
 	return (
 		<>
 			{/* handleUpdateWages from useCheckout goes in  WageUpdateDialog  */}
@@ -245,11 +375,26 @@ export const CheckoutCard: FC = () => {
 					{...addEditWageDialogProps}
 					confirm={async (key: string, newWage: number, newQuantity: number) => {
 						let updateWage: any = {}
+
 						setWage((p: any) => {
 							const a = { ...p, [key]: newWage }
 							updateWage = a
+							sendAnalytics({
+								name: 'editWage',
+								action: 'ButtonClick',
+								metaData: {
+									origin: 'Checkout page',
+									oldWage: {
+										[key]: p[key],
+									},
+									newWage: {
+										[key]: newWage,
+									},
+								},
+							})
 							return a
 						})
+
 						form.setFieldValue(key.replace('wage', 'qty'), newQuantity)
 						setAddEditWageDialogProps((p: any) => ({ ...p, open: false }))
 						setUpdating((p: any) => ({ ...p, [key]: true }))
@@ -286,9 +431,10 @@ export const CheckoutCard: FC = () => {
 					}}
 				/>
 			)}
+
 			<Stack rowGap={4} maxWidth={766}>
 				<Stack>
-					<Typography fontSize={!isMobile ? '32px' : '24px'} fontWeight={600}>
+					<Typography fontSize={!isMobile ? '32px' : '24px'} fontWeight={600} color={primary.properDark}>
 						One platform to care of all your
 						<br />
 						<Typography
@@ -301,7 +447,31 @@ export const CheckoutCard: FC = () => {
 						</Typography>
 					</Typography>
 				</Stack>
-				<Card sx={{ borderRadius: '15px' }}>
+				<Stack
+					my={2}
+					sx={{
+						width: { md: '45%', xs: '100%' },
+					}}>
+					<Stepper alternativeLabel activeStep={activeStepValue} connector={<QontoConnector />}>
+						{stepsName.map((label) => (
+							<Step key={label}>
+								<StepLabel
+									StepIconComponent={QontoStepIcon}
+									sx={{
+										// whiteSpace: 'nowrap',
+										fontSize: '10px !important',
+										'& .MuiStepLabel-label': {
+											color: '#fff',
+										},
+									}}>
+									{label}
+								</StepLabel>
+							</Step>
+						))}
+					</Stepper>
+				</Stack>
+
+				<Card sx={{ borderRadius: '15px', boxShadow: '0px 4px 35px rgba(0, 0, 0, 0.90)' }}>
 					{loading?.booking ? (
 						<>
 							<Stack minHeight={500} alignItems='center' justifyContent='center' flex={1}>
@@ -536,7 +706,13 @@ export const CheckoutCard: FC = () => {
 										loading={loading?.payment}
 										color='info'
 										disabled={bill.quantity <= 0}
-										onClick={handelPayment}
+										onClick={() => {
+											if (user?.email) {
+												handelPayment(user?.email)
+											} else {
+												handleEmailDialogBox()
+											}
+										}}
 										sx={{
 											backgroundColor: '#ffffff !important',
 											color: 'common.black',
@@ -553,9 +729,58 @@ export const CheckoutCard: FC = () => {
 					)}
 				</Card>
 
+				<Dialog open={emailDialogBox} onClose={handleEmailDialogBox}>
+					<DialogTitle>
+						<IconButton onClick={handleEmailDialogBox}>
+							<CloseIcon sx={{ color: primary.properDark }} />
+						</IconButton>
+					</DialogTitle>
+					<DialogContent>
+						<Stack direction={'column'} spacing={4}>
+							<Stack direction={'column'} spacing={2}>
+								<Typography
+									variant='h2'
+									fontFamily={' Saira ,sans-serif'}
+									fontWeight={700}
+									textAlign={'center'}
+									color={primary.properDark}>
+									Add Your Email
+								</Typography>
+								<Typography
+									variant='body2'
+									fontWeight={400}
+									textAlign={'center'}
+									fontFamily={'Karla , sans-serif'}
+									color={primary.properDark}>
+									We will send the copy of invoice on your email
+								</Typography>
+							</Stack>
+							<TextField
+								variant='outlined'
+								type={'email'}
+								placeholder='Enter Email'
+								sx={{ outline: '1.8px solid #cccccc', overflow: 'hidden' }}
+								value={emailId}
+								onChange={(e) => {
+									handleEmail(e)
+								}}
+							/>
+							<LoadingButton
+								variant='contained'
+								disabled={valid}
+								loading={isLoading}
+								onClick={() => {
+									handlePaymentProcess()
+								}}>
+								{bill.amountPayable !== 0 ? 'Proceed to pay' : 'Confirm and Book'}
+							</LoadingButton>
+						</Stack>
+					</DialogContent>
+				</Dialog>
+
 				<Stack
 					borderRadius='15px'
-					sx={{ backgroundColor: 'info.main', zIndex: 1 }}
+					sx={{ backgroundColor: 'info.main', zIndex: 1, boxShadow: '0px 4px 35px rgba(0, 0, 0, 0.90)' }}
 					direction={!isMobile ? 'row' : 'column'}
 					alignItems={!isMobile ? 'center' : 'flex-start'}
 					justifyContent='space-between'

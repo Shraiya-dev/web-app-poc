@@ -36,11 +36,11 @@ export const BookingId = () => {
 						<Stack direction={'row'} spacing={4} alignItems={'center'}>
 							<Stack direction={'row'} spacing={2}>
 								<Typography
-									style={{
+									sx={{
 										fontSize: 26,
 										fontWeight: 700,
 										color: theme.palette.secondary.main,
-										paddingRight: 8,
+										paddingRight: 1,
 									}}>
 									<ArrowBackIosNewIcon
 										onClick={() => router.push(`/projects/${router.query.projectId}/bookings`)}
@@ -58,6 +58,7 @@ export const BookingId = () => {
 									width={24}
 									height={24}
 									style={{ verticalAlign: 'middle' }}
+									alt=''
 								/>
 								<Stack direction={'column'} spacing={1}>
 									<Stack direction={'column'}>
@@ -148,7 +149,7 @@ export const BookingId = () => {
 				<Box sx={{ borderBottom: 1, borderColor: 'divider', margin: 3, marginBottom: 0, marginTop: 3 }}>
 					<Tabs
 						TabIndicatorProps={{
-							style: {
+							sx: {
 								height: '3px',
 							},
 						}}
@@ -200,7 +201,8 @@ export const BookingId = () => {
 				<TabPanel
 					value='track-workers'
 					sx={{
-						height: { xs: 'calc( 100vh - 240px )', md: '' },
+						maxHeight: { xs: 'calc( 100vh - 260px )', md: '' },
+						minHeight: { xs: 'calc( 100vh - 260px )', md: '' },
 						overflowY: 'auto',
 						p: 2,
 						position: 'relative',
@@ -211,7 +213,7 @@ export const BookingId = () => {
 				<TabPanel
 					value='details'
 					sx={{
-						height: { xs: 'calc( 100vh - 240px )', md: '' },
+						height: { xs: 'calc( 100vh - 205px )', md: '' },
 						overflowY: 'auto',
 						p: 2,
 						position: 'relative',

@@ -2,6 +2,7 @@ import { ParsedUrlQuery } from 'querystring'
 import { PageStaticData } from 'sdk/types'
 const PageStaticData: { [key in string]: PageStaticData } = {
 	'/about-us': { pageName: 'About Us', seo: { title: 'About Us', description: 'About Us' } },
+	'/how-it-works': { pageName: 'How it Work', seo: { title: 'How It Work', description: 'How It Work' } },
 	'/account': { pageName: 'Account', seo: { title: 'Account', description: 'Account' } },
 	'/create-organisation': {
 		pageName: 'Create organisation',
@@ -63,6 +64,10 @@ const PageStaticData: { [key in string]: PageStaticData } = {
 	'/bookings/[projectId]/[bookingId]/checkout': {
 		pageName: 'Check out',
 		seo: { title: 'Check out ', description: 'Check out' },
+	},
+	'/bookings/create': {
+		pageName: 'Easy Booking',
+		seo: { title: 'Easy Booking', description: 'Easy Booking' },
 	},
 
 	'/404': { pageName: 'Not Found', seo: { title: 'Not Found', description: 'Not Found' } },

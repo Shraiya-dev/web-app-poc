@@ -47,8 +47,8 @@ export const updateProfile = async (payload: any) => {
 export const logOutService = () => {
 	localStorage.clear()
 
-	if (window.location.pathname !== `/login`) {
-		window.location.href = `/login`
+	if (window.location.pathname !== `/`) {
+		window.location.href = `/`
 	}
 }
 

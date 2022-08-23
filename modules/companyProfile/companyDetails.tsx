@@ -32,7 +32,7 @@ const CompanyDetails = () => {
 				<CustomTopBar>
 					<Stack m={2}>
 						<Typography
-							style={{
+							sx={{
 								fontSize: 26,
 								fontWeight: 700,
 								color: theme.palette.secondary.main,
@@ -41,7 +41,7 @@ const CompanyDetails = () => {
 							Company Profile
 						</Typography>
 						<Typography
-							style={{
+							sx={{
 								fontSize: 14,
 								color: theme.palette.secondary.main,
 								fontFamily: 'Karla,sans-serif',
@@ -55,7 +55,7 @@ const CompanyDetails = () => {
 						<Box sx={{ borderBottom: 1, borderColor: 'divider', marginBottom: 0 }}>
 							<Tabs
 								TabIndicatorProps={{
-									style: {
+									sx: {
 										height: '3px',
 									},
 								}}
@@ -103,22 +103,22 @@ const CompanyDetails = () => {
 
 						<TabPanel
 							value='details'
-							style={{
+							sx={{
 								height: 'calc( 100vh - 160px )',
 								overflowY: 'auto',
 								position: 'relative',
-								paddingTop: 8,
+								paddingTop: 1,
 							}}>
 							<CompanyInfo />
 						</TabPanel>
 						{/* 
 						<TabPanel
 							value='members'
-							style={{
-								height: 'calc( 100vh - 160px )',
+							sx={{
+								height: 'calc( 100vh - 190px )',
 								overflowY: 'auto',
 								position: 'relative',
-								paddingTop: 8,
+								paddingTop: 1,
 							}}
 						>
 							<CompanyMembers />
@@ -126,7 +126,10 @@ const CompanyDetails = () => {
 					</TabContext>
 				</Stack>
 			</CompanyDetailsStyle>
-			{isMobile && <BottomLayout />}
+
+			<Box sx={{ display: { xs: 'block', md: 'none' } }}>
+				<BottomLayout />
+			</Box>
 		</>
 	)
 }
