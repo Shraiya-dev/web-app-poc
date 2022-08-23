@@ -8,6 +8,7 @@ import * as Yup from 'yup'
 export const useEasyBooking = () => {
 	const router = useRouter()
 	const { openLoginDialog, user } = useContractorAuth()
+
 	const handleSubmit = async (values: any) => {
 		DataLayerPush({
 			event: 'booking_requirement',
@@ -88,12 +89,35 @@ export const useEasyBooking = () => {
 	})
 	useEffect(() => {
 		try {
-			const discoveryBookingFromCookie = JSON.parse(getCookie('discoveryBooking'))
+			const discoveryBookingFromCookie = () => {
+				try {
+					const discoveryBookingFromCookie = JSON.parse(getCookie('discoveryBooking'))
+					return discoveryBookingFromCookie
+				} catch (error) {
+					return undefined
+				}
+			}
+			const a = discoveryBookingFromCookie()
 			form.setValues({
-				...discoveryBookingFromCookie,
-				location: `${discoveryBookingFromCookie.city}, ${discoveryBookingFromCookie.state}`,
+				...a,
+				location: `${a.city}, ${a.state}`,
 			})
 		} catch (error) {}
+	}, [router])
+	useEffect(() => {
+		const discoveryBookingFromCookie = () => {
+			try {
+				const discoveryBookingFromCookie = JSON.parse(getCookie('discoveryBooking'))
+				return discoveryBookingFromCookie
+			} catch (error) {
+				return undefined
+			}
+		}
+		const a = discoveryBookingFromCookie()
+		if (!a) {
+			delete router.query.bookingFromStep
+			router.replace(router)
+		}
 	}, [])
 
 	const formikProps = useFormikProps(form)

@@ -1,4 +1,4 @@
-import { Home } from 'landing'
+import { Home, HowItWorks } from 'landing'
 import { AboutUs } from 'landing/AboutUs'
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
 import Head from 'next/head'
@@ -8,7 +8,9 @@ import { staticRenderingProvider } from 'sdk/utils/nextHelper'
 const Page: NextPage = () => {
 	return (
 		<>
-			<LandingLayout>heloo</LandingLayout>
+			<LandingLayout>
+				<HowItWorks />
+			</LandingLayout>
 		</>
 	)
 }
