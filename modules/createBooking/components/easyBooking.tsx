@@ -631,7 +631,7 @@ export const EasyBooking = () => {
 										className='loadingcta'
 										type='submit'
 										variant='contained'
-										// loading={loading}
+										loading={form.isSubmitting}
 										disabled={!isSubmittable}
 										// onClick={() => handleNext()}
 										style={{
@@ -640,7 +640,7 @@ export const EasyBooking = () => {
 											background: isSubmittable
 												? theme.palette.primary.main
 												: theme.palette.primary.dark,
-											color: '#000',
+											color: form.isSubmitting ? 'transparent' : '#000',
 										}}>
 										{'Create Booking'}
 									</LoadingButton>

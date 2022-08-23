@@ -30,7 +30,6 @@ import logo from '../../../public/assets/icons/BrandLogo.svg'
 import LogoutIcon from '@mui/icons-material/Logout'
 import { ArrowBackIos } from '@mui/icons-material'
 import { useEffect } from 'react'
-import { route } from 'next/dist/server/router'
 
 const CustomProjectDashBoard = styled(Box)(({ theme }) => ({
 	padding: 4,
@@ -77,7 +76,7 @@ export const ProjectDashboard = () => {
 		} else {
 			localStorage.removeItem('noBack')
 		}
-	}, [projects, router])
+	}, [projects, router, user])
 
 	const { logOut, isSideBarToggle, updateIsSideBarToggle } = useContractorAuth()
 
