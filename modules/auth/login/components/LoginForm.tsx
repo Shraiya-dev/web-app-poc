@@ -114,7 +114,7 @@ export const LoginForm = ({ ...props }) => {
 							onChange={form.handleChange}
 						/>
 					</InputWrapper>
-					<FormControlLabel
+					{/* <FormControlLabel
 						control={<Checkbox defaultChecked />}
 						label='Send me whatsapp updates'
 						sx={{
@@ -122,7 +122,7 @@ export const LoginForm = ({ ...props }) => {
 								color: primary.properDark,
 							},
 						}}
-					/>
+					/> */}
 					<LoadingButton fullWidth type='submit' loading={!!loading} variant='contained'>
 						{isRegister ? 'Register' : 'Login'}
 					</LoadingButton>
