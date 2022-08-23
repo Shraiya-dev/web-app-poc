@@ -39,6 +39,7 @@ import { OTPVerification } from 'modules/auth/otp/components/OtpVerification'
 import { LoginForm } from 'modules/auth/login/components/LoginForm'
 import { useRouter } from 'next/router'
 import { useContractorAuth } from 'sdk/providers'
+import BookingStepper from '../EasyBookingStepper/BookingStepper'
 
 interface Props {}
 
@@ -107,7 +108,7 @@ export const CreateBookingCard: FC<Props> = () => {
 
 	useEffect(() => {
 		console.log(activeStepValue)
-		setActiveStepValue(Number(router?.query?.bookingFromStep) ?? 0)
+		setActiveStepValue(Number(!!router?.query?.bookingFromStep) ? Number(router?.query?.bookingFromStep) : 0)
 	}, [router])
 
 	// const [wageDisable, setWageDisable] = useState({
@@ -132,20 +133,7 @@ export const CreateBookingCard: FC<Props> = () => {
 						<Typography variant='caption'>*after receiving 15 applications</Typography>
 					</Stack>
 					<Stack my={2}>
-						<Stepper alternativeLabel activeStep={activeStepValue} connector={<QontoConnector />}>
-							{stepsName.map((label) => (
-								<Step key={label}>
-									<StepLabel
-										StepIconComponent={QontoStepIcon}
-										sx={{
-											// whiteSpace: 'nowrap',
-											fontSize: '10px !important',
-										}}>
-										{label}
-									</StepLabel>
-								</Step>
-							))}
-						</Stepper>
+						<BookingStepper />
 					</Stack>
 					<form onSubmit={form.handleSubmit}>
 						<Stack spacing={2.5} my={2} alignItems='flex-start' pr={step === 0 ? 6 : { xs: 0, md: 3 }}>

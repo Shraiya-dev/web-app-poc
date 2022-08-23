@@ -38,6 +38,7 @@ import { CustomerDetails, CUSTOMER_STATUS, ONBOARDING_STATUS, USER_LOGIN_TYPE, U
 import { useSnackbar } from './SnackbarProvider'
 import { LoginForm } from 'modules/auth/login/components/LoginForm'
 import { OTPVerification } from 'modules/auth/otp/components/OtpVerification'
+import BookingStepper from 'sdkv2/components/EasyBookingStepper/BookingStepper'
 const LoadingUniqueString = 'loading...'
 interface AuthState {
 	user: null | CustomerDetails
@@ -526,7 +527,6 @@ const ContractorAuthProvider: FC<ContractorAuthProviderProps> = ({ children, aut
 
 	const [isDialogOpen, setIsDialogOpen] = useState<boolean>(false)
 	const [isOtpSent, setIsOtpSent] = useState<boolean>(false)
-	const [isDiscoveryBooking, setIsDiscoveryBooking] = useState<boolean>(false)
 
 	const openLoginDialog = useCallback(() => {
 		if (!state.user) setIsDialogOpen(!isDialogOpen)
@@ -567,23 +567,22 @@ const ContractorAuthProvider: FC<ContractorAuthProviderProps> = ({ children, aut
 		]
 	)
 
-	useEffect(() => {
-		if (!!getCookie('discoveryBooking')) setIsDiscoveryBooking(true)
-		else setIsDiscoveryBooking(false)
-	}, [isDiscoveryBooking, router])
-
-	useEffect(() => {
-		console.log(isDiscoveryBooking)
-	}, [isDiscoveryBooking])
-
 	return (
 		<Provider value={authProviderValue}>
 			{children}
 
-			<Dialog onClose={openLoginDialog} open={isDialogOpen}>
+			<Dialog
+				onClose={openLoginDialog}
+				open={isDialogOpen}
+				sx={{
+					'& .MuiPaper-root': {
+						overflow: 'hidden',
+						borderRadius: '16px',
+					},
+				}}>
 				<DialogContent
 					sx={{
-						paddingX: { md: 4, xs: 1 },
+						paddingX: { md: 2, xs: 1 },
 					}}>
 					<Stack direction={'row'} justifyContent={'flex-start'}>
 						<IconButton onClick={openLoginDialog}>
@@ -591,37 +590,7 @@ const ContractorAuthProvider: FC<ContractorAuthProviderProps> = ({ children, aut
 						</IconButton>
 					</Stack>
 
-					{!!isDiscoveryBooking ? (
-						<>
-							<Stepper
-								alternativeLabel
-								activeStep={Number(router?.query?.bookingFromStep) ?? 0}
-								connector={<QontoConnector />}>
-								{stepsName.map((label) => (
-									<Step key={label}>
-										<StepLabel
-											StepIconComponent={QontoStepIcon}
-											sx={{
-												// whiteSpace: 'nowrap',
-												fontSize: '10px !important',
-											}}>
-											<Typography
-												variant='subtitle2'
-												sx={{
-													color: '#000 !important',
-												}}>
-												{label}
-											</Typography>
-										</StepLabel>
-									</Step>
-								))}
-							</Stepper>
-						</>
-					) : (
-						''
-					)}
-
-					<Paper elevation={0} sx={{ px: { md: 2, xs: 1 } }}>
+					<Paper elevation={0} sx={{ px: { md: 0, xs: 0 } }}>
 						{!isOtpSent ? (
 							<LoginForm isOtpSent={isOtpSent} setIsOtpSent={setIsOtpSent} fromHome={true} />
 						) : (
