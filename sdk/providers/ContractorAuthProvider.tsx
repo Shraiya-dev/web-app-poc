@@ -583,7 +583,7 @@ const ContractorAuthProvider: FC<ContractorAuthProviderProps> = ({ children, aut
 			<Dialog onClose={openLoginDialog} open={isDialogOpen}>
 				<DialogContent
 					sx={{
-						paddingX: 4,
+						paddingX: { md: 4, xs: 1 },
 					}}>
 					<Stack direction={'row'} justifyContent={'flex-start'}>
 						<IconButton onClick={openLoginDialog}>
@@ -621,7 +621,7 @@ const ContractorAuthProvider: FC<ContractorAuthProviderProps> = ({ children, aut
 						''
 					)}
 
-					<Paper elevation={0} sx={{ p: 4 }}>
+					<Paper elevation={0} sx={{ px: { md: 2, xs: 1 } }}>
 						{!isOtpSent ? (
 							<LoginForm isOtpSent={isOtpSent} setIsOtpSent={setIsOtpSent} fromHome={true} />
 						) : (

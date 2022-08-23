@@ -152,8 +152,8 @@ export const Navbar = () => {
 															name: 'navbarLogin',
 															action: 'ButtonClick',
 														})
-													}}
-													href={'/login'}>
+														openLoginDialog()
+													}}>
 													Login
 												</LinkButton>
 												<Divider

@@ -17,6 +17,8 @@ const CustomOTPStyles = styled(Box)(({ theme }) => ({
 		fontSize: 30,
 		textAlign: 'center',
 		fontWeight: 700,
+		fontFamily: 'Saira,sans-serif',
+		color: primary?.properDark,
 	},
 	'.subHeader': {
 		//cursor: 'pointer',
@@ -27,9 +29,12 @@ const CustomOTPStyles = styled(Box)(({ theme }) => ({
 		fontSize: 14,
 	},
 	'.subInfo': {
-		color: theme.palette.secondary.dark,
+		color: primary?.properDark,
 		textAlign: 'center',
 		marginBottom: 48,
+		fontFamily: 'Karla ,sans-serif',
+		fontWeight: 700,
+		fontSize: '14px',
 	},
 	'.cta': {
 		marginTop: 48,
@@ -60,106 +65,107 @@ export const OTPVerification = ({ ...props }) => {
 		setIsOtpSent(false)
 	}
 
-	// useEffect(() => {
-	// 	if (loading) {
-
-	// 	}
-	// }, [loading, router])
-
 	return (
 		<CustomOTPStyles>
-			<>
-				<form onSubmit={form.handleSubmit}>
-					<Typography
-						className='headerInfo'
+			<form onSubmit={form.handleSubmit}>
+				<Typography className='headerInfo'>Verify Mobile</Typography>
+
+				<Typography className='subInfo'>
+					Enter <strong>OTP</strong> sent to your mobile number
+					<br /> <strong>{phoneNumber}</strong>
+				</Typography>
+
+				<OtpInput
+					value={otp.otp}
+					onChange={handleChange}
+					numInputs={6}
+					inputStyle={{
+						//marginTop: 20,
+						borderRadius: '4px',
+						width: '2.8em',
+						height: '3.2em',
+						border: '1px solid #000',
+						display: 'flex',
+						justifyContent: 'center',
+					}}
+					shouldAutoFocus={true}
+					separator={<span> &nbsp;&nbsp;&nbsp;</span>}
+					isInputNum={true}
+					hasErrored={!status}
+					errorStyle={{ border: '1px solid #F70000' }}
+					containerStyle={{ justifyContent: 'center' }}
+				/>
+				<Stack className='subHeader' direction={'row'} justifyContent='center'>
+					<Button
+						onClick={resendOTP}
+						variant='text'
 						sx={{
-							color: !!fromHome ? primary?.properDark : '#ccc',
+							color: primary.properDark,
+							fontFamily: 'Karla,sans-serif',
+							fontSize: '12px',
+							fontWeight: 500,
 						}}>
-						Verify Mobile
-					</Typography>
+						Resend OTP
+					</Button>
+					<Button
+						onClick={handleChangeNumber}
+						variant='text'
+						sx={{
+							color: primary.properDark,
+							fontFamily: 'Karla,sans-serif',
+							fontSize: '12px',
+							fontWeight: 500,
+						}}>
+						Change Number
+					</Button>
+				</Stack>
 
-					<Typography className='subInfo' color={'#ccc'}>
-						Enter <strong>OTP</strong> sent to your mobile number
-						<br /> <strong>{phoneNumber}</strong>
-					</Typography>
-
-					<OtpInput
-						value={otp.otp}
-						onChange={handleChange}
-						numInputs={6}
-						inputStyle={{
-							//marginTop: 20,
-
-							borderRadius: '4px',
-							width: '3.4em',
-							height: '3.4em',
-							border: '1px solid #C4C4C4',
-							display: 'flex',
-							justifyContent: 'center',
-						}}
-						shouldAutoFocus={true}
-						separator={<span> &nbsp;&nbsp;&nbsp;</span>}
-						isInputNum={true}
-						hasErrored={!status}
-						errorStyle={{ border: '1px solid #F70000' }}
-						containerStyle={{ justifyContent: 'center' }}
-					/>
-					<Stack className='subHeader' direction={'row'} justifyContent='center'>
-						<Button onClick={resendOTP} variant='text'>
-							Resend OTP
-						</Button>
-						<Button onClick={handleChangeNumber} variant='text'>
-							Change Number
-						</Button>
-					</Stack>
-
-					{/* <Button type='submit' variant='contained' color='primary' fullWidth disabled={status === 'loading'}>
+				{/* <Button type='submit' variant='contained' color='primary' fullWidth disabled={status === 'loading'}>
 						{status === 'loading' ? <CircularProgress size={30} /> : `Verify OTP`}
 					</Button> */}
 
-					{loading ? (
-						<Button
-							fullWidth
+				{loading ? (
+					<Button
+						fullWidth
+						sx={{
+							marginTop: 6,
+						}}>
+						<Box
 							sx={{
-								marginTop: 6,
+								display: 'flex',
+								justifyContent: 'center',
+								alignItems: 'center',
+								height: '20px',
 							}}>
-							<Box
+							<CircularProgress
+								size={'medium'}
 								sx={{
-									display: 'flex',
-									justifyContent: 'center',
-									alignItems: 'center',
-									height: '20px',
-								}}>
-								<CircularProgress
-									size={'medium'}
-									sx={{
-										color: '#000',
-										width: '30px',
-										height: '30px',
-									}}
-								/>
-							</Box>
-						</Button>
-					) : (
-						<LoadingButton
-							type='submit'
-							disabled={loading}
-							variant='contained'
-							fullWidth
-							sx={{ marginTop: 6, background: '#efc430' }}>
-							{`Verify OTP`}
-						</LoadingButton>
-					)}
+									color: '#000',
+									width: '30px',
+									height: '30px',
+								}}
+							/>
+						</Box>
+					</Button>
+				) : (
+					<LoadingButton
+						type='submit'
+						disabled={loading}
+						variant='contained'
+						fullWidth
+						sx={{ marginTop: 6, background: '#efc430' }}>
+						{`Verify OTP`}
+					</LoadingButton>
+				)}
 
-					{/* <Typography
+				{/* <Typography
 						sx={{ textDecoration: 'underline', textAlign: 'center', cursor: 'pointer' }}
 						color='primary.main'
 						mt={'16px'}
 						onClick={handleChangeNumber}>
 						Change Number
 					</Typography> */}
-				</form>
-			</>
+			</form>
 		</CustomOTPStyles>
 	)
 }

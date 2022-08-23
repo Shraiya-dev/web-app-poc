@@ -1,5 +1,5 @@
 import LoadingButton from '@mui/lab/LoadingButton'
-import { Box, Button, InputLabel, Stack, styled, Typography } from '@mui/material'
+import { Box, Button, Checkbox, FormControlLabel, InputLabel, Stack, styled, Typography } from '@mui/material'
 
 import { useRouter } from 'next/router'
 import { useEffect, useMemo } from 'react'
@@ -63,7 +63,7 @@ export const LoginForm = ({ ...props }) => {
 	return (
 		<form onSubmit={form.handleSubmit}>
 			<CustomLoginStyles>
-				<Stack spacing={3} width='100%'>
+				<Stack spacing={1.5} width='100%' px={1.06}>
 					{!!fromHome ? (
 						<Typography
 							variant='h1'
@@ -89,6 +89,7 @@ export const LoginForm = ({ ...props }) => {
 						label='Phone Number'
 						sx={{
 							color: !!fromHome ? '#000' : '#ccc',
+							my: { md: 2, xs: 1 },
 						}}>
 						<PhoneField
 							error={!!checkError('phoneNumber', form)}
@@ -100,9 +101,10 @@ export const LoginForm = ({ ...props }) => {
 							}
 							sx={{
 								width: '100%',
-								mt: 1,
 								'& .MuiOutlinedInput-root': {
-									outline: '1px solid #ccc',
+									// outline: '1px solid #ccc',
+									border: '1px solid #ccc',
+									overflow: 'hidden',
 								},
 							}}
 							// InputProps={{
@@ -112,7 +114,15 @@ export const LoginForm = ({ ...props }) => {
 							onChange={form.handleChange}
 						/>
 					</InputWrapper>
-
+					{/* <FormControlLabel
+						control={<Checkbox defaultChecked />}
+						label='Send me whatsapp updates'
+						sx={{
+							'& .MuiTypography-root': {
+								color: primary.properDark,
+							},
+						}}
+					/> */}
 					<LoadingButton fullWidth type='submit' loading={!!loading} variant='contained'>
 						{isRegister ? 'Register' : 'Login'}
 					</LoadingButton>
