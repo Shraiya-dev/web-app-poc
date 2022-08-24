@@ -86,7 +86,7 @@ axios.interceptors.response.use(
 //=====================axios interceptor end=======================
 
 const domain = {
-	stage: ['https://stage-booking.projecthero.in', '192.168.0.188'],
+	stage: 'https://stage-booking.projecthero.in',
 	dev: 'https://dev-booking.projecthero.in',
 	production: 'https://booking.projecthero.in',
 }
