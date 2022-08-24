@@ -461,12 +461,13 @@ export const CheckoutCard: FC = () => {
 							<Step key={label}>
 								<StepLabel
 									StepIconComponent={QontoStepIcon}
+									
 									sx={{
 										// whiteSpace: 'nowrap',
 										fontSize: '10px !important',
 										'& .MuiStepLabel-label': {
-											mt: '0 !important',
-											color: '#000',
+											mt: '8px !important',
+											color: '#000 !important',
 											fontSize: '10px',
 											fontWeight: 400,
 										},
@@ -637,6 +638,8 @@ export const CheckoutCard: FC = () => {
 																maxWidth: 56,
 																input: {
 																	textAlign: 'center',
+																	backgroundColor: '#000',
+																	color: '#fff !important',
 																},
 															}}
 															name={profile?.name}
