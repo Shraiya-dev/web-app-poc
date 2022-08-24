@@ -216,7 +216,7 @@ const ProjectInfo = ({ setProjectName }: any) => {
 									labelId='state'
 									id='state'
 									name='state'
-									value={form.values.state}
+									value={form.values.state.trim()}
 									onChange={(e) => {
 										form.handleChange(e)
 										form.setFieldValue('city', 'none')
@@ -243,7 +243,7 @@ const ProjectInfo = ({ setProjectName }: any) => {
 									}}
 									fullWidth>
 									<MenuItem value={'none'}>Select city</MenuItem>
-									{CityOptions[form.values.state].map((item: any) => {
+									{CityOptions[form.values.state.trim()]?.map((item: any) => {
 										return (
 											<MenuItem key={item.label} value={item.value}>
 												{item?.label}
