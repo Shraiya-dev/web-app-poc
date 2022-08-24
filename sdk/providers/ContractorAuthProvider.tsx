@@ -587,7 +587,7 @@ const ContractorAuthProvider: FC<ContractorAuthProviderProps> = ({ children, aut
 				}}>
 				<DialogContent
 					sx={{
-						paddingX: { md: 1, xs: 1 },
+						paddingX: { md: 1, xs: 2 },
 					}}>
 					<Stack direction={'row'} justifyContent={'flex-start'}>
 						<IconButton onClick={openLoginDialog}>
