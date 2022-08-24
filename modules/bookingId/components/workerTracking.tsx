@@ -11,7 +11,15 @@ import {
 	Stack,
 	Typography,
 } from '@mui/material'
-import { BottomLayout, JobCardCard, primary, useMobile, WORKER_APPLICATION_STATUS, WORKER_TYPES } from '../../../sdk'
+import {
+	BottomLayout,
+	JobCardCard,
+	primary,
+	sendAnalytics,
+	useMobile,
+	WORKER_APPLICATION_STATUS,
+	WORKER_TYPES,
+} from '../../../sdk'
 
 import { Close } from '@mui/icons-material'
 import { useRouter } from 'next/router'
@@ -297,6 +305,14 @@ export const FilterDrawer: FC<Props> = ({ filterKey, open, options, title, onClo
 							checked={filterSelected.includes(option.value)}
 							onChange={(e, checked) => {
 								if (checked) {
+									sendAnalytics({
+										name: 'filters',
+										action: 'ButtonClick',
+										metaData: {
+											type: filterKey,
+											value: option.value,
+										},
+									})
 									setFilterSelected((p) => [...p, option.value])
 								} else {
 									setFilterSelected((p) => p.filter((item) => item !== option.value))

@@ -1,6 +1,7 @@
 import { Avatar, CircularProgress, Icon, Paper, Stack, Typography } from '@mui/material'
 import Image from 'next/image'
 import { useState } from 'react'
+import { sendAnalytics } from 'sdk/analytics'
 import { Dropdown } from 'sdkv2/components'
 import ExperienceIcon from '../../../public/assets/icons/experience.svg'
 import LocationIcon from '../../../public/assets/icons/location.svg'
@@ -119,6 +120,14 @@ export const JobCardCard = ({ jobCard, updateJobCard }: JobCardCardProps) => {
 									disableUnderline
 									onChange={(e) => {
 										const value = e.target.value as WORKER_APPLICATION_STATUS
+										sendAnalytics({
+											name: 'heroApplicationsStatus',
+											action: 'DropDownClick',
+											metaData: {
+												status: value,
+												jobCard,
+											},
+										})
 										if (value === WORKER_APPLICATION_STATUS.INCORRECT_PROFILE) {
 											setConfirmationDialogProps((p) => ({
 												...p,

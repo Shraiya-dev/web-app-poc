@@ -138,12 +138,15 @@ const EventTypes = {
 	contactWorker: 'Contact Worker',
 	navbarLogin: 'Navbar Login',
 	editWage: 'Edit wage',
+	filters: 'Filter',
+	heroApplicationsStatus: 'Hero Applications Status',
 }
 
 //Define a new action type here if needed
 const ActionTypes = {
 	ButtonClick: 'Button Click',
 	CardClick: 'Card Click',
+	DropDownClick: 'Drop Down Click',
 	HorizontalTabClick: 'Horizontal Tab Click',
 	NavigationTabClicked: 'Navigation Tab Clicked',
 }

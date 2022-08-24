@@ -2,6 +2,7 @@ import { Close } from '@mui/icons-material'
 import { Chip, PaletteOptions, Stack } from '@mui/material'
 import { useRouter } from 'next/router'
 import { FC, useCallback, useDebugValue } from 'react'
+import { sendAnalytics } from 'sdk'
 import { StringDecoder } from 'string_decoder'
 interface Props {
 	filterOptions: { label: string; value: string }[]
@@ -19,6 +20,14 @@ export const ChipFilter: FC<Props> = ({
 
 	const handelAddFilter = useCallback(
 		(newFilter: string) => {
+			sendAnalytics({
+				name: 'filters',
+				action: 'ButtonClick',
+				metaData: {
+					type: filterKey,
+					value: newFilter,
+				},
+			})
 			const filterValues = router.query[filterKey] as string
 			if (filterValues) {
 				router.query[filterKey] = [...filterValues?.split(','), newFilter].join(',')

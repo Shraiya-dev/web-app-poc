@@ -174,7 +174,7 @@ export const OTPVerification = ({ ...props }) => {
 						variant='contained'
 						fullWidth
 						sx={{ marginTop: 4, background: '#efc430' }}>
-						{`Verify OTP`}
+						Verify OTP
 					</LoadingButton>
 				)}
 

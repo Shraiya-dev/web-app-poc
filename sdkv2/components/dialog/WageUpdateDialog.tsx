@@ -51,10 +51,16 @@ export const AddEditWage = ({
 						fullWidth
 						value={quantity}
 						type='number'
-						label='Enter Number'
-						placeholder='Enter wages'
+						label='Enter Worker quantity'
+						placeholder='Enter quantity'
 						onChange={(e: any) => {
-							setQuantity(parseInt(e.target.value))
+							const newValue =
+								e.target.value !== ''
+									? parseInt(e.target.value) > 999
+										? 999
+										: parseInt(e.target.value)
+									: e.target.value
+							setQuantity(newValue)
 						}}
 					/>
 					<TextField
