@@ -32,6 +32,7 @@ const CustomizeDashboard = styled(Box)(({ theme }) => ({
 	display: 'flex',
 	marginTop: '65px',
 	position: 'relative',
+	background: '#fff',
 
 	'.helmet': {
 		position: 'absolute',
