@@ -10,11 +10,12 @@ import { ButtonClicked } from '../../../../sdk/analytics/analyticsWrapper'
 import useOtp from '../hooks/useOtp'
 
 const CustomOTPStyles = styled(Box)(({ theme }) => ({
+	// maxHeight: '262px',
 	display: 'flex',
 	justifyContent: 'center',
 
 	'.headerInfo': {
-		paddingBottom: 16,
+		paddingBottom: { xs: 0, md: 16 },
 		fontSize: 30,
 		textAlign: 'center',
 		fontWeight: 700,
@@ -23,7 +24,7 @@ const CustomOTPStyles = styled(Box)(({ theme }) => ({
 	},
 	'.subHeader': {
 		//cursor: 'pointer',
-		marginTop: 16,
+		marginTop: { xs: 0, md: 16 },
 		//marginBottom: 10,
 		//marginRight: 15,
 		textAlign: 'center',
@@ -32,8 +33,8 @@ const CustomOTPStyles = styled(Box)(({ theme }) => ({
 	'.subInfo': {
 		color: '#4d4d4d',
 		textAlign: 'center',
-		marginBottom: 30,
-		marginTop: 18,
+		marginBottom: { xs: 2, md: 30 },
+		marginTop: { xs: 2, md: 18 },
 		fontFamily: 'Karla ,sans-serif',
 		fontWeight: 400,
 		fontSize: '14px',
@@ -147,8 +148,8 @@ export const OTPVerification = ({ ...props }) => {
 					<Button
 						fullWidth
 						sx={{
-							mt: 4,
-							mb: '19px',
+							mt: { xs: 1, md: 4 },
+							mb: { xs: 1, md: 2 },
 						}}>
 						<Box
 							sx={{
@@ -173,7 +174,7 @@ export const OTPVerification = ({ ...props }) => {
 						disabled={loading}
 						variant='contained'
 						fullWidth
-						sx={{ marginTop: 4, background: '#efc430' }}>
+						sx={{ marginTop: { xs: 1, md: 4 }, background: '#efc430' }}>
 						Verify OTP
 					</LoadingButton>
 				)}

@@ -577,13 +577,17 @@ const ContractorAuthProvider: FC<ContractorAuthProviderProps> = ({ children, aut
 				open={isDialogOpen}
 				sx={{
 					'& .MuiPaper-root': {
-						overflow: 'hidden',
 						borderRadius: '16px',
 					},
+					margin: 'auto',
+					paddingTop: '10px',
+					// '& .MuiDialog-paper': {
+					// 	width: { xs: '100%', md: '30%' },
+					// },
 				}}>
 				<DialogContent
 					sx={{
-						paddingX: { md: 2, xs: 1 },
+						paddingX: { md: 1, xs: 1 },
 					}}>
 					<Stack direction={'row'} justifyContent={'flex-start'}>
 						<IconButton onClick={openLoginDialog}>
@@ -591,7 +595,11 @@ const ContractorAuthProvider: FC<ContractorAuthProviderProps> = ({ children, aut
 						</IconButton>
 					</Stack>
 
-					<Paper elevation={0} sx={{ px: { md: 0, xs: 0 } }}>
+					<Paper
+						elevation={0}
+						sx={{
+							px: { md: 0, xs: 0 },
+						}}>
 						{!isOtpSent ? (
 							<LoginForm isOtpSent={isOtpSent} setIsOtpSent={setIsOtpSent} fromHome={true} />
 						) : (
