@@ -1,7 +1,7 @@
 import { useFormik } from 'formik'
 import { useRouter } from 'next/router'
-import { useEffect, useMemo, useState } from 'react'
-import { createCookieInHour, DataLayerPush, getCookie, sendAnalytics } from 'sdk/analytics'
+import { useState } from 'react'
+import { DataLayerPush, sendAnalytics } from 'sdk/analytics'
 import { useFormikProps } from 'sdk/hooks'
 import { useContractorAuth } from 'sdk/providers'
 import * as Yup from 'yup'
@@ -26,15 +26,6 @@ export const useEasyBookingInternal = () => {
 				origin: 'dashboard',
 			},
 		})
-		createCookieInHour(
-			'discoveryBooking',
-			JSON.stringify({
-				...values,
-				city: values.location.split(', ')[0],
-				state: values.location.split(', ')[1],
-			}),
-			45
-		)
 
 		try {
 			let value = { ...values, state: values.location.split(',')[1], city: values.location.split(',')[0] }
@@ -93,7 +84,6 @@ export const useEasyBookingInternal = () => {
 		}),
 
 		onSubmit: (values) => {
-			// createCookieInHour('discoveryBooking', JSON.stringify(values), 45)
 			handleSubmit(values)
 		},
 	})

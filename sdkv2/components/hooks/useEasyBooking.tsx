@@ -83,7 +83,6 @@ export const useEasyBooking = () => {
 		}),
 
 		onSubmit: (values) => {
-			// createCookieInHour('discoveryBooking', JSON.stringify(values), 45)
 			handleSubmit(values)
 		},
 	})
