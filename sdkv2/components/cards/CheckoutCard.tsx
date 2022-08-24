@@ -440,14 +440,6 @@ export const CheckoutCard: FC = () => {
 				<Stack>
 					<Typography fontSize={!isMobile ? '32px' : '24px'} fontWeight={600} color={primary.properDark}>
 						One platform to care of all your
-						<Typography
-							display='inline'
-							fontSize={!isMobile ? '32px' : '24px'}
-							fontWeight={600}
-							color='primary.main'>
-							{' '}
-							Hiring
-						</Typography>
 						<br />
 						<Typography
 							display='inline'
@@ -455,7 +447,7 @@ export const CheckoutCard: FC = () => {
 							fontWeight={600}
 							color='primary.main'>
 							{' '}
-							needs!
+							Hiring needs!
 						</Typography>
 					</Typography>
 				</Stack>
