@@ -211,9 +211,10 @@ export const EasyBooking = () => {
 		// 	form.values.endTime === 'none'
 
 		let canSubmit: boolean =
-			!!form.values.jobType &&
+			form.values.jobType !== 'none' &&
 			(!!form.values.isHelper || !!form.values.isTechnician || !!form.values.isSupervisor) &&
-			!!form.values.workDuration &&
+			(!!form.values.helperWage || !!form.values.technicianWage || !!form.values.supervisorWage) &&
+			form.values.workDuration !== 'none' &&
 			!!form.values.location
 
 		setIsSubmittable(canSubmit)
@@ -263,7 +264,7 @@ export const EasyBooking = () => {
 					})
 				}}
 				// visibleCloseIcon={step === 1}
-				visibleCloseIcon={!user?.hasProjects}
+				visibleCloseIcon
 				linkHeader={''}
 				link={`/projects/${router.query.projectId}/bookings`}
 			/>
@@ -494,7 +495,13 @@ export const EasyBooking = () => {
 												spacing={2}>
 												<Grid container item xs={12} sm={12} md={4.5}>
 													<FormControlLabel
-														control={<Checkbox />}
+														control={
+															<Checkbox
+																sx={{
+																	color: '#EFC430 ',
+																}}
+															/>
+														}
 														name={info.CheckboxName}
 														value={info.isPresent}
 														label={''}
