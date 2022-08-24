@@ -436,7 +436,7 @@ export const CheckoutCard: FC = () => {
 				/>
 			)}
 
-			<Stack rowGap={4} maxWidth={766}>
+			<Stack rowGap={2} maxWidth={766}>
 				<Stack>
 					<Typography fontSize={!isMobile ? '32px' : '24px'} fontWeight={600} color={primary.properDark}>
 						One platform to care of all your
@@ -452,7 +452,7 @@ export const CheckoutCard: FC = () => {
 					</Typography>
 				</Stack>
 				<Stack
-					my={2}
+					my={1}
 					sx={{
 						width: { md: '45%', xs: '100%' },
 					}}>
@@ -465,7 +465,16 @@ export const CheckoutCard: FC = () => {
 										// whiteSpace: 'nowrap',
 										fontSize: '10px !important',
 										'& .MuiStepLabel-label': {
-											color: '#fff',
+											mt: '0 !important',
+											color: '#000',
+											fontSize: '10px',
+											fontWeight: 400,
+										},
+										'& .MuiStep-root': {
+											p: '0 !important',
+										},
+										'& .MuiStep-horizontal': {
+											p: '0 !important',
 										},
 									}}>
 									{label}

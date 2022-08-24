@@ -29,6 +29,7 @@ import { sendAnalytics } from 'sdk/analytics/analyticsWrapper'
 import { primary } from 'sdk'
 import { contactUsSection, navbar } from 'sdk/data'
 import { useContractorAuth } from 'sdk'
+import DashboardRoundedIcon from '@mui/icons-material/DashboardRounded'
 import Link from 'next/link'
 export const Navbar = () => {
 	const [menuRefs, dispatchMenuRefs] = useReducer((p: any, n: any) => ({ ...p, ...n }), {})
@@ -133,7 +134,20 @@ export const Navbar = () => {
 											</Box>
 										</Stack>
 										{user ? (
-											''
+											<Button
+												variant='contained'
+												startIcon={<DashboardRoundedIcon />}
+												sx={(theme) => ({
+													fontWeight: 700,
+													color: primary.properDark,
+													whiteSpace: 'nowrap',
+													borderRadius: '20px !important',
+													mx: 2,
+													mt: 5,
+												})}
+												href={'/dashboard'}>
+												Dashboard
+											</Button>
 										) : (
 											<>
 												<LinkButton
@@ -208,22 +222,9 @@ export const Navbar = () => {
 												</Stack>
 											</ListItemText>
 										</ListItem> */}
-										<Stack direction={'column'} spacing={3} px={2.4} mt={'30px'}>
+										<Stack direction={'column'} spacing={4} px={2.4} mt={'40px'}>
 											<Stack direction={'row'} spacing={1}>
-												<Box height={23.5} width={23.5}>
-													<img
-														height={'100%'}
-														width={'100%'}
-														src='/assets/icons/mail.svg'
-														alt=''
-													/>
-												</Box>
-												<Typography variant='subtitle2' color={'#fff'} fontWeight={700}>
-													marketing@projecthero.in
-												</Typography>
-											</Stack>
-											<Stack direction={'row'} spacing={1}>
-												<Box height={23.5} width={23.5}>
+												<Box height={23} width={23}>
 													<img
 														height={'100%'}
 														width={'100%'}
