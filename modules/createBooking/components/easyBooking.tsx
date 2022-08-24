@@ -264,7 +264,7 @@ export const EasyBooking = () => {
 					})
 				}}
 				// visibleCloseIcon={step === 1}
-				visibleCloseIcon
+				visibleCloseIcon={false}
 				linkHeader={''}
 				link={`/projects/${router.query.projectId}/bookings`}
 			/>
