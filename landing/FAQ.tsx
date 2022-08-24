@@ -1,24 +1,72 @@
 import { HelpOutline } from '@mui/icons-material'
-import { Button, Grid, Stack, Theme, Typography, useMediaQuery } from '@mui/material'
+import { Box, Button, Grid, Stack, Theme, Typography, useMediaQuery } from '@mui/material'
+import Image from 'next/image'
 import { useRouter } from 'next/router'
-import { FC } from 'react'
-import { DataLayerPush, FAQPage, FAQTypes, LinkButton, Section } from 'sdk'
+import { FC, useState } from 'react'
+import { DataLayerPush, FAQCard, FAQPage, FAQTypes, FAQuestion, LinkButton, primary, Section, theme } from 'sdk'
 import { ContactUsSection } from './components'
+
 interface Props {}
+
+const faqCard = [
+	{
+		title: 'Booking Requirement',
+		detail: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. ',
+		id: '',
+	},
+	{
+		title: 'Payment and Pricing',
+		detail: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. ',
+		id: '1',
+	},
+	{
+		title: 'Hero Worker',
+		detail: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. ',
+		id: '1',
+	},
+	{
+		title: 'Contractor Dashboard',
+		detail: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. ',
+		id: '1',
+	},
+	{
+		title: 'Behind the Scenes',
+		detail: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. ',
+		id: '1',
+	},
+	{
+		title: 'Terms and Conditions',
+		detail: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. ',
+		id: '1',
+	},
+]
+
+const ListOfQuestion = [
+	'Booking Requirements',
+	'Payment and Pricing',
+	'Contractor Dashboard',
+	'Behind the Scenes',
+	'Terms and Conditions',
+]
+
 export const FAQ: FC<Props> = () => {
 	const router = useRouter()
-	const { bannerSection, faqSection } = FAQPage
-	const isMobile = useMediaQuery((theme: Theme) => theme.breakpoints.down('md'))
+	// const { bannerSection, faqSection } = FAQPage
+	// const isMobile = useMediaQuery((theme: Theme) => theme.breakpoints.down('md'))
 	return (
 		<>
-			<Section backgroundColor={bannerSection.backgroundColor}>
+			<Section
+				backgroundColor={primary.properDark}
+				sx={{
+					overflow: 'hidden',
+				}}>
 				<Stack
-					direction={{ xs: 'column', md: 'row' }}
+					direction={'row'}
 					alignItems='center'
 					justifyContent='center'
 					spacing={3}
-					py={4}>
-					<Stack>
+					minHeight={{ xs: 'calc( 100vh - 700px )', md: 'calc( 100vh - 430px )' }}>
+					{/* <Stack>
 						<Typography variant='h5' color='grey.A700'>
 							{bannerSection.subHeading}
 						</Typography>
@@ -36,10 +84,42 @@ export const FAQ: FC<Props> = () => {
 						variant='contained'
 						sx={{ px: 10, fontSize: 24 }}>
 						{bannerSection.bookWorker.label}
-					</LinkButton>
+					</LinkButton> */}
+					<Stack
+						direction={'column'}
+						width={'100%'}
+						alignItems={{ xs: 'flex-start', md: 'center' }}
+						spacing={{ xs: 1.5, md: 3.75 }}>
+						<Typography
+							fontSize={{ xs: '28px', md: '36px' }}
+							color={theme.palette.success.dark}
+							fontFamily={'Saira , sans-serif'}
+							fontWeight={500}
+							textAlign={{ xs: 'left', md: 'center' }}>
+							Frequently asked <br />
+							questions
+						</Typography>
+						<Typography
+							fontSize={{ md: '24px', xs: '16px' }}
+							color={'#fff'}
+							fontFamily={'Karla ,sans-serif'}
+							fontWeight={400}>
+							Have a question?
+						</Typography>
+					</Stack>
+					<Box
+						height={{ xs: '62px', md: '271px' }}
+						width={{ xs: '62px', md: '271px' }}
+						position={'relative'}
+						top={{ xs: '35px', md: '155px' }}
+						left={{
+							md: '40px',
+						}}>
+						<img width={'100%'} height={'100%'} src={'/assets/landingv2/faq.svg'} />
+					</Box>
 				</Stack>
 			</Section>
-			<Section>
+			{/* <Section>
 				<Grid container spacing={2}>
 					{faqSection.tabs?.map((item) => {
 						return (
@@ -103,8 +183,26 @@ export const FAQ: FC<Props> = () => {
 						})}
 					</Stack>
 				)}
-			</Section>
-			<ContactUsSection />
+			</Section> */}
+			{!router.query.step || router.query.step === '0' ? (
+				<Section backgroundColor='#fff'>
+					<Grid container spacing={3}>
+						{faqCard.map((info, index) => {
+							return (
+								<Grid key={info.id} item xs={12} md={3}>
+									<FAQCard title={info.title} detail={info.detail} />
+								</Grid>
+							)
+						})}
+					</Grid>
+				</Section>
+			) : (
+				<Section backgroundColor='#fff'>
+					<FAQuestion ListOfQuestion={ListOfQuestion} />
+				</Section>
+			)}
+
+			{/* <ContactUsSection /> */}
 		</>
 	)
 }
