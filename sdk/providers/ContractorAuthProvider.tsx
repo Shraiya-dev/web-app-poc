@@ -537,7 +537,12 @@ const ContractorAuthProvider: FC<ContractorAuthProviderProps> = ({ children, aut
 	// 	let value = router.query.bookingformStep ?? 0
 	// 	setActiveStepValue(value)
 	// }, [router])
-
+	useEffect(() => {
+		if (router.query.login) {
+			setIsDialogOpen(true)
+			delete router.query.login
+		}
+	}, [router.query.login])
 	const authProviderValue: AuthProviderValue = useMemo(
 		() => ({
 			...state,

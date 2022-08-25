@@ -84,13 +84,6 @@ axios.interceptors.response.use(
 	}
 )
 //=====================axios interceptor end=======================
-
-const domain = {
-	stage: 'https://stage-booking.projecthero.in',
-	dev: 'https://dev-booking.projecthero.in',
-	production: 'https://booking.projecthero.in',
-}
-
 function MyApp({ Component, pageProps }: AppProps) {
 	const router = useRouter()
 	const fullYearDays = 365
@@ -99,6 +92,24 @@ function MyApp({ Component, pageProps }: AppProps) {
 	useEffect(() => {
 		setPageData(pageStaticData)
 	}, [pageStaticData])
+	useEffect(() => {
+		let origin = window.location.origin
+		console.log(origin)
+		switch (true) {
+			case origin.includes('-booking'):
+				origin = origin.replace('-booking', '')
+				window.location.replace(origin + router.asPath)
+				break
+			case origin.includes('booking.'):
+				origin = origin.replace('booking.', '')
+				window.location.replace(origin + router.asPath)
+				break
+			default:
+				break
+		}
+		console.log(origin)
+	}, [router.asPath])
+
 	useEffect(() => {
 		if (router.isReady) {
 			const utmParams = router.asPath.includes('utm_')
