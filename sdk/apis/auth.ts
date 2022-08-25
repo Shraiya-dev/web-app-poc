@@ -48,7 +48,7 @@ export const logOutService = (login?: boolean) => {
 	localStorage.clear()
 
 	if (window.location.pathname !== `/`) {
-		window.location.href = `/${login ? 'login=true' : ''}`
+		window.location.href = `/?${login ? 'login=true' : ''}`
 	}
 }
 
