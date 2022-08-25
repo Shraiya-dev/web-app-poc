@@ -342,7 +342,7 @@ const ContractorAuthProvider: FC<ContractorAuthProviderProps> = ({ children, aut
 			const phoneNumber = localStorage.getItem('phoneNumber')
 			if (!(accessToken && refreshToken && phoneNumber)) {
 				if (PublicPages.includes(router.pathname)) return
-				logOutService()
+				logOutService(true)
 				return
 			}
 			try {
@@ -401,7 +401,7 @@ const ContractorAuthProvider: FC<ContractorAuthProviderProps> = ({ children, aut
 	useEffect(() => {
 		if (!(state.accessToken && state.refreshToken && state.phoneNumber)) {
 			if (PublicPages.includes(router.pathname)) return
-			logOutService()
+			logOutService(true)
 			return
 		}
 		if (

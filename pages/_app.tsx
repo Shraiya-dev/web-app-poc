@@ -69,16 +69,16 @@ axios.interceptors.response.use(
 					const { status, data } = await refreshTokenService(refreshToken, accessToken, USER_TYPE.CONTRACTOR)
 					if (!data?.success) {
 						Analytic.reset()
-						return logOutService()
+						return logOutService(true)
 					}
 
 					localStorage.setItem('accessToken', data.data.accessToken)
 					return window.location.reload()
 				} catch (error) {
-					return logOutService()
+					return logOutService(true)
 				}
 			}
-			return logOutService()
+			return logOutService(true)
 		}
 		return Promise.reject(error)
 	}
