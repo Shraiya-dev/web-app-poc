@@ -123,6 +123,17 @@ export const NewAnalyticsPage = (router: NextRouter) => {
 	const utmInfo = getUtmObject()
 	Analytic.page(name, { utmParams: utmInfo, deviceType: getDeviceType() })
 }
+//json helper to flatten data
+const flattenJSON = (obj: any = {}, res: any = {}, extraKey: any = '') => {
+	for (let key in obj) {
+		if (typeof obj[key] !== 'object') {
+			res[extraKey + key] = obj[key]
+		} else {
+			flattenJSON(obj[key], res, `${extraKey}${key}.`)
+		}
+	}
+	return res
+}
 //Define a new event here
 const EventTypes = {
 	BookWorker: 'Book Worker',
@@ -160,7 +171,7 @@ export const sendAnalytics = async (event: {
 	const { name, action, metaData } = event
 	const payload = {
 		action: ActionTypes[action],
-		metaData: metaData,
+		...flattenJSON(metaData),
 		page: getPageData().name,
 		url: document.location.pathname,
 		utmParams: utmInfo,
