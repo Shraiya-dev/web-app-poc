@@ -36,11 +36,11 @@ export function getCookie(cname: any) {
 export const createCookieInHour = (cookieName: any, cookieValue: any, daysToExpire?: any) => {
 	let date = new Date()
 	date.setTime(date.getTime() + daysToExpire * 24 * 60 * 60 * 1000)
-	let domain = 'projecthero.in'
-	if (process.env.NODE_ENV !== 'production') {
-		domain = 'localhost'
-	}
-	document.cookie = `${cookieName} = ${cookieValue}; Domain = ${domain}; expires = ${date.toUTCString()};`
+	// let domain = 'projecthero.in'
+	// if (process.env.NODE_ENV !== 'production') {
+	// 	domain = 'localhost'
+	// }
+	document.cookie = `${cookieName} = ${cookieValue};expires = ${date.toUTCString()};`
 }
 
 export function clearCookie() {
@@ -49,11 +49,11 @@ export function clearCookie() {
 	})
 }
 export const deleteCookie = (name: string) => {
-	let domain = 'projecthero.in'
-	if (process.env.NODE_ENV !== 'production') {
-		domain = 'localhost'
-	}
-	document.cookie = `${name}=; Path=/;Domain = ${domain}; expires=${new Date().toUTCString()};`
+	// let domain = 'projecthero.in'
+	// if (process.env.NODE_ENV !== 'production') {
+	// 	domain = 'localhost'
+	// }
+	document.cookie = `${name}=; Path=/; expires=${new Date().toUTCString()};`
 }
 
 export const getUtmObject = (): any | undefined => {

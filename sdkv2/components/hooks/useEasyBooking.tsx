@@ -1,6 +1,6 @@
-import { useFormik } from 'formik'
+import { FormikHelpers, useFormik } from 'formik'
 import { useRouter } from 'next/router'
-import { useEffect } from 'react'
+import { useCallback, useEffect } from 'react'
 import { createCookieInHour, DataLayerPush, getCookie, sendAnalytics } from 'sdk/analytics'
 import { useFormikProps } from 'sdk/hooks'
 import { useContractorAuth } from 'sdk/providers'
@@ -9,34 +9,38 @@ export const useEasyBooking = () => {
 	const router = useRouter()
 	const { openLoginDialog, user } = useContractorAuth()
 
-	const handleSubmit = async (values: any) => {
-		DataLayerPush({
-			event: 'booking_requirement',
-			helperWage: values.helperWage,
-			technicianWage: values.technicianWage,
-			supervisorWage: values.supervisorWage,
-		})
-		sendAnalytics({
-			name: 'CreateEasyBookWorker',
-			action: 'ButtonClick',
-			metaData: {
-				step: 'Submit Requirements',
-				values: values,
-			},
-		})
-		debugger
-		createCookieInHour(
-			'discoveryBooking',
-			JSON.stringify({
-				...values,
-				city: values.location.split(', ')[0],
-				state: values.location.split(', ')[1],
-			}),
-			45
-		)
-		router.push({ pathname: '/', query: { bookingFromStep: 2 } })
-		openLoginDialog()
-	}
+	const handleSubmit = useCallback(
+		async (values: any, fh: any) => {
+			DataLayerPush({
+				event: 'booking_requirement',
+				helperWage: values.helperWage,
+				technicianWage: values.technicianWage,
+				supervisorWage: values.supervisorWage,
+			})
+			sendAnalytics({
+				name: 'CreateEasyBookWorker',
+				action: 'ButtonClick',
+				metaData: {
+					step: 'Submit Requirements',
+					values: values,
+				},
+			})
+			createCookieInHour(
+				'discoveryBooking',
+				JSON.stringify({
+					...values,
+					city: values.location.split(', ')[0],
+					state: values.location.split(', ')[1],
+				}),
+				45
+			)
+			openLoginDialog()
+			fh.resetForm()
+			router.push({ pathname: '/', query: { bookingFromStep: 2 } })
+		},
+		[openLoginDialog, router]
+	)
+
 	const form = useFormik({
 		initialValues: {
 			location: '',
@@ -83,9 +87,7 @@ export const useEasyBooking = () => {
 			}),
 		}),
 
-		onSubmit: (values) => {
-			handleSubmit(values)
-		},
+		onSubmit: handleSubmit,
 	})
 	useEffect(() => {
 		try {

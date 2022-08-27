@@ -39,6 +39,7 @@ import { useSnackbar } from './SnackbarProvider'
 import { LoginForm } from 'modules/auth/login/components/LoginForm'
 import { OTPVerification } from 'modules/auth/otp/components/OtpVerification'
 import BookingStepper from 'sdkv2/components/EasyBookingStepper/BookingStepper'
+import { User } from '@segment/analytics-next'
 const LoadingUniqueString = 'loading...'
 interface AuthState {
 	user: null | CustomerDetails
@@ -419,7 +420,6 @@ const ContractorAuthProvider: FC<ContractorAuthProviderProps> = ({ children, aut
 		const timer = setInterval(getContactorUserInfo, 300000)
 		return () => clearInterval(timer)
 	}, [])
-
 	const createEasyBooking = useCallback(
 		async (bookingDetails) => {
 			try {
@@ -452,14 +452,14 @@ const ContractorAuthProvider: FC<ContractorAuthProviderProps> = ({ children, aut
 				}
 				const { data, status } = await axios.post('/gateway/customer-api/projects/bookings', payload)
 				deleteCookie('discoveryBooking')
-
+				await getContactorUserInfo()
 				router.push(`/bookings/${data.payload.projectId}/${data.payload.bookingId}/checkout`)
 			} catch (error) {
 				showSnackbar('Failed to create easy booking', 'error')
 			}
 			setBackdropProps({ open: false })
 		},
-		[router, showSnackbar]
+		[getContactorUserInfo, router, showSnackbar]
 	)
 
 	useEffect(() => {
