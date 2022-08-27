@@ -532,6 +532,11 @@ const ContractorAuthProvider: FC<ContractorAuthProviderProps> = ({ children, aut
 	const openLoginDialog = useCallback(() => {
 		if (!state.user) setIsDialogOpen(!isDialogOpen)
 	}, [isDialogOpen, state.user])
+	useEffect(() => {
+		if (state.user) {
+			setIsDialogOpen(false)
+		}
+	}, [state.user])
 
 	// const handleActiveStepValue = useCallback(() => {
 	// 	let value = router.query.bookingformStep ?? 0

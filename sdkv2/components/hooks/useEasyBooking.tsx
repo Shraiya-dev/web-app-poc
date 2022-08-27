@@ -24,6 +24,7 @@ export const useEasyBooking = () => {
 				values: values,
 			},
 		})
+		debugger
 		createCookieInHour(
 			'discoveryBooking',
 			JSON.stringify({
@@ -33,7 +34,7 @@ export const useEasyBooking = () => {
 			}),
 			45
 		)
-		router.push({ pathname: '', query: { bookingFromStep: 2 } })
+		router.push({ pathname: '/', query: { bookingFromStep: 2 } })
 		openLoginDialog()
 	}
 	const form = useFormik({
