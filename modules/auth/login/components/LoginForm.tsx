@@ -51,17 +51,7 @@ export const LoginForm = ({ ...props }) => {
 		if (status === 'success') {
 			setIsOtpSent(true)
 		}
-	}, [form, status])
-
-	// useEffect(() => {
-	// 	if (loading) {
-	// 		router.push({
-	// 			pathname: '',
-	// 			query: { bookingFromStep: 3 },
-	// 		})
-	// 	}
-	// }, [loading, router])
-
+	}, [form, setIsOtpSent, status])
 	useEffect(() => {
 		if (!!getCookie('discoveryBooking')) setIsDiscoveryBooking(true)
 		else setIsDiscoveryBooking(false)

@@ -85,15 +85,10 @@ const useOtp = () => {
 									: 'organic_otp_verification',
 								phoneNumber: '+91' + phoneNumber,
 							})
-							setLoading(false)
-							if (!!getCookie('discoveryBooking')) {
-								router.push({
-									pathname: '',
-									query: { bookingFromStep: 3 },
-								})
-							} else {
+							if (!discoveryBookingFromCookie) {
 								router.push('/dashboard')
 							}
+							setLoading(false)
 						} else {
 							setOtpState((prevValues: any) => ({
 								...prevValues,
@@ -105,7 +100,6 @@ const useOtp = () => {
 								setLoading(false)
 							}, 500)
 						}
-						openLoginDialog()
 					})
 					.catch((err) => {
 						console.log('error', error)

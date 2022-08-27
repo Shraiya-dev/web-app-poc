@@ -52,7 +52,6 @@ export const CreateBookingCard: FC<Props> = () => {
 	const [activeStepValue, setActiveStepValue] = useState<number>(0)
 
 	useEffect(() => {
-		console.log(activeStepValue)
 		setActiveStepValue(Number(!!router?.query?.bookingFromStep) ? Number(router?.query?.bookingFromStep) : 0)
 		if (Number(router?.query?.bookingFromStep) === 0) {
 			setStep(0)
