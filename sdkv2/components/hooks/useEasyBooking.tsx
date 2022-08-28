@@ -105,7 +105,7 @@ export const useEasyBooking = () => {
 				location: `${a.city}, ${a.state}`,
 			})
 		} catch (error) {}
-	}, [router])
+	}, [])
 	useEffect(() => {
 		const discoveryBookingFromCookie = () => {
 			try {

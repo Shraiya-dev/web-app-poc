@@ -1,4 +1,4 @@
-import { KeyboardReturn } from '@mui/icons-material'
+import { FemaleSharp, KeyboardReturn } from '@mui/icons-material'
 import {
 	Backdrop,
 	CircularProgress,
@@ -66,6 +66,7 @@ interface AuthProviderValue extends AuthState {
 	createEasyBooking: (bookingDetails: any) => Promise<any>
 	verifyEmailOtp: (payload: emailOtpPayload) => Promise<any>
 	openLoginDialog: () => any
+	setBackdropProps: any
 }
 
 const simpleReducer = (state: AuthState, payload: Partial<AuthState>) => ({
@@ -100,6 +101,7 @@ const ContractorAuthContext = createContext<AuthProviderValue>({
 	createEasyBooking: () => Promise.resolve(null),
 	verifyEmailOtp: () => Promise.resolve(null),
 	openLoginDialog: () => null,
+	setBackdropProps: () => null,
 })
 const { Provider, Consumer } = ContractorAuthContext
 
@@ -453,11 +455,10 @@ const ContractorAuthProvider: FC<ContractorAuthProviderProps> = ({ children, aut
 				const { data, status } = await axios.post('/gateway/customer-api/projects/bookings', payload)
 				deleteCookie('discoveryBooking')
 				await getContactorUserInfo()
-				router.push(`/bookings/${data.payload.projectId}/${data.payload.bookingId}/checkout`)
+				router.push(`/bookings/${data.payload.projectId}/${data.payload.bookingId}/checkout`, undefined, {})
 			} catch (error) {
 				showSnackbar('Failed to create easy booking', 'error')
 			}
-			setBackdropProps({ open: false })
 		},
 		[getContactorUserInfo, router, showSnackbar]
 	)
@@ -551,6 +552,7 @@ const ContractorAuthProvider: FC<ContractorAuthProviderProps> = ({ children, aut
 	const authProviderValue: AuthProviderValue = useMemo(
 		() => ({
 			...state,
+			setBackdropProps: setBackdropProps,
 			requestOtp: requestOtp,
 			verifyOtp: verifyOtp,
 			logOut: logOutService,
@@ -565,6 +567,7 @@ const ContractorAuthProvider: FC<ContractorAuthProviderProps> = ({ children, aut
 		}),
 		[
 			state,
+			setBackdropProps,
 			requestOtp,
 			verifyOtp,
 			getContactorUserInfo,

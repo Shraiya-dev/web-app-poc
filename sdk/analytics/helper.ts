@@ -53,7 +53,7 @@ export const deleteCookie = (name: string) => {
 	// if (process.env.NODE_ENV !== 'production') {
 	// 	domain = 'localhost'
 	// }
-	document.cookie = `${name}=; Path=/; expires=${new Date().toUTCString()};`
+	document.cookie = `${name}=; expires=${new Date().toUTCString()};`
 }
 
 export const getUtmObject = (): any | undefined => {

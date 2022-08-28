@@ -60,7 +60,7 @@ export const CreateBookingCard: FC<Props> = () => {
 		} else {
 			setStep(0)
 		}
-	}, [router, step, activeStepValue])
+	}, [router.query, step, activeStepValue])
 
 	// const [wageDisable, setWageDisable] = useState({
 	// 	helperWage: false,
