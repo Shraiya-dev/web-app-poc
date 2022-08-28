@@ -7,15 +7,16 @@ import { useRouter } from 'next/router'
 interface Props {
 	title: string
 	detail: string
+	id: string
 }
 
-export const FAQCard: FC<Props> = ({ title, detail }: Props) => {
+export const FAQCard: FC<Props> = ({ title, detail, id }: Props) => {
 	const router = useRouter()
 
 	const handleStep = useCallback(() => {
 		router.replace({
 			pathname: '/faq',
-			query: { step: 1 },
+			query: { step: 1, id: id },
 		})
 	}, [router])
 

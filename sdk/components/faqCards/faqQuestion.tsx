@@ -8,9 +8,11 @@ import {
 	ListItem,
 	Paper,
 	Stack,
+	Tab,
 	Table,
 	TableCell,
 	TableRow,
+	Tabs,
 	Typography,
 } from '@mui/material'
 import Image from 'next/image'
@@ -19,6 +21,7 @@ import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace'
 import { useRouter } from 'next/router'
 import AddIcon from '@mui/icons-material/Add'
 import RemoveIcon from '@mui/icons-material/Remove'
+import { primary, theme } from 'sdk/constants'
 
 interface Props {
 	ListOfQuestion: any
@@ -30,30 +33,26 @@ const questions = [
 		answer: 'Vitae congue eu consequat ac felis placerat vestibulum lectus mauris ultrices. Cursus sit amet dictum sit amet justo donec enim diam porttitor lacus luctus accumsan tortor posuere.',
 	},
 	{
-		question: 'How to book workers?',
+		question: 'What are the types of plans for bookings?',
 		answer: 'Vitae congue eu consequat ac felis placerat vestibulum lectus mauris ultrices. Cursus sit amet dictum sit amet justo donec enim diam porttitor lacus luctus accumsan tortor posuere.',
 	},
 	{
-		question: 'How to book workers?',
+		question: 'How workers are hired?',
 		answer: 'Vitae congue eu consequat ac felis placerat vestibulum lectus mauris ultrices. Cursus sit amet dictum sit amet justo donec enim diam porttitor lacus luctus accumsan tortor posuere.',
 	},
 	{
-		question: 'How to book workers?',
+		question: 'What will be the wages?',
 		answer: 'Vitae congue eu consequat ac felis placerat vestibulum lectus mauris ultrices. Cursus sit amet dictum sit amet justo donec enim diam porttitor lacus luctus accumsan tortor posuere.',
 	},
 	{
-		question: 'How to book workers?',
-		answer: 'Vitae congue eu consequat ac felis placerat vestibulum lectus mauris ultrices. Cursus sit amet dictum sit amet justo donec enim diam porttitor lacus luctus accumsan tortor posuere.',
-	},
-	{
-		question: 'How to book workers?',
+		question: 'Will i get full support?',
 		answer: 'Vitae congue eu consequat ac felis placerat vestibulum lectus mauris ultrices. Cursus sit amet dictum sit amet justo donec enim diam porttitor lacus luctus accumsan tortor posuere.',
 	},
 ]
 
 export const FAQuestion: FC<Props> = ({ ListOfQuestion }: Props) => {
 	const router = useRouter()
-	const [open, setOpen] = useState<boolean>(false)
+	const [collapseOpen, setCollapseOpen] = useState<string>(`${router.query.id}` ?? '0')
 
 	const handleStep = useCallback(() => {
 		router.replace({
@@ -76,7 +75,7 @@ export const FAQuestion: FC<Props> = ({ ListOfQuestion }: Props) => {
 					Go Back
 				</Button>
 			</Stack>
-			<Stack direction={'row'} spacing={6}>
+			<Stack direction={'row'} spacing={{ xs: 0, md: 6 }}>
 				<Paper
 					elevation={5}
 					sx={{
@@ -87,7 +86,7 @@ export const FAQuestion: FC<Props> = ({ ListOfQuestion }: Props) => {
 						px: 1,
 						display: { xs: 'none', md: 'inline-flex' },
 					}}>
-					<List>
+					<Stack>
 						<ListItem>
 							<Typography
 								variant='h4'
@@ -98,20 +97,40 @@ export const FAQuestion: FC<Props> = ({ ListOfQuestion }: Props) => {
 								Table of contents
 							</Typography>
 						</ListItem>
-						{ListOfQuestion.map((question: any, index: any) => {
-							return (
-								<ListItem key={index}>
-									<Typography
-										variant='h5'
-										fontFamily={'Karla,sans-serif'}
-										fontWeight={500}
-										textAlign={'start'}>
-										{question}
-									</Typography>
-								</ListItem>
-							)
-						})}
-					</List>
+						<Stack direction={'column'} sx={{ width: '100%' }}>
+							{ListOfQuestion.map((question: any, index: number) => {
+								return (
+									<Box
+										sx={{
+											backgroundColor:
+												collapseOpen === '' + index
+													? theme.palette.primary.main
+													: 'transparent',
+											borderRadius: '16px',
+											width: '100%',
+											color: '#000 !important ',
+										}}
+										key={index}
+										onClick={() => {
+											setCollapseOpen('' + index)
+											router.replace({
+												pathname: '/faq',
+												query: { step: 1, id: '' + index },
+											})
+										}}>
+										<Tab
+											label={question}
+											sx={{
+												fontSize: '16px',
+												fontWeight: '700',
+												fontFamily: 'Karla , sans-serif',
+											}}
+										/>
+									</Box>
+								)
+							})}
+						</Stack>
+					</Stack>
 				</Paper>
 				<Box>
 					{questions?.map((value, index) => {
@@ -122,8 +141,8 @@ export const FAQuestion: FC<Props> = ({ ListOfQuestion }: Props) => {
 										<Typography variant='h3' fontFamily={'Saira,sans-serif'} fontWeight={400}>
 											{value.question}
 										</Typography>
-										<IconButton onClick={() => setOpen(!open)}>
-											{!open ? (
+										<IconButton onClick={() => setCollapseOpen('' + index)}>
+											{!(collapseOpen === '' + index) ? (
 												<AddIcon
 													sx={{
 														color: '#e58a51',
@@ -138,7 +157,7 @@ export const FAQuestion: FC<Props> = ({ ListOfQuestion }: Props) => {
 											)}
 										</IconButton>
 									</Stack>
-									<Collapse in={open}>
+									<Collapse in={collapseOpen === '' + index}>
 										<Typography variant='h4' fontFamily={'Karla,sans-serif'} fontWeight={400}>
 											{value.answer}
 										</Typography>

@@ -12,7 +12,7 @@ const faqCard = [
 	{
 		title: 'Booking Requirement',
 		detail: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. ',
-		id: '',
+		id: '0',
 	},
 	{
 		title: 'Payment and Pricing',
@@ -22,23 +22,23 @@ const faqCard = [
 	{
 		title: 'Hero Worker',
 		detail: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. ',
-		id: '1',
+		id: '2',
 	},
 	{
 		title: 'Contractor Dashboard',
 		detail: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. ',
-		id: '1',
+		id: '3',
 	},
 	{
 		title: 'Behind the Scenes',
 		detail: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. ',
-		id: '1',
+		id: '4',
 	},
-	{
-		title: 'Terms and Conditions',
-		detail: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. ',
-		id: '1',
-	},
+	// {
+	// 	title: 'Terms and Conditions',
+	// 	detail: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. ',
+	// 	id: '5',
+	// },
 ]
 
 const ListOfQuestion = [
@@ -59,6 +59,7 @@ export const FAQ: FC<Props> = () => {
 				backgroundColor={primary.properDark}
 				sx={{
 					overflow: 'hidden',
+					backgroundImage: '/assets/landingv2/faq.svg',
 				}}>
 				<Stack
 					direction={'row'}
@@ -190,7 +191,7 @@ export const FAQ: FC<Props> = () => {
 						{faqCard.map((info, index) => {
 							return (
 								<Grid key={info.id} item xs={12} md={3}>
-									<FAQCard title={info.title} detail={info.detail} />
+									<FAQCard id={info.id} title={info.title} detail={info.detail} />
 								</Grid>
 							)
 						})}

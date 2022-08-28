@@ -1,9 +1,11 @@
-import { Button, Grid, Paper, Stack, styled, Typography } from '@mui/material'
+import { Button, Grid, LinearProgress, Paper, Slider, Stack, styled, Typography } from '@mui/material'
 import { Box } from '@mui/system'
 import Image from 'next/image'
-import React from 'react'
+import React, { createRef, useState } from 'react'
 import { FC } from 'react'
 import { Section, theme } from 'sdk'
+import { CarouselHowItWork } from 'sdkv2/components'
+import AcUnitIcon from '@mui/icons-material/AcUnit'
 
 interface Props {}
 
@@ -15,6 +17,54 @@ const CustomHowItWorksStyle = styled(Box)(({ theme }) => ({
 		fontFamily: 'Karla ,sans-serif',
 	},
 }))
+
+const CarouselData = [
+	{
+		index: '01',
+		title: 'Booking Received',
+		details:
+			'Quickly fill-in booking details such as Target applications required, location, project duration etc.',
+		imgSrc: '/assets/landingv2/icons/booking.svg',
+		bgColor: '#383838',
+	},
+	{
+		index: '02',
+		title: 'Pay Per Target Application',
+		details:
+			'After giving details, please pay a nominal amount of Rs 50 per target application. First 15 target applications are completely free!',
+		imgSrc: '/assets/landingv2/icons/like.svg',
+		bgColor: '',
+	},
+	{
+		index: '03',
+		title: 'Payment Done',
+		details: 'Your booking automatically goes live as soon as you complete payment for the booking',
+		imgSrc: '/assets/landingv2/icons/layer.svg',
+		bgColor: '',
+	},
+	{
+		index: '04',
+		title: 'Booking Goes Live',
+		details: 'Congratulations! Your booking has gone live. Heroes start checking out your booking on our Hero App.',
+		imgSrc: '/assets/landingv2/icons/Helmet.svg',
+		bgColor: '',
+	},
+	{
+		index: '05',
+		title: 'Heroes Start Applying',
+		details:
+			'Once your booking goes live, you start receiving Hero applications. You can get phone numbers and other details about the Heroes on our contractor web-app.',
+		imgSrc: '/assets/landingv2/icons/Helmet.svg',
+		bgColor: '',
+	},
+	{
+		index: '06',
+		title: 'Call & Hire Heroes	',
+		details: 'Call, negotiate and hire workers for your construction workforce.',
+		imgSrc: '/assets/landingv2/icons/hook.svg',
+		bgColor: '',
+	},
+]
 
 const AnalyticsData = [
 	{
@@ -54,6 +104,9 @@ const profileDescription = [
 ]
 
 export const HowItWorks: FC<Props> = () => {
+	const rootRef = createRef()
+	const [height, setHeight] = useState<string>('01')
+
 	return (
 		<CustomHowItWorksStyle>
 			<Section
@@ -95,18 +148,23 @@ export const HowItWorks: FC<Props> = () => {
 						<Button size='large'>Book Worker Now</Button>
 					</Stack>
 					<Paper
-						elevation={10}
+						elevation={0}
 						sx={{
 							maxWidth: '800px',
 							width: { xs: '90%', sm: '80%', md: '55%' },
 							aspectRatio: '2 / 1',
-							p: 2,
 						}}>
-						Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint quia totam vitae eveniet
-						asperiores, rem deserunt ipsum. Hic eos animi, recusandae nisi, ullam neque magni aliquam maxime
-						numquam, dolor odio. Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum, doloremque!
-						Natus quibusdam mollitia impedit quia ipsum reiciendis, rem nisi voluptatibus, cum officia, vero
-						voluptas velit pariatur a corrupti facilis neque!
+						<iframe
+							src='https://storage.googleapis.com/ph-assets/project/ProjectHero_V2_How_it_works.mp4'
+							width='100%'
+							height='100%'
+							allow={'autoplay'}
+							allowFullScreen
+							style={{
+								borderRadius: '16px',
+								aspectRatio: '2 / 1',
+								border: '0px solid #000 ',
+							}}></iframe>
 					</Paper>
 				</Stack>
 			</Section>
@@ -192,7 +250,140 @@ export const HowItWorks: FC<Props> = () => {
 					})}
 				</Grid>
 			</Section>
-			<Section></Section>
+			<Section sx={{ minHeight: '659px' }}>
+				<Stack direction={'column'} spacing={3}>
+					<Box>
+						<Typography
+							fontSize={{ md: '36px', xs: '24px' }}
+							fontFamily={' Saira,sans-serif'}
+							fontWeight={600}>
+							Booking Process
+						</Typography>
+						<Typography
+							fontSize={{ xs: '12px', md: '20px' }}
+							fontFamily={'Karla , sans-serif'}
+							fontWeight={400}>
+							Book workers in by following these steps
+						</Typography>
+					</Box>
+					<Box
+						width={'50%'}
+						sx={{
+							display: { xs: 'inline-block', md: 'none' },
+						}}>
+						<Button fullWidth size={'large'} sx={{ height: '60px' }}>
+							Book Workers Now
+						</Button>
+					</Box>
+
+					{/* <Stack ref={rootRef} height={Number(height) * 150} overflow={'auto'}>
+						{CarouselData?.map(({ index, title, details }) => (
+							<CarouselHowItWork
+								key={index}
+								handleSlide={(a) => {
+									setHeight(a)
+									console.log(a)
+								}}
+								root={rootRef}
+								val={index}
+								slide={height}>
+								<Stack height={150}>
+									{title}
+									<br />
+									{details}
+								</Stack>
+							</CarouselHowItWork>
+						))}
+					</Stack> */}
+
+					<Stack direction={'row'} spacing={{ md: 6, xs: 0 }} position='relative'>
+						<Box height={{ md: 1200, xs: 870 }}>
+							<Slider
+								isRtl={true}
+								orientation='vertical'
+								defaultValue={30}
+								sx={{
+									color: '#77cfb5',
+									// transform: 'rotate(180deg)',
+									'& .MuiSlider-thumb': {
+										backgroundImage: `url(/assets/landingv2/hat.svg)`,
+										backgroundSize: 'cover',
+										width: { md: 60, xs: 40 },
+										height: { md: 60, xs: 40 },
+									},
+								}}
+							/>
+						</Box>
+						<Stack direction={'column'} spacing={{ md: 4, xs: 2 }}>
+							{CarouselData.map((val, index) => (
+								<Paper
+									elevation={0}
+									key={index}
+									sx={{
+										p: { md: 4, xs: 2 },
+										background: val.bgColor !== '' ? val.bgColor : 'transparent',
+									}}>
+									<Stack direction={'row'} spacing={3}>
+										<Stack
+											direction={'row'}
+											justifyContent={'center'}
+											alignItems={'center'}
+											sx={{
+												minHeight: { md: '100px', xs: '56px' },
+												minWidth: { md: '100px', xs: '56px' },
+												maxHeight: { md: '100px', xs: '56px' },
+												maxWidth: { md: '100px', xs: '56px' },
+												borderRadius: '50%',
+												background: '#fdf6dd',
+											}}>
+											<Box
+												sx={{
+													minHeight: { md: '56px', xs: '34px' },
+													minWidth: { md: '56px', xs: '34px' },
+													maxHeight: { md: '56px', xs: '34px' },
+													maxWidth: { md: '56px', xs: '34px' },
+												}}>
+												<Image src={val.imgSrc} height={'100%'} width={'100%'} />
+											</Box>
+										</Stack>
+										<Stack direction={'column'}>
+											<Typography
+												fontSize={{ xs: '14px', md: '24px' }}
+												fontFamily={'Saira,sans-serif'}
+												fontWeight={700}
+												sx={{
+													color: val.bgColor !== '' ? theme.palette.primary.main : '#000',
+												}}>
+												0{index + 1}
+											</Typography>
+											<Box>
+												<Typography
+													fontSize={{ xs: '14px', md: '24px' }}
+													fontFamily={'Saira,sans-serif'}
+													fontWeight={500}
+													sx={{
+														color: val.bgColor !== '' ? '#fff' : '#000',
+													}}>
+													{val.title}
+												</Typography>
+												<Typography
+													fontSize={{ xs: '12px', md: '20px' }}
+													fontFamily={'Karla,sans-serif'}
+													fontWeight={400}
+													sx={{
+														color: val.bgColor !== '' ? '#fff' : '#000',
+													}}>
+													{val.details}
+												</Typography>
+											</Box>
+										</Stack>
+									</Stack>
+								</Paper>
+							))}
+						</Stack>
+					</Stack>
+				</Stack>
+			</Section>
 		</CustomHowItWorksStyle>
 	)
 }

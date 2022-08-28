@@ -4,18 +4,17 @@ import { Box, Button, CircularProgress, Stack, styled, Typography } from '@mui/m
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import OtpInput from 'react-otp-input'
-import { getCookie, primary, useContractorAuth } from 'sdk'
+import { getCookie, primary, useContractorAuth, useMobile } from 'sdk'
 import BookingStepper from 'sdkv2/components/EasyBookingStepper/BookingStepper'
 import { ButtonClicked } from '../../../../sdk/analytics/analyticsWrapper'
 import useOtp from '../hooks/useOtp'
 
 const CustomOTPStyles = styled(Box)(({ theme }) => ({
-	// maxHeight: '262px',
 	display: 'flex',
 	justifyContent: 'center',
 
 	'.headerInfo': {
-		paddingBottom: { xs: 0, md: 16 },
+		paddingBottom: { xs: 4, md: 16 },
 		fontSize: 30,
 		textAlign: 'center',
 		fontWeight: 700,
@@ -24,7 +23,7 @@ const CustomOTPStyles = styled(Box)(({ theme }) => ({
 	},
 	'.subHeader': {
 		//cursor: 'pointer',
-		marginTop: { xs: 0, md: 16 },
+		marginTop: { xs: 2, md: 16 },
 		//marginBottom: 10,
 		//marginRight: 15,
 		textAlign: 'center',
@@ -68,7 +67,7 @@ export const OTPVerification = ({ ...props }) => {
 		})
 		setIsOtpSent(false)
 	}
-
+	const isMobile = useMobile()
 	useEffect(() => {
 		if (!!getCookie('discoveryBooking')) setIsDiscoveryBooking(true)
 		else setIsDiscoveryBooking(false)
@@ -76,18 +75,27 @@ export const OTPVerification = ({ ...props }) => {
 
 	return (
 		<CustomOTPStyles>
-			<form onSubmit={form.handleSubmit}>
+			<form
+				onSubmit={form.handleSubmit}
+				style={{
+					width: '100%',
+					padding: !isMobile ? '0px 8px' : '0px 12px',
+				}}>
 				<Typography className='headerInfo'>Verify Mobile</Typography>
 
 				{!!isDiscoveryBooking ? (
 					<>
-						<BookingStepper />
+						<BookingStepper isLogin={true} />
 					</>
 				) : (
 					''
 				)}
 
-				<Typography className='subInfo'>
+				<Typography
+					className='subInfo'
+					sx={{
+						my: 2,
+					}}>
 					Enter <span style={{ fontWeight: 900 }}>OTP</span> sent to your mobile number
 					<br /> <strong style={{ fontWeight: 900 }}>{phoneNumber}</strong>
 				</Typography>
@@ -99,13 +107,13 @@ export const OTPVerification = ({ ...props }) => {
 					inputStyle={{
 						//marginTop: 20,
 						borderRadius: '4px',
-						width: '2.8em',
-						height: '3.2em',
+						width: isMobile ? '36px' : '40px',
+						height: isMobile ? '36px' : '40px',
 						border: '1px solid #000',
 						display: 'flex',
 						justifyContent: 'center',
 						'& :hover': {
-							background: 'red !important',
+							background: 'yellow !important',
 						},
 					}}
 					shouldAutoFocus={true}

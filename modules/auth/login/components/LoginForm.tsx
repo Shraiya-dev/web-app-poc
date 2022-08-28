@@ -5,7 +5,7 @@ import { useRouter } from 'next/router'
 import { useEffect, useMemo, useState } from 'react'
 import { InputWrapper } from 'sdkv2/components'
 import BookingStepper from 'sdkv2/components/EasyBookingStepper/BookingStepper'
-import { checkError, getCookie, primary } from '../../../../sdk'
+import { checkError, getCookie, primary, useMobile } from '../../../../sdk'
 import { PhoneField } from '../../../../sdk/components/Input/PhoneField'
 import useLogin from '../hooks/useLogin'
 
@@ -44,6 +44,7 @@ export const LoginForm = ({ ...props }) => {
 	const { form, loading, error, isRegister, handleLogin, status } = useLogin()
 	const { isOtpSent, setIsOtpSent, fromHome } = props
 	const [isDiscoveryBooking, setIsDiscoveryBooking] = useState<boolean>(false)
+	const isMobile = useMobile()
 
 	const router = useRouter()
 
@@ -53,15 +54,6 @@ export const LoginForm = ({ ...props }) => {
 		}
 	}, [form, status])
 
-	// useEffect(() => {
-	// 	if (loading) {
-	// 		router.push({
-	// 			pathname: '',
-	// 			query: { bookingFromStep: 3 },
-	// 		})
-	// 	}
-	// }, [loading, router])
-
 	useEffect(() => {
 		if (!!getCookie('discoveryBooking')) setIsDiscoveryBooking(true)
 		else setIsDiscoveryBooking(false)
@@ -70,7 +62,7 @@ export const LoginForm = ({ ...props }) => {
 	return (
 		<form onSubmit={form.handleSubmit}>
 			<CustomLoginStyles>
-				<Stack spacing={1.5} width='100%' px={1.06} mb={'15px'}>
+				<Stack spacing={1.5} width='100%' px={1.5} mb={'15px'}>
 					{!!fromHome ? (
 						<Typography
 							variant='h1'
@@ -100,7 +92,7 @@ export const LoginForm = ({ ...props }) => {
 
 					{!!isDiscoveryBooking ? (
 						<>
-							<BookingStepper />
+							<BookingStepper isLogin={true} />
 						</>
 					) : (
 						''
@@ -130,13 +122,11 @@ export const LoginForm = ({ ...props }) => {
 									overflow: 'hidden',
 								},
 							}}
-							// InputProps={{
-							// 	startAdornment: <InputAdornment position='start'>+91</InputAdornment>,
-							// }}
 							value={form.values.phoneNumber}
 							onChange={form.handleChange}
 						/>
 					</InputWrapper>
+
 					{/* <FormControlLabel
 						control={<Checkbox defaultChecked />}
 						label='Send me whatsapp updates'
@@ -149,9 +139,17 @@ export const LoginForm = ({ ...props }) => {
 							},
 						}}
 					/> */}
-					<LoadingButton fullWidth type='submit' loading={!!loading} variant='contained'>
-						{isRegister ? 'Register' : 'Login'}
-					</LoadingButton>
+					<Stack
+						direction={'row'}
+						justifyContent={'center'}
+						alignItems={'center'}
+						sx={{
+							width: '100%',
+						}}>
+						<LoadingButton fullWidth type='submit' loading={!!loading} variant='contained'>
+							{isRegister ? 'Register' : 'Login'}
+						</LoadingButton>
+					</Stack>
 
 					<Stack className='register' direction={'row'} style={{ cursor: 'pointer' }}>
 						<Typography color={primary?.properDark}>

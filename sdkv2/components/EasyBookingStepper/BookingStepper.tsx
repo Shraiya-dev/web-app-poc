@@ -1,35 +1,56 @@
 import { Stack, Step, StepLabel, Stepper } from '@mui/material'
 import React, { useEffect, useState } from 'react'
-import StepConnector, { stepConnectorClasses } from '@mui/material/StepConnector'
+import StepConnector, { stepConnectorClasses, StepConnectorProps } from '@mui/material/StepConnector'
 import { styled } from '@mui/material/styles'
 import { StepIconProps } from '@mui/material/StepIcon'
 import CheckCircleIcon from '@mui/icons-material/CheckCircle'
 import AdjustOutlinedIcon from '@mui/icons-material/AdjustOutlined'
 import RadioButtonUncheckedIcon from '@mui/icons-material/RadioButtonUnchecked'
 import { useRouter } from 'next/router'
+import { ThemeContext } from '@emotion/react'
+import { useMobile } from 'sdk/hooks'
 
-const QontoConnector = styled(StepConnector)(({ theme }) => ({
-	[`&.${stepConnectorClasses.alternativeLabel}`]: {
-		top: 10,
-		left: 'calc(-50% + 8px)',
-		right: 'calc(50% + 8px)',
-	},
-	[`&.${stepConnectorClasses.active}`]: {
-		[`& .${stepConnectorClasses.line}`]: {
-			borderColor: '#4db07f',
+interface StyledProps extends StepConnectorProps {
+	isLogin: boolean
+	isMobile: boolean
+}
+
+const QontoConnector = styled(StepConnector, { shouldForwardProp: ({ isLogin, isMobile }: any) => true })<StyledProps>(
+	({ theme, isLogin = false, isMobile = false }: any) => ({
+		[`&.${stepConnectorClasses.alternativeLabel}`]: {
+			top: 10,
+			left: !isMobile
+				? !isLogin
+					? 'calc(-83% + 8px)'
+					: 'calc(-80% + 8px)'
+				: !isLogin
+				? 'calc(-89% + 8px)'
+				: 'calc(-89% + 8px)',
+			right: !isMobile
+				? !isLogin
+					? 'calc(81% + 8px)'
+					: 'calc(79% + 8px)'
+				: !isLogin
+				? 'calc(86% + 8px)'
+				: 'calc(86% + 8px)',
 		},
-	},
-	[`&.${stepConnectorClasses.completed}`]: {
-		[`& .${stepConnectorClasses.line}`]: {
-			borderColor: '#4db07f',
+		[`&.${stepConnectorClasses.active}`]: {
+			[`& .${stepConnectorClasses.line}`]: {
+				borderColor: '#4db07f',
+			},
 		},
-	},
-	[`& .${stepConnectorClasses.line}`]: {
-		borderColor: theme.palette.mode === 'dark' ? theme.palette.grey[800] : '#4db07f',
-		borderTopWidth: 3,
-		borderRadius: 1,
-	},
-}))
+		[`&.${stepConnectorClasses.completed}`]: {
+			[`& .${stepConnectorClasses.line}`]: {
+				borderColor: '#4db07f',
+			},
+		},
+		[`& .${stepConnectorClasses.line}`]: {
+			borderColor: theme.palette.mode === 'dark' ? theme.palette.grey[800] : '#4db07f',
+			borderTopWidth: 3,
+			borderRadius: 1,
+		},
+	})
+)
 
 const QontoStepIconRoot = styled('div')<{ ownerState: { active?: boolean } }>(({ theme, ownerState }) => ({
 	color: theme.palette.mode === 'dark' ? theme.palette.grey[700] : '#4db07f',
@@ -64,27 +85,41 @@ function QontoStepIcon(props: StepIconProps) {
 
 const stepsName = ['Booking Details', 'Wage Details', 'Contact', 'Order Placed']
 
-const BookingStepper = () => {
+interface Props {
+	isLogin: boolean
+}
+
+const BookingStepper = ({ isLogin }: Props) => {
 	const router = useRouter()
-	const [activeStepValue, setActiveStepValue] = useState<number>(0)
+	const isMobile = useMobile()
+	const login = isLogin
 	return (
 		<div>
 			<Stack my={2}>
 				<Stepper
 					alternativeLabel
 					activeStep={Number(router?.query?.bookingFromStep ?? 0)}
-					connector={<QontoConnector />}>
+					connector={<QontoConnector isLogin={login} isMobile={isMobile} />}>
 					{stepsName.map((label) => (
-						<Step key={label}>
+						<Step
+							key={label}
+							sx={{
+								px: { xs: '0px', md: '8px' },
+							}}>
 							<StepLabel
 								StepIconComponent={QontoStepIcon}
 								sx={{
+									alignItems: 'flex-start',
 									fontSize: '10px !important',
+									span: {
+										textAlign: 'left !important',
+									},
 									'& .MuiStepLabel-label': {
 										mt: '0 !important',
 										color: '#000',
 										fontSize: '10px',
 										fontWeight: 400,
+										textAlign: 'left',
 									},
 									'& .MuiStep-root': {
 										p: '0 !important',

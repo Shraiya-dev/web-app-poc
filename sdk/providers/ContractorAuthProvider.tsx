@@ -38,7 +38,6 @@ import { CustomerDetails, CUSTOMER_STATUS, ONBOARDING_STATUS, USER_LOGIN_TYPE, U
 import { useSnackbar } from './SnackbarProvider'
 import { LoginForm } from 'modules/auth/login/components/LoginForm'
 import { OTPVerification } from 'modules/auth/otp/components/OtpVerification'
-import BookingStepper from 'sdkv2/components/EasyBookingStepper/BookingStepper'
 const LoadingUniqueString = 'loading...'
 interface AuthState {
 	user: null | CustomerDetails
@@ -574,20 +573,24 @@ const ContractorAuthProvider: FC<ContractorAuthProviderProps> = ({ children, aut
 
 			<Dialog
 				onClose={openLoginDialog}
+				fullWidth={true}
+				maxWidth={'xs'}
 				open={isDialogOpen}
 				sx={{
 					'& .MuiPaper-root': {
 						borderRadius: '16px',
+						width: { xs: '100%', md: '100%' },
 					},
 					margin: 'auto',
-					paddingTop: '10px',
-					// '& .MuiDialog-paper': {
-					// 	width: { xs: '100%', md: '30%' },
-					// },
+					padding: '10px',
+					'& .MuiPaper-elevation': {
+						margin: { xs: '0px' },
+						padding: { xs: 0 },
+					},
 				}}>
 				<DialogContent
 					sx={{
-						paddingX: { md: 1, xs: 2 },
+						paddingX: { md: 4, xs: 0 },
 					}}>
 					<Stack direction={'row'} justifyContent={'flex-start'}>
 						<IconButton onClick={openLoginDialog}>
