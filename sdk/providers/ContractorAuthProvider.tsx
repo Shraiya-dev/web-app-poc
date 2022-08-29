@@ -112,6 +112,8 @@ const PublicPages = [
 	'/faq',
 	'/hero/plans',
 	'/KhulaManch',
+	'/blog',
+	'/blog/[blogId]',
 ]
 interface ContractorAuthProviderProps {
 	authState?: AuthState
