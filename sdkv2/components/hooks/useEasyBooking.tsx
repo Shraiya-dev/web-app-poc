@@ -54,7 +54,7 @@ export const useEasyBooking = () => {
 			isSupervisor: false,
 		},
 		validate: (values) => {
-			console.log(values)
+			// console.log(values)
 		},
 		validationSchema: Yup.object({
 			location: Yup.string().required('Location is required'),
