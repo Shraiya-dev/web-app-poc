@@ -17,16 +17,27 @@ export const navbar: Navbar = {
 
 	navLinks: [
 		{
+			type: 'scroll_link',
+			label: 'Home',
+			link: '/',
+		},
+		{
+			type: 'scroll_link',
+			label: 'How it works?',
+			link: '/how-it-works',
+		},
+		{
+			type: 'scroll_link',
+			label: 'About us',
+			link: '/about-us',
+		},
+		{
 			type: 'button_link',
 			label: '+91-9151003513',
 			icon: <img src={'/assets/landingv2/phone.svg'} />,
 			link: 'tel:+91-9151003513',
 		},
-		{
-			type: 'scroll_link',
-			label: 'How it works?',
-			link: '/#how-it-works',
-		},
+
 		{
 			type: 'button_link',
 			label: 'Login',

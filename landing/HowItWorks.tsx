@@ -33,21 +33,21 @@ const CarouselData = [
 		details:
 			'After giving details, please pay a nominal amount of Rs 50 per target application. First 15 target applications are completely free!',
 		imgSrc: '/assets/landingv2/icons/like.svg',
-		bgColor: '',
+		bgColor: '#383838',
 	},
 	{
 		index: '03',
 		title: 'Payment Done',
 		details: 'Your booking automatically goes live as soon as you complete payment for the booking',
 		imgSrc: '/assets/landingv2/icons/layer.svg',
-		bgColor: '',
+		bgColor: '#383838',
 	},
 	{
 		index: '04',
 		title: 'Booking Goes Live',
 		details: 'Congratulations! Your booking has gone live. Heroes start checking out your booking on our Hero App.',
 		imgSrc: '/assets/landingv2/icons/Helmet.svg',
-		bgColor: '',
+		bgColor: '#383838',
 	},
 	{
 		index: '05',
@@ -55,14 +55,14 @@ const CarouselData = [
 		details:
 			'Once your booking goes live, you start receiving Hero applications. You can get phone numbers and other details about the Heroes on our contractor web-app.',
 		imgSrc: '/assets/landingv2/icons/Helmet.svg',
-		bgColor: '',
+		bgColor: '#383838',
 	},
 	{
 		index: '06',
 		title: 'Call & Hire Heroes	',
 		details: 'Call, negotiate and hire workers for your construction workforce.',
 		imgSrc: '/assets/landingv2/icons/hook.svg',
-		bgColor: '',
+		bgColor: '#383838',
 	},
 ]
 
@@ -276,35 +276,21 @@ export const HowItWorks: FC<Props> = () => {
 						</Button>
 					</Box>
 
-					{/* <Stack ref={rootRef} height={Number(height) * 150} overflow={'auto'}>
-						{CarouselData?.map(({ index, title, details }) => (
-							<CarouselHowItWork
-								key={index}
-								handleSlide={(a) => {
-									setHeight(a)
-									console.log(a)
-								}}
-								root={rootRef}
-								val={index}
-								slide={height}>
-								<Stack height={150}>
-									{title}
-									<br />
-									{details}
-								</Stack>
-							</CarouselHowItWork>
-						))}
-					</Stack> */}
-
 					<Stack direction={'row'} spacing={{ md: 6, xs: 0 }} position='relative'>
-						<Box height={{ md: 1200, xs: 870 }}>
+						<Box height={{ md: 520, xs: 570 }}>
 							<Slider
-								isRtl={true}
 								orientation='vertical'
-								defaultValue={30}
+								track='inverted'
+								defaultValue={20}
+								value={90 - (Number(height) - 1) * 16}
+								// onChange={({ target }) => {
+								// 	const value = Math.floor((90 - target.value) / 16) + 1
+								// 	setHeight(value < 10 ? '0' + value : '' + value)
+								// }}
 								sx={{
 									color: '#77cfb5',
 									// transform: 'rotate(180deg)',
+
 									'& .MuiSlider-thumb': {
 										backgroundImage: `url(/assets/landingv2/hat.svg)`,
 										backgroundSize: 'cover',
@@ -314,7 +300,7 @@ export const HowItWorks: FC<Props> = () => {
 								}}
 							/>
 						</Box>
-						<Stack direction={'column'} spacing={{ md: 4, xs: 2 }}>
+						{/* <Stack direction={'column'} spacing={{ md: 4, xs: 2 }}>
 							{CarouselData.map((val, index) => (
 								<Paper
 									elevation={0}
@@ -379,6 +365,94 @@ export const HowItWorks: FC<Props> = () => {
 										</Stack>
 									</Stack>
 								</Paper>
+							))}
+						</Stack> */}
+						<Stack
+							ref={rootRef}
+							height={560}
+							overflow={'auto'}
+							sx={{
+								':: -webkit-scrollbar': {
+									display: 'none',
+								},
+							}}>
+							{CarouselData?.map(({ index, title, details, imgSrc, bgColor }) => (
+								<CarouselHowItWork
+									key={index}
+									handleSlide={(a) => {
+										setHeight(a)
+										// console.log(a)
+									}}
+									root={rootRef}
+									val={index}
+									slide={height}>
+									<Stack height={240}>
+										<Paper
+											elevation={0}
+											key={index}
+											sx={{
+												p: { md: 4, xs: 2 },
+												background: index === height ? bgColor : 'transparent',
+											}}>
+											<Stack direction={'row'} spacing={3}>
+												<Stack
+													direction={'row'}
+													justifyContent={'center'}
+													alignItems={'center'}
+													sx={{
+														minHeight: { md: '100px', xs: '56px' },
+														minWidth: { md: '100px', xs: '56px' },
+														maxHeight: { md: '100px', xs: '56px' },
+														maxWidth: { md: '100px', xs: '56px' },
+														borderRadius: '50%',
+														background: '#fdf6dd',
+													}}>
+													<Box
+														sx={{
+															minHeight: { md: '56px', xs: '34px' },
+															minWidth: { md: '56px', xs: '34px' },
+															maxHeight: { md: '56px', xs: '34px' },
+															maxWidth: { md: '56px', xs: '34px' },
+														}}>
+														<Image src={imgSrc} height={'100%'} width={'100%'} />
+													</Box>
+												</Stack>
+												<Stack direction={'column'}>
+													<Typography
+														fontSize={{ xs: '14px', md: '24px' }}
+														fontFamily={'Saira,sans-serif'}
+														fontWeight={700}
+														sx={{
+															color:
+																index === height ? theme.palette.primary.main : '#000',
+														}}>
+														{index}
+													</Typography>
+													<Box>
+														<Typography
+															fontSize={{ xs: '14px', md: '24px' }}
+															fontFamily={'Saira,sans-serif'}
+															fontWeight={500}
+															sx={{
+																color: index === height ? '#fff' : '#000',
+															}}>
+															{title}
+														</Typography>
+														<Typography
+															fontSize={{ xs: '12px', md: '20px' }}
+															fontFamily={'Karla,sans-serif'}
+															fontWeight={400}
+															sx={{
+																color: index === height ? '#fff' : '#000',
+															}}>
+															{details}
+														</Typography>
+													</Box>
+												</Stack>
+											</Stack>
+										</Paper>
+									</Stack>
+								</CarouselHowItWork>
 							))}
 						</Stack>
 					</Stack>

@@ -12,7 +12,7 @@ interface Props {
 export const CarouselHowItWork = ({ root, children, handleSlide, val, slide }: Props) => {
 	const home: any = useRef()
 	useEffect(() => {
-		if (val === '01') {
+		if (val === slide) {
 			root.current.scrollTo({
 				top: home.current.offsetTop - root.current.offsetTop,
 			})
@@ -22,12 +22,12 @@ export const CarouselHowItWork = ({ root, children, handleSlide, val, slide }: P
 		const options = {
 			root: root.current,
 			rootMargin: '0px',
-			threshold: 0.11,
+			threshold: 1,
 		}
 		const callbackFuncation = (entries: any, observer: any) => {
 			entries.forEach((entry: any) => {
 				if (entry.isIntersecting) {
-					if (Number(val) > Number(slide)) handleSlide(val)
+					handleSlide(val)
 				}
 			})
 		}
@@ -38,7 +38,7 @@ export const CarouselHowItWork = ({ root, children, handleSlide, val, slide }: P
 		return () => observer.disconnect()
 	}, [root, val, home])
 	return (
-		<Stack sx={{ border: '1px solid black' }} ref={home}>
+		<Stack ref={home} sx={{ marginBottom: '-100px', paddingBottom: '100px' }}>
 			{children}
 		</Stack>
 	)
