@@ -455,7 +455,7 @@ const ContractorAuthProvider: FC<ContractorAuthProviderProps> = ({ children, aut
 				const { data, status } = await axios.post('/gateway/customer-api/projects/bookings', payload)
 				deleteCookie('discoveryBooking')
 				await getContactorUserInfo()
-				router.push(`/bookings/${data.payload.projectId}/${data.payload.bookingId}/checkout`, undefined, {})
+				router.replace(`/bookings/${data.payload.projectId}/${data.payload.bookingId}/checkout`, undefined, {})
 			} catch (error) {
 				showSnackbar('Failed to create easy booking', 'error')
 			}
