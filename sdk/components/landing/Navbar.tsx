@@ -181,48 +181,30 @@ export const Navbar = () => {
 											</>
 										)}
 
-										{/* <Typography variant='h4' color={'#fff'} textAlign={'center'}>
-											Contact us{' '}
-										</Typography>
-										<ListItem
-											color='secondary'
-											sx={(theme) => ({
-												fontWeight: 700,
-											})}>
-											<ListItemAvatar>
-												<img src='/assets/landing/call.svg' alt='plane' />
-											</ListItemAvatar>
-											<ListItemText>
-												<Stack>
-													<Typography variant='caption'>
-														{contactUsSection.support.contactAction.label}
-													</Typography>
-													<Typography sx={{ color: '#0663F6' }}>
-														{contactUsSection.support.contactAction.phone}
-													</Typography>
-												</Stack>
-											</ListItemText>
-										</ListItem>
-										<ListItem
-											color='secondary'
-											sx={(theme) => ({
-												fontWeight: 700,
-											})}>
-											<ListItemAvatar>
-												<img src='/assets/landing/plane.svg' alt='plane' />
-											</ListItemAvatar>
-											<ListItemText>
-												<Stack>
-													<Typography variant='caption'>
-														{contactUsSection.support.mailAction.label}
-													</Typography>
-													<Typography sx={{ color: '#0663F6' }}>
-														{contactUsSection.support.mailAction.email}
-													</Typography>
-												</Stack>
-											</ListItemText>
-										</ListItem> */}
 										<Stack direction={'column'} spacing={4} px={2.4} mt={'40px'}>
+											{/* <Stack
+												direction={'column'}
+												alignItems={'flex-start'}
+												spacing={1}
+												width={'100%'}>
+												{navbar.navLinks.map((val, i) => {
+													if (val.type === 'text_link') {
+														return (
+															<Button
+																href={val.link}
+																key={i}
+																variant='text'
+																sx={(theme) => ({
+																	fontWeight: 700,
+																	color: '#fff',
+																})}
+																size='small'>
+																{val.label}
+															</Button>
+														)
+													}
+												})}
+											</Stack> */}
 											<Stack direction={'row'} spacing={1}>
 												<Box height={23} width={23}>
 													<img
@@ -241,7 +223,13 @@ export const Navbar = () => {
 								</Drawer>
 							</IconButton>
 						</Stack>
-						<NavWrapper direction='row' spacing={{ xs: 0, md: 3 }} alignItems='center'>
+						<NavWrapper
+							direction='row'
+							sx={{
+								display: { md: 'inline-flex', xs: 'none' },
+							}}
+							spacing={{ xs: 0, md: 3 }}
+							alignItems='center'>
 							{navbar.navLinks.map((navItem, i) => {
 								if (navItem.type === 'button_link') {
 									if (navItem.label === 'Login') {
@@ -482,8 +470,24 @@ export const Navbar = () => {
 											{navItem.label}
 										</LinkButton>
 									)
+								} else if (navItem.type === 'text_link') {
+									return (
+										<LinkButton
+											href={navItem.link}
+											key={i}
+											variant='text'
+											fullWidth
+											sx={(theme) => ({
+												fontWeight: 700,
+												color: 'common.white',
+												[theme.breakpoints.down('md')]: { display: 'none' },
+											})}
+											size='small'>
+											{navItem.label}
+										</LinkButton>
+									)
 								} else {
-									return <></>
+									;<></>
 								}
 							})}
 						</NavWrapper>
@@ -495,6 +499,7 @@ export const Navbar = () => {
 }
 
 export const NavWrapper = styled(Stack)(({ theme }) => ({
+	width: '100%',
 	'.active': {
 		borderBottom: `2px solid ${theme.palette.primary.main}`,
 	},

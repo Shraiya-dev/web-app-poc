@@ -5,7 +5,7 @@ import DashboardRoundedIcon from '@mui/icons-material/DashboardRounded'
 interface Navbar {
 	brandImage: string
 	navLinks: {
-		type: 'button_link' | 'primary_button' | 'support_menu' | 'scroll_link'
+		type: 'button_link' | 'primary_button' | 'support_menu' | 'scroll_link' | 'text_link'
 		label: string
 		icon?: ReactNode
 		link?: string
@@ -17,19 +17,24 @@ export const navbar: Navbar = {
 
 	navLinks: [
 		{
-			type: 'scroll_link',
+			type: 'text_link',
 			label: 'Home',
 			link: '/',
 		},
 		{
-			type: 'scroll_link',
+			type: 'text_link',
 			label: 'How it works?',
 			link: '/how-it-works',
 		},
 		{
-			type: 'scroll_link',
+			type: 'text_link',
 			label: 'About us',
 			link: '/about-us',
+		},
+		{
+			type: 'text_link',
+			label: 'Blogs',
+			link: '/blog',
 		},
 		{
 			type: 'button_link',
