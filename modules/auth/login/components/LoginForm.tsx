@@ -129,7 +129,9 @@ export const LoginForm = ({ ...props }) => {
 						/>
 					</InputWrapper>
 					<FormControlLabel
-						control={<Checkbox value={isWhatsAppOptIn} onClick={handleWhatsApp} />}
+						control={
+							<Checkbox checked={isWhatsAppOptIn} value={isWhatsAppOptIn} onClick={handleWhatsApp} />
+						}
 						label='Send me whatsapp updates'
 						sx={{
 							'& .MuiTypography-root': {

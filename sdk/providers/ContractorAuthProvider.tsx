@@ -47,7 +47,7 @@ interface AuthState {
 	refreshToken: null | string
 	isRegister: false | Boolean
 	isSideBarToggle: false | boolean
-	isWhatsAppOptIn: false | boolean
+	isWhatsAppOptIn: true | boolean
 }
 
 interface emailOtpPayload {
@@ -88,7 +88,7 @@ const initialAuthState: AuthState = {
 	user: null,
 	isRegister: false,
 	isSideBarToggle: false,
-	isWhatsAppOptIn: false,
+	isWhatsAppOptIn: true,
 }
 const ContractorAuthContext = createContext<AuthProviderValue>({
 	...initialAuthState,

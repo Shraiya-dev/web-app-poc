@@ -85,10 +85,9 @@ const useOtp = () => {
 									: 'organic_otp_verification',
 								phoneNumber: '+91' + phoneNumber,
 							})
-							
+
 							// console.log('verified')
 							if (isWhatsAppOptIn) {
-								console.log('verfied', phoneNumber)
 								sendAnalytics({
 									name: 'whatsAppOptIn',
 									action: 'ButtonClick',
