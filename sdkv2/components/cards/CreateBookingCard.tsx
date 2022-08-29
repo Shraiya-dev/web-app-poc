@@ -73,15 +73,39 @@ export const CreateBookingCard: FC<Props> = () => {
 			<Card elevation={16}>
 				<Stack px={{ xs: 2, md: 4 }} py={4}>
 					<Stack>
-						<Typography variant='h3'>
+						<Typography
+							variant='h3'
+							fontFamily={'Saira , sans-serif'}
+							fontWeight={700}
+							fontSize={{ md: '24px', xs: '16px' }}>
 							First{' '}
-							<Typography variant='h3' color='primary.main' display='inline'>
-								15 HERO applications
+							<Typography
+								variant='h3'
+								fontFamily={'Saira , sans-serif'}
+								fontWeight={700}
+								fontSize={{ md: '24px', xs: '16px' }}
+								color='primary.main'
+								display='inline'>
+								15 HERO
 							</Typography>{' '}
-							for FREE!
+							applications for FREE!
 						</Typography>
-						<Typography mt={2}>Only Rs 50 per HERO Application</Typography>
-						<Typography variant='caption'>*after receiving 15 applications</Typography>
+						<Typography
+							mt={2}
+							fontFamily={'Saira , sans-serif'}
+							fontWeight={400}
+							fontSize={{ md: '12px', xs: '12px' }}
+							color={'#000'}>
+							Only Rs 50 per HERO Application
+						</Typography>
+						<Typography
+							variant='caption'
+							fontFamily={'Saira , sans-serif'}
+							fontWeight={400}
+							fontSize={{ md: '12px', xs: '12px' }}
+							color={'#000'}>
+							*after receiving 15 applications
+						</Typography>
 					</Stack>
 					<Stack my={2}>
 						<BookingStepper />
@@ -262,7 +286,13 @@ export const CreateBookingCard: FC<Props> = () => {
 															<InputAdornment
 																position='start'
 																sx={{
-																	fontSize: { xs: '12px', md: '16px' },
+																	fontSize: {
+																		xs: '12px',
+																		md: '16px',
+																	},
+																	'& .MuiTypography-root': {
+																		color: '#4db07f',
+																	},
 																}}>
 																&#8377;
 															</InputAdornment>
@@ -335,6 +365,9 @@ export const CreateBookingCard: FC<Props> = () => {
 																position='start'
 																sx={{
 																	fontSize: { xs: '12px', md: '16px' },
+																	'& .MuiTypography-root': {
+																		color: '#4db07f',
+																	},
 																}}>
 																&#8377;
 															</InputAdornment>
@@ -397,6 +430,9 @@ export const CreateBookingCard: FC<Props> = () => {
 																position='start'
 																sx={{
 																	fontSize: { xs: '12px', md: '16px' },
+																	'& .MuiTypography-root': {
+																		color: '#4db07f',
+																	},
 																}}>
 																&#8377;
 															</InputAdornment>
