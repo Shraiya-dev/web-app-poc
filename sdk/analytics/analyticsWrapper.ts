@@ -151,6 +151,7 @@ const EventTypes = {
 	editWage: 'Edit wage',
 	filters: 'Filter',
 	heroApplicationsStatus: 'Hero Applications Status',
+	whatsAppOptIn: 'WhatsApp opt-in',
 }
 
 //Define a new action type here if needed

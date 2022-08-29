@@ -5,7 +5,7 @@ import { useRouter } from 'next/router'
 import { useEffect, useMemo, useState } from 'react'
 import { InputWrapper } from 'sdkv2/components'
 import BookingStepper from 'sdkv2/components/EasyBookingStepper/BookingStepper'
-import { checkError, getCookie, primary } from '../../../../sdk'
+import { checkError, getCookie, primary, useContractorAuth } from '../../../../sdk'
 import { PhoneField } from '../../../../sdk/components/Input/PhoneField'
 import useLogin from '../hooks/useLogin'
 
@@ -44,6 +44,7 @@ export const LoginForm = ({ ...props }) => {
 	const { form, loading, error, isRegister, handleLogin, status } = useLogin()
 	const { isOtpSent, setIsOtpSent, fromHome } = props
 	const [isDiscoveryBooking, setIsDiscoveryBooking] = useState<boolean>(false)
+	const { handleWhatsApp, isWhatsAppOptIn } = useContractorAuth()
 
 	const router = useRouter()
 
@@ -127,8 +128,8 @@ export const LoginForm = ({ ...props }) => {
 							onChange={form.handleChange}
 						/>
 					</InputWrapper>
-					{/* <FormControlLabel
-						control={<Checkbox defaultChecked />}
+					<FormControlLabel
+						control={<Checkbox value={isWhatsAppOptIn} onClick={handleWhatsApp} />}
 						label='Send me whatsapp updates'
 						sx={{
 							'& .MuiTypography-root': {
@@ -138,7 +139,7 @@ export const LoginForm = ({ ...props }) => {
 								mt: '12px',
 							},
 						}}
-					/> */}
+					/>
 					<LoadingButton fullWidth type='submit' loading={!!loading} variant='contained'>
 						{isRegister ? 'Register' : 'Login'}
 					</LoadingButton>

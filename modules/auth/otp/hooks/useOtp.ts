@@ -25,7 +25,7 @@ const useOtp = () => {
 	const [otp, setOtp] = useState({ otp: '' })
 	const [loading, setLoading] = useState(false)
 	const { showSnackbar } = useSnackbar()
-	const { openLoginDialog } = useContractorAuth()
+	const { openLoginDialog, isWhatsAppOptIn } = useContractorAuth()
 
 	const handleChange = (otp: any) => setOtp({ otp })
 
@@ -85,6 +85,18 @@ const useOtp = () => {
 									: 'organic_otp_verification',
 								phoneNumber: '+91' + phoneNumber,
 							})
+							
+							// console.log('verified')
+							if (isWhatsAppOptIn) {
+								console.log('verfied', phoneNumber)
+								sendAnalytics({
+									name: 'whatsAppOptIn',
+									action: 'ButtonClick',
+									metaData: {
+										phoneNumber: phoneNumber,
+									},
+								})
+							}
 							if (!discoveryBookingFromCookie) {
 								router.push('/dashboard')
 							}
@@ -96,6 +108,7 @@ const useOtp = () => {
 								status: false,
 								error: 'Invalid OTP',
 							}))
+							// console.log('unverified')
 							setTimeout(() => {
 								setLoading(false)
 							}, 500)

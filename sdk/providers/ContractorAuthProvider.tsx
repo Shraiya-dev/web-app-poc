@@ -39,7 +39,6 @@ import { useSnackbar } from './SnackbarProvider'
 import { LoginForm } from 'modules/auth/login/components/LoginForm'
 import { OTPVerification } from 'modules/auth/otp/components/OtpVerification'
 import BookingStepper from 'sdkv2/components/EasyBookingStepper/BookingStepper'
-import { User } from '@segment/analytics-next'
 const LoadingUniqueString = 'loading...'
 interface AuthState {
 	user: null | CustomerDetails
@@ -48,6 +47,7 @@ interface AuthState {
 	refreshToken: null | string
 	isRegister: false | Boolean
 	isSideBarToggle: false | boolean
+	isWhatsAppOptIn: false | boolean
 }
 
 interface emailOtpPayload {
@@ -67,6 +67,7 @@ interface AuthProviderValue extends AuthState {
 	verifyEmailOtp: (payload: emailOtpPayload) => Promise<any>
 	openLoginDialog: () => any
 	setBackdropProps: any
+	handleWhatsApp: () => any
 }
 
 const simpleReducer = (state: AuthState, payload: Partial<AuthState>) => ({
@@ -87,6 +88,7 @@ const initialAuthState: AuthState = {
 	user: null,
 	isRegister: false,
 	isSideBarToggle: false,
+	isWhatsAppOptIn: false,
 }
 const ContractorAuthContext = createContext<AuthProviderValue>({
 	...initialAuthState,
@@ -102,6 +104,7 @@ const ContractorAuthContext = createContext<AuthProviderValue>({
 	verifyEmailOtp: () => Promise.resolve(null),
 	openLoginDialog: () => null,
 	setBackdropProps: () => null,
+	handleWhatsApp: () => null,
 })
 const { Provider, Consumer } = ContractorAuthContext
 
@@ -527,6 +530,16 @@ const ContractorAuthProvider: FC<ContractorAuthProviderProps> = ({ children, aut
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [state.user, router])
 
+	const handleWhatsApp = useCallback(() => {
+		dispatch({
+			isWhatsAppOptIn: !state.isWhatsAppOptIn,
+		})
+	}, [state])
+
+	useEffect(() => {
+		console.log(state.isWhatsAppOptIn)
+	}, [state])
+
 	const [isDialogOpen, setIsDialogOpen] = useState<boolean>(false)
 	const [isOtpSent, setIsOtpSent] = useState<boolean>(false)
 
@@ -564,6 +577,7 @@ const ContractorAuthProvider: FC<ContractorAuthProviderProps> = ({ children, aut
 			reSendEmailOtp: reSendEmailOtp,
 			createEasyBooking: createEasyBooking,
 			openLoginDialog: openLoginDialog,
+			handleWhatsApp: handleWhatsApp,
 		}),
 		[
 			state,
@@ -578,6 +592,7 @@ const ContractorAuthProvider: FC<ContractorAuthProviderProps> = ({ children, aut
 			reSendEmailOtp,
 			createEasyBooking,
 			openLoginDialog,
+			handleWhatsApp,
 		]
 	)
 
