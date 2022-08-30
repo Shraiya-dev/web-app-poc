@@ -23,7 +23,7 @@ import {
 import React, { FC, useCallback, useEffect, useState } from 'react'
 import { ListChildComponentProps, VariableSizeList } from 'react-window'
 import { DataLayerPush, sendAnalytics } from 'sdk/analytics'
-import { allCityList, primary } from 'sdk/constants'
+import { allCityList, primary, theme } from 'sdk/constants'
 import { capitalize } from 'sdk/utils'
 import { Dropdown, InputWrapper, useEasyBooking } from 'sdkv2/components'
 import { JobType, projectDuration } from 'sdkv2/constants'
@@ -34,13 +34,14 @@ import CheckCircleIcon from '@mui/icons-material/CheckCircle'
 import AdjustOutlinedIcon from '@mui/icons-material/AdjustOutlined'
 import RadioButtonUncheckedIcon from '@mui/icons-material/RadioButtonUnchecked'
 import CloseIcon from '@mui/icons-material/Close'
-import { Label } from '@mui/icons-material'
+import { CheckBoxOutlineBlank, Label } from '@mui/icons-material'
 import { OTPVerification } from 'modules/auth/otp/components/OtpVerification'
 import { LoginForm } from 'modules/auth/login/components/LoginForm'
 import { useRouter } from 'next/router'
 import { useContractorAuth } from 'sdk/providers'
 import BookingStepper from '../EasyBookingStepper/BookingStepper'
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace'
+import CheckIcon from '@mui/icons-material/Check'
 
 interface Props {}
 
@@ -261,12 +262,22 @@ export const CreateBookingCard: FC<Props> = () => {
 													control={
 														<Checkbox
 															checked={form.values.isHelper}
+															checkedIcon={
+																<CheckIcon
+																	sx={{
+																		color: '#000',
+																		background: '#efc430',
+																		fontSize: '24px',
+																		borderRadius: '4px',
+																	}}
+																/>
+															}
 															onChange={(e, v) => {
 																form.setFieldValue('helperWage', '')
 																form.setFieldValue('isHelper', v)
 															}}
-															style={{
-																color: '#000',
+															sx={{
+																color: theme.palette.primary.main,
 															}}
 														/>
 													}
@@ -328,12 +339,22 @@ export const CreateBookingCard: FC<Props> = () => {
 													control={
 														<Checkbox
 															checked={form.values.isTechnician}
+															checkedIcon={
+																<CheckIcon
+																	sx={{
+																		color: '#000',
+																		background: '#efc430',
+																		fontSize: '24px',
+																		borderRadius: '4px',
+																	}}
+																/>
+															}
 															onChange={(e, v) => {
 																form.setFieldValue('technicianWage', '')
 																form.setFieldValue('isTechnician', v)
 															}}
-															style={{
-																color: '#000',
+															sx={{
+																color: theme.palette.primary.main,
 															}}
 														/>
 													}
@@ -393,12 +414,22 @@ export const CreateBookingCard: FC<Props> = () => {
 													control={
 														<Checkbox
 															checked={form.values.isSupervisor}
+															checkedIcon={
+																<CheckIcon
+																	sx={{
+																		color: '#000',
+																		background: '#efc430',
+																		fontSize: '24px',
+																		borderRadius: '4px',
+																	}}
+																/>
+															}
 															onChange={(e, v) => {
 																form.setFieldValue('supervisorWage', '')
 																form.setFieldValue('isSupervisor', v)
 															}}
-															style={{
-																color: '#000',
+															sx={{
+																color: theme.palette.primary.main,
 															}}
 														/>
 													}

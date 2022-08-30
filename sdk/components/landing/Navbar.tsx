@@ -228,6 +228,19 @@ export const Navbar = () => {
 													<img
 														height={'100%'}
 														width={'100%'}
+														src='/assets/icons/mail.svg'
+														alt=''
+													/>
+												</Box>
+												<Typography variant='subtitle2' color={'#fff'} fontWeight={700}>
+													marketing@projecthero.in
+												</Typography>
+											</Stack>
+											<Stack direction={'row'} spacing={1}>
+												<Box height={23} width={23}>
+													<img
+														height={'100%'}
+														width={'100%'}
 														src='/assets/icons/phone.svg'
 														alt=''
 													/>
