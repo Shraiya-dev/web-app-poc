@@ -26,11 +26,11 @@ export const navbar: Navbar = {
 			label: 'How it works?',
 			link: '/how-it-works',
 		},
-		{
-			type: 'text_link',
-			label: 'About us',
-			link: '/about-us',
-		},
+		// {
+		// 	type: 'text_link',
+		// 	label: 'About us',
+		// 	link: '/about-us',
+		// },
 		{
 			type: 'text_link',
 			label: 'Blogs',
@@ -49,6 +49,7 @@ export const navbar: Navbar = {
 			icon: <img src={'/assets/landingv2/user.svg'} />,
 			link: '/',
 		},
+
 		{
 			type: 'button_link',
 			label: 'Dashboard',

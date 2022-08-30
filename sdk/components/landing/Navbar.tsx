@@ -241,7 +241,7 @@ export const Navbar = () => {
 							sx={{
 								display: { md: 'inline-flex', xs: 'none' },
 							}}
-							spacing={{ xs: 0, md: 1 }}
+							spacing={{ xs: 0, md: 2 }}
 							alignItems='center'>
 							{navbar.navLinks.map((navItem, i) => {
 								if (navItem.type === 'button_link') {
