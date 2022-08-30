@@ -23,7 +23,7 @@ import {
 import React, { FC, useCallback, useEffect, useState } from 'react'
 import { ListChildComponentProps, VariableSizeList } from 'react-window'
 import { DataLayerPush, sendAnalytics } from 'sdk/analytics'
-import { allCityList, primary } from 'sdk/constants'
+import { allCityList, primary, theme } from 'sdk/constants'
 import { capitalize } from 'sdk/utils'
 import { Dropdown, InputWrapper, useEasyBooking } from 'sdkv2/components'
 import { JobType, projectDuration } from 'sdkv2/constants'
@@ -34,13 +34,14 @@ import CheckCircleIcon from '@mui/icons-material/CheckCircle'
 import AdjustOutlinedIcon from '@mui/icons-material/AdjustOutlined'
 import RadioButtonUncheckedIcon from '@mui/icons-material/RadioButtonUnchecked'
 import CloseIcon from '@mui/icons-material/Close'
-import { Label } from '@mui/icons-material'
+import { CheckBoxOutlineBlank, Label } from '@mui/icons-material'
 import { OTPVerification } from 'modules/auth/otp/components/OtpVerification'
 import { LoginForm } from 'modules/auth/login/components/LoginForm'
 import { useRouter } from 'next/router'
 import { useContractorAuth } from 'sdk/providers'
 import BookingStepper from '../EasyBookingStepper/BookingStepper'
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace'
+import CheckIcon from '@mui/icons-material/Check'
 
 interface Props {}
 
@@ -73,15 +74,39 @@ export const CreateBookingCard: FC<Props> = () => {
 			<Card elevation={16}>
 				<Stack px={{ xs: 2, md: 4 }} py={4}>
 					<Stack>
-						<Typography variant='h3'>
+						<Typography
+							variant='h3'
+							fontFamily={'Saira , sans-serif'}
+							fontWeight={700}
+							fontSize={{ md: '24px', xs: '16px' }}>
 							First{' '}
-							<Typography variant='h3' color='primary.main' display='inline'>
-								15 HERO applications
+							<Typography
+								variant='h3'
+								fontFamily={'Saira , sans-serif'}
+								fontWeight={700}
+								fontSize={{ md: '24px', xs: '16px' }}
+								color='primary.main'
+								display='inline'>
+								15 HERO
 							</Typography>{' '}
-							for FREE!
+							applications for FREE!
 						</Typography>
-						<Typography mt={2}>Only Rs 50 per HERO Application</Typography>
-						<Typography variant='caption'>*after receiving 15 applications</Typography>
+						<Typography
+							mt={2}
+							fontFamily={'Saira , sans-serif'}
+							fontWeight={400}
+							fontSize={{ md: '12px', xs: '12px' }}
+							color={'#000'}>
+							Only Rs 50 per HERO Application
+						</Typography>
+						<Typography
+							variant='caption'
+							fontFamily={'Saira , sans-serif'}
+							fontWeight={400}
+							fontSize={{ md: '12px', xs: '12px' }}
+							color={'#000'}>
+							*after receiving 15 applications
+						</Typography>
 					</Stack>
 					<Stack my={2}>
 						<BookingStepper />
@@ -237,12 +262,22 @@ export const CreateBookingCard: FC<Props> = () => {
 													control={
 														<Checkbox
 															checked={form.values.isHelper}
+															checkedIcon={
+																<CheckIcon
+																	sx={{
+																		color: '#000',
+																		background: '#efc430',
+																		fontSize: '24px',
+																		borderRadius: '4px',
+																	}}
+																/>
+															}
 															onChange={(e, v) => {
 																form.setFieldValue('helperWage', '')
 																form.setFieldValue('isHelper', v)
 															}}
-															style={{
-																color: '#000',
+															sx={{
+																color: theme.palette.primary.main,
 															}}
 														/>
 													}
@@ -262,7 +297,13 @@ export const CreateBookingCard: FC<Props> = () => {
 															<InputAdornment
 																position='start'
 																sx={{
-																	fontSize: { xs: '12px', md: '16px' },
+																	fontSize: {
+																		xs: '12px',
+																		md: '16px',
+																	},
+																	'& .MuiTypography-root': {
+																		color: '#4db07f',
+																	},
 																}}>
 																&#8377;
 															</InputAdornment>
@@ -298,12 +339,22 @@ export const CreateBookingCard: FC<Props> = () => {
 													control={
 														<Checkbox
 															checked={form.values.isTechnician}
+															checkedIcon={
+																<CheckIcon
+																	sx={{
+																		color: '#000',
+																		background: '#efc430',
+																		fontSize: '24px',
+																		borderRadius: '4px',
+																	}}
+																/>
+															}
 															onChange={(e, v) => {
 																form.setFieldValue('technicianWage', '')
 																form.setFieldValue('isTechnician', v)
 															}}
-															style={{
-																color: '#000',
+															sx={{
+																color: theme.palette.primary.main,
 															}}
 														/>
 													}
@@ -335,6 +386,9 @@ export const CreateBookingCard: FC<Props> = () => {
 																position='start'
 																sx={{
 																	fontSize: { xs: '12px', md: '16px' },
+																	'& .MuiTypography-root': {
+																		color: '#4db07f',
+																	},
 																}}>
 																&#8377;
 															</InputAdornment>
@@ -360,12 +414,22 @@ export const CreateBookingCard: FC<Props> = () => {
 													control={
 														<Checkbox
 															checked={form.values.isSupervisor}
+															checkedIcon={
+																<CheckIcon
+																	sx={{
+																		color: '#000',
+																		background: '#efc430',
+																		fontSize: '24px',
+																		borderRadius: '4px',
+																	}}
+																/>
+															}
 															onChange={(e, v) => {
 																form.setFieldValue('supervisorWage', '')
 																form.setFieldValue('isSupervisor', v)
 															}}
-															style={{
-																color: '#000',
+															sx={{
+																color: theme.palette.primary.main,
 															}}
 														/>
 													}
@@ -397,6 +461,9 @@ export const CreateBookingCard: FC<Props> = () => {
 																position='start'
 																sx={{
 																	fontSize: { xs: '12px', md: '16px' },
+																	'& .MuiTypography-root': {
+																		color: '#4db07f',
+																	},
 																}}>
 																&#8377;
 															</InputAdornment>

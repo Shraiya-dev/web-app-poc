@@ -18,7 +18,12 @@ export const homePage = {
 	whyYouShouldHire: {
 		left: {
 			heading: (
-				<Typography variant='h2' color={'#fff'}>
+				<Typography
+					variant='h2'
+					color={'#fff'}
+					fontFamily={'Saira , sans-serif'}
+					fontSize={{ md: '32px', xs: '18px' }}
+					fontWeight={500}>
 					Why you should hire <br /> your construction worker <br /> from{' '}
 					<span style={{ color: 'yellow' }}>Project Hero</span>
 				</Typography>
@@ -29,7 +34,7 @@ export const homePage = {
 				fontWeight: '700',
 				fontSize: { md: '20px', sx: '14px' },
 				background: '#fff',
-				border: '2px solid #EFC430',
+				border: '1px solid #EFC430',
 				'&:hover': {
 					background: '#fff',
 				},
@@ -88,12 +93,21 @@ export const homePage = {
 
 	HeroAdvantage: {
 		Heading: (
-			<Typography variant='h2' color={'#EFC430'} fontSize={'32px'} fontWeight={600}>
+			<Typography
+				variant='h2'
+				color={'#EFC430'}
+				fontSize={{ md: '32px', xs: '16px' }}
+				fontFamily={'Saira, sans-serif'}
+				fontWeight={600}>
 				Project Hero <span style={{ color: '#000' }}>Advantages</span>
 			</Typography>
 		),
 		subHeading: (
-			<Typography variant='h5' fontSize={'16px'} fontWeight={400}>
+			<Typography
+				variant='h5'
+				fontSize={{ xs: '16px', md: '20px' }}
+				fontFamily={'Karla, sans-serif'}
+				fontWeight={400}>
 				We solve all your construction workforce requirement needs starting from hiring, management and
 				retention of workers. Our unique contractor web-app gives you the capability to book, call and hire
 				workers. You can also <strong>track your worker&apos;s attendance, generate daily wage reports</strong>{' '}
@@ -104,12 +118,26 @@ export const homePage = {
 	},
 	heroApp: {
 		heading: (
-			<Typography variant='h1' sx={{ color: '#EFC430' }}>
+			<Typography
+				variant='h1'
+				sx={{
+					color: '#EFC430',
+					fontFamily: ' Saira,sans-serif',
+					fontWeight: 600,
+					fontSize: { md: '32px', xs: '24px' },
+				}}>
 				Project Hero <span style={{ color: '#fff' }}>App</span>{' '}
 			</Typography>
 		),
 		desc: (
-			<Typography variant='h3' sx={{ color: '#fff', fontWeight: 400 }}>
+			<Typography
+				variant='h3'
+				sx={{
+					color: '#fff',
+					fontWeight: 400,
+					fontFamily: ' Karla,sans-serif',
+					fontSize: { md: '24px', xs: '16px' },
+				}}>
 				Designed for our Heros who apply to jobs <br /> posted by you
 			</Typography>
 		),
@@ -131,10 +159,20 @@ export const homePage = {
 
 	customerReview: {
 		heading: (
-			<Typography variant='h2' fontSize={'32px'} fontWeight={600}>
+			<Typography
+				variant='h2'
+				fontSize={{ md: '32px', xs: '16px' }}
+				fontWeight={600}
+				fontFamily={'Saira ,sans-serif'}>
 				What are our
 				<br />{' '}
-				<Typography display='inline' fontSize={'32px'} variant='h2' color='primary.main'>
+				<Typography
+					display='inline'
+					fontSize={{ md: '32px', xs: '16px' }}
+					fontWeight={600}
+					fontFamily={'Saira ,sans-serif'}
+					variant='h2'
+					color='primary.main'>
 					Customers saying
 				</Typography>{' '}
 				about us?
