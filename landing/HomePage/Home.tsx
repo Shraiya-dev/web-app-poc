@@ -107,13 +107,30 @@ export const Home = () => {
 					))}
 				</Box>
 				<Stack p={3}>
-					<Typography variant='h2' color='common.white'>
+					<Typography
+						variant='h2'
+						color='common.white'
+						fontFamily={'Saira ,sans-serif'}
+						fontWeight={600}
+						fontSize={{ md: '32px', xs: '24px' }}>
 						Explore{' '}
-						<Typography variant='h2' color='primary' display='inline'>
+						<Typography
+							variant='h2'
+							color='primary'
+							display='inline'
+							fontFamily={'Saira ,sans-serif'}
+							fontWeight={600}
+							fontSize={{ md: '32px', xs: '24px' }}>
 							Job Categories
 						</Typography>{' '}
 						and Book Workers{' '}
-						<Typography variant='h2' color='primary' display='inline'>
+						<Typography
+							variant='h2'
+							color='primary'
+							display='inline'
+							fontFamily={'Saira ,sans-serif'}
+							fontWeight={600}
+							fontSize={{ md: '32px', xs: '24px' }}>
 							in a minute
 						</Typography>
 					</Typography>
@@ -247,8 +264,20 @@ export const Home = () => {
 			<Section backgroundColor='#F7F7F7' id='how-it-works'>
 				<Box pt={'24px'} pb={'66px'}>
 					<Stack direction={'column'} mb={'32px'}>
-						<Typography variant='h1'>{homePage.howItWorksSection.heading}</Typography>
-						<Typography variant='h4'>{homePage.howItWorksSection.subHeading}</Typography>
+						<Typography
+							variant='h1'
+							fontFamily={'Saira ,sans-serif'}
+							fontWeight={600}
+							fontSize={{ md: '32px', xs: '24px' }}>
+							{homePage.howItWorksSection.heading}
+						</Typography>
+						<Typography
+							variant='h4'
+							fontFamily={'Saira ,sans-serif'}
+							fontWeight={400}
+							fontSize={{ md: '20px', xs: '12px' }}>
+							{homePage.howItWorksSection.subHeading}
+						</Typography>
 					</Stack>
 					<Box mb={'66px'}>
 						<LinkButton
@@ -377,7 +406,12 @@ export const Home = () => {
 										<Grid key={index} item xs={12} md={6}>
 											<Stack direction={'row'} spacing={2} width={'310px'}>
 												<Box sx={homePage.whyYouShouldHire.right.indexSx}>
-													<Typography variant='h2' color={'#EFC430'}>
+													<Typography
+														variant='h2'
+														color={'#EFC430'}
+														fontFamily={'Saira , sans-serif'}
+														fontSize={{ md: '28px', xs: '21px' }}
+														fontWeight={600}>
 														0{index + 1}
 													</Typography>
 												</Box>
@@ -387,10 +421,19 @@ export const Home = () => {
 															variant='h4'
 															sx={{
 																color: homePage.whyYouShouldHire.right.itemTextColor,
-															}}>
+															}}
+															fontFamily={'Saira , sans-serif'}
+															fontSize={{ md: '24px', xs: '16px' }}
+															fontWeight={500}>
 															{data.heading}
 														</Typography>
-														<Typography variant='h5'>{data.desc}</Typography>
+														<Typography
+															variant='h5'
+															fontFamily={'Saira , sans-serif'}
+															fontSize={{ md: '16px', xs: '12px' }}
+															fontWeight={400}>
+															{data.desc}
+														</Typography>
 													</Stack>
 												</Box>
 											</Stack>
@@ -505,8 +548,9 @@ export const Home = () => {
 										href={homePage.HeroAdvantage.buttonText.link}
 										sx={{
 											p: { md: '14px 64px', xs: '13px 45px' },
-											fontWeight: '900',
+											fontWeight: '500',
 											fontSize: { md: '20px', xs: '14px' },
+											fontFamily: 'Karla , sans-serif',
 										}}
 										// href='/login'
 										onClick={() => {
@@ -556,7 +600,13 @@ export const Home = () => {
 															fontSize: '8px',
 														}}
 													/>
-													<Typography variant='h4' sx={{ fontWeight: 400, fontSize: '20px' }}>
+													<Typography
+														variant='h4'
+														sx={{
+															fontWeight: 400,
+															fontSize: { md: '20px', xs: '16px' },
+															fontFamily: 'Karla , sans-serif',
+														}}>
 														{data.item}
 													</Typography>
 												</Stack>
@@ -564,7 +614,14 @@ export const Home = () => {
 										)
 									})}
 								</List>
-								<Typography variant='h4' color={'#fff'}>
+								<Typography
+									variant='h4'
+									color={'#fff'}
+									sx={{
+										fontWeight: 400,
+										fontSize: { md: '24px', xs: '16px' },
+										fontFamily: 'Karla , sans-serif',
+									}}>
 									Download Now!
 								</Typography>
 								<Box mt={'20px'} sx={{ cursor: 'pointer' }}>
@@ -677,14 +734,18 @@ export const Home = () => {
 												<Typography
 													textAlign='center'
 													variant='h5'
+													fontSize={{ xs: '12px', md: '16px' }}
 													fontWeight='500'
+													fontFamily={'Saira,sans-serif'}
 													color={primary.properDark}>
 													{item.testimonial}
 												</Typography>
 												<Typography
 													textAlign='center'
 													variant='h5'
+													fontSize={{ xs: '14px', md: '16px' }}
 													fontWeight='600'
+													fontFamily={'Saira,sans-serif'}
 													color={primary.properDark}>
 													- {item.by}
 												</Typography>
