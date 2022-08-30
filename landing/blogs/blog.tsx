@@ -1,3 +1,4 @@
+import { Padding } from '@mui/icons-material'
 import { Button, Stack, Typography } from '@mui/material'
 import { CarouselV2, Section } from 'sdk'
 import { blogData } from 'sdk/data/blogData'
@@ -37,23 +38,21 @@ export const Blog = () => {
 					</Typography>
 				</Stack>
 
-				<CarouselV2
-					slideDelay={5000}
-					componentPerView={1}
-					items={Array(blogData.Latestblogs.length)
-						.fill('a')
-						.map(() => {
-							return <BlogCard view={'MainBlog'} />
-						})}
-				/>
+				<BlogCard view={'MainBlog'} />
 			</Section>
 			<Section>
 				<Stack direction='row' spacing={7} marginBottom='30px' marginTop='20px' marginLeft='20px'>
-					<Button variant='contained' sx={{ width: '125px' }}>
-						Latest
+					<Button
+						variant='contained'
+						sx={{ width: '111px', padding: '15px, 35px, 15px, 35px', height: '50.06px' }}>
+						<Typography fontSize='14.53' fontFamily='Karla ,sans-serif' fontWeight={400}>
+							Latest
+						</Typography>
 					</Button>
 					<Button variant='text' color='inherit'>
-						All Blog
+						<Typography fontSize='14.53' fontFamily='Karla ,sans-serif' fontWeight={400}>
+							All Blogs
+						</Typography>
 					</Button>
 				</Stack>
 				<BlogCard view={'CardBlog'} />

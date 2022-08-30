@@ -22,7 +22,7 @@ const Page: NextPage = () => {
 							onClick={() => {
 								router.push({
 									pathname: '/blog',
-									query: { pid: 1 },
+									query: { pid: 1, page: '' },
 								})
 							}}
 							startIcon={<ArrowBackIcon />}
@@ -30,14 +30,24 @@ const Page: NextPage = () => {
 							fullWidth={false}
 							sx={{ mt: '-20px', mb: '10px' }}
 							color='inherit'>
-							Back
+							<Typography
+								fontFamily='Karla ,sans-serif'
+								fontSize={{ md: '18px', xs: '12px' }}
+								fontWeight={500}>
+								Back
+							</Typography>
 						</Button>
 						<Button
 							endIcon={<ShareIcon />}
 							variant='text'
 							fullWidth={false}
 							sx={{ mt: '-20px', mb: '10px', mr: '12px' }}>
-							Share
+							<Typography
+								fontFamily='Karla ,sans-serif'
+								fontSize={{ md: '18px', xs: '12px' }}
+								fontWeight={500}>
+								Share
+							</Typography>
 						</Button>
 					</Box>
 					<CardMedia
