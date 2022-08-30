@@ -495,6 +495,7 @@ export const Navbar = () => {
 												color: 'common.white',
 												[theme.breakpoints.down('md')]: { display: 'none' },
 											})}
+											className={router.pathname === navItem.link ? 'active' : ''}
 											size='small'>
 											{navItem.label}
 										</LinkButton>
