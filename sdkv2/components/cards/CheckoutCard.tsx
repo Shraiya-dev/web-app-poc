@@ -35,7 +35,7 @@ import { AddEditWage } from '../dialog'
 import { primary } from 'sdk/constants'
 import { updateProfile } from 'sdk/apis'
 import { string } from 'yup'
-import StepConnector, { stepConnectorClasses } from '@mui/material/StepConnector'
+import StepConnector, { stepConnectorClasses, StepConnectorProps } from '@mui/material/StepConnector'
 import { styled } from '@mui/material/styles'
 import { StepIconProps } from '@mui/material/StepIcon'
 import CheckCircleIcon from '@mui/icons-material/CheckCircle'
@@ -64,28 +64,34 @@ const ProfileCardData = [
 	},
 ]
 
-const QontoConnector = styled(StepConnector)(({ theme }) => ({
-	[`&.${stepConnectorClasses.alternativeLabel}`]: {
-		top: 10,
-		left: 'calc(-50% + 8px)',
-		right: 'calc(50% + 8px)',
-	},
-	[`&.${stepConnectorClasses.active}`]: {
-		[`& .${stepConnectorClasses.line}`]: {
-			borderColor: '#4db07f',
+interface StyledProps extends StepConnectorProps {
+	isMobile: boolean
+}
+
+const QontoConnector = styled(StepConnector, { shouldForwardProp: ({ isLogin, isMobile }: any) => true })<StyledProps>(
+	({ theme, isMobile = false }: any) => ({
+		[`&.${stepConnectorClasses.alternativeLabel}`]: {
+			top: 10,
+			left: !isMobile ? 'calc(-78% + 8px)' : 'calc(-75% + 8px)',
+			right: !isMobile ? 'calc(79% + 8px)' : 'calc(78% + 8px)',
 		},
-	},
-	[`&.${stepConnectorClasses.completed}`]: {
-		[`& .${stepConnectorClasses.line}`]: {
-			borderColor: '#4db07f',
+		[`&.${stepConnectorClasses.active}`]: {
+			[`& .${stepConnectorClasses.line}`]: {
+				borderColor: '#4db07f',
+			},
 		},
-	},
-	[`& .${stepConnectorClasses.line}`]: {
-		borderColor: theme.palette.mode === 'dark' ? theme.palette.grey[800] : '#4db07f',
-		borderTopWidth: 3,
-		borderRadius: 1,
-	},
-}))
+		[`&.${stepConnectorClasses.completed}`]: {
+			[`& .${stepConnectorClasses.line}`]: {
+				borderColor: '#4db07f',
+			},
+		},
+		[`& .${stepConnectorClasses.line}`]: {
+			borderColor: theme.palette.mode === 'dark' ? theme.palette.grey[800] : '#4db07f',
+			borderTopWidth: 3,
+			borderRadius: 1,
+		},
+	})
+)
 
 const QontoStepIconRoot = styled('div')<{ ownerState: { active?: boolean } }>(({ theme, ownerState }) => ({
 	color: theme.palette.mode === 'dark' ? theme.palette.grey[700] : '#4db07f',
@@ -454,22 +460,28 @@ export const CheckoutCard: FC = () => {
 				<Stack
 					my={1}
 					sx={{
-						width: { md: '45%', xs: '100%' },
+						width: { md: '50%', xs: '100%' },
 					}}>
-					<Stepper alternativeLabel activeStep={activeStepValue} connector={<QontoConnector />}>
+					<Stepper
+						alternativeLabel
+						activeStep={activeStepValue}
+						connector={<QontoConnector isMobile={isMobile} />}>
 						{stepsName.map((label) => (
 							<Step key={label}>
 								<StepLabel
 									StepIconComponent={QontoStepIcon}
-									
 									sx={{
-										// whiteSpace: 'nowrap',
+										alignItems: 'flex-start',
 										fontSize: '10px !important',
+										span: {
+											textAlign: 'left !important',
+										},
 										'& .MuiStepLabel-label': {
-											mt: '8px !important',
-											color: '#000 !important',
+											mt: '0 !important',
+											color: '#000',
 											fontSize: '10px',
 											fontWeight: 400,
+											textAlign: 'left',
 										},
 										'& .MuiStep-root': {
 											p: '0 !important',

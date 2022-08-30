@@ -40,6 +40,7 @@ export const BlogCard: FC<Props> = ({ view }: Props) => {
 					items={blogData.Latestblogs.map(({ id, title, description, imgSrc }) => {
 						return (
 							<Stack
+								key={id}
 								direction={{ xs: 'column', md: 'row' }}
 								sx={{
 									borderRadius: '8.3557px',
@@ -140,7 +141,7 @@ export const BlogCard: FC<Props> = ({ view }: Props) => {
 										return null
 									}
 									return (
-										<Grid item xs={12} sm={6} md={4}>
+										<Grid key={id} item xs={12} sm={6} md={4}>
 											{isMobile ? (
 												<Card
 													elevation={10}

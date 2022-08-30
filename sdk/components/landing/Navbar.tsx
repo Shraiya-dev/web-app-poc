@@ -205,6 +205,19 @@ export const Navbar = () => {
 													}
 												})}
 											</Stack> */}
+											{/* <Stack direction={'row'} spacing={1}>
+												<Box height={23} width={23}>
+													<img
+														height={'100%'}
+														width={'100%'}
+														src='/assets/icons/mail.svg'
+														alt=''
+													/>
+												</Box>
+												<Typography variant='subtitle2' color={'#fff'} fontWeight={700}>
+													marketing@projecthero.in
+												</Typography>
+											</Stack> */}
 											<Stack direction={'row'} spacing={1}>
 												<Box height={23} width={23}>
 													<img
@@ -228,7 +241,7 @@ export const Navbar = () => {
 							sx={{
 								display: { md: 'inline-flex', xs: 'none' },
 							}}
-							spacing={{ xs: 0, md: 3 }}
+							spacing={{ xs: 0, md: 1 }}
 							alignItems='center'>
 							{navbar.navLinks.map((navItem, i) => {
 								if (navItem.type === 'button_link') {

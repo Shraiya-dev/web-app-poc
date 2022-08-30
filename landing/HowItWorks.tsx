@@ -21,46 +21,45 @@ const CustomHowItWorksStyle = styled(Box)(({ theme }) => ({
 const CarouselData = [
 	{
 		index: '01',
-		title: 'Booking Received',
-		details:
-			'Quickly fill-in booking details such as Target applications required, location, project duration etc.',
+		title: 'Job Posted',
+		details: 'Quickly fill-in job details like project location and daily salary offered.',
 		imgSrc: '/assets/landingv2/icons/booking.svg',
 		bgColor: '#383838',
 	},
 	{
 		index: '02',
-		title: 'Pay Per Target Application',
-		details:
-			'After giving details, please pay a nominal amount of Rs 50 per target application. First 15 target applications are completely free!',
+		title: 'Login to Contractor Dashboard',
+		details: 'After giving details, please login to our contractor dashboard by verifying your phone number',
 		imgSrc: '/assets/landingv2/icons/like.svg',
 		bgColor: '#383838',
 	},
 	{
 		index: '03',
-		title: 'Payment Done',
-		details: 'Your booking automatically goes live as soon as you complete payment for the booking',
+		title: 'Job Posting Goes Live',
+		details: 'Congratulations! your job posting has gone live on our app for Heroes.',
 		imgSrc: '/assets/landingv2/icons/layer.svg',
 		bgColor: '#383838',
 	},
 	{
 		index: '04',
-		title: 'Booking Goes Live',
-		details: 'Congratulations! Your booking has gone live. Heroes start checking out your booking on our Hero App.',
+		title: 'Heroes start applying to your job',
+		details: 'Heroes start noticing your job on their app and start applying to your job with in 15 minutes.',
 		imgSrc: '/assets/landingv2/icons/Helmet.svg',
 		bgColor: '#383838',
 	},
 	{
 		index: '05',
-		title: 'Heroes Start Applying',
+		title: 'Call & Hire Workers',
 		details:
-			'Once your booking goes live, you start receiving Hero applications. You can get phone numbers and other details about the Heroes on our contractor web-app.',
+			'You start receiving hero applications with details like Phone Number, name, work-experience etc. Call them directly and offer them the job!',
 		imgSrc: '/assets/landingv2/icons/Helmet.svg',
 		bgColor: '#383838',
 	},
 	{
 		index: '06',
-		title: 'Call & Hire Heroes	',
-		details: 'Call, negotiate and hire workers for your construction workforce.',
+		title: 'Constructions Workforce Found',
+		details:
+			'You have successfully found the best workforce across 10+ job categories. Post as many jobs as possible. It is absolutely FREE!',
 		imgSrc: '/assets/landingv2/icons/hook.svg',
 		bgColor: '#383838',
 	},
@@ -114,23 +113,51 @@ export const HowItWorks: FC<Props> = () => {
 					maxHeight: '100vh',
 				}}>
 				<Stack direction={'column'} textAlign={'center'} spacing={3}>
-					<Typography className='font-Saira' variant='h1'>
-						How you can{' '}
-						<span
-							style={{
+					<Typography
+						className='font-Saira'
+						variant='h1'
+						sx={{
+							textAlign: { xs: 'left', md: 'center' },
+						}}>
+						How can you{' '}
+						<Box
+							component='span'
+							sx={{
 								color: theme.palette.success.dark,
 							}}>
-							book workers
-						</span>{' '}
-						<br />
-						with us within{' '}
-						<span
-							style={{
+							POST{' '}
+						</Box>
+						your{' '}
+						<Box
+							component='span'
+							sx={{
 								color: theme.palette.success.dark,
 							}}>
-							1 min
-						</span>
+							JOB{' '}
+						</Box>
+						for{' '}
+						<Box
+							component='br'
+							sx={{
+								display: { md: 'inline', xs: 'none' },
+							}}></Box>
+						<Box
+							component='span'
+							sx={{
+								color: theme.palette.success.dark,
+							}}>
+							FREE
+						</Box>{' '}
+						with in{' '}
+						<Box
+							component='span'
+							sx={{
+								color: theme.palette.success.dark,
+							}}>
+							1 minute?
+						</Box>
 					</Typography>
+
 					<Typography className='font-Karla' variant='h3'>
 						See how the Project Hero platform works
 					</Typography>
@@ -145,13 +172,21 @@ export const HowItWorks: FC<Props> = () => {
 					<Stack
 						direction={'row'}
 						justifyContent={{ xs: 'flex-start', sm: 'center', md: 'center', width: '100%' }}>
-						<Button size='large'>Book Worker Now</Button>
+						<Button
+							size='large'
+							sx={{
+								fontFamily: 'Karla,sans-serif',
+								fontWeight: 500,
+								fontSize: { md: '20px', xs: '14px' },
+							}}>
+							Post Your Job Now
+						</Button>
 					</Stack>
 					<Paper
 						elevation={0}
 						sx={{
 							maxWidth: '800px',
-							width: { xs: '90%', sm: '80%', md: '55%' },
+							width: { xs: '100%', sm: '80%', md: '55%' },
 							aspectRatio: '2 / 1',
 						}}>
 						<iframe
@@ -206,7 +241,7 @@ export const HowItWorks: FC<Props> = () => {
 				<Grid container spacing={{ xs: 0, md: 2 }} py={{ xs: 2, md: 4 }}>
 					{profileDescription.map((value, index) => {
 						return (
-							<Grid key={index} xs={12} sm={12} md={4}>
+							<Grid item key={index} xs={12} sm={12} md={4}>
 								<Stack
 									direction={{ xs: 'row', md: 'column' }}
 									alignItems={'center'}
@@ -424,7 +459,9 @@ export const HowItWorks: FC<Props> = () => {
 														fontWeight={700}
 														sx={{
 															color:
-																index === height ? theme.palette.primary.main : '#000',
+																index === height
+																	? theme.palette.primary.main
+																	: theme.palette.success.dark,
 														}}>
 														{index}
 													</Typography>
