@@ -31,6 +31,7 @@ import { contactUsSection, navbar } from 'sdk/data'
 import { useContractorAuth } from 'sdk'
 import DashboardRoundedIcon from '@mui/icons-material/DashboardRounded'
 import Link from 'next/link'
+
 export const Navbar = () => {
 	const [menuRefs, dispatchMenuRefs] = useReducer((p: any, n: any) => ({ ...p, ...n }), {})
 	const router = useRouter()
@@ -188,6 +189,12 @@ export const Navbar = () => {
 												spacing={1}
 												sx={{
 													px: 1,
+													'& > a > button.MuiButton-root.MuiButton-text.MuiButton-sizeSmall':
+														{
+															minWidth: '140px',
+															alignItem: 'left !important',
+															justifyContent: 'unset',
+														},
 												}}>
 												{navbar.navLinks.map((val, i) => {
 													if (val.type === 'text_link') {

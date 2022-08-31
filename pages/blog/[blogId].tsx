@@ -169,7 +169,7 @@ const Page: NextPage = () => {
 															<Button
 																onClick={() => {
 																	router.push(`/blog/${id}`)
-																	window.scrollTo(0, 0)
+																	// window.scrollTo(0, 0)
 																}}
 																endIcon={<ArrowForwardIcon />}
 																variant='text'
@@ -253,7 +253,7 @@ const Page: NextPage = () => {
 														<Button
 															onClick={() => {
 																router.push(`/blog/${id}`)
-																window.scrollTo(0, 0)
+																// window.scrollTo(0, 0)
 															}}
 															endIcon={<ArrowForwardIcon />}
 															variant='text'
