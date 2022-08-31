@@ -75,9 +75,9 @@ export const BlogCard: FC<Props> = ({ view }: Props) => {
 											fontFamily='Karla ,sans-serif'
 											fontSize={{ md: '20px', xs: '14px' }}
 											fontWeight={400}>
-											{description.slice(0, 223)}
+											{description.slice(0, 200)}
 											<br />
-											<br /> {description.slice(223, 400)}
+											<br /> {description.slice(200, 400)}
 										</Typography>
 									</CardContent>
 									<CardActions
