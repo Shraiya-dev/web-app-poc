@@ -42,7 +42,10 @@ export const Footer = () => {
 								</HyperLink>
 
 								<Stack direction='column' alignItems='flex-start' spacing={4}>
-									<Typography variant='h3' color={footer.textColor}>
+									<Typography
+										color={footer.textColor}
+										fontFamily={' Saira , sans-serif'}
+										fontSize={{ xs: '20px', md: '24px' }}>
 										{footer.tagLine}
 									</Typography>
 									<LinkButton
@@ -58,13 +61,24 @@ export const Footer = () => {
 											})
 										}}
 										variant='contained'
-										sx={{ fontSize: '20px', p: '14px 64px', fontWeight: '900' }}>
+										sx={{
+											fontSize: { md: '20px', xs: '14px' },
+											p: '14px 64px',
+											fontWeight: 500,
+											fontFamily: 'Karla ,sans-serif',
+										}}>
 										Book Workers Now
 									</LinkButton>
 								</Stack>
 							</Stack>
 							<Stack mt={'40px'} direction={'column'} alignItems={'flex-start'} width={'100%'}>
-								<Typography variant='h4' color={'#fff'}>
+								<Typography
+									color={'#fff'}
+									sx={{
+										fontFamily: 'Karla ,sans-serif',
+										fontSize: { xs: '16px', md: '24px' },
+										fontWeight: 400,
+									}}>
 									Download Now!
 								</Typography>
 								<Box mt={'20px'} sx={{ cursor: 'pointer' }}>
@@ -87,10 +101,20 @@ export const Footer = () => {
 							</Stack>
 						</Stack>
 						<Stack direction={'column'}>
-							<Typography variant='h2' color={'#fff'}>
+							<Typography
+								variant='h2'
+								color={'#fff'}
+								fontFamily={'Saira ,sans-serif'}
+								fontWeight={500}
+								fontSize={{ xs: '16px', md: '32px' }}>
 								Have a question? Here to help.
 							</Typography>
-							<Typography variant='h6' color={'#fff'} fontSize={'18px'} fontWeight={'500'} mt={'8px'}>
+							<Typography
+								color={'#fff'}
+								mt={'8px'}
+								fontFamily={'Karla ,sans-serif'}
+								fontWeight={500}
+								fontSize={{ xs: '16px', md: '18px' }}>
 								Our friendly customer support team is your <br /> extended family. Speak your heart out.
 								Give <br />
 								us a call or drop us an email, we&#39;re here to <br />
@@ -131,7 +155,8 @@ export const Footer = () => {
 										href='mailto:marketing@projecthero.in'
 										variant='subtitle2'
 										color={'#fff'}
-										fontSize={'18px'}
+										fontSize={{ md: '18px', xs: '16px' }}
+										fontFamily={'Karla,sans-serif'}
 										fontWeight={700}>
 										marketing@projecthero.in
 									</Typography>
@@ -143,7 +168,8 @@ export const Footer = () => {
 										href='tel:+91 9151003513'
 										variant='subtitle2'
 										color={'#fff'}
-										fontSize={'18px'}
+										fontSize={{ md: '18px', xs: '16px' }}
+										fontFamily={'Karla,sans-serif'}
 										fontWeight={700}>
 										+91-9151003513
 									</Typography>
@@ -177,7 +203,13 @@ export const Footer = () => {
 											target='_blank'
 											rel='noopener noreferrer'
 											href={item.link}>
-											<Typography color='#ffffff'>{item.label}</Typography>
+											<Typography
+												color='#ffffff'
+												fontFamily={'Karla, sans-serif'}
+												fontSize={{ xs: '12px', md: '18px' }}
+												fontWeight={500}>
+												{item.label}
+											</Typography>
 										</a>
 									))}
 								</Stack>
@@ -185,47 +217,6 @@ export const Footer = () => {
 						</Box>
 						<Box>
 							<Stack direction={'row'} justifyContent={'space-between'} alignItems='center'>
-								{/* <Stack direction={'row'} spacing={2} alignItems='center'>
-									<a
-										href={externalLinks.heroApp}
-										onClick={() => {
-											ButtonClicked({
-												page: document.title,
-												action: 'App store link',
-												url: router.asPath,
-											})
-										}}
-										target='_blank'
-										rel='noopener noreferrer'>
-										<Image src={AppStoreImage} width={100} height={30} alt='' />
-									</a>
-									<a
-										href={externalLinks.instaGram}
-										onClick={() => {
-											ButtonClicked({
-												page: document.title,
-												action: 'Instagram Link',
-												url: router.asPath,
-											})
-										}}
-										target='_blank'
-										rel='noopener noreferrer'>
-										<Image src={'/assets/landing/instagram.svg'} width={30} height={30} alt='' />
-									</a>
-									<a
-										href={externalLinks.youtube}
-										onClick={() => {
-											ButtonClicked({
-												page: document.title,
-												action: 'Youtube link',
-												url: router.asPath,
-											})
-										}}
-										target='_blank'
-										rel='noopener noreferrer'>
-										<Image src={'/assets/landing/youtube.svg'} width={45} height={45} alt='' />
-									</a>
-								</Stack> */}
 								<Stack direction={'row'}>
 									<IconButton>
 										<a href={externalLinks.instaGram} target='blank'>
@@ -286,15 +277,30 @@ export const Footer = () => {
 								})
 							}}
 							variant='contained'
-							sx={{ fontSize: '14px', p: '13px 45px', fontWeight: '900' }}>
+							sx={{
+								fontSize: { md: '20px', xs: '14px' },
+								p: '14px 64px',
+								fontWeight: 500,
+								fontFamily: 'Karla ,sans-serif',
+							}}>
 							Book Workers Now
 						</LinkButton>
 					</Stack>
 					<Stack direction={'column'} mt={6}>
-						<Typography variant='h2' color={'#fff'}>
+						<Typography
+							color={'#fff'}
+							fontFamily={'Saira ,sans-serif'}
+							fontWeight={500}
+							fontSize={{ xs: '16px', md: '32px' }}>
 							Have a question? Here to help.
 						</Typography>
-						<Typography variant='h6' color={'#fff'} fontSize={'18px'} fontWeight={'500'} mt={4}>
+						<Typography
+							variant='h6'
+							color={'#fff'}
+							mt={2}
+							fontFamily={'Karla ,sans-serif'}
+							fontWeight={500}
+							fontSize={{ xs: '16px', md: '18px' }}>
 							Our friendly customer support team is your extended family. Speak your heart out. Give us a
 							call or drop us an email, we&#39;re here to help.
 						</Typography>
@@ -307,7 +313,8 @@ export const Footer = () => {
 								href='mailto:marketing@projecthero.in'
 								variant='subtitle2'
 								color={'#fff'}
-								fontSize={'18px'}
+								fontSize={{ md: '18px', xs: '16px' }}
+								fontFamily={'Karla,sans-serif'}
 								fontWeight={700}>
 								marketing@projecthero.in
 							</Typography>
@@ -319,14 +326,21 @@ export const Footer = () => {
 								href='tel:+91 9151003513'
 								variant='subtitle2'
 								color={'#fff'}
-								fontSize={'18px'}
+								fontSize={{ md: '18px', xs: '16px' }}
+								fontFamily={'Karla,sans-serif'}
 								fontWeight={700}>
 								+91-9151003513
 							</Typography>
 						</Stack>
 					</Stack>
 					<Stack direction={'column'} alignItems='flex-start' mt={8}>
-						<Typography variant='h4' color={'#fff'}>
+						<Typography
+							color={'#fff'}
+							sx={{
+								fontFamily: 'Karla ,sans-serif',
+								fontSize: { xs: '16px', md: '24px' },
+								fontWeight: 400,
+							}}>
 							Download Now!
 						</Typography>
 						<Box mt={'20px'} sx={{ cursor: 'pointer', width: '45%' }}>
@@ -372,7 +386,7 @@ export const Footer = () => {
 							</a>
 						</IconButton>{' '}
 					</Stack>
-					<Stack direction={'column'} spacing={2} mt={4}>
+					<Stack direction={'column'} spacing={2} mt={3}>
 						{footer.navLinks.map((item) => (
 							<a
 								key={item.label}
@@ -386,7 +400,13 @@ export const Footer = () => {
 								target='_blank'
 								rel='noopener noreferrer'
 								href={item.link}>
-								<Typography color='#ffffff'>{item.label}</Typography>
+								<Typography
+									color='#ffffff'
+									fontFamily={'Karla, sans-serif'}
+									fontSize={{ xs: '12px', md: '18px' }}
+									fontWeight={500}>
+									{item.label}
+								</Typography>
 							</a>
 						))}
 					</Stack>

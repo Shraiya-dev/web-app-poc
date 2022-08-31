@@ -255,7 +255,7 @@ export const CheckoutCard: FC = () => {
 							action: 'ButtonClick',
 							metaData: {
 								origin: 'Booking checkout card',
-								trialBooking: bill?.amountPayable <= 0,
+								paidBooking: bill?.amountPayable <= 0,
 								amountPayable: bill?.amountPayable,
 								discountEligible: !!discountDetails?.isEligible,
 								discount: bill?.discount,
@@ -319,6 +319,19 @@ export const CheckoutCard: FC = () => {
 						action: 'ButtonClick',
 						metaData: {
 							step: 'Booking Complete',
+							phoneNumber: user?.phoneNumber,
+							amount: bill?.amountPayable,
+							discountEligible: !!discountDetails?.isEligible,
+							discount: bill?.discount,
+							currency: 'INR',
+							bookingDetails: {
+								helperCount: form.values['qtyHelper'],
+								supervisorCount: form.values['qtySupervisor'],
+								technicianCount: form.values['qtyTechnician'],
+								helperWage: wage['wageHelper'],
+								supervisorWage: wage['wageSupervisor'],
+								technicianWage: wage['wageTechnician'],
+							},
 						},
 					})
 					router.replace(`/projects/${router.query.projectId}/bookings`)

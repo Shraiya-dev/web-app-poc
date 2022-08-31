@@ -1,4 +1,4 @@
-import { KeyboardReturn } from '@mui/icons-material'
+import { FemaleSharp, KeyboardReturn } from '@mui/icons-material'
 import {
 	Backdrop,
 	CircularProgress,
@@ -46,6 +46,7 @@ interface AuthState {
 	refreshToken: null | string
 	isRegister: false | Boolean
 	isSideBarToggle: false | boolean
+	isWhatsAppOptIn: true | boolean
 }
 
 interface emailOtpPayload {
@@ -64,6 +65,8 @@ interface AuthProviderValue extends AuthState {
 	createEasyBooking: (bookingDetails: any) => Promise<any>
 	verifyEmailOtp: (payload: emailOtpPayload) => Promise<any>
 	openLoginDialog: () => any
+	setBackdropProps: any
+	handleWhatsApp: () => any
 }
 
 const simpleReducer = (state: AuthState, payload: Partial<AuthState>) => ({
@@ -84,6 +87,7 @@ const initialAuthState: AuthState = {
 	user: null,
 	isRegister: false,
 	isSideBarToggle: false,
+	isWhatsAppOptIn: true,
 }
 const ContractorAuthContext = createContext<AuthProviderValue>({
 	...initialAuthState,
@@ -98,6 +102,8 @@ const ContractorAuthContext = createContext<AuthProviderValue>({
 	createEasyBooking: () => Promise.resolve(null),
 	verifyEmailOtp: () => Promise.resolve(null),
 	openLoginDialog: () => null,
+	setBackdropProps: () => null,
+	handleWhatsApp: () => null,
 })
 const { Provider, Consumer } = ContractorAuthContext
 
@@ -343,7 +349,7 @@ const ContractorAuthProvider: FC<ContractorAuthProviderProps> = ({ children, aut
 			const phoneNumber = localStorage.getItem('phoneNumber')
 			if (!(accessToken && refreshToken && phoneNumber)) {
 				if (PublicPages.includes(router.pathname)) return
-				logOutService()
+				logOutService(true)
 				return
 			}
 			try {
@@ -402,7 +408,7 @@ const ContractorAuthProvider: FC<ContractorAuthProviderProps> = ({ children, aut
 	useEffect(() => {
 		if (!(state.accessToken && state.refreshToken && state.phoneNumber)) {
 			if (PublicPages.includes(router.pathname)) return
-			logOutService()
+			logOutService(true)
 			return
 		}
 		if (
@@ -420,7 +426,6 @@ const ContractorAuthProvider: FC<ContractorAuthProviderProps> = ({ children, aut
 		const timer = setInterval(getContactorUserInfo, 300000)
 		return () => clearInterval(timer)
 	}, [])
-
 	const createEasyBooking = useCallback(
 		async (bookingDetails) => {
 			try {
@@ -453,14 +458,13 @@ const ContractorAuthProvider: FC<ContractorAuthProviderProps> = ({ children, aut
 				}
 				const { data, status } = await axios.post('/gateway/customer-api/projects/bookings', payload)
 				deleteCookie('discoveryBooking')
-
-				router.push(`/bookings/${data.payload.projectId}/${data.payload.bookingId}/checkout`)
+				await getContactorUserInfo()
+				router.replace(`/bookings/${data.payload.projectId}/${data.payload.bookingId}/checkout`, undefined, {})
 			} catch (error) {
 				showSnackbar('Failed to create easy booking', 'error')
 			}
-			setBackdropProps({ open: false })
 		},
-		[router, showSnackbar]
+		[getContactorUserInfo, router, showSnackbar]
 	)
 
 	useEffect(() => {
@@ -527,21 +531,42 @@ const ContractorAuthProvider: FC<ContractorAuthProviderProps> = ({ children, aut
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [state.user, router])
 
+	const handleWhatsApp = useCallback(() => {
+		dispatch({
+			isWhatsAppOptIn: !state.isWhatsAppOptIn,
+		})
+	}, [state])
+
+	useEffect(() => {
+		console.log(state.isWhatsAppOptIn)
+	}, [state])
+
 	const [isDialogOpen, setIsDialogOpen] = useState<boolean>(false)
 	const [isOtpSent, setIsOtpSent] = useState<boolean>(false)
 
 	const openLoginDialog = useCallback(() => {
 		if (!state.user) setIsDialogOpen(!isDialogOpen)
 	}, [isDialogOpen, state.user])
+	useEffect(() => {
+		if (state.user) {
+			setIsDialogOpen(false)
+		}
+	}, [state.user])
 
 	// const handleActiveStepValue = useCallback(() => {
 	// 	let value = router.query.bookingformStep ?? 0
 	// 	setActiveStepValue(value)
 	// }, [router])
-
+	useEffect(() => {
+		if (router.query.login) {
+			setIsDialogOpen(true)
+			delete router.query.login
+		}
+	}, [router.query.login])
 	const authProviderValue: AuthProviderValue = useMemo(
 		() => ({
 			...state,
+			setBackdropProps: setBackdropProps,
 			requestOtp: requestOtp,
 			verifyOtp: verifyOtp,
 			logOut: logOutService,
@@ -553,9 +578,11 @@ const ContractorAuthProvider: FC<ContractorAuthProviderProps> = ({ children, aut
 			reSendEmailOtp: reSendEmailOtp,
 			createEasyBooking: createEasyBooking,
 			openLoginDialog: openLoginDialog,
+			handleWhatsApp: handleWhatsApp,
 		}),
 		[
 			state,
+			setBackdropProps,
 			requestOtp,
 			verifyOtp,
 			getContactorUserInfo,
@@ -566,6 +593,7 @@ const ContractorAuthProvider: FC<ContractorAuthProviderProps> = ({ children, aut
 			reSendEmailOtp,
 			createEasyBooking,
 			openLoginDialog,
+			handleWhatsApp,
 		]
 	)
 

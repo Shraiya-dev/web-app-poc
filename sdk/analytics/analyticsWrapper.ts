@@ -50,13 +50,24 @@ interface Identify {
 	onboardingStatus?: string
 }
 
+//json helper to flatten data
+const flattenJSON = (obj: any = {}, res: any = {}, extraKey: any = '') => {
+	for (let key in obj) {
+		if (typeof obj[key] !== 'object') {
+			res[extraKey + key] = obj[key]
+		} else {
+			flattenJSON(obj[key], res, `${extraKey}${key}.`)
+		}
+	}
+	return res
+}
 export const ButtonClicked = ({ ...props }: ButtonClicked) => {
 	const utmInfo = getUtmObject()
 	if (utmInfo) {
 		const utmProp = { ...props, utmParams: utmInfo }
-		Analytic.track('Button Clicked', utmProp)
+		Analytic.track('Button Clicked', { utmProp, ...flattenJSON(utmProp) })
 	} else {
-		Analytic.track('Button Clicked', props)
+		Analytic.track('Button Clicked', { ...props, ...flattenJSON(props) })
 	}
 }
 
@@ -64,9 +75,9 @@ export const CardClicked = ({ ...props }: CardClicked) => {
 	const utmInfo = getUtmObject()
 	if (utmInfo) {
 		const utmProp = { ...props, utmParams: utmInfo }
-		Analytic.track('Card Clicked', utmProp)
+		Analytic.track('Card Clicked', { utmProp, ...flattenJSON(utmProp) })
 	} else {
-		Analytic.track('Card Clicked', props)
+		Analytic.track('Card Clicked', { ...props, ...flattenJSON(props) })
 	}
 }
 
@@ -74,9 +85,9 @@ export const HorizontalTabClicked = ({ ...props }: HorizontalTabClicked) => {
 	const utmInfo = getUtmObject()
 	if (utmInfo) {
 		const utmProp = { ...props, utmParams: utmInfo }
-		Analytic.track('HorizontalTab Clicked', utmProp)
+		Analytic.track('HorizontalTab Clicked', { utmProp, ...flattenJSON(utmProp) })
 	} else {
-		Analytic.track('HorizontalTab Clicked', props)
+		Analytic.track('HorizontalTab Clicked', { ...props, ...flattenJSON(props) })
 	}
 }
 
@@ -84,9 +95,9 @@ export const NavigationTabClicked = ({ ...props }: NavigationTabClicked) => {
 	const utmInfo = getUtmObject()
 	if (utmInfo) {
 		const utmProp = { ...props, utmParams: utmInfo }
-		Analytic.track('NavigationTab Clicked', utmProp)
+		Analytic.track('NavigationTab Clicked', { utmProp, ...flattenJSON(utmProp) })
 	} else {
-		Analytic.track('NavigationTab Clicked', props)
+		Analytic.track('NavigationTab Clicked', { props, ...flattenJSON(props) })
 	}
 }
 
@@ -140,6 +151,7 @@ const EventTypes = {
 	editWage: 'Edit wage',
 	filters: 'Filter',
 	heroApplicationsStatus: 'Hero Applications Status',
+	whatsAppOptIn: 'WhatsApp opt-in',
 }
 
 //Define a new action type here if needed
@@ -161,6 +173,7 @@ export const sendAnalytics = async (event: {
 	const payload = {
 		action: ActionTypes[action],
 		metaData: metaData,
+		...flattenJSON(metaData),
 		page: getPageData().name,
 		url: document.location.pathname,
 		utmParams: utmInfo,

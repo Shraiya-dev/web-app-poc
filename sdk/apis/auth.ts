@@ -44,11 +44,11 @@ export const updateProfile = async (payload: any) => {
 	return axios.put('/gateway/customer-api/customers/profile', payload)
 }
 
-export const logOutService = () => {
+export const logOutService = (login?: boolean) => {
 	localStorage.clear()
 
 	if (window.location.pathname !== `/`) {
-		window.location.href = `/`
+		window.location.href = `/?${login ? 'login=true' : ''}`
 	}
 }
 

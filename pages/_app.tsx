@@ -69,28 +69,21 @@ axios.interceptors.response.use(
 					const { status, data } = await refreshTokenService(refreshToken, accessToken, USER_TYPE.CONTRACTOR)
 					if (!data?.success) {
 						Analytic.reset()
-						return logOutService()
+						return logOutService(true)
 					}
 
 					localStorage.setItem('accessToken', data.data.accessToken)
 					return window.location.reload()
 				} catch (error) {
-					return logOutService()
+					return logOutService(true)
 				}
 			}
-			return logOutService()
+			return logOutService(true)
 		}
 		return Promise.reject(error)
 	}
 )
 //=====================axios interceptor end=======================
-
-const domain = {
-	stage: 'https://stage-booking.projecthero.in',
-	dev: 'https://dev-booking.projecthero.in',
-	production: 'https://booking.projecthero.in',
-}
-
 function MyApp({ Component, pageProps }: AppProps) {
 	const router = useRouter()
 	const fullYearDays = 365
@@ -99,6 +92,23 @@ function MyApp({ Component, pageProps }: AppProps) {
 	useEffect(() => {
 		setPageData(pageStaticData)
 	}, [pageStaticData])
+	useEffect(() => {
+		let origin = window.location.origin
+		console.log(origin)
+		switch (true) {
+			case origin.includes('-booking'):
+				origin = origin.replace('-booking', '')
+				window.location.replace(origin + router.asPath)
+				break
+			case origin.includes('booking.'):
+				origin = origin.replace('booking.', '')
+				window.location.replace(origin + router.asPath)
+				break
+			default:
+				break
+		}
+	}, [router.asPath])
+
 	useEffect(() => {
 		if (router.isReady) {
 			const utmParams = router.asPath.includes('utm_')
