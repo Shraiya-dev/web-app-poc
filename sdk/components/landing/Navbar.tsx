@@ -182,29 +182,32 @@ export const Navbar = () => {
 										)}
 
 										<Stack direction={'column'} spacing={4} px={2.4} mt={'40px'}>
-											{/* <Stack
+											<Stack
 												direction={'column'}
 												alignItems={'flex-start'}
 												spacing={1}
-												width={'100%'}>
+												sx={{
+													px: 1,
+												}}>
 												{navbar.navLinks.map((val, i) => {
 													if (val.type === 'text_link') {
 														return (
-															<Button
+															<LinkButton
 																href={val.link}
 																key={i}
 																variant='text'
 																sx={(theme) => ({
 																	fontWeight: 700,
 																	color: '#fff',
+																	textAlign: 'left',
 																})}
 																size='small'>
 																{val.label}
-															</Button>
+															</LinkButton>
 														)
 													}
 												})}
-											</Stack> */}
+											</Stack>
 											{/* <Stack direction={'row'} spacing={1}>
 												<Box height={23} width={23}>
 													<img

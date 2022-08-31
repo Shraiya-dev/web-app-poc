@@ -6,6 +6,7 @@ import { CarouselV2, Section } from 'sdk'
 import { BlogCard } from 'sdkv2/components'
 export const Blog = () => {
 	const router = useRouter()
+	const [isActive, setIsActive] = useState<string>('latest')
 
 	return (
 		<Stack>
@@ -52,6 +53,7 @@ export const Blog = () => {
 									type: 'latest',
 								},
 							})
+							setIsActive('latest')
 						}}
 						variant='contained'
 						sx={{
@@ -61,6 +63,7 @@ export const Blog = () => {
 							fontSize: '14.53',
 							fontFamily: 'Karla ,sans-serif',
 							fontWeight: 400,
+							background: isActive === 'latest' ? '#EFC430' : 'inherit',
 						}}>
 						Latest
 					</Button>
@@ -72,13 +75,14 @@ export const Blog = () => {
 									type: 'all',
 								},
 							})
+							setIsActive('all')
 						}}
-						variant='text'
-						color='inherit'
+						variant='contained'
 						sx={{
 							fontSize: '14.53',
 							fontFamily: 'Karla ,sans-serif',
 							fontWeight: 400,
+							background: isActive === 'all' ? '#EFC430' : 'inherit',
 						}}>
 						All Blogs
 					</Button>
