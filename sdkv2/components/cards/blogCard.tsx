@@ -25,7 +25,6 @@ import { useRouter } from 'next/router'
 interface Props {
 	view: string
 }
-const data = Array(9).fill('a')
 export const BlogCard: FC<Props> = ({ view }: Props) => {
 	const isMobile = useMobile()
 	const [seeMore, setSeeMore] = useState(false)
@@ -33,14 +32,14 @@ export const BlogCard: FC<Props> = ({ view }: Props) => {
 
 	return (
 		<>
-			{view == 'MainBlog' && (
+			{view === 'MainBlog' && (
 				<CarouselV2
 					slideDelay={5000}
 					componentPerView={1}
-					items={blogData.Latestblogs.map(({ id, title, description, imgSrc }) => {
+					items={blogData.Popularblogs.map(({ id, title, description, imgSrc }, index) => {
 						return (
 							<Stack
-								key={id}
+								key={index}
 								direction={{ xs: 'column', md: 'row' }}
 								sx={{
 									borderRadius: '8.3557px',
@@ -76,9 +75,9 @@ export const BlogCard: FC<Props> = ({ view }: Props) => {
 											fontFamily='Karla ,sans-serif'
 											fontSize={{ md: '20px', xs: '14px' }}
 											fontWeight={400}>
-											{description.slice(0, 200)}
+											{description.slice(0, 223)}
 											<br />
-											<br /> {description.slice(200, 400)}
+											<br /> {description.slice(223, 400)}
 										</Typography>
 									</CardContent>
 									<CardActions
@@ -91,7 +90,7 @@ export const BlogCard: FC<Props> = ({ view }: Props) => {
 												router.push({
 													pathname: !router.query.page ? 'blog/id' : '/blog/id',
 													query: {
-														pid: id,
+														pid: index,
 														page: 'read-more',
 													},
 												})
@@ -131,7 +130,7 @@ export const BlogCard: FC<Props> = ({ view }: Props) => {
 					})}
 				/>
 			)}
-			{view == 'CardBlog' && (
+			{view === 'CardBlog' && (
 				<Stack>
 					<Section>
 						{
@@ -141,7 +140,7 @@ export const BlogCard: FC<Props> = ({ view }: Props) => {
 										return null
 									}
 									return (
-										<Grid key={id} item xs={12} sm={6} md={4}>
+										<Grid key={index} item xs={12} sm={6} md={4}>
 											{isMobile ? (
 												<Card
 													elevation={10}
@@ -186,7 +185,7 @@ export const BlogCard: FC<Props> = ({ view }: Props) => {
 																			? 'blog/id'
 																			: '/blog/id',
 																		query: {
-																			pid: id,
+																			pid: index,
 																			page: 'read-more',
 																		},
 																	})
@@ -284,7 +283,7 @@ export const BlogCard: FC<Props> = ({ view }: Props) => {
 																		? 'blog/id'
 																		: '/blog/id',
 																	query: {
-																		pid: id,
+																		pid: index,
 																		page: 'read-more',
 																	},
 																})
@@ -321,21 +320,22 @@ export const BlogCard: FC<Props> = ({ view }: Props) => {
 										</Button>
 									</Grid>
 								)}
-								{!seeMore && (!isMobile ? data.length > 6 : data.length > 2) && (
-									<Grid container justifyContent='center' marginTop={3}>
-										<Button
-											onClick={() => {
-												console.log(seeMore)
-												setSeeMore(true)
-											}}
-											endIcon={<KeyboardArrowDownIcon />}
-											variant='text'
-											fullWidth={false}
-											color='inherit'>
-											Show More
-										</Button>
-									</Grid>
-								)}
+								{!seeMore &&
+									(!isMobile ? blogData?.Allblogs?.length > 6 : blogData?.Allblogs?.length > 2) && (
+										<Grid container justifyContent='center' marginTop={3}>
+											<Button
+												onClick={() => {
+													console.log(seeMore)
+													setSeeMore(true)
+												}}
+												endIcon={<KeyboardArrowDownIcon />}
+												variant='text'
+												fullWidth={false}
+												color='inherit'>
+												Show More
+											</Button>
+										</Grid>
+									)}
 							</Grid>
 						}
 					</Section>
