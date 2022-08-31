@@ -109,7 +109,7 @@ export const CreateBookingCard: FC<Props> = () => {
 						</Typography>
 					</Stack>
 					<Stack my={2}>
-						<BookingStepper />
+						<BookingStepper isLogin={false} />
 					</Stack>
 					{step === 1 && (
 						<Stack direction={'row'} justifyContent={'flex-start'}>
