@@ -1,10 +1,12 @@
 import { Padding } from '@mui/icons-material'
-import { Button, Stack, Typography } from '@mui/material'
+import { Button, Stack, Tab, Tabs, Typography } from '@mui/material'
+import { useRouter } from 'next/router'
+import { useState } from 'react'
 import { CarouselV2, Section } from 'sdk'
-import { blogData } from 'sdk/data/blogData'
 import { BlogCard } from 'sdkv2/components'
-const data = Array(8).fill('a')
 export const Blog = () => {
+	const router = useRouter()
+
 	return (
 		<Stack>
 			<Section backgroundColor={'rgba(0, 0, 0, 0.05)'}>
@@ -43,16 +45,42 @@ export const Blog = () => {
 			<Section>
 				<Stack direction='row' spacing={7} marginBottom='30px' marginTop='20px' marginLeft='20px'>
 					<Button
+						onClick={() => {
+							router.replace({
+								pathname: '/blog',
+								query: {
+									type: 'latest',
+								},
+							})
+						}}
 						variant='contained'
-						sx={{ width: '111px', padding: '15px, 35px, 15px, 35px', height: '50.06px' }}>
-						<Typography fontSize='14.53' fontFamily='Karla ,sans-serif' fontWeight={400}>
-							Latest
-						</Typography>
+						sx={{
+							width: '111px',
+							padding: '15px, 35px, 15px, 35px',
+							height: '50.06px',
+							fontSize: '14.53',
+							fontFamily: 'Karla ,sans-serif',
+							fontWeight: 400,
+						}}>
+						Latest
 					</Button>
-					<Button variant='text' color='inherit'>
-						<Typography fontSize='14.53' fontFamily='Karla ,sans-serif' fontWeight={400}>
-							All Blogs
-						</Typography>
+					<Button
+						onClick={() => {
+							router.replace({
+								pathname: '/blog',
+								query: {
+									type: 'all',
+								},
+							})
+						}}
+						variant='text'
+						color='inherit'
+						sx={{
+							fontSize: '14.53',
+							fontFamily: 'Karla ,sans-serif',
+							fontWeight: 400,
+						}}>
+						All Blogs
 					</Button>
 				</Stack>
 				<BlogCard view={'CardBlog'} />

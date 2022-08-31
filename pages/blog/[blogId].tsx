@@ -1,14 +1,35 @@
-import { Box, Button, Card, CardActions, CardContent, CardMedia, Stack, Typography } from '@mui/material'
+import { Box, Button, Card, CardActions, CardContent, CardMedia, Grid, Stack, Typography } from '@mui/material'
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
-import { LandingLayout, Section } from 'sdk'
+import { LandingLayout, LinkButton, Section, useMobile } from 'sdk'
 import { staticRenderingProvider } from 'sdk/utils/nextHelper'
 import ShareIcon from '@mui/icons-material/Share'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack'
 import { BlogCard } from 'sdkv2/components'
 import { useRouter } from 'next/router'
 import { blogData } from 'sdk/data/blogData'
+import { useEffect, useState } from 'react'
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
+import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp'
 const Page: NextPage = () => {
 	const router = useRouter()
+	const [blogType, setBlogType] = useState<string>('Allblogs')
+	const isMobile = useMobile()
+	const [blogId, setBlogId] = useState<number>(0)
+	const [similarBlog, setSimilarBlog] = useState([])
+	const [seeMore, setSeeMore] = useState<boolean>(false)
+	useEffect(() => {
+		console.log(router.query.blogId)
+		setBlogId(Number(router.query.blogId))
+
+		let result: any = []
+		blogData?.Allblogs[blogId]?.similarArray.forEach((x: any) => {
+			let value = blogData?.Allblogs.filter((y: any) => y.id === x)[0]
+			result = [...result, value]
+		})
+		setSimilarBlog(result)
+	}, [router.query.blogId])
+
 	return (
 		<>
 			<LandingLayout>
@@ -64,7 +85,7 @@ const Page: NextPage = () => {
 								gutterBottom
 								variant='h2'
 								component='div'>
-								{blogData?.Allblogs[Number(router?.query?.pid)]?.title}
+								{blogData?.Allblogs[blogId]?.title}
 							</Typography>
 							<CardMedia
 								component='img'
@@ -73,7 +94,7 @@ const Page: NextPage = () => {
 									width: '100%',
 									borderRadius: '8.3557px',
 								}}
-								image='/assets/landing/blog/blogs.png'
+								image={blogData?.Allblogs[blogId]?.imgSrc}
 								alt='Live from space album cover'
 							/>
 							<Stack>
@@ -88,7 +109,7 @@ const Page: NextPage = () => {
 										fontFamily='Karla ,sans-serif'
 										fontSize='14px'
 										fontWeight={400}>
-										{blogData?.Allblogs[Number(router?.query?.pid)]?.details}
+										{blogData?.Allblogs[blogId]?.details}
 									</Typography>
 								</CardContent>
 							</Stack>
@@ -98,7 +119,157 @@ const Page: NextPage = () => {
 				<Section>
 					<Typography variant='h2'>Similar Blogs</Typography>
 				</Section>
-				<BlogCard view={'CardBlog'} />
+
+				<Stack>
+					<Section>
+						<Grid container spacing={2}>
+							{similarBlog.map(
+								({ id, title, description, imgSrc, isPopular, isLatest }: any, index: any) => {
+									if (index > (isMobile ? 1 : 5) && !seeMore) {
+										return null
+									}
+									return (
+										<Grid key={index} item xs={12} sm={6} md={4}>
+											{isMobile ? (
+												<Card
+													elevation={10}
+													sx={{
+														width: '100%',
+														height: '160px',
+														display: 'flex',
+														flexDirection: 'row-reverse',
+														alignItems: 'center',
+													}}>
+													<Box sx={{ display: 'flex', flexDirection: 'column' }}>
+														<CardContent sx={{ height: '135px' }}>
+															<Typography
+																variant='h6'
+																fontSize='16px'
+																fontFamily={'Saira ,sans-serif'}
+																fontWeight={600}
+																sx={{ marginTop: '8%' }}>
+																{title}
+															</Typography>
+															<Typography
+																variant='subtitle1'
+																color='text.secondary'
+																component='div'
+																fontFamily='Karla ,sans-serif'
+																fontSize='12px'
+																fontWeight={400}>
+																{description.slice(0, 50) + '......'}
+															</Typography>
+														</CardContent>
+														<Box
+															sx={{
+																display: 'flex',
+																justifyContent: 'space-around',
+																paddingBottom: '25px',
+															}}>
+															<Button
+																onClick={() => {
+																	router.push(`/blog/${id}`)
+																}}
+																endIcon={<ArrowForwardIcon />}
+																variant='text'
+																fullWidth={false}
+																sx={{ marginBottom: '0px' }}
+																color='inherit'>
+																Read More
+															</Button>
+															<Button
+																endIcon={<ShareIcon />}
+																variant='text'
+																fullWidth={false}>
+																<Typography
+																	fontFamily='Karla ,sans-serif'
+																	fontSize='12px'
+																	fontWeight={500}>
+																	Share
+																</Typography>
+															</Button>
+														</Box>
+													</Box>
+													<CardMedia
+														component='img'
+														sx={{
+															width: 106,
+															height: 129,
+															marginLeft: '10px',
+															borderRadius: '8.3557px',
+														}}
+														image={imgSrc}
+														alt='Live from space album cover'
+													/>
+												</Card>
+											) : (
+												<Card elevation={10} sx={{ p: '12px' }}>
+													<CardMedia
+														component='img'
+														height='228'
+														width='380'
+														sx={{ borderRadius: '8.3557px' }}
+														image={imgSrc}
+														alt='green iguana'
+													/>
+													<CardContent>
+														<Stack direction='row'>
+															<Typography
+																gutterBottom
+																variant='h6'
+																fontSize='16px'
+																fontFamily={'Saira ,sans-serif'}
+																fontWeight={600}
+																component='div'>
+																{title}
+															</Typography>
+															<Button
+																endIcon={<ShareIcon />}
+																variant='text'
+																fullWidth={false}
+																sx={{
+																	marginLeft: '40px',
+																	height: '20px',
+																}}>
+																<Typography
+																	fontFamily='Karla ,sans-serif'
+																	fontSize='12px'
+																	fontWeight={500}>
+																	Share
+																</Typography>
+															</Button>
+														</Stack>
+														<Typography
+															fontFamily='Karla ,sans-serif'
+															fontSize='12px'
+															fontWeight={400}
+															variant='body2'
+															color='text.secondary'>
+															{description.slice(0, 250)}
+														</Typography>
+													</CardContent>
+													<CardActions>
+														<Button
+															onClick={() => {
+																router.push(`/blog/${id}`)
+															}}
+															endIcon={<ArrowForwardIcon />}
+															variant='text'
+															fullWidth={false}
+															sx={{ marginBottom: '0px' }}
+															color='inherit'>
+															Read More
+														</Button>
+													</CardActions>
+												</Card>
+											)}
+										</Grid>
+									)
+								}
+							)}
+						</Grid>
+					</Section>
+				</Stack>
 			</LandingLayout>
 		</>
 	)

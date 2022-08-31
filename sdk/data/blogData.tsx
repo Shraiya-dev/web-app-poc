@@ -1,4 +1,4 @@
-import { Box, Container, Stack, Typography } from '@mui/material'
+import { Box, Container, List, ListItem, Stack, Typography } from '@mui/material'
 
 var ind = 0
 
@@ -578,7 +578,8 @@ const BlogList = {
 						</Typography>
 					</Stack>
 				</Stack>
-				<Typography fontWeight={700}>
+				<Typography fontWeight={700}>Conclusion</Typography>
+				<Typography>
 					This has been an article on how to reduce construction cost margin from projects as a contractor.
 					The question of “How to reduce house construction cost?” can also be answered by applying and
 					maintaining these methods. Contractors generally do all their research and forge a plan that is
@@ -927,89 +928,760 @@ const BlogList = {
 			</Stack>
 		</>
 	),
+	blog7: (
+		<>
+			<Stack direction={'column'} spacing={4}>
+				<Typography>
+					The phenomenal development in the construction industry presents many opportunities in this sector.
+					Even though there are some major hurdles that are negatively impacting its growth, like the issue of
+					decline in the availability of organised construction labourer networks, the sector is successfully
+					tackling them with the help of new technological advancements. There are various roles associated
+					with the industry, each of which has its specific importance and responsibilities, and the role of a
+					construction worker is one of them. In order to finish a construction project on time against tight
+					deadlines, a proper and reliable construction workforce is necessary. And this growing problem in
+					the industry has presented scope for new and advanced solutions, like the one offered through the
+					platform of Project Hero.
+					<Box component={'br'} />
+					The construction industry used to claim about 3.2% of the workforce back in 1983 but grew at a
+					massive speed and accounted for 10.6 % in the 2011 to 2012 period in India, thanks to the huge
+					demand in the construction market{' '}
+					<Box
+						component={'a'}
+						href={`https://timesofindia.indiatimes.com/business/india-business/why-construction-jobs-are-fading/articleshow/70651409.cms`}>
+						[Source: TOI].
+					</Box>{' '}
+					However, for some factors, this growth has stalled in the recent few years, despite the increasing
+					demand. The reasons for this include unskilled labourers filling the sector, the recent pandemic
+					situation, a huge portion of construction workers going to UAE for jobs{' '}
+					<Box
+						component={'a'}
+						href={`https://economictimes.indiatimes.com/nri/working-abroad/uae-great-destination-for-indians-to-get-richer-study/articleshow/46107702.cms?from=mdr`}>
+						[Source: The Economic Times]
+					</Box>{' '}
+					, etc. Let’s look at the other factors causing the shortage of labourers in this sector below.
+				</Typography>
+				<Typography fontWeight={700}>What are the Major Causes Behind Low Labour Power?</Typography>
+				<Stack direction={'column'} spacing={2}>
+					<Typography>
+						Before we begin further, let us address a few of the major issues causing this active labour
+						shortage in India:
+					</Typography>
+					<Stack direction={'column'} spacing={1}>
+						<Typography>
+							● Heavy Demand for Construction Work- The present range of construction worker networks is
+							failing to meet up with the increasing demand for construction work.
+						</Typography>
+						<Typography>
+							● Lack of Skills- With each passing day, the availability of skilled and organised labourers
+							is diminishing, affecting the overall labour work construction market.
+						</Typography>
+						<Typography>
+							● Uninterested Young Minds- Even though the construction industry is steadily growing, the
+							newer generation is becoming less interested in the field of labour work in the construction
+							job market.
+						</Typography>
+					</Stack>
+				</Stack>
+				<Typography fontWeight={700}>
+					How is Project Hero Revolutionising the Construction Workforce Industry?
+				</Typography>
+				<Typography>
+					To keep up with the growing need for an adequate and skilled construction workforce, Project Hero is
+					actively offering its services to solve this crisis and ease up this aspect of the construction
+					business. Project Hero presents a massive online platform in terms of a construction workforce
+					marketplace. The bridge between potential contractors and reliable workers is narrowed down to
+					benefit both parties. This online work marketplace is the largest in India for labourers within the
+					construction sector. They have tons of features, benefits and a huge contact of legitimate workers,
+					the count exceeding the 4 lac mark in quantity. Apart from their huge offering of construction
+					workforce across India, Project Hero also puts efforts into managing further progress for
+					contractors so that they can easily monitor how the construction workers working under them are
+					performing.
+					<Box component={'br'} />
+					Project Hero has established a reliable network, which successfully provides a one-stop solution for
+					contractors in terms of hiring construction workers. Through an amazingly simple yet adequate
+					procedure on the platform, interested individuals can post their booking and will soon be connected
+					with their potential workforce in no time!
+				</Typography>
+				<Typography fontWeight={700}>The Features of Project Hero</Typography>
+				<Typography>
+					Project Hero is the best place to post about construction work online and connect with numerous
+					employees across India. Here are some of Project Hero’s key features:
+				</Typography>
+				<Stack sx={{ px: { xs: 0, md: 1 } }} spacing={2}>
+					<ol>
+						<li>
+							<Typography>
+								Authentic Profiles- When going with Project Hero, you can rest assured that only 100%
+								authentic and verified profiles are applied to your booking. The platform doesn’t allow
+								any profile of an unverified construction worker. This way, you can save a ton of time
+								by avoiding unnecessary problems like fake construction worker jobs created by spammers.
+							</Typography>
+						</li>
+						<li>
+							<Typography>
+								Straight-Forward Hiring Procedure- You can post your booking on Project Hero within a
+								few clicks by providing the essential details of the labour construction work. The
+								booking process is simple, and you can post your booking of online construction jobs
+								within seconds.
+							</Typography>
+						</li>
+						<li>
+							<Typography>
+								Proper Trained and Skilled Workers- Project Hero ensures that its pool of workforce is
+								all trained and skilled at the job by evaluating them through a series of skill
+								assessment procedures and a scoring system.
+							</Typography>
+						</li>
+						<li>
+							<Typography>
+								Active and Interested Workforce- By hiring through Project Hero, you will only be
+								matched up with active workers who are eager for labour construction work and ready to
+								take up the job.
+							</Typography>
+						</li>
+						<li>
+							<Typography>
+								24x7 Customer Support- Project Hero offers a brilliantly stable and sufficient customer
+								support system that runs 24x7 to assist and resolve queries of the users.
+							</Typography>
+						</li>
+						<li>
+							<Typography>
+								First 15 Applications Free- On the platform, your first 15 applications are absolutely
+								free and only after that will you need to pay a charge of INR 50 per application. It is
+								very affordable and reasonable.
+							</Typography>
+						</li>
+						<li>
+							<Typography>
+								Simple Refund Process- Project Hero offers an easy return policy, as long as it is
+								acceptable under the terms and conditions of the company’s Return Policy.
+							</Typography>
+						</li>
+						<li>
+							<Typography>
+								Direct Contact with Applicants- When applicants respond to your booking, you will
+								instantly get their profile and contact number. This will allow you to contact them
+								directly and discuss the job details further without associating with any middleman.
+							</Typography>
+						</li>
+					</ol>
+				</Stack>
+				<Typography fontWeight={700}>How to Make a Booking on Project Hero?</Typography>
+				<Typography>
+					As a contractor, you will not have to worry about spending most of your time in the labour
+					construction worker hiring procedure when choosing Project Hero. Here are the simple steps through
+					which you can get your booking on the platform completed within minutes:
+				</Typography>
+				<Box>
+					<Typography>
+						1. Visit the official Project Hero website at https://www.projecthero.in/
+						<Box component={'br'} />
+						2. On the main page, you will find the booking form, which you will have to fill
+						<Box component={'br'} />
+						3. The few key descriptions that you are required to provide include things like the job
+						location, category of the work and work duration.
+						<Box component={'br'} />
+						4. Specifying the total number of target applications for your booking is also required.
+						<Box component={'br'} />
+						5. You can then proceed further and complete the payment for your target applications (Where the
+						first 15 are free and only after that will you be charged INR 50 per application)
+						<Box component={'br'} />
+						6. After confirmation on the final checkout page is done, your booking will automatically be
+						active.
+						<Box component={'br'} />
+						7. Within a few seconds, your booking will be visible to the potential workforce, and they can
+						start applying for the job after that.
+					</Typography>
+				</Box>
+				<Typography>
+					When a construction worker applies to your booking, you will be able to see their contact
+					information directly. As a contractor, you can easily contact the applicants, verify further
+					details, negotiate wages and hire them directly.
+				</Typography>
+
+				<Typography fontWeight={700}>What is the Project Hero Contractor Website?</Typography>
+				<Stack direction={'column'}>
+					<Typography>
+						As a contractor, you can easily create multiple projects by the job location and make multiple
+						bookings for the respective projects. To do so, you must register an account on the platform and
+						log in through the contractor&#39;s website. This will not only simplify your hiring procedure
+						but will also ease your job in terms of management. Here are the following facilities you can
+						enjoy through the Project Hero contractor website:
+					</Typography>
+					<Typography>
+						● Use the “one-click” simplified payment method to pay your workers
+						<Box component={'br'} />
+						● Get attendance of all workers and details about their overtime
+						<Box component={'br'} />● Receive “Daily Wage Reports” by worker’s wage rates right on to the
+						contractor portal
+					</Typography>
+				</Stack>
+				<Typography fontWeight={700}>
+					Is Project Hero the Proper Choice to Reach Out to Your Potential Workforce?
+				</Typography>
+				<Typography>
+					As a contractor, the hiring process of labour for construction work can take out a lot of time off
+					your schedule, and there is no guarantee on the quality of workers you would be getting. However,
+					the job of hiring a legit workforce from the construction labourer network workers within India can
+					be efficiently done through Project Hero.
+					<Box component={'br'} /> <Box component={'br'} />
+					Currently, there is a scarcity of hard-working and experienced labourers. You will also face many
+					delays and fake promises from middlemen, who would just waste your time or scam your money and offer
+					fake construction labourer jobs to workers. Whereas with Project Hero, you will not have to face
+					such hurdles, as not only will the platform simplify your hiring procedure, but it will also provide
+					you with many benefits.
+					<Box component={'br'} /> <Box component={'br'} />
+					The platform will connect you to more than 4 lacs of willing-to-work candidates who are all verified
+					and have the skills required for the job. The booking procedure is very easy. There are no middlemen
+					as you can directly contact and hire the applicants. You can simply monitor their work and wages
+					through the contractor website, the first 15 applications are free of cost, and you can avail of
+					easy refunds and much more. All of these make Project Hero the best online construction work posting
+					site for reaching professional workers in this field.
+				</Typography>
+				<Typography fontWeight={700}>Conclusion</Typography>
+				<Typography>
+					The platform is definitely changing the Indian construction business through its online labour
+					marketplace model. There are many reasons to go with Project Hero, as it is the most reliable and
+					organised method to meet your potential workforce under the same roof and is worth investing in. It
+					is not just beneficial to your duty as a contractor but also to the project with the quality of work
+					that will be done. Many new workers are signing up with Project Hero to apply for the various online
+					marketplace jobs available on the platform.
+				</Typography>
+			</Stack>
+		</>
+	),
+	blog8: (
+		<>
+			<Stack direction={'column'} spacing={4}>
+				<Typography>
+					The construction industry is currently expanding at a rapid speed in major regions of the world.
+					Especially the construction market sector in India, along with USA and China, is taking giant steps
+					and is estimated to have one of the biggest construction markets globally by 2030{' '}
+					<Box
+						component={'a'}
+						href='https://resources.oxfordeconomics.com/hubfs/Future%20of%20Construction_Full%20Report_FINAL.pdf'
+						sx={{
+							color: 'blue',
+						}}>
+						[Source: Future of Construction by Oxford Economics]
+					</Box>{' '}
+					. China, India, the United States and Indonesia will account for an estimated 58.3% of the global
+					growth in terms of construction output. The construction industry is one of the oldest sectors in
+					the history of human civilisation, and it keeps on solidifying its existence more rapidly, thanks to
+					the various technological, industrial, commercial, domestic and developments in other sectors. If
+					you are planning to start your profession or considering making major investments in this industry,
+					then this is a valid time to do so.
+				</Typography>
+				<Typography fontWeight={700}>The Evolving Sector of Construction</Typography>
+				<Typography>
+					The construction business in India is one of the major sectors, with a wide prospect of expansion,
+					both professionally and economically, and is estimated to grow at a CAGR of more than 10% within the
+					2022- 27 period{' '}
+					<Box
+						component={'a'}
+						href='https://resources.oxfordeconomics.com/hubfs/Future%20of%20Construction_Full%20Report_FINAL.pdf'
+						sx={{
+							color: 'blue',
+						}}>
+						[Source: Mordor Intelligence]
+					</Box>{' '}
+					. The seemingly high demand for construction work in India, which has been arising due to the
+					growing population and major developments in the commercial, industrial and technical sectors, is
+					one of the crucial reasons behind it. The statistics about the construction industry in India and
+					the construction industry as a whole report positive potential. With the new improvements and
+					application of efficient methods in the market, getting started in the contract construction
+					industry in India and the world has become much easier than ever.
+				</Typography>
+				<Typography>
+					Here are some construction industry insights which should illustrate a perfect picture of the
+					current and future potential of the sector:
+				</Typography>
+
+				<Stack direction={'column'} spacing={3}>
+					<Stack direction={'column'} spacing={2}>
+						<Typography fontWeight={700}>1. The Current Industry Scenario</Typography>
+						<Typography>
+							The current industry scenario and its synopsis indicate a very positive development in this
+							sector. Judging by the present construction growth in infrastructure and further expansion
+							of India’s construction sector, professional estimations indicate the industry to reach
+							about 1.4 trillion USD by 2025. One of the major reasons behind this is the metropolitan
+							growth within the country, where the urban population is said to contribute a major
+							percentage to the development and about 68 cities are estimated to hold a population of more
+							than a million by 2025. India’s construction market segments and industry is working in
+							correlation with about 250 sub-sectors, making it one of the most interconnected sectors in
+							the country. As per reports, India’s real estate industry is anticipated to reach 1 trillion
+							USD by 2030 and will contribute 13% to the country’s GDP.
+							<Box component={'br'} />
+							Also, more than 40% of the country&#39;s population is expected to reside within the urban
+							region by 2030. This will create massive demand for about 25 million additional mid-range
+							and reasonably priced residential units, which will be beneficial to the residential, real
+							estate and construction industry of the country, in general. As of NIP, the country has an
+							investment budget of 1.4 trillion USD for infrastructural development, with around 13% on
+							railways, 16% on urban infrastructure, 19% on highways and roads and about 24% on renewal
+							energy. The various schemes and policies by the Indian government also positively impact the
+							overall scenario, for example, the Smart City Mission, which is a retrofitting programme
+							with the aim to make cities more resident-friendly and sustainable.
+						</Typography>
+						<Box
+							component={'a'}
+							href='https://www.investindia.gov.in/sector/construction'
+							sx={{
+								color: 'blue',
+							}}>
+							[Source: Investindia.gov.in]
+						</Box>
+					</Stack>
+					<Stack direction={'column'} spacing={2}>
+						<Typography fontWeight={700}>2. Foreign Investment</Typography>
+						<Typography>
+							With gradually growing foreign interest in India’s construction industry, we are witnessing
+							major development and the opening of future scopes within this sector. The FDI inflows from
+							April of 2000 to March of 2022 within the construction development and infrastructure
+							construction activities were 26.2 billion USD and 27.9 billion USD, respectively. Some
+							crucial investments also took place over recent years. Back in 2020, the Indian real estate
+							sector attracted about 5 billion USD through institutional investments. The institutional
+							investment in real estate in India hovered at 21% with 922 million USD in the first quarter
+							of 2021, which has fueled many developments in the sector, including a new potential for
+							real estate construction. In August of 2021, a 250 million USD project was signed between
+							India and the World Bank to make existing dams resilient and safer. Later that month, the
+							ADB ventured on India’s initiative to develop green housing to conserve water and energy and
+							reduce carbon emissions.
+							<Box component={'br'} />
+							In the later part of 2021, French multinational company, Egis Group, showed their potential
+							interest in investing an additional 50 million EUR in India over 5 years, following their
+							previous 75 million EUR investment in the past couple of decades.
+						</Typography>
+					</Stack>
+					<Stack direction={'column'} spacing={2}>
+						<Typography fontWeight={700}>3. Recent Industry Trends</Typography>
+						<Typography>
+							The modern-day popular and widely adapted trends are providing positive grounds for
+							improving the entire construction sector in India. Some of the recent trends in the Indian
+							construction industry trends are as follows:
+						</Typography>
+						<Stack direction={'column'} spacing={2}>
+							<Typography>
+								●{' '}
+								<Box component={'span'} fontWeight={700}>
+									Affordable Housing-
+								</Box>{' '}
+								The speedy growth in the country&#39;s population projects a 6% increment in the urban
+								population in the next eight years, which will create millions of extra needs for
+								residential housing under an affordable price range, according to India&#39;s
+								construction industry statistics. This is why a major focus is being given to new ideas
+								and methods to provide affordable housing for all, making the dream of constructing
+								houses in India for everyone possible.
+							</Typography>
+							<Typography>
+								●{' '}
+								<Box component={'span'} fontWeight={700}>
+									Implementing Green Housing Solutions-
+								</Box>{' '}
+								With more population increment and development across several construction industry
+								sectors, the need for energy consumption is also rising. This makes energy consumption
+								very necessary. Hence the focus in the current industry has shifted towards implementing
+								green materials for building, energy-efficient heating, ventilation and air conditioning
+								solutions and using renewable energy sources in houses.
+							</Typography>
+							<Typography>
+								●{' '}
+								<Box component={'span'} fontWeight={700}>
+									Modernisation of Equipment-
+								</Box>{' '}
+								As per construction industry statistics, the job has a greater risk possibility. Various
+								safety precautions and codes are currently being maintained to avoid being hurt by
+								on-site accidents, which have greatly lowered the percentage of casualties. The industry
+								is majorly focussing on the safety of the workers through investing in proper gear,
+								which will keep them safe and avoid delays in the project amidst the rising crisis of
+								skilled labourers.
+							</Typography>
+							<Typography>
+								●{' '}
+								<Box component={'span'} fontWeight={700}>
+									Technological Advancements-
+								</Box>
+								Technological advancement positively impacts the sector, and implementing new
+								technology, especially industrial construction projects, has made the whole sector more
+								efficient and productive. The popular introduction of tech in this sector is the use of
+								drones, augmented reality, BMI, advanced computer software, etc.
+							</Typography>
+							<Typography>
+								●{' '}
+								<Box component={'span'} fontWeight={700}>
+									Smart Cities-
+								</Box>{' '}
+								Expanding upon and investing in smart cities to create a sustainable residential,
+								industrial and commercial environment is increasingly being adopted in the construction
+								market in India today.
+							</Typography>
+						</Stack>
+					</Stack>
+				</Stack>
+				<Typography fontWeight={700}>How Technical Advancement is Improving the Sector</Typography>
+				<Typography>
+					There are many reasons behind the growth of construction projects in India and the world. However,
+					technological advancement and undertaking in this sector have been a major factor among them. From
+					using high-tech gear to efficient computer software, the industry is becoming more reliable and well
+					organised. As the construction industry tech space grows, the availability of numerous resources
+					keeps popping up to ease some of the major hurdles when doing business in the construction industry.
+					As a part of the growing construction tech space, Project Hero is solving the problem related to the
+					unavailability of skilled and capable labourers in India through its revolutionary workforce
+					marketplace business model. Project Hero offers more than 4 lac eager-to-work and organised
+					labourers across India for all types of contractors. As the largest construction marketplace in the
+					country, the main aim of Project Hero is to connect potential construction contractors in India with
+					coherent workers as effectively as possible.
+				</Typography>
+				<Typography fontWeight={700}>Conclusion:</Typography>
+				<Typography>
+					The industry insights about the construction industry of the country help to showcase and
+					materialise the idea of major scopes for improvement and construction industry growth within the
+					industry. The numerous application and introductions of modern methods and investments help
+					determine that the construction industry has huge potential. The growing demand for residential,
+					infrastructural, and commercial construction work and technical advancements makes entering and
+					working within the sector more fruitful, easy and reasonable.
+				</Typography>
+			</Stack>
+		</>
+	),
+	blog9: (
+		<>
+			<Stack direction={'column'} spacing={4}>
+				<Typography>
+					Construction is a physically and psychologically demanding vocation. It comes with various
+					difficulties and working conditions that set it apart from the average office job.
+				</Typography>
+				<Typography>
+					A construction labourer’s job may seem simple, particularly to those who know how to utilise
+					instruments like a hammer. But it takes more than a sledgehammer to crack this nut. Construction
+					workers face daily challenges, including working in confined spaces, at dangerous heights, and with
+					heavy equipment in unpleasant weather. This also applies to office construction employees, who must
+					fully grasp how to price construction labour works and manage time-sensitive projects.
+				</Typography>
+				<Typography fontWeight={700}>Problems that affect the Construction Workers:</Typography>
+				<Typography>
+					Over 40 million individuals in India’s unorganised sectors work in the construction industry, making
+					it a labour-intensive industry. Workers who are not able to form a union because of factors such as
+					the precarious nature of work, their frequent relocation from one place to another searching for
+					work, the small size of businesses in their immediate vicinity, widespread illiteracy and so on are
+					considered to be part of the unorganised construction labour sector.
+				</Typography>
+				<Typography>
+					The following are some of the significant issues that most building construction workers face:
+				</Typography>
+				<Stack direction={'column'} spacing={3}>
+					<Stack direction={'column'} spacing={2}>
+						<Typography fontWeight={700}>1. Delayed Payment to Construction Project Employees:</Typography>
+						<Typography>
+							One of the major concerns for building construction workers is late payment. Indeed, labour
+							construction workers need the prompt and regular payment for survival in terms of daily
+							food, drink, and survival. This is the reason why they often accept to work for a
+							significantly lower fee if there is a guarantee of the regularity of payment. So, they often
+							prioritise the regularity of payment over higher payment of labour costs for building
+							construction work.
+						</Typography>
+					</Stack>
+					<Stack direction={'column'} spacing={2}>
+						<Typography fontWeight={700}>2. Lack of Security:</Typography>
+						<Typography>
+							Most construction employees lack a moderate understanding of their well-being, safety, and
+							proper working circumstances. Since they are usually employed through Contractor Agency,
+							building construction workers may also not get essential protective equipment.
+							<Box component={'br'} />
+							In fact, many of these construction employees are uneducated and completely not aware of the
+							concealed working danger. They are often not even aware of their regular hours of work. Due
+							to continuous labour with no rest intervals, they might get acutely exhausted, resulting in
+							undesired accidents or injuries. Thus, the rate of accidents on construction and building
+							sites is relatively high solely due to a complete lack of understanding of
+							construction-related risks.
+						</Typography>
+					</Stack>
+					<Stack direction={'column'} spacing={2}>
+						<Typography fontWeight={700}>3. Facilities:</Typography>
+						<Typography>
+							Construction labour insurance, proper facilities for first aid, access to clean water and
+							restrooms, canteens, accidental benefits, and pensions are all social security that the
+							general contractor and significant employer on the building site should offer for their
+							employees. However, most construction employees are located distant from these facilities
+							and do not have basic hygienic facilities for their survival.
+						</Typography>
+					</Stack>
+					<Stack direction={'column'} spacing={2}>
+						<Typography fontWeight={700}>4. Fewer Payments:</Typography>
+						<Typography>
+							Contractor labourers are often paid less than those with the same expertise working in
+							factories. On most construction and building sites, the contractor provides a building
+							labour contract on a commission base, disregarding compliance responsibilities. Overtime pay
+							is also not offered to construction employees at most sites. Thus, the issue of low salaries
+							remains unresolved and substantial in the construction industry.
+						</Typography>
+					</Stack>
+					<Stack direction={'column'} spacing={2}>
+						<Typography fontWeight={700}>5. Poor Migrant Labour Conditions:</Typography>
+						<Typography>
+							The proportion of migrant building construction workers in a building project is usually
+							significant. They are paid less than local employees and are required to labour in high-risk
+							regions owing to a lack of security and social awareness. Because of the transient nature of
+							the profession, they are frequently not supplied with housing or basic comforts.
+						</Typography>
+					</Stack>
+					<Stack direction={'column'} spacing={2}>
+						<Typography fontWeight={700}>6. Drug Abuse:</Typography>
+						<Typography>
+							Most construction employees are addicted to tobacco, gutkha, weed, drinking cheap alcohol
+							and beer, cannabis, and other substances while at work, which causes indiscipline and
+							substantial health issues to building labour, as well as being highly destructive to the
+							construction industry. They sometimes engage in adultery as well as unprotected sex, owing
+							to a lack of information. Thus, they encourage susceptible illnesses such as HIV Aids.
+						</Typography>
+					</Stack>
+					<Stack direction={'column'} spacing={2}>
+						<Typography fontWeight={700}>7. Surplus Labour Force:</Typography>
+						<Typography>
+							The Indian construction labour market is suffering from a surplus labour force. Many workers
+							are in excess due to insufficient demand in the primary, secondary, and tertiary sectors.
+							Because of the high rate of population increase, many labour forces are constantly being
+							added to the current labour force, resulting in a large surplus in the construction labour
+							market.
+						</Typography>
+					</Stack>
+					<Stack direction={'column'} spacing={2}>
+						<Typography fontWeight={700}>8. Unskilled Work:</Typography>
+						<Typography>
+							Another critical issue in India’s labour market is the country’s expanding population of
+							unskilled labourers. In the lack of suitable vocational institutions, skill building among
+							the country’s labour force is sluggish. There is a vast army of unemployed labourers since
+							so many unskilled building and construction workers need to be upskilled to make them
+							employable.
+						</Typography>
+					</Stack>
+					<Stack direction={'column'} spacing={2}>
+						<Typography fontWeight={700}>9. Lack of Skilled Labour Absorption:</Typography>
+						<Typography>
+							In India, the skilled labour force absorption rate is likewise relatively low. After
+							finishing their technical education, such as engineering, vocational courses, etc., many
+							technically educated adolescents find it difficult to be absorbed in the secondary sector,
+							resulting in a big issue of educated unemployment in India.
+						</Typography>
+					</Stack>
+					<Stack direction={'column'} spacing={2}>
+						<Typography fontWeight={700}>10. Imperfections:</Typography>
+						<Typography>
+							The Indian construction labour market has several flaws, such as a lack of appropriate
+							employment information, a lack of competent agencies for effective labour force use, child
+							labour practices, a lack of proper workforce planning, etc. Such flaws have created several
+							roadblocks to seamless labour force absorption.
+						</Typography>
+					</Stack>
+					<Stack direction={'column'} spacing={2}>
+						<Typography fontWeight={700}>11. Work Culture:</Typography>
+						<Typography>
+							The Indian construction labour force has a poor work culture. Healthy work culture is not
+							adhered to whatever labour force is absorbed in diverse production areas. This has reduced
+							economic excess in the production system, which indirectly limits its future absorption
+							potential.
+						</Typography>
+					</Stack>
+					<Stack direction={'column'} spacing={2}>
+						<Typography fontWeight={700}>12. Militant Unionism:</Typography>
+						<Typography>
+							The Indian construction labour market is also plagued by militant unionism. Trade unions are
+							not adhering to healthy practices in various productive sectors, particularly in some
+							states. This has resulted in militancy inside the union organisation and its operations,
+							damaging the nation’s overall interests.
+						</Typography>
+					</Stack>
+				</Stack>
+				<Typography fontWeight={700}>Conclusion</Typography>
+				<Typography>
+					There are some active government initiatives, such as the e-Shram portal for creating the National
+					Database of Unorganized Workers, linked to the Aadhaar Card, the ABRY (Atma Nirbhar Bharat Rozgar
+					Yojana) to enhance the employment generation process, and all-India surveys for Migrant and Domestic
+					Workers database, etc.
+					<Box component={'br'} />
+					Construction and building workers constitute the majority of the unorganised sector in India,
+					including male and female employees and encompassing all skill levels (the majority being unskilled
+					labour). Most labour construction workers are mainly rural landless migrants or those who have very
+					modest land holdings and travel to building sites in search of jobs. They are one of the most
+					vulnerable groups of unorganised construction labour in India because of factors like being from
+					low-income families with little to no education, migrating to cities from villages in search of
+					work, ignorance, poor health, frequently employing entire families in most building erection work,
+					and high involvement of female labour for construction work in stone breaking, road making,
+					bricklaying, etc.
+				</Typography>
+			</Stack>
+		</>
+	),
+	blog10: (
+		<>
+			<Stack direction={'column'} spacing={4}>
+				<Typography fontWeight={700}>
+					ALT Title: Builders Vs Contractors: Whom Should You Hire For Your Next Construction Project?
+				</Typography>
+				<Typography>
+					It is quite common for customers who want to hire professionals to work on their construction
+					project to get confused between a builder and a contractor, the two essential roles in the
+					construction sector. Even though these two roles closely relate to one another, they are quite
+					distinguishable regarding their job and responsibilities. In this article, we will paint a complete
+					picture that should help customers understand these two separate roles clearly, so they can avoid
+					being confused and hire the correct person for their construction projects in future. In the
+					industry, both the builder and contractor are essential, so let us have a look at the general
+					details of these roles, discuss their distinct duties on the job and establish a difference between
+					builder and construction work contractor.
+				</Typography>
+				<Typography fontWeight={700}>What is Meant by a Contractor?</Typography>
+				<Typography>
+					The role of a contractor is very vital in terms of supervising and managing construction projects.
+					They are associated with handling the bigger picture aspect of a construction job. Commonly, general
+					construction contractors are hired by the clients or the project owner. Their ideal responsibility
+					is to manage and make the planning of the overall project, which also includes certain strategies
+					that are to be implemented in order to advance through the work process efficiently. The role is
+					likewise called building contractor or general contractor in many regions, and they also take care
+					of the budget segment of the project. Often, these general contractors are also seen to go on and
+					hire sub-contractors to take up certain tasks within the project they were initially hired to
+					complete. This is done in case they need an expert opinion or oversight regarding a particular
+					portion of the project.
+					<Box component={'br'} />
+					The building contractor acts as the whole team&#39;s primary supervisor, including labourers and
+					subcontractors. Completing the entire project within the stipulated time and settling other on-site
+					disputes and problems are also key aspects of their job.
+				</Typography>
+				<Stack direction={'column'} spacing={2}>
+					<Typography>Here is a Detailed List of Duties of a Contractor:</Typography>
+					<Stack direction={'column'} spacing={1} px={2}>
+						<Typography>
+							● Contractors are responsible for one of the essential parts of any construction work, which
+							is to make an advanced plan and mapping of the project, which will work as a proper
+							infrastructure of the plan
+						</Typography>
+						<Typography>
+							● It is the contractors&#39; job to hire further subcontractors in case certain part of the
+							work requires specific expertise to generate better results.
+						</Typography>
+						<Typography>
+							● The general contractor is the supervisor on the project&#39;s site, who gives out orders,
+							lays down further plans and manages the entire crew.
+						</Typography>
+						<Typography>
+							● There are a lot of off-site works that the contractor handles, which include managing the
+							payment, buying building materials, renting construction equipment, handling the client,
+							etc.
+						</Typography>
+						<Typography>
+							● Most of the time, due to uncertain reasons, construction projects get delayed for several
+							days, even weeks and months. The contractor&#39;s job is to avoid such issues, manage the
+							lost time, and maintain the schedule. Construction delays can cause various problems,
+							including cost increment for the project owner, which is the customer in this case.
+						</Typography>
+						<Typography>
+							● A vital responsibility of a contractor is to be aware of the building regulations and
+							requirements. They have to use their expertise and shape the project to avoid a breach of
+							rules. It is also their job to obtain certain required licenses and permits.
+						</Typography>
+					</Stack>
+				</Stack>
+				<Typography fontWeight={700}>What is Meant by a Builder?</Typography>
+				<Typography>
+					The builder&#39;s job is quite different from that of the construction work contractor but is of
+					equal importance. The primary job of a builder is to handle the actual physical construction process
+					of the entire project. This includes preparation of building materials, settling pre and
+					post-procedure associated tasks, and much more. Generally, they have their pre-established working
+					crew for projects, while some experienced builders take up a project and hire additional members who
+					would be adequate for the job. They are normally very experienced and work optimally to handle small
+					projects on their own and bigger projects under asserted supervision.
+					<Box component={'br'} />
+					Typically, the builder does not handle the mechanical-related work like electrical work, plumbing,
+					setting up heating and cooling, etc. While in various rural areas, the builders handle projects as
+					general contractors, especially for small housing projects. This is a vital role they must fulfil to
+					properly sustain their construction business in the long run.
+				</Typography>
+				<Typography fontWeight={700}>Here is a Detailed List of Duties of a Builder:</Typography>
+				<Stack direction={'column'} spacing={1} px={2}>
+					<Typography>
+						● Handling most of the heavy on-site machinery and the use of construction equipment for the
+						building procedure is the duty of the builder
+					</Typography>
+					<Typography>
+						● The side assignments like moving dirt and soil away from the construction site are also the
+						duty of the builders
+					</Typography>
+					<Typography>
+						● They are responsible for handling the procedure of establishing the foundation of the project
+					</Typography>
+					<Typography>
+						● Builders also take care of the demolition-related work that is necessary on the site
+					</Typography>
+					<Typography>
+						● Vital construction work like mixing and preparing construction materials is another of their
+						key roles on the job
+					</Typography>
+					<Typography>
+						● A few more important responsibilities of the builders include handling the procedure of
+						bricklaying, the casting of the roof, insulation work, etc.
+					</Typography>
+					<Typography>
+						● Another of their important functions on the job is to work in close association with the
+						customer/project owner and supervisor.
+					</Typography>
+				</Stack>
+				<Typography fontWeight={700}>Contractor or Builder- Whom Should You Hire?</Typography>
+				<Typography>
+					To decide on the perfect role to hire for your construction project, customers must get a clear
+					picture of their roles and differences, as mentioned in the sections above. Once their distinct
+					responsibilities become clear, you can start deciding whom to hire.
+					<Box component={'br'} />
+					An essential factor that dominates the topic of choosing the right person to hire for the job is the
+					project itself. Construction projects can differ on multiple factors, especially the size of the
+					entire project, the complexity of the construction, the essence of the schedule and the overall
+					budget. If the customer is going for a bigger project and looking for something eminent, it is
+					always recommended that they go for a building contractor. Their expertise, managerial skills,
+					planning, maintenance schedule and oversight of the general construction and other parts of the
+					project are ideal if they want to simplify the project as a whole. However, generally, when the
+					customer hires contractors, you might also need to hire additional professionals like subcontractors
+					who specialise in certain aspects. Even though this might cost the customer quite a bit, it is worth
+					every buck in terms of reaching your desired goals within their contractor construction project.
+					<Box component={'br'} />
+					As for property builders, they are also very competent and experienced in this sector. The scale,
+					budget and uniqueness of builder projects are usually more diminutive. If customers/project owners
+					want to save a few bucks on their project, which is smaller in scale and is based on a simpler idea,
+					going with a builder would be a good choice. In rural regions, most senior and experienced builders
+					fill the shoes of a building contractor themselves and work with their crew to get the job done.
+					Generally, people prefer the choice of a builder for house construction and other small-scale
+					projects.
+				</Typography>
+				<Typography fontWeight={700}>Conclusion:</Typography>
+				<Typography>
+					At the end of the day, builders and contractors are needed for construction work as it requires
+					skill, adaptability, creative outlook, efficiency, and much more. As the project owner, customers
+					must hire the right professionals for the job and not leave room for compromise in the build
+					quality. This goes the same for contractors relying on older methods to reach the possible
+					workforce. By availing of the largest workforce marketplace in India within the construction sector
+					provided by Project Hero, contractors can enhance their business and work quality beyond new limits.
+					<Box component={'br'} />
+					We hope that this article was able to establish the proper builder vs contractor aspect and helped
+					potential customers with construction projects lined up to understand the primary difference between
+					builder and contractor in a much broader aspect.
+				</Typography>
+			</Stack>
+		</>
+	),
 }
 
-export const blogData = {
+export const blogData: any = {
 	Header: {
 		heading: 'Latest Blogs from our team',
 	},
-	Popularblogs: [
-		{
-			id: 0,
-			title: '5 Trends in the Construction Industry in 2022',
-			description:
-				'2022 is anticipated to be a year of resurgence and economic prosperity in the construction industry, followed by a time of adjusting growth predictions and altering standards. Due to rising construction costs and increasing skilled labour shortages, the construction sector continues to be under pressure to develop new, innovative, difficult, and distinctive concepts. Furthermore, stringent norms and regulations make less room for error and waste. To maintain quality and satisfy the sector&#39;s expanding expectations, the industry must use the latest technology and gadgets to its benefit.',
-			details: BlogList.blog1,
-			imgSrc: '/assets/landing/blog/blogs.png',
-		},
-		{
-			id: 1,
-			title: "13 Things You Didn't Know About the Construction Industry",
-			description:
-				'The construction industry has seen very steady growth and expansion in recent times. The construction market size of India was 609.6 billion USD in 2021 and is projected to grow at more than 6% AAGR within the 2023 to 2026 period. This sector has been serving as one of the vital aspects of the country’s economy and plays a crucial role in its overall growth. Apart from attracting a huge chunk of investment and significant economic interest, the construction industry also presents quite a several job opportunities for many individuals in construction work in India and the world.',
-			details: BlogList.blog2,
-			imgSrc: '/assets/landing/blog/blogs.png',
-		},
-	],
-	Latestblogs: [
-		{
-			id: 0,
-			title: '5 Trends in the Construction Industry in 2022',
-			description:
-				'2022 is anticipated to be a year of resurgence and economic prosperity in the construction industry, followed by a time of adjusting growth predictions and altering standards. Due to rising construction costs and increasing skilled labour shortages, the construction sector continues to be under pressure to develop new, innovative, difficult, and distinctive concepts. Furthermore, stringent norms and regulations make less room for error and waste. To maintain quality and satisfy the sector&#39;s expanding expectations, the industry must use the latest technology and gadgets to its benefit.',
-			details: BlogList.blog1,
-			imgSrc: '/assets/landing/blog/blogs.png',
-		},
-		{
-			id: 1,
-			title: "13 Things You Didn't Know About the Construction Industry",
-			description:
-				'The construction industry has seen very steady growth and expansion in recent times. The construction market size of India was 609.6 billion USD in 2021 and is projected to grow at more than 6% AAGR within the 2023 to 2026 period. This sector has been serving as one of the vital aspects of the country’s economy and plays a crucial role in its overall growth. Apart from attracting a huge chunk of investment and significant economic interest, the construction industry also presents quite a several job opportunities for many individuals in construction work in India and the world.',
-			details: BlogList.blog2,
-			imgSrc: '/assets/landing/blog/blogs.png',
-		},
-		{
-			id: 2,
-			title: '3 Ways to Avoid Getting Scammed by a Job Portal',
-			description:
-				'The issue of job scams within the construction industry is not an uncommon one. Valuable workers getting cheated by fake job promises, contractors getting hassled by middlemen in the name of supplying potential workforce, and the online job fraud list goes on and around in every direction. This has been one of the major factors affecting the construction industry negatively and demoralising labourers and contractors. When looking for a construction job or possible construction workforce as a contractor, time generally is of the essence. This is why people often miss out or overlook certain red flags on a job portal, causing them both mental and financial strain in the process.',
-			details: BlogList.blog3,
-			imgSrc: '/assets/landing/blog/blogs.png',
-		},
-		{
-			id: 3,
-			title: '5 Ways to Save Money on Your Construction Project',
-			description:
-				'Construction projects are very time-centric and budget oriented. This is why clients prefer to hire contractors to streamline their construction projects as swiftly as possible. The general duty of a contractor is to fill many vital roles, including hiring labourers, sub-contractors, and consultants, providing building materials, on and off-site operation management, and much more. Opting for contractors to handle projects can save tons of money and reduce construction cost margin of the whole operation. As a contractor, it is recommended that you should go through some useful, crucial and functional tactics and apply them to your general method of operation. This way, you can save a huge chunk of the budget and never exceed the line.',
-			details: BlogList.blog4,
-			imgSrc: '/assets/landing/blog/blogs.png',
-		},
-		{
-			id: 4,
-			title: '7 Tips That Will Make You a Better Construction Labour Contractor',
-			description:
-				'In recent times as the construction industry keeps on blooming, becoming a contractor is a great choice for a profession. If you are starting your professional journey as a labour contractor in the construction sector, there are plenty of things you should learn from the start.',
-			details: BlogList.blog5,
-			imgSrc: '/assets/landing/blog/blogs.png',
-		},
-		{
-			id: 5,
-			title: '15 Must Know Things Before You Get Started with Construction',
-			description:
-				'Before you begin your journey in the construction sector, you should know that this job requires skills and an eye for improvement and can pose major challenges throughout projects in terms of mental and physical strain. However, if you can steady up your outlook to work around a few initial challenges and look into the bigger picture, this job would offer innumerable possibilities and expansion as you begin to develop in the sector.',
-			details: BlogList.blog6,
-			imgSrc: '/assets/landing/blog/blogs.png',
-		},
-	],
-
 	Allblogs: [
 		{
 			id: 0,
-			title: '5 Trends in the Construction Industry in 2022',
+			title: '7 Tips That Will Make You a Better Construction Labour Contractor',
 			description:
-				'2022 is anticipated to be a year of resurgence and economic prosperity in the construction industry, followed by a time of adjusting growth predictions and altering standards. Due to rising construction costs and increasing skilled labour shortages, the construction sector continues to be under pressure to develop new, innovative, difficult, and distinctive concepts. Furthermore, stringent norms and regulations make less room for error and waste. To maintain quality and satisfy the sector&#39;s expanding expectations, the industry must use the latest technology and gadgets to its benefit.',
-			details: BlogList.blog1,
-			imgSrc: '/assets/landing/blog/blogs.png',
+				'In recent times as the construction industry keeps on blooming, becoming a contractor is a great choice for a profession. If you are starting your professional journey as a labour contractor in the construction sector, there are plenty of things you should learn from the start.',
+			details: BlogList.blog5,
+			imgSrc: '/assets/landingv2/heroSection/7_Tips_That_Will_Make_You_a_Better_Construction_Labor_Contractor.jpg',
+			isPopular: false,
+			isLatest: false,
+			similarArray: [2, 3, 4],
 		},
 		{
 			id: 1,
@@ -1017,31 +1689,43 @@ export const blogData = {
 			description:
 				'The construction industry has seen very steady growth and expansion in recent times. The construction market size of India was 609.6 billion USD in 2021 and is projected to grow at more than 6% AAGR within the 2023 to 2026 period. This sector has been serving as one of the vital aspects of the country’s economy and plays a crucial role in its overall growth. Apart from attracting a huge chunk of investment and significant economic interest, the construction industry also presents quite a several job opportunities for many individuals in construction work in India and the world.',
 			details: BlogList.blog2,
-			imgSrc: '/assets/landing/blog/blogs.png',
+			imgSrc: `/assets/landingv2/heroSection/13_Things_You_Didn't_Know_about_the_Construction_Industry.jpg`,
+			isPopular: false,
+			isLatest: false,
+			similarArray: [1, 2, 7],
 		},
 		{
 			id: 2,
-			title: '3 Ways to Avoid Getting Scammed by a Job Portal',
+			title: '12 Things You Need to Know About Construction Labour',
 			description:
-				'The issue of job scams within the construction industry is not an uncommon one. Valuable workers getting cheated by fake job promises, contractors getting hassled by middlemen in the name of supplying potential workforce, and the online job fraud list goes on and around in every direction. This has been one of the major factors affecting the construction industry negatively and demoralising labourers and contractors. When looking for a construction job or possible construction workforce as a contractor, time generally is of the essence. This is why people often miss out or overlook certain red flags on a job portal, causing them both mental and financial strain in the process.',
-			details: BlogList.blog3,
-			imgSrc: '/assets/landing/blog/blogs.png',
+				'Construction is a physically and psychologically demanding vocation. It comes with various difficulties and working conditions that set it apart from the average office job. A construction labourer’s job may seem simple, particularly to those who know how to utilise instruments like a hammer. But it takes more than a sledgehammer to crack this nut. Construction workers face daily challenges, including working in confined spaces, at dangerous heights, and with heavy equipment in unpleasant weather. This also applies to office construction employees, who must fully grasp how to price construction labour works and manage time-sensitive projects.',
+			details: BlogList.blog9,
+			imgSrc: '/assets/landingv2/heroSection/12_Things_You_Need_To_Know_About_Construction_Labour.jpg',
+			isPopular: false,
+			isLatest: false,
+			similarArray: [4, 5, 6],
 		},
 		{
 			id: 3,
-			title: '5 Ways to Save Money on Your Construction Project',
+			title: 'Builders Vs Contractors: Which is Better?',
 			description:
-				'Construction projects are very time-centric and budget oriented. This is why clients prefer to hire contractors to streamline their construction projects as swiftly as possible. The general duty of a contractor is to fill many vital roles, including hiring labourers, sub-contractors, and consultants, providing building materials, on and off-site operation management, and much more. Opting for contractors to handle projects can save tons of money and reduce construction cost margin of the whole operation. As a contractor, it is recommended that you should go through some useful, crucial and functional tactics and apply them to your general method of operation. This way, you can save a huge chunk of the budget and never exceed the line.',
-			details: BlogList.blog4,
-			imgSrc: '/assets/landing/blog/blogs.png',
+				'It is quite common for customers who want to hire professionals to work on their construction project to get confused between a builder and a contractor, the two essential roles in the construction sector. Even though these two roles closely relate to one another, they are quite distinguishable regarding their job and responsibilities. In this article, we will paint a complete picture that should help customers understand these two separate roles clearly, so they can avoid being confused and hire the correct person for their construction projects in future. In the industry, both the builder and contractor are essential, so let us have a look at the general details of these roles, discuss their distinct duties on the job and establish a difference between builder and construction work contractor.',
+			details: BlogList.blog10,
+			imgSrc: '/assets/landingv2/heroSection/Builders_Vs_Contractors:_Which_is_Better.jpg',
+			isPopular: false,
+			isLatest: true,
+			similarArray: [1, 2, 7],
 		},
 		{
 			id: 4,
-			title: '7 Tips That Will Make You a Better Construction Labour Contractor',
+			title: 'Construction Industry Insights',
 			description:
-				'In recent times as the construction industry keeps on blooming, becoming a contractor is a great choice for a profession. If you are starting your professional journey as a labour contractor in the construction sector, there are plenty of things you should learn from the start.',
-			details: BlogList.blog5,
-			imgSrc: '/assets/landing/blog/blogs.png',
+				'The construction industry is currently expanding at a rapid speed in major regions of the world. Especially the construction market sector in India, along with USA and China, is taking giant steps and is estimated to have one of the biggest construction markets globally by 2030. China, India, the United States and Indonesia will account for an estimated 58.3% of the global growth in terms of construction output. The construction industry is one of the oldest sectors in the history of human civilisation, and it keeps on solidifying its existence more rapidly, thanks to the various technological, industrial, commercial, domestic and developments in other sectors. If you are planning to start your profession or considering making major investments in this industry, then this is a valid time to do so.',
+			details: BlogList.blog8,
+			imgSrc: '/assets/landingv2/heroSection/Construction_Industry_Insights.jpg',
+			isPopular: false,
+			isLatest: true,
+			similarArray: [6, 7, 8],
 		},
 		{
 			id: 5,
@@ -1049,7 +1733,54 @@ export const blogData = {
 			description:
 				'Before you begin your journey in the construction sector, you should know that this job requires skills and an eye for improvement and can pose major challenges throughout projects in terms of mental and physical strain. However, if you can steady up your outlook to work around a few initial challenges and look into the bigger picture, this job would offer innumerable possibilities and expansion as you begin to develop in the sector.',
 			details: BlogList.blog6,
-			imgSrc: '/assets/landing/blog/blogs.png',
+			imgSrc: '/assets/landingv2/heroSection/15_Must_Know_Things_Before_You_Get_Started_with_Construction.jpg',
+			isPopular: false,
+			isLatest: true,
+			similarArray: [1, 9, 10],
+		},
+		{
+			id: 6,
+			title: 'Project Hero - The Best Online Construction Labour Marketplace?',
+			description:
+				'The phenomenal development in the construction industry presents many opportunities in this sector. Even though there are some major hurdles that are negatively impacting its growth, like the issue of decline in the availability of organised construction labourer networks, the sector is successfully tackling them with the help of new technological advancements. There are various roles associated with the industry, each of which has its specific importance and responsibilities, and the role of a construction worker is one of them. In order to finish a construction project on time against tight deadlines, a proper and reliable construction workforce is necessary. And this growing problem in the industry has presented scope for new and advanced solutions, like the one offered through the platform of Project Hero.',
+			details: BlogList.blog7,
+			imgSrc: '/assets/landingv2/heroSection/Project_Hero_The Best Online_Construction_Labour_Marketplace.jpg',
+			isPopular: true,
+			isLatest: false,
+			similarArray: [8, 9, 7],
+		},
+		{
+			id: 7,
+			title: '3 Ways to Avoid Getting Scammed by a Job Portal',
+			description:
+				'The issue of job scams within the construction industry is not an uncommon one. Valuable workers getting cheated by fake job promises, contractors getting hassled by middlemen in the name of supplying potential workforce, and the online job fraud list goes on and around in every direction. This has been one of the major factors affecting the construction industry negatively and demoralising labourers and contractors. When looking for a construction job or possible construction workforce as a contractor, time generally is of the essence. This is why people often miss out or overlook certain red flags on a job portal, causing them both mental and financial strain in the process.',
+			details: BlogList.blog3,
+			imgSrc: '/assets/landingv2/heroSection/3_Ways_to_Avoid_Getting_Scammed_by_a_Job_Portal.jpg',
+			isPopular: false,
+			isLatest: true,
+			similarArray: [3, 9, 10],
+		},
+		{
+			id: 8,
+			title: '5 Ways to Save Money on Your Construction Project',
+			description:
+				'Construction projects are very time-centric and budget oriented. This is why clients prefer to hire contractors to streamline their construction projects as swiftly as possible. The general duty of a contractor is to fill many vital roles, including hiring labourers, sub-contractors, and consultants, providing building materials, on and off-site operation management, and much more. Opting for contractors to handle projects can save tons of money and reduce construction cost margin of the whole operation. As a contractor, it is recommended that you should go through some useful, crucial and functional tactics and apply them to your general method of operation. This way, you can save a huge chunk of the budget and never exceed the line.',
+			details: BlogList.blog4,
+			imgSrc: '/assets/landingv2/heroSection/5_Ways_to_Save_Money_on_Your_Construction_Project.jpg',
+			isPopular: false,
+			isLatest: true,
+			similarArray: [4, 6, 7],
+		},
+		{
+			id: 9,
+			title: '5 Trends in the Construction Industry in 2022',
+			description:
+				'2022 is anticipated to be a year of resurgence and economic prosperity in the construction industry, followed by a time of adjusting growth predictions and altering standards. Due to rising construction costs and increasing skilled labour shortages, the construction sector continues to be under pressure to develop new, innovative, difficult, and distinctive concepts. Furthermore, stringent norms and regulations make less room for error and waste. To maintain quality and satisfy the sector&#39;s expanding expectations, the industry must use the latest technology and gadgets to its benefit.',
+			details: BlogList.blog1,
+			imgSrc: '/assets/landingv2/heroSection/5_Trends_of_Construction_Industry.jpg',
+			isPopular: false,
+			isLatest: true,
+			similarArray: [5, 2, 7],
 		},
 	],
 }
