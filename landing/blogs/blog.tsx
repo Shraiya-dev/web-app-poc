@@ -37,7 +37,7 @@ export const Blog = () => {
 						fontFamily='Karla ,sans-serif'
 						fontWeight={400}
 						marginTop={{ md: '15px', xs: '0px' }}>
-						Stay infromed with our latest blogs
+						Stay informed with our latest blogs
 					</Typography>
 				</Stack>
 

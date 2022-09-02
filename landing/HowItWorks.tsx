@@ -3,9 +3,12 @@ import { Box } from '@mui/system'
 import Image from 'next/image'
 import React, { createRef, useState } from 'react'
 import { FC } from 'react'
-import { Section, theme } from 'sdk'
+import { Section, theme, useMobile } from 'sdk'
 import { CarouselHowItWork } from 'sdkv2/components'
 import AcUnitIcon from '@mui/icons-material/AcUnit'
+//@ts-nocheck
+import { Player, BigPlayButton } from 'video-react'
+import 'video-react/dist/video-react.css'
 
 interface Props {}
 
@@ -15,6 +18,34 @@ const CustomHowItWorksStyle = styled(Box)(({ theme }) => ({
 	},
 	'.font-Karla': {
 		fontFamily: 'Karla ,sans-serif',
+	},
+	'.styledPaper': {
+		background: '#fcfcfc',
+		borderRadius: '10px',
+		'& .video-react .video-react-big-play-button': {
+			background: '#efc430',
+			borderRadius: '50%',
+			height: '50px',
+			width: '50px',
+			borderColor: '#efc430',
+			':before': {
+				color: '#000',
+			},
+		},
+
+		'& .video-react-control-bar': {
+			borderRadius: '0px 0px 10px 10px',
+		},
+		'& .video-react-poster': {
+			borderRadius: '10px',
+			backgroundSize: 'cover',
+		},
+		'& .video-react': {
+			borderRadius: '10px',
+		},
+		'& .video-react-video': {
+			borderRadius: '10px',
+		},
 	},
 }))
 
@@ -105,6 +136,7 @@ const profileDescription = [
 export const HowItWorks: FC<Props> = () => {
 	const rootRef = createRef()
 	const [height, setHeight] = useState<string>('01')
+	const isMobile = useMobile()
 
 	return (
 		<CustomHowItWorksStyle>
@@ -183,23 +215,19 @@ export const HowItWorks: FC<Props> = () => {
 						</Button>
 					</Stack>
 					<Paper
+						className='styledPaper'
 						elevation={0}
 						sx={{
 							maxWidth: '800px',
-							width: { xs: '100%', sm: '80%', md: '55%' },
-							aspectRatio: '2 / 1',
+							width: { xs: '100%', sm: '80%', md: '54%' },
+							aspectRatio: '3 / 2',
+							overflow: 'hidden',
+							borderRadius: '10px',
 						}}>
-						<iframe
-							src='https://storage.googleapis.com/ph-assets/project/ProjectHero_V2_How_it_works.mp4'
-							width='100%'
-							height='100%'
-							allow={'autoplay'}
-							allowFullScreen
-							style={{
-								borderRadius: '16px',
-								aspectRatio: '2 / 1',
-								border: '0px solid #000 ',
-							}}></iframe>
+						<Player poster='/assets/icons/videoPoster.png'>
+							<source src='https://storage.googleapis.com/ph-assets/project/ProjectHero_V2_How_it_works.mp4' />
+							<BigPlayButton position={'center'} />
+						</Player>
 					</Paper>
 				</Stack>
 			</Section>
@@ -311,7 +339,7 @@ export const HowItWorks: FC<Props> = () => {
 						</Button>
 					</Box>
 
-					<Stack direction={'row'} spacing={{ md: 6, xs: 0 }} position='relative'>
+					<Stack direction={'row'} spacing={{ md: 6, xs: 2 }} position='relative'>
 						<Box height={{ md: 520, xs: 570 }}>
 							<Slider
 								orientation='vertical'
@@ -416,7 +444,6 @@ export const HowItWorks: FC<Props> = () => {
 									key={index}
 									handleSlide={(a) => {
 										setHeight(a)
-										// console.log(a)
 									}}
 									root={rootRef}
 									val={index}
@@ -428,6 +455,7 @@ export const HowItWorks: FC<Props> = () => {
 											sx={{
 												p: { md: 4, xs: 2 },
 												background: index === height ? bgColor : 'transparent',
+												borderRadius: '16px',
 											}}>
 											<Stack direction={'row'} spacing={3}>
 												<Stack
@@ -440,14 +468,14 @@ export const HowItWorks: FC<Props> = () => {
 														maxHeight: { md: '100px', xs: '56px' },
 														maxWidth: { md: '100px', xs: '56px' },
 														borderRadius: '50%',
-														background: '#fdf6dd',
+														background: index === height ? '#fff' : '#fdf6dd',
 													}}>
 													<Box
 														sx={{
-															minHeight: { md: '56px', xs: '34px' },
-															minWidth: { md: '56px', xs: '34px' },
-															maxHeight: { md: '56px', xs: '34px' },
-															maxWidth: { md: '56px', xs: '34px' },
+															minHeight: { md: '62px', xs: '34px' },
+															minWidth: { md: '62px', xs: '34px' },
+															maxHeight: { md: '62px', xs: '34px' },
+															maxWidth: { md: '62px', xs: '34px' },
 														}}>
 														<Image src={imgSrc} height={'100%'} width={'100%'} />
 													</Box>
