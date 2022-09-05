@@ -85,40 +85,40 @@ export const BlogCard: FC<Props> = ({ view }: Props) => {
 											display: 'flex',
 											justifyContent: { xs: 'space-between', md: 'flex-start' },
 										}}>
-										<LinkButton
-											href={`blog/${id}`}
-											// onClick={() => {
-											// 	router.push({
-											// 		pathname: !router.query.page
-											// 			? 'blog/id'
-											// 			: '/blog/id',
-											// 		query: {
-											// 			pid: index,
-											// 			type: 'Latestblogs',
-											// 		},
-											// 	})
-											// }}
-											endIcon={<ArrowForwardIcon />}
-											variant='text'
-											fullWidth={false}
-											sx={{ marginBottom: '0px' }}
-											color='inherit'>
-											Read More
-										</LinkButton>
-										<Button
-											endIcon={<ShareIcon />}
-											variant='text'
-											fullWidth={false}
-											sx={{
-												marginTop: { md: '0px', xs: '8px' },
-											}}>
-											<Typography
-												fontFamily='Karla ,sans-serif'
-												fontSize={{ md: '18px', xs: '12px' }}
-												fontWeight={500}>
-												Share
-											</Typography>
-										</Button>
+										<Stack direction={'row'} spacing={4}>
+											<LinkButton
+												href={`blog/${id}`}
+												// onClick={() => {
+												// 	router.push({
+												// 		pathname: !router.query.page
+												// 			? 'blog/id'
+												// 			: '/blog/id',
+												// 		query: {
+												// 			pid: index,
+												// 			type: 'Latestblogs',
+												// 		},
+												// 	})
+												// }}
+												endIcon={<ArrowForwardIcon />}
+												variant='text'
+												fullWidth={false}
+												sx={{ marginBottom: '0px' }}
+												color='inherit'>
+												Read More
+											</LinkButton>
+											<Button
+												startIcon={<ShareIcon sx={{ color: '#efc430' }} />}
+												variant='text'
+												fullWidth={false}
+												sx={{
+													marginTop: { md: '0px', xs: '8px' },
+													fontFamily: 'Karla ,sans-serif',
+													fontSize: { md: '18px', xs: '12px' },
+													fontWeight: 500,
+												}}>
+												<Typography>Share</Typography>
+											</Button>
+										</Stack>
 									</CardActions>
 								</Stack>
 							</Stack>
@@ -410,14 +410,20 @@ export const BlogCard: FC<Props> = ({ view }: Props) => {
 																</Typography>
 															</Button>
 														</Stack>
-														<Typography
-															fontFamily='Karla ,sans-serif'
-															fontSize='12px'
-															fontWeight={400}
-															variant='body2'
-															color='text.secondary'>
-															{description.slice(0, 250)}
-														</Typography>
+														<Box
+															sx={{
+																minHeight: '100px',
+																maxHeight: '100px',
+															}}>
+															<Typography
+																fontFamily='Karla ,sans-serif'
+																fontSize='12px'
+																fontWeight={400}
+																variant='body2'
+																color='text.secondary'>
+																{description.slice(0, 250)}
+															</Typography>
+														</Box>
 													</CardContent>
 													<CardActions>
 														<LinkButton

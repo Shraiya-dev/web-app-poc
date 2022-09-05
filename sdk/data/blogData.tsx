@@ -12,7 +12,7 @@ const BlogList = {
 					construction costs and increasing skilled labour shortages, the construction sector continues to be
 					under pressure to develop new, innovative, difficult, and distinctive concepts. Furthermore,
 					stringent norms and regulations make less room for error and waste. To maintain quality and satisfy
-					the sector&#39;s expanding expectations, the industry must use the latest technology and gadgets to
+					the sector&apos;s expanding expectations, the industry must use the latest technology and gadgets to
 					its benefit.
 					<Box component={'br'} />
 					Technology is having a greater than ever impact on the construction sector. An amazing range of
@@ -104,7 +104,7 @@ const BlogList = {
 					<Stack direction={'column'} spacing={2}>
 						<Typography fontWeight={700}>5. Green buildings</Typography>
 						<Typography>
-							Green building incorporates technologies to lessen a structure&#39;s carbon footprint and
+							Green building incorporates technologies to lessen a structure&apos;s carbon footprint and
 							uses smart materials and architectural designs to utilise less unnecessary resources. To
 							live a healthy lifestyle, most of us desire to live in an eco-friendly atmosphere while
 							technology continues to expand and progress. However, eco-friendly solutions appear to be
@@ -143,7 +143,7 @@ const BlogList = {
 					also presents quite a several job opportunities for many individuals in construction work in India
 					and the world.
 				</Typography>
-				<Typography>13 Construction Industry Facts That You Didn&#39t Know:</Typography>
+				<Typography>13 Construction Industry Facts That You Didn&apos;t Know:</Typography>
 				<Typography>
 					As one of the massive and prevailing sectors in the world, the construction industry has millions of
 					individuals involved as contractors, labourers, technicians, etc. The information you hear on the
@@ -253,9 +253,9 @@ const BlogList = {
 							8. The largest Consumer of Cement is the Real Estate Sector.
 						</Typography>
 						<Typography>
-							The real estate construction sector is the largest cement consumer in India. Let&#39s take a
-							look at one of the reports done by the Indian Brand Equity Foundation or IBEF. We will find
-							that the housing sector alone reports 67% of the total cement consumption in India. In
+							The real estate construction sector is the largest cement consumer in India. Let&apos;s take
+							a look at one of the reports done by the Indian Brand Equity Foundation or IBEF. We will
+							find that the housing sector alone reports 67% of the total cement consumption in India. In
 							comparison, the infrastructure sector takes up 13%, commercial construction takes up 11%,
 							and the industrial sector takes up 9%. China ranks first in terms of cement production and
 							is followed by India and the United States of America, respectively.
@@ -327,12 +327,12 @@ const BlogList = {
 				<Stack direction={'column'} spacing={3}>
 					<Typography>Conclusion:</Typography>
 					<Typography>
-						These have been some of the industry&#39;s little-known but considerably impressive construction
-						facts. A lot goes into this sector, which is why so many reasons and numbers are associated with
-						its exponential growth. The construction industry is regarded as one of the oldest industries in
-						the world, while the history of construction is said to be lurking since the early days of
-						humankind. It has secured a significant place in the modern world and is one of the impressive
-						sectors of current times.
+						These have been some of the industry&apos;s little-known but considerably impressive
+						construction facts. A lot goes into this sector, which is why so many reasons and numbers are
+						associated with its exponential growth. The construction industry is regarded as one of the
+						oldest industries in the world, while the history of construction is said to be lurking since
+						the early days of humankind. It has secured a significant place in the modern world and is one
+						of the impressive sectors of current times.
 					</Typography>
 				</Stack>
 			</Stack>
@@ -519,7 +519,7 @@ const BlogList = {
 							<Box component={'br'} />
 							Construction is a sector where experience counts equally as having the right skills within
 							the respective categories. By hiring an efficient workforce, a contractor can ensure the
-							project&#39;s progress is moving at a steady and stable pace.
+							project&apos;s progress is moving at a steady and stable pace.
 							<Box component={'br'} />
 							Also, this sector has a good correlation between quality and quantity. Going with just the
 							right workforce is not enough, and being understaffed can significantly slow development.
@@ -704,7 +704,7 @@ const BlogList = {
 						<Typography fontWeight={700}>7. Work on the Hiring Process:</Typography>
 						<Typography>
 							The hiring procedure itself can pose out to be the hardest part of the job. Building
-							contacts, getting skilled labourers or securing enough workers to fulfil the project&#39;s
+							contacts, getting skilled labourers or securing enough workers to fulfil the project&apos;s
 							requirements can be very difficult, especially if you are a newcomer in the sector. In
 							reality, the construction labour hiring procedure is challenging even for a seasoned
 							construction labour supplier. This is why you must utilise all the sources and portals for
@@ -763,7 +763,7 @@ const BlogList = {
 						<Typography fontWeight={700}>1. Be Prepared for Highs and Lows</Typography>
 						<Typography>
 							Like most other jobs in the world, the construction sector also poses various risks in terms
-							of profit-making, which even the top construction companies face. It&#39;s not every day
+							of profit-making, which even the top construction companies face. It&apos;s not every day
 							that you will land a high-paying construction contract or completely flow through a job
 							without facing any sort of challenges. The construction sector has its own set of highs and
 							lows, and you must be well-prepared to face these conditions mentally and economically by
@@ -823,7 +823,7 @@ const BlogList = {
 						<Typography fontWeight={700}>7. Strength and Stamina Matters</Typography>
 						<Typography>
 							The various roles in the construction industry, which include the roles of a commercial
-							builder, contractor, worker, construction estimator, etc., are based upon individuals&#39;
+							builder, contractor, worker, construction estimator, etc., are based upon individuals&apos;
 							core strength and stamina. The job is physically demanding as well as mentally challenging.
 							The job requires individuals to have the required strength and stamina to face tasks like
 							handling heavy equipment, precast construction concrete preparation, construction planning
@@ -1105,7 +1105,7 @@ const BlogList = {
 					<Typography>
 						As a contractor, you can easily create multiple projects by the job location and make multiple
 						bookings for the respective projects. To do so, you must register an account on the platform and
-						log in through the contractor&#39;s website. This will not only simplify your hiring procedure
+						log in through the contractor&apos;s website. This will not only simplify your hiring procedure
 						but will also ease your job in terms of management. Here are the following facilities you can
 						enjoy through the Project Hero contractor website:
 					</Typography>
@@ -1213,7 +1213,7 @@ const BlogList = {
 							the country. As per reports, India’s real estate industry is anticipated to reach 1 trillion
 							USD by 2030 and will contribute 13% to the country’s GDP.
 							<Box component={'br'} />
-							Also, more than 40% of the country&#39;s population is expected to reside within the urban
+							Also, more than 40% of the country&apos;s population is expected to reside within the urban
 							region by 2030. This will create massive demand for about 25 million additional mid-range
 							and reasonably priced residential units, which will be beneficial to the residential, real
 							estate and construction industry of the country, in general. As of NIP, the country has an
@@ -1266,9 +1266,9 @@ const BlogList = {
 								<Box component={'span'} fontWeight={700}>
 									Affordable Housing-
 								</Box>{' '}
-								The speedy growth in the country&#39;s population projects a 6% increment in the urban
+								The speedy growth in the country&apos;s population projects a 6% increment in the urban
 								population in the next eight years, which will create millions of extra needs for
-								residential housing under an affordable price range, according to India&#39;s
+								residential housing under an affordable price range, according to India&apos;s
 								construction industry statistics. This is why a major focus is being given to new ideas
 								and methods to provide affordable housing for all, making the dream of constructing
 								houses in India for everyone possible.
@@ -1542,7 +1542,7 @@ const BlogList = {
 					complete. This is done in case they need an expert opinion or oversight regarding a particular
 					portion of the project.
 					<Box component={'br'} />
-					The building contractor acts as the whole team&#39;s primary supervisor, including labourers and
+					The building contractor acts as the whole team&apos;s primary supervisor, including labourers and
 					subcontractors. Completing the entire project within the stipulated time and settling other on-site
 					disputes and problems are also key aspects of their job.
 				</Typography>
@@ -1555,11 +1555,11 @@ const BlogList = {
 							infrastructure of the plan
 						</Typography>
 						<Typography>
-							● It is the contractors&#39; job to hire further subcontractors in case certain part of the
+							● It is the contractors&apos; job to hire further subcontractors in case certain part of the
 							work requires specific expertise to generate better results.
 						</Typography>
 						<Typography>
-							● The general contractor is the supervisor on the project&#39;s site, who gives out orders,
+							● The general contractor is the supervisor on the project&apos;s site, who gives out orders,
 							lays down further plans and manages the entire crew.
 						</Typography>
 						<Typography>
@@ -1569,7 +1569,7 @@ const BlogList = {
 						</Typography>
 						<Typography>
 							● Most of the time, due to uncertain reasons, construction projects get delayed for several
-							days, even weeks and months. The contractor&#39;s job is to avoid such issues, manage the
+							days, even weeks and months. The contractor&apos;s job is to avoid such issues, manage the
 							lost time, and maintain the schedule. Construction delays can cause various problems,
 							including cost increment for the project owner, which is the customer in this case.
 						</Typography>
@@ -1582,7 +1582,7 @@ const BlogList = {
 				</Stack>
 				<Typography fontWeight={700}>What is Meant by a Builder?</Typography>
 				<Typography>
-					The builder&#39;s job is quite different from that of the construction work contractor but is of
+					The builder&apos;s job is quite different from that of the construction work contractor but is of
 					equal importance. The primary job of a builder is to handle the actual physical construction process
 					of the entire project. This includes preparation of building materials, settling pre and
 					post-procedure associated tasks, and much more. Generally, they have their pre-established working
@@ -1775,7 +1775,7 @@ export const blogData: any = {
 			id: 9,
 			title: '5 Trends in the Construction Industry in 2022',
 			description:
-				'2022 is anticipated to be a year of resurgence and economic prosperity in the construction industry, followed by a time of adjusting growth predictions and altering standards. Due to rising construction costs and increasing skilled labour shortages, the construction sector continues to be under pressure to develop new, innovative, difficult, and distinctive concepts. Furthermore, stringent norms and regulations make less room for error and waste. To maintain quality and satisfy the sector&#39;s expanding expectations, the industry must use the latest technology and gadgets to its benefit.',
+				'2022 is anticipated to be a year of resurgence and economic prosperity in the construction industry, followed by a time of adjusting growth predictions and altering standards. Due to rising construction costs and increasing skilled labour shortages, the construction sector continues to be under pressure to develop new, innovative, difficult, and distinctive concepts. Furthermore, stringent norms and regulations make less room for error and waste. To maintain quality and satisfy the sector&apos;s expanding expectations, the industry must use the latest technology and gadgets to its benefit.',
 			details: BlogList.blog1,
 			imgSrc: '/assets/landingv2/heroSection/5_Trends_of_Construction_Industry.jpg',
 			isPopular: false,
