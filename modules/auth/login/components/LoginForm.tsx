@@ -89,14 +89,6 @@ export const LoginForm = ({ ...props }) => {
 						</Typography>
 					)}
 
-					{!!isDiscoveryBooking ? (
-						<>
-							<BookingStepper isLogin={true} />
-						</>
-					) : (
-						''
-					)}
-
 					<InputWrapper
 						label='Enter Phone Number'
 						sx={{

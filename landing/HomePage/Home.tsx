@@ -43,7 +43,7 @@ export const Home = () => {
 			<Section>
 				<Grid container spacing={2}>
 					<Grid item xs={12} md={7.5}>
-						<Stack justifyContent='space-between' spacing={2}>
+						{/* <Stack justifyContent='space-between' spacing={2}>
 							<Stack alignItems={'center'} direction={{ md: 'row' }} justifyContent='space-between'>
 								<Box
 									sx={{
@@ -83,6 +83,32 @@ export const Home = () => {
 									<strong>4 Lac+</strong> construction workforce available
 								</Typography>
 							</Stack>
+						</Stack> */}
+						<Stack justifyContent='space-between' spacing={2} direction={{ xs: 'row', md: 'column' }}>
+							<Stack>
+								<Typography fontSize={{ xs: 12, sm: 20 }} variant='subtitle1' fontWeight={700}>
+									India’s Largest & Most Trusted Platform to{' '}
+									<Typography
+										fontSize={'inherit'}
+										display='inline'
+										color='success.dark'
+										variant='subtitle1'>
+										Hire Construction Workers
+									</Typography>
+								</Typography>
+								<Typography fontSize={{ xs: 12, sm: 20 }}>
+									<strong>Free</strong> me job post karen aur construction workers ka number payen!
+								</Typography>
+							</Stack>
+							<Box
+								component='img'
+								width={{ xs: 100, sm: '100%' }}
+								height={{ xs: 100, sm: '80%' }}
+								sx={{
+									cursor: 'pointer',
+								}}
+								src={'/assets/landingv2/how-it-works-poster.svg'}
+							/>
 						</Stack>
 					</Grid>
 					<Grid item xs={12} md={4.5} justifyContent='center' id='book-worker'>
