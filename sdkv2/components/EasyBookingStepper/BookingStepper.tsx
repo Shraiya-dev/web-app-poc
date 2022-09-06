@@ -64,14 +64,11 @@ function QontoStepIcon(props: StepIconProps) {
 
 const stepsName = ['1. Job Details', '2. Contact Details']
 
-const BookingStepper = () => {
+const BookingStepper = ({ step }: { step: number }) => {
 	const router = useRouter()
 	return (
 		<Stack maxWidth={300}>
-			<Stepper
-				alternativeLabel
-				activeStep={Number(router?.query?.bookingFromStep ?? 0)}
-				connector={<StepperConnectorLine />}>
+			<Stepper alternativeLabel activeStep={step} connector={<StepperConnectorLine />}>
 				{stepsName.map((label) => (
 					<Step key={label}>
 						<StepLabel
