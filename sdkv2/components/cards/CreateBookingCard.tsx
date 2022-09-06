@@ -59,7 +59,7 @@ export const CreateBookingCard: FC<Props> = () => {
 				}
 				return t - 1
 			})
-		}, 100)
+		}, 1000)
 
 		return () => {
 			clearInterval(interval)
@@ -505,7 +505,7 @@ export const CreateBookingCard: FC<Props> = () => {
 													}}
 												/>
 											</InputWrapper>
-											<Stack spacing={2}>
+											<Stack spacing={2} flex={1}>
 												<InputWrapper fullWidth label='Enter OTP'>
 													<OtpInput
 														value={otp.otp}
@@ -562,28 +562,25 @@ export const CreateBookingCard: FC<Props> = () => {
 														Resend
 													</LoadingButton>
 												)}
-												<Stack flex={1}>
-													<FormControlLabel
-														onChange={(_, c) =>
-															setOtp((p) => ({ ...p, isWhatsAppOptIn: c }))
-														}
-														control={
-															<Checkbox
-																checked={otp.isWhatsAppOptIn}
-																value={otp.isWhatsAppOptIn}
-															/>
-														}
-														label='Send me whatsapp updates'
-														sx={{
-															'& .MuiTypography-root': {
-																color: primary.properDark,
-															},
-															'& .MuiFormControlLabel-root': {
-																mt: '12px',
-															},
-														}}
-													/>
-												</Stack>
+												<Stack flex={1}></Stack>
+												<FormControlLabel
+													onChange={(_, c) => setOtp((p) => ({ ...p, isWhatsAppOptIn: c }))}
+													control={
+														<Checkbox
+															checked={otp.isWhatsAppOptIn}
+															value={otp.isWhatsAppOptIn}
+														/>
+													}
+													label='Send me whatsapp updates'
+													sx={{
+														'& .MuiTypography-root': {
+															color: primary.properDark,
+														},
+														'& .MuiFormControlLabel-root': {
+															mt: '12px',
+														},
+													}}
+												/>
 												<LoadingButton
 													disabled={otp.otp.length !== 6}
 													onClick={async (e) => {
