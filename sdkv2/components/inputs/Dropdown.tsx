@@ -10,11 +10,11 @@ export const Dropdown: FC<Props> = ({ options, value, emptyState, helperText, er
 		<>
 			<Select
 				error={error}
-				{...rest}
 				value={value}
 				sx={{
 					color: value === 'none' ? 'grey.A400' : undefined,
-				}}>
+				}}
+				{...rest}>
 				<MenuItem key={emptyState?.value ?? 'none'} value={emptyState?.value ?? 'none'}>
 					{emptyState?.label ?? 'Select Value'}
 				</MenuItem>

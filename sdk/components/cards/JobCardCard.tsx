@@ -70,7 +70,7 @@ export const JobCardCard = ({ jobCard, updateJobCard }: JobCardCardProps) => {
 						spacing={2}
 						alignItems='center'
 						height='100%'>
-						<Stack>
+						<Stack alignSelf={{ xs: 'flex-start', md: 'center' }}>
 							<Avatar
 								sx={{ width: { xs: 100, md: 150 }, height: { xs: 100, md: 150 } }}
 								src={

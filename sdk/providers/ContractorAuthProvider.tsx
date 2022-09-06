@@ -461,6 +461,7 @@ const ContractorAuthProvider: FC<ContractorAuthProviderProps> = ({ children, aut
 							  }
 							: undefined,
 					},
+					bookingDuration: 'FORTY_FIVE_TO_NINETY',
 				}
 				const { data, status } = await axios.post('/gateway/customer-api/projects/bookings', payload)
 				deleteCookie('discoveryBooking')
