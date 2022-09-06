@@ -94,7 +94,7 @@ export const CreateBookingCard: FC<Props> = () => {
 					<>
 						<Stack>
 							<Stack p={2} sx={{ backgroundColor: '#000000' }}>
-								<Typography variant='h4' color='common.white'>
+								<Typography variant='h4' color='common.white' mb={2}>
 									<Typography variant='inherit' component='span' color='primary.main'>
 										Free
 									</Typography>{' '}

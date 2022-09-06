@@ -10,8 +10,8 @@ import { useRouter } from 'next/router'
 const StepperConnectorLine = styled(StepConnector)(({ theme }: any) => ({
 	[`&.${stepConnectorClasses.alternativeLabel}`]: {
 		top: 10,
-		left: 'calc(-90% + 10px)',
-		right: 'calc(90% + 4px)',
+		left: 'calc(-90% + 2px)',
+		right: 'calc(90% + 13px)',
 	},
 	[`&.${stepConnectorClasses.active}`]: {
 		[`& .${stepConnectorClasses.line}`]: {
@@ -70,7 +70,7 @@ const BookingStepper = ({ step }: { step: number }) => {
 		<Stack maxWidth={300}>
 			<Stepper alternativeLabel activeStep={step} connector={<StepperConnectorLine />}>
 				{stepsName.map((label) => (
-					<Step key={label}>
+					<Step sx={{ px: 0 }} key={label}>
 						<StepLabel
 							StepIconComponent={QontoStepIcon}
 							sx={{

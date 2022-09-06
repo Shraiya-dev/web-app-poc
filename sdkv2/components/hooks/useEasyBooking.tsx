@@ -48,7 +48,7 @@ export const useEasyBooking = () => {
 			helperWage: undefined,
 			technicianWage: undefined,
 			supervisorWage: undefined,
-			isHelper: true,
+			isHelper: false,
 			isTechnician: false,
 			isSupervisor: false,
 		},
