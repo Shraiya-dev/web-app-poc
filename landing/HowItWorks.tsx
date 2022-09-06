@@ -140,7 +140,89 @@ export const HowItWorks: FC<Props> = () => {
 
 	return (
 		<CustomHowItWorksStyle>
-			<Section
+			<Section>
+				<Stack
+					alignItems={{ xs: 'flex-start', sm: 'center', md: 'center' }}
+					marginTop={{ xs: '0', md: '80px' }}>
+					<Typography
+						variant='h1'
+						fontSize={{ md: '36px', xs: '28px' }}
+						fontFamily={'Saira ,sans-serif'}
+						fontWeight={500}>
+						How can you
+						<Typography component={'span'} variant='inherit' color='success.dark' fontWeight={700}>
+							{' '}
+							Post
+						</Typography>{' '}
+						Your
+						<Typography component={'span'} variant='inherit' color='success.dark' fontWeight={700}>
+							{' '}
+							Job
+						</Typography>{' '}
+						for
+					</Typography>
+					<Typography
+						variant='h1'
+						fontSize={{ md: '36px', xs: '28px' }}
+						fontFamily={'Saira ,sans-serif'}
+						fontWeight={500}>
+						<Typography component={'span'} variant='inherit' color='success.dark' fontWeight={700}>
+							{' '}
+							Free
+						</Typography>{' '}
+						with in
+						<Typography component={'span'} variant='inherit' color='success.dark' fontWeight={700}>
+							{' '}
+							1 minute
+						</Typography>{' '}
+					</Typography>
+					<br />
+					<Typography
+						fontSize={{ md: '24px', xs: '16px' }}
+						fontFamily='Karla ,sans-serif'
+						fontWeight={400}
+						marginTop={{ md: '15px', xs: '0px' }}>
+						See how the Project Hero platform works
+					</Typography>
+				</Stack>
+				<Stack
+					direction={{ md: 'column', xs: 'column-reverse' }}
+					width={'100%'}
+					justifyContent={'center'}
+					alignItems={'center'}
+					spacing={4}
+					mt={{ xs: '24px', md: '54px' }}>
+					<Stack
+						direction={'row'}
+						justifyContent={{ xs: 'flex-start', sm: 'center', md: 'center', width: '100%' }}>
+						<Button
+							size='large'
+							sx={{
+								fontFamily: 'Karla,sans-serif',
+								fontWeight: 500,
+								fontSize: { md: '20px', xs: '14px' },
+							}}>
+							Post Your Job Now
+						</Button>
+					</Stack>
+					<Paper
+						className='styledPaper'
+						elevation={0}
+						sx={{
+							maxWidth: '800px',
+							width: { xs: '100%', sm: '80%', md: '54%' },
+							aspectRatio: '3 / 2',
+							overflow: 'hidden',
+							borderRadius: '10px',
+						}}>
+						<Player poster='/assets/icons/videoPoster.png'>
+							<source src='https://storage.googleapis.com/ph-assets/project/ProjectHero_V2_How_it_works.mp4' />
+							<BigPlayButton position={'center'} />
+						</Player>
+					</Paper>
+				</Stack>
+			</Section>
+			{/* <Section
 				sx={{
 					maxHeight: '100vh',
 				}}>
@@ -230,7 +312,7 @@ export const HowItWorks: FC<Props> = () => {
 						</Player>
 					</Paper>
 				</Stack>
-			</Section>
+			</Section> */}
 			<Section
 				backgroundColor='#fff'
 				sx={{
