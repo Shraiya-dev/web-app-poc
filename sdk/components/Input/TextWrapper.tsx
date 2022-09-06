@@ -14,9 +14,11 @@ export const TextWrapper = ({ label, toolTip, children, ...props }: any) => {
 						fontWeight: 900,
 					}}
 					{...props}>
-					<Typography fontSize={13} fontWeight={900} fontStyle={'normal'}>
-						{label}
-					</Typography>
+					{label && (
+						<Typography fontSize={13} fontWeight={900} fontStyle={'normal'}>
+							{label}
+						</Typography>
+					)}
 					{toolTip && (
 						<Tooltip title={toolTip} placement='top-start' sx={{ verticalAlign: 'middle', padding: 1 }}>
 							<HelpOutlineIcon

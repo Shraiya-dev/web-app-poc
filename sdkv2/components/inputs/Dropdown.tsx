@@ -5,10 +5,16 @@ interface Props extends SelectProps {
 	emptyState?: { label: string; value: any }
 	helperText?: string | null
 }
-export const Dropdown: FC<Props> = ({ options, emptyState, helperText, error, ...rest }) => {
+export const Dropdown: FC<Props> = ({ options, value, emptyState, helperText, error, ...rest }) => {
 	return (
 		<>
-			<Select error={error} {...rest}>
+			<Select
+				error={error}
+				value={value}
+				sx={{
+					color: value === 'none' ? 'grey.A400' : undefined,
+				}}
+				{...rest}>
 				<MenuItem key={emptyState?.value ?? 'none'} value={emptyState?.value ?? 'none'}>
 					{emptyState?.label ?? 'Select Value'}
 				</MenuItem>

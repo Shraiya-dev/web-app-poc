@@ -45,7 +45,6 @@ export const useEasyBooking = () => {
 		initialValues: {
 			location: '',
 			jobType: 'none',
-			workDuration: 'none',
 			helperWage: undefined,
 			technicianWage: undefined,
 			supervisorWage: undefined,
@@ -59,7 +58,6 @@ export const useEasyBooking = () => {
 		validationSchema: Yup.object({
 			location: Yup.string().required('Location is required'),
 			jobType: Yup.string().not(['none'], 'Job type is required'),
-			workDuration: Yup.string().required('Work duration is required').not(['none'], 'Work duration is required'),
 			isHelper: Yup.boolean(),
 			isTechnician: Yup.boolean(),
 			isSupervisor: Yup.boolean(),
@@ -67,7 +65,7 @@ export const useEasyBooking = () => {
 				is: true,
 				then: Yup.number()
 					.required('Wage is required')
-					.min(0, 'Wage should be greater then 0')
+					.min(300, 'Wage should be greater then 300')
 					.max(2000, 'Wage should be less then 2000'),
 			}),
 
@@ -75,14 +73,14 @@ export const useEasyBooking = () => {
 				is: true,
 				then: Yup.number()
 					.required('Wage is required')
-					.min(0, 'Wage should be greater then 0')
+					.min(300, 'Wage should be greater then 300')
 					.max(2000, 'Wage should be less then 2000'),
 			}),
 			supervisorWage: Yup.number().when('isSupervisor', {
 				is: true,
 				then: Yup.number()
 					.required('Wage is required')
-					.min(0, 'Wage should be greater then 0')
+					.min(300, 'Wage should be greater then 300')
 					.max(2000, 'Wage should be less then 2000'),
 			}),
 		}),
@@ -105,21 +103,6 @@ export const useEasyBooking = () => {
 				location: `${a.city}, ${a.state}`,
 			})
 		} catch (error) {}
-	}, [])
-	useEffect(() => {
-		const discoveryBookingFromCookie = () => {
-			try {
-				const discoveryBookingFromCookie = JSON.parse(getCookie('discoveryBooking'))
-				return discoveryBookingFromCookie
-			} catch (error) {
-				return undefined
-			}
-		}
-		const a = discoveryBookingFromCookie()
-		if (!a) {
-			delete router.query.bookingFromStep
-			router.replace(router)
-		}
 	}, [])
 
 	const formikProps = useFormikProps(form)
