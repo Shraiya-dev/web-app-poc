@@ -87,37 +87,65 @@ export const BlogCard: FC<Props> = ({ view }: Props) => {
 												{description.slice(200, 350)}
 											</Typography>
 										</CardContent>
-										<Stack direction={'row'} spacing={1} sx={{}}>
-											<LinkButton
-												href={`blog/${id}`}
-												startIcon={<ShareIcon sx={{ color: '#efc430' }} />}
-												variant='text'
-												fullWidth={false}
-												sx={{
-													position: 'absolute',
-													bottom: '22px',
+										{!isMobile ? (
+											<Stack
+												direction={'row'}
+												spacing={1}
+												justifyContent='space-between'
+												sx={{ mt: { xs: '30px', md: '0' } }}>
+												<LinkButton
+													href={`blog/${id}`}
+													startIcon={<ShareIcon sx={{ color: '#efc430' }} />}
+													variant='text'
+													fullWidth={false}
+													sx={{
+														position: { md: 'absolute', xs: '' },
+														bottom: '22px',
 
-													width: '120px',
-													ml: '120px',
-												}}>
-												<Typography>Share</Typography>
-											</LinkButton>
-											<Button
-												href={`blog/${id}`}
-												endIcon={<ArrowForwardIcon />}
-												variant='text'
-												fullWidth={false}
-												sx={{
-													position: 'absolute',
-													bottom: '22px',
+														width: '120px',
+														ml: '120px',
+													}}>
+													<Typography>Share</Typography>
+												</LinkButton>
+												<Button
+													href={`blog/${id}`}
+													endIcon={<ArrowForwardIcon />}
+													variant='text'
+													fullWidth={false}
+													sx={{
+														position: { md: 'absolute', xs: '' },
+														bottom: '22px',
 
-													pl: '-100px',
-													width: '120px',
-												}}
-												color='inherit'>
-												Read More
-											</Button>
-										</Stack>
+														pl: '-100px',
+														width: '120px',
+													}}
+													color='inherit'>
+													Read More
+												</Button>
+											</Stack>
+										) : (
+											<Stack
+												direction={'row'}
+												spacing={1}
+												justifyContent='space-between'
+												sx={{ mt: { xs: '30px', md: '0' } }}>
+												<Button
+													href={`blog/${id}`}
+													endIcon={<ArrowForwardIcon />}
+													variant='text'
+													fullWidth={false}
+													color='inherit'>
+													Read More
+												</Button>
+												<LinkButton
+													href={`blog/${id}`}
+													startIcon={<ShareIcon sx={{ color: '#efc430' }} />}
+													variant='text'
+													fullWidth={false}>
+													<Typography>Share</Typography>
+												</LinkButton>
+											</Stack>
+										)}
 									</Stack>
 								</Stack>
 							</Box>
