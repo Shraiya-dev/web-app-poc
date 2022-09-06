@@ -15,12 +15,12 @@ const StepperConnectorLine = styled(StepConnector)(({ theme }: any) => ({
 	},
 	[`&.${stepConnectorClasses.active}`]: {
 		[`& .${stepConnectorClasses.line}`]: {
-			borderColor: '#F2CF47',
+			background: '#F2CF47',
 		},
 	},
 	[`&.${stepConnectorClasses.completed}`]: {
 		[`& .${stepConnectorClasses.line}`]: {
-			borderColor: '#F2CF47',
+			background: '#F2CF47',
 		},
 	},
 	[`& .${stepConnectorClasses.line}`]: {

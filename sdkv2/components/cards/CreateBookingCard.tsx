@@ -6,6 +6,8 @@ import {
 	Box,
 	Button,
 	Card,
+	Checkbox,
+	FormControlLabel,
 	FormHelperText,
 	IconButton,
 	InputAdornment,
@@ -45,6 +47,7 @@ export const CreateBookingCard: FC<Props> = () => {
 		edit: false,
 		submitting: false,
 		reSent: false,
+		isWhatsAppOptIn: true,
 	})
 	useEffect(() => {
 		if (!otp.reSent) return
@@ -92,10 +95,14 @@ export const CreateBookingCard: FC<Props> = () => {
 						<Stack>
 							<Stack p={2} sx={{ backgroundColor: '#000000' }}>
 								<Typography variant='h4' color='common.white'>
-									Job Posting is Completely{' '}
-									<Typography display='inline' variant='h4' color='primary.main'>
-										FREE!
-									</Typography>
+									<Typography variant='inherit' component='span' color='primary.main'>
+										Free
+									</Typography>{' '}
+									mein{' '}
+									<Typography variant='inherit' component='span' color='primary.main'>
+										Job Post Karen
+									</Typography>{' '}
+									aur workers ka number payen !
 								</Typography>
 								<BookingStepper step={step} />
 							</Stack>
@@ -105,7 +112,7 @@ export const CreateBookingCard: FC<Props> = () => {
 								component='form'
 								sx={{ flex: 1, display: 'flex', flexDirection: 'column' }}
 								onSubmit={form.handleSubmit}>
-								<Stack alignItems='flex-start' flex={1} spacing={1}>
+								<Stack alignItems='flex-start' flex={1} spacing={1} justifyContent='space-between'>
 									{step === 1 && (
 										<Stack direction={'row'} justifyContent={'flex-start'}>
 											<Button
@@ -165,22 +172,23 @@ export const CreateBookingCard: FC<Props> = () => {
 												<Typography variant='subtitle2' fontWeight={700}>
 													Looking for
 												</Typography>
-												<Typography variant='subtitle2' fontWeight={700} color='grey.A400'>
-													Daily Salary
-												</Typography>
 											</Stack>
 
 											<Stack direction='row' width='100%' alignItems='center'>
-												<Typography flex={1} variant='body1' fontWeight={700}>
-													Helper
-													{formikProps('helperWage').helperText && (
-														<FormHelperText error={formikProps('helperWage').error}>
-															{formikProps('helperWage').helperText}
-														</FormHelperText>
-													)}
-												</Typography>
 												{form.values.isHelper ? (
 													<>
+														<Typography
+															flex={1}
+															variant='body1'
+															fontSize={14}
+															fontWeight={700}>
+															Helper
+															{formikProps('helperWage').helperText && (
+																<FormHelperText error={formikProps('helperWage').error}>
+																	{formikProps('helperWage').helperText}
+																</FormHelperText>
+															)}
+														</Typography>
 														<TextField
 															disabled={!form.values.isHelper}
 															sx={{
@@ -238,6 +246,8 @@ export const CreateBookingCard: FC<Props> = () => {
 													</>
 												) : (
 													<Button
+														color='success'
+														sx={{ color: 'success.dark' }}
 														onClick={() => {
 															form.setFieldValue('isHelper', true)
 														}}
@@ -248,14 +258,18 @@ export const CreateBookingCard: FC<Props> = () => {
 												)}
 											</Stack>
 											<Stack direction='row' width='100%' alignItems='center'>
-												<Typography flex={1} variant='body1' fontWeight={700}>
-													Technician
-													<FormHelperText error={formikProps('technicianWage').error}>
-														{formikProps('technicianWage').helperText}
-													</FormHelperText>
-												</Typography>
 												{form.values.isTechnician ? (
 													<>
+														<Typography
+															flex={1}
+															variant='body1'
+															fontSize={14}
+															fontWeight={700}>
+															Technician
+															<FormHelperText error={formikProps('technicianWage').error}>
+																{formikProps('technicianWage').helperText}
+															</FormHelperText>
+														</Typography>
 														<TextField
 															disabled={!form.values.isTechnician}
 															sx={{
@@ -313,6 +327,8 @@ export const CreateBookingCard: FC<Props> = () => {
 													</>
 												) : (
 													<Button
+														color='success'
+														sx={{ color: 'success.dark' }}
 														onClick={() => {
 															form.setFieldValue('isTechnician', true)
 														}}
@@ -323,14 +339,18 @@ export const CreateBookingCard: FC<Props> = () => {
 												)}
 											</Stack>
 											<Stack direction='row' width='100%' alignItems='center'>
-												<Typography flex={1} variant='body1' fontWeight={700}>
-													Supervisor
-													<FormHelperText error={formikProps('supervisorWage').error}>
-														{formikProps('supervisorWage').helperText}
-													</FormHelperText>
-												</Typography>
 												{form.values.isSupervisor ? (
 													<>
+														<Typography
+															flex={1}
+															variant='body1'
+															fontSize={14}
+															fontWeight={700}>
+															Supervisor
+															<FormHelperText error={formikProps('supervisorWage').error}>
+																{formikProps('supervisorWage').helperText}
+															</FormHelperText>
+														</Typography>
 														<TextField
 															disabled={!form.values.isSupervisor}
 															sx={{
@@ -388,6 +408,8 @@ export const CreateBookingCard: FC<Props> = () => {
 													</>
 												) : (
 													<Button
+														color='success'
+														sx={{ color: 'success.dark' }}
 														onClick={() => {
 															form.setFieldValue('isSupervisor', true)
 														}}
@@ -540,7 +562,28 @@ export const CreateBookingCard: FC<Props> = () => {
 														Resend
 													</LoadingButton>
 												)}
-												<Stack flex={1}></Stack>
+												<Stack flex={1}>
+													<FormControlLabel
+														onChange={(_, c) =>
+															setOtp((p) => ({ ...p, isWhatsAppOptIn: c }))
+														}
+														control={
+															<Checkbox
+																checked={otp.isWhatsAppOptIn}
+																value={otp.isWhatsAppOptIn}
+															/>
+														}
+														label='Send me whatsapp updates'
+														sx={{
+															'& .MuiTypography-root': {
+																color: primary.properDark,
+															},
+															'& .MuiFormControlLabel-root': {
+																mt: '12px',
+															},
+														}}
+													/>
+												</Stack>
 												<LoadingButton
 													disabled={otp.otp.length !== 6}
 													onClick={async (e) => {

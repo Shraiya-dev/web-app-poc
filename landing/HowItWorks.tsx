@@ -22,14 +22,23 @@ const CustomHowItWorksStyle = styled(Box)(({ theme }) => ({
 	'.styledPaper': {
 		background: '#fcfcfc',
 		borderRadius: '10px',
+
 		'& .video-react .video-react-big-play-button': {
-			background: '#efc430',
-			borderRadius: '50%',
+			background: '#CD201F',
+			borderRadius: '10px',
 			height: '50px',
-			width: '50px',
-			borderColor: '#efc430',
+			aspectRatio: '2 / 3',
+			borderColor: '#CD201F',
+			'&:hover': {
+				borderColor: '#CD201F',
+				background: '#CD201F',
+			},
+			'&:focus': {
+				borderColor: '#CD201F',
+				background: '#CD201F',
+			},
 			':before': {
-				color: '#000',
+				color: '#fff',
 			},
 		},
 
