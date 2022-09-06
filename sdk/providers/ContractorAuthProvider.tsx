@@ -472,7 +472,7 @@ const ContractorAuthProvider: FC<ContractorAuthProviderProps> = ({ children, aut
 					setBackdropProps({ open: false })
 				}, 5000)
 			} catch (error) {
-				if (user?.hasProjects) {
+				if (user?.payload?.hasProjects) {
 					showSnackbar('You Already have booking, redirecting to dashboard', 'warning')
 
 					await router.replace(`/dashboard`, undefined, {})

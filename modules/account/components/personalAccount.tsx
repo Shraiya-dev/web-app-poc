@@ -78,11 +78,16 @@ const PersonalAccount = () => {
 					</Stack>
 				</Stack>
 			</PersonalAccountStyle>
-			<Button variant='text' color='inherit' sx={{ width: 'fit-content' }} startIcon={<Logout />}>
+			<Button
+				variant='text'
+				onClick={logOut}
+				color='inherit'
+				sx={{ width: 'fit-content' }}
+				startIcon={<Logout />}>
 				Logout
 			</Button>
 
-			<Box sx={{ display: { xs: 'block', md: 'none' } }} onClick={logOut}>
+			<Box sx={{ display: { xs: 'block', md: 'none' } }}>
 				<BottomLayout />
 			</Box>
 		</Stack>
