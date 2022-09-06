@@ -80,34 +80,62 @@ export const CreateBookingCard: FC<Props> = () => {
 	return (
 		<>
 			<Card elevation={16} sx={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
-				{user?.hasProjects ? (
-					<Stack flex={1} p={2} py={3} spacing={2} justifyContent='center' alignItems='center'>
-						<Typography color='#000000' variant='h2' textAlign={'center'}>
-							You have successfully posted your Job.
-						</Typography>
-						<Typography color='grey.A700' variant='body2' textAlign={'center'}>
-							Check your contractor dashboard to get Hero&apos;s phone number.
-						</Typography>
-						<LinkButton href={'/dashboard'}>Go to Dashboard</LinkButton>
-					</Stack>
-				) : (
-					<>
-						<Stack>
-							<Stack p={2} sx={{ backgroundColor: '#000000' }}>
-								<Typography variant='h4' color='common.white' mb={2}>
-									<Typography variant='inherit' component='span' color='primary.main'>
-										Free
-									</Typography>{' '}
-									mein{' '}
-									<Typography variant='inherit' component='span' color='primary.main'>
-										Job Post Karen
-									</Typography>{' '}
-									aur workers ka number payen !
-								</Typography>
-								<BookingStepper step={step} />
-							</Stack>
+				<>
+					<Stack>
+						<Stack p={2} sx={{ backgroundColor: '#000000' }}>
+							{user?.hasProjects ? (
+								<Stack
+									p={{ xs: 0.5, md: 3 }}
+									spacing={2}
+									direction={{ xs: 'row', md: 'column' }}
+									alignItems='center'
+									justifyContent={'center'}>
+									<Box
+										component='img'
+										sx={{ width: { xs: 50, md: 80 } }}
+										src='/assets/landingv2/icons/live.svg'
+									/>
+									<Typography variant='h5' color='common.white'>
+										You have already posted a job!
+									</Typography>
+								</Stack>
+							) : (
+								<>
+									<Typography variant='h4' color='common.white' mb={2}>
+										<Typography variant='inherit' component='span' color='primary.main'>
+											Free
+										</Typography>{' '}
+										mein{' '}
+										<Typography variant='inherit' component='span' color='primary.main'>
+											Job Post Karen
+										</Typography>{' '}
+										aur workers ka number payen !
+									</Typography>
+									<BookingStepper step={step} />
+								</>
+							)}
 						</Stack>
-						<Stack px={2} pt={step === 1 ? 0 : 2} pb={2} flex={1}>
+					</Stack>
+					<Stack px={2} pt={step === 1 ? 0 : 2} pb={2} flex={1}>
+						{user?.hasProjects ? (
+							<Stack flex={1} p={{ xs: 0.5, md: 3 }} spacing={2}>
+								<Stack flex={1}>
+									<Typography
+										fontWeight={400}
+										variant='subtitle1'
+										textAlign='center'
+										alignItems='center'
+										justifyContent={'center'}>
+										Go to the contractor dashboard to view the phone numbers of all the Heroes who
+										have applied to your job posting.
+									</Typography>
+								</Stack>
+								<LinkButton fullWidth href='/dashboard'>
+									{' '}
+									Go to Dashboard
+								</LinkButton>
+							</Stack>
+						) : (
 							<Box
 								component='form'
 								sx={{ flex: 1, display: 'flex', flexDirection: 'column' }}
@@ -620,9 +648,9 @@ export const CreateBookingCard: FC<Props> = () => {
 									)}
 								</Stack>
 							</Box>
-						</Stack>
-					</>
-				)}
+						)}
+					</Stack>
+				</>
 			</Card>
 		</>
 	)

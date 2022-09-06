@@ -162,7 +162,6 @@ export const Home = () => {
 										background: '#CD201F',
 										borderRadius: '10px',
 										height: '50px',
-										aspectRatio: '2 / 3',
 										borderColor: '#CD201F',
 										'&:hover': {
 											borderColor: '#CD201F',
@@ -190,7 +189,7 @@ export const Home = () => {
 									'& .video-react-video': {
 										borderRadius: '10px',
 									},
-									width: '90%',
+									width: '80%',
 									overflow: 'hidden',
 								}}>
 								<Player poster='/assets/icons/videoPoster.png'>
