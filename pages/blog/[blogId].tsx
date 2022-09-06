@@ -58,7 +58,7 @@ const Page: NextPage = () => {
 							</Typography>
 						</Button>
 						<Button
-							endIcon={<ShareIcon />}
+							startIcon={<ShareIcon />}
 							variant='text'
 							fullWidth={false}
 							sx={{ mt: '-20px', mb: '10px', mr: '12px' }}>
@@ -179,7 +179,7 @@ const Page: NextPage = () => {
 																Read More
 															</Button>
 															<Button
-																endIcon={<ShareIcon />}
+																startIcon={<ShareIcon />}
 																variant='text'
 																fullWidth={false}>
 																<Typography
@@ -225,7 +225,7 @@ const Page: NextPage = () => {
 																{title}
 															</Typography>
 															<Button
-																endIcon={<ShareIcon />}
+																startIcon={<ShareIcon />}
 																variant='text'
 																fullWidth={false}
 																sx={{

@@ -125,7 +125,7 @@ export const BlogCard: FC<Props> = ({ view }: Props) => {
 											</Stack>
 										) : (
 											<Stack
-												direction={'row'}
+												direction={'row-reverse'}
 												spacing={1}
 												justifyContent='space-between'
 												sx={{ mt: { xs: '30px', md: '0' } }}>
@@ -254,7 +254,7 @@ export const BlogCard: FC<Props> = ({ view }: Props) => {
 															{title}
 														</Typography>
 														<Button
-															endIcon={<ShareIcon />}
+															startIcon={<ShareIcon />}
 															variant='text'
 															fullWidth={false}
 															sx={{
@@ -357,7 +357,7 @@ export const BlogCard: FC<Props> = ({ view }: Props) => {
 																Read More
 															</LinkButton>
 															<Button
-																endIcon={<ShareIcon />}
+																startIcon={<ShareIcon />}
 																variant='text'
 																fullWidth={false}>
 																<Typography
@@ -403,7 +403,7 @@ export const BlogCard: FC<Props> = ({ view }: Props) => {
 																{title}
 															</Typography>
 															<Button
-																endIcon={<ShareIcon />}
+																startIcon={<ShareIcon />}
 																variant='text'
 																fullWidth={false}
 																sx={{
@@ -478,7 +478,7 @@ export const BlogCard: FC<Props> = ({ view }: Props) => {
 									onClick={() => {
 										setSeeMore(true)
 									}}
-									endIcon={<KeyboardArrowDownIcon />}
+									startIcon={<KeyboardArrowDownIcon />}
 									variant='text'
 									fullWidth={false}
 									color='inherit'>
