@@ -494,7 +494,11 @@ export const CreateBookingCard: FC<Props> = () => {
 																					'error'
 																				)
 																			}
-																			setOtp((p) => ({ ...p, sending: false }))
+																			setOtp((p) => ({
+																				...p,
+																				sending: false,
+																				otp: '',
+																			}))
 																		}}
 																		sx={{ color: 'success.dark' }}>
 																		Send Otp
@@ -586,7 +590,7 @@ export const CreateBookingCard: FC<Props> = () => {
 													onClick={async (e) => {
 														setOtp((p) => ({ ...p, submitting: true }))
 														const data = await verifyOtp(
-															loginForm.values.phoneNumber,
+															'+91' + loginForm.values.phoneNumber,
 															otp.otp
 														)
 														if (!data.success) {
@@ -596,6 +600,7 @@ export const CreateBookingCard: FC<Props> = () => {
 																otp: '',
 																error: true,
 															}))
+															return
 														}
 														await createEasyBooking({
 															...form.values,
