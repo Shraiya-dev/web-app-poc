@@ -239,7 +239,8 @@ export const Home = () => {
 											justifyContent: 'space-evenly',
 											'.dot': {
 												borderRadius: '50%',
-												width: { xs: 3, md: 4 },
+												width: '8px',
+												p: 0,
 												aspectRatio: '1 / 1',
 												border: '0px solid transparent',
 												backgroundColor: 'grey.A200',
@@ -338,15 +339,16 @@ export const Home = () => {
 						<CreateBookingCard />
 					</Grid>
 					{isMobile && (
-						<Grid item xs={12} display={{ xs: 'flex', md: 'none' }} alignItems='center' gap={2}>
+						<Grid item xs={12} display={{ xs: 'flex', md: 'none' }} alignItems='center' gap={1}>
 							<Stack
 								spacing={1}
 								sx={{
 									justifyContent: 'space-evenly',
 									'.dot': {
 										borderRadius: '50%',
-										width: { xs: 2, md: 4 },
 										aspectRatio: '1 / 1',
+										width: '8px',
+										p: 0,
 										border: '0px solid transparent',
 										backgroundColor: 'grey.A200',
 									},
