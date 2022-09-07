@@ -452,17 +452,20 @@ export const HowItWorks: FC<Props> = () => {
 								// 	const value = Math.floor((90 - target.value) / 16) + 1
 								// 	setHeight(value < 10 ? '0' + value : '' + value)
 								// }}
-								sx={{
-									color: '#77cfb5',
+								sx={(theme) => ({
+									color: '#0faf7f80',
 									// transform: 'rotate(180deg)',
-
+									'& .MuiSlider-track': {
+										backgroundColor: '#ffffff33',
+										borderColor: '#ffffff33',
+									},
 									'& .MuiSlider-thumb': {
 										backgroundImage: `url(/assets/landingv2/hat.svg)`,
 										backgroundSize: 'cover',
 										width: { md: 60, xs: 40 },
 										height: { md: 60, xs: 40 },
 									},
-								}}
+								})}
 							/>
 						</Box>
 						{/* <Stack direction={'column'} spacing={{ md: 4, xs: 2 }}>

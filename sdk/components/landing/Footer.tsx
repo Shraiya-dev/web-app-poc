@@ -280,7 +280,7 @@ export const Footer = () => {
 							variant='contained'
 							sx={{
 								fontSize: { md: '20px', xs: '14px' },
-								p: '14px 64px',
+								p: '8px 40px',
 								fontWeight: 500,
 								fontFamily: 'Karla ,sans-serif',
 							}}>
