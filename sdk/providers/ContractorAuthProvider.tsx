@@ -483,6 +483,8 @@ const ContractorAuthProvider: FC<ContractorAuthProviderProps> = ({ children, aut
 					showSnackbar('You Already have Job Posted, redirecting to dashboard', 'warning')
 
 					await router.replace(`/dashboard`, undefined, {})
+					setBackdropProps({ open: false })
+
 					return
 				}
 				sendAnalytics({
