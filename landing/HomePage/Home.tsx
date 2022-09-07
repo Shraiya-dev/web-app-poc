@@ -542,7 +542,7 @@ export const Home = () => {
 							sx={homePage.howItWorksSection.buttonSx}
 							href={homePage.howItWorksSection.buttonText.link}
 							onClick={() => {
-								DataLayerPush({ event: 'discovery_book_worker', origin: 'how_it_works_section' })
+								DataLayerPush({ event: 'book_workers_now_top' })
 								sendAnalytics({
 									name: 'postJobNow',
 									action: 'ButtonClick',
@@ -600,8 +600,7 @@ export const Home = () => {
 										href={homePage.howItWorksSection.buttonText.link}
 										onClick={() => {
 											DataLayerPush({
-												event: 'discovery_book_worker',
-												origin: 'why_you_should_hire_section',
+												event: 'book_workers_now_middle',
 											})
 											sendAnalytics({
 												name: 'postJobNow',
@@ -709,8 +708,7 @@ export const Home = () => {
 										// href='/login'
 										onClick={() => {
 											DataLayerPush({
-												event: 'discovery_book_worker',
-												origin: 'hero_advantage_section',
+												event: 'book_workers_now_bottom',
 											})
 											sendAnalytics({
 												name: 'postJobNow',

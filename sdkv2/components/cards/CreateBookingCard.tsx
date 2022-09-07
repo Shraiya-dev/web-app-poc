@@ -22,7 +22,7 @@ import { useFormik } from 'formik'
 import React, { FC, useEffect, useState } from 'react'
 import OtpInput from 'react-otp-input'
 import { ListChildComponentProps, VariableSizeList } from 'react-window'
-import { sendAnalytics } from 'sdk/analytics'
+import { DataLayerPush, sendAnalytics } from 'sdk/analytics'
 import { LinkButton, PhoneField } from 'sdk/components'
 import { allCityList, primary } from 'sdk/constants'
 import { useFormikProps } from 'sdk/hooks'
@@ -464,6 +464,20 @@ export const CreateBookingCard: FC<Props> = () => {
 															},
 														},
 													})
+													DataLayerPush({
+														event: 'basic_info',
+														location_name: form.values.location,
+														job_category: form.values.jobType,
+														helper_wages: form.values.isHelper
+															? form.values.helperWage
+															: undefined,
+														technician_wages: form.values.isTechnician
+															? form.values.technicianWage
+															: undefined,
+														Supervisor_wages: form.values.isSupervisor
+															? form.values.supervisorWage
+															: undefined,
+													})
 												}}
 												disabled={
 													!form.isValid ||
@@ -523,6 +537,10 @@ export const CreateBookingCard: FC<Props> = () => {
 																				metaData: {
 																					reSent: true,
 																				},
+																			})
+																			DataLayerPush({
+																				event: 'Discovery_request_otp',
+																				Phone: loginForm.values.phoneNumber,
 																			})
 																			const { status, data } = await requestOtp(
 																				'+91' + loginForm.values.phoneNumber
@@ -667,6 +685,10 @@ export const CreateBookingCard: FC<Props> = () => {
 															})
 															return
 														}
+														DataLayerPush({
+															event: 'discovery_otp_verification',
+														})
+
 														sendAnalytics({
 															name: 'otpVerification',
 															action: 'ButtonClick',

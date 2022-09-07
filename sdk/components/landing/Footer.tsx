@@ -268,7 +268,7 @@ export const Footer = () => {
 						<LinkButton
 							href='/#book-worker'
 							onClick={() => {
-								DataLayerPush({ event: 'book_hero_home_footer' })
+								DataLayerPush({ event: 'book_workers_now_footer' })
 								sendAnalytics({
 									name: 'postJobNow',
 									action: 'ButtonClick',
