@@ -123,7 +123,7 @@ let themeDef = createTheme({
 		},
 		h6: {
 			fontSize: '16px',
-			fontWeight: 700,
+			fontWeight: 600,
 		},
 		body1: {
 			fontSize: '16px',

@@ -152,9 +152,10 @@ export const Home = () => {
 			<Section
 				boxSx={{
 					background: isMobile
-						? 'linear-gradient(180deg, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0.05) 136px, rgba(255,255,255,1) 130px, rgba(255,255,255,1) 100%)'
+						? 'linear-gradient(180deg, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0.05) 100px, rgba(255,255,255,1) 100px, rgba(255,255,255,1) 100%)'
 						: undefined,
-				}}>
+				}}
+				sx={{ p: 2 }}>
 				<Grid container spacing={2}>
 					<Grid item xs={12} md={8.5} display={{ xs: 'none', md: 'flex' }}>
 						<Stack flex={1} spacing={3}>
@@ -298,22 +299,15 @@ export const Home = () => {
 					</Grid>
 					<Grid item xs={12} md={9} display={{ xs: 'flex', md: 'none' }}>
 						<Stack justifyContent='space-between' spacing={2} direction={{ xs: 'row', md: 'column' }}>
-							<Stack>
-								<Typography fontSize={{ xs: 16, sm: 20 }} variant='subtitle1' fontWeight={700}>
-									India&apos;s Largest & Most Trusted Platform to{' '}
-									<Typography
-										fontSize={'inherit'}
-										display='inline'
-										color='success.dark'
-										variant='subtitle1'>
-										Hire Construction Workers
-									</Typography>
+							<Typography variant={'h6'}>
+								India&apos;s Largest & Most Trusted Platform <br />
+								to{' '}
+								<Typography display='inline' color='success.dark' variant='inherit'>
+									Hire Construction Workers
 								</Typography>
-							</Stack>
+							</Typography>
 							<Box
 								component='img'
-								width={{ xs: 100, sm: '100%' }}
-								height={{ xs: 100, sm: '80%' }}
 								onClick={() => setVideoPlayerPopper(true)}
 								sx={{
 									cursor: 'pointer',
@@ -421,7 +415,6 @@ export const Home = () => {
 					<Typography
 						variant='h2'
 						color='common.white'
-						fontFamily={'Saira ,sans-serif'}
 						fontWeight={600}
 						fontSize={{ md: '32px', xs: '24px' }}>
 						Explore{' '}
@@ -429,7 +422,6 @@ export const Home = () => {
 							variant='h2'
 							color='primary'
 							display='inline'
-							fontFamily={'Saira ,sans-serif'}
 							fontWeight={600}
 							fontSize={{ md: '32px', xs: '24px' }}>
 							Job Categories{' '}
@@ -439,7 +431,6 @@ export const Home = () => {
 							variant='h2'
 							color='primary'
 							display='inline'
-							fontFamily={'Saira ,sans-serif'}
 							fontWeight={600}
 							fontSize={{ md: '32px', xs: '24px' }}>
 							in a minute
@@ -518,18 +509,10 @@ export const Home = () => {
 			<Section backgroundColor='#F7F7F7' id='how-it-works'>
 				<Box pt={'24px'} pb={'66px'}>
 					<Stack direction={'column'} mb={'32px'}>
-						<Typography
-							variant='h1'
-							fontFamily={'Saira ,sans-serif'}
-							fontWeight={600}
-							fontSize={{ md: '32px', xs: '24px' }}>
+						<Typography variant='h1' fontWeight={600} fontSize={{ md: '32px', xs: '24px' }}>
 							{homePage.howItWorksSection.heading}
 						</Typography>
-						<Typography
-							variant='h4'
-							fontFamily={'Saira ,sans-serif'}
-							fontWeight={400}
-							fontSize={{ md: '20px', xs: '12px' }}>
+						<Typography variant='h4' fontWeight={400} fontSize={{ md: '20px', xs: '12px' }}>
 							{homePage.howItWorksSection.subHeading}
 						</Typography>
 					</Stack>
@@ -632,7 +615,6 @@ export const Home = () => {
 													<Typography
 														variant='h2'
 														color={'#EFC430'}
-														fontFamily={'Saira , sans-serif'}
 														fontSize={{ md: '28px', xs: '21px' }}
 														fontWeight={600}>
 														0{index + 1}
@@ -645,14 +627,12 @@ export const Home = () => {
 															sx={{
 																color: homePage.whyYouShouldHire.right.itemTextColor,
 															}}
-															fontFamily={'Saira , sans-serif'}
 															fontSize={{ md: '24px', xs: '16px' }}
 															fontWeight={500}>
 															{data.heading}
 														</Typography>
 														<Typography
 															variant='h5'
-															fontFamily={'Saira , sans-serif'}
 															fontSize={{ md: '16px', xs: '12px' }}
 															fontWeight={400}>
 															{data.desc}
@@ -890,7 +870,6 @@ export const Home = () => {
 													variant='h5'
 													fontSize={{ xs: '12px', md: '16px' }}
 													fontWeight='500'
-													fontFamily={'Saira,sans-serif'}
 													color={primary.properDark}>
 													{item.testimonial}
 												</Typography>
@@ -899,7 +878,6 @@ export const Home = () => {
 													variant='h5'
 													fontSize={{ xs: '14px', md: '16px' }}
 													fontWeight='600'
-													fontFamily={'Saira,sans-serif'}
 													color={primary.properDark}>
 													- {item.by}
 												</Typography>
