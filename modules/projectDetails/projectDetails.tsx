@@ -88,7 +88,7 @@ export const ProjectDetails: FC<Props> = () => {
 								}}
 								textTransform='capitalize'>
 								<LocationOnOutlined sx={{ fontSize: 12, verticalAlign: 'middle' }} />
-								&nbsp;{projectName?.city} , {projectName?.state}
+								&nbsp;{projectName?.city}, {projectName?.state}
 							</Typography>
 						</Stack>
 					</Stack>
