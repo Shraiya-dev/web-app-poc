@@ -1,67 +1,46 @@
-import { Stack, Step, StepLabel, Stepper } from '@mui/material'
-import React, { useEffect, useState } from 'react'
-import StepConnector, { stepConnectorClasses, StepConnectorProps } from '@mui/material/StepConnector'
-import { styled } from '@mui/material/styles'
-import { StepIconProps } from '@mui/material/StepIcon'
-import CheckCircleIcon from '@mui/icons-material/CheckCircle'
 import AdjustOutlinedIcon from '@mui/icons-material/AdjustOutlined'
+import CheckCircleIcon from '@mui/icons-material/CheckCircle'
 import RadioButtonUncheckedIcon from '@mui/icons-material/RadioButtonUnchecked'
+import { Stack, Step, StepLabel, Stepper } from '@mui/material'
+import StepConnector, { stepConnectorClasses } from '@mui/material/StepConnector'
+import { StepIconProps } from '@mui/material/StepIcon'
+import { styled } from '@mui/material/styles'
 import { useRouter } from 'next/router'
-import { ThemeContext } from '@emotion/react'
-import { useMobile } from 'sdk/hooks'
 
-interface StyledProps extends StepConnectorProps {
-	isLogin: boolean
-	isMobile: boolean
-}
-
-const QontoConnector = styled(StepConnector, { shouldForwardProp: ({ isLogin, isMobile }: any) => true })<StyledProps>(
-	({ theme, isLogin = false, isMobile = false }: any) => ({
-		[`&.${stepConnectorClasses.alternativeLabel}`]: {
-			top: 10,
-			left: !isMobile
-				? !isLogin
-					? 'calc(-83% + 8px)'
-					: 'calc(-80% + 8px)'
-				: !isLogin
-				? 'calc(-89% + 8px)'
-				: 'calc(-89% + 8px)',
-			right: !isMobile
-				? !isLogin
-					? 'calc(81% + 8px)'
-					: 'calc(79% + 8px)'
-				: !isLogin
-				? 'calc(86% + 8px)'
-				: 'calc(86% + 8px)',
-		},
-		[`&.${stepConnectorClasses.active}`]: {
-			[`& .${stepConnectorClasses.line}`]: {
-				borderColor: '#4db07f',
-			},
-		},
-		[`&.${stepConnectorClasses.completed}`]: {
-			[`& .${stepConnectorClasses.line}`]: {
-				borderColor: '#4db07f',
-			},
-		},
+const StepperConnectorLine = styled(StepConnector)(({ theme }: any) => ({
+	[`&.${stepConnectorClasses.alternativeLabel}`]: {
+		top: 10,
+		left: 'calc(-90% + 2px)',
+		right: 'calc(90% + 13px)',
+	},
+	[`&.${stepConnectorClasses.active}`]: {
 		[`& .${stepConnectorClasses.line}`]: {
-			borderColor: theme.palette.mode === 'dark' ? theme.palette.grey[800] : '#4db07f',
-			borderTopWidth: 3,
-			borderRadius: 1,
+			background: '#F2CF47',
 		},
-	})
-)
+	},
+	[`&.${stepConnectorClasses.completed}`]: {
+		[`& .${stepConnectorClasses.line}`]: {
+			background: '#F2CF47',
+		},
+	},
+	[`& .${stepConnectorClasses.line}`]: {
+		background:
+			'linear-gradient(90deg, rgba(242,207,71,1) 0%, rgba(242,207,71,1) 40%, rgba(255,255,255,1) 40%, rgba(255,255,255,1) 100%)',
+		height: 3,
+		border: '0px solid transparent',
+	},
+}))
 
-const QontoStepIconRoot = styled('div')<{ ownerState: { active?: boolean } }>(({ theme, ownerState }) => ({
-	color: theme.palette.mode === 'dark' ? theme.palette.grey[700] : '#4db07f',
+const StepperIcon = styled('div')<{ ownerState: { active?: boolean } }>(({ theme, ownerState }) => ({
+	color: '#F2CF47',
 	display: 'flex',
 	height: 22,
 	alignItems: 'center',
 	...(ownerState.active && {
-		color: '#4db07f',
+		color: '#F2CF47',
 	}),
 	'& .QontoStepIcon-completedIcon': {
-		color: '#4db07f',
+		color: '#F2CF47',
 		zIndex: 1,
 		fontSize: 20,
 	},
@@ -71,7 +50,7 @@ function QontoStepIcon(props: StepIconProps) {
 	const { active, completed, className } = props
 
 	return (
-		<QontoStepIconRoot ownerState={{ active }} className={className}>
+		<StepperIcon ownerState={{ active }} className={className}>
 			{completed ? (
 				<CheckCircleIcon className='QontoStepIcon-completedIcon' />
 			) : active ? (
@@ -79,62 +58,48 @@ function QontoStepIcon(props: StepIconProps) {
 			) : (
 				<RadioButtonUncheckedIcon className='QontoStepIcon-completedIcon' />
 			)}
-		</QontoStepIconRoot>
+		</StepperIcon>
 	)
 }
 
-const stepsName = ['Booking Details', 'Wage Details', 'Contact', 'Order Placed']
+const stepsName = ['1. Job Details', '2. Contact Details']
 
-interface Props {
-	isLogin: boolean
-}
-
-const BookingStepper = ({ isLogin }: Props) => {
+const BookingStepper = ({ step }: { step: number }) => {
 	const router = useRouter()
-	const isMobile = useMobile()
-	const login = isLogin
 	return (
-		<div>
-			<Stack my={2}>
-				<Stepper
-					alternativeLabel
-					activeStep={Number(router?.query?.bookingFromStep ?? 0)}
-					connector={<QontoConnector isLogin={login} isMobile={isMobile} />}>
-					{stepsName.map((label) => (
-						<Step
-							key={label}
+		<Stack maxWidth={300}>
+			<Stepper alternativeLabel activeStep={step} connector={<StepperConnectorLine />}>
+				{stepsName.map((label) => (
+					<Step sx={{ px: 0 }} key={label}>
+						<StepLabel
+							StepIconComponent={QontoStepIcon}
 							sx={{
-								px: { xs: '0px', md: '8px' },
+								alignItems: 'flex-start',
+								fontSize: '10px !important',
+								'& span': {
+									textAlign: 'left !important',
+									color: '#ffffff !important',
+								},
+								'& .MuiStepLabel-label': {
+									mt: '0 !important',
+									color: '#ffffff',
+									fontSize: '12px',
+									fontWeight: 400,
+									textAlign: 'left',
+								},
+								'& .MuiStep-root': {
+									p: '0 !important',
+								},
+								'& .MuiStep-horizontal': {
+									p: '0 !important',
+								},
 							}}>
-							<StepLabel
-								StepIconComponent={QontoStepIcon}
-								sx={{
-									alignItems: 'flex-start',
-									fontSize: '10px !important',
-									span: {
-										textAlign: 'left !important',
-									},
-									'& .MuiStepLabel-label': {
-										mt: '0 !important',
-										color: '#000',
-										fontSize: '10px',
-										fontWeight: 400,
-										textAlign: 'left',
-									},
-									'& .MuiStep-root': {
-										p: '0 !important',
-									},
-									'& .MuiStep-horizontal': {
-										p: '0 !important',
-									},
-								}}>
-								{label}
-							</StepLabel>
-						</Step>
-					))}
-				</Stepper>
-			</Stack>
-		</div>
+							{label}
+						</StepLabel>
+					</Step>
+				))}
+			</Stepper>
+		</Stack>
 	)
 }
 

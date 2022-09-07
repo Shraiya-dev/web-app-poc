@@ -302,6 +302,7 @@ export const Navbar = () => {
 							direction='row'
 							sx={{
 								display: { md: 'inline-flex', xs: 'none' },
+								justifyContent: 'flex-end'
 							}}
 							spacing={{ xs: 0, md: 2 }}
 							alignItems='center'>

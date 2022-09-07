@@ -83,14 +83,6 @@ export const OTPVerification = ({ ...props }) => {
 				}}>
 				<Typography className='headerInfo'>Verify Mobile</Typography>
 
-				{!!isDiscoveryBooking ? (
-					<>
-						<BookingStepper isLogin={true} />
-					</>
-				) : (
-					''
-				)}
-
 				<Typography
 					className='subInfo'
 					sx={{
