@@ -691,16 +691,19 @@ const ContractorAuthProvider: FC<ContractorAuthProviderProps> = ({ children, aut
 
 			<Backdrop {...backdropProps}>
 				{startRedirecting && <CircularProgress />}
-				<Dialog PaperProps={{ sx: { borderRadius: 3 } }} open={startRedirecting}>
+				<Dialog
+					PaperProps={{ sx: { borderRadius: 3, backgroundColor: '#000000' } }}
+					maxWidth='xs'
+					open={startRedirecting}>
 					<Stack p={2} py={3} spacing={2}>
-						<Typography color='#000000' variant='h2' textAlign={'center'}>
+						<Typography color='success.dark' variant='h2' textAlign={'center'}>
 							You have successfully posted your Job.
 						</Typography>
-						<Typography color='grey.A700' variant='body2' textAlign={'center'}>
+						<Typography variant='body2' textAlign={'center'}>
 							You will start receiving Hero Applications in few minutes. Check your contractor dashboard
 							to get Hero&apos;s phone number.
 						</Typography>
-						<Typography color='grey.A700' variant='caption' textAlign={'center'}>
+						<Typography color='primary.main' variant='caption' textAlign={'center'}>
 							Redirecting to dashboard in 00:0{redirectingIn}
 						</Typography>
 					</Stack>
