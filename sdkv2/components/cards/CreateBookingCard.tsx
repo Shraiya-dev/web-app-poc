@@ -175,12 +175,6 @@ export const CreateBookingCard: FC<Props> = () => {
 												disableListWrap
 												ListboxComponent={ListboxComponent}
 												options={allCityList}
-												getOptionLabel={(options) => options.label}
-												isOptionEqualToValue={(opt, v) => v.value === opt?.value}
-												value={{
-													label: capitalize(form.values.location ?? ''),
-													value: form.values.location ?? '',
-												}}
 												onChange={(e, v) => {
 													form.setFieldValue('location', v?.value)
 												}}
@@ -189,10 +183,10 @@ export const CreateBookingCard: FC<Props> = () => {
 												}
 												renderInput={(params) => (
 													<TextField
-														{...params}
 														error={formikProps('location').error}
 														helperText={formikProps('location').helperText}
-														placeholder='Site Location'
+														placeholder='Select Location'
+														{...params}
 													/>
 												)}
 												renderOption={(props, option) =>
@@ -555,7 +549,7 @@ export const CreateBookingCard: FC<Props> = () => {
 																				otp: '',
 																			}))
 																		}}>
-																		Send Otp
+																		Send OTP
 																	</LoadingButton>
 																)}
 															</InputAdornment>
@@ -639,7 +633,7 @@ export const CreateBookingCard: FC<Props> = () => {
 															value={otp.isWhatsAppOptIn}
 														/>
 													}
-													label='Send me whatsapp updates'
+													label='Send me WhatsApp updates'
 													sx={{
 														'& .MuiTypography-root': {
 															color: primary.properDark,

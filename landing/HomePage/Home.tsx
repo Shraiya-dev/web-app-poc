@@ -239,7 +239,7 @@ export const Home = () => {
 											justifyContent: 'space-evenly',
 											'.dot': {
 												borderRadius: '50%',
-												width: 5,
+												width: { xs: 3, md: 4 },
 												aspectRatio: '1 / 1',
 												border: '0px solid transparent',
 												backgroundColor: 'grey.A200',
@@ -345,7 +345,7 @@ export const Home = () => {
 									justifyContent: 'space-evenly',
 									'.dot': {
 										borderRadius: '50%',
-										width: 5,
+										width: { xs: 2, md: 4 },
 										aspectRatio: '1 / 1',
 										border: '0px solid transparent',
 										backgroundColor: 'grey.A200',
