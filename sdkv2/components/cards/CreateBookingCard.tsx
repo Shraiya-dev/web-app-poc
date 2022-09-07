@@ -266,7 +266,6 @@ export const CreateBookingCard: FC<Props> = () => {
 															sx={{ mt: 1 }}
 															onClick={() => {
 																form.setFieldValue('isHelper', false)
-																form.setFieldValue('helperWage', undefined)
 																form.setFieldTouched('helperWage', false)
 															}}>
 															<DeleteOutlined />
@@ -347,7 +346,6 @@ export const CreateBookingCard: FC<Props> = () => {
 															sx={{ mt: 1 }}
 															onClick={() => {
 																form.setFieldValue('isTechnician', false)
-																form.setFieldValue('technicianWage', undefined)
 																form.setFieldTouched('technicianWage', false)
 															}}>
 															<DeleteOutlined />
@@ -428,7 +426,6 @@ export const CreateBookingCard: FC<Props> = () => {
 															sx={{ mt: 1 }}
 															onClick={() => {
 																form.setFieldValue('isSupervisor', false)
-																form.setFieldValue('supervisorWage', undefined)
 																form.setFieldTouched('supervisorWage', false)
 															}}>
 															<DeleteOutlined />
@@ -455,8 +452,8 @@ export const CreateBookingCard: FC<Props> = () => {
 													!form.isValid ||
 													!(
 														form.values.isHelper ||
-														form.values.isHelper ||
-														form.values.isHelper
+														form.values.isTechnician ||
+														form.values.isSupervisor
 													)
 												}
 												sx={{ alignSelf: 'flex-end', px: 5 }}>

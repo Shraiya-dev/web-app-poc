@@ -45,9 +45,9 @@ export const useEasyBooking = () => {
 		initialValues: {
 			location: '',
 			jobType: 'none',
-			helperWage: undefined,
-			technicianWage: undefined,
-			supervisorWage: undefined,
+			helperWage: 500,
+			technicianWage: 700,
+			supervisorWage: 900,
 			isHelper: false,
 			isTechnician: false,
 			isSupervisor: false,
