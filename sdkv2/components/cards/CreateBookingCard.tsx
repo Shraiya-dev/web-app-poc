@@ -523,7 +523,10 @@ export const CreateBookingCard: FC<Props> = () => {
 																		variant='contained'
 																		disabled={
 																			loginFormikProps('phoneNumber').error ||
-																			loginFormikProps('phoneNumber').value === ''
+																			loginFormikProps('phoneNumber').value ===
+																				'' ||
+																			loginFormikProps('phoneNumber').value
+																				.length !== 10
 																		}
 																		onClick={async () => {
 																			setOtp((p) => ({
