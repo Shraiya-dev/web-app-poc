@@ -331,7 +331,7 @@ export const Home = () => {
 								sx={{
 									cursor: 'pointer',
 								}}
-								src={'/assets/landingv2/how-it-works.svg'}
+								src={'/assets/landingv2/how-it-works.png'}
 							/>
 						</Stack>
 					</Grid>
