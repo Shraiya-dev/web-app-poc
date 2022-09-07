@@ -119,12 +119,12 @@ let themeDef = createTheme({
 		},
 		h5: {
 			fontSize: '18px',
-			fontWeight: 700,
+			fontWeight: 600,
 			fontFamily: `'Saira', sans-serif`,
 		},
 		h6: {
 			fontSize: '16px',
-			fontWeight: 700,
+			fontWeight: 600,
 			fontFamily: `'Saira', sans-serif`,
 		},
 		body1: {
