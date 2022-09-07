@@ -356,30 +356,7 @@ export const Navbar = () => {
 											)
 										)
 									} else {
-										return (
-											<LinkButton
-												variant='text'
-												key={i}
-												// startIcon={navItem?.icon}
-												sx={(theme) => ({
-													fontWeight: 700,
-													color: 'common.white',
-													[theme.breakpoints.down('md')]: { display: 'none' },
-													whiteSpace: 'nowrap',
-												})}
-												onClick={() => {
-													if (navItem.label === 'Login') {
-														sendAnalytics({
-															name: 'navbarLogin',
-															action: 'ButtonClick',
-														})
-													}
-												}}
-												href={navItem.link}
-												className={router.pathname === navItem.link ? 'active' : ''}>
-												{/* {navItem.label} */}
-											</LinkButton>
-										)
+										return null
 									}
 								} else if (navItem.type === 'scroll_link') {
 									if (router.pathname === '/')

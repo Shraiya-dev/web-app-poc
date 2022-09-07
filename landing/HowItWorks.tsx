@@ -159,13 +159,13 @@ export const HowItWorks: FC<Props> = () => {
 							{' '}
 							Job
 						</Typography>{' '}
-						for
 					</Typography>
 					<Typography
 						variant='h1'
 						fontSize={{ md: '36px', xs: '28px' }}
 						fontFamily={'Saira ,sans-serif'}
 						fontWeight={500}>
+						for
 						<Typography component={'span'} variant='inherit' color='success.dark' fontWeight={700}>
 							{' '}
 							Free
