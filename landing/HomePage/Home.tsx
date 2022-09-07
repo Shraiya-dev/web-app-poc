@@ -104,6 +104,15 @@ export const Home = () => {
 					</IconButton>
 					<Paper
 						elevation={0}
+						onClick={() => {
+							sendAnalytics({
+								name: 'videoPlay',
+								action: 'ButtonClick',
+								metaData: {
+									origin: 'Home',
+								},
+							})
+						}}
 						sx={{
 							background: '#fcfcfc',
 							borderRadius: '10px',
@@ -160,6 +169,15 @@ export const Home = () => {
 					<Grid item xs={12} md={8.5} display={{ xs: 'none', md: 'flex' }}>
 						<Stack flex={1} spacing={3}>
 							<Paper
+								onClick={() => {
+									sendAnalytics({
+										name: 'videoPlay',
+										action: 'ButtonClick',
+										metaData: {
+											origin: 'Home',
+										},
+									})
+								}}
 								elevation={0}
 								sx={{
 									background: '#fcfcfc',
@@ -524,7 +542,7 @@ export const Home = () => {
 							onClick={() => {
 								DataLayerPush({ event: 'discovery_book_worker', origin: 'how_it_works_section' })
 								sendAnalytics({
-									name: 'EasyBookWorker',
+									name: 'postJobNow',
 									action: 'ButtonClick',
 									metaData: {
 										origin: 'How it Works section',
@@ -584,7 +602,7 @@ export const Home = () => {
 												origin: 'why_you_should_hire_section',
 											})
 											sendAnalytics({
-												name: 'EasyBookWorker',
+												name: 'postJobNow',
 												action: 'ButtonClick',
 												metaData: {
 													origin: 'why You Should Hire section',
@@ -693,7 +711,7 @@ export const Home = () => {
 												origin: 'hero_advantage_section',
 											})
 											sendAnalytics({
-												name: 'EasyBookWorker',
+												name: 'postJobNow',
 												action: 'ButtonClick',
 												metaData: {
 													origin: 'Hero Advantage section',

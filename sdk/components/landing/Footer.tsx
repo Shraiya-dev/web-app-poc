@@ -53,7 +53,7 @@ export const Footer = () => {
 										onClick={() => {
 											DataLayerPush({ event: 'book_hero_home_footer' })
 											sendAnalytics({
-												name: 'EasyBookWorker',
+												name: 'postJobNow',
 												action: 'ButtonClick',
 												metaData: {
 													origin: 'Footer',
@@ -270,7 +270,7 @@ export const Footer = () => {
 							onClick={() => {
 								DataLayerPush({ event: 'book_hero_home_footer' })
 								sendAnalytics({
-									name: 'EasyBookWorker',
+									name: 'postJobNow',
 									action: 'ButtonClick',
 									metaData: {
 										origin: 'Footer',
