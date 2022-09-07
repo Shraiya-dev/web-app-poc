@@ -25,24 +25,13 @@ export const BlogCard: FC<Props> = ({ view }: Props) => {
 			if (!window) return
 
 			const href = location.origin + `/blog/${id}`
-
 			navigator.clipboard.writeText(href)
-
 			const shareData = {
 				url: href,
 			}
-			console.log(href)
-			// navigator
-			// 	?.share(shareData)
-			// 	.then(() => showSnackbar(href, 'success'))
-			// 	.catch((e) => showSnackbar(href, 'error'))
 			isMobile
-				? navigator
-						?.share(shareData)
-						.then(() => showSnackbar(href, 'success'))
-						.catch((e) => showSnackbar(href, 'error'))
+				? navigator?.share(shareData).then(() => showSnackbar(href, 'success'))
 				: showSnackbar('Share link Copied', 'success')
-			console.log(isMobile)
 		},
 		[isMobile]
 	)
