@@ -207,7 +207,7 @@ export const CreateBookingCard: FC<Props> = () => {
 												</Typography>
 											</Stack>
 
-											<Stack direction='row' width='100%' alignItems='center'>
+											<Stack direction='row' width='100%' minHeight={56} alignItems='center'>
 												{form.values.isHelper ? (
 													<>
 														<Typography
@@ -290,7 +290,7 @@ export const CreateBookingCard: FC<Props> = () => {
 													</Button>
 												)}
 											</Stack>
-											<Stack direction='row' width='100%' alignItems='center'>
+											<Stack direction='row' width='100%' minHeight={56} alignItems='center'>
 												{form.values.isTechnician ? (
 													<>
 														<Typography
@@ -371,7 +371,7 @@ export const CreateBookingCard: FC<Props> = () => {
 													</Button>
 												)}
 											</Stack>
-											<Stack direction='row' width='100%' alignItems='center'>
+											<Stack direction='row' width='100%' minHeight={56} alignItems='center'>
 												{form.values.isSupervisor ? (
 													<>
 														<Typography
@@ -558,7 +558,6 @@ export const CreateBookingCard: FC<Props> = () => {
 																					edit: true,
 																					reSent: true,
 																				}))
-																				
 																			} else {
 																				showSnackbar(
 																					'Invalid PhoneNumber',
