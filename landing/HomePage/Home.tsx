@@ -677,7 +677,7 @@ export const Home = () => {
 					backgroundSize: { xs: '95%', md: '50%' },
 					backgroundRepeat: 'no-repeat',
 					backgroundImage: {
-						md: `url(${'/assets/landingv2/heroSection/heroAdvantage.svg'}) bottom right`,
+						md: `url(${'/assets/landingv2/heroSection/heroAdvantage.svg'})`,
 						xs: `url(${'/assets/landingv2/heroSection/heroAdvantageMobile.svg'})`,
 					},
 					backgroundPosition: { md: 'right', xs: 'right bottom' },
@@ -685,7 +685,7 @@ export const Home = () => {
 				}}>
 				<Box
 					sx={{
-						p: '46px 0px',
+						p: { xs: '20px 0px', md: '46px 0px' },
 						overflowX: 'hidden',
 					}}>
 					<Grid container spacing={8}>
