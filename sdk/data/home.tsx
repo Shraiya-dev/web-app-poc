@@ -7,8 +7,8 @@ export const homePage = {
 	heroSection: {},
 	howItWorksSection: {
 		heading: 'How it works',
-		subHeading: 'Book workers in by following these steps',
-		buttonText: { text: 'Book Workers Now', link: '/#book-worker' },
+		subHeading: 'Post your job by following these steps',
+		buttonText: { text: 'Post Job Now', link: '/#book-worker' },
 		buttonSx: {
 			height: '62px',
 			fontSize: { md: '20px', sm: '14px' },
@@ -28,7 +28,7 @@ export const homePage = {
 					<span style={{ color: 'yellow' }}>Project Hero</span>
 				</Typography>
 			),
-			buttonText: { text: 'Book Workers Now', link: '/#book-worker' },
+			buttonText: { text: 'Post Job Now', link: '/#book-worker' },
 			buttonSx: {
 				color: '#000',
 				fontWeight: '700',
@@ -114,7 +114,7 @@ export const homePage = {
 				and <strong>pay salaries to your workers in just 2 clicks.</strong>
 			</Typography>
 		),
-		buttonText: { text: 'Book Workers Now', link: '/#book-worker' },
+		buttonText: { text: 'Post Job Now', link: '/#book-worker' },
 	},
 	heroApp: {
 		heading: (

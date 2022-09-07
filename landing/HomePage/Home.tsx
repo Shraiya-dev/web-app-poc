@@ -444,14 +444,14 @@ export const Home = () => {
 							fontSize={{ md: '32px', xs: '24px' }}>
 							Job Categories{' '}
 						</Typography>
-						and Book Workers{' '}
+						Post your job for{' '}
 						<Typography
 							variant='h2'
 							color='primary'
 							display='inline'
 							fontWeight={600}
 							fontSize={{ md: '32px', xs: '24px' }}>
-							in a minute
+							Free
 						</Typography>
 					</Typography>
 				</Stack>
@@ -677,7 +677,7 @@ export const Home = () => {
 					backgroundSize: { xs: '95%', md: '50%' },
 					backgroundRepeat: 'no-repeat',
 					backgroundImage: {
-						md: `url(${'/assets/landingv2/heroSection/heroAdvantage.svg'})`,
+						md: `url(${'/assets/landingv2/heroSection/heroAdvantage.svg'}) bottom right`,
 						xs: `url(${'/assets/landingv2/heroSection/heroAdvantageMobile.svg'})`,
 					},
 					backgroundPosition: { md: 'right', xs: 'right bottom' },

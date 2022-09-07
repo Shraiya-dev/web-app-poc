@@ -229,6 +229,7 @@ export const CreateBookingCard: FC<Props> = () => {
 															)}
 														</Typography>
 														<TextField
+															autoFocus
 															disabled={!form.values.isHelper}
 															sx={{
 																maxWidth: { xs: '40%', md: 200 },
@@ -309,9 +310,10 @@ export const CreateBookingCard: FC<Props> = () => {
 															</FormHelperText>
 														</Typography>
 														<TextField
+															autoFocus
 															disabled={!form.values.isTechnician}
 															sx={{
-																maxWidth: { xs: '50%', md: 200 },
+																maxWidth: { xs: '40%', md: 200 },
 																'input::-webkit-input-placeholder': {
 																	fontSize: { xs: '12px', md: '16px' },
 																},
@@ -389,9 +391,10 @@ export const CreateBookingCard: FC<Props> = () => {
 															</FormHelperText>
 														</Typography>
 														<TextField
+															autoFocus
 															disabled={!form.values.isSupervisor}
 															sx={{
-																maxWidth: { xs: '50%', md: 200 },
+																maxWidth: { xs: '40%', md: 200 },
 																'input::-webkit-input-placeholder': {
 																	fontSize: { xs: '12px', md: '16px' },
 																},
@@ -596,7 +599,12 @@ export const CreateBookingCard: FC<Props> = () => {
 														variant='text'
 														size='small'
 														onClick={async () => {
-															setOtp((p) => ({ ...p, sending: true, reSent: false }))
+															setOtp((p) => ({
+																...p,
+																sending: true,
+																otp: '',
+																reSent: false,
+															}))
 															sendAnalytics({
 																name: 'sendOtp',
 																action: 'ButtonClick',
