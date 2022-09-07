@@ -136,7 +136,8 @@ const BookingInfo = ({ ...props }: BookingInfo) => {
 									</Stack>
 									<Divider />
 									<Stack
-										direction={isMobile ? 'column' : 'row'}
+										direction={'row'}
+										flexWrap={'wrap'}
 										spacing={1.5}
 										mt={1}
 										sx={{
@@ -172,10 +173,7 @@ const BookingInfo = ({ ...props }: BookingInfo) => {
 								</TextWrapper>
 							)}
 
-							<TextWrapper
-								id={'workerRequired'}
-								label={`Workers Required & Daily Wage`}
-								toolTip={'Daily wage per worker'}>
+							<TextWrapper id={'workerRequired'} label={`Workers Required & Daily Wage`}>
 								{workerType.map((item, index) => {
 									return (
 										<Stack key={index} direction={'row'} pb={1}>
@@ -187,9 +185,9 @@ const BookingInfo = ({ ...props }: BookingInfo) => {
 											<Box minWidth={100} sx={{ verticalAlign: 'middle' }} mt={0.8}>
 												{item?.label}
 											</Box>
-											<Box minWidth={50} sx={{ verticalAlign: 'middle' }} mt={0.8}>
+											{/* <Box minWidth={50} sx={{ verticalAlign: 'middle' }} mt={0.8}>
 												{item?.count ?? 0}
-											</Box>
+											</Box> */}
 											<Box minWidth={20} sx={{ verticalAlign: 'middle' }} mt={0.8}>{`Rs. ${
 												item?.wage ?? 0
 											}`}</Box>
@@ -198,13 +196,13 @@ const BookingInfo = ({ ...props }: BookingInfo) => {
 								})}
 							</TextWrapper>
 
-							<TextWrapper id={'jobDuration'} label={`Job Duration`}>
+							{/* <TextWrapper id={'jobDuration'} label={`Job Duration`}>
 								{BookingDurationLabel[bookingInfo?.booking?.schedule?.bookingDuration]}
 							</TextWrapper>
 
 							<TextWrapper id={'shiftTime'} label={`Shift Time`}>
 								{bookingInfo?.booking?.schedule?.shiftTime}
-							</TextWrapper>
+							</TextWrapper> */}
 						</Stack>
 					</Box>
 				)}

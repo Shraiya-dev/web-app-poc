@@ -1,7 +1,21 @@
-import { ArrowCircleLeftOutlined, ArrowCircleRightOutlined, Circle } from '@mui/icons-material'
+import { ArrowCircleLeftOutlined, ArrowCircleRightOutlined, Circle, Close } from '@mui/icons-material'
 
 import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord'
-import { Box, Button, Card, Grid, List, ListItem, Stack, Theme, Typography, useMediaQuery } from '@mui/material'
+import {
+	Box,
+	Button,
+	Card,
+	Dialog,
+	Grid,
+	IconButton,
+	List,
+	ListItem,
+	Paper,
+	Stack,
+	Theme,
+	Typography,
+	useMediaQuery,
+} from '@mui/material'
 import 'keen-slider/keen-slider.min.css'
 import { useKeenSlider } from 'keen-slider/react'
 import { useRouter } from 'next/router'
@@ -13,13 +27,15 @@ import { homePage } from 'sdk/data/home'
 import { sliceIntoChunks } from 'sdk/utils/arrayHelpers'
 import { CreateBookingCard, JobCategoryCard } from 'sdkv2/components'
 import { WorkerCard } from 'sdkv2/components/cards/WorkerCard'
-
+import { Player, BigPlayButton } from 'video-react'
+import 'video-react/dist/video-react.css'
 const animation = { duration: 25000, easing: (t: number) => t }
 
 export const Home = () => {
 	const { jobSection } = homePage
 	const isMobile = useMobile()
 	const router = useRouter()
+	const [videoPlayerPopper, setVideoPlayerPopper] = useState(false)
 	const [sliderRef] = useKeenSlider<HTMLDivElement>({
 		loop: true,
 		renderMode: 'performance',
@@ -35,59 +51,348 @@ export const Home = () => {
 			s.moveToIdx(s.track.details.abs + 5, true, animation)
 		},
 	})
+	const verticalCarousel = useKeenSlider<HTMLDivElement>(
+		{
+			loop: true,
+			rubberband: true,
+			vertical: true,
+			drag: false,
+		},
+		[
+			(slider) => {
+				let timeout: ReturnType<typeof setTimeout>
+				let mouseOver = false
+				function clearNextTimeout() {
+					clearTimeout(timeout)
+				}
+				function nextTimeout() {
+					clearTimeout(timeout)
+					if (mouseOver) return
+					timeout = setTimeout(() => {
+						setVerticalState((p) => (p + 1) % 3)
+						slider.next()
+					}, 5000)
+				}
+				slider.on('created', () => {
+					slider.container.addEventListener('mouseover', () => {
+						mouseOver = true
+						clearNextTimeout()
+					})
+					slider.container.addEventListener('mouseout', () => {
+						mouseOver = false
+						nextTimeout()
+					})
+					nextTimeout()
+				})
+				slider.on('dragStarted', clearNextTimeout)
+				slider.on('animationEnded', nextTimeout)
+				slider.on('updated', nextTimeout)
+			},
+		]
+	)
+	const [verticalState, setVerticalState] = useState(0)
 
 	const [jobTypeForCarousal, setJobTypeForCarousal] = useState('MASON')
 	const isTab = useMediaQuery((theme: Theme) => theme.breakpoints.up('sm'))
+
 	return (
 		<>
-			<Section>
+			<Dialog open={videoPlayerPopper} fullWidth maxWidth={'xs'} onClose={() => setVideoPlayerPopper(false)}>
+				<Stack p={1} pt={0} alignItems='flex-end'>
+					<IconButton onClick={() => setVideoPlayerPopper(false)}>
+						<Close />
+					</IconButton>
+					<Paper
+						elevation={0}
+						sx={{
+							background: '#fcfcfc',
+							borderRadius: '10px',
+							'& .video-react .video-react-big-play-button': {
+								background: '#CD201F',
+								borderRadius: '10px',
+								height: '50px',
+								aspectRatio: '2 / 3',
+								borderColor: '#CD201F',
+								'&:hover': {
+									borderColor: '#CD201F',
+									background: '#CD201F',
+								},
+								'&:focus': {
+									borderColor: '#CD201F',
+									background: '#CD201F',
+								},
+								':before': {
+									color: '#fff',
+								},
+							},
+
+							'& .video-react-control-bar': {
+								borderRadius: '0px 0px 10px 10px',
+							},
+							'& .video-react-poster': {
+								borderRadius: '10px',
+								backgroundSize: 'cover',
+							},
+							'& .video-react': {
+								borderRadius: '10px',
+							},
+							'& .video-react-video': {
+								borderRadius: '10px',
+							},
+							width: '100%',
+							overflow: 'hidden',
+						}}>
+						<Player poster='/assets/icons/videoPoster.png'>
+							<source src={externalLinks.howItWorksVideoLink} />
+							<BigPlayButton position={'center'} />
+						</Player>
+					</Paper>
+				</Stack>
+			</Dialog>
+			<Section
+				boxSx={{
+					background: isMobile
+						? 'linear-gradient(180deg, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0.05) 100px, rgba(255,255,255,1) 100px, rgba(255,255,255,1) 100%)'
+						: undefined,
+				}}
+				sx={{ p: 2 }}>
 				<Grid container spacing={2}>
-					<Grid item xs={12} md={7.5}>
-						<Stack justifyContent='space-between' spacing={2}>
-							<Stack alignItems={'center'} direction={{ md: 'row' }} justifyContent='space-between'>
-								<Box
-									sx={{
-										marginTop: { xs: 2, md: 6 },
-										width: '48%',
-									}}>
-									<img width='100%' src='/assets/landingv2/heroSection/heroImg1.png' />
-								</Box>
-								<Box
-									sx={{
-										marginBottom: { xs: 2, md: 6 },
-										width: '48%',
-									}}>
-									<img width='100%' src='/assets/landingv2/heroSection/heroImg2.png' />
-								</Box>
-							</Stack>
-							<Typography variant='h1' lineHeight='1.5' fontFamily={'Saira ,sans-serif'} fontWeight={600}>
-								India&apos;s Largest & Most Trusted Platform to{' '}
+					<Grid item xs={12} md={8.5} display={{ xs: 'none', md: 'flex' }}>
+						<Stack flex={1} spacing={3}>
+							<Paper
+								elevation={0}
+								sx={{
+									background: '#fcfcfc',
+									borderRadius: '10px',
+									'& .video-react .video-react-big-play-button': {
+										background: '#CD201F',
+										borderRadius: '10px',
+										height: '50px',
+										borderColor: '#CD201F',
+										'&:hover': {
+											borderColor: '#CD201F',
+											background: '#CD201F',
+										},
+										'&:focus': {
+											borderColor: '#CD201F',
+											background: '#CD201F',
+										},
+										':before': {
+											color: '#fff',
+										},
+									},
+
+									'& .video-react-control-bar': {
+										borderRadius: '0px 0px 10px 10px',
+									},
+									'& .video-react-poster': {
+										borderRadius: '10px',
+										backgroundSize: 'cover',
+									},
+									'& .video-react': {
+										borderRadius: '10px',
+									},
+									'& .video-react-video': {
+										borderRadius: '10px',
+									},
+									width: '80%',
+									overflow: 'hidden',
+								}}>
+								<Player poster='/assets/icons/videoPoster.png'>
+									<source src={externalLinks.howItWorksVideoLink} />
+									<BigPlayButton position={'center'} />
+								</Player>
+							</Paper>
+							<Typography maxWidth={'90%'} fontSize={28} variant='h2' fontWeight={700}>
+								India’s Largest & Most Trusted Platform to{' '}
 								<Typography
+									fontSize={'inherit'}
 									display='inline'
-									variant='h1'
-									color='primary.main'
-									fontFamily={'Saira ,sans-serif'}
-									fontWeight={600}>
+									color='success.dark'
+									variant='subtitle1'>
 									Hire Construction Workers
 								</Typography>
-								{!isMobile && (
-									<img
-										style={{ marginLeft: 30, marginBottom: -30 }}
-										src='/assets/landingv2/heroSection/curlyArrow.svg'
-									/>
-								)}
 							</Typography>
-							<Stack direction='row' alignItems={'center'} spacing={3} mt='auto'>
-								<img width={50} src='/assets/landingv2/heroSection/workerGreen.svg' />
-								<Typography variant='h5'>
-									<strong>4 Lac+</strong> construction workforce available
-								</Typography>
-							</Stack>
+							{!isMobile && (
+								<Stack direction={'row'} spacing={2}>
+									<Stack
+										spacing={1}
+										sx={{
+											justifyContent: 'space-evenly',
+											'.dot': {
+												borderRadius: '50%',
+												width: 5,
+												aspectRatio: '1 / 1',
+												border: '0px solid transparent',
+												backgroundColor: 'grey.A200',
+											},
+											'.active': {
+												backgroundColor: 'success.dark',
+											},
+										}}>
+										{verticalCarousel[1].current &&
+											[
+												...(
+													Array(
+														verticalCarousel[1].current.track.details.slides.length
+													) as any
+												).keys(),
+											].map((_, idx) => {
+												return (
+													<button
+														key={idx}
+														onClick={() => {
+															verticalCarousel[1].current?.moveToIdx(idx)
+															setVerticalState(idx)
+														}}
+														className={
+															'dot' + (verticalState === idx ? ' active' : '')
+														}></button>
+												)
+											})}
+									</Stack>
+									<Box
+										ref={verticalCarousel[0]}
+										className='keen-slider'
+										style={{ height: 50, maxWidth: 300 }}>
+										<Box className='keen-slider__slide number-slide1'>
+											<Stack direction='row' alignItems='center' spacing={2}>
+												<Box
+													component='img'
+													height={50}
+													width={50}
+													src={'/assets/landingv2/icons/user.svg'}></Box>
+												<Typography>
+													<strong>4 Lac+</strong> construction workers ka network
+												</Typography>
+											</Stack>
+										</Box>
+										<Box className='keen-slider__slide number-slide2'>
+											<Stack direction='row' alignItems='center' spacing={2}>
+												<Box
+													component='img'
+													height={50}
+													width={50}
+													src={'/assets/landingv2/icons/call.svg'}></Box>
+												<Typography>
+													<strong>Best workers</strong> aapko seedhe call karenge
+												</Typography>
+											</Stack>
+										</Box>
+										<Box className='keen-slider__slide number-slide3'>
+											<Stack direction='row' alignItems='center' spacing={2}>
+												<Box
+													component='img'
+													height={50}
+													width={50}
+													src={'/assets/landingv2/icons/hat.svg'}></Box>
+												<Typography>
+													<strong>Apply karne wale workers</strong> ka number dashboard par
+													dekhen
+												</Typography>
+											</Stack>
+										</Box>
+									</Box>
+								</Stack>
+							)}
 						</Stack>
 					</Grid>
-					<Grid item xs={12} md={4.5} justifyContent='center' id='book-worker'>
+					<Grid item xs={12} md={9} display={{ xs: 'flex', md: 'none' }}>
+						<Stack justifyContent='space-between' spacing={2} direction={{ xs: 'row', md: 'column' }}>
+							<Typography variant={'h6'}>
+								India&apos;s Largest & Most Trusted Platform <br />
+								to{' '}
+								<Typography display='inline' color='success.dark' variant='inherit'>
+									Hire Construction Workers
+								</Typography>
+							</Typography>
+							<Box
+								component='img'
+								onClick={() => setVideoPlayerPopper(true)}
+								sx={{
+									cursor: 'pointer',
+								}}
+								src={'/assets/landingv2/how-it-works-poster.svg'}
+							/>
+						</Stack>
+					</Grid>
+					<Grid item xs={12} md={3.5} justifyContent='center' id='book-worker'>
 						<CreateBookingCard />
 					</Grid>
+					{isMobile && (
+						<Grid item xs={12} display={{ xs: 'flex', md: 'none' }} alignItems='center' gap={2}>
+							<Stack
+								spacing={1}
+								sx={{
+									justifyContent: 'space-evenly',
+									'.dot': {
+										borderRadius: '50%',
+										width: 5,
+										aspectRatio: '1 / 1',
+										border: '0px solid transparent',
+										backgroundColor: 'grey.A200',
+									},
+									'.active': {
+										backgroundColor: 'success.dark',
+									},
+								}}>
+								{verticalCarousel[1].current &&
+									[
+										...(
+											Array(verticalCarousel[1].current.track.details.slides.length) as any
+										).keys(),
+									].map((_, idx) => {
+										return (
+											<button
+												key={idx}
+												onClick={() => {
+													verticalCarousel[1].current?.moveToIdx(idx)
+													setVerticalState(idx)
+												}}
+												className={'dot' + (verticalState === idx ? ' active' : '')}></button>
+										)
+									})}
+							</Stack>
+							<Box ref={verticalCarousel[0]} className='keen-slider' style={{ height: 50 }}>
+								<Box className='keen-slider__slide number-slide1'>
+									<Stack direction='row' alignItems='center' spacing={2}>
+										<Box
+											component='img'
+											height={50}
+											width={50}
+											src={'/assets/landingv2/icons/user.svg'}></Box>
+										<Typography>
+											<strong>4 Lac+</strong> construction workers ka network
+										</Typography>
+									</Stack>
+								</Box>
+								<Box className='keen-slider__slide number-slide2'>
+									<Stack direction='row' alignItems='center' spacing={2}>
+										<Box
+											component='img'
+											height={50}
+											width={50}
+											src={'/assets/landingv2/icons/call.svg'}></Box>
+										<Typography>
+											<strong>Best workers</strong> aapko seedhe call karenge
+										</Typography>
+									</Stack>
+								</Box>
+								<Box className='keen-slider__slide number-slide3'>
+									<Stack direction='row' alignItems='center' spacing={2}>
+										<Box
+											component='img'
+											height={50}
+											width={50}
+											src={'/assets/landingv2/icons/hat.svg'}></Box>
+										<Typography>
+											<strong>Apply karne wale workers</strong> ka number dashboard par dekhen
+										</Typography>
+									</Stack>
+								</Box>
+							</Box>
+						</Grid>
+					)}
 				</Grid>
 			</Section>
 			<Section backgroundColor='#000000'>
@@ -110,7 +415,6 @@ export const Home = () => {
 					<Typography
 						variant='h2'
 						color='common.white'
-						fontFamily={'Saira ,sans-serif'}
 						fontWeight={600}
 						fontSize={{ md: '32px', xs: '24px' }}>
 						Explore{' '}
@@ -118,57 +422,21 @@ export const Home = () => {
 							variant='h2'
 							color='primary'
 							display='inline'
-							fontFamily={'Saira ,sans-serif'}
 							fontWeight={600}
 							fontSize={{ md: '32px', xs: '24px' }}>
-							Job Categories
-						</Typography>{' '}
+							Job Categories{' '}
+						</Typography>
 						and Book Workers{' '}
 						<Typography
 							variant='h2'
 							color='primary'
 							display='inline'
-							fontFamily={'Saira ,sans-serif'}
 							fontWeight={600}
 							fontSize={{ md: '32px', xs: '24px' }}>
 							in a minute
 						</Typography>
 					</Typography>
 				</Stack>
-				{/* <Tabs
-					onChange={(e, v) => setJobTypeForCarousal(v)}
-					value={jobTypeForCarousal}
-					variant='fullWidth'
-					scrollButtons={false}
-					ScrollButtonComponent={(props) => {
-						if (props.direction === 'left' && !props.disabled) {
-							return (
-								<Button variant='text' {...props}>
-									<ArrowCircleLeftOutlined fontSize={'large'} sx={{ color: 'common.white' }} />
-								</Button>
-							)
-						} else if (props.direction === 'right' && !props.disabled) {
-							return (
-								<Button variant='text' {...props}>
-									<ArrowCircleRightOutlined fontSize={'large'} sx={{ color: 'common.white' }} />
-								</Button>
-							)
-						} else {
-							return null
-						}
-					}}>
-					<CarouselV2
-						componentPerView={5}
-						items={jobSection.jobs.map((item) => (
-							<Tab
-								value={item.value}
-								key={item.label}
-								sx={{ color: 'common.white', textTransform: 'none' }}
-								label={<JobCategoryCard src={item.image} label={item.label} />}
-							/>
-						))}
-					/>
-				</Tabs> */}
 
 				<CarouselV2
 					componentPerView={isMobile ? (isTab ? 6 : 3) : 7}
@@ -237,45 +505,14 @@ export const Home = () => {
 					slideDelay={5000}
 				/>
 			</Section>
-			{/* <Section className='hide-on-mobile' backgroundColor={bookingJourneySection.backgroundColor}>
-				<Stack spacing={2}>
-					<Typography variant='h4' textAlign='center' color={bookingJourneySection.sectionTitle.color}>
-						{bookingJourneySection?.sectionTitle.children}
-					</Typography>
-					<Grid container justifyContent={'center'} spacing={1}>
-						{bookingJourneySection.journeySteps.map((item) => (
-							<Grid item key={item.label}>
-								<Stack
-									px={2}
-									py={1}
-									sx={{
-										color: item.color,
-										backgroundColor: item.backgroundColor,
-										borderRadius: '8px',
-									}}>
-									<Typography>{item.label}</Typography>
-								</Stack>
-							</Grid>
-						))}
-					</Grid>
-				</Stack>
-			</Section> */}
 
 			<Section backgroundColor='#F7F7F7' id='how-it-works'>
 				<Box pt={'24px'} pb={'66px'}>
 					<Stack direction={'column'} mb={'32px'}>
-						<Typography
-							variant='h1'
-							fontFamily={'Saira ,sans-serif'}
-							fontWeight={600}
-							fontSize={{ md: '32px', xs: '24px' }}>
+						<Typography variant='h1' fontWeight={600} fontSize={{ md: '32px', xs: '24px' }}>
 							{homePage.howItWorksSection.heading}
 						</Typography>
-						<Typography
-							variant='h4'
-							fontFamily={'Saira ,sans-serif'}
-							fontWeight={400}
-							fontSize={{ md: '20px', xs: '12px' }}>
+						<Typography variant='h4' fontWeight={400} fontSize={{ md: '20px', xs: '12px' }}>
 							{homePage.howItWorksSection.subHeading}
 						</Typography>
 					</Stack>
@@ -317,37 +554,6 @@ export const Home = () => {
 					</Box>
 				</Box>
 			</Section>
-
-			{/* <Section backgroundColor={benefitFromHeroSection.backgroundColor}>
-				<Carousel
-					componentPerView={isMobile ? 1 : 3}
-					items={[
-						...benefitFromHeroSection.benefits.map((item, index) => (
-							<Stack
-								key={index}
-								sx={{
-									borderRadius: '12px',
-									backgroundColor: item.backgroundColor,
-									p: 2,
-									pb: 4,
-									maxWidth: 380,
-									height: 170,
-								}}>
-								<Stack flex={1} direction='row' justifyContent='space-between'>
-									<Stack>
-										<Typography color={item.color}>{item.header.left.icon}</Typography>
-										<Typography color={item.color}>{item.header.left.caption}</Typography>
-									</Stack>
-									<Image src={item.header.right.image} width={70} height={70} />
-								</Stack>
-								<Typography color={item.color}>{item.description}</Typography>
-							</Stack>
-						)),
-					]}
-				/>
-			</Section> */}
-
-			{/* why you should hire section */}
 
 			<Section backgroundColor='#000'>
 				<Box
@@ -409,7 +615,6 @@ export const Home = () => {
 													<Typography
 														variant='h2'
 														color={'#EFC430'}
-														fontFamily={'Saira , sans-serif'}
 														fontSize={{ md: '28px', xs: '21px' }}
 														fontWeight={600}>
 														0{index + 1}
@@ -422,14 +627,12 @@ export const Home = () => {
 															sx={{
 																color: homePage.whyYouShouldHire.right.itemTextColor,
 															}}
-															fontFamily={'Saira , sans-serif'}
 															fontSize={{ md: '24px', xs: '16px' }}
 															fontWeight={500}>
 															{data.heading}
 														</Typography>
 														<Typography
 															variant='h5'
-															fontFamily={'Saira , sans-serif'}
 															fontSize={{ md: '16px', xs: '12px' }}
 															fontWeight={400}>
 															{data.desc}
@@ -445,75 +648,6 @@ export const Home = () => {
 					</Grid>
 				</Box>
 			</Section>
-
-			{/* end why you should hire section */}
-
-			{/* hire your construction section  */}
-			{/* <Section backgroundImage={hireConstructionSection.backgroundImage}>
-				<Stack
-					direction='row'
-					sx={{
-						overflowX: 'auto',
-						alignItems: 'center',
-						p: 2,
-					}}>
-					<Typography sx={{ flex: 1, minWidth: '50%' }} fontSize={{ xs: 20, md: 36 }}>
-						Why you should
-						<br /> <strong>hire your</strong> construction
-						<br /> workforce from <br />
-						<strong>Project Hero?</strong>
-						<br />
-					</Typography>
-					<Grid
-						container
-						spacing={{ xs: 2, md: 4 }}
-						flexWrap={{ xs: 'nowrap', md: 'wrap' }}
-						sx={{ margin: 0, padding: 0, flex: 1 }}>
-						{hireConstructionSection.cards.map((data, index) => {
-							return (
-								<Grid
-									key={index}
-									item
-									xs={12}
-									md={6}
-									alignItems='center'
-									sx={(theme) => ({
-										top: data.marginTop,
-										[theme.breakpoints.down('md')]: {
-											top: 0,
-										},
-									})}>
-									<Card
-										elevation={5}
-										sx={{
-											borderLeft: '8px solid',
-											borderColor: data.color,
-											width: '200px',
-											height: '240px',
-										}}>
-										<CardMedia
-											component='img'
-											image={data.svg}
-											sx={{ width: '54px', height: '54px' }}
-										/>
-										<CardContent sx={{ marginBottom: '14px' }}>
-											<Typography fontSize='20px' fontWeight='700' color='data.color'>
-												{data.header}
-											</Typography>
-											<Typography fontSize='14px' fontWeight='400'>
-												{data.description}
-											</Typography>
-										</CardContent>
-									</Card>
-								</Grid>
-							)
-						})}
-					</Grid>
-				</Stack>
-			</Section> */}
-
-			{/* hero advantage section */}
-
 			<Section
 				backgroundColor='#F7F7F7'
 				boxSx={{
@@ -736,7 +870,6 @@ export const Home = () => {
 													variant='h5'
 													fontSize={{ xs: '12px', md: '16px' }}
 													fontWeight='500'
-													fontFamily={'Saira,sans-serif'}
 													color={primary.properDark}>
 													{item.testimonial}
 												</Typography>
@@ -745,7 +878,6 @@ export const Home = () => {
 													variant='h5'
 													fontSize={{ xs: '14px', md: '16px' }}
 													fontWeight='600'
-													fontFamily={'Saira,sans-serif'}
 													color={primary.properDark}>
 													- {item.by}
 												</Typography>
