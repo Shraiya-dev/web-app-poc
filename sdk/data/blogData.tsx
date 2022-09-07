@@ -1550,9 +1550,6 @@ const BlogList = {
 	blog10: (
 		<>
 			<Stack direction={'column'} spacing={4}>
-				<Typography fontWeight={700}>
-					ALT Title: Builders Vs Contractors: Whom Should You Hire For Your Next Construction Project?
-				</Typography>
 				<Typography>
 					It is quite common for customers who want to hire professionals to work on their construction
 					project to get confused between a builder and a contractor, the two essential roles in the
