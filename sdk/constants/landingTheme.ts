@@ -95,30 +95,37 @@ export const colors = {
 }
 let themeDef = createTheme({
 	typography: {
-		fontFamily: `'Saira', sans-serif`,
+		fontFamily: `'Karla', sans-serif`,
+
 		h1: {
 			fontSize: '36px',
 			fontWeight: 700,
+			fontFamily: `'Saira', sans-serif`,
 		},
 		h2: {
 			fontSize: '30px',
 			fontWeight: 700,
+			fontFamily: `'Saira', sans-serif`,
 		},
 		h3: {
 			fontSize: '24px',
 			fontWeight: 700,
+			fontFamily: `'Saira', sans-serif`,
 		},
 		h4: {
 			fontSize: '20px',
 			fontWeight: 700,
+			fontFamily: `'Saira', sans-serif`,
 		},
 		h5: {
 			fontSize: '18px',
 			fontWeight: 700,
+			fontFamily: `'Saira', sans-serif`,
 		},
 		h6: {
 			fontSize: '16px',
 			fontWeight: 700,
+			fontFamily: `'Saira', sans-serif`,
 		},
 		body1: {
 			fontSize: '16px',

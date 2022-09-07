@@ -488,11 +488,11 @@ export const CreateBookingCard: FC<Props> = () => {
 																	<LoadingButton
 																		loading={otp.sending}
 																		color='success'
+																		variant='contained'
 																		disabled={
 																			loginFormikProps('phoneNumber').error ||
 																			loginFormikProps('phoneNumber').value === ''
 																		}
-																		variant='text'
 																		onClick={async () => {
 																			setOtp((p) => ({
 																				...p,
@@ -524,8 +524,7 @@ export const CreateBookingCard: FC<Props> = () => {
 																				sending: false,
 																				otp: '',
 																			}))
-																		}}
-																		sx={{ color: 'success.dark' }}>
+																		}}>
 																		Send Otp
 																	</LoadingButton>
 																)}
@@ -540,7 +539,7 @@ export const CreateBookingCard: FC<Props> = () => {
 														value={otp.otp}
 														onChange={(otp: any) => setOtp((p) => ({ ...p, otp: otp }))}
 														numInputs={6}
-														isDisabled={!otp.edit}
+														// isDisabled={!otp.edit}
 														inputStyle={{
 															borderRadius: '8px',
 															width: 48,
