@@ -20,7 +20,6 @@ const Page: NextPage = () => {
 	const [seeMore, setSeeMore] = useState<boolean>(false)
 	const { showSnackbar } = useSnackbar()
 	useEffect(() => {
-		console.log(router.query.blogId)
 		setBlogId(Number(router.query.blogId))
 
 		let result: any = []
@@ -28,7 +27,7 @@ const Page: NextPage = () => {
 			let value = blogData?.Allblogs.filter((y: any) => y.id === x)[0]
 			result = [...result, value]
 		})
-		console.log(result)
+
 		setSimilarBlog(result)
 	}, [router.query.blogId])
 
@@ -40,25 +39,20 @@ const Page: NextPage = () => {
 			const shareData = {
 				url: href,
 			}
-			console.log(href)
+
 			if (isMobile) {
 				if (!window) {
 					return
 				}
-				navigator
-					.share(shareData)
-					.then(() => showSnackbar(href, 'success'))
-					.catch((e) => showSnackbar(href, 'error'))
+				navigator.share(shareData).then(() => showSnackbar(href, 'success'))
 			} else {
 				showSnackbar('Share link Copied', 'success')
 			}
-			// showSnackbar(`Share Link Copied`, 'success')
 		},
 		[isMobile]
 	)
 
 	const ShareBlog = useCallback(() => {
-		console.log(router.asPath)
 		var href = location.origin + router.asPath
 		navigator.clipboard.writeText(href)
 		const shareData = {
@@ -66,10 +60,7 @@ const Page: NextPage = () => {
 		}
 		isMobile
 			? window
-				? navigator
-						?.share(shareData)
-						.then(() => showSnackbar(href, 'success'))
-						.catch((e) => showSnackbar(href, 'error'))
+				? navigator?.share(shareData).then(() => showSnackbar(href, 'success'))
 				: null
 			: showSnackbar('Share link Copied', 'success')
 	}, [isMobile])
