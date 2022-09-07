@@ -143,7 +143,7 @@ const BlogList = {
 					also presents quite a several job opportunities for many individuals in construction work in India
 					and the world.
 				</Typography>
-				<Typography>13 Construction Industry Facts That You Didn&apos;t Know:</Typography>
+				<Typography fontWeight={700}>13 Construction Industry Facts That You Didn&apos;t Know:</Typography>
 				<Typography>
 					As one of the massive and prevailing sectors in the world, the construction industry has millions of
 					individuals involved as contractors, labourers, technicians, etc. The information you hear on the
@@ -1579,7 +1579,7 @@ const BlogList = {
 					disputes and problems are also key aspects of their job.
 				</Typography>
 				<Stack direction={'column'} spacing={2}>
-					<Typography>Here is a Detailed List of Duties of a Contractor:</Typography>
+					<Typography fontWeight={700}>Here is a Detailed List of Duties of a Contractor:</Typography>
 					<Stack direction={'column'} spacing={1} px={2}>
 						<Typography>
 							● Contractors are responsible for one of the essential parts of any construction work, which

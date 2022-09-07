@@ -23,7 +23,7 @@ export const Plans: FC = () => {
 	const { bannerSection, planSection } = PlansPageData
 	const [anchorEl, setAnchorEl] = useState<any>({})
 	const handelMenuOpen = (e: any, id: string) => {
-		console.log(e.currentTarget)
+		// console.log(e.currentTarget)
 		setAnchorEl({ [id]: e.currentTarget })
 	}
 	const isMobile = useMobile()

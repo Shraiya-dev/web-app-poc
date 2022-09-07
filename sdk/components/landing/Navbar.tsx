@@ -67,7 +67,6 @@ export const Navbar = () => {
 								</HyperLink>
 
 								{navbar.navLinks.map((navItem, i) => {
-									console.log(navItem.label)
 									if (navItem.label == '+91-9151003513') {
 										return (
 											<LinkButton
@@ -302,7 +301,7 @@ export const Navbar = () => {
 							direction='row'
 							sx={{
 								display: { md: 'inline-flex', xs: 'none' },
-								justifyContent: 'flex-end'
+								justifyContent: 'flex-end',
 							}}
 							spacing={{ xs: 0, md: 2 }}
 							alignItems='center'>
