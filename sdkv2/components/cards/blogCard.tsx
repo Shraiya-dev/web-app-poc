@@ -20,25 +20,32 @@ export const BlogCard: FC<Props> = ({ view }: Props) => {
 	const [seeMore, setSeeMore] = useState(false)
 	const router = useRouter()
 	const { showSnackbar } = useSnackbar()
-	const copyOnShare = useCallback((id: any) => {
-		if (!window) return
+	const copyOnShare = useCallback(
+		(id: any) => {
+			if (!window) return
 
-		const href = location.origin + `/blog/${id}`
+			const href = location.origin + `/blog/${id}`
 
-		navigator.clipboard.writeText(href)
+			navigator.clipboard.writeText(href)
 
-		const shareData = {
-			url: href,
-		}
-		console.log(href)
-
-		isMobile
-			? navigator
-					?.share(shareData)
-					.then(() => showSnackbar(href, 'success'))
-					.catch((e) => showSnackbar(href, 'error'))
-			: showSnackbar('Share link Copied', 'success')
-	}, [])
+			const shareData = {
+				url: href,
+			}
+			console.log(href)
+			// navigator
+			// 	?.share(shareData)
+			// 	.then(() => showSnackbar(href, 'success'))
+			// 	.catch((e) => showSnackbar(href, 'error'))
+			isMobile
+				? navigator
+						?.share(shareData)
+						.then(() => showSnackbar(href, 'success'))
+						.catch((e) => showSnackbar(href, 'error'))
+				: showSnackbar('Share link Copied', 'success')
+			console.log(isMobile)
+		},
+		[isMobile]
+	)
 
 	return (
 		<>
