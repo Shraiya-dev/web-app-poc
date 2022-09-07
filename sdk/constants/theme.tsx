@@ -123,7 +123,7 @@ let themeDef = createTheme({
 		},
 		h6: {
 			fontSize: '16px',
-			fontWeight: 700,
+			fontWeight: 600,
 		},
 		body1: {
 			fontSize: '16px',
@@ -156,7 +156,7 @@ let themeDef = createTheme({
 			dark: '#8E1E33',
 		},
 		success: {
-			main: '#0faf7f80',
+			main: '#0FAF7F',
 			light: '#0faf7f33',
 			dark: '#0FAF7F',
 		},

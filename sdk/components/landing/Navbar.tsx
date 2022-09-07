@@ -31,6 +31,7 @@ import { contactUsSection, navbar } from 'sdk/data'
 import { useContractorAuth } from 'sdk'
 import DashboardRoundedIcon from '@mui/icons-material/DashboardRounded'
 import Link from 'next/link'
+
 export const Navbar = () => {
 	const [menuRefs, dispatchMenuRefs] = useReducer((p: any, n: any) => ({ ...p, ...n }), {})
 	const router = useRouter()
@@ -54,9 +55,48 @@ export const Navbar = () => {
 							justifyContent={'space-between'}
 							width={'100%'}
 							px={2}>
-							<HyperLink href='/'>
-								<Image src={navbar.brandImage} width={120} height={27} alt='Project hero' />
-							</HyperLink>
+							<Stack direction='row'>
+								<HyperLink href='/'>
+									<Image
+										src={navbar.brandImage}
+										width={120}
+										height={45}
+										alt='Project hero'
+										// style={{ marginTop: 5 }}
+									/>
+								</HyperLink>
+
+								{navbar.navLinks.map((navItem, i) => {
+									console.log(navItem.label)
+									if (navItem.label == '+91-9151003513') {
+										return (
+											<LinkButton
+												variant='text'
+												key={i}
+												startIcon={navItem?.icon}
+												sx={(theme) => ({
+													ml: '10px',
+													fontWeight: 700,
+													color: 'common.white',
+													[theme.breakpoints.down('md')]: { display: 'none' },
+													whiteSpace: 'nowrap',
+												})}
+												onClick={() => {
+													if (navItem.label === 'Login') {
+														sendAnalytics({
+															name: 'navbarLogin',
+															action: 'ButtonClick',
+														})
+													}
+												}}
+												href={navItem.link}
+												className={router.pathname === navItem.link ? 'active' : ''}>
+												{navItem.label}
+											</LinkButton>
+										)
+									}
+								})}
+							</Stack>
 							<IconButton
 								sx={(theme) => ({
 									display: 'none',
@@ -181,48 +221,52 @@ export const Navbar = () => {
 											</>
 										)}
 
-										{/* <Typography variant='h4' color={'#fff'} textAlign={'center'}>
-											Contact us{' '}
-										</Typography>
-										<ListItem
-											color='secondary'
-											sx={(theme) => ({
-												fontWeight: 700,
-											})}>
-											<ListItemAvatar>
-												<img src='/assets/landing/call.svg' alt='plane' />
-											</ListItemAvatar>
-											<ListItemText>
-												<Stack>
-													<Typography variant='caption'>
-														{contactUsSection.support.contactAction.label}
-													</Typography>
-													<Typography sx={{ color: '#0663F6' }}>
-														{contactUsSection.support.contactAction.phone}
-													</Typography>
-												</Stack>
-											</ListItemText>
-										</ListItem>
-										<ListItem
-											color='secondary'
-											sx={(theme) => ({
-												fontWeight: 700,
-											})}>
-											<ListItemAvatar>
-												<img src='/assets/landing/plane.svg' alt='plane' />
-											</ListItemAvatar>
-											<ListItemText>
-												<Stack>
-													<Typography variant='caption'>
-														{contactUsSection.support.mailAction.label}
-													</Typography>
-													<Typography sx={{ color: '#0663F6' }}>
-														{contactUsSection.support.mailAction.email}
-													</Typography>
-												</Stack>
-											</ListItemText>
-										</ListItem> */}
 										<Stack direction={'column'} spacing={4} px={2.4} mt={'40px'}>
+											<Stack
+												direction={'column'}
+												alignItems={'flex-start'}
+												spacing={1}
+												sx={{
+													px: 1,
+													'& > a > button.MuiButton-root.MuiButton-text.MuiButton-sizeSmall':
+														{
+															minWidth: '140px',
+															alignItem: 'left !important',
+															justifyContent: 'unset',
+														},
+												}}>
+												{navbar.navLinks.map((val, i) => {
+													if (val.type === 'text_link') {
+														return (
+															<LinkButton
+																href={val.link}
+																key={i}
+																variant='text'
+																sx={(theme) => ({
+																	fontWeight: 700,
+																	color: '#fff',
+																	textAlign: 'left',
+																})}
+																size='small'>
+																{val.label}
+															</LinkButton>
+														)
+													}
+												})}
+											</Stack>
+											{/* <Stack direction={'row'} spacing={1}>
+												<Box height={23} width={23}>
+													<img
+														height={'100%'}
+														width={'100%'}
+														src='/assets/icons/mail.svg'
+														alt=''
+													/>
+												</Box>
+												<Typography variant='subtitle2' color={'#fff'} fontWeight={700}>
+													marketing@projecthero.in
+												</Typography>
+											</Stack> */}
 											<Stack direction={'row'} spacing={1}>
 												<Box height={23} width={23}>
 													<img
@@ -254,7 +298,14 @@ export const Navbar = () => {
 								</Drawer>
 							</IconButton>
 						</Stack>
-						<NavWrapper direction='row' spacing={{ xs: 0, md: 3 }} alignItems='center'>
+						<NavWrapper
+							direction='row'
+							sx={{
+								display: { md: 'inline-flex', xs: 'none' },
+								justifyContent: 'flex-end'
+							}}
+							spacing={{ xs: 0, md: 2 }}
+							alignItems='center'>
 							{navbar.navLinks.map((navItem, i) => {
 								if (navItem.type === 'button_link') {
 									if (navItem.label === 'Login') {
@@ -306,30 +357,7 @@ export const Navbar = () => {
 											)
 										)
 									} else {
-										return (
-											<LinkButton
-												variant='text'
-												key={i}
-												startIcon={navItem?.icon}
-												sx={(theme) => ({
-													fontWeight: 700,
-													color: 'common.white',
-													[theme.breakpoints.down('md')]: { display: 'none' },
-													whiteSpace: 'nowrap',
-												})}
-												onClick={() => {
-													if (navItem.label === 'Login') {
-														sendAnalytics({
-															name: 'navbarLogin',
-															action: 'ButtonClick',
-														})
-													}
-												}}
-												href={navItem.link}
-												className={router.pathname === navItem.link ? 'active' : ''}>
-												{navItem.label}
-											</LinkButton>
-										)
+										return null
 									}
 								} else if (navItem.type === 'scroll_link') {
 									if (router.pathname === '/')
@@ -495,8 +523,25 @@ export const Navbar = () => {
 											{navItem.label}
 										</LinkButton>
 									)
+								} else if (navItem.type === 'text_link') {
+									return (
+										<LinkButton
+											href={navItem.link}
+											key={i}
+											variant='text'
+											fullWidth
+											sx={(theme) => ({
+												fontWeight: 700,
+												color: 'common.white',
+												[theme.breakpoints.down('md')]: { display: 'none' },
+											})}
+											className={router.pathname === navItem.link ? 'active' : ''}
+											size='small'>
+											{navItem.label}
+										</LinkButton>
+									)
 								} else {
-									return <></>
+									;<></>
 								}
 							})}
 						</NavWrapper>
@@ -508,6 +553,7 @@ export const Navbar = () => {
 }
 
 export const NavWrapper = styled(Stack)(({ theme }) => ({
+	width: '100%',
 	'.active': {
 		borderBottom: `2px solid ${theme.palette.primary.main}`,
 	},
