@@ -558,6 +558,7 @@ export const CreateBookingCard: FC<Props> = () => {
 																					edit: true,
 																					reSent: true,
 																				}))
+																				
 																			} else {
 																				showSnackbar(
 																					'Invalid PhoneNumber',
@@ -691,6 +692,15 @@ export const CreateBookingCard: FC<Props> = () => {
 														DataLayerPush({
 															event: 'discovery_otp_verification',
 														})
+														if (otp.isWhatsAppOptIn) {
+															sendAnalytics({
+																name: 'whatsAppOptIn',
+																action: 'ButtonClick',
+																metaData: {
+																	phoneNumber: loginForm.values.phoneNumber,
+																},
+															})
+														}
 
 														sendAnalytics({
 															name: 'otpVerification',

@@ -434,7 +434,6 @@ const ContractorAuthProvider: FC<ContractorAuthProviderProps> = ({ children, aut
 				await router.replace(`/dashboard`, undefined, {})
 				return
 			}
-			let user
 			try {
 				setBackdropProps({ open: true })
 				const payload = {
@@ -463,10 +462,15 @@ const ContractorAuthProvider: FC<ContractorAuthProviderProps> = ({ children, aut
 					},
 					bookingDuration: 'FORTY_FIVE_TO_NINETY',
 				}
+				const user = await getContactorUserInfo()
+				if (user?.payload?.hasProjects) {
+					showSnackbar('You Already have Job Posted, Go to dashboard to view your jobs', 'warning')
+					setBackdropProps({ open: false })
+					return
+				}
 				const { data, status } = await axios.post('/gateway/customer-api/projects/bookings', payload)
 				deleteCookie('discoveryBooking')
-				user = await getContactorUserInfo()
-				setRedirectingIn(5)
+				setStartRedirecting(true)
 				sendAnalytics({
 					name: 'postedJob',
 					action: 'ButtonClick',
@@ -475,18 +479,11 @@ const ContractorAuthProvider: FC<ContractorAuthProviderProps> = ({ children, aut
 					},
 				})
 				const a = setTimeout(async () => {
-					await router.replace(`/bookings/${data.payload.projectId}/bookings`, undefined, {})
+					await router.replace(`/projects/${data?.payload?.projectId}/bookings`, undefined, {})
 					setBackdropProps({ open: false })
+					setStartRedirecting(false)
 				}, 5000)
 			} catch (error) {
-				if (user?.payload?.hasProjects) {
-					showSnackbar('You Already have Job Posted, redirecting to dashboard', 'warning')
-
-					await router.replace(`/dashboard`, undefined, {})
-					setBackdropProps({ open: false })
-
-					return
-				}
 				sendAnalytics({
 					name: 'postedJob',
 					action: 'ButtonClick',
@@ -568,6 +565,7 @@ const ContractorAuthProvider: FC<ContractorAuthProviderProps> = ({ children, aut
 
 	const [isDialogOpen, setIsDialogOpen] = useState<boolean>(false)
 	const [isOtpSent, setIsOtpSent] = useState<boolean>(false)
+	const [startRedirecting, setStartRedirecting] = useState(false)
 	useEffect(() => {
 		if (redirectingIn === 0) return
 		setRedirectingIn(5)
@@ -583,7 +581,7 @@ const ContractorAuthProvider: FC<ContractorAuthProviderProps> = ({ children, aut
 		return () => {
 			clearInterval(interval)
 		}
-	}, [redirectingIn])
+	}, [startRedirecting])
 
 	const openLoginDialog = useCallback(() => {
 		if (!state.user) setIsDialogOpen(!isDialogOpen)
