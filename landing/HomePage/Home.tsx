@@ -330,6 +330,7 @@ export const Home = () => {
 								onClick={() => setVideoPlayerPopper(true)}
 								sx={{
 									cursor: 'pointer',
+									width: 100,
 								}}
 								src={'/assets/landingv2/how-it-works.png'}
 							/>
