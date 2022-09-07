@@ -197,7 +197,11 @@ const ContractorAuthProvider: FC<ContractorAuthProviderProps> = ({ children, aut
 			try {
 				return await sendOtpService(phoneNumber, USER_TYPE.CONTRACTOR)
 			} catch (error: any) {
-				showSnackbar(error.response.data.developerInfo, 'error')
+				if (error.response.status === 429) {
+					showSnackbar('Please try again in 5 minutes.', 'error')
+				} else {
+					showSnackbar(error.response.data.developerInfo, 'error')
+				}
 			}
 		},
 		[showSnackbar]
