@@ -32,27 +32,30 @@ const Page: NextPage = () => {
 		setSimilarBlog(result)
 	}, [router.query.blogId])
 
-	const copyOnShare = useCallback((id: any) => {
-		if (!window) return
-		const href = location.origin + `/blog/${id}`
-		navigator.clipboard.writeText(href)
-		const shareData = {
-			url: href,
-		}
-		console.log(href)
-		if (isMobile) {
-			if (!window) {
-				return
+	const copyOnShare = useCallback(
+		(id: any) => {
+			if (!window) return
+			const href = location.origin + `/blog/${id}`
+			navigator.clipboard.writeText(href)
+			const shareData = {
+				url: href,
 			}
-			navigator
-				.share(shareData)
-				.then(() => showSnackbar(href, 'success'))
-				.catch((e) => showSnackbar(href, 'error'))
-		} else {
-			showSnackbar('Share link Copied', 'success')
-		}
-		// showSnackbar(`Share Link Copied`, 'success')
-	}, [])
+			console.log(href)
+			if (isMobile) {
+				if (!window) {
+					return
+				}
+				navigator
+					.share(shareData)
+					.then(() => showSnackbar(href, 'success'))
+					.catch((e) => showSnackbar(href, 'error'))
+			} else {
+				showSnackbar('Share link Copied', 'success')
+			}
+			// showSnackbar(`Share Link Copied`, 'success')
+		},
+		[isMobile]
+	)
 
 	const ShareBlog = useCallback(() => {
 		console.log(router.asPath)
@@ -69,7 +72,7 @@ const Page: NextPage = () => {
 						.catch((e) => showSnackbar(href, 'error'))
 				: null
 			: showSnackbar('Share link Copied', 'success')
-	}, [])
+	}, [isMobile])
 	return (
 		<>
 			<LandingLayout>
