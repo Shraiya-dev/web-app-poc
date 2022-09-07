@@ -61,7 +61,7 @@ export const LoginForm = ({ ...props }) => {
 	return (
 		<form onSubmit={form.handleSubmit}>
 			<CustomLoginStyles>
-				<Stack spacing={1.5} width='100%' px={1.5} mb={'15px'}>
+				<Stack spacing={1.5} width='100%' px={1.06} mb={'15px'}>
 					{!!fromHome ? (
 						<Typography
 							variant='h1'
@@ -89,6 +89,14 @@ export const LoginForm = ({ ...props }) => {
 						</Typography>
 					)}
 
+					{!!isDiscoveryBooking ? (
+						<>
+							<BookingStepper />
+						</>
+					) : (
+						''
+					)}
+
 					<InputWrapper
 						label='Enter Phone Number'
 						sx={{
@@ -113,6 +121,9 @@ export const LoginForm = ({ ...props }) => {
 									overflow: 'hidden',
 								},
 							}}
+							// InputProps={{
+							// 	startAdornment: <InputAdornment position='start'>+91</InputAdornment>,
+							// }}
 							value={form.values.phoneNumber}
 							onChange={form.handleChange}
 						/>

@@ -63,11 +63,9 @@ export const Footer = () => {
 										variant='contained'
 										sx={{
 											fontSize: { md: '20px', xs: '14px' },
-											p: '14px 10px',
+											p: '14px 64px',
 											fontWeight: 500,
 											fontFamily: 'Karla ,sans-serif',
-											height: { md: '62px', xs: '40px' },
-											width: { md: '299px', xs: '200px' },
 										}}>
 										Book Workers Now
 									</LinkButton>
@@ -117,9 +115,10 @@ export const Footer = () => {
 								fontFamily={'Karla ,sans-serif'}
 								fontWeight={500}
 								fontSize={{ xs: '16px', md: '18px' }}>
-								Please feel free to reach out to our
-								<Box component={'br'} /> customer support from 9 Am-6 PM on <Box component={'br'} />
-								weekdays.
+								Our friendly customer support team is your <br /> extended family. Speak your heart out.
+								Give <br />
+								us a call or drop us an email, we&#39;re here to <br />
+								help.
 							</Typography>
 							{/* {isMobile && (
 						<Grid container direction={'row'} flexWrap={'wrap'}>
@@ -292,23 +291,19 @@ export const Footer = () => {
 							color={'#fff'}
 							fontFamily={'Saira ,sans-serif'}
 							fontWeight={500}
-							fontSize={{ xs: '24px', md: '32px' }}>
+							fontSize={{ xs: '16px', md: '32px' }}>
 							Have a question? Here to help.
 						</Typography>
-						<Box
-							sx={{
-								width: { xs: '100%', sm: '60%' },
-							}}>
-							<Typography
-								variant='h6'
-								color={'#fff'}
-								mt={2}
-								fontFamily={'Karla ,sans-serif'}
-								fontWeight={500}
-								fontSize={{ xs: '16px', md: '18px' }}>
-								Please feel free to reach out to our customer support from 9 Am-6 PM on weekdays.
-							</Typography>
-						</Box>
+						<Typography
+							variant='h6'
+							color={'#fff'}
+							mt={2}
+							fontFamily={'Karla ,sans-serif'}
+							fontWeight={500}
+							fontSize={{ xs: '16px', md: '18px' }}>
+							Our friendly customer support team is your extended family. Speak your heart out. Give us a
+							call or drop us an email, we&#39;re here to help.
+						</Typography>
 					</Stack>
 					<Stack mt={'46px'} direction={'column'} spacing={2}>
 						<Stack direction={'row'} alignItems={'center'} spacing={2}>

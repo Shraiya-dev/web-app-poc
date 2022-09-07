@@ -95,7 +95,7 @@ export const colors = {
 }
 let themeDef = createTheme({
 	typography: {
-		fontFamily: `'Saira', sans-serif`,
+		fontFamily: `'Mulish' , sans-serif`,
 		h1: {
 			fontSize: '36px',
 			fontWeight: 700,

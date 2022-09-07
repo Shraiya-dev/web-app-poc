@@ -3,9 +3,6 @@ import { GetStaticProps, NextPage } from 'next'
 import { LandingLayout } from 'sdk'
 import { staticRenderingProvider } from 'sdk/utils/nextHelper'
 
-const pageUrl = '/'
-export const getStaticProps: GetStaticProps = staticRenderingProvider(pageUrl).getStaticProps
-
 const HomePage: NextPage = () => {
 	return (
 		<>
@@ -17,3 +14,6 @@ const HomePage: NextPage = () => {
 }
 
 export default HomePage
+
+const pageUrl = '/'
+export const getStaticProps: GetStaticProps = staticRenderingProvider(pageUrl).getStaticProps

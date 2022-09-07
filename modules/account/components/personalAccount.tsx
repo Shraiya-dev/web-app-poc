@@ -1,7 +1,6 @@
-import { Logout } from '@mui/icons-material'
 import { Box, Button, Stack, styled, Typography } from '@mui/material'
 import { BottomLayout } from 'sdk/layouts/BottomLayout'
-import { primary, theme, useContractorAuth, useMobile } from '../../../sdk'
+import { primary, theme, useMobile } from '../../../sdk'
 import { CustomTopBar } from '../../../sdk/components/topBar/customTopBar'
 import usePersonalAccount from '../hooks/usePersonalAccount'
 import DisplayInfo from './displayInfo'
@@ -9,17 +8,15 @@ import EditInfo from './editInfo'
 
 const PersonalAccountStyle = styled(Box)(({ theme }) => ({
 	backgroundColor: theme.palette.background.default,
-	flex: 1,
 }))
 
 const PersonalAccount = () => {
 	const isMobile = useMobile()
-	const { logOut } = useContractorAuth()
 
 	const { handleEdit, isAccountEditable, setIsAccountEditable } = usePersonalAccount()
 
 	return (
-		<Stack minHeight={'calc(100vh - 100px )'}>
+		<>
 			<PersonalAccountStyle>
 				<CustomTopBar>
 					<Stack m={2}>
@@ -39,7 +36,6 @@ const PersonalAccount = () => {
 					<Box justifyContent={'flex-end'} display='flex' margin={1}>
 						{!isAccountEditable && (
 							<Button
-								size='small'
 								variant='outlined'
 								sx={{
 									padding: 1,
@@ -54,7 +50,7 @@ const PersonalAccount = () => {
 						)}
 					</Box>
 
-					<Stack flex={1}>
+					<Stack>
 						{isAccountEditable ? (
 							<Box
 								sx={{
@@ -78,19 +74,11 @@ const PersonalAccount = () => {
 					</Stack>
 				</Stack>
 			</PersonalAccountStyle>
-			<Button
-				variant='text'
-				onClick={logOut}
-				color='inherit'
-				sx={{ width: 'fit-content' }}
-				startIcon={<Logout />}>
-				Logout
-			</Button>
-
 			<Box sx={{ display: { xs: 'block', md: 'none' } }}>
+				{' '}
 				<BottomLayout />
 			</Box>
-		</Stack>
+		</>
 	)
 }
 

@@ -91,13 +91,13 @@ export const BookingCard = ({ booking }: BookingCardProps) => {
 	} = useMemo(() => {
 		//const { SUPERVISOR, HELPER, TECHNICIAN } = booking?.booking?.requirements
 
-		const helperCount = Number(booking?.booking?.peopleRequired?.HELPER ?? 0)
-		const technicianCount = Number(booking?.booking?.peopleRequired?.TECHNICIAN ?? 0)
-		const supervisorCount = Number(booking?.booking?.peopleRequired?.SUPERVISOR ?? 0)
+		const helperCount = booking?.booking?.peopleRequired?.HELPER ?? 0
+		const technicianCount = booking?.booking?.peopleRequired?.TECHNICIAN ?? 0
+		const supervisorCount = booking?.booking?.peopleRequired?.SUPERVISOR ?? 0
 		const total = helperCount + technicianCount + supervisorCount
-		const Technician = Number(booking?.stats?.jobCardCountsBySkill?.TECHNICIAN ?? 0)
-		const Helper = Number(booking?.stats?.jobCardCountsBySkill?.HELPER ?? 0)
-		const Supervisor = Number(booking?.stats?.jobCardCountsBySkill?.SUPERVISOR ?? 0)
+		const Technician = booking?.stats?.jobCardCountsBySkill?.TECHNICIAN ?? 0
+		const Helper = booking?.stats?.jobCardCountsBySkill?.HELPER ?? 0
+		const Supervisor = booking?.stats?.jobCardCountsBySkill?.SUPERVISOR ?? 0
 		const requiredTotal = Technician + Helper + Supervisor
 		return {
 			totalCount: total,
@@ -142,7 +142,7 @@ export const BookingCard = ({ booking }: BookingCardProps) => {
 							fontWeight={700}
 							fontFamily={'Saira,sans-serif'}
 							sx={{ verticalAlign: 'middle', margin: 1, color: primary.properDark }}>
-							{totalRequiredCount} {JobTypeLabel[booking?.booking?.jobType]} Applications
+							{totalCount} {JobTypeLabel[booking?.booking?.jobType]} Application
 						</Typography>
 					</Box>
 					{/* <StatusChip bookingState={booking?.booking?.status} sx={{ verticalAlign: 'middle' }} /> */}
@@ -185,55 +185,64 @@ export const BookingCard = ({ booking }: BookingCardProps) => {
 						</Typography>
 					)}
 				</Stack> */}
-				<Stack direction='row' flex={1} justifyContent='space-evenly'>
-					<Stack justifyContent={'space-between'} alignItems={'center'}>
-						<Typography
-							fontFamily={'Saira,sans-serif'}
-							fontWeight={600}
-							fontSize={16}
-							color={primary.properDark}>
-							{requiredHelper}
-						</Typography>
-						<Box>
-							<img src='/assets/landing/bookings/Helper.svg' alt='' />
-						</Box>
-						<Typography variant='body2' color={primary.properDark}>
-							Helper
-						</Typography>
-					</Stack>
-					<Stack justifyContent={'space-between'} alignItems={'center'}>
+				<Box>
+					<Stack direction={'row'} justifyContent={'space-between'} alignItems={'center'}>
+						<Stack direction={'row'} spacing={2} alignItems={'center'}>
+							<Box>
+								<img src='/assets/landing/bookings/Helper.svg' alt='' />
+							</Box>
+							<Typography variant='body2' color={primary.properDark}>
+								Helper
+							</Typography>
+						</Stack>
+
 						<Typography
 							fontFamily={'Saira,sans-serif'}
 							fontWeight={600}
 							mr={1}
 							fontSize={16}
 							color={primary.properDark}>
-							{requiredTechnician}
-						</Typography>
-						<Box>
-							<img src='/assets/landing/bookings/Technician.svg' alt='' />
-						</Box>
-						<Typography fontSize={13} color={primary.properDark}>
-							Technician
+							{requiredHelper} / {helperCount}
 						</Typography>
 					</Stack>
-					<Stack justifyContent={'space-between'} alignItems={'center'}>
+					<Stack direction={'row'} justifyContent={'space-between'} alignItems={'center'}>
+						<Stack direction={'row'} spacing={2} alignItems={'center'}>
+							<Box>
+								<img src='/assets/landing/bookings/Technician.svg' alt='' />
+							</Box>
+							<Typography fontSize={13} color={primary.properDark}>
+								Technician
+							</Typography>
+						</Stack>
+						<Typography
+							fontFamily={'Saira,sans-serif'}
+							fontWeight={600}
+							mr={1}
+							fontSize={16}
+							color={primary.properDark}>
+							{requiredTechnician} / {technicianCount}
+						</Typography>
+					</Stack>
+					<Stack direction={'row'} justifyContent={'space-between'} alignItems={'center'}>
+						<Stack direction={'row'} spacing={2} alignItems={'center'}>
+							<Box>
+								<img src='/assets/landing/bookings/Supervisor.svg' alt='' />
+							</Box>
+							<Typography fontSize={13} color={primary.properDark}>
+								Supervisor
+							</Typography>
+						</Stack>
+
 						<Typography
 							mr={1}
 							fontSize={16}
 							fontFamily={'Saira,sans-serif'}
 							fontWeight={600}
 							color={primary.properDark}>
-							{requiredSupervisor}
-						</Typography>
-						<Box>
-							<img src='/assets/landing/bookings/Supervisor.svg' alt='' />
-						</Box>
-						<Typography fontSize={13} color={primary.properDark}>
-							Supervisor
+							{requiredSupervisor} / {supervisorCount}
 						</Typography>
 					</Stack>
-				</Stack>
+				</Box>
 				{/* <Stack direction='row' flexWrap='wrap' mt={1}>
 					<Typography mr={1} className='vAlignCenter' variant='body2' width={'50ch'}>
 						<LocationOn fontSize='inherit' color='error' />

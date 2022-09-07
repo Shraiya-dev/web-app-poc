@@ -1,46 +1,46 @@
-import AdjustOutlinedIcon from '@mui/icons-material/AdjustOutlined'
-import CheckCircleIcon from '@mui/icons-material/CheckCircle'
-import RadioButtonUncheckedIcon from '@mui/icons-material/RadioButtonUnchecked'
 import { Stack, Step, StepLabel, Stepper } from '@mui/material'
+import React, { useEffect, useState } from 'react'
 import StepConnector, { stepConnectorClasses } from '@mui/material/StepConnector'
-import { StepIconProps } from '@mui/material/StepIcon'
 import { styled } from '@mui/material/styles'
+import { StepIconProps } from '@mui/material/StepIcon'
+import CheckCircleIcon from '@mui/icons-material/CheckCircle'
+import AdjustOutlinedIcon from '@mui/icons-material/AdjustOutlined'
+import RadioButtonUncheckedIcon from '@mui/icons-material/RadioButtonUnchecked'
 import { useRouter } from 'next/router'
 
-const StepperConnectorLine = styled(StepConnector)(({ theme }: any) => ({
+const QontoConnector = styled(StepConnector)(({ theme }) => ({
 	[`&.${stepConnectorClasses.alternativeLabel}`]: {
 		top: 10,
-		left: 'calc(-90% + 2px)',
-		right: 'calc(90% + 13px)',
+		left: 'calc(-50% + 8px)',
+		right: 'calc(50% + 8px)',
 	},
 	[`&.${stepConnectorClasses.active}`]: {
 		[`& .${stepConnectorClasses.line}`]: {
-			background: '#F2CF47',
+			borderColor: '#4db07f',
 		},
 	},
 	[`&.${stepConnectorClasses.completed}`]: {
 		[`& .${stepConnectorClasses.line}`]: {
-			background: '#F2CF47',
+			borderColor: '#4db07f',
 		},
 	},
 	[`& .${stepConnectorClasses.line}`]: {
-		background:
-			'linear-gradient(90deg, rgba(242,207,71,1) 0%, rgba(242,207,71,1) 40%, rgba(255,255,255,1) 40%, rgba(255,255,255,1) 100%)',
-		height: 3,
-		border: '0px solid transparent',
+		borderColor: theme.palette.mode === 'dark' ? theme.palette.grey[800] : '#4db07f',
+		borderTopWidth: 3,
+		borderRadius: 1,
 	},
 }))
 
-const StepperIcon = styled('div')<{ ownerState: { active?: boolean } }>(({ theme, ownerState }) => ({
-	color: '#F2CF47',
+const QontoStepIconRoot = styled('div')<{ ownerState: { active?: boolean } }>(({ theme, ownerState }) => ({
+	color: theme.palette.mode === 'dark' ? theme.palette.grey[700] : '#4db07f',
 	display: 'flex',
 	height: 22,
 	alignItems: 'center',
 	...(ownerState.active && {
-		color: '#F2CF47',
+		color: '#4db07f',
 	}),
 	'& .QontoStepIcon-completedIcon': {
-		color: '#F2CF47',
+		color: '#4db07f',
 		zIndex: 1,
 		fontSize: 20,
 	},
@@ -50,7 +50,7 @@ function QontoStepIcon(props: StepIconProps) {
 	const { active, completed, className } = props
 
 	return (
-		<StepperIcon ownerState={{ active }} className={className}>
+		<QontoStepIconRoot ownerState={{ active }} className={className}>
 			{completed ? (
 				<CheckCircleIcon className='QontoStepIcon-completedIcon' />
 			) : active ? (
@@ -58,48 +58,48 @@ function QontoStepIcon(props: StepIconProps) {
 			) : (
 				<RadioButtonUncheckedIcon className='QontoStepIcon-completedIcon' />
 			)}
-		</StepperIcon>
+		</QontoStepIconRoot>
 	)
 }
 
-const stepsName = ['1. Job Details', '2. Contact Details']
+const stepsName = ['Booking Details', 'Wage Details', 'Contact', 'Order Placed']
 
-const BookingStepper = ({ step }: { step: number }) => {
+const BookingStepper = () => {
 	const router = useRouter()
+	const [activeStepValue, setActiveStepValue] = useState<number>(0)
 	return (
-		<Stack maxWidth={300}>
-			<Stepper alternativeLabel activeStep={step} connector={<StepperConnectorLine />}>
-				{stepsName.map((label) => (
-					<Step sx={{ px: 0 }} key={label}>
-						<StepLabel
-							StepIconComponent={QontoStepIcon}
-							sx={{
-								alignItems: 'flex-start',
-								fontSize: '10px !important',
-								'& span': {
-									textAlign: 'left !important',
-									color: '#ffffff !important',
-								},
-								'& .MuiStepLabel-label': {
-									mt: '0 !important',
-									color: '#ffffff',
-									fontSize: '12px',
-									fontWeight: 400,
-									textAlign: 'left',
-								},
-								'& .MuiStep-root': {
-									p: '0 !important',
-								},
-								'& .MuiStep-horizontal': {
-									p: '0 !important',
-								},
-							}}>
-							{label}
-						</StepLabel>
-					</Step>
-				))}
-			</Stepper>
-		</Stack>
+		<div>
+			<Stack my={2}>
+				<Stepper
+					alternativeLabel
+					activeStep={Number(router?.query?.bookingFromStep ?? 0)}
+					connector={<QontoConnector />}>
+					{stepsName.map((label) => (
+						<Step key={label}>
+							<StepLabel
+								StepIconComponent={QontoStepIcon}
+								sx={{
+									fontSize: '10px !important',
+									'& .MuiStepLabel-label': {
+										mt: '0 !important',
+										color: '#000',
+										fontSize: '10px',
+										fontWeight: 400,
+									},
+									'& .MuiStep-root': {
+										p: '0 !important',
+									},
+									'& .MuiStep-horizontal': {
+										p: '0 !important',
+									},
+								}}>
+								{label}
+							</StepLabel>
+						</Step>
+					))}
+				</Stepper>
+			</Stack>
+		</div>
 	)
 }
 

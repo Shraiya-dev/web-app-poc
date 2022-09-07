@@ -38,6 +38,7 @@ import { CustomerDetails, CUSTOMER_STATUS, ONBOARDING_STATUS, USER_LOGIN_TYPE, U
 import { useSnackbar } from './SnackbarProvider'
 import { LoginForm } from 'modules/auth/login/components/LoginForm'
 import { OTPVerification } from 'modules/auth/otp/components/OtpVerification'
+import BookingStepper from 'sdkv2/components/EasyBookingStepper/BookingStepper'
 const LoadingUniqueString = 'loading...'
 interface AuthState {
 	user: null | CustomerDetails
@@ -119,8 +120,6 @@ const PublicPages = [
 	'/hero/plans',
 	'/KhulaManch',
 	'/how-it-works',
-	'/blog',
-	'/blog/[blogId]',
 ]
 interface ContractorAuthProviderProps {
 	authState?: AuthState
@@ -187,7 +186,6 @@ const ContractorAuthProvider: FC<ContractorAuthProviderProps> = ({ children, aut
 	const router = useRouter()
 	const { showSnackbar } = useSnackbar()
 	const [backdropProps, setBackdropProps] = useState({ open: false })
-	const [redirectingIn, setRedirectingIn] = useState(0)
 
 	const requestOtp = useCallback(
 		async (phoneNumber: string) => {
@@ -258,7 +256,6 @@ const ContractorAuthProvider: FC<ContractorAuthProviderProps> = ({ children, aut
 				isOrganisationMembershipDeleted: data?.payload?.linkedOrganisation?.isDeleted ? 'Yes' : '',
 				onboardingStatus: data?.payload?.onboardingStatus ?? ONBOARDING_STATUS.PROFILE_CREATION_PENDING,
 			})
-			return data
 		} catch (error: any) {
 			//todo show error in snackbar
 			console.log(error)
@@ -434,11 +431,6 @@ const ContractorAuthProvider: FC<ContractorAuthProviderProps> = ({ children, aut
 	}, [])
 	const createEasyBooking = useCallback(
 		async (bookingDetails) => {
-			if (state.user?.hasProjects) {
-				await router.replace(`/dashboard`, undefined, {})
-				return
-			}
-			let user
 			try {
 				setBackdropProps({ open: true })
 				const payload = {
@@ -465,28 +457,17 @@ const ContractorAuthProvider: FC<ContractorAuthProviderProps> = ({ children, aut
 							  }
 							: undefined,
 					},
-					bookingDuration: 'FORTY_FIVE_TO_NINETY',
+					bookingDuration: bookingDetails.workDuration,
 				}
 				const { data, status } = await axios.post('/gateway/customer-api/projects/bookings', payload)
 				deleteCookie('discoveryBooking')
-				user = await getContactorUserInfo()
-				setRedirectingIn(5)
-				const a = setTimeout(async () => {
-					await router.replace(`/bookings/${data.payload.projectId}/bookings`, undefined, {})
-					setBackdropProps({ open: false })
-				}, 5000)
+				await getContactorUserInfo()
+				router.replace(`/bookings/${data.payload.projectId}/${data.payload.bookingId}/checkout`, undefined, {})
 			} catch (error) {
-				if (user?.payload?.hasProjects) {
-					showSnackbar('You Already have booking, redirecting to dashboard', 'warning')
-
-					await router.replace(`/dashboard`, undefined, {})
-				}
 				showSnackbar('Failed to create easy booking', 'error')
-
-				setBackdropProps({ open: false })
 			}
 		},
-		[getContactorUserInfo, router, showSnackbar, state.user?.hasProjects]
+		[getContactorUserInfo, router, showSnackbar]
 	)
 
 	useEffect(() => {
@@ -501,40 +482,49 @@ const ContractorAuthProvider: FC<ContractorAuthProviderProps> = ({ children, aut
 					}
 				}
 
-				const redirectRoute = AccessMap[state.user.onboardingStatus]
-
-				if (state.user.onboardingStatus !== ONBOARDING_STATUS.ONBOARDED) {
-					if (router.pathname !== redirectRoute) {
-						router.replace(redirectRoute)
-					}
-					return
-				} else if (
-					router.pathname === '/create-organisation' &&
-					state.user.onboardingStatus === ONBOARDING_STATUS.ONBOARDED
-				) {
-					router.replace('/onboarding/success')
-					return
-				} else if (
-					router.pathname === '/onboarding/failed' &&
-					state.user.onboardingStatus === ONBOARDING_STATUS.ONBOARDED
-				) {
-					router.replace('/dashboard')
+				if (!state.user.hasProjects && discoveryBookingFromCookie()) {
+					createEasyBooking(discoveryBookingFromCookie())
 				} else {
-					if (!PublicPages.every((item) => router.pathname !== item)) {
-					} else if (
-						// restricts access to any other routes except the routes included in array
-						[
-							'/dashboard',
-							'/profile',
-							'/worker',
-							'/projects',
-							'/bookings',
-							'/account',
-							'/onboarding',
-						].every((item) => !router.pathname.includes(item))
-					) {
-						router.replace(redirectRoute)
+					if (discoveryBookingFromCookie()) {
+						deleteCookie('discoveryBooking')
+						showSnackbar('Please create a booking inside the project', 'warning')
+						router.push('/dashboard')
+					}
+					const redirectRoute = AccessMap[state.user.onboardingStatus]
+
+					if (state.user.onboardingStatus !== ONBOARDING_STATUS.ONBOARDED) {
+						if (router.pathname !== redirectRoute) {
+							router.replace(redirectRoute)
+						}
 						return
+					} else if (
+						router.pathname === '/create-organisation' &&
+						state.user.onboardingStatus === ONBOARDING_STATUS.ONBOARDED
+					) {
+						router.replace('/onboarding/success')
+						return
+					} else if (
+						router.pathname === '/onboarding/failed' &&
+						state.user.onboardingStatus === ONBOARDING_STATUS.ONBOARDED
+					) {
+						router.replace('/dashboard')
+					} else {
+						if (!PublicPages.every((item) => router.pathname !== item)) {
+						} else if (
+							// restricts access to any other routes except the routes included in array
+							[
+								'/dashboard',
+								'/profile',
+								'/worker',
+								'/projects',
+								'/bookings',
+								'/account',
+								'/onboarding',
+							].every((item) => !router.pathname.includes(item))
+						) {
+							router.replace(redirectRoute)
+							return
+						}
 					}
 				}
 			} catch (error) {
@@ -556,22 +546,6 @@ const ContractorAuthProvider: FC<ContractorAuthProviderProps> = ({ children, aut
 
 	const [isDialogOpen, setIsDialogOpen] = useState<boolean>(false)
 	const [isOtpSent, setIsOtpSent] = useState<boolean>(false)
-	useEffect(() => {
-		if (redirectingIn === 0) return
-		setRedirectingIn(5)
-		const interval = setInterval(() => {
-			setRedirectingIn((t) => {
-				if (t <= 0) {
-					return 0
-				}
-				return t - 1
-			})
-		}, 1000)
-
-		return () => {
-			clearInterval(interval)
-		}
-	}, [redirectingIn])
 
 	const openLoginDialog = useCallback(() => {
 		if (!state.user) setIsDialogOpen(!isDialogOpen)
@@ -625,30 +599,27 @@ const ContractorAuthProvider: FC<ContractorAuthProviderProps> = ({ children, aut
 			handleWhatsApp,
 		]
 	)
+
 	return (
 		<Provider value={authProviderValue}>
 			{children}
 
 			<Dialog
 				onClose={openLoginDialog}
-				fullWidth={true}
-				maxWidth={'xs'}
 				open={isDialogOpen}
 				sx={{
 					'& .MuiPaper-root': {
 						borderRadius: '16px',
-						width: { xs: '100%', md: '100%' },
 					},
 					margin: 'auto',
-					padding: '10px',
-					'& .MuiPaper-elevation': {
-						margin: { xs: '0px' },
-						padding: { xs: 0 },
-					},
+					paddingTop: '10px',
+					// '& .MuiDialog-paper': {
+					// 	width: { xs: '100%', md: '30%' },
+					// },
 				}}>
 				<DialogContent
 					sx={{
-						paddingX: { md: 4, xs: 0 },
+						paddingX: { md: 1, xs: 2 },
 					}}>
 					<Stack direction={'row'} justifyContent={'flex-start'}>
 						<IconButton onClick={openLoginDialog}>
@@ -680,21 +651,7 @@ const ContractorAuthProvider: FC<ContractorAuthProviderProps> = ({ children, aut
 			</Dialog>
 
 			<Backdrop {...backdropProps}>
-				{redirectingIn === 0 && <CircularProgress />}
-				<Dialog PaperProps={{ sx: { borderRadius: 3 } }} open={redirectingIn !== 0}>
-					<Stack p={2} py={3} spacing={2}>
-						<Typography color='#000000' variant='h2' textAlign={'center'}>
-							You have successfully posted your Job.
-						</Typography>
-						<Typography color='grey.A700' variant='body2' textAlign={'center'}>
-							You will start receiving Hero Applications in few minutes. Check your contractor dashboard
-							to get Hero&apos;s phone number.
-						</Typography>
-						<Typography color='grey.A700' variant='caption' textAlign={'center'}>
-							Redirecting to dashboard in 00:0{redirectingIn}
-						</Typography>
-					</Stack>
-				</Dialog>
+				<CircularProgress />
 			</Backdrop>
 		</Provider>
 	)

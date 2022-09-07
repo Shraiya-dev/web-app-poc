@@ -110,13 +110,7 @@ const ContractorDashboardLayout = ({ children }: any) => {
 					}}>
 					<Box width={APP_DRAWER_WIDTH} m={2}>
 						<Stack direction={'row'} alignItems={'center'} mb={8} spacing={12}>
-							<Box
-								sx={{ cursor: 'pointer' }}
-								onClick={() => {
-									router.push('/')
-								}}>
-								<Image alt='logo' src={logo} height={52} width={isMobile ? 100 : 162} />
-							</Box>
+							<Image alt='logo' src={logo} height={52} width={isMobile ? 100 : 162} />
 							{isMobile && (
 								<Button
 									color='primary'

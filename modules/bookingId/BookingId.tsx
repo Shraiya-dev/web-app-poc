@@ -63,7 +63,7 @@ export const BookingId = () => {
 								<Stack direction={'column'} spacing={1}>
 									<Stack direction={'column'}>
 										<Typography variant='h5' fontWeight={700} sx={{ verticalAlign: 'middle' }}>
-											{appliedWorkerCount ?? 0}{' '}
+											{appliedWorkerCount ?? 0} / {total}{' '}
 											{JobTypeLabel[bookingSummary?.booking?.jobType || 'GYPSUM']}
 										</Typography>
 										<Typography
@@ -77,7 +77,7 @@ export const BookingId = () => {
 										</Typography>
 									</Stack>
 
-									{/* <LinearProgress
+									<LinearProgress
 										color='error'
 										variant='determinate'
 										value={(appliedWorkerCount * 100) / total}
@@ -86,11 +86,11 @@ export const BookingId = () => {
 											borderRadius: '10px',
 											background: '#EBEBEB',
 										}}
-									/> */}
+									/>
 								</Stack>
 							</Stack>
 
-							{/* {!isMobile && bookingSummary?.booking?.bookingType === 'LIMITED_DISCOVERY' && (
+							{!isMobile && bookingSummary?.booking?.bookingType === 'LIMITED_DISCOVERY' && (
 								<Button
 									href={`/bookings/${router.query.projectId}/${router.query.bookingId}/checkout`}
 									onClick={() => {
@@ -105,7 +105,7 @@ export const BookingId = () => {
 									sx={{ fontSize: '14px', fontWeight: 800, fontFamily: 'Karla,sans-serif' }}>
 									+ Get More Application
 								</Button>
-							)} */}
+							)}
 							{/* <StatusChip
 								bookingState={bookingSummary?.booking?.status}
 								sx={{ verticalAlign: 'middle', marginTop: 1, marginLeft: 3 }}
@@ -126,7 +126,7 @@ export const BookingId = () => {
 			)}
 
 			<TabContext value={router.query.tab as string}>
-				{/* {isMobile && bookingSummary?.booking?.bookingType === 'LIMITED_DISCOVERY' && (
+				{isMobile && bookingSummary?.booking?.bookingType === 'LIMITED_DISCOVERY' && (
 					<Box pt={2} pl={2}>
 						<Button
 							href={`/bookings/${router.query.projectId}/${router.query.bookingId}/checkout`}
@@ -144,7 +144,7 @@ export const BookingId = () => {
 							+ Get More Application
 						</Button>
 					</Box>
-				)} */}
+				)}
 
 				<Box sx={{ borderBottom: 1, borderColor: 'divider', margin: 3, marginBottom: 0, marginTop: 3 }}>
 					<Tabs
@@ -201,7 +201,8 @@ export const BookingId = () => {
 				<TabPanel
 					value='track-workers'
 					sx={{
-						maxHeight: { xs: 'calc( 100vh - 205px )', md: '' },
+						maxHeight: { xs: 'calc( 100vh - 260px )', md: '' },
+						minHeight: { xs: 'calc( 100vh - 260px )', md: '' },
 						overflowY: 'auto',
 						p: 2,
 						position: 'relative',

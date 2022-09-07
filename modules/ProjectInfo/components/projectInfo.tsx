@@ -88,12 +88,11 @@ const ProjectInfo = ({ setProjectName }: any) => {
 				</Stack>
 			) : !isEditable ? (
 				<Box mb={0}>
-					<Stack direction={'row'} justifyContent='space-between' alignItems='center'>
+					<Stack direction={'row'} justifyContent='space-between'>
 						<Typography fontWeight={700} fontSize={24} pb={2}>
 							Site
 						</Typography>
 						<Button
-							size='small'
 							variant='contained'
 							onClick={() => {
 								// router.push({

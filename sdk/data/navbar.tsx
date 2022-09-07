@@ -5,7 +5,7 @@ import DashboardRoundedIcon from '@mui/icons-material/DashboardRounded'
 interface Navbar {
 	brandImage: string
 	navLinks: {
-		type: 'button_link' | 'primary_button' | 'support_menu' | 'scroll_link' | 'text_link'
+		type: 'button_link' | 'primary_button' | 'support_menu' | 'scroll_link'
 		label: string
 		icon?: ReactNode
 		link?: string
@@ -17,39 +17,22 @@ export const navbar: Navbar = {
 
 	navLinks: [
 		{
-			type: 'text_link',
-			label: 'Home',
-			link: '/',
-		},
-		{
-			type: 'text_link',
-			label: 'How it works?',
-			link: '/how-it-works',
-		},
-		// {
-		// 	type: 'text_link',
-		// 	label: 'About us',
-		// 	link: '/about-us',
-		// },
-		{
-			type: 'text_link',
-			label: 'Blogs',
-			link: '/blog',
-		},
-		{
 			type: 'button_link',
 			label: '+91-9151003513',
 			icon: <img src={'/assets/landingv2/phone.svg'} />,
 			link: 'tel:+91-9151003513',
 		},
-
+		{
+			type: 'scroll_link',
+			label: 'How it works?',
+			link: '/#how-it-works',
+		},
 		{
 			type: 'button_link',
 			label: 'Login',
 			icon: <img src={'/assets/landingv2/user.svg'} />,
 			link: '/',
 		},
-
 		{
 			type: 'button_link',
 			label: 'Dashboard',
