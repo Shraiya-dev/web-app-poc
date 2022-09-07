@@ -19,7 +19,7 @@ const PersonalAccount = () => {
 	const { handleEdit, isAccountEditable, setIsAccountEditable } = usePersonalAccount()
 
 	return (
-		<Stack minHeight={'calc(100vh - 100px )'}>
+		<Stack height={'80vh'}>
 			<PersonalAccountStyle>
 				<CustomTopBar>
 					<Stack m={2}>
@@ -78,18 +78,23 @@ const PersonalAccount = () => {
 					</Stack>
 				</Stack>
 			</PersonalAccountStyle>
+
 			<Button
+				sx={{
+					position: 'fixed',
+					bottom: 60,
+					width: 'fit-content',
+
+					left: 0,
+					right: 0,
+				}}
 				variant='text'
 				onClick={logOut}
 				color='inherit'
-				sx={{ width: 'fit-content' }}
 				startIcon={<Logout />}>
 				Logout
 			</Button>
-
-			<Box sx={{ display: { xs: 'block', md: 'none' } }}>
-				<BottomLayout />
-			</Box>
+			<BottomLayout />
 		</Stack>
 	)
 }

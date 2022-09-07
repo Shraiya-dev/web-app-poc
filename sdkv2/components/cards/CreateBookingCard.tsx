@@ -18,7 +18,6 @@ import {
 	useMediaQuery,
 	useTheme,
 } from '@mui/material'
-import { add, sub } from 'date-fns'
 import { useFormik } from 'formik'
 import React, { FC, useEffect, useState } from 'react'
 import OtpInput from 'react-otp-input'
@@ -76,10 +75,11 @@ export const CreateBookingCard: FC<Props> = () => {
 	})
 	const loginFormikProps = useFormikProps(loginForm)
 	const { showSnackbar } = useSnackbar()
-
 	return (
 		<>
-			<Card elevation={16} sx={{ flex: 1, display: 'flex', flexDirection: 'column', minHeight: 550 }}>
+			<Card
+				elevation={16}
+				sx={{ flex: 1, display: 'flex', flexDirection: 'column', minHeight: !user?.hasProjects ? 550 : 0 }}>
 				<>
 					<Stack>
 						<Stack p={2} sx={{ backgroundColor: '#000000' }}>
@@ -220,7 +220,7 @@ export const CreateBookingCard: FC<Props> = () => {
 														<TextField
 															disabled={!form.values.isHelper}
 															sx={{
-																maxWidth: { xs: '50%', md: 200 },
+																maxWidth: { xs: '40%', md: 200 },
 																'input::-webkit-input-placeholder': {
 																	fontSize: { xs: '12px', md: '16px' },
 																},
@@ -465,6 +465,7 @@ export const CreateBookingCard: FC<Props> = () => {
 										<Stack flex={1} width='100%' spacing={1}>
 											<InputWrapper fullWidth label='Enter Phone Number'>
 												<PhoneField
+													autoFocus
 													fullWidth
 													disabled={otp.edit}
 													{...loginFormikProps('phoneNumber')}
@@ -551,7 +552,6 @@ export const CreateBookingCard: FC<Props> = () => {
 														focusStyle={{
 															outline: '1px solid #EFC41A !important',
 														}}
-														shouldAutoFocus={true}
 														isInputNum={true}
 														hasErrored={otp.error}
 														errorStyle={{ border: '1px solid #F70000' }}
