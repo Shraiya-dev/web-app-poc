@@ -152,6 +152,11 @@ const EventTypes = {
 	filters: 'Filter',
 	heroApplicationsStatus: 'Hero Applications Status',
 	whatsAppOptIn: 'WhatsApp opt-in',
+	goToDashboard: 'Go to Dashboard',
+	postedJob: 'Posted Job',
+	postJobNotFormFill: 'Post Job Now Form Fill',
+	sendOtp: 'Send OTP',
+	otpVerification: 'OTP Verification ',
 }
 
 //Define a new action type here if needed

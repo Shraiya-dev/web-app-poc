@@ -15,7 +15,7 @@ import {
 import axios from 'axios'
 import { useRouter } from 'next/router'
 import { createContext, FC, useCallback, useContext, useEffect, useMemo, useReducer, useState } from 'react'
-import { Identify } from '../analytics/analyticsWrapper'
+import { Identify, sendAnalytics } from '../analytics/analyticsWrapper'
 import { createCookieInHour, deleteCookie, getCookie } from '../analytics/helper'
 import StepConnector, { stepConnectorClasses } from '@mui/material/StepConnector'
 import { styled } from '@mui/material/styles'
@@ -467,18 +467,32 @@ const ContractorAuthProvider: FC<ContractorAuthProviderProps> = ({ children, aut
 				deleteCookie('discoveryBooking')
 				user = await getContactorUserInfo()
 				setRedirectingIn(5)
+				sendAnalytics({
+					name: 'postedJob',
+					action: 'ButtonClick',
+					metaData: {
+						success: true,
+					},
+				})
 				const a = setTimeout(async () => {
 					await router.replace(`/bookings/${data.payload.projectId}/bookings`, undefined, {})
 					setBackdropProps({ open: false })
 				}, 5000)
 			} catch (error) {
 				if (user?.payload?.hasProjects) {
-					showSnackbar('You Already have booking, redirecting to dashboard', 'warning')
+					showSnackbar('You Already have Job Posted, redirecting to dashboard', 'warning')
 
 					await router.replace(`/dashboard`, undefined, {})
+					return
 				}
-				showSnackbar('Failed to create easy booking', 'error')
-
+				sendAnalytics({
+					name: 'postedJob',
+					action: 'ButtonClick',
+					metaData: {
+						success: false,
+					},
+				})
+				showSnackbar('Failed to your job', 'error')
 				setBackdropProps({ open: false })
 			}
 		},

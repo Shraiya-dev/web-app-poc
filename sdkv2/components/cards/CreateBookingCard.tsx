@@ -22,6 +22,7 @@ import { useFormik } from 'formik'
 import React, { FC, useEffect, useState } from 'react'
 import OtpInput from 'react-otp-input'
 import { ListChildComponentProps, VariableSizeList } from 'react-window'
+import { sendAnalytics } from 'sdk/analytics'
 import { LinkButton, PhoneField } from 'sdk/components'
 import { allCityList, primary } from 'sdk/constants'
 import { useFormikProps } from 'sdk/hooks'
@@ -130,8 +131,18 @@ export const CreateBookingCard: FC<Props> = () => {
 										have applied to your job posting.
 									</Typography>
 								</Stack>
-								<LinkButton fullWidth href='/dashboard'>
-									{' '}
+								<LinkButton
+									fullWidth
+									href='/dashboard'
+									onClick={() => {
+										sendAnalytics({
+											name: 'goToDashboard',
+											action: 'ButtonClick',
+											metaData: {
+												origin: 'overlay',
+											},
+										})
+									}}>
 									Go to Dashboard
 								</LinkButton>
 							</Stack>
@@ -447,6 +458,15 @@ export const CreateBookingCard: FC<Props> = () => {
 											<Button
 												onClick={() => {
 													setStep(1)
+													sendAnalytics({
+														name: 'postJobNotFormFill',
+														action: 'ButtonClick',
+														metaData: {
+															values: {
+																...form.values,
+															},
+														},
+													})
 												}}
 												disabled={
 													!form.isValid ||
@@ -500,7 +520,13 @@ export const CreateBookingCard: FC<Props> = () => {
 																				sending: true,
 																				reSent: false,
 																			}))
-
+																			sendAnalytics({
+																				name: 'sendOtp',
+																				action: 'ButtonClick',
+																				metaData: {
+																					reSent: true,
+																				},
+																			})
 																			const { status, data } = await requestOtp(
 																				'+91' + loginForm.values.phoneNumber
 																			)
@@ -571,7 +597,13 @@ export const CreateBookingCard: FC<Props> = () => {
 														size='small'
 														onClick={async () => {
 															setOtp((p) => ({ ...p, sending: true, reSent: false }))
-
+															sendAnalytics({
+																name: 'sendOtp',
+																action: 'ButtonClick',
+																metaData: {
+																	reSent: true,
+																},
+															})
 															const { status, data } = await requestOtp(
 																'+91' + loginForm.values.phoneNumber
 															)
@@ -624,8 +656,22 @@ export const CreateBookingCard: FC<Props> = () => {
 																otp: '',
 																error: true,
 															}))
+															sendAnalytics({
+																name: 'otpVerification',
+																action: 'ButtonClick',
+																metaData: {
+																	success: false,
+																},
+															})
 															return
 														}
+														sendAnalytics({
+															name: 'otpVerification',
+															action: 'ButtonClick',
+															metaData: {
+																success: true,
+															},
+														})
 														await createEasyBooking({
 															...form.values,
 															jobType: form.values.jobType,
