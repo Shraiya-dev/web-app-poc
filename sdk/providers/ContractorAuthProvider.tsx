@@ -482,7 +482,7 @@ const ContractorAuthProvider: FC<ContractorAuthProviderProps> = ({ children, aut
 					await router.replace(`/projects/${data?.payload?.projectId}/bookings`, undefined, {})
 					setBackdropProps({ open: false })
 					setStartRedirecting(false)
-				}, 5000)
+				}, 3000)
 			} catch (error) {
 				sendAnalytics({
 					name: 'postedJob',
@@ -567,7 +567,7 @@ const ContractorAuthProvider: FC<ContractorAuthProviderProps> = ({ children, aut
 	const [isOtpSent, setIsOtpSent] = useState<boolean>(false)
 	const [startRedirecting, setStartRedirecting] = useState(false)
 	useEffect(() => {
-		if (redirectingIn === 0) return
+		if (!startRedirecting) return
 		setRedirectingIn(5)
 		const interval = setInterval(() => {
 			setRedirectingIn((t) => {
@@ -690,8 +690,8 @@ const ContractorAuthProvider: FC<ContractorAuthProviderProps> = ({ children, aut
 			</Dialog>
 
 			<Backdrop {...backdropProps}>
-				{redirectingIn === 0 && <CircularProgress />}
-				<Dialog PaperProps={{ sx: { borderRadius: 3 } }} open={redirectingIn !== 0}>
+				{startRedirecting && <CircularProgress />}
+				<Dialog PaperProps={{ sx: { borderRadius: 3 } }} open={startRedirecting}>
 					<Stack p={2} py={3} spacing={2}>
 						<Typography color='#000000' variant='h2' textAlign={'center'}>
 							You have successfully posted your Job.
