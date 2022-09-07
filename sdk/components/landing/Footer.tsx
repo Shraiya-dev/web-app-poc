@@ -53,7 +53,7 @@ export const Footer = () => {
 										onClick={() => {
 											DataLayerPush({ event: 'book_hero_home_footer' })
 											sendAnalytics({
-												name: 'EasyBookWorker',
+												name: 'postJobNow',
 												action: 'ButtonClick',
 												metaData: {
 													origin: 'Footer',
@@ -268,9 +268,9 @@ export const Footer = () => {
 						<LinkButton
 							href='/#book-worker'
 							onClick={() => {
-								DataLayerPush({ event: 'book_hero_home_footer' })
+								DataLayerPush({ event: 'book_workers_now_footer' })
 								sendAnalytics({
-									name: 'EasyBookWorker',
+									name: 'postJobNow',
 									action: 'ButtonClick',
 									metaData: {
 										origin: 'Footer',
@@ -280,7 +280,7 @@ export const Footer = () => {
 							variant='contained'
 							sx={{
 								fontSize: { md: '20px', xs: '14px' },
-								p: '14px 64px',
+								p: '8px 40px',
 								fontWeight: 500,
 								fontFamily: 'Karla ,sans-serif',
 							}}>

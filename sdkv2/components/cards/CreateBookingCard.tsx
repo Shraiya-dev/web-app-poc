@@ -18,11 +18,11 @@ import {
 	useMediaQuery,
 	useTheme,
 } from '@mui/material'
-import { add, sub } from 'date-fns'
 import { useFormik } from 'formik'
 import React, { FC, useEffect, useState } from 'react'
 import OtpInput from 'react-otp-input'
 import { ListChildComponentProps, VariableSizeList } from 'react-window'
+import { DataLayerPush, sendAnalytics } from 'sdk/analytics'
 import { LinkButton, PhoneField } from 'sdk/components'
 import { allCityList, primary } from 'sdk/constants'
 import { useFormikProps } from 'sdk/hooks'
@@ -76,10 +76,11 @@ export const CreateBookingCard: FC<Props> = () => {
 	})
 	const loginFormikProps = useFormikProps(loginForm)
 	const { showSnackbar } = useSnackbar()
-
 	return (
 		<>
-			<Card elevation={16} sx={{ flex: 1, display: 'flex', flexDirection: 'column', minHeight: 550 }}>
+			<Card
+				elevation={16}
+				sx={{ flex: 1, display: 'flex', flexDirection: 'column', minHeight: !user?.hasProjects ? 550 : 0 }}>
 				<>
 					<Stack>
 						<Stack p={2} sx={{ backgroundColor: '#000000' }}>
@@ -109,7 +110,7 @@ export const CreateBookingCard: FC<Props> = () => {
 										<Typography variant='inherit' component='span' color='primary.main'>
 											Job Post Karen
 										</Typography>{' '}
-										aur workers ka number payen !
+										aur workers ka number payen!
 									</Typography>
 									<BookingStepper step={step} />
 								</>
@@ -130,8 +131,18 @@ export const CreateBookingCard: FC<Props> = () => {
 										have applied to your job posting.
 									</Typography>
 								</Stack>
-								<LinkButton fullWidth href='/dashboard'>
-									{' '}
+								<LinkButton
+									fullWidth
+									href='/dashboard'
+									onClick={() => {
+										sendAnalytics({
+											name: 'goToDashboard',
+											action: 'ButtonClick',
+											metaData: {
+												origin: 'overlay',
+											},
+										})
+									}}>
 									Go to Dashboard
 								</LinkButton>
 							</Stack>
@@ -164,12 +175,6 @@ export const CreateBookingCard: FC<Props> = () => {
 												disableListWrap
 												ListboxComponent={ListboxComponent}
 												options={allCityList}
-												getOptionLabel={(options) => options.label}
-												isOptionEqualToValue={(opt, v) => v.value === opt?.value}
-												value={{
-													label: capitalize(form.values.location ?? ''),
-													value: form.values.location ?? '',
-												}}
 												onChange={(e, v) => {
 													form.setFieldValue('location', v?.value)
 												}}
@@ -178,10 +183,10 @@ export const CreateBookingCard: FC<Props> = () => {
 												}
 												renderInput={(params) => (
 													<TextField
-														{...params}
 														error={formikProps('location').error}
 														helperText={formikProps('location').helperText}
-														placeholder='Site Location'
+														placeholder='Select Location'
+														{...params}
 													/>
 												)}
 												renderOption={(props, option) =>
@@ -202,7 +207,7 @@ export const CreateBookingCard: FC<Props> = () => {
 												</Typography>
 											</Stack>
 
-											<Stack direction='row' width='100%' alignItems='center'>
+											<Stack direction='row' width='100%' minHeight={56} alignItems='center'>
 												{form.values.isHelper ? (
 													<>
 														<Typography
@@ -218,9 +223,10 @@ export const CreateBookingCard: FC<Props> = () => {
 															)}
 														</Typography>
 														<TextField
+															autoFocus
 															disabled={!form.values.isHelper}
 															sx={{
-																maxWidth: { xs: '50%', md: 200 },
+																maxWidth: { xs: '40%', md: 200 },
 																'input::-webkit-input-placeholder': {
 																	fontSize: { xs: '12px', md: '16px' },
 																},
@@ -284,7 +290,7 @@ export const CreateBookingCard: FC<Props> = () => {
 													</Button>
 												)}
 											</Stack>
-											<Stack direction='row' width='100%' alignItems='center'>
+											<Stack direction='row' width='100%' minHeight={56} alignItems='center'>
 												{form.values.isTechnician ? (
 													<>
 														<Typography
@@ -298,9 +304,10 @@ export const CreateBookingCard: FC<Props> = () => {
 															</FormHelperText>
 														</Typography>
 														<TextField
+															autoFocus
 															disabled={!form.values.isTechnician}
 															sx={{
-																maxWidth: { xs: '50%', md: 200 },
+																maxWidth: { xs: '40%', md: 200 },
 																'input::-webkit-input-placeholder': {
 																	fontSize: { xs: '12px', md: '16px' },
 																},
@@ -364,7 +371,7 @@ export const CreateBookingCard: FC<Props> = () => {
 													</Button>
 												)}
 											</Stack>
-											<Stack direction='row' width='100%' alignItems='center'>
+											<Stack direction='row' width='100%' minHeight={56} alignItems='center'>
 												{form.values.isSupervisor ? (
 													<>
 														<Typography
@@ -378,9 +385,10 @@ export const CreateBookingCard: FC<Props> = () => {
 															</FormHelperText>
 														</Typography>
 														<TextField
+															autoFocus
 															disabled={!form.values.isSupervisor}
 															sx={{
-																maxWidth: { xs: '50%', md: 200 },
+																maxWidth: { xs: '40%', md: 200 },
 																'input::-webkit-input-placeholder': {
 																	fontSize: { xs: '12px', md: '16px' },
 																},
@@ -447,6 +455,29 @@ export const CreateBookingCard: FC<Props> = () => {
 											<Button
 												onClick={() => {
 													setStep(1)
+													sendAnalytics({
+														name: 'postJobNotFormFill',
+														action: 'ButtonClick',
+														metaData: {
+															values: {
+																...form.values,
+															},
+														},
+													})
+													DataLayerPush({
+														event: 'basic_info',
+														location_name: form.values.location,
+														job_category: form.values.jobType,
+														helper_wages: form.values.isHelper
+															? form.values.helperWage
+															: undefined,
+														technician_wages: form.values.isTechnician
+															? form.values.technicianWage
+															: undefined,
+														Supervisor_wages: form.values.isSupervisor
+															? form.values.supervisorWage
+															: undefined,
+													})
 												}}
 												disabled={
 													!form.isValid ||
@@ -465,6 +496,7 @@ export const CreateBookingCard: FC<Props> = () => {
 										<Stack flex={1} width='100%' spacing={1}>
 											<InputWrapper fullWidth label='Enter Phone Number'>
 												<PhoneField
+													autoFocus
 													fullWidth
 													disabled={otp.edit}
 													{...loginFormikProps('phoneNumber')}
@@ -488,18 +520,31 @@ export const CreateBookingCard: FC<Props> = () => {
 																	<LoadingButton
 																		loading={otp.sending}
 																		color='success'
+																		variant='contained'
 																		disabled={
 																			loginFormikProps('phoneNumber').error ||
-																			loginFormikProps('phoneNumber').value === ''
+																			loginFormikProps('phoneNumber').value ===
+																				'' ||
+																			loginFormikProps('phoneNumber').value
+																				.length !== 10
 																		}
-																		variant='text'
 																		onClick={async () => {
 																			setOtp((p) => ({
 																				...p,
 																				sending: true,
 																				reSent: false,
 																			}))
-
+																			sendAnalytics({
+																				name: 'sendOtp',
+																				action: 'ButtonClick',
+																				metaData: {
+																					reSent: true,
+																				},
+																			})
+																			DataLayerPush({
+																				event: 'Discovery_request_otp',
+																				Phone: loginForm.values.phoneNumber,
+																			})
 																			const { status, data } = await requestOtp(
 																				'+91' + loginForm.values.phoneNumber
 																			)
@@ -524,9 +569,8 @@ export const CreateBookingCard: FC<Props> = () => {
 																				sending: false,
 																				otp: '',
 																			}))
-																		}}
-																		sx={{ color: 'success.dark' }}>
-																		Send Otp
+																		}}>
+																		Send OTP
 																	</LoadingButton>
 																)}
 															</InputAdornment>
@@ -540,7 +584,7 @@ export const CreateBookingCard: FC<Props> = () => {
 														value={otp.otp}
 														onChange={(otp: any) => setOtp((p) => ({ ...p, otp: otp }))}
 														numInputs={6}
-														isDisabled={!otp.edit}
+														// isDisabled={!otp.edit}
 														inputStyle={{
 															borderRadius: '8px',
 															width: 48,
@@ -552,7 +596,6 @@ export const CreateBookingCard: FC<Props> = () => {
 														focusStyle={{
 															outline: '1px solid #EFC41A !important',
 														}}
-														shouldAutoFocus={true}
 														isInputNum={true}
 														hasErrored={otp.error}
 														errorStyle={{ border: '1px solid #F70000' }}
@@ -571,8 +614,19 @@ export const CreateBookingCard: FC<Props> = () => {
 														variant='text'
 														size='small'
 														onClick={async () => {
-															setOtp((p) => ({ ...p, sending: true, reSent: false }))
-
+															setOtp((p) => ({
+																...p,
+																sending: true,
+																otp: '',
+																reSent: false,
+															}))
+															sendAnalytics({
+																name: 'sendOtp',
+																action: 'ButtonClick',
+																metaData: {
+																	reSent: true,
+																},
+															})
 															const { status, data } = await requestOtp(
 																'+91' + loginForm.values.phoneNumber
 															)
@@ -600,7 +654,7 @@ export const CreateBookingCard: FC<Props> = () => {
 															value={otp.isWhatsAppOptIn}
 														/>
 													}
-													label='Send me whatsapp updates'
+													label='Send me WhatsApp updates'
 													sx={{
 														'& .MuiTypography-root': {
 															color: primary.properDark,
@@ -625,8 +679,35 @@ export const CreateBookingCard: FC<Props> = () => {
 																otp: '',
 																error: true,
 															}))
+															sendAnalytics({
+																name: 'otpVerification',
+																action: 'ButtonClick',
+																metaData: {
+																	success: false,
+																},
+															})
 															return
 														}
+														DataLayerPush({
+															event: 'discovery_otp_verification',
+														})
+														if (otp.isWhatsAppOptIn) {
+															sendAnalytics({
+																name: 'whatsAppOptIn',
+																action: 'ButtonClick',
+																metaData: {
+																	phoneNumber: loginForm.values.phoneNumber,
+																},
+															})
+														}
+
+														sendAnalytics({
+															name: 'otpVerification',
+															action: 'ButtonClick',
+															metaData: {
+																success: true,
+															},
+														})
 														await createEasyBooking({
 															...form.values,
 															jobType: form.values.jobType,

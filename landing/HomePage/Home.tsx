@@ -104,6 +104,15 @@ export const Home = () => {
 					</IconButton>
 					<Paper
 						elevation={0}
+						onClick={() => {
+							sendAnalytics({
+								name: 'videoPlay',
+								action: 'ButtonClick',
+								metaData: {
+									origin: 'Home',
+								},
+							})
+						}}
 						sx={{
 							background: '#fcfcfc',
 							borderRadius: '10px',
@@ -155,11 +164,20 @@ export const Home = () => {
 						? 'linear-gradient(180deg, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0.05) 100px, rgba(255,255,255,1) 100px, rgba(255,255,255,1) 100%)'
 						: undefined,
 				}}
-				sx={{ p: 2 }}>
+				sx={{ p: 2, pb: 3 }}>
 				<Grid container spacing={2}>
 					<Grid item xs={12} md={8.5} display={{ xs: 'none', md: 'flex' }}>
 						<Stack flex={1} spacing={3}>
 							<Paper
+								onClick={() => {
+									sendAnalytics({
+										name: 'videoPlay',
+										action: 'ButtonClick',
+										metaData: {
+											origin: 'Home',
+										},
+									})
+								}}
 								elevation={0}
 								sx={{
 									background: '#fcfcfc',
@@ -221,7 +239,8 @@ export const Home = () => {
 											justifyContent: 'space-evenly',
 											'.dot': {
 												borderRadius: '50%',
-												width: 5,
+												width: '8px',
+												p: 0,
 												aspectRatio: '1 / 1',
 												border: '0px solid transparent',
 												backgroundColor: 'grey.A200',
@@ -320,15 +339,16 @@ export const Home = () => {
 						<CreateBookingCard />
 					</Grid>
 					{isMobile && (
-						<Grid item xs={12} display={{ xs: 'flex', md: 'none' }} alignItems='center' gap={2}>
+						<Grid item xs={12} display={{ xs: 'flex', md: 'none' }} alignItems='center' gap={1}>
 							<Stack
 								spacing={1}
 								sx={{
 									justifyContent: 'space-evenly',
 									'.dot': {
 										borderRadius: '50%',
-										width: 5,
 										aspectRatio: '1 / 1',
+										width: '8px',
+										p: 0,
 										border: '0px solid transparent',
 										backgroundColor: 'grey.A200',
 									},
@@ -426,14 +446,14 @@ export const Home = () => {
 							fontSize={{ md: '32px', xs: '24px' }}>
 							Job Categories{' '}
 						</Typography>
-						and Book Workers{' '}
+						Post your job for{' '}
 						<Typography
 							variant='h2'
 							color='primary'
 							display='inline'
 							fontWeight={600}
 							fontSize={{ md: '32px', xs: '24px' }}>
-							in a minute
+							Free
 						</Typography>
 					</Typography>
 				</Stack>
@@ -522,9 +542,9 @@ export const Home = () => {
 							sx={homePage.howItWorksSection.buttonSx}
 							href={homePage.howItWorksSection.buttonText.link}
 							onClick={() => {
-								DataLayerPush({ event: 'discovery_book_worker', origin: 'how_it_works_section' })
+								DataLayerPush({ event: 'book_workers_now_top' })
 								sendAnalytics({
-									name: 'EasyBookWorker',
+									name: 'postJobNow',
 									action: 'ButtonClick',
 									metaData: {
 										origin: 'How it Works section',
@@ -580,11 +600,10 @@ export const Home = () => {
 										href={homePage.howItWorksSection.buttonText.link}
 										onClick={() => {
 											DataLayerPush({
-												event: 'discovery_book_worker',
-												origin: 'why_you_should_hire_section',
+												event: 'book_workers_now_middle',
 											})
 											sendAnalytics({
-												name: 'EasyBookWorker',
+												name: 'postJobNow',
 												action: 'ButtonClick',
 												metaData: {
 													origin: 'why You Should Hire section',
@@ -667,7 +686,7 @@ export const Home = () => {
 				}}>
 				<Box
 					sx={{
-						p: '46px 0px',
+						p: { xs: '20px 0px', md: '46px 0px' },
 						overflowX: 'hidden',
 					}}>
 					<Grid container spacing={8}>
@@ -689,11 +708,10 @@ export const Home = () => {
 										// href='/login'
 										onClick={() => {
 											DataLayerPush({
-												event: 'discovery_book_worker',
-												origin: 'hero_advantage_section',
+												event: 'book_workers_now_bottom',
 											})
 											sendAnalytics({
-												name: 'EasyBookWorker',
+												name: 'postJobNow',
 												action: 'ButtonClick',
 												metaData: {
 													origin: 'Hero Advantage section',

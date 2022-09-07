@@ -137,7 +137,9 @@ export const NewAnalyticsPage = (router: NextRouter) => {
 //Define a new event here
 const EventTypes = {
 	BookWorker: 'Book Worker',
-	EasyBookWorker: 'Easy Book Worker',
+	EasyBookWorker: 'Post Job Now',
+	postJobNow: 'Post Job Now',
+
 	CreateEasyBookWorker: 'Create Easy Book Worker',
 	heroAppPlayStore: 'Open HeroApp Play Store',
 	howItWorks: 'How It Works',
@@ -152,6 +154,12 @@ const EventTypes = {
 	filters: 'Filter',
 	heroApplicationsStatus: 'Hero Applications Status',
 	whatsAppOptIn: 'WhatsApp opt-in',
+	goToDashboard: 'Go to Dashboard',
+	postedJob: 'Posted Job',
+	postJobNotFormFill: 'Post Job Now Form Fill',
+	sendOtp: 'Send OTP',
+	otpVerification: 'OTP Verification',
+	videoPlay: 'Video Play',
 }
 
 //Define a new action type here if needed

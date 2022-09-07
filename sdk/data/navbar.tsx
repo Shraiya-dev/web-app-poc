@@ -33,7 +33,7 @@ export const navbar: Navbar = {
 		// },
 		{
 			type: 'text_link',
-			label: 'Blogs',
+			label: 'Blog',
 			link: '/blog',
 		},
 		{

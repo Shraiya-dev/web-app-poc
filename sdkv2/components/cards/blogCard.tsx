@@ -1,29 +1,17 @@
-import {
-	Box,
-	Button,
-	Card,
-	CardActions,
-	CardContent,
-	CardMedia,
-	Grid,
-	IconButton,
-	Paper,
-	Stack,
-	Typography,
-} from '@mui/material'
-import { FC, useEffect, useState } from 'react'
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp'
-import { theme } from 'sdk/constants'
-import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
+import { Box, Button, Card, CardActions, CardContent, CardMedia, Grid, Stack, Typography } from '@mui/material'
+import { FC, useCallback, useState } from 'react'
+// import { useLocation } from 'react-router-dom'
 import ShareIcon from '@mui/icons-material/Share'
-import { Carousel, CarouselV2, LinkButton, Section } from 'sdk/components'
-import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord'
+import { Carousel, LinkButton, Section } from 'sdk/components'
 import { useMobile } from 'sdk/hooks'
 
-import { blogData } from 'sdk/data/blogData'
 import { useRouter } from 'next/router'
-import { ArrowCircleLeftOutlined, ArrowCircleRightOutlined } from '@mui/icons-material'
+import { blogData } from 'sdk/data/blogData'
+
+import { useSnackbar } from 'sdk/providers'
 interface Props {
 	view: string
 }
@@ -31,6 +19,22 @@ export const BlogCard: FC<Props> = ({ view }: Props) => {
 	const isMobile = useMobile()
 	const [seeMore, setSeeMore] = useState(false)
 	const router = useRouter()
+	const { showSnackbar } = useSnackbar()
+	const copyOnShare = useCallback(
+		(id: any) => {
+			if (!window) return
+
+			const href = location.origin + `/blog/${id}`
+			navigator.clipboard.writeText(href)
+			const shareData = {
+				url: href,
+			}
+			isMobile
+				? navigator?.share(shareData).then(() => showSnackbar(href, 'success'))
+				: showSnackbar('Share link Copied', 'success')
+		},
+		[isMobile]
+	)
 
 	return (
 		<>
@@ -94,7 +98,7 @@ export const BlogCard: FC<Props> = ({ view }: Props) => {
 												justifyContent='space-between'
 												sx={{ mt: { xs: '30px', md: '0' } }}>
 												<LinkButton
-													href={`blog/${id}`}
+													onClick={() => copyOnShare(id)}
 													startIcon={<ShareIcon sx={{ color: '#efc430' }} />}
 													variant='text'
 													fullWidth={false}
@@ -138,11 +142,13 @@ export const BlogCard: FC<Props> = ({ view }: Props) => {
 													Read More
 												</Button>
 												<LinkButton
-													href={`blog/${id}`}
+													color='primary'
+													// href={`blog/${id}`}
+													onClick={() => copyOnShare(id)}
 													startIcon={<ShareIcon sx={{ color: '#efc430' }} />}
 													variant='text'
 													fullWidth={false}>
-													<Typography>Share</Typography>
+													Share
 												</LinkButton>
 											</Stack>
 										)}
@@ -208,6 +214,7 @@ export const BlogCard: FC<Props> = ({ view }: Props) => {
 															Read More
 														</LinkButton>
 														<Button
+															onClick={() => copyOnShare(id)}
 															endIcon={<ShareIcon />}
 															variant='text'
 															fullWidth={false}>
@@ -254,6 +261,7 @@ export const BlogCard: FC<Props> = ({ view }: Props) => {
 															{title}
 														</Typography>
 														<Button
+															onClick={() => copyOnShare(id)}
 															startIcon={<ShareIcon />}
 															variant='text'
 															fullWidth={false}
@@ -357,6 +365,7 @@ export const BlogCard: FC<Props> = ({ view }: Props) => {
 																Read More
 															</LinkButton>
 															<Button
+																onClick={() => copyOnShare(id)}
 																startIcon={<ShareIcon />}
 																variant='text'
 																fullWidth={false}>
@@ -411,6 +420,7 @@ export const BlogCard: FC<Props> = ({ view }: Props) => {
 																	height: '20px',
 																}}>
 																<Typography
+																	onClick={() => copyOnShare(id)}
 																	fontFamily='Karla ,sans-serif'
 																	fontSize='12px'
 																	fontWeight={500}>

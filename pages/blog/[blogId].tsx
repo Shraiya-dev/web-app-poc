@@ -1,13 +1,13 @@
 import { Box, Button, Card, CardActions, CardContent, CardMedia, Grid, Stack, Typography } from '@mui/material'
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
-import { LandingLayout, LinkButton, Section, useMobile } from 'sdk'
+import { LandingLayout, LinkButton, Section, useMobile, useSnackbar } from 'sdk'
 import { staticRenderingProvider } from 'sdk/utils/nextHelper'
 import ShareIcon from '@mui/icons-material/Share'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack'
 import { BlogCard } from 'sdkv2/components'
 import { useRouter } from 'next/router'
 import { blogData } from 'sdk/data/blogData'
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp'
@@ -18,8 +18,8 @@ const Page: NextPage = () => {
 	const [blogId, setBlogId] = useState<number>(0)
 	const [similarBlog, setSimilarBlog] = useState([])
 	const [seeMore, setSeeMore] = useState<boolean>(false)
+	const { showSnackbar } = useSnackbar()
 	useEffect(() => {
-		console.log(router.query.blogId)
 		setBlogId(Number(router.query.blogId))
 
 		let result: any = []
@@ -27,9 +27,43 @@ const Page: NextPage = () => {
 			let value = blogData?.Allblogs.filter((y: any) => y.id === x)[0]
 			result = [...result, value]
 		})
+
 		setSimilarBlog(result)
 	}, [router.query.blogId])
 
+	const copyOnShare = useCallback(
+		(id: any) => {
+			if (!window) return
+			const href = location.origin + `/blog/${id}`
+			navigator.clipboard.writeText(href)
+			const shareData = {
+				url: href,
+			}
+
+			if (isMobile) {
+				if (!window) {
+					return
+				}
+				navigator.share(shareData).then(() => showSnackbar(href, 'success'))
+			} else {
+				showSnackbar('Share link Copied', 'success')
+			}
+		},
+		[isMobile]
+	)
+
+	const ShareBlog = useCallback(() => {
+		var href = location.origin + router.asPath
+		navigator.clipboard.writeText(href)
+		const shareData = {
+			url: location.origin + router.asPath,
+		}
+		isMobile
+			? window
+				? navigator?.share(shareData).then(() => showSnackbar(href, 'success'))
+				: null
+			: showSnackbar('Share link Copied', 'success')
+	}, [isMobile])
 	return (
 		<>
 			<LandingLayout>
@@ -60,6 +94,9 @@ const Page: NextPage = () => {
 						<Button
 							startIcon={<ShareIcon />}
 							variant='text'
+							onClick={() => {
+								ShareBlog()
+							}}
 							fullWidth={false}
 							sx={{ mt: '-20px', mb: '10px', mr: '12px' }}>
 							<Typography
@@ -179,6 +216,7 @@ const Page: NextPage = () => {
 																Read More
 															</Button>
 															<Button
+																onClick={() => copyOnShare(id)}
 																startIcon={<ShareIcon />}
 																variant='text'
 																fullWidth={false}>
@@ -225,6 +263,7 @@ const Page: NextPage = () => {
 																{title}
 															</Typography>
 															<Button
+																onClick={() => copyOnShare(id)}
 																startIcon={<ShareIcon />}
 																variant='text'
 																fullWidth={false}
