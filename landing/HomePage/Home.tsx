@@ -149,7 +149,12 @@ export const Home = () => {
 					</Paper>
 				</Stack>
 			</Dialog>
-			<Section>
+			<Section
+				boxSx={{
+					background: isMobile
+						? 'linear-gradient(180deg, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0.05) 136px, rgba(255,255,255,1) 130px, rgba(255,255,255,1) 100%)'
+						: undefined,
+				}}>
 				<Grid container spacing={2}>
 					<Grid item xs={12} md={8.5} display={{ xs: 'none', md: 'flex' }}>
 						<Stack flex={1} spacing={3}>

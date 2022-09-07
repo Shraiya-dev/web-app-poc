@@ -79,7 +79,7 @@ export const CreateBookingCard: FC<Props> = () => {
 
 	return (
 		<>
-			<Card elevation={16} sx={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
+			<Card elevation={16} sx={{ flex: 1, display: 'flex', flexDirection: 'column', minHeight: 550 }}>
 				<>
 					<Stack>
 						<Stack p={2} sx={{ backgroundColor: '#000000' }}>
@@ -226,7 +226,7 @@ export const CreateBookingCard: FC<Props> = () => {
 																},
 															}}
 															type='number'
-															placeholder='Enter Wage'
+															placeholder='Enter Salary '
 															{...formikProps('helperWage')}
 															helperText={undefined}
 															onChange={(e) => {
@@ -306,7 +306,7 @@ export const CreateBookingCard: FC<Props> = () => {
 																},
 															}}
 															type='number'
-															placeholder='Enter Wage'
+															placeholder='Enter Salary '
 															{...formikProps('technicianWage')}
 															helperText={undefined}
 															onChange={(e) => {
@@ -386,7 +386,7 @@ export const CreateBookingCard: FC<Props> = () => {
 																},
 															}}
 															type='number'
-															placeholder='Enter Wage'
+															placeholder='Enter Salary '
 															{...formikProps('supervisorWage')}
 															helperText={undefined}
 															onChange={(e) => {
