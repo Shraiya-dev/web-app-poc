@@ -55,9 +55,48 @@ export const Navbar = () => {
 							justifyContent={'space-between'}
 							width={'100%'}
 							px={2}>
-							<HyperLink href='/'>
-								<Image src={navbar.brandImage} width={120} height={27} alt='Project hero' />
-							</HyperLink>
+							<Stack direction='row'>
+								<HyperLink href='/'>
+									<Image
+										src={navbar.brandImage}
+										width={120}
+										height={45}
+										alt='Project hero'
+										// style={{ marginTop: 5 }}
+									/>
+								</HyperLink>
+
+								{navbar.navLinks.map((navItem, i) => {
+									console.log(navItem.label)
+									if (navItem.label == '+91-9151003513') {
+										return (
+											<LinkButton
+												variant='text'
+												key={i}
+												startIcon={navItem?.icon}
+												sx={(theme) => ({
+													ml: '10px',
+													fontWeight: 700,
+													color: 'common.white',
+													[theme.breakpoints.down('md')]: { display: 'none' },
+													whiteSpace: 'nowrap',
+												})}
+												onClick={() => {
+													if (navItem.label === 'Login') {
+														sendAnalytics({
+															name: 'navbarLogin',
+															action: 'ButtonClick',
+														})
+													}
+												}}
+												href={navItem.link}
+												className={router.pathname === navItem.link ? 'active' : ''}>
+												{navItem.label}
+											</LinkButton>
+										)
+									}
+								})}
+							</Stack>
 							<IconButton
 								sx={(theme) => ({
 									display: 'none',
@@ -318,30 +357,7 @@ export const Navbar = () => {
 											)
 										)
 									} else {
-										return (
-											<LinkButton
-												variant='text'
-												key={i}
-												startIcon={navItem?.icon}
-												sx={(theme) => ({
-													fontWeight: 700,
-													color: 'common.white',
-													[theme.breakpoints.down('md')]: { display: 'none' },
-													whiteSpace: 'nowrap',
-												})}
-												onClick={() => {
-													if (navItem.label === 'Login') {
-														sendAnalytics({
-															name: 'navbarLogin',
-															action: 'ButtonClick',
-														})
-													}
-												}}
-												href={navItem.link}
-												className={router.pathname === navItem.link ? 'active' : ''}>
-												{navItem.label}
-											</LinkButton>
-										)
+										return null
 									}
 								} else if (navItem.type === 'scroll_link') {
 									if (router.pathname === '/')

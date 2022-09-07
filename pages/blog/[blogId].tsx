@@ -58,7 +58,7 @@ const Page: NextPage = () => {
 							</Typography>
 						</Button>
 						<Button
-							endIcon={<ShareIcon />}
+							startIcon={<ShareIcon />}
 							variant='text'
 							fullWidth={false}
 							sx={{ mt: '-20px', mb: '10px', mr: '12px' }}>
@@ -148,7 +148,7 @@ const Page: NextPage = () => {
 																fontFamily={'Saira ,sans-serif'}
 																fontWeight={600}
 																sx={{ marginTop: '8%' }}>
-																{title}
+																{title.slice(0, 35) + '......'}
 															</Typography>
 															<Typography
 																variant='subtitle1'
@@ -179,7 +179,7 @@ const Page: NextPage = () => {
 																Read More
 															</Button>
 															<Button
-																endIcon={<ShareIcon />}
+																startIcon={<ShareIcon />}
 																variant='text'
 																fullWidth={false}>
 																<Typography
@@ -200,7 +200,7 @@ const Page: NextPage = () => {
 															borderRadius: '8.3557px',
 														}}
 														image={imgSrc}
-														alt='Live from space album cover'
+														alt='project hero'
 													/>
 												</Card>
 											) : (
@@ -211,7 +211,7 @@ const Page: NextPage = () => {
 														width='380'
 														sx={{ borderRadius: '8.3557px' }}
 														image={imgSrc}
-														alt='green iguana'
+														alt='project hero'
 													/>
 													<CardContent>
 														<Stack direction='row'>
@@ -225,7 +225,7 @@ const Page: NextPage = () => {
 																{title}
 															</Typography>
 															<Button
-																endIcon={<ShareIcon />}
+																startIcon={<ShareIcon />}
 																variant='text'
 																fullWidth={false}
 																sx={{
@@ -240,29 +240,39 @@ const Page: NextPage = () => {
 																</Typography>
 															</Button>
 														</Stack>
-														<Typography
-															fontFamily='Karla ,sans-serif'
-															fontSize='12px'
-															fontWeight={400}
-															variant='body2'
-															color='text.secondary'>
-															{description.slice(0, 250)}
-														</Typography>
+														<Stack
+															direction={'column'}
+															justifyContent={'flex-start'}
+															alignItems={'space-between'}>
+															<Box
+																sx={{
+																	minHeight: '100px',
+																	maxHeight: '100px',
+																}}>
+																<Typography
+																	fontFamily='Karla ,sans-serif'
+																	fontSize='12px'
+																	fontWeight={400}
+																	variant='body2'
+																	color='text.secondary'>
+																	{description.slice(0, 250)}
+																</Typography>
+															</Box>
+															<LinkButton
+																href={`blog/${id}`}
+																endIcon={<ArrowForwardIcon />}
+																variant='text'
+																fullWidth={false}
+																sx={{
+																	ml: '-10px',
+																	position: 'absolute',
+																	bottom: '10px',
+																}}
+																color='inherit'>
+																Read More
+															</LinkButton>
+														</Stack>
 													</CardContent>
-													<CardActions>
-														<Button
-															onClick={() => {
-																router.push(`/blog/${id}`)
-																// window.scrollTo(0, 0)
-															}}
-															endIcon={<ArrowForwardIcon />}
-															variant='text'
-															fullWidth={false}
-															sx={{ marginBottom: '0px' }}
-															color='inherit'>
-															Read More
-														</Button>
-													</CardActions>
 												</Card>
 											)}
 										</Grid>

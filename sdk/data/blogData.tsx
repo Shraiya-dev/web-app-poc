@@ -325,7 +325,7 @@ const BlogList = {
 					</Stack>
 				</Stack>
 				<Stack direction={'column'} spacing={3}>
-					<Typography>Conclusion:</Typography>
+					<Typography fontWeight={700}>Conclusion:</Typography>
 					<Typography>
 						These have been some of the industry&apos;s little-known but considerably impressive
 						construction facts. A lot goes into this sector, which is why so many reasons and numbers are
@@ -967,18 +967,27 @@ const BlogList = {
 						shortage in India:
 					</Typography>
 					<Stack direction={'column'} spacing={1}>
-						<Typography>
-							● Heavy Demand for Construction Work- The present range of construction worker networks is
-							failing to meet up with the increasing demand for construction work.
+						<Typography fontWeight={700}>
+							● Heavy Demand for Construction Work-
+							<Typography display='inline'>
+								The present range of construction worker networks is failing to meet up with the
+								increasing demand for construction work.
+							</Typography>
 						</Typography>
-						<Typography>
-							● Lack of Skills- With each passing day, the availability of skilled and organised labourers
-							is diminishing, affecting the overall labour work construction market.
-						</Typography>
-						<Typography>
-							● Uninterested Young Minds- Even though the construction industry is steadily growing, the
-							newer generation is becoming less interested in the field of labour work in the construction
-							job market.
+						<Typography fontWeight={700}>
+							● Lack of Skills-
+							<Typography display='inline'>
+								{' '}
+								With each passing day, the availability of skilled and organised labourers is
+								diminishing, affecting the overall labour work construction market.
+							</Typography>
+							<Typography fontWeight={700}>
+								● Uninterested Young Minds-{' '}
+								<Typography display='inline'>
+									Even though the construction industry is steadily growing, the newer generation is
+									becoming less interested in the field of labour work in the construction job market.
+								</Typography>
+							</Typography>
 						</Typography>
 					</Stack>
 				</Stack>
@@ -1010,59 +1019,85 @@ const BlogList = {
 				<Stack sx={{ px: { xs: 0, md: 1 } }} spacing={2}>
 					<ol>
 						<li>
-							<Typography>
-								Authentic Profiles- When going with Project Hero, you can rest assured that only 100%
-								authentic and verified profiles are applied to your booking. The platform doesn’t allow
-								any profile of an unverified construction worker. This way, you can save a ton of time
-								by avoiding unnecessary problems like fake construction worker jobs created by spammers.
+							<Typography fontWeight={700}>
+								Authentic Profiles-
+								<Typography display='inline'>
+									When going with Project Hero, you can rest assured that only 100% authentic and
+									verified profiles are applied to your booking. The platform doesn’t allow any
+									profile of an unverified construction worker. This way, you can save a ton of time
+									by avoiding unnecessary problems like fake construction worker jobs created by
+									spammers.
+								</Typography>
 							</Typography>
 						</li>
 						<li>
-							<Typography>
-								Straight-Forward Hiring Procedure- You can post your booking on Project Hero within a
-								few clicks by providing the essential details of the labour construction work. The
-								booking process is simple, and you can post your booking of online construction jobs
-								within seconds.
+							<Typography fontWeight={700}>
+								Straight-Forward Hiring Procedure-{' '}
+								<Typography display='inline'>
+									You can post your booking on Project Hero within a few clicks by providing the
+									essential details of the labour construction work. The booking process is simple,
+									and you can post your booking of online construction jobs within seconds.
+								</Typography>
 							</Typography>
 						</li>
 						<li>
-							<Typography>
-								Proper Trained and Skilled Workers- Project Hero ensures that its pool of workforce is
-								all trained and skilled at the job by evaluating them through a series of skill
-								assessment procedures and a scoring system.
+							<Typography fontWeight={700}>
+								Proper Trained and Skilled Workers-{' '}
+								<Typography display='inline'>
+									Project Hero ensures that its pool of workforce is all trained and skilled at the
+									job by evaluating them through a series of skill assessment procedures and a scoring
+									system.
+								</Typography>
 							</Typography>
 						</li>
 						<li>
-							<Typography>
-								Active and Interested Workforce- By hiring through Project Hero, you will only be
-								matched up with active workers who are eager for labour construction work and ready to
-								take up the job.
+							<Typography fontWeight={700}>
+								Active and Interested Workforce-{' '}
+								<Typography display='inline'>
+									By hiring through Project Hero, you will only be matched up with active workers who
+									are eager for labour construction work and ready to take up the job.
+								</Typography>
 							</Typography>
 						</li>
 						<li>
-							<Typography>
-								24x7 Customer Support- Project Hero offers a brilliantly stable and sufficient customer
-								support system that runs 24x7 to assist and resolve queries of the users.
+							<Typography fontWeight={700}>
+								24x7 Customer Support-{' '}
+								<Typography display='inline'>
+									Project Hero offers a brilliantly stable and sufficient customer support system that
+									runs 24x7 to assist and resolve queries of the users.
+								</Typography>
 							</Typography>
 						</li>
 						<li>
-							<Typography>
-								First 15 Applications Free- On the platform, your first 15 applications are absolutely
-								free and only after that will you need to pay a charge of INR 50 per application. It is
-								very affordable and reasonable.
+							<Typography fontWeight={700}>
+								First 15 Applications Free-
+								<Typography display='inline'>
+									{' '}
+									On the platform, your first 15 applications are absolutely free and only after that
+									will you need to pay a charge of INR 50 per application. It is very affordable and
+									reasonable.
+								</Typography>
 							</Typography>
 						</li>
 						<li>
-							<Typography>
-								Simple Refund Process- Project Hero offers an easy return policy, as long as it is
-								acceptable under the terms and conditions of the company’s Return Policy.
+							<Typography fontWeight={700}>
+								Simple Refund Process-
+								<Typography display='inline'>
+									{' '}
+									Project Hero offers an easy return policy, as long as it is acceptable under the
+									terms and conditions of the company’s Return Policy.
+								</Typography>
 							</Typography>
 						</li>
 						<li>
-							<Typography>
-								Direct Contact with Applicants- When applicants respond to your booking, you will
-								instantly get their profile and contact number. This will allow you to contact them
-								directly and discuss the job details further without associating with any middleman.
+							<Typography fontWeight={700}>
+								Direct Contact with Applicants-
+								<Typography display='inline'>
+									{' '}
+									When applicants respond to your booking, you will instantly get their profile and
+									contact number. This will allow you to contact them directly and discuss the job
+									details further without associating with any middleman.
+								</Typography>
 							</Typography>
 						</li>
 					</ol>
@@ -1701,7 +1736,7 @@ export const blogData: any = {
 				'Construction is a physically and psychologically demanding vocation. It comes with various difficulties and working conditions that set it apart from the average office job. A construction labourer’s job may seem simple, particularly to those who know how to utilise instruments like a hammer. But it takes more than a sledgehammer to crack this nut. Construction workers face daily challenges, including working in confined spaces, at dangerous heights, and with heavy equipment in unpleasant weather. This also applies to office construction employees, who must fully grasp how to price construction labour works and manage time-sensitive projects.',
 			details: BlogList.blog9,
 			imgSrc: '/assets/landingv2/heroSection/12_Things_You_Need_To_Know_About_Construction_Labour.jpg',
-			isPopular: false,
+			isPopular: true,
 			isLatest: false,
 			similarArray: [4, 5, 6],
 		},
@@ -1712,7 +1747,7 @@ export const blogData: any = {
 				'It is quite common for customers who want to hire professionals to work on their construction project to get confused between a builder and a contractor, the two essential roles in the construction sector. Even though these two roles closely relate to one another, they are quite distinguishable regarding their job and responsibilities. In this article, we will paint a complete picture that should help customers understand these two separate roles clearly, so they can avoid being confused and hire the correct person for their construction projects in future. In the industry, both the builder and contractor are essential, so let us have a look at the general details of these roles, discuss their distinct duties on the job and establish a difference between builder and construction work contractor.',
 			details: BlogList.blog10,
 			imgSrc: '/assets/landingv2/heroSection/Builders_Vs_Contractors:_Which_is_Better.jpg',
-			isPopular: false,
+			isPopular: true,
 			isLatest: true,
 			similarArray: [1, 2, 7],
 		},
@@ -1734,7 +1769,7 @@ export const blogData: any = {
 				'Before you begin your journey in the construction sector, you should know that this job requires skills and an eye for improvement and can pose major challenges throughout projects in terms of mental and physical strain. However, if you can steady up your outlook to work around a few initial challenges and look into the bigger picture, this job would offer innumerable possibilities and expansion as you begin to develop in the sector.',
 			details: BlogList.blog6,
 			imgSrc: '/assets/landingv2/heroSection/15_Must_Know_Things_Before_You_Get_Started_with_Construction.jpg',
-			isPopular: false,
+			isPopular: true,
 			isLatest: true,
 			similarArray: [1, 9, 10],
 		},
@@ -1756,7 +1791,7 @@ export const blogData: any = {
 				'The issue of job scams within the construction industry is not an uncommon one. Valuable workers getting cheated by fake job promises, contractors getting hassled by middlemen in the name of supplying potential workforce, and the online job fraud list goes on and around in every direction. This has been one of the major factors affecting the construction industry negatively and demoralising labourers and contractors. When looking for a construction job or possible construction workforce as a contractor, time generally is of the essence. This is why people often miss out or overlook certain red flags on a job portal, causing them both mental and financial strain in the process.',
 			details: BlogList.blog3,
 			imgSrc: '/assets/landingv2/heroSection/3_Ways_to_Avoid_Getting_Scammed_by_a_Job_Portal.jpg',
-			isPopular: false,
+			isPopular: true,
 			isLatest: true,
 			similarArray: [3, 9, 10],
 		},
@@ -1767,7 +1802,7 @@ export const blogData: any = {
 				'Construction projects are very time-centric and budget oriented. This is why clients prefer to hire contractors to streamline their construction projects as swiftly as possible. The general duty of a contractor is to fill many vital roles, including hiring labourers, sub-contractors, and consultants, providing building materials, on and off-site operation management, and much more. Opting for contractors to handle projects can save tons of money and reduce construction cost margin of the whole operation. As a contractor, it is recommended that you should go through some useful, crucial and functional tactics and apply them to your general method of operation. This way, you can save a huge chunk of the budget and never exceed the line.',
 			details: BlogList.blog4,
 			imgSrc: '/assets/landingv2/heroSection/5_Ways_to_Save_Money_on_Your_Construction_Project.jpg',
-			isPopular: false,
+			isPopular: true,
 			isLatest: true,
 			similarArray: [4, 6, 7],
 		},
@@ -1778,7 +1813,7 @@ export const blogData: any = {
 				'2022 is anticipated to be a year of resurgence and economic prosperity in the construction industry, followed by a time of adjusting growth predictions and altering standards. Due to rising construction costs and increasing skilled labour shortages, the construction sector continues to be under pressure to develop new, innovative, difficult, and distinctive concepts. Furthermore, stringent norms and regulations make less room for error and waste. To maintain quality and satisfy the sector&apos;s expanding expectations, the industry must use the latest technology and gadgets to its benefit.',
 			details: BlogList.blog1,
 			imgSrc: '/assets/landingv2/heroSection/5_Trends_of_Construction_Industry.jpg',
-			isPopular: false,
+			isPopular: true,
 			isLatest: true,
 			similarArray: [5, 2, 7],
 		},

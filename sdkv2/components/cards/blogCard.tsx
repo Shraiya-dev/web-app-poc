@@ -17,11 +17,13 @@ import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp'
 import { theme } from 'sdk/constants'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import ShareIcon from '@mui/icons-material/Share'
-import { CarouselV2, LinkButton, Section } from 'sdk/components'
+import { Carousel, CarouselV2, LinkButton, Section } from 'sdk/components'
+import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord'
 import { useMobile } from 'sdk/hooks'
 
 import { blogData } from 'sdk/data/blogData'
 import { useRouter } from 'next/router'
+import { ArrowCircleLeftOutlined, ArrowCircleRightOutlined } from '@mui/icons-material'
 interface Props {
 	view: string
 }
@@ -33,95 +35,120 @@ export const BlogCard: FC<Props> = ({ view }: Props) => {
 	return (
 		<>
 			{view === 'MainBlog' && (
-				<CarouselV2
+				<Carousel
 					slideDelay={5000}
 					componentPerView={1}
+					// mobileStepper={false}
+					// mobileStepperPosition='top'
 					items={blogData.Allblogs.filter(({ isPopular }: any) => isPopular).map(
 						({ id, title, description, imgSrc, isPopular, isLatest }: any, index: any) => (
-							<Stack
-								key={index}
-								direction={{ xs: 'column', md: 'row' }}
-								sx={{
-									borderRadius: '8.3557px',
-									marginTop: { md: '98px', xs: '24px' },
-									backgroundColor: { xs: 'none', md: 'white' },
-									padding: { md: '18px' },
-								}}>
-								<CardMedia
-									component='img'
-									image={imgSrc}
-									alt='green iguana'
+							<Box>
+								<Stack
+									key={index}
+									direction={{ xs: 'column', md: 'row' }}
 									sx={{
-										height: { md: '336px', xs: '192px' },
-										width: { md: '346px', xs: '100%' },
 										borderRadius: '8.3557px',
-									}}
-								/>
-								<Stack>
-									<CardContent>
-										<Typography
-											gutterBottom
-											variant='h2'
-											component='div'
-											fontSize={{ md: '32px', xs: '16px' }}
-											fontFamily={'Saira ,sans-serif'}
-											fontWeight={600}
-											sx={{ marginTop: { md: '-18px', xs: '' } }}>
-											{title}
-										</Typography>
-										<Typography
-											variant='h6'
-											color='text.secondary'
-											fontFamily='Karla ,sans-serif'
-											fontSize={{ md: '20px', xs: '14px' }}
-											fontWeight={400}>
-											{description.slice(0, 200)}
-											<br />
-											<br /> {description.slice(200, 400)}
-										</Typography>
-									</CardContent>
-									<CardActions
+										marginTop: { md: '98px', xs: '24px' },
+										backgroundColor: { xs: 'none', md: 'white' },
+										padding: { md: '18px' },
+									}}>
+									<CardMedia
+										component='img'
+										image={imgSrc}
+										alt='project hero'
 										sx={{
-											display: 'flex',
-											justifyContent: { xs: 'space-between', md: 'flex-start' },
-										}}>
-										<Stack direction={'row'} spacing={4}>
-											<LinkButton
-												href={`blog/${id}`}
-												// onClick={() => {
-												// 	router.push({
-												// 		pathname: !router.query.page
-												// 			? 'blog/id'
-												// 			: '/blog/id',
-												// 		query: {
-												// 			pid: index,
-												// 			type: 'Latestblogs',
-												// 		},
-												// 	})
-												// }}
-												endIcon={<ArrowForwardIcon />}
-												variant='text'
-												fullWidth={false}
-												sx={{ marginBottom: '0px' }}
-												color='inherit'>
-												Read More
-											</LinkButton>
-											<Button
-												startIcon={<ShareIcon sx={{ color: '#efc430' }} />}
-												variant='text'
-												fullWidth={false}
-												sx={{
-													marginTop: { md: '0px', xs: '8px' },
-													fontFamily: 'Karla ,sans-serif',
-													fontSize: { md: '18px', xs: '12px' },
-													fontWeight: 500,
-												}}>
-												<Typography>Share</Typography>
-											</Button>
-										</Stack>
-									</CardActions>
+											height: { md: '336px', xs: '100%' },
+											width: { md: '346px', xs: '100%' },
+											borderRadius: '8.3557px',
+										}}
+									/>
+									<Stack>
+										<CardContent>
+											<Typography
+												gutterBottom
+												variant='h2'
+												component='div'
+												fontSize={{ md: '32px', xs: '16px' }}
+												fontFamily={'Saira ,sans-serif'}
+												fontWeight={600}
+												sx={{ marginTop: { md: '-18px', xs: '' } }}>
+												{title}
+											</Typography>
+
+											<Typography
+												variant='h6'
+												color='text.secondary'
+												fontFamily='Karla ,sans-serif'
+												fontSize={{ md: '20px', xs: '14px' }}
+												fontWeight={400}>
+												{description.slice(0, 200)}
+												<br />
+												<br />
+												{description.slice(200, 350)}
+											</Typography>
+										</CardContent>
+										{!isMobile ? (
+											<Stack
+												direction={'row'}
+												spacing={1}
+												justifyContent='space-between'
+												sx={{ mt: { xs: '30px', md: '0' } }}>
+												<LinkButton
+													href={`blog/${id}`}
+													startIcon={<ShareIcon sx={{ color: '#efc430' }} />}
+													variant='text'
+													fullWidth={false}
+													sx={{
+														position: { md: 'absolute', xs: '' },
+														bottom: '22px',
+
+														width: '120px',
+														ml: '120px',
+													}}>
+													<Typography>Share</Typography>
+												</LinkButton>
+												<Button
+													href={`blog/${id}`}
+													endIcon={<ArrowForwardIcon />}
+													variant='text'
+													fullWidth={false}
+													sx={{
+														position: { md: 'absolute', xs: '' },
+														bottom: '22px',
+
+														pl: '-100px',
+														width: '120px',
+													}}
+													color='inherit'>
+													Read More
+												</Button>
+											</Stack>
+										) : (
+											<Stack
+												direction={'row-reverse'}
+												spacing={1}
+												justifyContent='space-between'
+												sx={{ mt: { xs: '30px', md: '0' } }}>
+												<Button
+													href={`blog/${id}`}
+													endIcon={<ArrowForwardIcon />}
+													variant='text'
+													fullWidth={false}
+													color='inherit'>
+													Read More
+												</Button>
+												<LinkButton
+													href={`blog/${id}`}
+													startIcon={<ShareIcon sx={{ color: '#efc430' }} />}
+													variant='text'
+													fullWidth={false}>
+													<Typography>Share</Typography>
+												</LinkButton>
+											</Stack>
+										)}
+									</Stack>
 								</Stack>
-							</Stack>
+							</Box>
 						)
 					)}
 				/>
@@ -173,17 +200,6 @@ export const BlogCard: FC<Props> = ({ view }: Props) => {
 														}}>
 														<LinkButton
 															href={`blog/${id}`}
-															// onClick={() => {
-															// 	router.push({
-															// 		pathname: !router.query.page
-															// 			? 'blog/id'
-															// 			: '/blog/id',
-															// 		query: {
-															// 			pid: index,
-															// 			type: 'Latestblogs',
-															// 		},
-															// 	})
-															// }}
 															endIcon={<ArrowForwardIcon />}
 															variant='text'
 															fullWidth={false}
@@ -238,7 +254,7 @@ export const BlogCard: FC<Props> = ({ view }: Props) => {
 															{title}
 														</Typography>
 														<Button
-															endIcon={<ShareIcon />}
+															startIcon={<ShareIcon />}
 															variant='text'
 															fullWidth={false}
 															sx={{
@@ -253,15 +269,18 @@ export const BlogCard: FC<Props> = ({ view }: Props) => {
 															</Typography>
 														</Button>
 													</Stack>
-													<Typography
-														fontFamily='Karla ,sans-serif'
-														fontSize='12px'
-														fontWeight={400}
-														variant='body2'
-														color='text.secondary'>
-														{description.slice(0, 250)}
-													</Typography>
+													<Box>
+														<Typography
+															fontFamily='Karla ,sans-serif'
+															fontSize='12px'
+															fontWeight={400}
+															variant='body2'
+															color='text.secondary'>
+															{description.slice(0, 250)}
+														</Typography>
+													</Box>
 												</CardContent>
+
 												<CardActions>
 													<LinkButton
 														href={`blog/${id}`}
@@ -330,17 +349,6 @@ export const BlogCard: FC<Props> = ({ view }: Props) => {
 															}}>
 															<LinkButton
 																href={`blog/${id}`}
-																// onClick={() => {
-																// 	router.push({
-																// 		pathname: !router.query.page
-																// 			? 'blog/id'
-																// 			: '/blog/id',
-																// 		query: {
-																// 			pid: index,
-																// 			type: 'Latestblogs',
-																// 		},
-																// 	})
-																// }}
 																endIcon={<ArrowForwardIcon />}
 																variant='text'
 																fullWidth={false}
@@ -349,7 +357,7 @@ export const BlogCard: FC<Props> = ({ view }: Props) => {
 																Read More
 															</LinkButton>
 															<Button
-																endIcon={<ShareIcon />}
+																startIcon={<ShareIcon />}
 																variant='text'
 																fullWidth={false}>
 																<Typography
@@ -383,7 +391,7 @@ export const BlogCard: FC<Props> = ({ view }: Props) => {
 														image={imgSrc}
 														alt='green iguana'
 													/>
-													<CardContent>
+													<CardContent sx={{ width: '100%' }}>
 														<Stack direction='row'>
 															<Typography
 																gutterBottom
@@ -395,7 +403,7 @@ export const BlogCard: FC<Props> = ({ view }: Props) => {
 																{title}
 															</Typography>
 															<Button
-																endIcon={<ShareIcon />}
+																startIcon={<ShareIcon />}
 																variant='text'
 																fullWidth={false}
 																sx={{
@@ -410,43 +418,39 @@ export const BlogCard: FC<Props> = ({ view }: Props) => {
 																</Typography>
 															</Button>
 														</Stack>
-														<Box
-															sx={{
-																minHeight: '100px',
-																maxHeight: '100px',
-															}}>
-															<Typography
-																fontFamily='Karla ,sans-serif'
-																fontSize='12px'
-																fontWeight={400}
-																variant='body2'
-																color='text.secondary'>
-																{description.slice(0, 250)}
-															</Typography>
-														</Box>
+														<Stack
+															direction={'column'}
+															justifyContent={'flex-start'}
+															alignItems={'space-between'}>
+															<Box
+																sx={{
+																	minHeight: '100px',
+																	maxHeight: '100px',
+																}}>
+																<Typography
+																	fontFamily='Karla ,sans-serif'
+																	fontSize='12px'
+																	fontWeight={400}
+																	variant='body2'
+																	color='text.secondary'>
+																	{description.slice(0, 250)}
+																</Typography>
+															</Box>
+															<LinkButton
+																href={`blog/${id}`}
+																endIcon={<ArrowForwardIcon />}
+																variant='text'
+																fullWidth={false}
+																sx={{
+																	ml: '-10px',
+																	position: 'absolute',
+																	bottom: '10px',
+																}}
+																color='inherit'>
+																Read More
+															</LinkButton>
+														</Stack>
 													</CardContent>
-													<CardActions>
-														<LinkButton
-															href={`blog/${id}`}
-															// onClick={() => {
-															// 	router.push({
-															// 		pathname: !router.query.page
-															// 			? 'blog/id'
-															// 			: '/blog/id',
-															// 		query: {
-															// 			pid: index,
-															// 			type: 'Latestblogs',
-															// 		},
-															// 	})
-															// }}
-															endIcon={<ArrowForwardIcon />}
-															variant='text'
-															fullWidth={false}
-															sx={{ marginBottom: '0px' }}
-															color='inherit'>
-															Read More
-														</LinkButton>
-													</CardActions>
 												</Card>
 											)}
 										</Grid>
@@ -474,7 +478,7 @@ export const BlogCard: FC<Props> = ({ view }: Props) => {
 									onClick={() => {
 										setSeeMore(true)
 									}}
-									endIcon={<KeyboardArrowDownIcon />}
+									startIcon={<KeyboardArrowDownIcon />}
 									variant='text'
 									fullWidth={false}
 									color='inherit'>

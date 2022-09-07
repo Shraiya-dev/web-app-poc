@@ -149,7 +149,88 @@ export const HowItWorks: FC<Props> = () => {
 
 	return (
 		<CustomHowItWorksStyle>
-			<Section
+			<Section>
+				<Stack
+					alignItems={{ xs: 'flex-start', sm: 'center', md: 'center' }}
+					marginTop={{ xs: '0', md: '80px' }}>
+					<Typography
+						variant='h1'
+						fontSize={{ md: '36px', xs: '28px' }}
+						fontFamily={'Saira ,sans-serif'}
+						fontWeight={600}>
+						How can you
+						<Typography component={'span'} variant='inherit' color='success.dark' fontWeight={700}>
+							{' '}
+							Post
+						</Typography>{' '}
+						Your
+						<Typography component={'span'} variant='inherit' color='success.dark' fontWeight={700}>
+							{' '}
+						</Typography>{' '}
+					</Typography>
+					<Typography
+						variant='h1'
+						fontSize={{ md: '36px', xs: '28px' }}
+						fontFamily={'Saira ,sans-serif'}
+						fontWeight={600}>
+						Job for
+						<Typography component={'span'} variant='inherit' color='success.dark' fontWeight={700}>
+							{' '}
+							Free
+						</Typography>{' '}
+						with in
+						<Typography component={'span'} variant='inherit' color='success.dark' fontWeight={700}>
+							{' '}
+							1 minute
+						</Typography>{' '}
+					</Typography>
+					<br />
+					<Typography
+						fontSize={{ md: '24px', xs: '16px' }}
+						fontFamily='Karla ,sans-serif'
+						fontWeight={500}
+						marginTop={{ md: '15px', xs: '0px' }}>
+						See how the Project Hero platform works
+					</Typography>
+				</Stack>
+				<Stack
+					direction={{ md: 'column', xs: 'column-reverse' }}
+					width={'100%'}
+					justifyContent={'center'}
+					alignItems={'center'}
+					spacing={4}
+					mt={{ xs: '24px', md: '54px' }}>
+					<Stack
+						direction={'row'}
+						justifyContent={{ xs: 'flex-start', sm: 'center', md: 'center', width: '100%' }}>
+						<Button
+							size='large'
+							sx={{
+								fontFamily: 'Karla,sans-serif',
+								fontWeight: 600,
+								fontSize: { md: '20px', xs: '14px' },
+							}}>
+							Post Your Job Now
+						</Button>
+					</Stack>
+					<Paper
+						className='styledPaper'
+						elevation={0}
+						sx={{
+							maxWidth: '800px',
+							width: { xs: '100%', sm: '80%', md: '54%' },
+							aspectRatio: '3 / 2',
+							overflow: 'hidden',
+							borderRadius: '10px',
+						}}>
+						<Player poster='/assets/icons/videoPoster.png'>
+							<source src='https://storage.googleapis.com/ph-assets/project/ProjectHero_V2_How_it_works.mp4' />
+							<BigPlayButton position={'center'} />
+						</Player>
+					</Paper>
+				</Stack>
+			</Section>
+			{/* <Section
 				sx={{
 					maxHeight: '100vh',
 				}}>
@@ -239,7 +320,7 @@ export const HowItWorks: FC<Props> = () => {
 						</Player>
 					</Paper>
 				</Stack>
-			</Section>
+			</Section> */}
 			<Section
 				backgroundColor='#fff'
 				sx={{
@@ -274,54 +355,66 @@ export const HowItWorks: FC<Props> = () => {
 					})}
 				</Grid>
 			</Section>
-			<Section backgroundColor='#000'>
-				<Grid container spacing={{ xs: 0, md: 2 }} py={{ xs: 2, md: 4 }}>
-					{profileDescription.map((value, index) => {
-						return (
-							<Grid item key={index} xs={12} sm={12} md={4}>
-								<Stack
-									direction={{ xs: 'row', md: 'column' }}
-									alignItems={'center'}
-									justifyContent={{ xs: 'center' }}
-									spacing={{ xs: 1, md: 4 }}
-									sx={{
-										maxWidth: { xs: '350px', md: '276px' },
-										minWidth: { xs: '350px', md: '276px' },
-										maxHeight: { xs: '345px', md: '271px' },
-									}}>
-									<Box width={{ xs: '80px', md: '100px' }} height={{ xs: '80px', md: '100px' }}>
-										<Image width={'100%'} height={'100%'} src={`${value.imgSrc}`} alt='' />
-									</Box>
+
+			<Box
+				sx={{
+					backgroundColor: '#000',
+					backgroundImage: {
+						md: 'url(/assets/icons/backgrounds/greybubbledown.svg)',
+						xs: '',
+					},
+					backgroundPosition: { md: '0px 250px', xs: '0px 350px' },
+					backgroundRepeat: 'no-repeat',
+				}}>
+				<Section>
+					<Grid container spacing={{ xs: 0, md: 2 }} py={{ xs: 2, md: 4 }}>
+						{profileDescription.map((value, index) => {
+							return (
+								<Grid item key={index} xs={12} sm={12} md={4}>
 									<Stack
-										direction={'column'}
-										spacing={2}
-										width={{ xs: '100%', md: '90%' }}
+										direction={{ xs: 'row', md: 'column' }}
+										alignItems={'center'}
+										justifyContent={{ xs: 'center' }}
+										spacing={{ xs: 1, md: 4 }}
 										sx={{
-											paddingY: { xs: '20px' },
-											paddingLeft: { xs: '10px' },
-											textAlign: { xs: 'flex-start', md: 'center' },
+											maxWidth: { xs: '350px', md: '276px' },
+											minWidth: { xs: '350px', md: '276px' },
+											maxHeight: { xs: '345px', md: '271px' },
 										}}>
-										<Typography
-											variant='h3'
-											className='font-Saira'
-											fontWeight={500}
-											sx={{ color: theme.palette.primary.main }}>
-											{value.heading}
-										</Typography>
-										<Typography
-											className='font-Karla'
-											variant='h6'
-											fontWeight={400}
-											sx={{ color: '#fff' }}>
-											{value.subHeading}
-										</Typography>
+										<Box width={{ xs: '80px', md: '100px' }} height={{ xs: '80px', md: '100px' }}>
+											<Image width={'100%'} height={'100%'} src={`${value.imgSrc}`} alt='' />
+										</Box>
+										<Stack
+											direction={'column'}
+											spacing={2}
+											width={{ xs: '100%', md: '90%' }}
+											sx={{
+												paddingY: { xs: '20px' },
+												paddingLeft: { xs: '10px' },
+												textAlign: { xs: 'flex-start', md: 'center' },
+											}}>
+											<Typography
+												variant='h3'
+												className='font-Saira'
+												fontWeight={500}
+												sx={{ color: theme.palette.primary.main }}>
+												{value.heading}
+											</Typography>
+											<Typography
+												className='font-Karla'
+												variant='h6'
+												fontWeight={400}
+												sx={{ color: '#fff' }}>
+												{value.subHeading}
+											</Typography>
+										</Stack>
 									</Stack>
-								</Stack>
-							</Grid>
-						)
-					})}
-				</Grid>
-			</Section>
+								</Grid>
+							)
+						})}
+					</Grid>
+				</Section>
+			</Box>
 			<Section sx={{ minHeight: '659px' }}>
 				<Stack direction={'column'} spacing={3}>
 					<Box>
