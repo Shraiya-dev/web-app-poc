@@ -157,7 +157,7 @@ export const HowItWorks: FC<Props> = () => {
 						variant='h1'
 						fontSize={{ md: '36px', xs: '28px' }}
 						fontFamily={'Saira ,sans-serif'}
-						fontWeight={500}>
+						fontWeight={600}>
 						How can you
 						<Typography component={'span'} variant='inherit' color='success.dark' fontWeight={700}>
 							{' '}
@@ -166,15 +166,14 @@ export const HowItWorks: FC<Props> = () => {
 						Your
 						<Typography component={'span'} variant='inherit' color='success.dark' fontWeight={700}>
 							{' '}
-							Job
 						</Typography>{' '}
 					</Typography>
 					<Typography
 						variant='h1'
 						fontSize={{ md: '36px', xs: '28px' }}
 						fontFamily={'Saira ,sans-serif'}
-						fontWeight={500}>
-						for
+						fontWeight={600}>
+						Job for
 						<Typography component={'span'} variant='inherit' color='success.dark' fontWeight={700}>
 							{' '}
 							Free
@@ -189,7 +188,7 @@ export const HowItWorks: FC<Props> = () => {
 					<Typography
 						fontSize={{ md: '24px', xs: '16px' }}
 						fontFamily='Karla ,sans-serif'
-						fontWeight={400}
+						fontWeight={500}
 						marginTop={{ md: '15px', xs: '0px' }}>
 						See how the Project Hero platform works
 					</Typography>
@@ -208,7 +207,7 @@ export const HowItWorks: FC<Props> = () => {
 							size='large'
 							sx={{
 								fontFamily: 'Karla,sans-serif',
-								fontWeight: 500,
+								fontWeight: 600,
 								fontSize: { md: '20px', xs: '14px' },
 							}}>
 							Post Your Job Now
