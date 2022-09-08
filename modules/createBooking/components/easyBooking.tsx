@@ -214,7 +214,6 @@ export const EasyBooking = () => {
 			form.values.jobType !== 'none' &&
 			(!!form.values.isHelper || !!form.values.isTechnician || !!form.values.isSupervisor) &&
 			(!!form.values.helperWage || !!form.values.technicianWage || !!form.values.supervisorWage) &&
-			form.values.workDuration !== 'none' &&
 			!!form.values.location
 
 		setIsSubmittable(canSubmit)
@@ -594,7 +593,7 @@ export const EasyBooking = () => {
 								</Grid>
 							</InputWrapper>
 
-							<InputWrapper id='workDuration' label='Job Duration'>
+							{/* <InputWrapper id='workDuration' label='Job Duration'>
 								<Grid container item rowGap={1}>
 									{projectDuration.map((info: any, index: any) => {
 										return (
@@ -626,7 +625,7 @@ export const EasyBooking = () => {
 										)
 									})}
 								</Grid>
-							</InputWrapper>
+							</InputWrapper> */}
 						</Stack>
 						<Box className='stickyBottomBox'>
 							<Paper

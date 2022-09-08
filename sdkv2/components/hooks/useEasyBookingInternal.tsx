@@ -41,7 +41,7 @@ export const useEasyBookingInternal = () => {
 		initialValues: {
 			location: '',
 			jobType: 'none',
-			workDuration: 'none',
+			// workDuration: 'none',
 			helperWage: undefined,
 			technicianWage: undefined,
 			supervisorWage: undefined,
@@ -55,7 +55,7 @@ export const useEasyBookingInternal = () => {
 		validationSchema: Yup.object({
 			location: Yup.string().required('Location is required'),
 			jobType: Yup.string().not(['none'], 'Job type is required'),
-			workDuration: Yup.string().required('Work duration is required').not(['none'], 'Work duration is required'),
+			// workDuration: Yup.string().required('Work duration is required').not(['none'], 'Work duration is required'),
 			isHelper: Yup.boolean(),
 			isTechnician: Yup.boolean(),
 			isSupervisor: Yup.boolean(),
