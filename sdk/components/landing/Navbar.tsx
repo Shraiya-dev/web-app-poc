@@ -55,7 +55,12 @@ export const Navbar = () => {
 							justifyContent={'space-between'}
 							width={'100%'}
 							px={2}>
-							<Stack direction='row' alignItems='center'>
+							<Stack
+								flex={1}
+								spacing={2}
+								direction='row'
+								alignItems='center'
+								justifyContent={{ xs: 'space-between', md: 'flex-start' }}>
 								<Link href='/' passHref>
 									<Box
 										component='img'
@@ -66,38 +71,6 @@ export const Navbar = () => {
 									/>
 								</Link>
 
-								{navbar.navLinks.map((navItem, i) => {
-									if (navItem.label == '+91-9151003513') {
-										return (
-											<LinkButton
-												variant='text'
-												key={i}
-												startIcon={navItem?.icon}
-												sx={(theme) => ({
-													ml: '10px',
-													fontWeight: 700,
-													fontFamily: `'Saira',sans-serif`,
-													color: 'common.white',
-													[theme.breakpoints.down('md')]: { display: 'none' },
-													whiteSpace: 'nowrap',
-												})}
-												onClick={() => {
-													if (navItem.label === 'Login') {
-														sendAnalytics({
-															name: 'navbarLogin',
-															action: 'ButtonClick',
-														})
-													}
-												}}
-												href={navItem.link}
-												className={router.pathname === navItem.link ? 'active' : ''}>
-												{navItem.label}
-											</LinkButton>
-										)
-									}
-								})}
-							</Stack>
-							<Stack direction={'row'} justifyContent={'flex-end'} alignItems={'center'} spacing={2.5}>
 								<Link href='/' passHref>
 									<Stack direction='row' alignItems={'center'} spacing={1}>
 										<Box
@@ -112,6 +85,22 @@ export const Navbar = () => {
 										</Typography>
 									</Stack>
 								</Link>
+							</Stack>
+							<Stack direction={'row'} justifyContent={'flex-end'} alignItems={'center'} spacing={2.5}>
+								{/* <Link href='/' passHref>
+									<Stack direction='row' alignItems={'center'} spacing={1}>
+										<Box
+											component='img'
+											src='/assets/icons/phone.svg'
+											width={23}
+											alt='Project hero'
+											// style={{ marginTop: 5 }}
+										/>
+										<Typography variant='subtitle2' color={'#fff'} fontWeight={700}>
+											+91-9151003513
+										</Typography>
+									</Stack>
+								</Link> */}
 
 								<IconButton
 									sx={(theme) => ({

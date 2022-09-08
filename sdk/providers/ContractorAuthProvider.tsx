@@ -512,15 +512,6 @@ const ContractorAuthProvider: FC<ContractorAuthProviderProps> = ({ children, aut
 	useEffect(() => {
 		if (state.user) {
 			try {
-				const discoveryBookingFromCookie = () => {
-					try {
-						const discoveryBookingFromCookie = JSON.parse(getCookie('discoveryBooking'))
-						return discoveryBookingFromCookie
-					} catch (error) {
-						return undefined
-					}
-				}
-
 				const redirectRoute = AccessMap[state.user.onboardingStatus]
 
 				if (state.user.onboardingStatus !== ONBOARDING_STATUS.ONBOARDED) {
