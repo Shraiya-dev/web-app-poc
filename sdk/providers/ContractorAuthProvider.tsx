@@ -472,7 +472,6 @@ const ContractorAuthProvider: FC<ContractorAuthProviderProps> = ({ children, aut
 							  }
 							: undefined,
 					},
-					bookingDuration: 'FORTY_FIVE_TO_NINETY',
 				}
 				const user = await getContactorUserInfo()
 				if (user?.payload?.hasProjects) {
