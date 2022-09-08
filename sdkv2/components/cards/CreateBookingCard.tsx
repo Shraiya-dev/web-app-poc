@@ -19,7 +19,7 @@ import {
 	useTheme,
 } from '@mui/material'
 import { useFormik } from 'formik'
-import React, { FC, useEffect, useState } from 'react'
+import React, { FC, useEffect, useRef, useState } from 'react'
 import OtpInput from 'react-otp-input'
 import { ListChildComponentProps, VariableSizeList } from 'react-window'
 import { DataLayerPush, sendAnalytics } from 'sdk/analytics'
@@ -38,7 +38,7 @@ interface Props {}
 export const CreateBookingCard: FC<Props> = () => {
 	const [step, setStep] = useState<number>(0)
 	const { form, formikProps } = useEasyBooking()
-	const { user, requestOtp, verifyOtp, createEasyBooking } = useContractorAuth()
+	const { user, requestOtp, verifyOtp, createEasyBooking, otpMaxLimitReached } = useContractorAuth()
 	const [timer, setTimer] = useState(0)
 	const [otp, setOtp] = useState({
 		sending: false,
@@ -74,6 +74,8 @@ export const CreateBookingCard: FC<Props> = () => {
 		}),
 		onSubmit: () => {},
 	})
+	const [showLabel, setShowLabel] = useState<any>()
+
 	const loginFormikProps = useFormikProps(loginForm)
 	const { showSnackbar } = useSnackbar()
 	return (
@@ -185,7 +187,7 @@ export const CreateBookingCard: FC<Props> = () => {
 													<TextField
 														error={formikProps('location').error}
 														helperText={formikProps('location').helperText}
-														placeholder='Select Location'
+														placeholder='Site Location'
 														{...params}
 													/>
 												)}
@@ -197,7 +199,7 @@ export const CreateBookingCard: FC<Props> = () => {
 											<Dropdown
 												fullWidth
 												{...formikProps('jobType')}
-												emptyState={{ label: 'Select Job Category', value: 'none' }}
+												emptyState={{ label: 'Job Category', value: 'none' }}
 												options={JobType}
 											/>
 
@@ -205,6 +207,13 @@ export const CreateBookingCard: FC<Props> = () => {
 												<Typography variant='subtitle2' fontWeight={700}>
 													Looking for
 												</Typography>
+												{(form.values.isHelper ||
+													form.values.isSupervisor ||
+													form.values.isTechnician) && (
+													<Typography variant='subtitle2' color='grey.A400' fontWeight={700}>
+														Daily Salary
+													</Typography>
+												)}
 											</Stack>
 
 											<Stack direction='row' width='100%' minHeight={56} alignItems='center'>
@@ -232,9 +241,13 @@ export const CreateBookingCard: FC<Props> = () => {
 																},
 															}}
 															type='number'
-															placeholder='Enter Salary '
+															placeholder='Enter Salary'
+															label={showLabel?.isHelper ? 'Daily Salary' : undefined}
 															{...formikProps('helperWage')}
 															helperText={undefined}
+															onClick={() => {
+																setShowLabel({ isHelper: true })
+															}}
 															onChange={(e) => {
 																form.setFieldValue(
 																	e.target.name,
@@ -269,8 +282,9 @@ export const CreateBookingCard: FC<Props> = () => {
 														/>
 														<IconButton
 															color='error'
-															sx={{ mt: 1 }}
 															onClick={() => {
+																setShowLabel({ isHelper: false })
+
 																form.setFieldValue('isHelper', false)
 															}}>
 															<DeleteOutlined />
@@ -281,6 +295,7 @@ export const CreateBookingCard: FC<Props> = () => {
 														color='success'
 														sx={{ color: 'success.dark' }}
 														onClick={() => {
+															setShowLabel({ isHelper: true })
 															form.setFieldValue('isHelper', true)
 														}}
 														startIcon={<ControlPoint />}
@@ -303,6 +318,9 @@ export const CreateBookingCard: FC<Props> = () => {
 															</FormHelperText>
 														</Typography>
 														<TextField
+															onClick={() => {
+																setShowLabel({ isTechnician: true })
+															}}
 															autoFocus
 															disabled={!form.values.isTechnician}
 															sx={{
@@ -312,7 +330,8 @@ export const CreateBookingCard: FC<Props> = () => {
 																},
 															}}
 															type='number'
-															placeholder='Enter Salary '
+															placeholder='Enter Salary'
+															label={showLabel?.isTechnician ? 'Daily Salary' : undefined}
 															{...formikProps('technicianWage')}
 															helperText={undefined}
 															onChange={(e) => {
@@ -349,8 +368,9 @@ export const CreateBookingCard: FC<Props> = () => {
 														/>
 														<IconButton
 															color='error'
-															sx={{ mt: 1 }}
 															onClick={() => {
+																setShowLabel({ isTechnician: false })
+
 																form.setFieldValue('isTechnician', false)
 															}}>
 															<DeleteOutlined />
@@ -361,6 +381,8 @@ export const CreateBookingCard: FC<Props> = () => {
 														color='success'
 														sx={{ color: 'success.dark' }}
 														onClick={() => {
+															setShowLabel({ isTechnician: true })
+
 															form.setFieldValue('isTechnician', true)
 														}}
 														startIcon={<ControlPoint />}
@@ -383,6 +405,9 @@ export const CreateBookingCard: FC<Props> = () => {
 															</FormHelperText>
 														</Typography>
 														<TextField
+															onClick={() => {
+																setShowLabel({ isSupervisor: true })
+															}}
 															autoFocus
 															disabled={!form.values.isSupervisor}
 															sx={{
@@ -392,7 +417,8 @@ export const CreateBookingCard: FC<Props> = () => {
 																},
 															}}
 															type='number'
-															placeholder='Enter Salary '
+															placeholder='Enter Salary'
+															label={showLabel?.isSupervisor ? 'Daily Salary' : undefined}
 															{...formikProps('supervisorWage')}
 															helperText={undefined}
 															onChange={(e) => {
@@ -429,8 +455,9 @@ export const CreateBookingCard: FC<Props> = () => {
 														/>
 														<IconButton
 															color='error'
-															sx={{ mt: 1 }}
 															onClick={() => {
+																setShowLabel({ isSupervisor: false })
+
 																form.setFieldValue('isSupervisor', false)
 															}}>
 															<DeleteOutlined />
@@ -441,6 +468,8 @@ export const CreateBookingCard: FC<Props> = () => {
 														color='success'
 														sx={{ color: 'success.dark' }}
 														onClick={() => {
+															setShowLabel({ isSupervisor: true })
+
 															form.setFieldValue('isSupervisor', true)
 														}}
 														startIcon={<ControlPoint />}
@@ -508,6 +537,7 @@ export const CreateBookingCard: FC<Props> = () => {
 																		color='inherit'
 																		disabled={loginFormikProps('phoneNumber').error}
 																		variant='text'
+																		sx={{ fontWeight: 'bold' }}
 																		onClick={async () => {
 																			setOtp((p) => ({ ...p, edit: false }))
 																		}}>
@@ -518,6 +548,7 @@ export const CreateBookingCard: FC<Props> = () => {
 																		loading={otp.sending}
 																		color='success'
 																		variant='contained'
+																		sx={{ fontWeight: 'bold' }}
 																		disabled={
 																			loginFormikProps('phoneNumber').error ||
 																			loginFormikProps('phoneNumber').value ===
@@ -547,7 +578,7 @@ export const CreateBookingCard: FC<Props> = () => {
 																			)
 																			if (data.success) {
 																				showSnackbar(
-																					'Otp sent Successfully',
+																					'OTP Sent Successfully',
 																					'success'
 																				)
 																				setOtp((p) => ({
@@ -599,7 +630,12 @@ export const CreateBookingCard: FC<Props> = () => {
 														containerStyle={{ justifyContent: 'space-between' }}
 													/>
 												</InputWrapper>
-												{!otp.edit ? (
+												{otpMaxLimitReached ? (
+													<Typography variant='caption' px={2} textAlign='center'>
+														You have tried maximum login attemps. Please try again after 5
+														mins
+													</Typography>
+												) : !otp.edit ? (
 													<></>
 												) : timer > 0 ? (
 													<Typography variant='caption' textAlign='center'>
@@ -628,7 +664,7 @@ export const CreateBookingCard: FC<Props> = () => {
 																'+91' + loginForm.values.phoneNumber
 															)
 															if (data.success) {
-																showSnackbar('Otp sent Successfully', 'success')
+																showSnackbar('OTP Sent Successfully', 'success')
 																setOtp((p) => ({
 																	...p,
 																	reSent: true,

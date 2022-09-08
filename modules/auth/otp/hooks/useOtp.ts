@@ -32,12 +32,14 @@ const useOtp = () => {
 	const resendOTP = () => {
 		requestOtp(phoneNumber || '')
 			.then((res) => {
-				ButtonClicked({
-					action: 'Resend OTP',
-					page: 'Login',
-					url: router.asPath,
-				})
-				showSnackbar(res?.data?.data?.msg, 'success')
+				if (res) {
+					ButtonClicked({
+						action: 'Resend OTP',
+						page: 'Login',
+						url: router.asPath,
+					})
+					showSnackbar(res?.data?.data?.msg, 'success')
+				}
 			})
 			.catch((error: any) => {
 				console.log('error', error)

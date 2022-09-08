@@ -62,12 +62,9 @@ export const Footer = () => {
 										}}
 										variant='contained'
 										sx={{
-											fontSize: { md: '20px', xs: '14px' },
-											p: '14px 10px',
-											fontWeight: 500,
-											fontFamily: 'Karla ,sans-serif',
-											height: { md: '62px', xs: '40px' },
-											width: { md: '299px', xs: '200px' },
+											px: { xs: 7, md: 11 },
+											py: { xs: 1, md: 2 },
+											fontSize: { xs: 16, md: 20 },
 										}}>
 										Book Workers Now
 									</LinkButton>
