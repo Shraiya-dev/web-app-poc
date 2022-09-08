@@ -55,16 +55,16 @@ export const Navbar = () => {
 							justifyContent={'space-between'}
 							width={'100%'}
 							px={2}>
-							<Stack direction='row'>
-								<HyperLink href='/'>
-									<Image
+							<Stack direction='row' alignItems='center'>
+								<Link href='/' passHref>
+									<Box
+										component='img'
 										src={navbar.brandImage}
 										width={120}
-										height={45}
 										alt='Project hero'
 										// style={{ marginTop: 5 }}
 									/>
-								</HyperLink>
+								</Link>
 
 								{navbar.navLinks.map((navItem, i) => {
 									if (navItem.label == '+91-9151003513') {
@@ -76,6 +76,7 @@ export const Navbar = () => {
 												sx={(theme) => ({
 													ml: '10px',
 													fontWeight: 700,
+													fontFamily: `'Saira',sans-serif`,
 													color: 'common.white',
 													[theme.breakpoints.down('md')]: { display: 'none' },
 													whiteSpace: 'nowrap',
@@ -96,30 +97,33 @@ export const Navbar = () => {
 									}
 								})}
 							</Stack>
-							<IconButton
-								sx={(theme) => ({
-									display: 'none',
-
-									[theme.breakpoints.down('md')]: {
-										display: 'flex',
-									},
-									boxShadow: theme.shadows[3],
-									borderRadius: 2,
-								})}
-								onClick={() => setNavbarOpen((p) => !p)}>
-								<Stack
-									direction={'row'}
-									justifyContent={'flex-end'}
-									alignItems={'center'}
-									spacing={2.5}>
-									<Stack direction={'row'} spacing={1}>
-										<Box height={23.5} width={23.5}>
-											<img height={'100%'} width={'100%'} src='/assets/icons/phone.svg' alt='' />
-										</Box>
+							<Stack direction={'row'} justifyContent={'flex-end'} alignItems={'center'} spacing={2.5}>
+								<Link href='/' passHref>
+									<Stack direction='row' alignItems={'center'} spacing={1}>
+										<Box
+											component='img'
+											src='/assets/icons/phone.svg'
+											width={23}
+											alt='Project hero'
+											// style={{ marginTop: 5 }}
+										/>
 										<Typography variant='subtitle2' color={'#fff'} fontWeight={700}>
 											+91-9151003513
 										</Typography>
 									</Stack>
+								</Link>
+
+								<IconButton
+									sx={(theme) => ({
+										display: 'none',
+
+										[theme.breakpoints.down('md')]: {
+											display: 'flex',
+										},
+										boxShadow: theme.shadows[3],
+										borderRadius: 2,
+									})}
+									onClick={() => setNavbarOpen((p) => !p)}>
 									<Box width={28} height={28}>
 										<img
 											width={'100%'}
@@ -128,132 +132,130 @@ export const Navbar = () => {
 											alt=''
 										/>
 									</Box>
-								</Stack>
-
-								<Drawer
-									anchor='right'
-									open={navbarOpen}
-									PaperProps={{
-										sx: {
-											width: 280,
-											background: primary.properDark,
-										},
-									}}
-									style={{
-										zIndex: 10,
-									}}>
-									<List>
-										<Stack
-											direction={'row'}
-											justifyContent={'flex-end'}
-											px={3}
-											pt={2}
-											spacing={4}
-											alignItems={'center'}>
-											<Stack direction={'row'} spacing={1}>
-												<Box height={23.5} width={23.5}>
+									<Drawer
+										anchor='right'
+										open={navbarOpen}
+										PaperProps={{
+											sx: {
+												width: 280,
+												background: primary.properDark,
+											},
+										}}
+										style={{
+											zIndex: 10,
+										}}>
+										<List>
+											<Stack
+												direction={'row'}
+												justifyContent={'flex-end'}
+												px={3}
+												pt={2}
+												spacing={4}
+												alignItems={'center'}>
+												<Stack direction={'row'} spacing={1}>
+													<Box height={23.5} width={23.5}>
+														<img
+															height={'100%'}
+															width={'100%'}
+															src='/assets/icons/phone.svg'
+															alt=''
+														/>
+													</Box>
+													<Typography variant='subtitle2' color={'#fff'} fontWeight={700}>
+														+91-9151003513
+													</Typography>
+												</Stack>
+												<Box width={28} height={28}>
 													<img
-														height={'100%'}
 														width={'100%'}
-														src='/assets/icons/phone.svg'
+														height={'100%'}
+														src='/assets/landingv2/icons/menuIcon.svg'
 														alt=''
 													/>
 												</Box>
-												<Typography variant='subtitle2' color={'#fff'} fontWeight={700}>
-													+91-9151003513
-												</Typography>
 											</Stack>
-											<Box width={28} height={28}>
-												<img
-													width={'100%'}
-													height={'100%'}
-													src='/assets/landingv2/icons/menuIcon.svg'
-													alt=''
-												/>
-											</Box>
-										</Stack>
-										{user ? (
-											<Button
-												variant='contained'
-												startIcon={<DashboardRoundedIcon />}
-												sx={(theme) => ({
-													fontWeight: 700,
-													color: primary.properDark,
-													whiteSpace: 'nowrap',
-													borderRadius: '20px !important',
-													mx: 2,
-													mt: 5,
-												})}
-												href={'/dashboard'}>
-												Dashboard
-											</Button>
-										) : (
-											<>
-												<LinkButton
-													variant='text'
-													color='info'
-													startIcon={<img src={'/assets/landingv2/user.svg'} />}
+											{user ? (
+												<Button
+													variant='contained'
+													startIcon={<DashboardRoundedIcon />}
 													sx={(theme) => ({
-														mx: 2,
-														mt: 2,
 														fontWeight: 700,
-														color: 'common.white',
+														color: primary.properDark,
 														whiteSpace: 'nowrap',
+														borderRadius: '20px !important',
+														mx: 2,
+														mt: 5,
 													})}
-													onClick={() => {
-														sendAnalytics({
-															name: 'navbarLogin',
-															action: 'ButtonClick',
-														})
-														openLoginDialog()
-													}}>
-													Login
-												</LinkButton>
-												<Divider
-													sx={{
-														my: 2,
-														background: '#f7f7f7',
-														border: '1px solid #4c4c4c',
-														zIndex: '0',
-													}}
-												/>
-											</>
-										)}
+													href={'/dashboard'}>
+													Dashboard
+												</Button>
+											) : (
+												<>
+													<LinkButton
+														variant='text'
+														color='info'
+														startIcon={<img src={'/assets/landingv2/user.svg'} />}
+														sx={(theme) => ({
+															mx: 2,
+															mt: 2,
+															fontWeight: 700,
+															color: 'common.white',
+															whiteSpace: 'nowrap',
+														})}
+														onClick={() => {
+															sendAnalytics({
+																name: 'navbarLogin',
+																action: 'ButtonClick',
+															})
+															openLoginDialog()
+														}}>
+														Login
+													</LinkButton>
+													<Divider
+														sx={{
+															my: 2,
+															background: '#f7f7f7',
+															border: '1px solid #4c4c4c',
+															zIndex: '0',
+														}}
+													/>
+												</>
+											)}
 
-										<Stack direction={'column'} spacing={4} px={2.4} mt={'40px'}>
-											<Stack
-												direction={'column'}
-												alignItems={'flex-start'}
-												spacing={1}
-												sx={{
-													px: 1,
-													'& > a > button.MuiButton-root.MuiButton-text.MuiButton-sizeSmall':
-														{
-															minWidth: '140px',
-															alignItem: 'left !important',
-															justifyContent: 'unset',
-														},
-												}}>
-												{navbar.navLinks.map((val, i) => {
-													if (val.type === 'text_link') {
-														return (
-															<LinkButton
-																href={val.link}
-																key={i}
-																variant='text'
-																sx={(theme) => ({
-																	fontWeight: 700,
-																	color: '#fff',
-																	textAlign: 'left',
-																})}
-																size='small'>
-																{val.label}
-															</LinkButton>
-														)
-													}
-												})}
-											</Stack>
-											{/* <Stack direction={'row'} spacing={1}>
+											<Stack direction={'column'} spacing={4} px={2.4} mt={'40px'}>
+												<Stack
+													direction={'column'}
+													alignItems={'flex-start'}
+													spacing={1}
+													sx={{
+														px: 1,
+														'& > a > button.MuiButton-root.MuiButton-text.MuiButton-sizeSmall':
+															{
+																minWidth: '140px',
+																alignItem: 'left !important',
+																justifyContent: 'unset',
+															},
+													}}>
+													{navbar.navLinks.map((val, i) => {
+														if (val.type === 'text_link') {
+															return (
+																<LinkButton
+																	href={val.link}
+																	key={i}
+																	variant='text'
+																	sx={(theme) => ({
+																		fontWeight: 700,
+																		color: '#fff',
+																		textAlign: 'left',
+																	})}
+																	size='small'>
+																	{val.label}
+																</LinkButton>
+															)
+														}
+													})}
+												</Stack>
+												{/* <Stack direction={'row'} spacing={1}>
 												<Box height={23} width={23}>
 													<img
 														height={'100%'}
@@ -266,36 +268,37 @@ export const Navbar = () => {
 													marketing@projecthero.in
 												</Typography>
 											</Stack> */}
-											<Stack direction={'row'} spacing={1}>
-												<Box height={23} width={23}>
-													<img
-														height={'100%'}
-														width={'100%'}
-														src='/assets/icons/mail.svg'
-														alt=''
-													/>
-												</Box>
-												<Typography variant='subtitle2' color={'#fff'} fontWeight={700}>
-													marketing@projecthero.in
-												</Typography>
+												<Stack direction={'row'} spacing={1}>
+													<Box height={23} width={23}>
+														<img
+															height={'100%'}
+															width={'100%'}
+															src='/assets/icons/mail.svg'
+															alt=''
+														/>
+													</Box>
+													<Typography variant='subtitle2' color={'#fff'} fontWeight={700}>
+														marketing@projecthero.in
+													</Typography>
+												</Stack>
+												<Stack direction={'row'} spacing={1}>
+													<Box height={23} width={23}>
+														<img
+															height={'100%'}
+															width={'100%'}
+															src='/assets/icons/phone.svg'
+															alt=''
+														/>
+													</Box>
+													<Typography variant='subtitle2' color={'#fff'} fontWeight={700}>
+														+91-9151003513
+													</Typography>
+												</Stack>
 											</Stack>
-											<Stack direction={'row'} spacing={1}>
-												<Box height={23} width={23}>
-													<img
-														height={'100%'}
-														width={'100%'}
-														src='/assets/icons/phone.svg'
-														alt=''
-													/>
-												</Box>
-												<Typography variant='subtitle2' color={'#fff'} fontWeight={700}>
-													+91-9151003513
-												</Typography>
-											</Stack>
-										</Stack>
-									</List>
-								</Drawer>
-							</IconButton>
+										</List>
+									</Drawer>
+								</IconButton>
+							</Stack>
 						</Stack>
 						<NavWrapper
 							direction='row'

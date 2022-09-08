@@ -67,6 +67,7 @@ interface AuthProviderValue extends AuthState {
 	openLoginDialog: () => any
 	setBackdropProps: any
 	handleWhatsApp: () => any
+	otpMaxLimitReached: boolean
 }
 
 const simpleReducer = (state: AuthState, payload: Partial<AuthState>) => ({
@@ -104,6 +105,7 @@ const ContractorAuthContext = createContext<AuthProviderValue>({
 	openLoginDialog: () => null,
 	setBackdropProps: () => null,
 	handleWhatsApp: () => null,
+	otpMaxLimitReached: false,
 })
 const { Provider, Consumer } = ContractorAuthContext
 
@@ -188,7 +190,7 @@ const ContractorAuthProvider: FC<ContractorAuthProviderProps> = ({ children, aut
 	const { showSnackbar } = useSnackbar()
 	const [backdropProps, setBackdropProps] = useState({ open: false })
 	const [redirectingIn, setRedirectingIn] = useState(0)
-
+	const [otpMaxLimitReached, setOtpMaxLimitReached] = useState(false)
 	const requestOtp = useCallback(
 		async (phoneNumber: string) => {
 			dispatch({
@@ -199,6 +201,7 @@ const ContractorAuthProvider: FC<ContractorAuthProviderProps> = ({ children, aut
 			} catch (error: any) {
 				if (error.response.status === 429) {
 					showSnackbar('Please try again in 5 minutes.', 'error')
+					setOtpMaxLimitReached(true)
 				} else {
 					showSnackbar(error.response.data.developerInfo, 'error')
 				}
@@ -306,7 +309,12 @@ const ContractorAuthProvider: FC<ContractorAuthProviderProps> = ({ children, aut
 					return data
 				}
 			} catch (error: any) {
-				showSnackbar(error?.error, 'error')
+				if (error.response.status === 429) {
+					showSnackbar('Please try again in 5 minutes.', 'error')
+					setOtpMaxLimitReached(true)
+				} else {
+					showSnackbar(error.response.data.developerInfo, 'error')
+				}
 				return error
 				//TODO: Need to fix in response also
 				//showSnackbar(error?.response?.data?.developerInfo, 'error')
@@ -622,6 +630,7 @@ const ContractorAuthProvider: FC<ContractorAuthProviderProps> = ({ children, aut
 			createEasyBooking: createEasyBooking,
 			openLoginDialog: openLoginDialog,
 			handleWhatsApp: handleWhatsApp,
+			otpMaxLimitReached: otpMaxLimitReached,
 		}),
 		[
 			state,
@@ -637,6 +646,7 @@ const ContractorAuthProvider: FC<ContractorAuthProviderProps> = ({ children, aut
 			createEasyBooking,
 			openLoginDialog,
 			handleWhatsApp,
+			otpMaxLimitReached,
 		]
 	)
 	return (

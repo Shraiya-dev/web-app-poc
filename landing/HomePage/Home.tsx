@@ -1,4 +1,4 @@
-import { ArrowCircleLeftOutlined, ArrowCircleRightOutlined, Circle, Close } from '@mui/icons-material'
+import { ArrowCircleLeftOutlined, ArrowCircleRightOutlined, BorderColor, Circle, Close } from '@mui/icons-material'
 
 import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord'
 import {
@@ -540,7 +540,7 @@ export const Home = () => {
 					<Box mb={'66px'}>
 						<LinkButton
 							variant='contained'
-							sx={homePage.howItWorksSection.buttonSx}
+							sx={{ px: { xs: 7, md: 11 }, py: { xs: 1, md: 2 }, fontSize: { xs: 16, md: 20 } }}
 							href={homePage.howItWorksSection.buttonText.link}
 							onClick={() => {
 								DataLayerPush({ event: 'book_workers_now_top' })
@@ -551,9 +551,6 @@ export const Home = () => {
 										origin: 'How it Works section',
 									},
 								})
-							}}
-							style={{
-								padding: !isMobile ? '14px 64px' : '13px 45px',
 							}}>
 							{homePage.howItWorksSection.buttonText.text}
 						</LinkButton>
@@ -597,7 +594,13 @@ export const Home = () => {
 								<Box>{homePage.whyYouShouldHire.left.heading}</Box>
 								<Box>
 									<LinkButton
-										sx={homePage.whyYouShouldHire.left.buttonSx}
+										sx={{
+											px: { xs: 7, md: 11 },
+											py: { xs: 1, md: 2 },
+											fontSize: { xs: 16, md: 20 },
+											backgroundColor: 'common.white',
+											borderColor: 'common.white',
+										}}
 										href={homePage.howItWorksSection.buttonText.link}
 										onClick={() => {
 											DataLayerPush({
@@ -610,9 +613,6 @@ export const Home = () => {
 													origin: 'why You Should Hire section',
 												},
 											})
-										}}
-										style={{
-											padding: !isMobile ? '14px 64px' : '15px 45px',
 										}}>
 										{homePage.whyYouShouldHire.left.buttonText.text}
 									</LinkButton>
@@ -701,10 +701,9 @@ export const Home = () => {
 									<LinkButton
 										href={homePage.HeroAdvantage.buttonText.link}
 										sx={{
-											p: { md: '14px 64px', xs: '13px 45px' },
-											fontWeight: '500',
-											fontSize: { md: '20px', xs: '14px' },
-											fontFamily: 'Karla , sans-serif',
+											px: { xs: 7, md: 11 },
+											py: { xs: 1, md: 2 },
+											fontSize: { xs: 16, md: 20 },
 										}}
 										// href='/login'
 										onClick={() => {

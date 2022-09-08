@@ -38,7 +38,7 @@ interface Props {}
 export const CreateBookingCard: FC<Props> = () => {
 	const [step, setStep] = useState<number>(0)
 	const { form, formikProps } = useEasyBooking()
-	const { user, requestOtp, verifyOtp, createEasyBooking } = useContractorAuth()
+	const { user, requestOtp, verifyOtp, createEasyBooking, otpMaxLimitReached } = useContractorAuth()
 	const [timer, setTimer] = useState(0)
 	const [otp, setOtp] = useState({
 		sending: false,
@@ -187,7 +187,7 @@ export const CreateBookingCard: FC<Props> = () => {
 													<TextField
 														error={formikProps('location').error}
 														helperText={formikProps('location').helperText}
-														placeholder='Select Location'
+														placeholder='Site Location'
 														{...params}
 													/>
 												)}
@@ -199,7 +199,7 @@ export const CreateBookingCard: FC<Props> = () => {
 											<Dropdown
 												fullWidth
 												{...formikProps('jobType')}
-												emptyState={{ label: 'Select Job Category', value: 'none' }}
+												emptyState={{ label: 'Job Category', value: 'none' }}
 												options={JobType}
 											/>
 
@@ -282,7 +282,6 @@ export const CreateBookingCard: FC<Props> = () => {
 														/>
 														<IconButton
 															color='error'
-															sx={{ mt: 1 }}
 															onClick={() => {
 																setShowLabel({ isHelper: false })
 
@@ -369,7 +368,6 @@ export const CreateBookingCard: FC<Props> = () => {
 														/>
 														<IconButton
 															color='error'
-															sx={{ mt: 1 }}
 															onClick={() => {
 																setShowLabel({ isTechnician: false })
 
@@ -457,7 +455,6 @@ export const CreateBookingCard: FC<Props> = () => {
 														/>
 														<IconButton
 															color='error'
-															sx={{ mt: 1 }}
 															onClick={() => {
 																setShowLabel({ isSupervisor: false })
 
@@ -540,6 +537,7 @@ export const CreateBookingCard: FC<Props> = () => {
 																		color='inherit'
 																		disabled={loginFormikProps('phoneNumber').error}
 																		variant='text'
+																		sx={{ fontWeight: 'bold' }}
 																		onClick={async () => {
 																			setOtp((p) => ({ ...p, edit: false }))
 																		}}>
@@ -550,6 +548,7 @@ export const CreateBookingCard: FC<Props> = () => {
 																		loading={otp.sending}
 																		color='success'
 																		variant='contained'
+																		sx={{ fontWeight: 'bold' }}
 																		disabled={
 																			loginFormikProps('phoneNumber').error ||
 																			loginFormikProps('phoneNumber').value ===
@@ -579,7 +578,7 @@ export const CreateBookingCard: FC<Props> = () => {
 																			)
 																			if (data.success) {
 																				showSnackbar(
-																					'Otp sent Successfully',
+																					'OTP Sent Successfully',
 																					'success'
 																				)
 																				setOtp((p) => ({
@@ -631,7 +630,12 @@ export const CreateBookingCard: FC<Props> = () => {
 														containerStyle={{ justifyContent: 'space-between' }}
 													/>
 												</InputWrapper>
-												{!otp.edit ? (
+												{otpMaxLimitReached ? (
+													<Typography variant='caption' px={2} textAlign='center'>
+														You have tried maximum login attemps. Please try again after 5
+														mins
+													</Typography>
+												) : !otp.edit ? (
 													<></>
 												) : timer > 0 ? (
 													<Typography variant='caption' textAlign='center'>
@@ -660,7 +664,7 @@ export const CreateBookingCard: FC<Props> = () => {
 																'+91' + loginForm.values.phoneNumber
 															)
 															if (data.success) {
-																showSnackbar('Otp sent Successfully', 'success')
+																showSnackbar('OTP Sent Successfully', 'success')
 																setOtp((p) => ({
 																	...p,
 																	reSent: true,
