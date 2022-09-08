@@ -64,7 +64,7 @@ export const useEasyBooking = () => {
 			helperWage: Yup.number().when('isHelper', {
 				is: true,
 				then: Yup.number()
-					.required('*Wage is required')
+					.required('*salary is required')
 					.min(300, '*daily salary cannot be less than ₹300')
 					.max(2000, '*daily salary cannot be more than ₹2000'),
 			}),
@@ -72,14 +72,14 @@ export const useEasyBooking = () => {
 			technicianWage: Yup.number().when('isTechnician', {
 				is: true,
 				then: Yup.number()
-					.required('*Wage is required')
+					.required('*salary is required')
 					.min(300, '*daily salary cannot be less than ₹300')
 					.max(2000, '*daily salary cannot be more than ₹2000'),
 			}),
 			supervisorWage: Yup.number().when('isSupervisor', {
 				is: true,
 				then: Yup.number()
-					.required('*Wage is required')
+					.required('*salary is required')
 					.min(300, '*daily salary cannot be less than ₹300')
 					.max(2000, '*daily salary cannot be more than ₹2000'),
 			}),
