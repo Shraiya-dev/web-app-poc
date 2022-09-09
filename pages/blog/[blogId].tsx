@@ -20,7 +20,7 @@ const Page: NextPage = () => {
 	const [seeMore, setSeeMore] = useState<boolean>(false)
 	const { showSnackbar } = useSnackbar()
 	useEffect(() => {
-		setBlogId(Number(router.query.blogId))
+		setBlogId(Number(router.query.blogId as string))
 
 		let result: any = []
 		blogData?.Allblogs[blogId]?.similarArray.forEach((x: any) => {
@@ -30,7 +30,12 @@ const Page: NextPage = () => {
 
 		setSimilarBlog(result)
 	}, [router.query.blogId])
-
+	const handleonReadMore = useCallback((id: any, title: string) => {
+		const nsp = new URLSearchParams({
+			title: title,
+		})
+		return `/blog/${id}?${nsp.toString()}`
+	}, [])
 	const copyOnShare = useCallback(
 		(id: any) => {
 			if (!window) return
@@ -132,7 +137,7 @@ const Page: NextPage = () => {
 									borderRadius: '8.3557px',
 								}}
 								image={blogData?.Allblogs[blogId]?.imgSrc}
-								alt='Live from space album cover'
+								alt='project hero'
 							/>
 							<Stack>
 								<CardContent
@@ -181,11 +186,11 @@ const Page: NextPage = () => {
 														<CardContent sx={{ height: '135px' }}>
 															<Typography
 																variant='h6'
-																fontSize='16px'
+																fontSize='14px'
 																fontFamily={'Saira ,sans-serif'}
 																fontWeight={600}
 																sx={{ marginTop: '8%' }}>
-																{title.slice(0, 35) + '......'}
+																{title}
 															</Typography>
 															<Typography
 																variant='subtitle1'
@@ -203,18 +208,15 @@ const Page: NextPage = () => {
 																justifyContent: 'space-around',
 																paddingBottom: '25px',
 															}}>
-															<Button
-																onClick={() => {
-																	router.push(`/blog/${id}`)
-																	// window.scrollTo(0, 0)
-																}}
+															<LinkButton
+																href={handleonReadMore(id, title)}
 																endIcon={<ArrowForwardIcon />}
 																variant='text'
 																fullWidth={false}
 																sx={{ marginBottom: '0px' }}
 																color='inherit'>
 																Read More
-															</Button>
+															</LinkButton>
 															<Button
 																onClick={() => copyOnShare(id)}
 																startIcon={<ShareIcon />}
@@ -298,7 +300,7 @@ const Page: NextPage = () => {
 																</Typography>
 															</Box>
 															<LinkButton
-																href={`blog/${id}`}
+																href={handleonReadMore(id, title)}
 																endIcon={<ArrowForwardIcon />}
 																variant='text'
 																fullWidth={false}

@@ -77,11 +77,16 @@ export const Blog = () => {
 							})
 							setIsActive('all')
 						}}
-						variant='contained'
+						variant='text'
 						sx={{
+							width: '128px',
+							height: '50px',
+							// mr: '12px',
+							pr: '60px',
+							color: 'text.secondary',
 							fontSize: '14.53',
 							fontFamily: 'Karla ,sans-serif',
-							fontWeight: 400,
+							fontWeight: 500,
 							background: isActive === 'all' ? '#EFC430' : 'inherit',
 						}}>
 						All Blogs

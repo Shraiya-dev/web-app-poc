@@ -21,10 +21,12 @@ export const BlogCard: FC<Props> = ({ view }: Props) => {
 	const router = useRouter()
 	const { showSnackbar } = useSnackbar()
 	const copyOnShare = useCallback(
-		(id: any) => {
+		(id: any, title: string) => {
 			if (!window) return
-
-			const href = location.origin + `/blog/${id}`
+			const nsp = new URLSearchParams({
+				title: title,
+			})
+			const href = location.origin + `/blog/${id}?${nsp.toString()}`
 			navigator.clipboard.writeText(href)
 			const shareData = {
 				url: href,
@@ -35,6 +37,12 @@ export const BlogCard: FC<Props> = ({ view }: Props) => {
 		},
 		[isMobile]
 	)
+	const handleonReadMore = useCallback((id: any, title: string) => {
+		const nsp = new URLSearchParams({
+			title: title,
+		})
+		return `blog/${id}?${nsp.toString()}`
+	}, [])
 
 	return (
 		<>
@@ -42,8 +50,6 @@ export const BlogCard: FC<Props> = ({ view }: Props) => {
 				<Carousel
 					slideDelay={5000}
 					componentPerView={1}
-					// mobileStepper={false}
-					// mobileStepperPosition='top'
 					items={blogData.Allblogs.filter(({ isPopular }: any) => isPopular).map(
 						({ id, title, description, imgSrc, isPopular, isLatest }: any, index: any) => (
 							<Box>
@@ -72,7 +78,7 @@ export const BlogCard: FC<Props> = ({ view }: Props) => {
 												gutterBottom
 												variant='h2'
 												component='div'
-												fontSize={{ md: '32px', xs: '16px' }}
+												fontSize={{ lg: '32px', md: '27px', xs: '16px' }}
 												fontFamily={'Saira ,sans-serif'}
 												fontWeight={600}
 												sx={{ marginTop: { md: '-18px', xs: '' } }}>
@@ -83,12 +89,12 @@ export const BlogCard: FC<Props> = ({ view }: Props) => {
 												variant='h6'
 												color='text.secondary'
 												fontFamily='Karla ,sans-serif'
-												fontSize={{ md: '20px', xs: '14px' }}
+												fontSize={{ lg: '20px', md: '17px', xs: '14px' }}
 												fontWeight={400}>
-												{description.slice(0, 200)}
+												{description.slice(0, 200)}....
 												<br />
 												<br />
-												{description.slice(200, 350)}
+												{description.slice(200, 350)}....
 											</Typography>
 										</CardContent>
 										{!isMobile ? (
@@ -98,7 +104,7 @@ export const BlogCard: FC<Props> = ({ view }: Props) => {
 												justifyContent='space-between'
 												sx={{ mt: { xs: '30px', md: '0' } }}>
 												<LinkButton
-													onClick={() => copyOnShare(id)}
+													onClick={() => copyOnShare(id, title)}
 													startIcon={<ShareIcon sx={{ color: '#efc430' }} />}
 													variant='text'
 													fullWidth={false}
@@ -112,7 +118,7 @@ export const BlogCard: FC<Props> = ({ view }: Props) => {
 													<Typography>Share</Typography>
 												</LinkButton>
 												<Button
-													href={`blog/${id}`}
+													href={handleonReadMore(id, title)}
 													endIcon={<ArrowForwardIcon />}
 													variant='text'
 													fullWidth={false}
@@ -134,7 +140,7 @@ export const BlogCard: FC<Props> = ({ view }: Props) => {
 												justifyContent='space-between'
 												sx={{ mt: { xs: '30px', md: '0' } }}>
 												<Button
-													href={`blog/${id}`}
+													href={handleonReadMore(id, title)}
 													endIcon={<ArrowForwardIcon />}
 													variant='text'
 													fullWidth={false}
@@ -143,8 +149,7 @@ export const BlogCard: FC<Props> = ({ view }: Props) => {
 												</Button>
 												<LinkButton
 													color='primary'
-													// href={`blog/${id}`}
-													onClick={() => copyOnShare(id)}
+													onClick={() => copyOnShare(id, title)}
 													startIcon={<ShareIcon sx={{ color: '#efc430' }} />}
 													variant='text'
 													fullWidth={false}>
@@ -205,7 +210,7 @@ export const BlogCard: FC<Props> = ({ view }: Props) => {
 															paddingBottom: '25px',
 														}}>
 														<LinkButton
-															href={`blog/${id}`}
+															href={handleonReadMore(id, title)}
 															endIcon={<ArrowForwardIcon />}
 															variant='text'
 															fullWidth={false}
@@ -214,7 +219,7 @@ export const BlogCard: FC<Props> = ({ view }: Props) => {
 															Read More
 														</LinkButton>
 														<Button
-															onClick={() => copyOnShare(id)}
+															onClick={() => copyOnShare(id, title)}
 															endIcon={<ShareIcon />}
 															variant='text'
 															fullWidth={false}>
@@ -236,7 +241,7 @@ export const BlogCard: FC<Props> = ({ view }: Props) => {
 														borderRadius: '8.3557px',
 													}}
 													image={imgSrc}
-													alt='Live from space album cover'
+													alt='project hero'
 												/>
 											</Card>
 										) : (
@@ -261,7 +266,7 @@ export const BlogCard: FC<Props> = ({ view }: Props) => {
 															{title}
 														</Typography>
 														<Button
-															onClick={() => copyOnShare(id)}
+															onClick={() => copyOnShare(id, title)}
 															startIcon={<ShareIcon />}
 															variant='text'
 															fullWidth={false}
@@ -284,25 +289,14 @@ export const BlogCard: FC<Props> = ({ view }: Props) => {
 															fontWeight={400}
 															variant='body2'
 															color='text.secondary'>
-															{description.slice(0, 250)}
+															{description.slice(0, 250)}....
 														</Typography>
 													</Box>
 												</CardContent>
 
 												<CardActions>
 													<LinkButton
-														href={`blog/${id}`}
-														// onClick={() => {
-														// 	router.push({
-														// 		pathname: !router.query.page
-														// 			? 'blog/id'
-														// 			: '/blog/id',
-														// 		query: {
-														// 			pid: index,
-														// 			type: 'Latestblogs',
-														// 		},
-														// 	})
-														// }}
+														href={handleonReadMore(id, title)}
 														endIcon={<ArrowForwardIcon />}
 														variant='text'
 														fullWidth={false}
@@ -356,7 +350,7 @@ export const BlogCard: FC<Props> = ({ view }: Props) => {
 																paddingBottom: '25px',
 															}}>
 															<LinkButton
-																href={`blog/${id}`}
+																href={handleonReadMore(id, title)}
 																endIcon={<ArrowForwardIcon />}
 																variant='text'
 																fullWidth={false}
@@ -365,7 +359,7 @@ export const BlogCard: FC<Props> = ({ view }: Props) => {
 																Read More
 															</LinkButton>
 															<Button
-																onClick={() => copyOnShare(id)}
+																onClick={() => copyOnShare(id, title)}
 																startIcon={<ShareIcon />}
 																variant='text'
 																fullWidth={false}>
@@ -420,7 +414,7 @@ export const BlogCard: FC<Props> = ({ view }: Props) => {
 																	height: '20px',
 																}}>
 																<Typography
-																	onClick={() => copyOnShare(id)}
+																	onClick={() => copyOnShare(id, title)}
 																	fontFamily='Karla ,sans-serif'
 																	fontSize='12px'
 																	fontWeight={500}>
@@ -443,11 +437,11 @@ export const BlogCard: FC<Props> = ({ view }: Props) => {
 																	fontWeight={400}
 																	variant='body2'
 																	color='text.secondary'>
-																	{description.slice(0, 250)}
+																	{description.slice(0, 250)}....
 																</Typography>
 															</Box>
 															<LinkButton
-																href={`blog/${id}`}
+																href={handleonReadMore(id, title)}
 																endIcon={<ArrowForwardIcon />}
 																variant='text'
 																fullWidth={false}
