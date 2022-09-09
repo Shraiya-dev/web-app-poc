@@ -20,7 +20,7 @@ const Page: NextPage = () => {
 	const [seeMore, setSeeMore] = useState<boolean>(false)
 	const { showSnackbar } = useSnackbar()
 	useEffect(() => {
-		setBlogId(Number(router.query.blogId))
+		setBlogId(Number(router.query.blogId as string))
 
 		let result: any = []
 		blogData?.Allblogs[blogId]?.similarArray.forEach((x: any) => {
@@ -30,7 +30,12 @@ const Page: NextPage = () => {
 
 		setSimilarBlog(result)
 	}, [router.query.blogId])
-
+	const handleonReadMore = useCallback((id: any, title: string) => {
+		const nsp = new URLSearchParams({
+			title: title,
+		})
+		return `/blog/${id}?${nsp.toString()}`
+	}, [])
 	const copyOnShare = useCallback(
 		(id: any) => {
 			if (!window) return
@@ -168,79 +173,6 @@ const Page: NextPage = () => {
 									return (
 										<Grid key={index} item xs={12} sm={6} md={4}>
 											{isMobile ? (
-												// <Card
-												// 	sx={{
-												// 		display: 'flex',
-												// 		flexDirection: 'row-reverse',
-												// 		width: '100%',
-												// 	}}>
-												// 	<Box
-												// 		sx={{
-												// 			display: 'flex',
-												// 			flexDirection: 'column',
-												// 		}}>
-												// 		<CardContent sx={{ flex: '1 0 auto' }}>
-												// 			<Typography component='div' variant='h5' fontSize='14px'>
-												// 				{title}
-												// 			</Typography>
-												// 			<Typography
-												// 				variant='subtitle1'
-												// 				color='text.secondary'
-												// 				component='div'
-												// 				fontSize='12px'>
-												// 				{description.slice(0, 50) + '......'}
-												// 			</Typography>
-												// 		</CardContent>
-												// 		<Box
-												// 			sx={{
-												// 				display: 'flex',
-												// 				alignItems: 'center',
-												// 				justifyContent: 'space-between',
-
-												// 				pl: 1,
-												// 				pb: 1,
-												// 			}}>
-												// 			<Button
-												// 				onClick={() => {
-												// 					router.push(`/blog/${id}`)
-												// 					// window.scrollTo(0, 0)
-												// 				}}
-												// 				endIcon={<ArrowForwardIcon />}
-												// 				variant='text'
-												// 				fullWidth={false}
-												// 				sx={{ marginBottom: '0px' }}
-												// 				color='inherit'>
-												// 				Read More
-												// 			</Button>
-												// 			<Button
-												// 				onClick={() => copyOnShare(id)}
-												// 				startIcon={<ShareIcon />}
-												// 				variant='text'
-												// 				sx={{ mr: '20px' }}
-												// 				fullWidth={false}>
-												// 				<Typography
-												// 					fontFamily='Karla ,sans-serif'
-												// 					fontSize='12px'
-												// 					fontWeight={500}>
-												// 					Share
-												// 				</Typography>
-												// 			</Button>
-												// 		</Box>
-												// 	</Box>
-												// 	<CardMedia
-												// 		component='img'
-												// 		sx={{
-												// 			width: '106px',
-												// 			height: '129px',
-												// 			// py: '12px',
-												// 			ml: '12px',
-												// 			mt: '12px',
-												// 			borderRadius: '8.3557px',
-												// 		}}
-												// 		image={imgSrc}
-												// 		alt='Live from space album cover'
-												// 	/>
-												// </Card>
 												<Card
 													elevation={10}
 													sx={{
@@ -276,18 +208,15 @@ const Page: NextPage = () => {
 																justifyContent: 'space-around',
 																paddingBottom: '25px',
 															}}>
-															<Button
-																onClick={() => {
-																	router.push(`/blog/${id}`)
-																	// window.scrollTo(0, 0)
-																}}
+															<LinkButton
+																href={handleonReadMore(id, title)}
 																endIcon={<ArrowForwardIcon />}
 																variant='text'
 																fullWidth={false}
 																sx={{ marginBottom: '0px' }}
 																color='inherit'>
 																Read More
-															</Button>
+															</LinkButton>
 															<Button
 																onClick={() => copyOnShare(id)}
 																startIcon={<ShareIcon />}
@@ -371,7 +300,7 @@ const Page: NextPage = () => {
 																</Typography>
 															</Box>
 															<LinkButton
-																href={`blog/${id}`}
+																href={handleonReadMore(id, title)}
 																endIcon={<ArrowForwardIcon />}
 																variant='text'
 																fullWidth={false}

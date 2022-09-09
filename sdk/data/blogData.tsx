@@ -1115,17 +1115,11 @@ const BlogList = {
 						2. On the main page, you will find the booking form, which you will have to fill
 						<Box component={'br'} />
 						3. The few key descriptions that you are required to provide include things like the job
-						location, category of the work and work duration.
+						location, category and daily salary of the workers.
 						<Box component={'br'} />
-						4. Specifying the total number of target applications for your booking is also required.
+						4. Login to contractor dashboard by verifying OTP and that’s it! Your job posting has gone live.
 						<Box component={'br'} />
-						5. You can then proceed further and complete the payment for your target applications (Where the
-						first 15 are free and only after that will you be charged INR 50 per application)
-						<Box component={'br'} />
-						6. After confirmation on the final checkout page is done, your booking will automatically be
-						active.
-						<Box component={'br'} />
-						7. Within a few seconds, your booking will be visible to the potential workforce, and they can
+						5. Within a few seconds, your booking will be visible to the potential workforce, and they can
 						start applying for the job after that.
 					</Typography>
 				</Box>
@@ -1733,7 +1727,7 @@ export const blogData: any = {
 				'Construction is a physically and psychologically demanding vocation. It comes with various difficulties and working conditions that set it apart from the average office job. A construction labourer’s job may seem simple, particularly to those who know how to utilise instruments like a hammer. But it takes more than a sledgehammer to crack this nut. Construction workers face daily challenges, including working in confined spaces, at dangerous heights, and with heavy equipment in unpleasant weather. This also applies to office construction employees, who must fully grasp how to price construction labour works and manage time-sensitive projects.',
 			details: BlogList.blog9,
 			imgSrc: '/assets/landingv2/heroSection/12_Things_You_Need_To_Know_About_Construction_Labour.jpg',
-			isPopular: true,
+			isPopular: false,
 			isLatest: false,
 			similarArray: [4, 5, 6],
 		},
@@ -1744,7 +1738,7 @@ export const blogData: any = {
 				'It is quite common for customers who want to hire professionals to work on their construction project to get confused between a builder and a contractor, the two essential roles in the construction sector. Even though these two roles closely relate to one another, they are quite distinguishable regarding their job and responsibilities. In this article, we will paint a complete picture that should help customers understand these two separate roles clearly, so they can avoid being confused and hire the correct person for their construction projects in future. In the industry, both the builder and contractor are essential, so let us have a look at the general details of these roles, discuss their distinct duties on the job and establish a difference between builder and construction work contractor.',
 			details: BlogList.blog10,
 			imgSrc: '/assets/landingv2/heroSection/Builders_Vs_Contractors:_Which_is_Better.jpg',
-			isPopular: true,
+			isPopular: false,
 			isLatest: true,
 			similarArray: [1, 2, 7],
 		},
@@ -1766,7 +1760,7 @@ export const blogData: any = {
 				'Before you begin your journey in the construction sector, you should know that this job requires skills and an eye for improvement and can pose major challenges throughout projects in terms of mental and physical strain. However, if you can steady up your outlook to work around a few initial challenges and look into the bigger picture, this job would offer innumerable possibilities and expansion as you begin to develop in the sector.',
 			details: BlogList.blog6,
 			imgSrc: '/assets/landingv2/heroSection/15_Must_Know_Things_Before_You_Get_Started_with_Construction.jpg',
-			isPopular: true,
+			isPopular: false,
 			isLatest: true,
 			similarArray: [1, 9, 10],
 		},
@@ -1788,7 +1782,7 @@ export const blogData: any = {
 				'The issue of job scams within the construction industry is not an uncommon one. Valuable workers getting cheated by fake job promises, contractors getting hassled by middlemen in the name of supplying potential workforce, and the online job fraud list goes on and around in every direction. This has been one of the major factors affecting the construction industry negatively and demoralising labourers and contractors. When looking for a construction job or possible construction workforce as a contractor, time generally is of the essence. This is why people often miss out or overlook certain red flags on a job portal, causing them both mental and financial strain in the process.',
 			details: BlogList.blog3,
 			imgSrc: '/assets/landingv2/heroSection/3_Ways_to_Avoid_Getting_Scammed_by_a_Job_Portal.jpg',
-			isPopular: true,
+			isPopular: false,
 			isLatest: true,
 			similarArray: [3, 9, 10],
 		},
@@ -1799,7 +1793,7 @@ export const blogData: any = {
 				'Construction projects are very time-centric and budget oriented. This is why clients prefer to hire contractors to streamline their construction projects as swiftly as possible. The general duty of a contractor is to fill many vital roles, including hiring labourers, sub-contractors, and consultants, providing building materials, on and off-site operation management, and much more. Opting for contractors to handle projects can save tons of money and reduce construction cost margin of the whole operation. As a contractor, it is recommended that you should go through some useful, crucial and functional tactics and apply them to your general method of operation. This way, you can save a huge chunk of the budget and never exceed the line.',
 			details: BlogList.blog4,
 			imgSrc: '/assets/landingv2/heroSection/5_Ways_to_Save_Money_on_Your_Construction_Project.jpg',
-			isPopular: true,
+			isPopular: false,
 			isLatest: true,
 			similarArray: [4, 6, 7],
 		},
