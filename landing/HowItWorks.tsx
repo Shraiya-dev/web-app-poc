@@ -3,7 +3,7 @@ import { Box } from '@mui/system'
 import Image from 'next/image'
 import React, { createRef, useState } from 'react'
 import { FC } from 'react'
-import { Section, theme, useMobile } from 'sdk'
+import { Section, sendAnalytics, theme, useMobile } from 'sdk'
 import { CarouselHowItWork } from 'sdkv2/components'
 import AcUnitIcon from '@mui/icons-material/AcUnit'
 //@ts-nocheck
@@ -216,6 +216,15 @@ export const HowItWorks: FC<Props> = () => {
 					<Paper
 						className='styledPaper'
 						elevation={0}
+						onClick={() => {
+							sendAnalytics({
+								name: 'videoPlay',
+								action: 'ButtonClick',
+								metaData: {
+									origin: 'How It Works',
+								},
+							})
+						}}
 						sx={{
 							maxWidth: '800px',
 							width: { xs: '100%', sm: '80%', md: '54%' },

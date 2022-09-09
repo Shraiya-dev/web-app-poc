@@ -12,6 +12,7 @@ import { useRouter } from 'next/router'
 import { blogData } from 'sdk/data/blogData'
 
 import { useSnackbar } from 'sdk/providers'
+import { sendAnalytics } from 'sdk/analytics'
 interface Props {
 	view: string
 }
@@ -23,6 +24,7 @@ export const BlogCard: FC<Props> = ({ view }: Props) => {
 	const copyOnShare = useCallback(
 		(id: any, title: string) => {
 			if (!window) return
+
 			const nsp = new URLSearchParams({
 				title: title,
 			})
@@ -31,11 +33,21 @@ export const BlogCard: FC<Props> = ({ view }: Props) => {
 			const shareData = {
 				url: href,
 			}
+			sendAnalytics({
+				name: 'shareBlog',
+				action: 'ButtonClick',
+				metaData: { title: title },
+			})
 			isMobile
 				? navigator?.share(shareData).then(() => showSnackbar(href, 'success'))
 				: showSnackbar('Share link Copied', 'success')
+			sendAnalytics({
+				name: 'shareBlog',
+				action: 'ButtonClick',
+				metaData: { title: title },
+			})
 		},
-		[isMobile]
+		[isMobile, showSnackbar]
 	)
 	const handleonReadMore = useCallback((id: any, title: string) => {
 		const nsp = new URLSearchParams({
@@ -52,7 +64,7 @@ export const BlogCard: FC<Props> = ({ view }: Props) => {
 					componentPerView={1}
 					items={blogData.Allblogs.filter(({ isPopular }: any) => isPopular).map(
 						({ id, title, description, imgSrc, isPopular, isLatest }: any, index: any) => (
-							<Box>
+							<Box key={id}>
 								<Stack
 									key={index}
 									direction={{ xs: 'column', md: 'row' }}

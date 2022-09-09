@@ -160,6 +160,7 @@ const EventTypes = {
 	sendOtp: 'Send OTP',
 	otpVerification: 'OTP Verification',
 	videoPlay: 'Video Play',
+	shareBlog: 'Share Blog',
 }
 
 //Define a new action type here if needed
