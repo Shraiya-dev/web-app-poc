@@ -8,6 +8,7 @@ import {
 	FormGroup,
 	Grid,
 	IconButton,
+	Pagination,
 	Stack,
 	Typography,
 } from '@mui/material'
@@ -218,15 +219,44 @@ const WorkerTracking = ({ handleRequiredTotal }: handleLength) => {
 							</Typography>
 						</Stack>
 					) : (
-						<Grid container spacing={2}>
-							{jobCards.map((jobCardInfo, index) => {
-								return (
-									<Grid item xs={12} sm={6} lg={4} xl={3} key={index}>
-										<JobCardCard jobCard={jobCardInfo} updateJobCard={updateContractorFeedback} />
-									</Grid>
-								)
-							})}
-						</Grid>
+						<>
+							<Grid container spacing={2}>
+								{jobCards.map((jobCardInfo, index) => {
+									return (
+										<Grid item xs={12} sm={6} lg={4} xl={3} key={index}>
+											<JobCardCard
+												jobCard={jobCardInfo}
+												updateJobCard={updateContractorFeedback}
+											/>
+										</Grid>
+									)
+								})}
+							</Grid>
+							<Stack
+								p={1}
+								alignItems='center'
+								sx={{
+									'*': {
+										color: '#ffffff',
+									},
+								}}>
+								<Pagination
+									page={router.query['pageNumber'] ? Number(router.query['pageNumber'] as string) : 1}
+									hideNextButton={!hasMore}
+									count={hasMore ? 35 : Number(router.query['pageNumber'] as string)}
+									siblingCount={0}
+									disabled={isLoading}
+									boundaryCount={0}
+									showFirstButton={false}
+									showLastButton={false}
+									color='primary'
+									onChange={(e, page) => {
+										router.query.pageNumber = String(page)
+										router.replace(router)
+									}}
+								/>
+							</Stack>
+						</>
 					)}
 				</Stack>
 

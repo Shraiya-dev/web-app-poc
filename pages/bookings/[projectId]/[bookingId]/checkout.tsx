@@ -1,4 +1,5 @@
 import { GetStaticPaths, GetStaticProps } from 'next'
+import { useRouter } from 'next/router'
 import { useEffect } from 'react'
 import { OnboardingLayout, useContractorAuth } from 'sdk'
 import { staticRenderingProvider } from 'sdk/utils/nextHelper'
@@ -9,6 +10,10 @@ const Checkout = () => {
 	useEffect(() => {
 		setBackdropProps({ open: false })
 	}, [setBackdropProps])
+	const router = useRouter()
+	useEffect(() => {
+		router.push('/dashboard')
+	}, [router])
 	return (
 		<>
 			<OnboardingLayout helmet={false}>

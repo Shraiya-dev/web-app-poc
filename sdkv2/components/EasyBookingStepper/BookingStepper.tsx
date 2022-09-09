@@ -26,7 +26,7 @@ const StepperConnectorLine = styled(StepConnector)(({ theme }: any) => ({
 	[`& .${stepConnectorClasses.line}`]: {
 		background:
 			'linear-gradient(90deg, rgba(242,207,71,1) 0%, rgba(242,207,71,1) 40%, rgba(255,255,255,1) 40%, rgba(255,255,255,1) 100%)',
-		height: 3,
+		height: 2,
 		border: '0px solid transparent',
 	},
 }))

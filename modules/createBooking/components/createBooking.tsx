@@ -205,9 +205,11 @@ export const CreateBooking = () => {
 
 		let canSubmit: boolean =
 			!!form.values.jobType &&
-			(!!form.values.helperWages || !!form.values.technicianWages || !!form.values.supervisorWages) &&
-			(form.values.tags.length > 0 ? true : false) &&
-			!!form.values.BookingDuration
+			(!!form.values.helperWages || !!form.values.technicianWages || !!form.values.supervisorWages)
+		//  &&
+		// (form.values.tags.length > 0 ? true : false)
+		// &&
+		// !!form.values.BookingDuration
 
 		setIsSubmittable(canSubmit)
 	}, [form, isSubmittable])
@@ -216,10 +218,10 @@ export const CreateBooking = () => {
 		setIsmore((state) => !state)
 	}
 
-	const handleProjectDuration = (info: any) => {
-		setProjectDuration(info)
-		form.setFieldValue('BookingDuration', info)
-	}
+	// const handleProjectDuration = (info: any) => {
+	// 	setProjectDuration(info)
+	// 	form.setFieldValue('BookingDuration', info)
+	// }
 
 	const handleJobClick = (info: any) => {
 		form.setFieldValue('jobType', info)
@@ -380,7 +382,7 @@ export const CreateBooking = () => {
 								</Grid>
 							</InputWrapper>
 
-							{form.values.jobType && (
+							{/* {form.values.jobType && (
 								<InputWrapper id='skills' label='Skills'>
 									<Typography className='subInfo'>
 										Skills you are looking for the selected trade
@@ -438,7 +440,7 @@ export const CreateBooking = () => {
 										</Stack>
 									</Grid>
 								</InputWrapper>
-							)}
+							)} */}
 
 							<InputWrapper
 								id='workerType'
@@ -549,7 +551,7 @@ export const CreateBooking = () => {
 										</InputWrapper>
 									</Box> */}
 
-							<InputWrapper id='BookingDuration' label='Job Duration'>
+							{/* <InputWrapper id='BookingDuration' label='Job Duration'>
 								<Grid container item rowGap={1}>
 									{projectDuration.map((info, index) => {
 										return (
@@ -581,7 +583,7 @@ export const CreateBooking = () => {
 										)
 									})}
 								</Grid>
-							</InputWrapper>
+							</InputWrapper> */}
 
 							{/* <InputWrapper id='shiftTiming' label='Shift Timing'>
 								<Grid item container rowGap={1}>

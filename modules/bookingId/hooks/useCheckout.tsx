@@ -17,6 +17,7 @@ export interface Discount {
 import * as Yup from 'yup'
 export const useCheckout = () => {
 	const router = useRouter()
+
 	const [bookingData, setBookingData] = useState<any>()
 	const [discountDetails, setDiscountDetails] = useState<DiscountDetails>()
 	const { showSnackbar } = useSnackbar()

@@ -9,7 +9,6 @@ import { createBooking, getProjectDetails } from '../apis'
 interface CreateBookingForm {
 	jobType: JOB_TYPES | ''
 
-	BookingDuration: string
 	StartDate: Date
 
 	helper: Number
@@ -22,7 +21,7 @@ interface CreateBookingForm {
 
 	overTimeFactor: string
 
-	tags: Array<String>
+	// tags: Array<String>
 	startTime: string
 	endTime: string
 	shiftTime: string
@@ -59,7 +58,6 @@ const useCreateBooking = () => {
 		initialValues: {
 			jobType: '',
 
-			BookingDuration: '',
 			StartDate: new Date(),
 
 			helper: 0,
@@ -72,7 +70,7 @@ const useCreateBooking = () => {
 
 			overTimeFactor: 'none',
 
-			tags: [],
+			// tags: [],
 			startTime: 'none',
 			endTime: 'none',
 			shiftTime: '',
@@ -135,7 +133,6 @@ const useCreateBooking = () => {
 						wage: Number(values.supervisorWages),
 					},
 				},
-				bookingDuration: form.values.BookingDuration,
 			}
 			setLoading(true)
 			createBooking(payload, router?.query?.projectId)
@@ -154,7 +151,10 @@ const useCreateBooking = () => {
 							event: 'worker_booked',
 						})
 
-						router.push(`/bookings/${router?.query?.projectId}/${res.data.payload.bookingId}/checkout`)
+						router.push(
+							`/bookings/${router?.query?.projectId}/${res?.data?.payload?.bookingId}/track-workers`
+						)
+						return
 					}
 				})
 				.catch((error: any) => {

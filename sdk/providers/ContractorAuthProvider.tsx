@@ -15,7 +15,7 @@ import {
 import axios from 'axios'
 import { useRouter } from 'next/router'
 import { createContext, FC, useCallback, useContext, useEffect, useMemo, useReducer, useState } from 'react'
-import { Identify } from '../analytics/analyticsWrapper'
+import { Identify, sendAnalytics } from '../analytics/analyticsWrapper'
 import { createCookieInHour, deleteCookie, getCookie } from '../analytics/helper'
 import StepConnector, { stepConnectorClasses } from '@mui/material/StepConnector'
 import { styled } from '@mui/material/styles'
@@ -67,6 +67,7 @@ interface AuthProviderValue extends AuthState {
 	openLoginDialog: () => any
 	setBackdropProps: any
 	handleWhatsApp: () => any
+	otpMaxLimitReached: boolean
 }
 
 const simpleReducer = (state: AuthState, payload: Partial<AuthState>) => ({
@@ -104,6 +105,7 @@ const ContractorAuthContext = createContext<AuthProviderValue>({
 	openLoginDialog: () => null,
 	setBackdropProps: () => null,
 	handleWhatsApp: () => null,
+	otpMaxLimitReached: false,
 })
 const { Provider, Consumer } = ContractorAuthContext
 
@@ -188,7 +190,7 @@ const ContractorAuthProvider: FC<ContractorAuthProviderProps> = ({ children, aut
 	const { showSnackbar } = useSnackbar()
 	const [backdropProps, setBackdropProps] = useState({ open: false })
 	const [redirectingIn, setRedirectingIn] = useState(0)
-
+	const [otpMaxLimitReached, setOtpMaxLimitReached] = useState(false)
 	const requestOtp = useCallback(
 		async (phoneNumber: string) => {
 			dispatch({
@@ -197,7 +199,12 @@ const ContractorAuthProvider: FC<ContractorAuthProviderProps> = ({ children, aut
 			try {
 				return await sendOtpService(phoneNumber, USER_TYPE.CONTRACTOR)
 			} catch (error: any) {
-				showSnackbar(error.response.data.developerInfo, 'error')
+				if (error.response.status === 429) {
+					showSnackbar('Please try again in 5 minutes.', 'error')
+					setOtpMaxLimitReached(true)
+				} else {
+					showSnackbar(error.response.data.developerInfo, 'error')
+				}
 			}
 		},
 		[showSnackbar]
@@ -302,7 +309,12 @@ const ContractorAuthProvider: FC<ContractorAuthProviderProps> = ({ children, aut
 					return data
 				}
 			} catch (error: any) {
-				showSnackbar(error?.error, 'error')
+				if (error.response.status === 429) {
+					showSnackbar('Please try again in 5 minutes.', 'error')
+					setOtpMaxLimitReached(true)
+				} else {
+					showSnackbar(error.response.data.developerInfo, 'error')
+				}
 				return error
 				//TODO: Need to fix in response also
 				//showSnackbar(error?.response?.data?.developerInfo, 'error')
@@ -434,7 +446,6 @@ const ContractorAuthProvider: FC<ContractorAuthProviderProps> = ({ children, aut
 				await router.replace(`/dashboard`, undefined, {})
 				return
 			}
-			let user
 			try {
 				setBackdropProps({ open: true })
 				const payload = {
@@ -461,24 +472,37 @@ const ContractorAuthProvider: FC<ContractorAuthProviderProps> = ({ children, aut
 							  }
 							: undefined,
 					},
-					bookingDuration: 'FORTY_FIVE_TO_NINETY',
+				}
+				const user = await getContactorUserInfo()
+				if (user?.payload?.hasProjects) {
+					showSnackbar('You Already have Job Posted, Go to dashboard to view your jobs', 'warning')
+					setBackdropProps({ open: false })
+					return
 				}
 				const { data, status } = await axios.post('/gateway/customer-api/projects/bookings', payload)
 				deleteCookie('discoveryBooking')
-				user = await getContactorUserInfo()
-				setRedirectingIn(5)
+				setStartRedirecting(true)
+				sendAnalytics({
+					name: 'postedJob',
+					action: 'ButtonClick',
+					metaData: {
+						success: true,
+					},
+				})
 				const a = setTimeout(async () => {
-					await router.replace(`/bookings/${data.payload.projectId}/bookings`, undefined, {})
+					await router.replace(`/projects/${data?.payload?.projectId}/bookings`, undefined, {})
 					setBackdropProps({ open: false })
-				}, 5000)
+					setStartRedirecting(false)
+				}, 3000)
 			} catch (error) {
-				if (user?.payload?.hasProjects) {
-					showSnackbar('You Already have booking, redirecting to dashboard', 'warning')
-
-					await router.replace(`/dashboard`, undefined, {})
-				}
-				showSnackbar('Failed to create easy booking', 'error')
-
+				sendAnalytics({
+					name: 'postedJob',
+					action: 'ButtonClick',
+					metaData: {
+						success: false,
+					},
+				})
+				showSnackbar('Failed to your job', 'error')
 				setBackdropProps({ open: false })
 			}
 		},
@@ -488,15 +512,6 @@ const ContractorAuthProvider: FC<ContractorAuthProviderProps> = ({ children, aut
 	useEffect(() => {
 		if (state.user) {
 			try {
-				const discoveryBookingFromCookie = () => {
-					try {
-						const discoveryBookingFromCookie = JSON.parse(getCookie('discoveryBooking'))
-						return discoveryBookingFromCookie
-					} catch (error) {
-						return undefined
-					}
-				}
-
 				const redirectRoute = AccessMap[state.user.onboardingStatus]
 
 				if (state.user.onboardingStatus !== ONBOARDING_STATUS.ONBOARDED) {
@@ -552,8 +567,9 @@ const ContractorAuthProvider: FC<ContractorAuthProviderProps> = ({ children, aut
 
 	const [isDialogOpen, setIsDialogOpen] = useState<boolean>(false)
 	const [isOtpSent, setIsOtpSent] = useState<boolean>(false)
+	const [startRedirecting, setStartRedirecting] = useState(false)
 	useEffect(() => {
-		if (redirectingIn === 0) return
+		if (!startRedirecting) return
 		setRedirectingIn(5)
 		const interval = setInterval(() => {
 			setRedirectingIn((t) => {
@@ -567,7 +583,7 @@ const ContractorAuthProvider: FC<ContractorAuthProviderProps> = ({ children, aut
 		return () => {
 			clearInterval(interval)
 		}
-	}, [redirectingIn])
+	}, [startRedirecting])
 
 	const openLoginDialog = useCallback(() => {
 		if (!state.user) setIsDialogOpen(!isDialogOpen)
@@ -604,6 +620,7 @@ const ContractorAuthProvider: FC<ContractorAuthProviderProps> = ({ children, aut
 			createEasyBooking: createEasyBooking,
 			openLoginDialog: openLoginDialog,
 			handleWhatsApp: handleWhatsApp,
+			otpMaxLimitReached: otpMaxLimitReached,
 		}),
 		[
 			state,
@@ -619,6 +636,7 @@ const ContractorAuthProvider: FC<ContractorAuthProviderProps> = ({ children, aut
 			createEasyBooking,
 			openLoginDialog,
 			handleWhatsApp,
+			otpMaxLimitReached,
 		]
 	)
 	return (
@@ -676,17 +694,20 @@ const ContractorAuthProvider: FC<ContractorAuthProviderProps> = ({ children, aut
 			</Dialog>
 
 			<Backdrop {...backdropProps}>
-				{redirectingIn === 0 && <CircularProgress />}
-				<Dialog PaperProps={{ sx: { borderRadius: 3 } }} open={redirectingIn !== 0}>
+				{startRedirecting && <CircularProgress />}
+				<Dialog
+					PaperProps={{ sx: { borderRadius: 3, backgroundColor: '#000000' } }}
+					maxWidth='xs'
+					open={startRedirecting}>
 					<Stack p={2} py={3} spacing={2}>
-						<Typography color='#000000' variant='h2' textAlign={'center'}>
+						<Typography color='success.dark' variant='h2' textAlign={'center'}>
 							You have successfully posted your Job.
 						</Typography>
-						<Typography color='grey.A700' variant='body2' textAlign={'center'}>
+						<Typography variant='body2' textAlign={'center'}>
 							You will start receiving Hero Applications in few minutes. Check your contractor dashboard
 							to get Hero&apos;s phone number.
 						</Typography>
-						<Typography color='grey.A700' variant='caption' textAlign={'center'}>
+						<Typography color='primary.main' variant='caption' textAlign={'center'}>
 							Redirecting to dashboard in 00:0{redirectingIn}
 						</Typography>
 					</Stack>

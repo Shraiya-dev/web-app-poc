@@ -59,7 +59,7 @@ const useLogin = () => {
 		onSubmit: async (values) => {
 			setLoading(true)
 			DataLayerPush({
-				event: discoveryBookingFromCookie ? 'discovery_request_login' : 'organic_request_login',
+				event: discoveryBookingFromCookie ? 'discovery_request_login' : 'Organic_request_otp',
 				phoneNumber: '+91' + values?.phoneNumber,
 			})
 
