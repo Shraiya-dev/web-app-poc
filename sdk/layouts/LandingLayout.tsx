@@ -10,16 +10,8 @@ export const LandingLayout = ({ children }: any) => {
 				<CssBaseline />
 				<Navbar />
 
-				<Stack
-					mt='70px'
-					maxHeight='calc(100vh - 70px)'
-					minHeight='calc(100vh - 70px)'
-					sx={{
-						overflowY: 'scroll',
-					}}>
-					<Stack flex={1}>{children}</Stack>
-					<Footer />
-				</Stack>
+				<Stack mt='70px'>{children}</Stack>
+				<Footer />
 			</ThemeProvider>
 		</>
 	)
