@@ -21,10 +21,12 @@ export const BlogCard: FC<Props> = ({ view }: Props) => {
 	const router = useRouter()
 	const { showSnackbar } = useSnackbar()
 	const copyOnShare = useCallback(
-		(id: any) => {
+		(id: any, title: string) => {
 			if (!window) return
-
-			const href = location.origin + `/blog/${id}`
+			const nsp = new URLSearchParams({
+				title: title,
+			})
+			const href = location.origin + `/blog/${id}?${nsp.toString()}`
 			navigator.clipboard.writeText(href)
 			const shareData = {
 				url: href,
@@ -102,7 +104,7 @@ export const BlogCard: FC<Props> = ({ view }: Props) => {
 												justifyContent='space-between'
 												sx={{ mt: { xs: '30px', md: '0' } }}>
 												<LinkButton
-													onClick={() => copyOnShare(id)}
+													onClick={() => copyOnShare(id, title)}
 													startIcon={<ShareIcon sx={{ color: '#efc430' }} />}
 													variant='text'
 													fullWidth={false}
@@ -147,7 +149,7 @@ export const BlogCard: FC<Props> = ({ view }: Props) => {
 												</Button>
 												<LinkButton
 													color='primary'
-													onClick={() => copyOnShare(id)}
+													onClick={() => copyOnShare(id, title)}
 													startIcon={<ShareIcon sx={{ color: '#efc430' }} />}
 													variant='text'
 													fullWidth={false}>
@@ -217,7 +219,7 @@ export const BlogCard: FC<Props> = ({ view }: Props) => {
 															Read More
 														</LinkButton>
 														<Button
-															onClick={() => copyOnShare(id)}
+															onClick={() => copyOnShare(id, title)}
 															endIcon={<ShareIcon />}
 															variant='text'
 															fullWidth={false}>
@@ -264,7 +266,7 @@ export const BlogCard: FC<Props> = ({ view }: Props) => {
 															{title}
 														</Typography>
 														<Button
-															onClick={() => copyOnShare(id)}
+															onClick={() => copyOnShare(id, title)}
 															startIcon={<ShareIcon />}
 															variant='text'
 															fullWidth={false}
@@ -357,7 +359,7 @@ export const BlogCard: FC<Props> = ({ view }: Props) => {
 																Read More
 															</LinkButton>
 															<Button
-																onClick={() => copyOnShare(id)}
+																onClick={() => copyOnShare(id, title)}
 																startIcon={<ShareIcon />}
 																variant='text'
 																fullWidth={false}>
@@ -412,7 +414,7 @@ export const BlogCard: FC<Props> = ({ view }: Props) => {
 																	height: '20px',
 																}}>
 																<Typography
-																	onClick={() => copyOnShare(id)}
+																	onClick={() => copyOnShare(id, title)}
 																	fontFamily='Karla ,sans-serif'
 																	fontSize='12px'
 																	fontWeight={500}>
