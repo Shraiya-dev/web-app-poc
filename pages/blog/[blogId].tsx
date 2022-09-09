@@ -132,7 +132,7 @@ const Page: NextPage = () => {
 									borderRadius: '8.3557px',
 								}}
 								image={blogData?.Allblogs[blogId]?.imgSrc}
-								alt='Live from space album cover'
+								alt='project hero'
 							/>
 							<Stack>
 								<CardContent
@@ -168,6 +168,79 @@ const Page: NextPage = () => {
 									return (
 										<Grid key={index} item xs={12} sm={6} md={4}>
 											{isMobile ? (
+												// <Card
+												// 	sx={{
+												// 		display: 'flex',
+												// 		flexDirection: 'row-reverse',
+												// 		width: '100%',
+												// 	}}>
+												// 	<Box
+												// 		sx={{
+												// 			display: 'flex',
+												// 			flexDirection: 'column',
+												// 		}}>
+												// 		<CardContent sx={{ flex: '1 0 auto' }}>
+												// 			<Typography component='div' variant='h5' fontSize='14px'>
+												// 				{title}
+												// 			</Typography>
+												// 			<Typography
+												// 				variant='subtitle1'
+												// 				color='text.secondary'
+												// 				component='div'
+												// 				fontSize='12px'>
+												// 				{description.slice(0, 50) + '......'}
+												// 			</Typography>
+												// 		</CardContent>
+												// 		<Box
+												// 			sx={{
+												// 				display: 'flex',
+												// 				alignItems: 'center',
+												// 				justifyContent: 'space-between',
+
+												// 				pl: 1,
+												// 				pb: 1,
+												// 			}}>
+												// 			<Button
+												// 				onClick={() => {
+												// 					router.push(`/blog/${id}`)
+												// 					// window.scrollTo(0, 0)
+												// 				}}
+												// 				endIcon={<ArrowForwardIcon />}
+												// 				variant='text'
+												// 				fullWidth={false}
+												// 				sx={{ marginBottom: '0px' }}
+												// 				color='inherit'>
+												// 				Read More
+												// 			</Button>
+												// 			<Button
+												// 				onClick={() => copyOnShare(id)}
+												// 				startIcon={<ShareIcon />}
+												// 				variant='text'
+												// 				sx={{ mr: '20px' }}
+												// 				fullWidth={false}>
+												// 				<Typography
+												// 					fontFamily='Karla ,sans-serif'
+												// 					fontSize='12px'
+												// 					fontWeight={500}>
+												// 					Share
+												// 				</Typography>
+												// 			</Button>
+												// 		</Box>
+												// 	</Box>
+												// 	<CardMedia
+												// 		component='img'
+												// 		sx={{
+												// 			width: '106px',
+												// 			height: '129px',
+												// 			// py: '12px',
+												// 			ml: '12px',
+												// 			mt: '12px',
+												// 			borderRadius: '8.3557px',
+												// 		}}
+												// 		image={imgSrc}
+												// 		alt='Live from space album cover'
+												// 	/>
+												// </Card>
 												<Card
 													elevation={10}
 													sx={{
@@ -181,11 +254,11 @@ const Page: NextPage = () => {
 														<CardContent sx={{ height: '135px' }}>
 															<Typography
 																variant='h6'
-																fontSize='16px'
+																fontSize='14px'
 																fontFamily={'Saira ,sans-serif'}
 																fontWeight={600}
 																sx={{ marginTop: '8%' }}>
-																{title.slice(0, 35) + '......'}
+																{title}
 															</Typography>
 															<Typography
 																variant='subtitle1'

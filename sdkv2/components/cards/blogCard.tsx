@@ -72,7 +72,7 @@ export const BlogCard: FC<Props> = ({ view }: Props) => {
 												gutterBottom
 												variant='h2'
 												component='div'
-												fontSize={{ md: '32px', xs: '16px' }}
+												fontSize={{ lg: '32px', md: '27px', xs: '16px' }}
 												fontFamily={'Saira ,sans-serif'}
 												fontWeight={600}
 												sx={{ marginTop: { md: '-18px', xs: '' } }}>
@@ -83,12 +83,12 @@ export const BlogCard: FC<Props> = ({ view }: Props) => {
 												variant='h6'
 												color='text.secondary'
 												fontFamily='Karla ,sans-serif'
-												fontSize={{ md: '20px', xs: '14px' }}
+												fontSize={{ lg: '20px', md: '17px', xs: '14px' }}
 												fontWeight={400}>
-												{description.slice(0, 200)}
+												{description.slice(0, 200)}....
 												<br />
 												<br />
-												{description.slice(200, 350)}
+												{description.slice(200, 350)}....
 											</Typography>
 										</CardContent>
 										{!isMobile ? (
