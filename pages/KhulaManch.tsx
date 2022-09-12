@@ -1,7 +1,6 @@
 import { Box, Button, Paper, Stack, Theme, Typography, useMediaQuery } from '@mui/material'
 import { isAfter, isBefore } from 'date-fns'
 import { GetStaticProps, NextPage } from 'next'
-import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { useEffect, useRef } from 'react'
 import Countdown from 'react-countdown'

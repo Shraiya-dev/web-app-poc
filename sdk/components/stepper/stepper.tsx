@@ -1,5 +1,5 @@
 import { Box, Grid, Stack, styled } from '@mui/material'
-import { primary, theme } from '../../constants'
+import { primary } from '../../constants'
 
 const CustomProjectStyle = styled(Box)(({ theme }) => ({
 	'.stepper': {

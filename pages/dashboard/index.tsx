@@ -2,6 +2,7 @@ import { GetStaticProps, NextPage } from 'next'
 import ContractorDashboardLayout from '../../sdk/layouts/ContractorDashboardLayout'
 import { ProjectDashboard } from '../../modules/projectDashboard/components/projectDashboard'
 import { staticRenderingProvider } from 'sdk/utils/nextHelper'
+
 const DashboardPage: NextPage = () => {
 	return (
 		<>

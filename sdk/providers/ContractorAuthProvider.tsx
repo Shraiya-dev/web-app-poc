@@ -1,17 +1,4 @@
-import { FemaleSharp, KeyboardReturn } from '@mui/icons-material'
-import {
-	Backdrop,
-	CircularProgress,
-	Dialog,
-	DialogContent,
-	IconButton,
-	Paper,
-	Stack,
-	Step,
-	StepLabel,
-	Stepper,
-	Typography,
-} from '@mui/material'
+import { Backdrop, CircularProgress, Dialog, DialogContent, IconButton, Paper, Stack, Typography } from '@mui/material'
 import axios from 'axios'
 import { useRouter } from 'next/router'
 import { createContext, FC, useCallback, useContext, useEffect, useMemo, useReducer, useState } from 'react'
@@ -34,10 +21,11 @@ import {
 	sendEmailOtpService,
 	sendOtpService,
 } from '../apis'
-import { CustomerDetails, CUSTOMER_STATUS, ONBOARDING_STATUS, USER_LOGIN_TYPE, USER_TYPE } from '../types'
+import { CUSTOMER_STATUS, CustomerDetails, ONBOARDING_STATUS, USER_LOGIN_TYPE, USER_TYPE } from '../types'
 import { useSnackbar } from './SnackbarProvider'
 import { LoginForm } from 'modules/auth/login/components/LoginForm'
 import { OTPVerification } from 'modules/auth/otp/components/OtpVerification'
+
 const LoadingUniqueString = 'loading...'
 interface AuthState {
 	user: null | CustomerDetails

@@ -1,15 +1,11 @@
 import { useRouter } from 'next/router'
-import { createContext, FC, useCallback, useContext, useEffect, useMemo, useReducer, useState } from 'react'
+import { createContext, FC, useCallback, useContext, useMemo, useReducer, useState } from 'react'
 import { envs, sendAnalytics, useContractorAuth } from 'sdk'
 import logo from '../../public/assets/icons/BrandLogo.svg'
-import {
-	cancelPaymentApi,
-	confirmPaymentApi,
-	confirmPaymentResponseType,
-	createOrderResponseType,
-} from '../../modules/bills/payments/PaymentTypes'
+import { cancelPaymentApi, confirmPaymentApi } from '../../modules/bills/payments/PaymentTypes'
 import { useCancelPaymentMutation, useConfirmPaymentMutation } from 'modules/bills/payments/queries/hooks'
 import { ConfirmPaymentSuccessPopover } from 'modules/bills/payments/components/ConfirmPaymentSuccessPopover'
+
 type ResponseRazorPayType = {
 	razorpay_payment_id: string
 	razorpay_order_id: string

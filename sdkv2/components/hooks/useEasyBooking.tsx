@@ -1,10 +1,11 @@
-import { FormikHelpers, useFormik } from 'formik'
+import { useFormik } from 'formik'
 import { useRouter } from 'next/router'
 import { useCallback, useEffect } from 'react'
 import { createCookieInHour, DataLayerPush, getCookie, sendAnalytics } from 'sdk/analytics'
 import { useFormikProps } from 'sdk/hooks'
 import { useContractorAuth } from 'sdk/providers'
 import * as Yup from 'yup'
+
 export const useEasyBooking = () => {
 	const router = useRouter()
 	const { openLoginDialog, user } = useContractorAuth()

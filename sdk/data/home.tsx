@@ -1,6 +1,5 @@
 import { BarChart, Settings, Share, StarBorder } from '@mui/icons-material'
 import { Typography } from '@mui/material'
-import { Children } from 'react'
 import { landingTheme } from 'sdk/constants/landingTheme'
 
 export const homePage = {

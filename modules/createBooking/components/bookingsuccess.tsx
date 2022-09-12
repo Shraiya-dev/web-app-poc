@@ -1,4 +1,4 @@
-import { Box, Typography, Button, styled, Icon } from '@mui/material'
+import { Box, Button, styled, Typography } from '@mui/material'
 import { useRouter } from 'next/router'
 import CheckCircleIcon from '@mui/icons-material/CheckCircle'
 

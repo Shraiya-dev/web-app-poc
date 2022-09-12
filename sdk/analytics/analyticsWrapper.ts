@@ -2,6 +2,7 @@ import { NextRouter } from 'next/router'
 import { PageStaticData } from 'sdk/types'
 import { Analytic } from './analytics'
 import { getUtmObject } from './helper'
+
 //old version
 interface ButtonClicked {
 	action: string

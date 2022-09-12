@@ -1,6 +1,5 @@
 import React from 'react'
 import DashboardIcon from '@mui/icons-material/Dashboard'
-import LogoutIcon from '@mui/icons-material/Logout'
 import PersonIcon from '@mui/icons-material/Person'
 import { Box, Stack } from '@mui/material'
 import BusinessIcon from '@mui/icons-material/Business'
@@ -30,8 +29,7 @@ export const BottomLayout = ({ ...props }) => {
 				bottom: 0,
 				left: 0,
 				right: 0,
-			}}
-		>
+			}}>
 			<Stack direction={'row'} spacing={7} justifyContent={'space-evenly'} position={'sticky'}>
 				<BottomBarItem
 					icon={<DashboardIcon />}

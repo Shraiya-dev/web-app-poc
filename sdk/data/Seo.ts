@@ -1,5 +1,6 @@
 import { ParsedUrlQuery } from 'querystring'
 import { PageStaticData } from 'sdk/types'
+
 const PageStaticData: { [key in string]: PageStaticData } = {
 	'/about-us': { pageName: 'About Us', seo: { title: 'About Us', description: 'About Us' } },
 	'/how-it-works': { pageName: 'How it Work', seo: { title: 'How It Work', description: 'How It Work' } },

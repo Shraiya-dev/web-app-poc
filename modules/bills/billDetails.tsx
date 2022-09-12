@@ -1,8 +1,6 @@
 import { ArrowBackIosNew } from '@mui/icons-material'
 import {
 	Avatar,
-	Chip,
-	CircularProgress,
 	Collapse,
 	Divider,
 	Grid,
@@ -18,13 +16,12 @@ import {
 	Typography,
 } from '@mui/material'
 import { Box } from '@mui/system'
-import Image from 'next/image'
 import { useRouter } from 'next/router'
 import { useCallback, useEffect, useState } from 'react'
 import {
 	colors,
-	JobTypeLabel,
 	JOB_TYPES,
+	JobTypeLabel,
 	PaginationWithHasMore,
 	primary,
 	SkillTypeLabel,
@@ -37,7 +34,6 @@ import { StyledTableHeadCell } from '../../sdk/styledComponents/Tables'
 import { useProjectDetails } from '../projectDetails/hooks'
 import { ApproveConfirmationDialog, ApproveConfirmationDialogProps } from './components'
 import { useBill } from './hooks'
-import DownloadImage from '../../public/assets/landing/HerosBills/download.svg'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp'
 

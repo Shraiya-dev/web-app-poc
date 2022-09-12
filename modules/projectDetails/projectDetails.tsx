@@ -1,13 +1,9 @@
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew'
-import LocationOnIcon from '@mui/icons-material/LocationOn'
 import { TabContext, TabPanel } from '@mui/lab'
-import { Button, Stack, Tab, Tabs, Typography } from '@mui/material'
+import { Stack, Tab, Tabs, Typography } from '@mui/material'
 import { Box } from '@mui/system'
-import Link from 'next/link'
 import { useRouter } from 'next/router'
-import { primary, theme, useMobile } from '../../sdk'
-import { Analytic } from '../../sdk/analytics'
-import { ButtonClicked, HorizontalTabClicked } from '../../sdk/analytics/analyticsWrapper'
+import { theme, useMobile } from '../../sdk'
 import { CustomTopBar } from '../../sdk/components/topBar/customTopBar'
 import { Dashboard } from '../dashboard'
 import ProjectInfo from '../ProjectInfo/components/projectInfo'
@@ -15,9 +11,9 @@ import { useProjectDetails } from './hooks/useProjectDetails'
 import { WorkReport } from '../workReport'
 import { Bills } from '../bills'
 import { LocationOnOutlined } from '@mui/icons-material'
-import { FC, useEffect, useMemo } from 'react'
+import { FC, useMemo } from 'react'
 import { BottomLayout } from 'sdk/layouts/BottomLayout'
-import useCreateProject from 'modules/createProject/hooks/useProjects'
+
 interface Props {}
 export const tabList: { [key in string]: string } = {
 	bookings: 'Bookings',

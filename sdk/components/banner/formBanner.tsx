@@ -41,8 +41,7 @@ export const TopBanner = ({ ...props }) => {
 									textDecorationStyle: 'dotted',
 									cursor: 'pointer',
 									fontSize: isMobile ? 13 : 18,
-								}}
-							>
+								}}>
 								{linkHeader || ''}
 							</Typography>
 						</Link>

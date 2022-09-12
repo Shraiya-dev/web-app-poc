@@ -1,8 +1,8 @@
-import { useState, useEffect, useMemo } from 'react'
+import { useMemo, useState } from 'react'
 import { useRouter } from 'next/router'
 import { useContractorAuth, useSnackbar } from '../../../../sdk'
 import { useFormik } from 'formik'
-import { Analytic, DataLayerPush, getCookie } from '../../../../sdk/analytics'
+import { DataLayerPush, getCookie } from '../../../../sdk/analytics'
 import { ButtonClicked, sendAnalytics } from '../../../../sdk/analytics/analyticsWrapper'
 
 const initialLoginState = {

@@ -1,15 +1,14 @@
 import { useRouter } from 'next/router'
 import { useCallback, useEffect, useReducer, useState } from 'react'
 import { useSnackbar } from '../../../sdk'
-import { ButtonClicked } from '../../../sdk/analytics/analyticsWrapper'
 import {
-	postApproveWorkReport,
-	postDisputeWorkReport,
 	getDownloadWorkReport,
 	getWorkReport,
 	getWorkReportDetails,
+	postApproveWorkReport,
+	postDisputeWorkReport,
 } from '../apis'
-import { WorkReportDetailsResponse, WorkReportResponse, WorkReportStatus } from '../types'
+import { WorkReportDetailsResponse, WorkReportResponse } from '../types'
 
 export const useWorkReport = () => {
 	const [workReportResponse, setWorkReportResponse] = useState<WorkReportResponse>()

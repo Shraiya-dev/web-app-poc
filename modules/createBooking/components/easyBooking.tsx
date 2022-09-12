@@ -3,7 +3,6 @@ import {
 	Box,
 	Button,
 	Checkbox,
-	Chip,
 	Container,
 	Grid,
 	InputAdornment,
@@ -35,9 +34,8 @@ import {
 } from 'sdk'
 import { TopBanner } from 'sdk/components/banner/formBanner'
 import BookingSvg from '../../../public/assets/icons/project.svg'
-import { jobTypeInfo, moreJobType, projectDuration } from '../utils'
+import { jobTypeInfo, moreJobType } from '../utils'
 import ConfirmCancel from './confirmCancel'
-import CancelIcon from '@mui/icons-material/Cancel'
 import Helper from '../../../public/assets/icons/helper.svg'
 import Supervisor from '../../../public/assets/icons/supervisor.svg'
 import Technician from '../../../public/assets/icons/technician.svg'

@@ -1,5 +1,6 @@
 import { theme } from '../../../sdk'
 import { WorkReportStatus } from '../types'
+
 export const WorkReportStatusColor: { [key in WorkReportStatus]: string } = {
 	PENDING_APPROVAL: theme.palette.warning.main,
 	DISPUTED: theme.palette.error.main,

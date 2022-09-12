@@ -1,13 +1,9 @@
-import { Box, Icon, Stack, styled, Typography } from '@mui/material'
+import { Box, Stack, styled, Typography } from '@mui/material'
 import { TextWrapper } from '../../../sdk/components/Input/TextWrapper'
 
-import { getCustomerDetails, primary, useContractorAuth } from '../../../sdk'
-import ViewImage from '../../../sdk/components/viewImage/viewImage'
+import { useContractorAuth } from '../../../sdk'
 import { useEffect, useState } from 'react'
-import forWardIcon from '../../../public/assets/icons/forward.svg'
-import Image from 'next/image'
 import useCompanyDetails from '../hooks/useCompanyDetails'
-import { useRouter } from 'next/router'
 
 const DisplayCompanyInfoStyle = styled(Box)(({ theme }) => ({
 	'.info': {

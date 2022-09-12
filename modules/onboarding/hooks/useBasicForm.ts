@@ -1,13 +1,13 @@
 import { useRouter } from 'next/router'
-import { useState, useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useFormik } from 'formik'
 
-import { validateEmail, isValidGSTIN } from '../../../sdk/utils/validationHelpers'
+import { isValidGSTIN, validateEmail } from '../../../sdk/utils/validationHelpers'
 
 import { updateProfile } from '../../../sdk/apis'
 import { useContractorAuth, useSnackbar } from '../../../sdk'
-import { Analytic } from '../../../sdk/analytics'
 import { ButtonClicked } from '../../../sdk/analytics/analyticsWrapper'
+
 interface CreateBasicForm {
 	name: string
 	company: string

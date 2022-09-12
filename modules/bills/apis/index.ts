@@ -1,4 +1,5 @@
 import axios from 'axios'
+
 export const getBillForProject = (projectId: string, queryParameters: URLSearchParams) => {
 	return axios.get(`/gateway/customer-api/projects/${projectId}/bills/aggregated?${queryParameters.toString()}`)
 }

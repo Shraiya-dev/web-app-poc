@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import { FC } from 'react'
+
 export interface Props {
 	title: string
 	description?: string

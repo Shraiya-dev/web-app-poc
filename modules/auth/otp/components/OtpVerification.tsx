@@ -5,7 +5,6 @@ import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import OtpInput from 'react-otp-input'
 import { getCookie, primary, useContractorAuth, useMobile } from 'sdk'
-import BookingStepper from 'sdkv2/components/EasyBookingStepper/BookingStepper'
 import { ButtonClicked } from '../../../../sdk/analytics/analyticsWrapper'
 import useOtp from '../hooks/useOtp'
 

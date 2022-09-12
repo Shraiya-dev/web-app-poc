@@ -3,7 +3,6 @@ import { useRouter } from 'next/router'
 import { useState } from 'react'
 import { updateProfile, useContractorAuth, useSnackbar, validateEmail } from '../../../../sdk'
 import { ButtonClicked } from '../../../../sdk/analytics/analyticsWrapper'
-import useEmailOtpVerification from './useEmailOtpVerification'
 
 const useEditEmail = () => {
 	const [loading, setLoading] = useState(false)

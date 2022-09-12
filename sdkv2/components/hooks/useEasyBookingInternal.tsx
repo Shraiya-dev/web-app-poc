@@ -5,6 +5,7 @@ import { DataLayerPush } from 'sdk/analytics'
 import { useFormikProps } from 'sdk/hooks'
 import { useContractorAuth } from 'sdk/providers'
 import * as Yup from 'yup'
+
 export const useEasyBookingInternal = () => {
 	const router = useRouter()
 	const [isSubmittable, setIsSubmittable] = useState<boolean>(false)

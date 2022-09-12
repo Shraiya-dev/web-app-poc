@@ -1,20 +1,7 @@
-import {
-	Box,
-	Button,
-	CircularProgress,
-	Grid,
-	IconButton,
-	InputAdornment,
-	Stack,
-	styled,
-	TextField,
-	Typography,
-} from '@mui/material'
+import { Box, Button, InputAdornment, Stack, styled, TextField, Typography } from '@mui/material'
 import {
 	checkError,
 	CompanyNameField,
-	FileInput,
-	getCustomerDetails,
 	InputWrapper,
 	primary,
 	theme,
@@ -27,9 +14,8 @@ import { ButtonClicked } from '../../../sdk/analytics/analyticsWrapper'
 import { useRouter } from 'next/router'
 import { LoadingButton } from '@mui/lab'
 import useCompanyDetails from '../hooks/useCompanyDetails'
-import { Add, Close } from '@mui/icons-material'
 import { useCallback, useEffect } from 'react'
-import { checkValidGSTIN, updateOrganisation } from '../apis/apis'
+import { updateOrganisation } from '../apis/apis'
 
 const EditCompanyInfoStyle = styled(Box)(({ theme }) => ({}))
 

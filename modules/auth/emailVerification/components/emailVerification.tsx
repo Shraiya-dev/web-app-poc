@@ -1,11 +1,9 @@
-import { Typography, Box, styled, Stack, TextField, Select, MenuItem } from '@mui/material'
+import { Box, MenuItem, Select, Stack, styled, TextField, Typography } from '@mui/material'
 import LoadingButton from '@mui/lab/LoadingButton'
 
 import useEmailVerification from '../hooks/useEmailVerification'
 import { useRouter } from 'next/router'
-import { checkError, getCustomerRoles, getSelectOptions, InputWrapper, theme } from '../../../../sdk'
-import BackButton from '../../../../sdk/components/backButton/backButtom'
-import { companyRoles } from '../../../../sdk'
+import { checkError, getCustomerRoles, getSelectOptions, InputWrapper } from '../../../../sdk'
 import { useEffect, useState } from 'react'
 import { NameField } from '../../../../sdk/components/Input/nameField'
 import { OnboardingCard } from '../../../../sdk/layouts/OrganisationCard'

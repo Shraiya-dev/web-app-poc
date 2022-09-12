@@ -1,4 +1,4 @@
-import { ArrowCircleLeftOutlined, ArrowCircleRightOutlined, BorderColor, Circle, Close } from '@mui/icons-material'
+import { ArrowCircleLeftOutlined, ArrowCircleRightOutlined, Circle, Close } from '@mui/icons-material'
 
 import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord'
 import {
@@ -27,8 +27,9 @@ import { homePage } from 'sdk/data/home'
 import { sliceIntoChunks } from 'sdk/utils/arrayHelpers'
 import { CreateBookingCard, JobCategoryCard } from 'sdkv2/components'
 import { WorkerCard } from 'sdkv2/components/cards/WorkerCard'
-import { Player, BigPlayButton } from 'video-react'
+import { BigPlayButton, Player } from 'video-react'
 import 'video-react/dist/video-react.css'
+
 const animation = { duration: 25000, easing: (t: number) => t }
 
 export const Home = () => {

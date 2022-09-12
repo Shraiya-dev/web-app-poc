@@ -1,4 +1,4 @@
-import { Alert, AlertColor, CircularProgress, Dialog, Paper, Stack } from '@mui/material'
+import { AlertColor, CircularProgress, Paper, Stack } from '@mui/material'
 import { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react'
 
 interface SplashState {

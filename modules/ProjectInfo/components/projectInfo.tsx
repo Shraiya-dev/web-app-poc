@@ -2,11 +2,9 @@ import {
 	Box,
 	Button,
 	CircularProgress,
-	Container,
 	Grid,
 	IconButton,
 	MenuItem,
-	Paper,
 	Select,
 	Stack,
 	TextField,
@@ -15,7 +13,6 @@ import {
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import {
-	ButtonClicked,
 	checkError,
 	CityOptions,
 	FileInput,
@@ -31,7 +28,7 @@ import ViewImage from '../../../sdk/components/viewImage/viewImage'
 import { JobBenefits } from '../../../sdk/types/jobBenefits'
 import { overTimefactor, overTimeLabel } from '../../createBooking/utils'
 import { useProjectInfo } from '../hooks/useProjectInfo'
-import { Add, Close } from '@mui/icons-material'
+import { Add } from '@mui/icons-material'
 import CancelRoundedIcon from '@mui/icons-material/CancelRounded'
 import { CustomToggle } from 'modules/createProject/components'
 import useCreateProject from 'modules/createProject/hooks/useProjects'

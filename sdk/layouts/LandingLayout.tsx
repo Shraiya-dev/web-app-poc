@@ -1,5 +1,4 @@
 import { CssBaseline, Stack, ThemeProvider } from '@mui/material'
-import { Box } from '@mui/system'
 import { Footer, Navbar } from 'sdk/components'
 import { landingTheme } from 'sdk/constants/landingTheme'
 

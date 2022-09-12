@@ -1,16 +1,14 @@
-import { alpha, Box, Button, Card, Grid, Paper, Stack, Typography } from '@mui/material'
+import { alpha, Box, Button, Paper, Stack, Typography } from '@mui/material'
 import { styled } from '@mui/system'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useMemo } from 'react'
 import { JobTypeIcon } from '../../../modules/createBooking/utils/helperData'
-import { Analytic } from '../../analytics'
 import { ButtonClicked, CardClicked } from '../../analytics/analyticsWrapper'
 import { JobTypeLabel, primary } from '../../constants'
 import { useMobile } from '../../hooks'
-import { BookingPreview, JobCardState } from '../../types'
-import { StatusChip } from '../chips'
+import { BookingPreview } from '../../types'
 import { theme } from '../../../sdk'
 
 interface BookingCardProps {

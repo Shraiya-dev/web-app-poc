@@ -1,4 +1,5 @@
 import { Box, styled } from '@mui/material'
+
 export const GlobalCssProvider = styled(Box)(({ theme }) => ({
 	[theme.breakpoints.up('md')]: {
 		'.hide-on-desktop': {

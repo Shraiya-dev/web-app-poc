@@ -15,8 +15,8 @@ import {
 	Switch,
 	Typography,
 } from '@mui/material'
-import { FC, useRef, useState } from 'react'
-import { Carousel, DataLayerPush, FloatingUnderLineHeading, LinkButton, Section, SectionProps, useMobile } from 'sdk'
+import { FC, useState } from 'react'
+import { Carousel, DataLayerPush, FloatingUnderLineHeading, LinkButton, Section, useMobile } from 'sdk'
 import { PlansPageData } from 'sdk/data/plans'
 
 export const Plans: FC = () => {

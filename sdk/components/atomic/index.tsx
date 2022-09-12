@@ -1,5 +1,5 @@
-import { Typography, TypographyProps } from '@mui/material'
 import Link from 'next/link'
+
 type Props = {
 	href?: string
 	children: any

@@ -1,10 +1,7 @@
-import { HelpOutline } from '@mui/icons-material'
-import { Box, Button, Grid, Stack, Theme, Typography, useMediaQuery } from '@mui/material'
-import Image from 'next/image'
+import { Box, Grid, Stack, Typography } from '@mui/material'
 import { useRouter } from 'next/router'
-import { FC, useState } from 'react'
-import { DataLayerPush, FAQCard, FAQPage, FAQTypes, FAQuestion, LinkButton, primary, Section, theme } from 'sdk'
-import { ContactUsSection } from './components'
+import { FC } from 'react'
+import { FAQCard, FAQuestion, primary, Section, theme } from 'sdk'
 
 interface Props {}
 

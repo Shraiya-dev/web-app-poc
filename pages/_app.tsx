@@ -24,13 +24,14 @@ import {
 } from '../sdk'
 import { Analytic } from '../sdk/analytics/analytics'
 import '../sdk/styles/onlyCssWeNeed.css'
-const queryClient = new QueryClient()
-
 import { SplashProvider } from 'sdk/providers/SplashProvider'
 
 import { CssBaseline } from '@mui/material'
 import { PaymentProvider } from 'sdk/providers/PaymentProvider'
 import { createCookieInHour, getCookie } from '../sdk/analytics/helper'
+
+const queryClient = new QueryClient()
+
 //=====================initializing axios interceptor=======================
 
 axios.defaults.baseURL = envs.SERVER_URL

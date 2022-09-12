@@ -8,9 +8,7 @@ import {
 	Dialog,
 	DialogContent,
 	DialogTitle,
-	FormHelperText,
 	IconButton,
-	Skeleton,
 	Stack,
 	Step,
 	StepLabel,
@@ -21,7 +19,7 @@ import {
 import CloseIcon from '@mui/icons-material/Close'
 import { FC, useCallback, useEffect, useMemo, useState } from 'react'
 // import BookingSuccess from 'modules/createBooking/components/bookingsuccess'
-import { Add, ContactsOutlined } from '@mui/icons-material'
+import { Add } from '@mui/icons-material'
 import DriveFileRenameOutlineOutlinedIcon from '@mui/icons-material/DriveFileRenameOutlineOutlined'
 import { LoadingButton } from '@mui/lab'
 import { postEasyBookingOrder, updateWages } from 'modules/bookingId/apis'

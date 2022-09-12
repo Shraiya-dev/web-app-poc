@@ -1,9 +1,9 @@
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
 import { useRouter } from 'next/router'
-import { SEO } from 'sdk'
 import { staticRenderingProvider } from 'sdk/utils/nextHelper'
 import { ProjectDetails } from '../../../../modules/projectDetails/projectDetails'
 import ContractorDashboardLayout from '../../../../sdk/layouts/ContractorDashboardLayout'
+
 const TabPage: NextPage = () => {
 	const router = useRouter()
 	return (

@@ -1,11 +1,10 @@
-import { Badge, Button, CircularProgress, Grid, Stack, Typography } from '@mui/material'
+import { Button, CircularProgress, Grid, Stack, Typography } from '@mui/material'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import React, { useCallback, useState } from 'react'
-import { BookingCard, primary, SearchField, theme, useMobile } from '../../sdk'
+import { BookingCard, SearchField, theme, useMobile } from '../../sdk'
 import { FilterDrawer } from './components'
 import { useDashboard } from './hooks'
-import TuneIcon from '@mui/icons-material/Tune'
 import { ButtonClicked } from '../../sdk/analytics/analyticsWrapper'
 
 export const Dashboard = () => {

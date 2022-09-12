@@ -1,6 +1,4 @@
-import { SortByAlphaRounded } from '@mui/icons-material'
-import { alpha, Box, Paper, Stack, styled, TableCell, TableRow } from '@mui/material'
-import { borderColor } from '@mui/system'
+import { alpha, Paper, styled, TableCell } from '@mui/material'
 import { colors } from '..'
 
 export const StyledTableHeadCell = styled(TableCell)(({ theme }) => ({
