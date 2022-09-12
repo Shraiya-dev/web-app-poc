@@ -3,7 +3,7 @@ import { Box } from '@mui/system'
 import Image from 'next/image'
 import React, { createRef, useState } from 'react'
 import { FC } from 'react'
-import { Section, theme, useMobile } from 'sdk'
+import { LinkButton, Section, sendAnalytics, theme, useMobile } from 'sdk'
 import { CarouselHowItWork } from 'sdkv2/components'
 import AcUnitIcon from '@mui/icons-material/AcUnit'
 //@ts-nocheck
@@ -203,19 +203,38 @@ export const HowItWorks: FC<Props> = () => {
 					<Stack
 						direction={'row'}
 						justifyContent={{ xs: 'flex-start', sm: 'center', md: 'center', width: '100%' }}>
-						<Button
+						<LinkButton
 							size='large'
+							href={'/dashboard'}
+							onClick={() => {
+								sendAnalytics({
+									name: 'postJobNow',
+									action: 'ButtonClick',
+									metaData: {
+										origin: 'Video Section',
+									},
+								})
+							}}
 							sx={{
 								fontFamily: 'Karla,sans-serif',
 								fontWeight: 600,
 								fontSize: { md: '20px', xs: '14px' },
 							}}>
 							Post Your Job Now
-						</Button>
+						</LinkButton>
 					</Stack>
 					<Paper
 						className='styledPaper'
 						elevation={0}
+						onClick={() => {
+							sendAnalytics({
+								name: 'videoPlay',
+								action: 'ButtonClick',
+								metaData: {
+									origin: 'How It Works',
+								},
+							})
+						}}
 						sx={{
 							maxWidth: '800px',
 							width: { xs: '100%', sm: '80%', md: '54%' },

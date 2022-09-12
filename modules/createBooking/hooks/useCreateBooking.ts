@@ -3,7 +3,7 @@ import { useRouter } from 'next/router'
 import { useCallback, useEffect, useState } from 'react'
 import { JOB_TYPES, useContractorAuth, useSnackbar } from '../../../sdk'
 import { DataLayerPush } from '../../../sdk/analytics'
-import { ButtonClicked } from '../../../sdk/analytics/analyticsWrapper'
+import { ButtonClicked, sendAnalytics } from '../../../sdk/analytics/analyticsWrapper'
 import { createBooking, getProjectDetails } from '../apis'
 
 interface CreateBookingForm {
@@ -138,12 +138,19 @@ const useCreateBooking = () => {
 			createBooking(payload, router?.query?.projectId)
 				.then((res) => {
 					if (res.status === 200) {
-						ButtonClicked({
-							action: 'Submit',
-							page: 'Create Booking',
-							projectId: router?.query?.projectId,
-							url: router.asPath,
+						sendAnalytics({
+							name: 'postedJob',
+							action: 'ButtonClick',
+							metaData: {
+								values,
+							},
 						})
+						// ButtonClicked({
+						// 	action: 'Submit',
+						// 	page: 'Create Booking',
+						// 	projectId: router?.query?.projectId,
+						// 	url: router.asPath,
+						// })
 						// setIsSubmittable(false)
 						setLoading(false)
 						showSnackbar('Booking Created Successfully', 'success')
