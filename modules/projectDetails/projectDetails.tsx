@@ -40,18 +40,18 @@ export const ProjectDetails: FC<Props> = () => {
 			<CustomTopBar>
 				<Stack flex={1} direction='row' alignItems='flex-start'>
 					<Stack direction='row' justifyContent={'flex-start'} flex={1} spacing={2}>
-						<Box
+						{/* <Box
 							sx={{
 								position: 'relative',
 								top: 4,
 							}}>
 							<Typography
+								component='div'
 								sx={{
 									fontSize: isMobile ? 18 : 26,
 									fontWeight: 700,
 									color: theme.palette.secondary.main,
 								}}>
-								{/* if noBack is true remove back button else show back button  */}
 								{!noBack && (
 									<ArrowBackIosNewIcon
 										onClick={() => router.push('/dashboard')}
@@ -64,7 +64,7 @@ export const ProjectDetails: FC<Props> = () => {
 									/>
 								)}
 							</Typography>
-						</Box>
+						</Box> */}
 						<Stack>
 							<Typography
 								sx={{
@@ -76,7 +76,8 @@ export const ProjectDetails: FC<Props> = () => {
 								{/* {projectDetails?.name} */}
 								{projectName?.name}
 							</Typography>
-							<Typography
+							{/* <Typography
+								component='div'
 								sx={{
 									fontSize: 14,
 									color: theme.palette.secondary.main,
@@ -85,7 +86,7 @@ export const ProjectDetails: FC<Props> = () => {
 								textTransform='capitalize'>
 								<LocationOnOutlined sx={{ fontSize: 12, verticalAlign: 'middle' }} />
 								&nbsp;{projectName?.city}, {projectName?.state}
-							</Typography>
+							</Typography> */}
 						</Stack>
 					</Stack>
 				</Stack>
