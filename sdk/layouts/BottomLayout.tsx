@@ -27,10 +27,9 @@ export const BottomLayout = ({ ...props }) => {
 				background: '#000',
 				position: 'fixed',
 				bottom: 0,
-				left: 0,
-				right: 0,
+				width: '100%',
 			}}>
-			<Stack direction={'row'} spacing={7} justifyContent={'space-evenly'} position={'sticky'}>
+			<Stack direction={'row'} justifyContent={'space-between'} px={2} position={'sticky'}>
 				<BottomBarItem
 					icon={<DashboardIcon />}
 					path={
@@ -53,9 +52,6 @@ export const BottomLayout = ({ ...props }) => {
 							? BOOKING_DETAILS
 							: DASHBOARD
 					}
-					sx={{
-						flex: 1,
-					}}
 				/>
 
 				<BottomBarItem
@@ -63,20 +59,9 @@ export const BottomLayout = ({ ...props }) => {
 					path={`/profile/details`}
 					title='Company Profile'
 					route={PROFILE}
-					sx={{
-						flex: 1,
-					}}
 				/>
 
-				<BottomBarItem
-					icon={<BusinessIcon />}
-					path='/account'
-					title='Account'
-					route={'/account'}
-					sx={{
-						flex: 1,
-					}}
-				/>
+				<BottomBarItem icon={<BusinessIcon />} path='/account' title='Account' route={'/account'} />
 			</Stack>
 		</Box>
 	)

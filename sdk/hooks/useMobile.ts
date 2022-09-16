@@ -19,5 +19,6 @@ export function useMobile() {
 	// 	return () => window.removeEventListener('resize', handleResize)
 	// }, []) // Empty array ensures that effect is only run on mount
 	// return useMemo(() => isMobile, [isMobile])
-	return useMediaQuery((theme: Theme) => theme.breakpoints.down('md'))
+	// return useMediaQuery((theme: Theme) => theme.breakpoints.down('md'))
+	return true
 }

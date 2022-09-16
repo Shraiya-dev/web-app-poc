@@ -28,7 +28,7 @@ const intro = [
 
 const CustomizeDashboard = styled(Box)(({ theme }) => ({
 	minHeight: 'calc(100vh - 65px)',
-	minWidth: '100vw',
+	minWidth: '100%',
 	display: 'flex',
 	marginTop: '65px',
 	position: 'relative',

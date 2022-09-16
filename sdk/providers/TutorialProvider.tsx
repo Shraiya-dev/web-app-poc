@@ -1,4 +1,5 @@
-import { AlertColor, alpha, Backdrop } from '@mui/material'
+import { FlashOffOutlined } from '@mui/icons-material'
+import { AlertColor, alpha, Backdrop, Box } from '@mui/material'
 import { useRouter } from 'next/router'
 import { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react'
 import { TutorialCard } from 'sdk/components'
@@ -31,7 +32,12 @@ const TutorialProvider = ({ children, pageStaticData }: any) => {
 			currentStep: (step ?? TutorialSteps.DASHBOARD) as TutorialSteps,
 		})
 	}, [])
-	const skip = useCallback(() => {}, [])
+	const skip = useCallback(() => {
+		sessionStorage.setItem('skippedForSessions', 'true')
+		setTutorialState({
+			open: false,
+		})
+	}, [])
 	const next = useCallback(() => {
 		setTutorialState((p) => {
 			let open = p.open
@@ -54,7 +60,7 @@ const TutorialProvider = ({ children, pageStaticData }: any) => {
 				currentStep: nextStep,
 			}
 		})
-	}, [])
+	}, [router])
 	useEffect(() => {
 		if (router?.pathname === '/projects/[projectId]/[tab]' && !sessionStorage.getItem('skippedForSessions')) {
 			initiate()
@@ -65,7 +71,9 @@ const TutorialProvider = ({ children, pageStaticData }: any) => {
 		<Provider value={value}>
 			{children}
 			<Backdrop open={tutorialState?.open} sx={{ p: 2, backgroundColor: `${alpha('#ffffff', 0.4)}` }}>
-				<TutorialCard step={tutorialState?.currentStep} skip={skip} next={next} />
+				<Box sx={{ position: 'relative', width: '100%', maxWidth: 468, minHeight: '100vh' }}>
+					<TutorialCard step={tutorialState?.currentStep} skip={skip} next={next} />
+				</Box>
 			</Backdrop>
 		</Provider>
 	)

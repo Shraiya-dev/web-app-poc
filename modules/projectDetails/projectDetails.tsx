@@ -66,7 +66,7 @@ export const ProjectDetails: FC<Props> = () => {
 							<Typography
 								component='div'
 								sx={{
-									fontSize: isMobile ? 18 : 26,
+									fontSize: isMobile ? 14 : 18,
 									fontWeight: 700,
 									color: theme.palette.secondary.main,
 								}}>

@@ -9,12 +9,11 @@ export const TutorialCard = ({ step, skip, next }: { step?: TutorialSteps; skip?
 			return (
 				<Card
 					sx={{
+						bottom: 80,
 						position: 'absolute',
-						bottom: 70,
-						left: 16,
-						right: 16,
 						p: 2,
 						overflow: 'visible',
+						width: '100%',
 						borderRadius: 3,
 					}}>
 					<Stack direction='row' justifyContent='space-between' alignItems={'center'}>
@@ -62,12 +61,11 @@ export const TutorialCard = ({ step, skip, next }: { step?: TutorialSteps; skip?
 			return (
 				<Card
 					sx={{
-						position: 'absolute',
 						top: 140,
-						left: 16,
-						right: 16,
+						position: 'absolute',
 						p: 2,
 						overflow: 'visible',
+						width: '100%',
 						borderRadius: 3,
 					}}>
 					<Stack direction='row' justifyContent='space-between'>
@@ -92,7 +90,7 @@ export const TutorialCard = ({ step, skip, next }: { step?: TutorialSteps; skip?
 							height: 10,
 							position: 'absolute',
 							top: -10,
-							left: '46%',
+							left: '38%',
 						}}></Box>
 				</Card>
 			)
