@@ -77,7 +77,7 @@ export const TutorialCard = ({ step, skip, next }: { step?: TutorialSteps; skip?
 						Job postings with updated site details attract 70% more applications from workers. Update
 						Details now.
 					</Typography>
-					<Stack direction='row' justifyContent='justify-content'>
+					<Stack direction='row' justifyContent='space-between'>
 						<Button
 							startIcon={<DoNotDisturb fontSize='small' sx={{ height: 10 }} />}
 							size='small'
