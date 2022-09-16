@@ -9,7 +9,17 @@ export const LandingLayout = ({ children }: any) => {
 				<CssBaseline />
 				<Navbar />
 
-				<Stack mt='70px'>{children}</Stack>
+				<Stack
+					sx={{
+						body: {
+							maxWidth: '100vw !important',
+							margin: '0 auto !important',
+						},
+						html: {},
+					}}
+					mt='70px'>
+					{children}
+				</Stack>
 				<Footer />
 			</ThemeProvider>
 		</>

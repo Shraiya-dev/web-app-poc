@@ -27,7 +27,7 @@ import { Analytic } from '../sdk/analytics/analytics'
 import '../sdk/styles/onlyCssWeNeed.css'
 import { SplashProvider } from 'sdk/providers/SplashProvider'
 
-import { Box, CssBaseline } from '@mui/material'
+import { CssBaseline } from '@mui/material'
 import { PaymentProvider } from 'sdk/providers/PaymentProvider'
 import { createCookieInHour, getCookie } from '../sdk/analytics/helper'
 
@@ -173,7 +173,10 @@ const CommonHead = () => {
 
 				<meta name='msapplication-TileColor' content='#da532c' />
 				<meta name='theme-color' content='#333333' />
-				<meta name='viewport' content='width=400, initial-scale=1.0, maximum-scale=1.0,user-scalable=0' />
+				<meta
+					name='viewport'
+					content='width=device-width, initial-scale=1.0, maximum-scale=1.0,user-scalable=0'
+				/>
 				{process.env.NEXT_PUBLIC_APP_ENV === 'PROD' && (
 					<>
 						<script>dataLayer = [];</script>
