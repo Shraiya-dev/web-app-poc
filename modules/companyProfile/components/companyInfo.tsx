@@ -19,7 +19,7 @@ const CompanyInfo = () => {
 				{!isCmpDetailsEditable && (
 					<Button
 						size='small'
-						variant='outlined'
+						variant='contained'
 						sx={{
 							fontSize: 9,
 							'&:hover': {

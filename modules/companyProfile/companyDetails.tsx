@@ -38,7 +38,7 @@ const CompanyDetails = () => {
 								color: theme.palette.secondary.main,
 								fontFamily: 'Saira,sans-serif',
 							}}>
-							Company Profile
+							Company Details
 						</Typography>
 						<Typography
 							sx={{

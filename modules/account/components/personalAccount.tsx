@@ -31,7 +31,7 @@ const PersonalAccount = () => {
 								color: theme.palette.secondary.main,
 								fontFamily: 'Saira ,sans-serif',
 							}}>
-							Account
+							Profile
 						</Typography>
 					</Stack>
 				</CustomTopBar>
@@ -44,7 +44,7 @@ const PersonalAccount = () => {
 						{!isAccountEditable && (
 							<Button
 								size='small'
-								variant='outlined'
+								variant='contained'
 								sx={{
 									fontSize: 9,
 									'&:hover': {

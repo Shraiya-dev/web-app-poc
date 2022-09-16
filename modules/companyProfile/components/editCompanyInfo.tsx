@@ -277,47 +277,31 @@ const EditCompanyInfo = ({ ...props }) => {
 							Cancel
 						</Button>
 
-						{hasUpdateValue && form.isValid ? (
-							<LoadingButton
-								//type='submit'
-								onClick={async () => {
-									await updateOrg()
-									//getOrgDetails()
+						<LoadingButton
+							//type='submit'
+							onClick={async () => {
+								await updateOrg()
+								//getOrgDetails()
 
-									ButtonClicked({
-										action: 'Save Edit Profile',
-										page: 'Company Profile',
-										url: router.asPath,
-									})
-								}}
-								loading={loading}
-								variant='contained'
-								disabled={
-									loading || !form.isValid || !form.values.GSTIN || !form.values.companyName
-									// form.values.GSTINDocuments.length === 0
-								}
-								sx={{
-									background: theme.palette.primary.main,
-									color: primary.properDark,
-								}}
-								fullWidth>
-								Save
-							</LoadingButton>
-						) : (
-							<Button
-								variant='contained'
-								fullWidth
-								sx={{
-									background: '#AFAFAF',
-									color: '#fff',
-									'&:hover': {
-										color: '#fff',
-										background: '#AFAFAF',
-									},
-								}}>
-								Save
-							</Button>
-						)}
+								ButtonClicked({
+									action: 'Save Edit Profile',
+									page: 'Company Profile',
+									url: router.asPath,
+								})
+							}}
+							loading={loading}
+							variant='contained'
+							disabled={
+								!form.isValid || (form.values.GSTIN ? !isValidGST : false)
+								// form.values.GSTINDocuments.length === 0
+							}
+							sx={{
+								background: theme.palette.primary.main,
+								color: primary.properDark,
+							}}
+							fullWidth>
+							Save
+						</LoadingButton>
 					</Stack>
 				</form>
 			</Stack>

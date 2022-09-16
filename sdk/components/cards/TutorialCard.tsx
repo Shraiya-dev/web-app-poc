@@ -16,33 +16,35 @@ export const TutorialCard = ({ step, skip, next }: { step?: TutorialSteps; skip?
 						width: '100%',
 						borderRadius: 3,
 					}}>
-					<Stack direction='row' justifyContent='space-between' alignItems={'center'}>
-						<Typography variant='subtitle2' fontSize={10} color='primary.main'>
-							Dashboard
+					<Stack spacing={1}>
+						<Stack direction='row' justifyContent='space-between' alignItems={'center'}>
+							<Typography variant='subtitle2' fontSize={10} color='primary.main'>
+								Dashboard
+							</Typography>
+							<Button
+								endIcon={<KeyboardArrowRight fontSize='small' />}
+								size='small'
+								onClick={(e) => next && next()}
+								sx={{ p: 0 }}
+								variant='text'
+								color='success'>
+								next
+							</Button>
+						</Stack>
+						<Typography variant='subtitle2' color='common.white'>
+							All your job postings are here. Click on “View Applications” to see the phone numbers of
+							workers who applied to your job
 						</Typography>
-						<Button
-							endIcon={<KeyboardArrowRight fontSize='small' />}
-							size='small'
-							onClick={(e) => next && next()}
-							sx={{ p: 0 }}
-							variant='text'
-							color='success'>
-							next
-						</Button>
-					</Stack>
-					<Typography variant='subtitle2' color='common.white'>
-						All your job postings are here. Click on “View Applications” to see the phone numbers of workers
-						who applied to your job
-					</Typography>
-					<Stack direction='row' justifyContent='space-between'>
-						<Button
-							startIcon={<DoNotDisturb fontSize='small' sx={{ height: 10 }} />}
-							size='small'
-							sx={{ p: 0, fontSize: 10, color: '#E58A51' }}
-							variant='text'
-							onClick={(e) => skip && skip()}>
-							Skip for Now
-						</Button>
+						<Stack direction='row' justifyContent='space-between'>
+							<Button
+								startIcon={<DoNotDisturb fontSize='small' sx={{ height: 10 }} />}
+								size='small'
+								sx={{ p: 0, fontSize: 10, color: '#E58A51' }}
+								variant='text'
+								onClick={(e) => skip && skip()}>
+								Skip for Now
+							</Button>
+						</Stack>
 					</Stack>
 					<Box
 						sx={{
@@ -68,27 +70,29 @@ export const TutorialCard = ({ step, skip, next }: { step?: TutorialSteps; skip?
 						width: '100%',
 						borderRadius: 3,
 					}}>
-					<Stack direction='row' justifyContent='space-between'>
-						<Typography variant='subtitle2' fontSize={10} color='primary.main'>
-							Add Project Details
+					<Stack spacing={1}>
+						<Stack direction='row' justifyContent='space-between'>
+							<Typography variant='subtitle2' fontSize={10} color='primary.main'>
+								Add Project Details
+							</Typography>
+						</Stack>
+						<Typography variant='subtitle2' color='common.white'>
+							Job postings with updated site details attract 70% more applications from workers. Update
+							Details now.
 						</Typography>
-					</Stack>
-					<Typography variant='subtitle2' color='common.white'>
-						Job postings with updated site details attract 70% more applications from workers. Update
-						Details now.
-					</Typography>
-					<Stack direction='row' justifyContent='space-between'>
-						<Button
-							startIcon={<DoNotDisturb fontSize='small' sx={{ height: 10 }} />}
-							size='small'
-							sx={{ p: 0, fontSize: 10, color: '#E58A51' }}
-							variant='text'
-							onClick={(e) => skip && skip()}>
-							Skip for Now
-						</Button>
-						<Button size='small' onClick={(e) => next && next()} sx={{ py: 0 }} color='primary'>
-							Add Details
-						</Button>
+						<Stack direction='row' justifyContent='space-between'>
+							<Button
+								startIcon={<DoNotDisturb fontSize='small' sx={{ height: 10 }} />}
+								size='small'
+								sx={{ p: 0, fontSize: 10, color: '#E58A51' }}
+								variant='text'
+								onClick={(e) => skip && skip()}>
+								Skip for Now
+							</Button>
+							<Button size='small' onClick={(e) => next && next()} sx={{ py: 0 }} color='primary'>
+								Add Details
+							</Button>
+						</Stack>
 					</Stack>
 					<Box
 						sx={{

@@ -56,13 +56,13 @@ export const BottomLayout = ({ ...props }) => {
 				/>
 
 				<BottomBarItem
-					icon={<PersonIcon />}
+					icon={<BusinessIcon />}
 					path={`/profile/details`}
-					title='Company Profile'
+					title='Company Details'
 					route={PROFILE}
 				/>
 
-				<BottomBarItem icon={<BusinessIcon />} path='/account' title='Account' route={'/account'} />
+				<BottomBarItem icon={<PersonIcon />} path='/account' title='Profile' route={'/account'} />
 			</Stack>
 		</Box>
 	)

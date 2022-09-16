@@ -329,7 +329,7 @@ const useCreateProject = () => {
 				state: form.values.state,
 				pincode: form.values.pinCode,
 				overTime: {
-					rate: form.values.overTimeFactor,
+					rate: 1,
 				},
 				benefits: benefit,
 				images: {

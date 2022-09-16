@@ -144,9 +144,9 @@ const ProjectInfo = ({ setProjectName }: any) => {
 						Worker Benefits
 					</Typography>
 					<Stack spacing={5}>
-						<TextWrapper id='overTimeFactor' label='Over Time Wage'>
+						{/* <TextWrapper id='overTimeFactor' label='Over Time Wage'>
 							{overTimeLabel[projectInfo?.overTime?.rate || 1]}
-						</TextWrapper>
+						</TextWrapper> */}
 						<TextWrapper id='pfAvailable' label='Provident Fund (PF)'>
 							{projectInfo?.benefits?.includes(JobBenefits?.PF) ? 'Yes' : 'No'}
 						</TextWrapper>
@@ -374,7 +374,7 @@ const ProjectInfo = ({ setProjectName }: any) => {
 					</Stack>
 
 					<Stack spacing={4}>
-						<InputWrapper id='overTimeFactor' label={`Over Time Wage `}>
+						{/* <InputWrapper id='overTimeFactor' label={`Over Time Wage `}>
 							<Grid container item xs={12} sm={12} md={6} lg={6}>
 								<Select
 									labelId='overTimeFactor'
@@ -387,7 +387,7 @@ const ProjectInfo = ({ setProjectName }: any) => {
 									{getSelectOptions(overTimefactor)}
 								</Select>
 							</Grid>
-						</InputWrapper>
+						</InputWrapper> */}
 						<InputWrapper id='pfAvailable' label='Provident Fund (PF) available?'>
 							<CustomToggle name={'pfAvailable'} form={form} infoValues={form.values.pfAvailable} />
 						</InputWrapper>

@@ -25,11 +25,11 @@ const TutorialProvider = ({ children, pageStaticData }: any) => {
 	const initiate = useCallback(() => {
 		const step = localStorage.getItem('tutorialStep')
 		if (!step) {
-			localStorage.setItem('tutorialStep', TutorialSteps.DASHBOARD)
+			localStorage.setItem('tutorialStep', TutorialSteps.PROJECT_DETAILS)
 		}
 		setTutorialState({
 			open: step !== TutorialSteps.COMPLETED,
-			currentStep: (step ?? TutorialSteps.DASHBOARD) as TutorialSteps,
+			currentStep: (step ?? TutorialSteps.PROJECT_DETAILS) as TutorialSteps,
 		})
 	}, [])
 	const skip = useCallback(() => {
