@@ -1,27 +1,10 @@
-import {
-	Box,
-	Button,
-	Collapse,
-	Divider,
-	IconButton,
-	List,
-	ListItem,
-	Paper,
-	Stack,
-	Tab,
-	Table,
-	TableCell,
-	TableRow,
-	Tabs,
-	Typography,
-} from '@mui/material'
-import Image from 'next/image'
+import { Box, Button, Collapse, Divider, IconButton, ListItem, Paper, Stack, Tab, Typography } from '@mui/material'
 import { FC, useCallback, useState } from 'react'
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace'
 import { useRouter } from 'next/router'
 import AddIcon from '@mui/icons-material/Add'
 import RemoveIcon from '@mui/icons-material/Remove'
-import { primary, theme } from 'sdk/constants'
+import { theme } from 'sdk/constants'
 
 interface Props {
 	ListOfQuestion: any
@@ -29,7 +12,7 @@ interface Props {
 
 const questions = [
 	{
-		question: 'How to book workers?',
+		question: 'How to book Heroes?',
 		answer: 'Vitae congue eu consequat ac felis placerat vestibulum lectus mauris ultrices. Cursus sit amet dictum sit amet justo donec enim diam porttitor lacus luctus accumsan tortor posuere.',
 	},
 	{
@@ -37,7 +20,7 @@ const questions = [
 		answer: 'Vitae congue eu consequat ac felis placerat vestibulum lectus mauris ultrices. Cursus sit amet dictum sit amet justo donec enim diam porttitor lacus luctus accumsan tortor posuere.',
 	},
 	{
-		question: 'How workers are hired?',
+		question: 'How Heroes are hired?',
 		answer: 'Vitae congue eu consequat ac felis placerat vestibulum lectus mauris ultrices. Cursus sit amet dictum sit amet justo donec enim diam porttitor lacus luctus accumsan tortor posuere.',
 	},
 	{

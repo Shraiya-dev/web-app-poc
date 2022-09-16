@@ -1,16 +1,14 @@
-import { Box, Button, Card, CardActions, CardContent, CardMedia, Grid, Stack, Typography } from '@mui/material'
+import { Box, Button, Card, CardContent, CardMedia, Grid, Stack, Typography } from '@mui/material'
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
 import { LandingLayout, LinkButton, Section, useMobile, useSnackbar } from 'sdk'
 import { staticRenderingProvider } from 'sdk/utils/nextHelper'
 import ShareIcon from '@mui/icons-material/Share'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack'
-import { BlogCard } from 'sdkv2/components'
 import { useRouter } from 'next/router'
 import { blogData } from 'sdk/data/blogData'
 import { useCallback, useEffect, useState } from 'react'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
-import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp'
+
 const Page: NextPage = () => {
 	const router = useRouter()
 	const [blogType, setBlogType] = useState<string>('Allblogs')

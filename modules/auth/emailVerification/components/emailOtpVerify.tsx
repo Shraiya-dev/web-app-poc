@@ -1,10 +1,9 @@
-import { Typography, Box, styled, Stack, Button } from '@mui/material'
+import { Box, Button, Stack, styled, Typography } from '@mui/material'
 import LoadingButton from '@mui/lab/LoadingButton'
 
 import { useRouter } from 'next/router'
 import OtpInput from 'react-otp-input'
 import useEmailOtpVerification from '../hooks/useEmailOtpVerification'
-import BackButton from '../../../../sdk/components/backButton/backButtom'
 import { useEffect } from 'react'
 import { OnboardingCard } from '../../../../sdk/layouts/OrganisationCard'
 

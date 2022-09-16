@@ -1,33 +1,25 @@
+import { LocationOnOutlined } from '@mui/icons-material'
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew'
-import LocationOnIcon from '@mui/icons-material/LocationOn'
 import { TabContext, TabPanel } from '@mui/lab'
 import { Button, Stack, Tab, Tabs, Typography } from '@mui/material'
 import { Box } from '@mui/system'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import { primary, theme, useMobile } from '../../sdk'
-import { Analytic } from '../../sdk/analytics'
-import { ButtonClicked, HorizontalTabClicked } from '../../sdk/analytics/analyticsWrapper'
+import { FC, useEffect, useMemo } from 'react'
+import { TutorialBanner } from 'sdk/components/banner/TutorialBanner'
+import { BottomLayout } from 'sdk/layouts/BottomLayout'
+import { ButtonClicked, LinkButton, theme, useContractorAuth, useMobile } from '../../sdk'
 import { CustomTopBar } from '../../sdk/components/topBar/customTopBar'
+import { Bills } from '../bills'
 import { Dashboard } from '../dashboard'
 import ProjectInfo from '../ProjectInfo/components/projectInfo'
-import { useProjectDetails } from './hooks/useProjectDetails'
 import { WorkReport } from '../workReport'
-import { Bills } from '../bills'
-import { LocationOnOutlined } from '@mui/icons-material'
-import { FC, useEffect, useMemo } from 'react'
-import { BottomLayout } from 'sdk/layouts/BottomLayout'
-import useCreateProject from 'modules/createProject/hooks/useProjects'
+import { useProjectDetails } from './hooks/useProjectDetails'
 interface Props {}
-export const tabList: { [key in string]: string } = {
-	bookings: 'Bookings',
-	details: 'Project Details',
-	'work-report': 'Work Report',
-	bills: 'Bills',
-}
+
 export const ProjectDetails: FC<Props> = () => {
-	const { selectedTab, handleTabSelection, projectDetails, enterpriseStatus, projectName, setProjectName } =
-		useProjectDetails()
+	const { handleTabSelection, projectDetails, projectName, setProjectName } = useProjectDetails()
+	const { user } = useContractorAuth()
 	const isMobile = useMobile()
 	const router = useRouter()
 	const noBack = useMemo(() => {
@@ -39,19 +31,42 @@ export const ProjectDetails: FC<Props> = () => {
 		return false
 	}, [])
 
+	const tabList: { [key in string]: string | undefined } = useMemo(() => {
+		if (user?.isEnterprise) {
+			return {
+				bookings: 'Bookings',
+				'work-report': user?.isEnterprise ? 'Work Report' : undefined,
+				bills: user?.isEnterprise && projectDetails?.generateBills ? 'Bills' : undefined,
+				details: 'Project Details',
+			}
+		} else {
+			return {
+				bookings: 'Bookings',
+				details: 'Project Details',
+			}
+		}
+	}, [projectDetails?.generateBills, user?.isEnterprise])
+	useEffect(() => {
+		if (!Object.keys(tabList).includes(router.query.tab as string)) {
+			router.query.tab = Object.keys(tabList)[0]
+			router.replace(router)
+		}
+	}, [router, tabList])
+
 	return (
 		<>
 			<CustomTopBar>
 				<Stack flex={1} direction='row' alignItems='flex-start'>
-					<Stack direction='row' justifyContent={'flex-start'} flex={1} spacing={2}>
+					<Stack direction='row' justifyContent={'flex-start'} flex={1} spacing={2} alignItems='center'>
 						<Box
 							sx={{
 								position: 'relative',
 								top: 4,
 							}}>
 							<Typography
+								component='div'
 								sx={{
-									fontSize: isMobile ? 18 : 26,
+									fontSize: isMobile ? 14 : 18,
 									fontWeight: 700,
 									color: theme.palette.secondary.main,
 								}}>
@@ -81,6 +96,7 @@ export const ProjectDetails: FC<Props> = () => {
 								{projectName?.name}
 							</Typography>
 							<Typography
+								component='div'
 								sx={{
 									fontSize: 14,
 									color: theme.palette.secondary.main,
@@ -88,9 +104,26 @@ export const ProjectDetails: FC<Props> = () => {
 								}}
 								textTransform='capitalize'>
 								<LocationOnOutlined sx={{ fontSize: 12, verticalAlign: 'middle' }} />
-								&nbsp;{projectName?.city}, {projectName?.state}
+								&nbsp;{projectName?.city} , {projectName?.state}
 							</Typography>
 						</Stack>
+						{isMobile && (
+							<LinkButton
+								href={`/projects/${router?.query?.projectId}/bookings/create`}
+								size='small'
+								variant='contained'
+								sx={{ fontSize: 9 }}
+								onClick={() => {
+									ButtonClicked({
+										action: 'Book Workers',
+										page: 'Project',
+										projectId: router?.query?.projectId,
+										url: router.asPath,
+									})
+								}}>
+								Post Job Now
+							</LinkButton>
+						)}
 					</Stack>
 				</Stack>
 			</CustomTopBar>
@@ -105,61 +138,16 @@ export const ProjectDetails: FC<Props> = () => {
 							display: 'none',
 						},
 					}}>
-					{!isMobile ? (
-						<Tabs
-							TabIndicatorProps={{
-								sx: {
-									height: '3px',
-								},
-							}}
-							value={router.query.tab as string}
-							onChange={handleTabSelection}>
-							{Object.keys(tabList).map((tab, index) => {
-								if (tab === 'bills') {
-									return (
-										enterpriseStatus &&
-										projectDetails?.generateBills && (
-											<Tab
-												sx={{
-													fontSize: '18px',
-													textTransform: 'none',
-													fontFamily: 'Karla,sans-serif',
-													fontWeight: 700,
-												}}
-												value='bills'
-												label='Bills'
-											/>
-										)
-									)
-								} else if (tab === 'work-report') {
-									return (
-										enterpriseStatus && (
-											<Tab
-												sx={{
-													fontSize: '18px',
-													textTransform: 'none',
-													fontFamily: 'Karla,sans-serif',
-													fontWeight: 700,
-												}}
-												value='work-report'
-												label='Work Report'
-											/>
-										)
-									)
-								} else if (tab === 'details') {
-									return (
-										<Tab
-											sx={{
-												fontSize: '18px',
-												textTransform: 'none',
-												fontFamily: 'Karla,sans-serif',
-												fontWeight: 700,
-											}}
-											value='details'
-											label='Project Details'
-										/>
-									)
-								}
+					<Tabs
+						TabIndicatorProps={{
+							sx: {
+								height: '3px',
+							},
+						}}
+						value={router.query.tab as string}
+						onChange={handleTabSelection}>
+						{Object.keys(tabList).map((tab, index) => {
+							if (tabList[tab])
 								return (
 									<Tab
 										key={tab}
@@ -173,81 +161,9 @@ export const ProjectDetails: FC<Props> = () => {
 										label={tabList[tab]}
 									/>
 								)
-							})}
-						</Tabs>
-					) : (
-						<Box
-							sx={{
-								width: '120%',
-								overflowX: 'scroll',
-							}}>
-							<Tabs
-								TabIndicatorProps={{
-									sx: {
-										height: '3px',
-									},
-								}}
-								value={router.query.tab as string}
-								onChange={handleTabSelection}>
-								{Object.keys(tabList).map((tab, index) => {
-									if (tab === 'bills') {
-										return (
-											enterpriseStatus &&
-											projectDetails?.generateBills && (
-												<Tab
-													sx={{
-														fontSize: '18px',
-														textTransform: 'none',
-													}}
-													value='bills'
-													label='Bills'
-												/>
-											)
-										)
-									} else if (tab === 'work-report') {
-										return (
-											enterpriseStatus && (
-												<Tab
-													sx={{
-														fontSize: '18px',
-														textTransform: 'none',
-														fontFamily: 'Karla,sans-serif',
-														fontWeight: 700,
-													}}
-													value='work-report'
-													label='Work Report'
-												/>
-											)
-										)
-									} else if (tab === 'details') {
-										return (
-											<Tab
-												sx={{
-													fontSize: '18px',
-													textTransform: 'none',
-													fontFamily: 'Karla,sans-serif',
-													fontWeight: 700,
-												}}
-												value='details'
-												label='Project Details'
-											/>
-										)
-									}
-									return (
-										<Tab
-											key={tab}
-											sx={{
-												fontSize: '18px',
-												textTransform: 'none',
-											}}
-											value={tab}
-											label={tabList[tab]}
-										/>
-									)
-								})}
-							</Tabs>
-						</Box>
-					)}
+							else return null
+						})}
+					</Tabs>
 				</Box>
 
 				<TabPanel
@@ -259,6 +175,10 @@ export const ProjectDetails: FC<Props> = () => {
 						overflowY: 'auto',
 						position: 'relative',
 					}}>
+					<TutorialBanner>
+						All your job postings are here. Click on “View Applications” to see the phone numbers of Heroes
+						who applied to your job
+					</TutorialBanner>
 					<Dashboard />
 				</TabPanel>
 				<TabPanel
@@ -297,6 +217,10 @@ export const ProjectDetails: FC<Props> = () => {
 						overflowY: 'auto',
 						position: 'relative',
 					}}>
+					<TutorialBanner>
+						Job postings with updated site details attract 70% more applications from Heroes. Update Details
+						now.
+					</TutorialBanner>
 					<ProjectInfo setProjectName={setProjectName} />
 				</TabPanel>
 			</TabContext>

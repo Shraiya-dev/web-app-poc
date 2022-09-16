@@ -1,13 +1,9 @@
 import React from 'react'
-import { Box, ListItem, ListItemIcon, ListItemText, Stack, Typography } from '@mui/material'
-import BusinessIcon from '@mui/icons-material/Business'
-import DashboardIcon from '@mui/icons-material/Dashboard'
-import PersonIcon from '@mui/icons-material/Person'
+import { ListItem, ListItemIcon, Stack, Typography } from '@mui/material'
 import { useRouter } from 'next/router'
 import { useMobile } from 'sdk/hooks'
 import Link from 'next/link'
 import { NavigationTabClicked } from 'sdk/analytics'
-import { primary } from 'sdk/constants'
 
 export const BottomBarItem = ({ ...props }) => {
 	const router = useRouter()
@@ -48,23 +44,23 @@ export const BottomBarItem = ({ ...props }) => {
 							// marginBottom: 16,
 						}
 					}
-					onClick={handleClick}
-				>
-					<Stack direction={'column'} alignItems={'center'} justifyContent={'space-evenly'}>
+					onClick={handleClick}>
+					<Stack direction={'column'} alignItems={'center'} justifyContent={'center'}>
 						<Stack
 							direction={'row'}
 							justifyContent={'center'}
 							sx={{
 								width: '100%',
-							}}
-						>
+							}}>
 							<ListItemIcon
-								style={{ color: router.route === route ? '#fff' : '#7d7d7d', minWidth: 'fit-content' }}
-							>
+								style={{ color: router.route === route ? '#fff' : '#7d7d7d', minWidth: 'fit-content' }}>
 								{icon}
 							</ListItemIcon>
 						</Stack>
-						<Typography style={{ fontSize: '10px', color: router.route === route ? '#fff' : '#7d7d7d' }}>
+						<Typography
+							textAlign={'center'}
+							noWrap
+							style={{ fontSize: '10px', color: router.route === route ? '#fff' : '#7d7d7d' }}>
 							{title}
 						</Typography>
 					</Stack>

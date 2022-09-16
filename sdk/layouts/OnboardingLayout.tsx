@@ -10,7 +10,7 @@ import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace'
 
 const intro = [
 	{
-		label: 'Book trained workers online',
+		label: 'Book trained Heroes online',
 	},
 	{
 		label: 'Supervise from your device',
@@ -22,13 +22,13 @@ const intro = [
 		label: 'Increase Profit',
 	},
 	{
-		label: '40,000+ Verified Workers',
+		label: '40,000+ Verified Heroes',
 	},
 ]
 
 const CustomizeDashboard = styled(Box)(({ theme }) => ({
 	minHeight: 'calc(100vh - 65px)',
-	minWidth: '100vw',
+	minWidth: '100%',
 	display: 'flex',
 	marginTop: '65px',
 	position: 'relative',
@@ -113,7 +113,7 @@ export const OnboardingLayout = ({ children, helmet = true, ...props }: any) => 
 			<Navbar />
 			<ConfirmationDialog
 				title={'Leave without creating account?'}
-				caption={'You’ll not be able to book workers'}
+				caption={'You’ll not be able to book Heroes'}
 				open={dialogProps}
 				cancel={() => {
 					setDialogProps((p) => !p)

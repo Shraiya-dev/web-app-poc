@@ -1,7 +1,5 @@
-import { Home, HowItWorks } from 'landing'
-import { AboutUs } from 'landing/AboutUs'
-import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
-import Head from 'next/head'
+import { HowItWorks } from 'landing'
+import { GetStaticProps, NextPage } from 'next'
 import { LandingLayout } from 'sdk'
 import { staticRenderingProvider } from 'sdk/utils/nextHelper'
 

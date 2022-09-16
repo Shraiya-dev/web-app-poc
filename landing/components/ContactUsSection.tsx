@@ -2,6 +2,7 @@ import { Button, Grid, Stack, Theme, Typography, useMediaQuery } from '@mui/mate
 import Image from 'next/image'
 import { FC } from 'react'
 import { contactUsSection, FloatingUnderLineHeading, Section, SectionProps } from 'sdk'
+
 export const ContactUsSection: FC<SectionProps> = (props) => {
 	const isMobile = useMediaQuery((theme: Theme) => theme.breakpoints.down('md'))
 	return (

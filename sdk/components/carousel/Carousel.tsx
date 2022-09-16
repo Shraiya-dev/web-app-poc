@@ -1,8 +1,9 @@
-import { ArrowBack, ArrowForward, ArrowRight } from '@mui/icons-material'
-import { Box, IconButton, MobileStepper, MobileStepperProps, Stack } from '@mui/material'
+import { ArrowBack, ArrowForward } from '@mui/icons-material'
+import { IconButton, MobileStepper, Stack } from '@mui/material'
 import { useEffect, useMemo, useState } from 'react'
 import SwipeableViews from 'react-swipeable-views'
 import { autoPlay } from 'react-swipeable-views-utils'
+
 interface CarouselProps {
 	componentPerView: number
 	items: any[]

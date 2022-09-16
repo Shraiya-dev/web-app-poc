@@ -1,8 +1,5 @@
 import { Typography } from '@mui/material'
 import Link from 'next/link'
-import { ReactNode } from 'react'
-import { HyperLink } from 'sdk/components'
-import { string } from 'yup'
 
 export enum FAQTypes {
 	Pricing = 'PRICING',

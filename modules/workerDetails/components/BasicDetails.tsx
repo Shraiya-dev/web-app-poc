@@ -1,4 +1,4 @@
-import { Grid, Box, Typography, Stack, styled } from '@mui/material'
+import { Box, Grid, Stack, styled, Typography } from '@mui/material'
 
 const BasicDetailsStyle = styled(Box)(({ theme }) => ({
 	'.stack': {

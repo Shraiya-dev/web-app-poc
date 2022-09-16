@@ -1,17 +1,6 @@
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined'
-import {
-	Button,
-	Dialog,
-	DialogActions,
-	DialogContent,
-	DialogTitle,
-	IconButton,
-	InputAdornment,
-	Stack,
-	TextField,
-	Typography,
-} from '@mui/material'
-import { useEffect, useState } from 'react'
+import { Button, Dialog, IconButton, InputAdornment, Stack, TextField, Typography } from '@mui/material'
+import { useState } from 'react'
 import { primary } from 'sdk/constants'
 
 export const AddEditWage = ({

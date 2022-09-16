@@ -1,5 +1,4 @@
 import { GetStaticProps, NextPage } from 'next'
-import Head from 'next/head'
 import { LandingLayout, Section } from 'sdk'
 import { staticRenderingProvider } from 'sdk/utils/nextHelper'
 

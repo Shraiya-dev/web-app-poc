@@ -1,6 +1,3 @@
-import styled from '@emotion/styled'
-import { FileDownloadOutlined } from '@mui/icons-material'
-import { LoadingButton } from '@mui/lab'
 import {
 	Box,
 	Button,
@@ -362,14 +359,14 @@ export const Bills = () => {
 						}}>
 						<Box
 							sx={{
-								width: '80vw',
+								width: '80%',
 								padding: '10px 20px',
 							}}>
 							<OutstandiongPaymentCard tooltipTitle='Net amount you owe based on bills raised and past payments made' />
 						</Box>
 						<Box
 							sx={{
-								width: '80vw',
+								width: '80%',
 								padding: '10px 20px',
 							}}>
 							<LastOutstandingPaymentCard />

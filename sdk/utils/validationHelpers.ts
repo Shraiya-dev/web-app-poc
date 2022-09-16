@@ -1,7 +1,3 @@
-import { MenuItem } from '@mui/material'
-
-import { emailProviders } from '../constants/emailValidationHelper'
-
 export const isANumber = (value: any) => {
 	const re = /^[0-9\b]+$/
 	if (value === '' || re.test(value)) {

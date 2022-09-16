@@ -1,16 +1,14 @@
 import { Chip, ChipProps } from '@mui/material'
-import { BOOKING_STATES, JobCardState } from '../../types'
-import { BookingStateLabel, JobCardStateLabel } from '../../constants'
+import { JobCardState } from '../../types'
+import { JobCardStateLabel } from '../../constants'
 
 interface jobCardChipProps extends ChipProps {
 	jobCardState?: JobCardState
 }
 
-const chipColor: Partial<
-	{
-		[key in JobCardState]: string
-	}
-> = {
+const chipColor: Partial<{
+	[key in JobCardState]: string
+}> = {
 	WORKER_APPLIED: 'primary.lightOrange',
 	ACCEPTED: 'primary.lightGreen',
 	READY_TO_DEPLOY: 'primary.mediumGreen',

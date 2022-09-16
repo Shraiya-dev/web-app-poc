@@ -1,11 +1,10 @@
-import { Badge, Button, CircularProgress, Grid, Stack, Typography } from '@mui/material'
+import { Button, CircularProgress, Grid, Stack, Typography } from '@mui/material'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import React, { useCallback, useState } from 'react'
-import { BookingCard, primary, SearchField, theme, useMobile } from '../../sdk'
+import { BookingCard, SearchField, theme, useMobile } from '../../sdk'
 import { FilterDrawer } from './components'
 import { useDashboard } from './hooks'
-import TuneIcon from '@mui/icons-material/Tune'
 import { ButtonClicked } from '../../sdk/analytics/analyticsWrapper'
 
 export const Dashboard = () => {
@@ -93,7 +92,7 @@ export const Dashboard = () => {
 						}}>
 						{`Filters & Sort`}
 					</Button> */}
-					{isMobile && (
+					{/* {isMobile && (
 						<Link href={`/projects/${router?.query?.projectId}/bookings/create`} passHref>
 							<a>
 								<Button
@@ -110,10 +109,10 @@ export const Dashboard = () => {
 								</Button>
 							</a>
 						</Link>
-					)}
+					)} */}
 				</Stack>
 				<Stack direction='row' alignItems='center' spacing={2}>
-					<SearchField name='bookingId' fullWidth placeholder='Search by booking ID' size='small' />
+					{/* <SearchField name='bookingId' fullWidth placeholder='Search by booking ID' size='small' /> */}
 					{!isMobile && (
 						<Link href={`/projects/${router?.query?.projectId}/bookings/create`} passHref>
 							<a>
@@ -127,7 +126,7 @@ export const Dashboard = () => {
 											url: router.asPath,
 										})
 									}}>
-									Book Workers
+									Book Heroes
 								</Button>
 							</a>
 						</Link>
@@ -139,16 +138,16 @@ export const Dashboard = () => {
 					<CircularProgress size={50} />
 				</Stack>
 			) : (
-				<Stack mt={4}>
+				<Stack mt={2}>
 					{bookings.totalBookings === 0 ? (
 						<Stack flex={1} mt={20} direction={'column'} spacing={4} alignItems='center'>
 							<Typography variant='h4' color={theme.palette.primary.main}>
-								No booking. Create a booking to hire workers.
+								No booking. Create a booking to hire Heroes.
 							</Typography>
-							{/* <Button onClick={handleBookingForm}>Book Workers</Button> */}
+							{/* <Button onClick={handleBookingForm}>Book Heroes</Button> */}
 							<Link href={`/projects/${router?.query?.projectId}/bookings/create`} passHref>
 								<a>
-									<Button variant='contained'>Book Workers</Button>
+									<Button variant='contained'>Book Heroes</Button>
 								</a>
 							</Link>
 						</Stack>

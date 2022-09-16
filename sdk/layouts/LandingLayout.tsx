@@ -1,5 +1,4 @@
 import { CssBaseline, Stack, ThemeProvider } from '@mui/material'
-import { Box } from '@mui/system'
 import { Footer, Navbar } from 'sdk/components'
 import { landingTheme } from 'sdk/constants/landingTheme'
 
@@ -10,7 +9,17 @@ export const LandingLayout = ({ children }: any) => {
 				<CssBaseline />
 				<Navbar />
 
-				<Stack mt='70px'>{children}</Stack>
+				<Stack
+					sx={{
+						body: {
+							maxWidth: '100vw !important',
+							margin: '0 auto !important',
+						},
+						html: {},
+					}}
+					mt='70px'>
+					{children}
+				</Stack>
 				<Footer />
 			</ThemeProvider>
 		</>

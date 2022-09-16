@@ -13,6 +13,7 @@ import { blogData } from 'sdk/data/blogData'
 
 import { useSnackbar } from 'sdk/providers'
 import { sendAnalytics } from 'sdk/analytics'
+
 interface Props {
 	view: string
 }

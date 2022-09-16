@@ -1,7 +1,6 @@
 import { ArrowBackIos } from '@mui/icons-material'
-import { Button, Divider, Drawer, Paper, Select, Stack, TextField, Typography } from '@mui/material'
-import { useRouter } from 'next/router'
-import { BookingStateLabel, getSelectOptionsFromObject, InputWrapper } from '../../../sdk'
+import { Button, Divider, Drawer, Select, Stack, Typography } from '@mui/material'
+import { getSelectOptionsFromObject, InputWrapper } from '../../../sdk'
 import { useFilterDrawer } from '../hooks'
 
 interface FilterDrawerProps {

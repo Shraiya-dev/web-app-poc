@@ -4,11 +4,11 @@ import { useRouter } from 'next/router'
 import { theme, useContractorAuth, useMobile } from '../../sdk'
 import { HorizontalTabClicked } from '../../sdk/analytics/analyticsWrapper'
 import { CustomTopBar } from '../../sdk/components/topBar/customTopBar'
-import CompanyMembers from './components/companyMembers'
 import CompanyInfo from './components/companyInfo'
 import useCompanyDetails from './hooks/useCompanyDetails'
 import { useEffect } from 'react'
 import { BottomLayout } from 'sdk/layouts/BottomLayout'
+import { TutorialBanner } from 'sdk/components/banner/TutorialBanner'
 
 const CompanyDetailsStyle = styled(Box)(({ theme }) => ({
 	backgroundColor: theme.palette.background.default,
@@ -38,7 +38,7 @@ const CompanyDetails = () => {
 								color: theme.palette.secondary.main,
 								fontFamily: 'Saira,sans-serif',
 							}}>
-							Company Profile
+							Company Details
 						</Typography>
 						<Typography
 							sx={{
@@ -50,6 +50,7 @@ const CompanyDetails = () => {
 						</Typography>
 					</Stack>
 				</CustomTopBar>
+
 				<Stack>
 					<TabContext value={selectedTab}>
 						<Box sx={{ borderBottom: 1, borderColor: 'divider', marginBottom: 0 }}>
@@ -109,6 +110,10 @@ const CompanyDetails = () => {
 								position: 'relative',
 								paddingTop: 1,
 							}}>
+							<TutorialBanner sx={{ mx: -3, mb: 2 }}>
+								Validate GST details to stand out from other contractor job postings and get more
+								applications from Heroes.
+							</TutorialBanner>
 							<CompanyInfo />
 						</TabPanel>
 						{/* 

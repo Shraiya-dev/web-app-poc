@@ -1,4 +1,4 @@
-import { Typography, Box, styled, TextField } from '@mui/material'
+import { Box, styled, TextField, Typography } from '@mui/material'
 import LoadingButton from '@mui/lab/LoadingButton'
 
 import { useRouter } from 'next/router'
@@ -6,7 +6,6 @@ import BackButton from '../../../../sdk/components/backButton/backButtom'
 import { EmailOtpVerification } from './emailOtpVerify'
 import { checkError, InputWrapper } from '../../../../sdk'
 import useEditEmail from '../hooks/useEditEmail'
-import { useEffect } from 'react'
 
 const CustomLoginStyles = styled(Box)(({ theme }) => ({
 	margin: 8,

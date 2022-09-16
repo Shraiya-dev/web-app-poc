@@ -1,7 +1,6 @@
 import { Box, Button, MenuItem, Select, Stack, styled, TextField } from '@mui/material'
-import { getSelectOptions, InputWrapper, NameField, primary, useMobile } from '../../../sdk'
+import { companyRoles, getSelectOptions, InputWrapper, NameField, useMobile } from '../../../sdk'
 import usePersonalAccount from '../hooks/usePersonalAccount'
-import { companyRoles } from '../../../sdk'
 import { ButtonClicked } from '../../../sdk/analytics/analyticsWrapper'
 import { useRouter } from 'next/router'
 import { LoadingButton } from '@mui/lab'

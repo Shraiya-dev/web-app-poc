@@ -1,16 +1,13 @@
-import { Stack, Box, Paper, Typography, Chip, Grid, getSkeletonUtilityClass } from '@mui/material'
+import { Box, Button, Chip, Grid, Paper, Stack, Typography } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import styled from '@emotion/styled'
 import LocationOnIcon from '@mui/icons-material/LocationOn'
 import { BasicDetails } from './BasicDetails'
-import { theme } from '../../../sdk'
+import { theme, useSnackbar } from '../../../sdk'
 import { useRouter } from 'next/router'
 import { ArrowBack } from '@mui/icons-material'
-import { Button } from '@mui/material'
 
 import { getWorkerInfo } from '../apis/apis'
-
-import { useSnackbar } from '../../../sdk'
 
 interface WorkerData {
 	name: string

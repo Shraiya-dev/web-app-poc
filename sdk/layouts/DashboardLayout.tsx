@@ -6,6 +6,7 @@ import {
 	Box,
 	Button,
 	Container,
+	Dialog,
 	Drawer,
 	IconButton,
 	List,
@@ -15,20 +16,16 @@ import {
 	Stack,
 	styled,
 	Toolbar,
-	Dialog,
 } from '@mui/material'
 import Image from 'next/image'
 import Link from 'next/link'
-import React, { useState } from 'react'
+import React from 'react'
 import logo from '../../public/assets/icons/BrandLogo.svg'
 import MenuIcon from '../../public/assets/icons/MenuIcon.svg'
 import { useMobile } from '../hooks/useMobile'
 import { useContractorAuth } from '../providers'
-import CloseIcon from '@mui/icons-material/Close'
 
 import { CreateBooking } from '../../modules/createBooking/components/createBooking'
-import { boolean } from 'yup'
-import useCreateBooking from '../../modules/createBooking/hooks/useCreateBooking'
 import useBooking from '../../modules/createBooking/hooks/useBooking'
 
 //always update when you change the app bar height into the onlyCssWeNeed file
@@ -123,7 +120,7 @@ const DashboardLayout = ({ children, ...props }: any) => {
 
 							{/* <Link href='/dashboard/bookings/create' passHref>
 								<a>
-									<Button variant='contained'>Book Workers</Button>
+									<Button variant='contained'>Book Heroes</Button>
 								</a>
 							</Link> */}
 						</Stack>

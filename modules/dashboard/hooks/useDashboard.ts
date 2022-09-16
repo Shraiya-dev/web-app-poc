@@ -1,9 +1,7 @@
-import axios from 'axios'
 import { useRouter } from 'next/router'
 import { useCallback, useEffect, useState } from 'react'
-import { BookingPreview, BookingStats, JobCardState, JOB_TYPES, useSnackbar, WORKER_TYPES } from '../../../sdk'
-import { JobBenefits } from '../../../sdk/types/jobBenefits'
-import { getBookingsService, getBookingsSummaryService } from '../apis'
+import { BookingPreview, BookingStats, useSnackbar } from '../../../sdk'
+import { getBookingsService } from '../apis'
 
 export const useDashboard = () => {
 	const router = useRouter()

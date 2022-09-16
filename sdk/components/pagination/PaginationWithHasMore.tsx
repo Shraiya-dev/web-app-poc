@@ -1,4 +1,4 @@
-import { PaginationProps, Pagination } from '@mui/material'
+import { Pagination, PaginationProps } from '@mui/material'
 import { useRouter } from 'next/router'
 
 interface Props extends PaginationProps {

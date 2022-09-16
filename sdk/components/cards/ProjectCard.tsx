@@ -1,4 +1,4 @@
-import { Box, Button, Card, Grid, Paper, Stack, Typography } from '@mui/material'
+import { Button, Grid, Paper, Stack, Typography } from '@mui/material'
 import { styled } from '@mui/system'
 import { primary, theme } from '../../constants'
 import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined'
@@ -6,7 +6,6 @@ import employeeIcon from '../../../public/assets/icons/employee.svg'
 import bookingIcon from '../../../public/assets/icons/bookingIcon.svg'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
-import { Analytic } from '../../analytics'
 import { ButtonClicked, CardClicked } from '../../analytics/analyticsWrapper'
 
 // export interface ProjectPreview {
@@ -186,7 +185,7 @@ export const ProjectCard = ({ ...props }) => {
 						background: `${theme.palette.primary.light} !important`,
 						color: '#000 !important',
 					}}>
-					Book Workers
+					Book Heroes
 				</Button>
 				{/* <Button fullWidth className='cta'>
 					Manage Attendance

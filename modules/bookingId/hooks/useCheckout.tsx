@@ -3,6 +3,7 @@ import { useRouter } from 'next/router'
 import { useCallback, useEffect, useReducer, useState } from 'react'
 import { useSnackbar } from 'sdk'
 import { getBookingDetails, getDiscountEligibilityService } from '../apis'
+
 export interface DiscountDetails {
 	isEligible: boolean
 	discount?: Discount
@@ -14,7 +15,7 @@ export interface Discount {
 	amount?: number
 	title?: string
 }
-import * as Yup from 'yup'
+
 export const useCheckout = () => {
 	const router = useRouter()
 

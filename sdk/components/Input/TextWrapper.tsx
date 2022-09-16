@@ -1,4 +1,4 @@
-import { Box, InputLabel, InputLabelProps, Stack, Tooltip, Typography } from '@mui/material'
+import { Box, Stack, Tooltip, Typography } from '@mui/material'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
 import { theme } from '../../constants'
 

@@ -1,20 +1,7 @@
-import {
-	Box,
-	Button,
-	CircularProgress,
-	Grid,
-	IconButton,
-	InputAdornment,
-	Stack,
-	styled,
-	TextField,
-	Typography,
-} from '@mui/material'
+import { Box, Button, InputAdornment, Stack, styled, TextField, Typography } from '@mui/material'
 import {
 	checkError,
 	CompanyNameField,
-	FileInput,
-	getCustomerDetails,
 	InputWrapper,
 	primary,
 	theme,
@@ -27,9 +14,8 @@ import { ButtonClicked } from '../../../sdk/analytics/analyticsWrapper'
 import { useRouter } from 'next/router'
 import { LoadingButton } from '@mui/lab'
 import useCompanyDetails from '../hooks/useCompanyDetails'
-import { Add, Close } from '@mui/icons-material'
 import { useCallback, useEffect } from 'react'
-import { checkValidGSTIN, updateOrganisation } from '../apis/apis'
+import { updateOrganisation } from '../apis/apis'
 
 const EditCompanyInfoStyle = styled(Box)(({ theme }) => ({}))
 
@@ -291,47 +277,31 @@ const EditCompanyInfo = ({ ...props }) => {
 							Cancel
 						</Button>
 
-						{hasUpdateValue && form.isValid ? (
-							<LoadingButton
-								//type='submit'
-								onClick={async () => {
-									await updateOrg()
-									//getOrgDetails()
+						<LoadingButton
+							//type='submit'
+							onClick={async () => {
+								await updateOrg()
+								//getOrgDetails()
 
-									ButtonClicked({
-										action: 'Save Edit Profile',
-										page: 'Company Profile',
-										url: router.asPath,
-									})
-								}}
-								loading={loading}
-								variant='contained'
-								disabled={
-									loading || !form.isValid || !form.values.GSTIN || !form.values.companyName
-									// form.values.GSTINDocuments.length === 0
-								}
-								sx={{
-									background: theme.palette.primary.main,
-									color: primary.properDark,
-								}}
-								fullWidth>
-								Save
-							</LoadingButton>
-						) : (
-							<Button
-								variant='contained'
-								fullWidth
-								sx={{
-									background: '#AFAFAF',
-									color: '#fff',
-									'&:hover': {
-										color: '#fff',
-										background: '#AFAFAF',
-									},
-								}}>
-								Save
-							</Button>
-						)}
+								ButtonClicked({
+									action: 'Save Edit Profile',
+									page: 'Company Profile',
+									url: router.asPath,
+								})
+							}}
+							loading={loading}
+							variant='contained'
+							disabled={
+								!form.isValid || (form.values.GSTIN ? !isValidGST : false)
+								// form.values.GSTINDocuments.length === 0
+							}
+							sx={{
+								background: theme.palette.primary.main,
+								color: primary.properDark,
+							}}
+							fullWidth>
+							Save
+						</LoadingButton>
 					</Stack>
 				</form>
 			</Stack>

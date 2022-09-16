@@ -1,8 +1,8 @@
 import CurrencyRupeeIcon from '@mui/icons-material/CurrencyRupee'
-import { alpha, Button, Paper, Skeleton, Stack, Typography, useTheme } from '@mui/material'
+import { alpha, Paper, Skeleton, Stack, Typography, useTheme } from '@mui/material'
 import { styled } from '@mui/system'
 import { useRouter } from 'next/router'
-import React, { useCallback, useEffect, useMemo, useState } from 'react'
+import React from 'react'
 import { indianCurrencyFormat, useMobile } from '../../../../sdk'
 
 import { useGetPaymentsHistoryListQuery } from '../queries/hooks'

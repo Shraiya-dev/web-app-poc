@@ -1,4 +1,4 @@
-import { Select, MenuItem } from '@mui/material'
+import { Select } from '@mui/material'
 import { getSelectOptions } from '../../utils'
 import { getTimeOptions } from '../../utils/timeHelpers'
 

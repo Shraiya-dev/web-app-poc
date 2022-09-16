@@ -1,23 +1,7 @@
-import { Circle } from '@mui/icons-material'
-import {
-	Card,
-	CardContent,
-	CardMedia,
-	Divider,
-	Grid,
-	List,
-	ListItem,
-	ListItemText,
-	Paper,
-	Stack,
-	Theme,
-	Typography,
-	useMediaQuery,
-} from '@mui/material'
+import { Card, CardContent, CardMedia, Grid, Paper, Stack, Theme, Typography, useMediaQuery } from '@mui/material'
 import { Box } from '@mui/system'
 import { FC } from 'react'
-import { AboutUsPage, FloatingUnderLineHeading, Section, theme } from 'sdk'
-import cto from '../public/assets/landingv2/ctoImage.png'
+import { AboutUsPage, Section, theme } from 'sdk'
 
 interface Props {}
 

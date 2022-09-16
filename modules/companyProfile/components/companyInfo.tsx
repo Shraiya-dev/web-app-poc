@@ -1,5 +1,5 @@
 import { Box, Button, styled } from '@mui/material'
-import { primary, theme, useContractorAuth } from '../../../sdk'
+import { primary, theme } from '../../../sdk'
 import useCompanyDetails from '../hooks/useCompanyDetails'
 import DisplayCompanyInfo from './displayCompanyInfo'
 import EditCompanyInfo from './editCompanyInfo'
@@ -11,16 +11,17 @@ const CompanyInfoStyle = styled(Box)(({ theme }) => ({
 }))
 
 const CompanyInfo = () => {
-	const { isCmpDetailsEditable, setIsCmpDetailsEditable, handleEdit	 } = useCompanyDetails()
+	const { isCmpDetailsEditable, setIsCmpDetailsEditable, handleEdit } = useCompanyDetails()
 
 	return (
 		<CompanyInfoStyle>
-			<Box justifyContent={'flex-end'} display='flex' margin={1}>
+			<Box justifyContent={'flex-end'} display='flex' mb={isCmpDetailsEditable ? 0 : -3} mt={3}>
 				{!isCmpDetailsEditable && (
 					<Button
-						variant='outlined'
+						size='small'
+						variant='contained'
 						sx={{
-							padding: 1,
+							fontSize: 9,
 							'&:hover': {
 								background: theme.palette.primary.light,
 								color: primary.properDark,

@@ -1,7 +1,6 @@
-import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
+import { GetStaticProps, NextPage } from 'next'
 import { LoginForm } from '../modules/auth/login/components/LoginForm'
 import { OnboardingLayout } from '../sdk'
-import Head from 'next/head'
 import { useState } from 'react'
 import { OTPVerification } from '../modules/auth/otp/components/OtpVerification'
 import { OnboardingCard } from '../sdk/layouts/OrganisationCard'

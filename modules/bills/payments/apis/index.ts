@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { cancelPaymentApi, confirmPaymentApi } from '../PaymentTypes'
+
 export const getoutStandingPayment = (projectId: string) => {
 	return axios.get(`/gateway/customer-api/projects/${projectId}/outstanding-amount`)
 }

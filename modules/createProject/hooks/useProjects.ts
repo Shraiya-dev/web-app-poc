@@ -53,6 +53,11 @@ const useCreateProject = () => {
 			setIsProjectId(true)
 			setProjectInformation(projectInfo)
 		}
+		if (router.query.edit) {
+			setIsEditable(true)
+		} else {
+			setIsEditable(false)
+		}
 	}, [router, projectInfo])
 
 	const fillFormEditValues = useCallback(() => {
@@ -324,7 +329,7 @@ const useCreateProject = () => {
 				state: form.values.state,
 				pincode: form.values.pinCode,
 				overTime: {
-					rate: form.values.overTimeFactor,
+					rate: 1,
 				},
 				benefits: benefit,
 				images: {

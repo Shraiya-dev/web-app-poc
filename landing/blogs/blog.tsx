@@ -1,9 +1,9 @@
-import { Padding } from '@mui/icons-material'
-import { Button, Stack, Tab, Tabs, Typography } from '@mui/material'
+import { Button, Stack, Typography } from '@mui/material'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
-import { CarouselV2, Section } from 'sdk'
+import { Section } from 'sdk'
 import { BlogCard } from 'sdkv2/components'
+
 export const Blog = () => {
 	const router = useRouter()
 	const [isActive, setIsActive] = useState<string>('latest')

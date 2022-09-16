@@ -7,20 +7,18 @@ import {
 	Chip,
 	CircularProgress,
 	Divider,
-	Grid,
 	Icon,
 	Paper,
 	Stack,
 	Typography,
 } from '@mui/material'
-import { BookingPreview, InputWrapper, JobTypeLabel, useMobile } from '../../../sdk'
+import { BookingPreview, JobTypeLabel, useMobile } from '../../../sdk'
 
 import Helper from '../../../public/assets/icons/helper.svg'
 import Supervisor from '../../../public/assets/icons/supervisor.svg'
 import Technician from '../../../public/assets/icons/technician.svg'
 
 import Image from 'next/image'
-import { BookingDurationLabel } from '../../../sdk/constants/jobDuration'
 import { TextWrapper } from '../../../sdk/components/Input/TextWrapper'
 import { BottomLayout } from 'sdk/layouts/BottomLayout'
 import PlaceIcon from '@mui/icons-material/Place'

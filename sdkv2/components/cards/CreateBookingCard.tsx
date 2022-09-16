@@ -19,7 +19,7 @@ import {
 	useTheme,
 } from '@mui/material'
 import { useFormik } from 'formik'
-import React, { FC, useEffect, useRef, useState } from 'react'
+import React, { FC, useEffect, useState } from 'react'
 import OtpInput from 'react-otp-input'
 import { ListChildComponentProps, VariableSizeList } from 'react-window'
 import { DataLayerPush, sendAnalytics } from 'sdk/analytics'
@@ -27,7 +27,6 @@ import { LinkButton, PhoneField } from 'sdk/components'
 import { allCityList, primary } from 'sdk/constants'
 import { useFormikProps } from 'sdk/hooks'
 import { useContractorAuth, useSnackbar } from 'sdk/providers'
-import { capitalize } from 'sdk/utils'
 import { Dropdown, InputWrapper, useEasyBooking } from 'sdkv2/components'
 import { JobType } from 'sdkv2/constants'
 import * as Yup from 'yup'
@@ -112,7 +111,7 @@ export const CreateBookingCard: FC<Props> = () => {
 										<Typography variant='inherit' component='span' color='primary.main'>
 											Job Post Karen
 										</Typography>{' '}
-										aur workers ka number payen!
+										aur Heroes ka number payen!
 									</Typography>
 									<BookingStepper step={step} />
 								</>

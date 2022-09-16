@@ -1,5 +1,6 @@
-import { DetailedHTMLProps, FC, HTMLAttributes, ImgHTMLAttributes } from 'react'
+import { DetailedHTMLProps, FC, ImgHTMLAttributes } from 'react'
 import { JOB_TYPES } from 'sdk/types'
+
 interface Props extends DetailedHTMLProps<ImgHTMLAttributes<HTMLImageElement>, HTMLImageElement> {
 	jobType?: JOB_TYPES
 }

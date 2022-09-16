@@ -24,7 +24,6 @@ const ContactUs: NextPage = () => {
 			</LandingLayout>
 		</>
 	)
-	
 }
 
 export default ContactUs

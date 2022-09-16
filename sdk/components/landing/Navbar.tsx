@@ -1,5 +1,4 @@
 import { ArrowDropDown, ArrowDropUp } from '@mui/icons-material'
-import MenuIcon from '@mui/icons-material/Menu'
 import {
 	AppBar,
 	Box,
@@ -9,9 +8,6 @@ import {
 	Drawer,
 	IconButton,
 	List,
-	ListItem,
-	ListItemAvatar,
-	ListItemText,
 	Menu,
 	MenuItem,
 	Stack,
@@ -24,11 +20,9 @@ import {
 import Image from 'next/image'
 import { useRouter } from 'next/router'
 import { useEffect, useReducer, useState } from 'react'
-import { DataLayerPush, HyperLink, LinkButton } from 'sdk'
+import { DataLayerPush, LinkButton, primary, useContractorAuth } from 'sdk'
 import { sendAnalytics } from 'sdk/analytics/analyticsWrapper'
-import { primary } from 'sdk'
-import { contactUsSection, navbar } from 'sdk/data'
-import { useContractorAuth } from 'sdk'
+import { navbar } from 'sdk/data'
 import DashboardRoundedIcon from '@mui/icons-material/DashboardRounded'
 import Link from 'next/link'
 

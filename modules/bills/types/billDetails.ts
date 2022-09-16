@@ -1,4 +1,5 @@
 import { JOB_TYPES, WORKER_TYPES } from '../../../sdk'
+
 export interface BillDetails {
 	bill: {
 		billId: string

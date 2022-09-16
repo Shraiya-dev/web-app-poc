@@ -1,5 +1,6 @@
 import { Button, Dialog, Stack, Typography } from '@mui/material'
 import { primary } from 'sdk'
+
 export interface ApproveConfirmationDialogProps {
 	open: boolean
 	date?: string
@@ -14,7 +15,7 @@ export const ApproveConfirmationDialog = ({ cancel, confirm, date, open }: Appro
 					Approve work report of {date}?
 				</Typography>
 				<Typography mt={1} color='grey.A700' variant='body2'>
-					Workers bills will be generated based on approved work report
+					Heroes bills will be generated based on approved work report
 				</Typography>
 				<Stack direction='row' spacing={1} justifyContent='flex-end' mt={3}>
 					<Button variant='outlined' sx={{ backgroundColor: 'common.white' }} onClick={cancel}>

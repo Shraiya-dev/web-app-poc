@@ -1,7 +1,7 @@
-import { Avatar, Divider, Stack, Typography } from '@mui/material'
-import { Box } from '@mui/system'
+import { Avatar, Stack, Typography } from '@mui/material'
 import { FC } from 'react'
 import { useMobile } from 'sdk/hooks'
+
 interface Props {
 	active?: boolean
 	src?: string
