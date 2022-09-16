@@ -112,7 +112,7 @@ const CompanyDetails = () => {
 							}}>
 							<TutorialBanner sx={{ mx: -3, mb: 2 }}>
 								Validate GST details to stand out from other contractor job postings and get more
-								applications from workers.
+								applications from Heroes.
 							</TutorialBanner>
 							<CompanyInfo />
 						</TabPanel>
