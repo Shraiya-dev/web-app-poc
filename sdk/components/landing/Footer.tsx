@@ -1,15 +1,17 @@
-import { Box, IconButton, Stack, Typography } from '@mui/material'
+import { Stack, Box, Typography, Button, Divider, Grid, IconButton } from '@mui/material'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
 import { DataLayerPush } from 'sdk/analytics'
 import { ButtonClicked, sendAnalytics } from 'sdk/analytics/analyticsWrapper'
+import { AppStoreImage } from 'sdk/constants'
 import { externalLinks, footer } from 'sdk/data'
 import { useMobile } from 'sdk/hooks'
 import { HyperLink } from '../atomic'
 import { LinkButton } from '../button'
-import { Section } from './Section'
+import { Section, SectionProps } from './Section'
 import InstagramIcon from '@mui/icons-material/Instagram'
 import FacebookIcon from '@mui/icons-material/Facebook'
+import TwitterIcon from '@mui/icons-material/Twitter'
 import LinkedInIcon from '@mui/icons-material/LinkedIn'
 
 export const Footer = () => {
@@ -64,7 +66,7 @@ export const Footer = () => {
 											py: { xs: 1, md: 2 },
 											fontSize: { xs: 16, md: 20 },
 										}}>
-										Book Heroes Now
+										Post Job Now
 									</LinkButton>
 								</Stack>
 							</Stack>
@@ -279,7 +281,7 @@ export const Footer = () => {
 								fontWeight: 500,
 								fontFamily: 'Karla ,sans-serif',
 							}}>
-							Book Heroes Now
+							Post Job Now
 						</LinkButton>
 					</Stack>
 					<Stack direction={'column'} mt={6}>

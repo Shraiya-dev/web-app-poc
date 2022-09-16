@@ -216,8 +216,16 @@ export const JobCardCard = ({ jobCard, updateJobCard }: JobCardCardProps) => {
 							sx={{ px: 5, py: 0.7 }}
 							startIcon={<img src='/assets/icons/buttonCall.svg' />}
 							href={`tel:${jobCard.phoneNumber}`}
-							onClick={() => {}}>
-							Call {jobCard.phoneNumber ?? ' 	'}
+							onClick={() => {
+								sendAnalytics({
+									action: 'ButtonClick',
+									name: 'contactWorker',
+									metaData: {
+										phoneNumber: jobCard?.phoneNumber,
+									},
+								})
+							}}>
+							Call {jobCard?.phoneNumber ?? ' 	'}
 						</LinkButton>
 					)}
 				</Stack>
