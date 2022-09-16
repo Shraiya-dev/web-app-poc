@@ -20,6 +20,7 @@ import {
 	setPageData,
 	SnackbarProvider,
 	theme,
+	TutorialProvider,
 	USER_TYPE,
 } from '../sdk'
 import { Analytic } from '../sdk/analytics/analytics'
@@ -95,7 +96,6 @@ function MyApp({ Component, pageProps }: AppProps) {
 	}, [pageStaticData])
 	useEffect(() => {
 		let origin = window.location.origin
-		console.log(origin)
 		switch (true) {
 			case origin.includes('-booking'):
 				origin = origin.replace('-booking', '')
@@ -140,9 +140,11 @@ function MyApp({ Component, pageProps }: AppProps) {
 						<SnackbarProvider>
 							<SplashProvider>
 								<ContractorAuthProvider>
-									<PaymentProvider>
-										<Component {...pageProps} />
-									</PaymentProvider>
+									<TutorialProvider pageStaticData={pageStaticData}>
+										<PaymentProvider>
+											<Component {...pageProps} />
+										</PaymentProvider>
+									</TutorialProvider>
 								</ContractorAuthProvider>
 							</SplashProvider>
 						</SnackbarProvider>

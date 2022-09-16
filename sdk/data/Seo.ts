@@ -83,5 +83,5 @@ export const getPageStaticData = (url: string, params?: ParsedUrlQuery): PageSta
 			pageStaticData = pageStaticData.replaceAll('[' + key + ']', String(params[key]).replaceAll('-', ' '))
 		})
 	}
-	return JSON.parse(pageStaticData)
+	return { url: url, ...JSON.parse(pageStaticData) }
 }

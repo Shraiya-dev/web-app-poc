@@ -15,12 +15,13 @@ const CompanyInfo = () => {
 
 	return (
 		<CompanyInfoStyle>
-			<Box justifyContent={'flex-end'} display='flex' margin={1}>
+			<Box justifyContent={'flex-end'} display='flex' mb={isCmpDetailsEditable ? 0 : -3} mt={3}>
 				{!isCmpDetailsEditable && (
 					<Button
+						size='small'
 						variant='outlined'
 						sx={{
-							padding: 1,
+							fontSize: 9,
 							'&:hover': {
 								background: theme.palette.primary.light,
 								color: primary.properDark,

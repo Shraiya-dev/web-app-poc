@@ -116,12 +116,16 @@ body {
 	margin: 0;
 	background-color: '#FFFFFF';
 	font-family: 'Saira', Roboto, Oxygen, sans-serif;
-	width: 100vw;
-	max-width: 100%;
+	width: 100%;
+	max-width: 500px;
+	margin: 0 auto;
 	overflow-x: hidden;
 	/* always update according tpp bar height  */
 	min-height: calc(100vh - 84px);
 	scroll-behavior: smooth;
+}
+html {
+	background-color: #73777b;
 }
 
 a {

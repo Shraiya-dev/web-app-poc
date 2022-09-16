@@ -205,10 +205,10 @@ let themeDef = createTheme({
 	},
 	breakpoints: {
 		values: {
-			xl: 1536,
-			lg: 1350,
-			md: 900,
-			sm: 600,
+			xl: 5000,
+			lg: 5000,
+			md: 5000,
+			sm: 5000,
 			xs: 0,
 		},
 	},

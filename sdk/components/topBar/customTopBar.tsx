@@ -1,6 +1,5 @@
 import { Box, Stack, styled, Toolbar, Typography } from '@mui/material'
 import { primary } from '../../constants'
-import { useMobile } from '../../hooks'
 import { useContractorAuth } from '../../providers'
 
 const APP_BAR_BG_COLOR = primary.darkGrey
@@ -26,8 +25,6 @@ export const CustomTopBar = ({ children }: any) => {
 	const toggleDrawer = () => {
 		updateIsSideBarToggle(!isSideBarToggle)
 	}
-	const isMobile = useMobile()
-
 	return (
 		<CustomAppBar
 			sx={{

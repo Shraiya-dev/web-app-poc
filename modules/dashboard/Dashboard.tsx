@@ -92,7 +92,7 @@ export const Dashboard = () => {
 						}}>
 						{`Filters & Sort`}
 					</Button> */}
-					{isMobile && (
+					{/* {isMobile && (
 						<Link href={`/projects/${router?.query?.projectId}/bookings/create`} passHref>
 							<a>
 								<Button
@@ -109,10 +109,10 @@ export const Dashboard = () => {
 								</Button>
 							</a>
 						</Link>
-					)}
+					)} */}
 				</Stack>
 				<Stack direction='row' alignItems='center' spacing={2}>
-					<SearchField name='bookingId' fullWidth placeholder='Search by booking ID' size='small' />
+					{/* <SearchField name='bookingId' fullWidth placeholder='Search by booking ID' size='small' /> */}
 					{!isMobile && (
 						<Link href={`/projects/${router?.query?.projectId}/bookings/create`} passHref>
 							<a>
@@ -138,7 +138,7 @@ export const Dashboard = () => {
 					<CircularProgress size={50} />
 				</Stack>
 			) : (
-				<Stack mt={4}>
+				<Stack mt={2}>
 					{bookings.totalBookings === 0 ? (
 						<Stack flex={1} mt={20} direction={'column'} spacing={4} alignItems='center'>
 							<Typography variant='h4' color={theme.palette.primary.main}>

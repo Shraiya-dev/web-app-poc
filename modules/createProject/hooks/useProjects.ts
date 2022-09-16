@@ -53,6 +53,11 @@ const useCreateProject = () => {
 			setIsProjectId(true)
 			setProjectInformation(projectInfo)
 		}
+		if (router.query.edit) {
+			setIsEditable(true)
+		} else {
+			setIsEditable(false)
+		}
 	}, [router, projectInfo])
 
 	const fillFormEditValues = useCallback(() => {

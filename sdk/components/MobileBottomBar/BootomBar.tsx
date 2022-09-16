@@ -45,7 +45,7 @@ export const BottomBarItem = ({ ...props }) => {
 						}
 					}
 					onClick={handleClick}>
-					<Stack direction={'column'} alignItems={'center'} justifyContent={'space-evenly'}>
+					<Stack direction={'column'} alignItems={'center'} justifyContent={'center'}>
 						<Stack
 							direction={'row'}
 							justifyContent={'center'}
@@ -57,7 +57,10 @@ export const BottomBarItem = ({ ...props }) => {
 								{icon}
 							</ListItemIcon>
 						</Stack>
-						<Typography style={{ fontSize: '10px', color: router.route === route ? '#fff' : '#7d7d7d' }}>
+						<Typography
+							textAlign={'center'}
+							noWrap
+							style={{ fontSize: '10px', color: router.route === route ? '#fff' : '#7d7d7d' }}>
 							{title}
 						</Typography>
 					</Stack>

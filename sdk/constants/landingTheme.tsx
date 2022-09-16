@@ -223,6 +223,16 @@ let themeDef = createTheme({
 		borderRadius: 8,
 	},
 	components: {
+		MuiCssBaseline: {
+			styleOverrides: {
+				'html,body': {
+					maxWidth: '100vw !important',
+				},
+				html: {
+					backgroundColor: 'transparent !important',
+				},
+			},
+		},
 		MuiAppBar: {
 			defaultProps: {
 				variant: 'outlined',

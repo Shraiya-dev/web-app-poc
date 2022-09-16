@@ -23,6 +23,7 @@ export interface CustomerDetails {
 	customerStatus: CUSTOMER_STATUS
 	onboardingStatus: ONBOARDING_STATUS
 	GSTIN: string
+	isEnterprise?: boolean
 	hasProjects?: boolean
 	designation: DESIGNATION
 	organisationRole: string
