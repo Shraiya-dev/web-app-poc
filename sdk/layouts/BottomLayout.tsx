@@ -28,8 +28,9 @@ export const BottomLayout = ({ ...props }) => {
 				position: 'fixed',
 				bottom: 0,
 				width: '100%',
+				maxWidth: 500,
 			}}>
-			<Stack direction={'row'} justifyContent={'space-between'} px={2} position={'sticky'}>
+			<Stack direction={'row'} justifyContent={'space-between'} px={2}>
 				<BottomBarItem
 					icon={<DashboardIcon />}
 					path={
