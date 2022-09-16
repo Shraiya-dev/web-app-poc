@@ -38,7 +38,7 @@ const PersonalAccount = () => {
 
 				<Stack m={3} mt={0}>
 					<TutorialBanner sx={{ mx: -3, mb: 2 }}>
-						Add your e-mail now and never lose access to your job postings & applications from workers.
+						Add your e-mail now and never lose access to your job postings & applications from Heroes.
 					</TutorialBanner>
 					<Box justifyContent={'flex-end'} display='flex' mb={-3} mt={2}>
 						{!isAccountEditable && (

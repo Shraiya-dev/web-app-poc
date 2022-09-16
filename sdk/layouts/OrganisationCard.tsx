@@ -16,7 +16,7 @@ export const OnboardingCard = ({
 	children,
 	confirmation = true,
 	title = 'Leave without creating account?',
-	caption = 'You’ll not be able to book workers',
+	caption = 'You’ll not be able to book Heroes',
 }: OnboardingCardProps) => {
 	const [dialogProps, setDialogProps] = useState(false)
 	return (

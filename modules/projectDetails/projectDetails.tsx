@@ -176,7 +176,7 @@ export const ProjectDetails: FC<Props> = () => {
 						position: 'relative',
 					}}>
 					<TutorialBanner>
-						All your job postings are here. Click on “View Applications” to see the phone numbers of workers
+						All your job postings are here. Click on “View Applications” to see the phone numbers of Heroes
 						who applied to your job
 					</TutorialBanner>
 					<Dashboard />
@@ -218,8 +218,8 @@ export const ProjectDetails: FC<Props> = () => {
 						position: 'relative',
 					}}>
 					<TutorialBanner>
-						Job postings with updated site details attract 70% more applications from workers. Update
-						Details now.
+						Job postings with updated site details attract 70% more applications from Heroes. Update Details
+						now.
 					</TutorialBanner>
 					<ProjectInfo setProjectName={setProjectName} />
 				</TabPanel>

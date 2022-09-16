@@ -64,7 +64,7 @@ export const Footer = () => {
 											py: { xs: 1, md: 2 },
 											fontSize: { xs: 16, md: 20 },
 										}}>
-										Book Workers Now
+										Book Heroes Now
 									</LinkButton>
 								</Stack>
 							</Stack>
@@ -279,7 +279,7 @@ export const Footer = () => {
 								fontWeight: 500,
 								fontFamily: 'Karla ,sans-serif',
 							}}>
-							Book Workers Now
+							Book Heroes Now
 						</LinkButton>
 					</Stack>
 					<Stack direction={'column'} mt={6}>

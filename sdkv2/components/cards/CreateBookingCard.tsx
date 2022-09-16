@@ -111,7 +111,7 @@ export const CreateBookingCard: FC<Props> = () => {
 										<Typography variant='inherit' component='span' color='primary.main'>
 											Job Post Karen
 										</Typography>{' '}
-										aur workers ka number payen!
+										aur Heroes ka number payen!
 									</Typography>
 									<BookingStepper step={step} />
 								</>

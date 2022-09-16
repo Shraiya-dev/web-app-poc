@@ -120,7 +120,7 @@ const DashboardLayout = ({ children, ...props }: any) => {
 
 							{/* <Link href='/dashboard/bookings/create' passHref>
 								<a>
-									<Button variant='contained'>Book Workers</Button>
+									<Button variant='contained'>Book Heroes</Button>
 								</a>
 							</Link> */}
 						</Stack>
