@@ -140,7 +140,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 						<SnackbarProvider>
 							<SplashProvider>
 								<ContractorAuthProvider>
-									<TutorialProvider>
+									<TutorialProvider pageStaticData={pageStaticData}>
 										<PaymentProvider>
 											<Component {...pageProps} />
 										</PaymentProvider>

@@ -92,7 +92,7 @@ export const Dashboard = () => {
 						}}>
 						{`Filters & Sort`}
 					</Button> */}
-					{isMobile && (
+					{/* {isMobile && (
 						<Link href={`/projects/${router?.query?.projectId}/bookings/create`} passHref>
 							<a>
 								<Button
@@ -109,7 +109,7 @@ export const Dashboard = () => {
 								</Button>
 							</a>
 						</Link>
-					)}
+					)} */}
 				</Stack>
 				<Stack direction='row' alignItems='center' spacing={2}>
 					{/* <SearchField name='bookingId' fullWidth placeholder='Search by booking ID' size='small' /> */}

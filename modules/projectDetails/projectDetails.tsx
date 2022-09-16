@@ -1,12 +1,14 @@
 import { LocationOnOutlined } from '@mui/icons-material'
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew'
 import { TabContext, TabPanel } from '@mui/lab'
-import { Stack, Tab, Tabs, Typography } from '@mui/material'
+import { Button, Stack, Tab, Tabs, Typography } from '@mui/material'
 import { Box } from '@mui/system'
+import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { FC, useEffect, useMemo } from 'react'
+import { TutorialBanner } from 'sdk/components/banner/TutorialBanner'
 import { BottomLayout } from 'sdk/layouts/BottomLayout'
-import { theme, useContractorAuth, useMobile } from '../../sdk'
+import { ButtonClicked, LinkButton, theme, useContractorAuth, useMobile } from '../../sdk'
 import { CustomTopBar } from '../../sdk/components/topBar/customTopBar'
 import { Bills } from '../bills'
 import { Dashboard } from '../dashboard'
@@ -55,13 +57,14 @@ export const ProjectDetails: FC<Props> = () => {
 		<>
 			<CustomTopBar>
 				<Stack flex={1} direction='row' alignItems='flex-start'>
-					<Stack direction='row' justifyContent={'flex-start'} flex={1} spacing={2}>
+					<Stack direction='row' justifyContent={'flex-start'} flex={1} spacing={2} alignItems='center'>
 						<Box
 							sx={{
 								position: 'relative',
 								top: 4,
 							}}>
 							<Typography
+								component='div'
 								sx={{
 									fontSize: isMobile ? 18 : 26,
 									fontWeight: 700,
@@ -93,6 +96,7 @@ export const ProjectDetails: FC<Props> = () => {
 								{projectName?.name}
 							</Typography>
 							<Typography
+								component='div'
 								sx={{
 									fontSize: 14,
 									color: theme.palette.secondary.main,
@@ -103,6 +107,23 @@ export const ProjectDetails: FC<Props> = () => {
 								&nbsp;{projectName?.city} , {projectName?.state}
 							</Typography>
 						</Stack>
+						{isMobile && (
+							<LinkButton
+								href={`/projects/${router?.query?.projectId}/bookings/create`}
+								size='small'
+								variant='contained'
+								sx={{ fontSize: 9 }}
+								onClick={() => {
+									ButtonClicked({
+										action: 'Book Workers',
+										page: 'Project',
+										projectId: router?.query?.projectId,
+										url: router.asPath,
+									})
+								}}>
+								Post Job Now
+							</LinkButton>
+						)}
 					</Stack>
 				</Stack>
 			</CustomTopBar>
@@ -154,6 +175,10 @@ export const ProjectDetails: FC<Props> = () => {
 						overflowY: 'auto',
 						position: 'relative',
 					}}>
+					<TutorialBanner>
+						All your job postings are here. Click on “View Applications” to see the phone numbers of workers
+						who applied to your job
+					</TutorialBanner>
 					<Dashboard />
 				</TabPanel>
 				<TabPanel
@@ -192,6 +217,10 @@ export const ProjectDetails: FC<Props> = () => {
 						overflowY: 'auto',
 						position: 'relative',
 					}}>
+					<TutorialBanner>
+						Job postings with updated site details attract 70% more applications from workers. Update
+						Details now.
+					</TutorialBanner>
 					<ProjectInfo setProjectName={setProjectName} />
 				</TabPanel>
 			</TabContext>

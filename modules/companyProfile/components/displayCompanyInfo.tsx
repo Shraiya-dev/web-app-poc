@@ -57,6 +57,7 @@ const DisplayCompanyInfo = ({ ...props }) => {
 					<Typography className='info'>{orgDetails?.GSTIN ? orgDetails?.GSTIN : '_'}</Typography>
 				</TextWrapper>
 			</Stack>
+
 			{/* {orgDetails?.GSTINDocuments ? (
 				<Typography className='GstinCertificate' display={'flex'} onClick={handleView}>
 					View GSTIN Certificate{' '}
