@@ -1,10 +1,6 @@
-import { Box, Container, IconButton, Stack, styled, Toolbar, Typography } from '@mui/material'
-import Image from 'next/image'
-import { Children } from 'react'
-import { primary, theme } from '../../constants'
-import { useMobile } from '../../hooks'
+import { Box, Stack, styled, Toolbar, Typography } from '@mui/material'
+import { primary } from '../../constants'
 import { useContractorAuth } from '../../providers'
-import MenuIcon from '../../../public/assets/icons/MenuIcon.svg'
 
 const APP_BAR_BG_COLOR = primary.darkGrey
 
@@ -29,8 +25,6 @@ export const CustomTopBar = ({ children }: any) => {
 	const toggleDrawer = () => {
 		updateIsSideBarToggle(!isSideBarToggle)
 	}
-	const isMobile = useMobile()
-
 	return (
 		<CustomAppBar
 			sx={{

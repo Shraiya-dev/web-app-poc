@@ -1,4 +1,4 @@
-import { Add, Close } from '@mui/icons-material'
+import { Add } from '@mui/icons-material'
 import CancelRoundedIcon from '@mui/icons-material/CancelRounded'
 import { LoadingButton } from '@mui/lab'
 import {
@@ -15,11 +15,10 @@ import {
 	styled,
 	TextField,
 } from '@mui/material'
-import { useProjectInfo } from 'modules/ProjectInfo/hooks/useProjectInfo'
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
 import ProjectSvg from '../../../public/assets/icons/project.svg'
-import { checkError, getSelectOptions, InputWrapper, primary, theme, useMobile, useSnackbar } from '../../../sdk'
+import { checkError, getSelectOptions, InputWrapper, primary, theme, useMobile } from '../../../sdk'
 import { Analytic } from '../../../sdk/analytics'
 import { TopBanner } from '../../../sdk/components/banner/formBanner'
 import { FileInput } from '../../../sdk/components/Input/fileInput'

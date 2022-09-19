@@ -1,5 +1,5 @@
 import { Search } from '@mui/icons-material'
-import { IconButton, InputAdornment, OutlinedTextFieldProps, TextField, TextFieldProps } from '@mui/material'
+import { IconButton, InputAdornment, TextField, TextFieldProps } from '@mui/material'
 import { styled } from '@mui/system'
 import { useFormik } from 'formik'
 import { useRouter } from 'next/router'
@@ -48,7 +48,7 @@ export const SearchField = ({ name = 'name', ...rest }: TextFieldProps) => {
 					endAdornment: (
 						<InputAdornment position='end'>
 							<IconButton type='submit'>
-								<Search color='inherit' sx={{color: primary.properDark}} />
+								<Search color='inherit' sx={{ color: primary.properDark }} />
 							</IconButton>
 						</InputAdornment>
 					),

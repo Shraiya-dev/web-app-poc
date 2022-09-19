@@ -25,8 +25,7 @@ export const CustomToggle = ({ ...props }) => {
 				}}
 				onClick={() => {
 					form.setFieldValue(name, true)
-				}}
-			>
+				}}>
 				Yes
 			</Button>
 			<Button
@@ -50,8 +49,7 @@ export const CustomToggle = ({ ...props }) => {
 				}}
 				onClick={() => {
 					form.setFieldValue(name, false)
-				}}
-			>
+				}}>
 				No
 			</Button>
 		</Stack>

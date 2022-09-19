@@ -1,6 +1,6 @@
-import { ReactJSXElement } from '@emotion/react/types/jsx-namespace'
 import { Button, Dialog, Stack, Typography } from '@mui/material'
 import { primary } from 'sdk/constants'
+
 export interface ConfirmationDialogProps {
 	title?: string
 	caption?: string

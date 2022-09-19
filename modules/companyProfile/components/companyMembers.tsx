@@ -1,8 +1,7 @@
 import { Box, styled, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
-import { DESIGNATION, getCustomerRoles, primary, theme } from '../../../sdk'
-import { designationLabel } from '../../../sdk/constants/designation'
+import { DESIGNATION, getCustomerRoles } from '../../../sdk'
 import useCompanyDetails from '../hooks/useCompanyDetails'
 
 const CompanyMembersStyle = styled(Box)(({ theme }) => ({

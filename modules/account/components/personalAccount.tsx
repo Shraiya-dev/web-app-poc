@@ -1,5 +1,6 @@
 import { Logout } from '@mui/icons-material'
 import { Box, Button, Stack, styled, Typography } from '@mui/material'
+import { TutorialBanner } from 'sdk/components/banner/TutorialBanner'
 import { BottomLayout } from 'sdk/layouts/BottomLayout'
 import { primary, theme, useContractorAuth, useMobile } from '../../../sdk'
 import { CustomTopBar } from '../../../sdk/components/topBar/customTopBar'
@@ -13,7 +14,6 @@ const PersonalAccountStyle = styled(Box)(({ theme }) => ({
 }))
 
 const PersonalAccount = () => {
-	const isMobile = useMobile()
 	const { logOut } = useContractorAuth()
 
 	const { handleEdit, isAccountEditable, setIsAccountEditable } = usePersonalAccount()
@@ -30,19 +30,22 @@ const PersonalAccount = () => {
 								color: theme.palette.secondary.main,
 								fontFamily: 'Saira ,sans-serif',
 							}}>
-							Account
+							Profile
 						</Typography>
 					</Stack>
 				</CustomTopBar>
 
 				<Stack m={3} mt={0}>
-					<Box justifyContent={'flex-end'} display='flex' margin={1}>
+					<TutorialBanner sx={{ mx: -3, mb: 2 }}>
+						Add your e-mail now and never lose access to your job postings & applications from Heroes.
+					</TutorialBanner>
+					<Box justifyContent={'flex-end'} display='flex' mb={-3} mt={2}>
 						{!isAccountEditable && (
 							<Button
 								size='small'
-								variant='outlined'
+								variant='contained'
 								sx={{
-									padding: 1,
+									fontSize: 9,
 									'&:hover': {
 										background: theme.palette.primary.light,
 										color: primary.properDark,

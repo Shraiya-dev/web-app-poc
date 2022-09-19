@@ -6,11 +6,9 @@ interface StatusChipProps extends ChipProps {
 	bookingState?: BOOKING_STATES
 }
 
-const chipColor: Partial<
-	{
-		[key in BOOKING_STATES]: string
-	}
-> = {
+const chipColor: Partial<{
+	[key in BOOKING_STATES]: string
+}> = {
 	RECEIVED: 'primary.lightGrey',
 	CONFIRMED: 'primary.lightOrange',
 	ALLOCATION_PENDING: 'primary.lightGreen',
@@ -21,11 +19,9 @@ const chipColor: Partial<
 	CANCELLED: 'error.main',
 }
 
-const chipTextColor: Partial<
-	{
-		[key in BOOKING_STATES]: string
-	}
-> = {
+const chipTextColor: Partial<{
+	[key in BOOKING_STATES]: string
+}> = {
 	RECEIVED: 'primary.darkGrey',
 	CONFIRMED: 'theme.warning.dark',
 	ALLOCATION_PENDING: 'theme.success.light',

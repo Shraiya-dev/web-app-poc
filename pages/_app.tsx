@@ -20,17 +20,19 @@ import {
 	setPageData,
 	SnackbarProvider,
 	theme,
+	TutorialProvider,
 	USER_TYPE,
 } from '../sdk'
 import { Analytic } from '../sdk/analytics/analytics'
 import '../sdk/styles/onlyCssWeNeed.css'
-const queryClient = new QueryClient()
-
 import { SplashProvider } from 'sdk/providers/SplashProvider'
 
 import { CssBaseline } from '@mui/material'
 import { PaymentProvider } from 'sdk/providers/PaymentProvider'
 import { createCookieInHour, getCookie } from '../sdk/analytics/helper'
+
+const queryClient = new QueryClient()
+
 //=====================initializing axios interceptor=======================
 
 axios.defaults.baseURL = envs.SERVER_URL
@@ -94,7 +96,6 @@ function MyApp({ Component, pageProps }: AppProps) {
 	}, [pageStaticData])
 	useEffect(() => {
 		let origin = window.location.origin
-		console.log(origin)
 		switch (true) {
 			case origin.includes('-booking'):
 				origin = origin.replace('-booking', '')
@@ -139,9 +140,11 @@ function MyApp({ Component, pageProps }: AppProps) {
 						<SnackbarProvider>
 							<SplashProvider>
 								<ContractorAuthProvider>
-									<PaymentProvider>
-										<Component {...pageProps} />
-									</PaymentProvider>
+									<TutorialProvider pageStaticData={pageStaticData}>
+										<PaymentProvider>
+											<Component {...pageProps} />
+										</PaymentProvider>
+									</TutorialProvider>
 								</ContractorAuthProvider>
 							</SplashProvider>
 						</SnackbarProvider>

@@ -6,4 +6,5 @@ export interface Seo {
 export interface PageStaticData {
 	pageName: string
 	seo: Seo
+	url?: string
 }

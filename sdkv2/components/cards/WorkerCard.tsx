@@ -5,8 +5,8 @@ import { JobTypeLabel } from 'sdk/constants'
 import { JOB_TYPES } from 'sdk/types'
 import { capitalize } from 'sdk/utils'
 import { Worker } from 'sdkv2/types'
-import { HeroCardImage } from '../atomic'
 import { JobCategoryIcon } from '../icons'
+
 interface Props {
 	worker?: Worker
 }

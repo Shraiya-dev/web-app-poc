@@ -3,7 +3,7 @@ import { useRouter } from 'next/router'
 import { useCallback, useEffect, useState } from 'react'
 import { JOB_TYPES, useContractorAuth, useSnackbar } from '../../../sdk'
 import { DataLayerPush } from '../../../sdk/analytics'
-import { ButtonClicked, sendAnalytics } from '../../../sdk/analytics/analyticsWrapper'
+import { sendAnalytics } from '../../../sdk/analytics/analyticsWrapper'
 import { createBooking, getProjectDetails } from '../apis'
 
 interface CreateBookingForm {

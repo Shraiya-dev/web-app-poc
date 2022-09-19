@@ -1,5 +1,4 @@
 import { Theme, useMediaQuery } from '@mui/material'
-import { useState, useEffect, useMemo } from 'react'
 
 export function useMobile() {
 	// // Initialize state with undefined width/height so server and client renders match

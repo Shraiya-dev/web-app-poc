@@ -2,6 +2,7 @@ import { NextRouter } from 'next/router'
 import { PageStaticData } from 'sdk/types'
 import { Analytic } from './analytics'
 import { getUtmObject } from './helper'
+
 //old version
 interface ButtonClicked {
 	action: string
@@ -163,11 +164,15 @@ const EventTypes = {
 	shareBlog: 'Share Blog',
 	contractorTab: 'Contractor Tab',
 	workerTab: 'Worker Tab',
+	tutorialInteraction: 'Tutorial Interaction',
+	tutorialImpression: 'Tutorial Impression',
+	updateProject: 'Update Project',
 }
 
 //Define a new action type here if needed
 const ActionTypes = {
 	ButtonClick: 'Button Click',
+	View: 'View',
 	CardClick: 'Card Click',
 	DropDownClick: 'Drop Down Click',
 	HorizontalTabClick: 'Horizontal Tab Click',

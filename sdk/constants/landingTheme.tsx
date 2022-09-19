@@ -1,6 +1,6 @@
 import { KeyboardArrowDown } from '@mui/icons-material'
 import { alpha, createTheme, responsiveFontSizes } from '@mui/material/styles'
-import { createBreakpoints } from '@mui/system'
+
 declare module '@mui/material/TextField' {
 	interface TextFieldPropsVariantOverrides {
 		rounded: true
@@ -223,6 +223,16 @@ let themeDef = createTheme({
 		borderRadius: 8,
 	},
 	components: {
+		MuiCssBaseline: {
+			styleOverrides: {
+				'html,body': {
+					maxWidth: '100vw !important',
+				},
+				html: {
+					backgroundColor: 'transparent !important',
+				},
+			},
+		},
 		MuiAppBar: {
 			defaultProps: {
 				variant: 'outlined',

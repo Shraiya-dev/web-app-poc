@@ -1,7 +1,5 @@
 import { GetStaticProps, NextPage } from 'next'
 import { useRouter } from 'next/router'
-
-import Head from 'next/head'
 import { staticRenderingProvider } from 'sdk/utils/nextHelper'
 import CompanyDetails from '../modules/companyProfile/companyDetails'
 import { useContractorAuth } from '../sdk'

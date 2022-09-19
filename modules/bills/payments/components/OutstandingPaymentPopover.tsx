@@ -18,7 +18,7 @@ import {
 } from '@mui/material'
 import { styled } from '@mui/system'
 import { useRouter } from 'next/router'
-import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 
 import { envs, indianCurrencyFormat, isEmptyObject, primary, useContractorAuth } from '../../../../sdk'
 import logo from '../../../../public/assets/icons/BrandLogo.svg'

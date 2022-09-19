@@ -1,7 +1,6 @@
 import { ListItem, ListItemIcon, ListItemText, Typography } from '@mui/material'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import { Analytic } from '../../analytics'
 import { NavigationTabClicked } from '../../analytics/analyticsWrapper'
 import { primary } from '../../constants'
 import { useMobile } from '../../hooks'

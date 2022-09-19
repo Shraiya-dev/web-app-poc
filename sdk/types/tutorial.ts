@@ -1,0 +1,5 @@
+export enum TutorialSteps {
+	DASHBOARD = 'DASHBOARD',
+	PROJECT_DETAILS = 'PROJECT_DETAILS',
+	COMPLETED = 'COMPLETED',
+}

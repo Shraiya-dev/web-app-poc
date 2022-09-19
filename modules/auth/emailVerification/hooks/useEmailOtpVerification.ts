@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useState } from 'react'
 import { useRouter } from 'next/router'
 import { DataLayerPush, useContractorAuth, useSnackbar } from '../../../../sdk'
 import { useFormik } from 'formik'

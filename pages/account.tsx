@@ -1,5 +1,4 @@
-import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
-import Head from 'next/head'
+import { GetStaticProps, NextPage } from 'next'
 import { staticRenderingProvider } from 'sdk/utils/nextHelper'
 import PersonalAccount from '../modules/account/components/personalAccount'
 

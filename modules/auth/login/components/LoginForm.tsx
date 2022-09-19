@@ -1,10 +1,9 @@
 import LoadingButton from '@mui/lab/LoadingButton'
-import { Box, Button, Checkbox, FormControlLabel, InputLabel, Stack, styled, Typography } from '@mui/material'
+import { Box, Button, Checkbox, FormControlLabel, Stack, styled, Typography } from '@mui/material'
 
 import { useRouter } from 'next/router'
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { InputWrapper } from 'sdkv2/components'
-import BookingStepper from 'sdkv2/components/EasyBookingStepper/BookingStepper'
 import { checkError, getCookie, primary, useContractorAuth } from '../../../../sdk'
 import { PhoneField } from '../../../../sdk/components/Input/PhoneField'
 import useLogin from '../hooks/useLogin'

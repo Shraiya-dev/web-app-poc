@@ -1,4 +1,5 @@
 import axios from 'axios'
+
 export const getWorkReport = (projectId: string, queryParameters: URLSearchParams) => {
 	return axios.get(`/gateway/customer-api/projects/${projectId}/daily-work-report?${queryParameters.toString()}`)
 }

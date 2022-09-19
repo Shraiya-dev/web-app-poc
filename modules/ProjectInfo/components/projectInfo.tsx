@@ -2,11 +2,9 @@ import {
 	Box,
 	Button,
 	CircularProgress,
-	Container,
 	Grid,
 	IconButton,
 	MenuItem,
-	Paper,
 	Select,
 	Stack,
 	TextField,
@@ -15,7 +13,6 @@ import {
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import {
-	ButtonClicked,
 	checkError,
 	CityOptions,
 	FileInput,
@@ -23,6 +20,7 @@ import {
 	InputWrapper,
 	PinCodeField,
 	primary,
+	sendAnalytics,
 	StatesOptions,
 	theme,
 } from '../../../sdk'
@@ -31,7 +29,7 @@ import ViewImage from '../../../sdk/components/viewImage/viewImage'
 import { JobBenefits } from '../../../sdk/types/jobBenefits'
 import { overTimefactor, overTimeLabel } from '../../createBooking/utils'
 import { useProjectInfo } from '../hooks/useProjectInfo'
-import { Add, Close } from '@mui/icons-material'
+import { Add } from '@mui/icons-material'
 import CancelRoundedIcon from '@mui/icons-material/CancelRounded'
 import { CustomToggle } from 'modules/createProject/components'
 import useCreateProject from 'modules/createProject/hooks/useProjects'
@@ -147,9 +145,9 @@ const ProjectInfo = ({ setProjectName }: any) => {
 						Worker Benefits
 					</Typography>
 					<Stack spacing={5}>
-						<TextWrapper id='overTimeFactor' label='Over Time Wage'>
+						{/* <TextWrapper id='overTimeFactor' label='Over Time Wage'>
 							{overTimeLabel[projectInfo?.overTime?.rate || 1]}
-						</TextWrapper>
+						</TextWrapper> */}
 						<TextWrapper id='pfAvailable' label='Provident Fund (PF)'>
 							{projectInfo?.benefits?.includes(JobBenefits?.PF) ? 'Yes' : 'No'}
 						</TextWrapper>
@@ -377,7 +375,7 @@ const ProjectInfo = ({ setProjectName }: any) => {
 					</Stack>
 
 					<Stack spacing={4}>
-						<InputWrapper id='overTimeFactor' label={`Over Time Wage `}>
+						{/* <InputWrapper id='overTimeFactor' label={`Over Time Wage `}>
 							<Grid container item xs={12} sm={12} md={6} lg={6}>
 								<Select
 									labelId='overTimeFactor'
@@ -390,7 +388,7 @@ const ProjectInfo = ({ setProjectName }: any) => {
 									{getSelectOptions(overTimefactor)}
 								</Select>
 							</Grid>
-						</InputWrapper>
+						</InputWrapper> */}
 						<InputWrapper id='pfAvailable' label='Provident Fund (PF) available?'>
 							<CustomToggle name={'pfAvailable'} form={form} infoValues={form.values.pfAvailable} />
 						</InputWrapper>
@@ -512,6 +510,13 @@ const ProjectInfo = ({ setProjectName }: any) => {
 						<Button
 							variant='outlined'
 							onClick={() => {
+								sendAnalytics({
+									action: 'ButtonClick',
+									name: 'updateProject',
+									metaData: {
+										type: 'Cancel',
+									},
+								})
 								setIsEditable(!isEditable)
 							}}
 							sx={{ minWidth: '10em', float: 'right', display: 'flex' }}>

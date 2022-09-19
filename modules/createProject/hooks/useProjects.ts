@@ -4,7 +4,7 @@ import { useRouter } from 'next/router'
 import { useCallback, useEffect, useState } from 'react'
 import { isPincodeValid, useSnackbar } from '../../../sdk'
 import { DataLayerPush } from '../../../sdk/analytics'
-import { ButtonClicked } from '../../../sdk/analytics/analyticsWrapper'
+import { ButtonClicked, sendAnalytics } from '../../../sdk/analytics/analyticsWrapper'
 import { JobBenefits } from '../../../sdk/types/jobBenefits'
 import { createProject, updateProject, uploadImage } from '../apis/apis'
 
@@ -52,6 +52,11 @@ const useCreateProject = () => {
 		if (router.query.projectId !== undefined && projectInfo !== undefined) {
 			setIsProjectId(true)
 			setProjectInformation(projectInfo)
+		}
+		if (router.query.edit) {
+			setIsEditable(true)
+		} else {
+			setIsEditable(false)
 		}
 	}, [router, projectInfo])
 
@@ -324,7 +329,7 @@ const useCreateProject = () => {
 				state: form.values.state,
 				pincode: form.values.pinCode,
 				overTime: {
-					rate: form.values.overTimeFactor,
+					rate: 1,
 				},
 				benefits: benefit,
 				images: {
@@ -332,7 +337,14 @@ const useCreateProject = () => {
 					site: form.values.sitePhotos,
 				},
 			}
-
+			sendAnalytics({
+				action: 'ButtonClick',
+				name: 'updateProject',
+				metaData: {
+					type: 'Updating',
+					details: payload,
+				},
+			})
 			updateProject(payload, projectId)
 				.then((res) => {
 					if (res?.status === 200) {

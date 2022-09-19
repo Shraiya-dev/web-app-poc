@@ -1,6 +1,4 @@
-import { Box, CardMedia, Dialog, DialogContent } from '@mui/material'
-import Image from 'next/image'
-import { useState } from 'react'
+import { Box, Dialog, DialogContent } from '@mui/material'
 import Carousal from '../carousal/carousal'
 
 const ViewImage = ({ ...props }) => {

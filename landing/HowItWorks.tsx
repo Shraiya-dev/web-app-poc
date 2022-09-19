@@ -1,13 +1,11 @@
-import { Button, Grid, LinearProgress, Paper, Slider, Stack, styled, Typography } from '@mui/material'
+import { Button, Grid, Paper, Slider, Stack, styled, Typography } from '@mui/material'
 import { Box } from '@mui/system'
 import Image from 'next/image'
-import React, { createRef, useState } from 'react'
-import { FC } from 'react'
+import React, { createRef, FC, useState } from 'react'
 import { LinkButton, Section, sendAnalytics, theme, useMobile } from 'sdk'
 import { CarouselHowItWork } from 'sdkv2/components'
-import AcUnitIcon from '@mui/icons-material/AcUnit'
 //@ts-nocheck
-import { Player, BigPlayButton } from 'video-react'
+import { BigPlayButton, Player } from 'video-react'
 import 'video-react/dist/video-react.css'
 
 interface Props {}

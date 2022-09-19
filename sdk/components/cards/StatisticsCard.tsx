@@ -1,7 +1,7 @@
-import { Paper, Stack, Box, Typography } from '@mui/material'
-import { fontSize, styled } from '@mui/system'
+import { Box, Paper, Stack, Typography } from '@mui/material'
+import { styled } from '@mui/system'
 import Image from 'next/image'
-import { BookingStats } from '../../types'
+
 interface StatisticsCardProps {
 	label: string
 	count: number

@@ -1,9 +1,9 @@
 import { Close } from '@mui/icons-material'
-import { Chip, PaletteOptions, Stack } from '@mui/material'
+import { Chip, Stack } from '@mui/material'
 import { useRouter } from 'next/router'
-import { FC, useCallback, useDebugValue } from 'react'
+import { FC, useCallback } from 'react'
 import { sendAnalytics } from 'sdk'
-import { StringDecoder } from 'string_decoder'
+
 interface Props {
 	filterOptions: { label: string; value: string }[]
 	filterKey: string

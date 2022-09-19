@@ -26,11 +26,11 @@ import {
 } from '@mui/material'
 import { Box } from '@mui/system'
 import { useRouter } from 'next/router'
-import { useCallback, useEffect, useMemo, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import {
 	colors,
-	JobTypeLabel,
 	JOB_TYPES,
+	JobTypeLabel,
 	primary,
 	SkillTypeLabel,
 	useContractorAuth,
