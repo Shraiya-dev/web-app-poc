@@ -101,7 +101,13 @@ export const Home = () => {
 			<Stack alignItems='center ' p={2}>
 				<ButtonGroup disableElevation fullWidth sx={{ maxWidth: 700 }}>
 					<Button
-						onClick={() => setUserType('CONTRACTOR')}
+						onClick={() => {
+							sendAnalytics({
+								action: 'ButtonClick',
+								name: 'contractorTab',
+							})
+							setUserType('CONTRACTOR')
+						}}
 						fullWidth
 						variant={userType === 'CONTRACTOR' ? 'contained' : 'outlined'}
 						sx={{
@@ -119,7 +125,13 @@ export const Home = () => {
 						<Typography variant='caption'>Job post karen </Typography>
 					</Button>
 					<Button
-						onClick={() => setUserType('WORKER')}
+						onClick={() => {
+							sendAnalytics({
+								action: 'ButtonClick',
+								name: 'workerTab',
+							})
+							setUserType('WORKER')
+						}}
 						variant={userType === 'WORKER' ? 'contained' : 'outlined'}
 						fullWidth
 						sx={{
