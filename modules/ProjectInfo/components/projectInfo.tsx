@@ -20,6 +20,7 @@ import {
 	InputWrapper,
 	PinCodeField,
 	primary,
+	sendAnalytics,
 	StatesOptions,
 	theme,
 } from '../../../sdk'
@@ -509,6 +510,13 @@ const ProjectInfo = ({ setProjectName }: any) => {
 						<Button
 							variant='outlined'
 							onClick={() => {
+								sendAnalytics({
+									action: 'ButtonClick',
+									name: 'updateProject',
+									metaData: {
+										type: 'Cancel',
+									},
+								})
 								setIsEditable(!isEditable)
 							}}
 							sx={{ minWidth: '10em', float: 'right', display: 'flex' }}>

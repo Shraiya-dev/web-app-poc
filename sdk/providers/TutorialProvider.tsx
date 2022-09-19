@@ -2,6 +2,7 @@ import { FlashOffOutlined } from '@mui/icons-material'
 import { AlertColor, alpha, Backdrop, Box } from '@mui/material'
 import { useRouter } from 'next/router'
 import { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react'
+import { sendAnalytics } from 'sdk/analytics'
 import { TutorialCard } from 'sdk/components'
 import { TutorialSteps } from 'sdk/types'
 
@@ -14,6 +15,9 @@ const TutorialContext = createContext<TutorialProviderValue>({
 })
 const { Provider, Consumer } = TutorialContext
 
+const TutorialEventName: { [key in TutorialSteps]?: string } = {
+	PROJECT_DETAILS: 'Add Project Details',
+}
 const TutorialProvider = ({ children, pageStaticData }: any) => {
 	const router = useRouter()
 	const [tutorialState, setTutorialState] = useState<{
@@ -27,22 +31,52 @@ const TutorialProvider = ({ children, pageStaticData }: any) => {
 		if (!step) {
 			localStorage.setItem('tutorialStep', TutorialSteps.PROJECT_DETAILS)
 		}
-		setTutorialState({
-			open: step !== TutorialSteps.COMPLETED,
-			currentStep: (step ?? TutorialSteps.PROJECT_DETAILS) as TutorialSteps,
+		setTutorialState(() => {
+			return {
+				open: step !== TutorialSteps.COMPLETED,
+				currentStep: (step ?? TutorialSteps.PROJECT_DETAILS) as TutorialSteps,
+			}
 		})
 	}, [])
+	useEffect(() => {
+		if (tutorialState.currentStep && tutorialState.currentStep !== TutorialSteps.COMPLETED) {
+			sendAnalytics({
+				name: 'tutorialImpression',
+				action: 'View',
+				metaData: {
+					tutorialName: TutorialEventName[tutorialState.currentStep as TutorialSteps],
+				},
+			})
+		}
+	}, [tutorialState.currentStep])
+
 	const skip = useCallback(() => {
 		sessionStorage.setItem('skippedForSessions', 'true')
+		sendAnalytics({
+			name: 'tutorialInteraction',
+			action: 'ButtonClick',
+			metaData: {
+				tutorialName: TutorialEventName[tutorialState.currentStep as TutorialSteps],
+				type: 'Skip',
+			},
+		})
 		setTutorialState({
 			open: false,
 		})
-	}, [])
+	}, [tutorialState.currentStep])
 	const next = useCallback(() => {
 		setTutorialState((p) => {
 			let open = p.open
 			let nextStep = p.currentStep
 			let redirectUrl: string | undefined
+			sendAnalytics({
+				name: 'tutorialInteraction',
+				action: 'ButtonClick',
+				metaData: {
+					tutorialName: TutorialEventName[tutorialState.currentStep as TutorialSteps],
+					type: 'Main CTA',
+				},
+			})
 			switch (p.currentStep) {
 				case TutorialSteps.DASHBOARD:
 					nextStep = TutorialSteps.PROJECT_DETAILS

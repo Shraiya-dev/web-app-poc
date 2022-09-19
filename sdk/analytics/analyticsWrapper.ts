@@ -162,11 +162,15 @@ const EventTypes = {
 	otpVerification: 'OTP Verification',
 	videoPlay: 'Video Play',
 	shareBlog: 'Share Blog',
+	tutorialInteraction: 'Tutorial Interaction',
+	tutorialImpression: 'Tutorial Impression',
+	updateProject: 'Update Project',
 }
 
 //Define a new action type here if needed
 const ActionTypes = {
 	ButtonClick: 'Button Click',
+	View: 'View',
 	CardClick: 'Card Click',
 	DropDownClick: 'Drop Down Click',
 	HorizontalTabClick: 'Horizontal Tab Click',

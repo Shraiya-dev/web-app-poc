@@ -14,7 +14,6 @@ const PersonalAccountStyle = styled(Box)(({ theme }) => ({
 }))
 
 const PersonalAccount = () => {
-	const isMobile = useMobile()
 	const { logOut } = useContractorAuth()
 
 	const { handleEdit, isAccountEditable, setIsAccountEditable } = usePersonalAccount()
