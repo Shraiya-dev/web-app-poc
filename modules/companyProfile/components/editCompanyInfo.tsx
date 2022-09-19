@@ -10,12 +10,12 @@ import {
 	useSnackbar,
 } from '../../../sdk'
 
-import { ButtonClicked } from '../../../sdk/analytics/analyticsWrapper'
-import { useRouter } from 'next/router'
 import { LoadingButton } from '@mui/lab'
-import useCompanyDetails from '../hooks/useCompanyDetails'
+import { useRouter } from 'next/router'
 import { useCallback, useEffect } from 'react'
+import { ButtonClicked } from '../../../sdk/analytics/analyticsWrapper'
 import { updateOrganisation } from '../apis/apis'
+import useCompanyDetails from '../hooks/useCompanyDetails'
 
 const EditCompanyInfoStyle = styled(Box)(({ theme }) => ({}))
 
@@ -72,7 +72,15 @@ const EditCompanyInfo = ({ ...props }) => {
 		}
 
 		//	getOrgDetails()
-	}, [form, loading])
+	}, [
+		form.values.GSTIN,
+		form.values.companyName,
+		router,
+		setIsCmpDetailsEditable,
+		setLoading,
+		showSnackbar,
+		user?.organisationId,
+	])
 
 	// useEffect(() => {
 	// 	if (user?.organisationId) {
