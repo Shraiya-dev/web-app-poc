@@ -115,10 +115,12 @@ export const Home = () => {
 							':hover': {
 								backgroundColor: userType === 'CONTRACTOR' ? 'primary.light' : undefined,
 							},
-							backgroundColor: userType === 'CONTRACTOR' ? undefined : primary.darkGrey,
+							border: '2px solid #000000',
+							borderRightWidth: '1px',
+							// backgroundColor: userType === 'CONTRACTOR' ? undefined : primary.darkGrey,
 
 							flexDirection: 'column',
-							// color: userType === 'CONTRACTOR' ? '#000000' : '#000000',
+							color: userType === 'CONTRACTOR' ? '#000000' : '#000000',
 						}}>
 						<Typography variant='h4' fontWeight='bold'>
 							Worker chahiye?
@@ -139,10 +141,12 @@ export const Home = () => {
 							':hover': {
 								backgroundColor: userType === 'WORKER' ? 'primary.light' : undefined,
 							},
-							backgroundColor: userType === 'WORKER' ? undefined : primary.darkGrey,
+							border: '2px solid #000000',
+							borderLeftWidth: '1px',
+							// backgroundColor: userType === 'WORKER' ? undefined : primary.darkGrey,
 
 							flexDirection: 'column',
-							// color: userType === 'WORKER' ? '#000000' : '#000000',
+							color: userType === 'WORKER' ? '#000000' : '#000000',
 						}}>
 						<Typography variant='h4' fontWeight='bold'>
 							Naukri chahiye?
