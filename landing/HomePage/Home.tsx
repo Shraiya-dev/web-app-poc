@@ -108,14 +108,15 @@ export const Home = () => {
 							':hover': {
 								backgroundColor: userType === 'CONTRACTOR' ? 'primary.light' : undefined,
 							},
+							backgroundColor: userType === 'CONTRACTOR' ? undefined : primary.darkGrey,
 
 							flexDirection: 'column',
-							color: userType === 'CONTRACTOR' ? '#000000' : '#000000',
+							// color: userType === 'CONTRACTOR' ? '#000000' : '#000000',
 						}}>
-						<Typography variant='caption'>worker chahiye?</Typography>
-						<Typography variant='body2' fontWeight='bold'>
-							Job post karein
+						<Typography variant='h4' fontWeight='bold'>
+							Worker chahiye?
 						</Typography>
+						<Typography variant='caption'>Job post karen </Typography>
 					</Button>
 					<Button
 						onClick={() => setUserType('WORKER')}
@@ -125,14 +126,15 @@ export const Home = () => {
 							':hover': {
 								backgroundColor: userType === 'WORKER' ? 'primary.light' : undefined,
 							},
+							backgroundColor: userType === 'WORKER' ? undefined : primary.darkGrey,
 
 							flexDirection: 'column',
-							color: userType === 'WORKER' ? '#000000' : '#000000',
+							// color: userType === 'WORKER' ? '#000000' : '#000000',
 						}}>
-						<Typography variant='caption'>Naukari chahiye?</Typography>
-						<Typography variant='body2' fontWeight='bold'>
-							App download karein
+						<Typography variant='h4' fontWeight='bold'>
+							Naukri chahiye?
 						</Typography>
+						<Typography variant='caption'>App download karen</Typography>
 					</Button>
 				</ButtonGroup>
 			</Stack>
@@ -198,13 +200,37 @@ export const Home = () => {
 				</Stack>
 			</Dialog>
 			<Section
-				boxSx={{
-					background: isMobile
-						? 'linear-gradient(180deg, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0.05) 100px, rgba(255,255,255,1) 100px, rgba(255,255,255,1) 100%)'
-						: undefined,
-				}}
+				boxSx={
+					{
+						// background: isMobile
+						// 	? 'linear-gradient(180deg, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0.05) 100px, rgba(255,255,255,1) 100px, rgba(255,255,255,1) 100%)'
+						// 	: undefined,
+					}
+				}
 				sx={{ p: 2, pb: 3 }}>
 				<Grid container spacing={2}>
+					{userType === 'CONTRACTOR' && (
+						<Grid item xs={12} md={9} display={{ xs: 'flex', md: 'none' }}>
+							<Stack justifyContent='space-between' spacing={2} direction={{ xs: 'row', md: 'column' }}>
+								<Typography variant={'h6'}>
+									India&apos;s Largest Platform <br />
+									to{' '}
+									<Typography display='inline' color='success.dark' variant='inherit'>
+										Hire Construction Workers{' '}
+									</Typography>
+								</Typography>
+								<Box
+									component='img'
+									onClick={() => setVideoPlayerPopper(true)}
+									sx={{
+										cursor: 'pointer',
+										width: 100,
+									}}
+									src={'/assets/landingv2/how-it-works.png'}
+								/>
+							</Stack>
+						</Grid>
+					)}
 					<Grid item xs={12} md={8.5} display={{ xs: 'none', md: 'flex' }}>
 						<Stack flex={1} spacing={3}>
 							<Paper
@@ -506,29 +532,6 @@ export const Home = () => {
 					)}
 					{userType === 'CONTRACTOR' && (
 						<>
-							<Grid item xs={12} md={9} display={{ xs: 'flex', md: 'none' }}>
-								<Stack
-									justifyContent='space-between'
-									spacing={2}
-									direction={{ xs: 'row', md: 'column' }}>
-									<Typography variant={'h6'}>
-										India&apos;s Largest & Most Trusted Platform <br />
-										to{' '}
-										<Typography display='inline' color='success.dark' variant='inherit'>
-											Hire Construction Workers
-										</Typography>
-									</Typography>
-									<Box
-										component='img'
-										onClick={() => setVideoPlayerPopper(true)}
-										sx={{
-											cursor: 'pointer',
-											width: 100,
-										}}
-										src={'/assets/landingv2/how-it-works.png'}
-									/>
-								</Stack>
-							</Grid>
 							{isMobile && (
 								<Grid item xs={12} display={{ xs: 'flex', md: 'none' }} alignItems='center' gap={1}>
 									<Stack
