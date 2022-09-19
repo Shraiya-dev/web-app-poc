@@ -103,7 +103,7 @@ export const Home = () => {
 					<Button
 						onClick={() => {
 							sendAnalytics({
-								action: 'ButtonClick',
+								action: 'HorizontalTabClick',
 								name: 'contractorTab',
 							})
 							setUserType('CONTRACTOR')
@@ -127,7 +127,7 @@ export const Home = () => {
 					<Button
 						onClick={() => {
 							sendAnalytics({
-								action: 'ButtonClick',
+								action: 'HorizontalTabClick',
 								name: 'workerTab',
 							})
 							setUserType('WORKER')
