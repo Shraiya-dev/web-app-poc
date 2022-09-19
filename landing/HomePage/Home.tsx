@@ -211,12 +211,18 @@ export const Home = () => {
 				<Grid container spacing={2}>
 					{userType === 'CONTRACTOR' && (
 						<Grid item xs={12} md={9} display={{ xs: 'flex', md: 'none' }}>
-							<Stack justifyContent='space-between' spacing={2} direction={{ xs: 'row', md: 'column' }}>
+							<Stack
+								justifyContent='space-between'
+								spacing={1}
+								flex={1}
+								direction={{ xs: 'row', md: 'column' }}>
 								<Typography variant={'h6'}>
-									India&apos;s Largest Platform <br />
-									to{' '}
-									<Typography display='inline' color='success.dark' variant='inherit'>
-										Hire Construction Workers{' '}
+									India ka sabse bada
+									<Typography color='success.dark' variant='inherit'>
+										Construction worker platform{' '}
+									</Typography>
+									<Typography variant={'h6'} fontSize={14}>
+										Adhik Jankari ke liye Video dekhen
 									</Typography>
 								</Typography>
 								<Box
@@ -228,6 +234,22 @@ export const Home = () => {
 									}}
 									src={'/assets/landingv2/how-it-works.png'}
 								/>
+							</Stack>
+						</Grid>
+					)}
+					{userType === 'WORKER' && (
+						<Grid item xs={12} md={9} display={{ xs: 'flex', md: 'none' }}>
+							<Stack justifyContent='space-between' spacing={2} direction={{ xs: 'row', md: 'column' }}>
+								<Typography variant={'h6'}>
+									Construction line ki{' '}
+									<Typography display='inline' color='success.dark' variant='inherit'>
+										hajaro naukriyo
+									</Typography>{' '}
+									me apply karen and{' '}
+									<Typography display='inline' color='success.dark' variant='inherit'>
+										seedhe contractor se baat karen!
+									</Typography>{' '}
+								</Typography>
 							</Stack>
 						</Grid>
 					)}
@@ -286,17 +308,29 @@ export const Home = () => {
 									<BigPlayButton position={'center'} />
 								</Player>
 							</Paper>
-							<Typography maxWidth={'90%'} fontSize={28} variant='h2' fontWeight={700}>
-								India’s Largest & Most Trusted Platform to{' '}
-								<Typography
-									fontSize={'inherit'}
-									display='inline'
-									color='success.dark'
-									variant='subtitle1'>
-									Hire Construction Workers
+							{userType === 'CONTRACTOR' && (
+								<Typography maxWidth={'90%'} fontSize={28} variant='h2' fontWeight={700}>
+									India ka sabse bada
+									<Typography fontSize={28} variant='h2' color='success.dark'>
+										Construction worker platform
+									</Typography>
+									Adhik Jankari ke liye Video dekhen
 								</Typography>
-							</Typography>
-							{!isMobile && (
+							)}
+							{userType === 'WORKER' && (
+								<Typography maxWidth={'90%'} fontSize={28} variant='h2' fontWeight={700}>
+									Construction line ki{' '}
+									<Typography display='inline' fontSize={28} variant='h2' color='success.dark'>
+										hajaro naukriyo <br />
+									</Typography>
+									me apply karen and{' '}
+									<Typography display='inline' fontSize={28} variant='h2' color='success.dark'>
+										seedhe contractor
+									</Typography>{' '}
+									se baat karen!
+								</Typography>
+							)}
+							{!isMobile && userType === 'CONTRACTOR' && (
 								<Stack direction={'row'} spacing={2}>
 									<Stack
 										spacing={1}
