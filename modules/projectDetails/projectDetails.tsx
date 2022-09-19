@@ -56,8 +56,8 @@ export const ProjectDetails: FC<Props> = () => {
 	return (
 		<>
 			<CustomTopBar>
-				<Stack flex={1} direction='row' alignItems='flex-start'>
-					<Stack direction='row' justifyContent={'flex-start'} flex={1} spacing={2} alignItems='center'>
+				<Stack flex={1} direction='row' justifyContent='space-between' alignItems='center'>
+					<Stack direction='row' justifyContent={'flex-start'} flex={1} spacing={1} alignItems='center'>
 						<Box
 							sx={{
 								position: 'relative',
@@ -66,7 +66,7 @@ export const ProjectDetails: FC<Props> = () => {
 							<Typography
 								component='div'
 								sx={{
-									fontSize: isMobile ? 14 : 18,
+									fontSize: 16,
 									fontWeight: 700,
 									color: theme.palette.secondary.main,
 								}}>
@@ -87,7 +87,7 @@ export const ProjectDetails: FC<Props> = () => {
 						<Stack>
 							<Typography
 								sx={{
-									fontSize: { xs: 18, md: 26 },
+									fontSize: 16,
 									fontWeight: 700,
 									color: theme.palette.secondary.main,
 									fontFamily: 'Saira,sans-serif',
@@ -98,7 +98,7 @@ export const ProjectDetails: FC<Props> = () => {
 							<Typography
 								component='div'
 								sx={{
-									fontSize: 14,
+									fontSize: 12,
 									color: theme.palette.secondary.main,
 									fontFamily: 'Saira,sans-serif',
 								}}
@@ -107,24 +107,24 @@ export const ProjectDetails: FC<Props> = () => {
 								&nbsp;{projectName?.city} , {projectName?.state}
 							</Typography>
 						</Stack>
-						{isMobile && (
-							<LinkButton
-								href={`/projects/${router?.query?.projectId}/bookings/create`}
-								size='small'
-								variant='contained'
-								sx={{ fontSize: 9 }}
-								onClick={() => {
-									ButtonClicked({
-										action: 'Book Workers',
-										page: 'Project',
-										projectId: router?.query?.projectId,
-										url: router.asPath,
-									})
-								}}>
-								Post Job Now
-							</LinkButton>
-						)}
 					</Stack>
+					{isMobile && (
+						<LinkButton
+							href={`/projects/${router?.query?.projectId}/bookings/create`}
+							size='small'
+							variant='contained'
+							sx={{ fontSize: 10 }}
+							onClick={() => {
+								ButtonClicked({
+									action: 'Book Workers',
+									page: 'Project',
+									projectId: router?.query?.projectId,
+									url: router.asPath,
+								})
+							}}>
+							Post Job Now
+						</LinkButton>
+					)}
 				</Stack>
 			</CustomTopBar>
 			<TabContext value={router.query.tab as string}>

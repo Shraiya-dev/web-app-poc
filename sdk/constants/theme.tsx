@@ -197,12 +197,14 @@ let themeDef = createTheme({
 			A400: alpha('#061F48', 0.4),
 			A700: '#383838',
 		},
+
 		base: colorPalette.base,
 		green: colorPalette.green,
 		button: colorPalette.button,
 		textCTA: colorPalette.textCTA,
 		tonalOffset: 0.3,
 	},
+
 	breakpoints: {
 		values: {
 			xl: 5000,

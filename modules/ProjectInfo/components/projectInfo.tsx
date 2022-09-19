@@ -1,3 +1,6 @@
+import { Add } from '@mui/icons-material'
+import CancelRoundedIcon from '@mui/icons-material/CancelRounded'
+import { LoadingButton } from '@mui/lab'
 import {
 	Box,
 	Button,
@@ -10,6 +13,8 @@ import {
 	TextField,
 	Typography,
 } from '@mui/material'
+import { CustomToggle } from 'modules/createProject/components'
+import useCreateProject from 'modules/createProject/hooks/useProjects'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import {
@@ -27,13 +32,7 @@ import {
 import { TextWrapper } from '../../../sdk/components/Input/TextWrapper'
 import ViewImage from '../../../sdk/components/viewImage/viewImage'
 import { JobBenefits } from '../../../sdk/types/jobBenefits'
-import { overTimefactor, overTimeLabel } from '../../createBooking/utils'
 import { useProjectInfo } from '../hooks/useProjectInfo'
-import { Add } from '@mui/icons-material'
-import CancelRoundedIcon from '@mui/icons-material/CancelRounded'
-import { CustomToggle } from 'modules/createProject/components'
-import useCreateProject from 'modules/createProject/hooks/useProjects'
-import { LoadingButton } from '@mui/lab'
 
 const ProjectInfo = ({ setProjectName }: any) => {
 	const router = useRouter()
@@ -91,6 +90,7 @@ const ProjectInfo = ({ setProjectName }: any) => {
 							Site
 						</Typography>
 						<Button
+							sx={{ fontSize: 10 }}
 							size='small'
 							variant='contained'
 							onClick={() => {

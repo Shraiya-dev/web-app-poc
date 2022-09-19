@@ -22,7 +22,7 @@ const PersonalAccount = () => {
 		<Stack height={'80vh'}>
 			<PersonalAccountStyle>
 				<CustomTopBar>
-					<Stack m={2}>
+					<Stack flex={1} m={2} direction='row' justifyContent={'space-between'} alignItems='center'>
 						<Typography
 							sx={{
 								fontSize: 26,
@@ -32,6 +32,11 @@ const PersonalAccount = () => {
 							}}>
 							Profile
 						</Typography>
+						{!isAccountEditable && (
+							<Button size='small' variant='contained' sx={{ fontSize: 10 }} onClick={handleEdit}>
+								Edit Profile
+							</Button>
+						)}
 					</Stack>
 				</CustomTopBar>
 
@@ -39,23 +44,7 @@ const PersonalAccount = () => {
 					<TutorialBanner sx={{ mx: -3, mb: 2 }}>
 						Add your e-mail now and never lose access to your job postings & applications from Heroes.
 					</TutorialBanner>
-					<Box justifyContent={'flex-end'} display='flex' mb={-3} mt={2}>
-						{!isAccountEditable && (
-							<Button
-								size='small'
-								variant='contained'
-								sx={{
-									fontSize: 9,
-									'&:hover': {
-										background: theme.palette.primary.light,
-										color: primary.properDark,
-									},
-								}}
-								onClick={handleEdit}>
-								Edit Profile
-							</Button>
-						)}
-					</Box>
+					<Box justifyContent={'flex-end'} display='flex' mb={-3} mt={2}></Box>
 
 					<Stack flex={1}>
 						{isAccountEditable ? (

@@ -17,18 +17,8 @@ const CompanyInfo = () => {
 		<CompanyInfoStyle>
 			<Box justifyContent={'flex-end'} display='flex' mb={isCmpDetailsEditable ? 0 : -3} mt={3}>
 				{!isCmpDetailsEditable && (
-					<Button
-						size='small'
-						variant='contained'
-						sx={{
-							fontSize: 9,
-							'&:hover': {
-								background: theme.palette.primary.light,
-								color: primary.properDark,
-							},
-						}}
-						onClick={handleEdit}>
-						Edit Company
+					<Button size='small' variant='contained' sx={{ fontSize: 10 }} onClick={handleEdit}>
+						Edit Details
 					</Button>
 				)}
 			</Box>

@@ -33,9 +33,9 @@ export const CustomTopBar = ({ children }: any) => {
 				right: { xs: 0, md: undefined },
 				mt: { xs: -3, md: 0 },
 			}}>
-			<Box style={{ marginLeft: 0, padding: 0 }}>
-				<Toolbar className='toolbar'>
-					<Stack width={1} direction={'row'}>
+			<Box style={{ marginLeft: 0, padding: 0, flex: 1 }}>
+				<Toolbar className='toolbar' sx={{ flex: 1 }}>
+					<Stack width={1} flex={1} direction={'row'}>
 						{/* {isMobile && (
 							<IconButton onClick={toggleDrawer}>
 								<Image src={MenuIcon} alt='menu' color='black' />
