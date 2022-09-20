@@ -1,8 +1,7 @@
-import { Logout } from '@mui/icons-material'
 import { Box, Button, Stack, styled, Typography } from '@mui/material'
 import { TutorialBanner } from 'sdk/components/banner/TutorialBanner'
 import { BottomLayout } from 'sdk/layouts/BottomLayout'
-import { primary, theme, useContractorAuth, useMobile } from '../../../sdk'
+import { theme, useContractorAuth } from '../../../sdk'
 import { CustomTopBar } from '../../../sdk/components/topBar/customTopBar'
 import usePersonalAccount from '../hooks/usePersonalAccount'
 import DisplayInfo from './displayInfo'
@@ -21,7 +20,7 @@ const PersonalAccount = () => {
 	return (
 		<Stack height={'80vh'}>
 			<PersonalAccountStyle>
-				<CustomTopBar>
+				<CustomTopBar sideMenu>
 					<Stack flex={1} m={2} direction='row' justifyContent={'space-between'} alignItems='center'>
 						<Typography
 							sx={{
@@ -71,7 +70,7 @@ const PersonalAccount = () => {
 				</Stack>
 			</PersonalAccountStyle>
 
-			<Button
+			{/* <Button
 				sx={{
 					position: 'fixed',
 					bottom: 60,
@@ -85,7 +84,7 @@ const PersonalAccount = () => {
 				color='inherit'
 				startIcon={<Logout />}>
 				Logout
-			</Button>
+			</Button> */}
 			<BottomLayout />
 		</Stack>
 	)

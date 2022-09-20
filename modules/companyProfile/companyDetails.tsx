@@ -1,5 +1,5 @@
 import { TabContext, TabPanel } from '@mui/lab'
-import { Box, Stack, styled, Tab, Tabs, Typography } from '@mui/material'
+import { Box, IconButton, Stack, styled, Tab, Tabs, Typography } from '@mui/material'
 import { useRouter } from 'next/router'
 import { theme, useContractorAuth, useMobile } from '../../sdk'
 import { HorizontalTabClicked } from '../../sdk/analytics/analyticsWrapper'
@@ -9,6 +9,7 @@ import useCompanyDetails from './hooks/useCompanyDetails'
 import { useEffect } from 'react'
 import { BottomLayout } from 'sdk/layouts/BottomLayout'
 import { TutorialBanner } from 'sdk/components/banner/TutorialBanner'
+import Image from 'next/image'
 
 const CompanyDetailsStyle = styled(Box)(({ theme }) => ({
 	backgroundColor: theme.palette.background.default,
@@ -17,7 +18,6 @@ const CompanyDetailsStyle = styled(Box)(({ theme }) => ({
 }))
 const CompanyDetails = () => {
 	const { user, getContactorUserInfo } = useContractorAuth()
-	const isMobile = useMobile()
 
 	const { selectedTab, handleTabSelection } = useCompanyDetails()
 	const router = useRouter()
@@ -29,7 +29,7 @@ const CompanyDetails = () => {
 	return (
 		<>
 			<CompanyDetailsStyle>
-				<CustomTopBar>
+				<CustomTopBar sideMenu>
 					<Stack m={2}>
 						<Typography
 							sx={{

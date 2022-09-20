@@ -152,6 +152,11 @@ const EditCompanyInfo = ({ ...props }) => {
 										endAdornment: (
 											<InputAdornment position='end'>
 												<LoadingButton
+													sx={{
+														'&.Mui-disabled': {
+															backgroundColor: 'rgba(0,0,0,0.3)',
+														},
+													}}
 													loading={isGSTLoaded}
 													fullWidth
 													variant='contained'

@@ -1,8 +1,11 @@
-import { Box, Stack, styled, Toolbar, Typography } from '@mui/material'
+import { Box, IconButton, Stack, styled, Toolbar, Typography } from '@mui/material'
+import Image from 'next/image'
+import { FC, useCallback } from 'react'
 import { primary } from '../../constants'
 import { useContractorAuth } from '../../providers'
 
 const APP_BAR_BG_COLOR = primary.darkGrey
+import MenuIcon from 'public/assets/icons/MenuIcon.svg'
 
 const CustomAppBar = styled(Box)(() => ({
 	minHeight: 84,
@@ -18,13 +21,15 @@ const CustomAppBar = styled(Box)(() => ({
 		border: 'none',
 	},
 }))
-
-export const CustomTopBar = ({ children }: any) => {
+interface Props {
+	sideMenu?: boolean
+}
+export const CustomTopBar: FC<Props> = ({ children, sideMenu = false }) => {
 	const { isSideBarToggle, updateIsSideBarToggle } = useContractorAuth()
-
-	const toggleDrawer = () => {
+	const toggleDrawer = useCallback(() => {
 		updateIsSideBarToggle(!isSideBarToggle)
-	}
+	}, [isSideBarToggle, updateIsSideBarToggle])
+
 	return (
 		<CustomAppBar
 			sx={{
@@ -36,11 +41,11 @@ export const CustomTopBar = ({ children }: any) => {
 			<Box style={{ marginLeft: 0, padding: 0, flex: 1 }}>
 				<Toolbar className='toolbar' sx={{ flex: 1 }}>
 					<Stack width={1} flex={1} direction={'row'}>
-						{/* {isMobile && (
+						{sideMenu && (
 							<IconButton onClick={toggleDrawer}>
 								<Image src={MenuIcon} alt='menu' color='black' />
 							</IconButton>
-						)} */}
+						)}
 
 						{children}
 					</Stack>

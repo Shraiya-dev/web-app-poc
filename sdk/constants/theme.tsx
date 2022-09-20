@@ -197,6 +197,10 @@ let themeDef = createTheme({
 			A400: alpha('#061F48', 0.4),
 			A700: '#383838',
 		},
+		action: {
+			disabled: '#ffffff',
+			disabledBackground: 'rgba(255,255,255,0.6)',
+		},
 
 		base: colorPalette.base,
 		green: colorPalette.green,
