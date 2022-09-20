@@ -63,7 +63,6 @@ export const Home = () => {
 			s.moveToIdx(s.track.details.abs + 5, true, animation)
 		},
 	})
-	console.log(externalLinks.heroApp + (getCookie('utmParams') || externalLinks.fixUtmForApp))
 
 	const verticalCarousel = useKeenSlider<HTMLDivElement>(
 		{
