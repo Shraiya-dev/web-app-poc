@@ -1,5 +1,7 @@
 export const externalLinks = {
-	heroApp: 'https://play.google.com/store/apps/details?id=com.projecthero.android',
+	fixUtmForApp:
+		'utm_source=website&utm_medium=website&utm_campaign=website_app_install&utm_content=app_install&utm_term=app_install',
+	heroApp: 'https://play.google.com/store/apps/details?id=com.projecthero.android&',
 	instaGram: 'https://www.instagram.com/projectheroworkers/?hl=en',
 	youtube: 'https://www.youtube.com/channel/UCHlSIBRIUwMken0qGPtVE-g/videos',
 	facebook: 'https://business.facebook.com/ondemandlabour/?business_id=183447649994401',

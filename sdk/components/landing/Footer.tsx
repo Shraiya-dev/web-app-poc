@@ -1,7 +1,7 @@
 import { Stack, Box, Typography, Button, Divider, Grid, IconButton } from '@mui/material'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
-import { DataLayerPush } from 'sdk/analytics'
+import { DataLayerPush, getCookie } from 'sdk/analytics'
 import { ButtonClicked, sendAnalytics } from 'sdk/analytics/analyticsWrapper'
 import { AppStoreImage } from 'sdk/constants'
 import { externalLinks, footer } from 'sdk/data'
@@ -82,7 +82,10 @@ export const Footer = () => {
 								</Typography>
 								<Box mt={'20px'} sx={{ cursor: 'pointer' }}>
 									<a
-										href={externalLinks.heroApp}
+										href={
+											externalLinks.heroApp +
+											(getCookie('utmParams') || externalLinks.fixUtmForApp)
+										}
 										onClick={() => {
 											sendAnalytics({
 												name: 'heroAppPlayStore',
@@ -347,7 +350,7 @@ export const Footer = () => {
 						</Typography>
 						<Box mt={'20px'} sx={{ cursor: 'pointer', width: '45%' }}>
 							<a
-								href={externalLinks.heroApp}
+								href={externalLinks.heroApp + (getCookie('utmParams') || externalLinks.fixUtmForApp)}
 								onClick={() => {
 									ButtonClicked({
 										page: document.title,

@@ -22,7 +22,17 @@ import { useKeenSlider } from 'keen-slider/react'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
 
-import { CarouselV2, DataLayerPush, externalLinks, LinkButton, primary, Section, sendAnalytics, useMobile } from 'sdk'
+import {
+	CarouselV2,
+	DataLayerPush,
+	externalLinks,
+	getCookie,
+	LinkButton,
+	primary,
+	Section,
+	sendAnalytics,
+	useMobile,
+} from 'sdk'
 import { HeroDiscoveryMetaData } from 'sdk/data/discoverHero'
 import { homePage } from 'sdk/data/home'
 import { sliceIntoChunks } from 'sdk/utils/arrayHelpers'
@@ -53,6 +63,8 @@ export const Home = () => {
 			s.moveToIdx(s.track.details.abs + 5, true, animation)
 		},
 	})
+	console.log(externalLinks.heroApp + (getCookie('utmParams') || externalLinks.fixUtmForApp))
+
 	const verticalCarousel = useKeenSlider<HTMLDivElement>(
 		{
 			loop: true,
@@ -505,7 +517,10 @@ export const Home = () => {
 										<LinkButton
 											variant='contained'
 											sx={{ px: 4 }}
-											href={externalLinks.heroApp}
+											href={
+												externalLinks.heroApp +
+												(getCookie('utmParams') || externalLinks.fixUtmForApp)
+											}
 											onClick={() => {
 												DataLayerPush({ event: 'book_workers_now_top' })
 												sendAnalytics({
@@ -522,7 +537,10 @@ export const Home = () => {
 
 									<Box mt={'20px'} sx={{ cursor: 'pointer' }}>
 										<a
-											href={externalLinks.heroApp}
+											href={
+												externalLinks.heroApp +
+												(getCookie('utmParams') || externalLinks.fixUtmForApp)
+											}
 											onClick={() => {
 												sendAnalytics({
 													name: 'heroAppPlayStore',
@@ -1035,7 +1053,10 @@ export const Home = () => {
 										</Typography>
 										<Box mt={'20px'} sx={{ cursor: 'pointer' }}>
 											<a
-												href={externalLinks.heroApp}
+												href={
+													externalLinks.heroApp +
+													(getCookie('utmParams') || externalLinks.fixUtmForApp)
+												}
 												onClick={() => {
 													sendAnalytics({
 														name: 'heroAppPlayStore',
