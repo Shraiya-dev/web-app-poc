@@ -236,7 +236,7 @@ export const Home = () => {
 								<Typography variant={'h6'}>
 									India ka sabse bada
 									<Typography color='success.dark' variant='inherit'>
-										Construction worker platform{' '}
+										Construction worker platform.{' '}
 									</Typography>
 									<Typography variant={'h6'} fontSize={14}>
 										Adhik Jankari ke liye Video dekhen
@@ -329,7 +329,7 @@ export const Home = () => {
 								<Typography maxWidth={'90%'} fontSize={28} variant='h2' fontWeight={700}>
 									India ka sabse bada
 									<Typography fontSize={28} variant='h2' color='success.dark'>
-										Construction worker platform
+										Construction worker platform.
 									</Typography>
 									Adhik Jankari ke liye Video dekhen
 								</Typography>
