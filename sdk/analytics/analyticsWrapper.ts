@@ -162,6 +162,8 @@ const EventTypes = {
 	otpVerification: 'OTP Verification',
 	videoPlay: 'Video Play',
 	shareBlog: 'Share Blog',
+	contractorTab: 'Contractor Tab',
+	workerTab: 'Worker Tab',
 	tutorialInteraction: 'Tutorial Interaction',
 	tutorialImpression: 'Tutorial Impression',
 	updateProject: 'Update Project',
