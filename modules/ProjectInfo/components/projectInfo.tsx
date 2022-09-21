@@ -86,7 +86,7 @@ const ProjectInfo = ({ setProjectName }: any) => {
 			) : !isEditable ? (
 				<Box mb={0}>
 					<Stack direction={'row'} justifyContent='space-between' alignItems='center'>
-						<Typography fontWeight={700} fontSize={24} pb={2}>
+						<Typography fontWeight={500} color='primary.main' fontSize={24} pb={2}>
 							Site
 						</Typography>
 						<Button
@@ -103,7 +103,7 @@ const ProjectInfo = ({ setProjectName }: any) => {
 							Edit Project
 						</Button>
 					</Stack>
-					<Stack spacing={5}>
+					<Stack spacing={1.3}>
 						<TextWrapper id={'siteAddress'} label='Site Address'>
 							<Typography fontFamily={'Saira,sans-serif'} fontWeight={400}>
 								{projectInfo?.siteAddress ||
@@ -115,36 +115,35 @@ const ProjectInfo = ({ setProjectName }: any) => {
 						</TextWrapper>
 
 						<TextWrapper id='sitePhotos' label='Site Photos'>
-							<Grid container onClick={() => handleSiteView()} sx={{ cursor: 'pointer' }}>
+							<Stack direction='row' overflow={'auto'}>
 								{projectInfo?.images?.site?.map((url: any, index: any) => {
 									return (
-										<Grid item key={index}>
-											<Box
-												sx={{
-													position: 'relative',
-													marginRight: 1,
-												}}>
-												<img
-													style={{
-														height: 84,
-														width: 84,
-														objectFit: 'contain',
-														borderRadius: 8,
-													}}
-													src={url}
-													alt={'image'}
-												/>
-											</Box>
-										</Grid>
+										<Box
+											key={url}
+											sx={{
+												position: 'relative',
+												marginRight: 1,
+											}}>
+											<img
+												style={{
+													height: 84,
+													width: 84,
+													objectFit: 'contain',
+													borderRadius: 8,
+												}}
+												src={url}
+												alt={'image'}
+											/>
+										</Box>
 									)
 								})}
-							</Grid>
+							</Stack>
 						</TextWrapper>
 					</Stack>
-					<Typography fontSize={24} fontWeight={700} pb={2} pt={8}>
+					<Typography variant='h3' color='primary.main' fontWeight={500} pb={2}>
 						Worker Benefits
 					</Typography>
-					<Stack spacing={5}>
+					<Stack spacing={1}>
 						{/* <TextWrapper id='overTimeFactor' label='Over Time Wage'>
 							{overTimeLabel[projectInfo?.overTime?.rate || 1]}
 						</TextWrapper> */}
@@ -160,30 +159,29 @@ const ProjectInfo = ({ setProjectName }: any) => {
 
 						{projectInfo?.benefits?.includes(JobBenefits?.ACCOMODATION) && (
 							<TextWrapper id='accomodationPhotos' label='Accommodation Photos'>
-								<Grid container onClick={() => handleAccomodationView()} sx={{ cursor: 'pointer' }}>
+								<Stack direction='row' overflow={'auto'}>
 									{projectInfo?.images?.accommodations?.map((url: any, index: any) => {
 										return (
-											<Grid item key={index}>
-												<Box
-													sx={{
-														position: 'relative',
-														marginRight: 1,
-													}}>
-													<img
-														style={{
-															height: 84,
-															width: 84,
-															objectFit: 'contain',
-															borderRadius: 8,
-														}}
-														src={url}
-														alt={'image'}
-													/>
-												</Box>
-											</Grid>
+											<Box
+												key={index}
+												sx={{
+													position: 'relative',
+													marginRight: 1,
+												}}>
+												<img
+													style={{
+														height: 84,
+														width: 84,
+														objectFit: 'contain',
+														borderRadius: 8,
+													}}
+													src={url}
+													alt={'image'}
+												/>
+											</Box>
 										)
 									})}
-								</Grid>
+								</Stack>
 							</TextWrapper>
 						)}
 						<TextWrapper id='foodAvailable' label='Food'>
@@ -288,7 +286,7 @@ const ProjectInfo = ({ setProjectName }: any) => {
 							</Grid>
 						</InputWrapper>
 						<InputWrapper id='sitePhotos' label='Add Site Photos'>
-							<Grid container item xs={12} sm={12} md={6} lg={6}>
+							<Stack direction='row' overflow={'auto'}>
 								<FileInput
 									sx={{
 										width: 150,
@@ -329,48 +327,46 @@ const ProjectInfo = ({ setProjectName }: any) => {
 								{form.values.sitePhotos?.map((url: any, index: any) => {
 									return (
 										<>
-											<Grid item xs={3} md={3} key={index}>
-												<Box
-													sx={{
-														position: 'relative',
-														marginLeft: 1,
-													}}>
-													<IconButton
-														// disabled={formDisabled}
-														size='small'
-														onClick={() => {
-															form.setFieldValue(
-																'sitePhotos',
-																form.values.sitePhotos.filter((img) => img !== url)
-															)
-														}}
-														sx={(theme) => ({
-															color: '#fff',
-															position: 'absolute',
-															// zIndex: 100,
-															top: -10,
-															right: -10,
-														})}>
-														<CancelRoundedIcon />
-													</IconButton>
+											<Box
+												sx={{
+													position: 'relative',
+													marginLeft: 1,
+												}}>
+												<IconButton
+													// disabled={formDisabled}
+													size='small'
+													onClick={() => {
+														form.setFieldValue(
+															'sitePhotos',
+															form.values.sitePhotos.filter((img) => img !== url)
+														)
+													}}
+													sx={(theme) => ({
+														color: '#fff',
+														position: 'absolute',
+														// zIndex: 100,
+														top: -10,
+														right: -10,
+													})}>
+													<CancelRoundedIcon />
+												</IconButton>
 
-													<img
-														style={{
-															height: 84,
-															width: 84,
-															objectFit: 'cover',
-															borderRadius: 8,
-															marginBottom: 0,
-														}}
-														src={url}
-														alt={'image'}
-													/>
-												</Box>
-											</Grid>
+												<img
+													style={{
+														height: 84,
+														width: 84,
+														objectFit: 'cover',
+														borderRadius: 8,
+														marginBottom: 0,
+													}}
+													src={url}
+													alt={'image'}
+												/>
+											</Box>
 										</>
 									)
 								})}
-							</Grid>
+							</Stack>
 						</InputWrapper>
 					</Stack>
 
@@ -407,7 +403,7 @@ const ProjectInfo = ({ setProjectName }: any) => {
 
 						{form.values.accomodationProvided && (
 							<InputWrapper id='accomodationPhotos' label='Add accommodation photos'>
-								<Grid container item xs={12} sm={12} md={6} lg={6}>
+								<Stack direction='row' overflow={'auto'}>
 									<FileInput
 										sx={{
 											width: 150,
@@ -448,50 +444,48 @@ const ProjectInfo = ({ setProjectName }: any) => {
 									{form.values.accomodationPhotos?.map((url: any, index: any) => {
 										return (
 											<>
-												<Grid item xs={3} md={3} key={index}>
-													<Box
-														sx={{
-															position: 'relative',
-															marginLeft: 1,
-														}}>
-														<IconButton
-															// disabled={formDisabled}
-															size='small'
-															onClick={() => {
-																form.setFieldValue(
-																	'accomodationPhotos',
-																	form.values.accomodationPhotos.filter(
-																		(img) => img !== url
-																	)
+												<Box
+													sx={{
+														position: 'relative',
+														marginLeft: 1,
+													}}>
+													<IconButton
+														// disabled={formDisabled}
+														size='small'
+														onClick={() => {
+															form.setFieldValue(
+																'accomodationPhotos',
+																form.values.accomodationPhotos.filter(
+																	(img) => img !== url
 																)
-															}}
-															sx={(theme) => ({
-																// backgroundColor: theme.palette.grey[100],
-																color: '#fff',
-																position: 'absolute',
-																//zIndex: 100,
-																top: -10,
-																right: -10,
-															})}>
-															<CancelRoundedIcon />
-														</IconButton>
+															)
+														}}
+														sx={(theme) => ({
+															// backgroundColor: theme.palette.grey[100],
+															color: '#fff',
+															position: 'absolute',
+															//zIndex: 100,
+															top: -10,
+															right: -10,
+														})}>
+														<CancelRoundedIcon />
+													</IconButton>
 
-														<img
-															style={{
-																height: 84,
-																width: 84,
-																objectFit: 'cover',
-																borderRadius: 8,
-															}}
-															src={url}
-															alt={'image'}
-														/>
-													</Box>
-												</Grid>
+													<img
+														style={{
+															height: 84,
+															width: 84,
+															objectFit: 'cover',
+															borderRadius: 8,
+														}}
+														src={url}
+														alt={'image'}
+													/>
+												</Box>
 											</>
 										)
 									})}
-								</Grid>
+								</Stack>
 							</InputWrapper>
 						)}
 

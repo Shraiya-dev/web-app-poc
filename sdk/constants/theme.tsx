@@ -97,33 +97,39 @@ const breakpoints = createBreakpoints({})
 
 let themeDef = createTheme({
 	typography: {
-		fontFamily: `'Mulish' , sans-serif`,
+		fontFamily: `'Karla', sans-serif`,
 		allVariants: {
 			color: '#fff',
 		},
 		h1: {
 			fontSize: '36px',
 			fontWeight: 700,
+			fontFamily: `'Saira', sans-serif`,
 		},
 		h2: {
 			fontSize: '30px',
 			fontWeight: 700,
+			fontFamily: `'Saira', sans-serif`,
 		},
 		h3: {
 			fontSize: '24px',
 			fontWeight: 700,
+			fontFamily: `'Saira', sans-serif`,
 		},
 		h4: {
 			fontSize: '20px',
 			fontWeight: 700,
+			fontFamily: `'Saira', sans-serif`,
 		},
 		h5: {
 			fontSize: '18px',
 			fontWeight: 700,
+			fontFamily: `'Saira', sans-serif`,
 		},
 		h6: {
 			fontSize: '16px',
 			fontWeight: 600,
+			fontFamily: `'Saira', sans-serif`,
 		},
 		body1: {
 			fontSize: '16px',
@@ -223,6 +229,8 @@ let themeDef = createTheme({
 			defaultProps: {
 				style: {
 					color: '#fff',
+					fontFamily: `'Saira', sans-serif`,
+					fontWeight: 400,
 				},
 			},
 		},
