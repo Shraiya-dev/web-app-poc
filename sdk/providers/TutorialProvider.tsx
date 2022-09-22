@@ -124,16 +124,14 @@ const TutorialProvider = ({ children, pageStaticData }: any) => {
 	return (
 		<Provider value={value}>
 			{children}
-			<Box sx={{ position: 'relative', width: '100%', maxWidth: 468, minHeight: '100vh' }}>
-				{/* <TutorialCard step={tutorialState?.currentStep} skip={skip} next={next} /> */}
-				<TutorialPopUp
-					open={tutorialState?.open}
-					anchor={anchor.current[tutorialState.currentStep as TutorialSteps]}
-					step={tutorialState.currentStep}
-					skip={skip}
-					next={next}
-				/>
-			</Box>
+			{/* <TutorialCard step={tutorialState?.currentStep} skip={skip} next={next} /> */}
+			<TutorialPopUp
+				open={tutorialState?.open}
+				anchor={anchor.current[tutorialState.currentStep as TutorialSteps]}
+				step={tutorialState.currentStep}
+				skip={skip}
+				next={next}
+			/>
 		</Provider>
 	)
 }

@@ -70,15 +70,15 @@ export const TutorialPopUp: FC<Props> = ({ open = false, step, skip, next, ancho
 
 	const cardRef = useRef<any>()
 
-	useEffect(() => {
-		if (anchor) {
-			setOldStyle(anchor.style)
-			anchor.style = 'background-color:#000000;color:#ffffff;z-index:9999999;position:relative;border-radius:2px;'
-		}
-		return () => {
-			if (anchor) anchor.style = oldStyle + ';color:#ffffff;'
-		}
-	}, [open, anchor, oldStyle])
+	// useEffect(() => {
+	// 	if (anchor) {
+	// 		setOldStyle(anchor.style)
+	// 		anchor.style = 'background-color:#000000;color:#ffffff;z-index:9999999;position:relative;border-radius:2px;'
+	// 	}
+	// 	return () => {
+	// 		if (anchor) anchor.style = oldStyle + ';color:#ffffff;'
+	// 	}
+	// }, [open, anchor, oldStyle])
 
 	return (
 		<>

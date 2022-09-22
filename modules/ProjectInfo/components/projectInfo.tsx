@@ -195,6 +195,7 @@ const ProjectInfo = ({ setProjectName }: any) => {
 						<InputWrapper id='projectName' label='Project Name'>
 							<Grid container item xs={12} sm={12} md={6}>
 								<TextField
+									autoFocus
 									name='projectName'
 									placeholder='Enter project name'
 									fullWidth
