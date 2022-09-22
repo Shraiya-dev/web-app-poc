@@ -95,7 +95,7 @@ export const TutorialPopUp: FC<Props> = ({ open = false, step, skip, next, ancho
 						p: 2,
 						mt: arrow !== 'top' ? undefined : '10px',
 						mb: arrow !== 'top' ? '10px' : undefined,
-
+						overflow: 'visible',
 						borderRadius: 4,
 
 						'&::before': {
@@ -105,7 +105,7 @@ export const TutorialPopUp: FC<Props> = ({ open = false, step, skip, next, ancho
 							position: 'absolute',
 							width: 15,
 							height: 12,
-							transform: `translate(-50%,0) ${arrow !== 'top' ? 'rotate(180deg)' : ''}`,
+							transform: `translate(-50%,0) ${(arrow ?? 'top') !== 'top' ? 'rotate(180deg)' : ''}`,
 
 							[arrow ?? 'top']: 0,
 							clipPath: 'polygon(50% 0%, 0% 100%, 100% 100%)',
