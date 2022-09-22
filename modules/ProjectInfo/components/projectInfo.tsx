@@ -106,11 +106,9 @@ const ProjectInfo = ({ setProjectName }: any) => {
 					<Stack spacing={1.3}>
 						<TextWrapper id={'siteAddress'} label='Site Address'>
 							<Typography fontFamily={'Saira,sans-serif'} fontWeight={400}>
-								{projectInfo?.siteAddress ||
-									'' + ',' + projectInfo?.city ||
-									'' + ',' + projectInfo?.state ||
-									'' + ',' + projectInfo?.pincode ||
-									''}
+								{projectInfo?.siteAddress}
+								<br />
+								{projectInfo?.city + ', ' + projectInfo?.state + ', ' + projectInfo?.pincode + ' '}
 							</Typography>
 						</TextWrapper>
 
