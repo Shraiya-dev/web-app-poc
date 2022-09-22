@@ -24,7 +24,7 @@ export const BottomLayout = ({ ...props }) => {
 		<Box
 			sx={{
 				background: '#000',
-				position: 'fixed',
+				position: 'absolute',
 				bottom: 0,
 				width: '100%',
 				maxWidth: 500,

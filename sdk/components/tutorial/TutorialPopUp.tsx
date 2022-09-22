@@ -1,7 +1,7 @@
 import { KeyboardArrowRight, DoNotDisturb, CenterFocusStrong } from '@mui/icons-material'
 import { Card, Stack, Typography, Button, Box, Popover, PopoverOrigin, alpha } from '@mui/material'
 import next from 'next'
-import { FC, useEffect, useMemo } from 'react'
+import { FC, useEffect, useMemo, useRef } from 'react'
 import { TutorialSteps } from 'sdk/types'
 interface Props {
 	open?: boolean
@@ -34,7 +34,7 @@ export const TutorialPopUp: FC<Props> = ({ open = false, step, skip, next, ancho
 			case TutorialSteps.DASHBOARD:
 				return {
 					anchorOrigin: {
-						horizontal: 'right',
+						horizontal: 'center',
 						vertical: 'top',
 					},
 					arrow: 'bottom',
@@ -66,6 +66,11 @@ export const TutorialPopUp: FC<Props> = ({ open = false, step, skip, next, ancho
 				return {}
 		}
 	}, [step])
+
+	if (anchor) anchor.style = 'background-color:#000000;color:#ffffff;z-index:9999999;position:relative;'
+	const cardRef = useRef<HTMLDivElement>()
+	console.log()
+
 	return (
 		<>
 			<Popover
@@ -81,16 +86,18 @@ export const TutorialPopUp: FC<Props> = ({ open = false, step, skip, next, ancho
 				anchorOrigin={anchorOrigin}
 				transformOrigin={{
 					horizontal: 'center',
-					vertical: arrow !== 'top' ? 'bottom' : 'top',
+					vertical: anchorOrigin?.vertical === 'top' ? 'bottom' : 'top',
 				}}
 				PaperProps={{
 					sx: {
 						boxShadow: 'none',
 						backgroundColor: 'transparent',
-						minWidth: 'calc(100% - 24px)',
+						// width: 'calc(100% - 24px)',
+						maxWidth: 500,
 					},
 				}}>
 				<Card
+					ref={cardRef}
 					sx={{
 						p: 2,
 						mt: arrow !== 'top' ? undefined : '10px',
@@ -109,7 +116,11 @@ export const TutorialPopUp: FC<Props> = ({ open = false, step, skip, next, ancho
 
 							[arrow ?? 'top']: 0,
 							clipPath: 'polygon(50% 0%, 0% 100%, 100% 100%)',
-							left: anchor?.getBoundingClientRect().left + anchor?.getBoundingClientRect().width / 2 - 12,
+							left:
+								anchor?.getBoundingClientRect()?.left -
+								(cardRef?.current?.getBoundingClientRect()?.left ?? 12) +
+								anchor?.getBoundingClientRect().width / 2 -
+								0,
 						},
 					}}>
 					<Stack spacing={1}>
