@@ -130,7 +130,7 @@ const EditCompanyInfo = ({ ...props }) => {
 						</InputWrapper>
 
 						<Stack direction={'column'} spacing={1}>
-							<InputWrapper id='GSTIN' label='GSTIN'>
+							<InputWrapper id='GSTIN' label='Company GSTIN'>
 								<TextField
 									id='GSTIN'
 									name='GSTIN'
