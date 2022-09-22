@@ -137,7 +137,7 @@ export const BookingCard = ({ booking }: BookingCardProps) => {
 						/>
 						<Typography
 							variant='h5'
-							fontWeight={700}
+							fontWeight={600}
 							fontFamily={'Saira,sans-serif'}
 							sx={{ verticalAlign: 'middle', margin: 1, color: primary.properDark }}>
 							{totalRequiredCount} {JobTypeLabel[booking?.booking?.jobType]} Applications
@@ -148,7 +148,7 @@ export const BookingCard = ({ booking }: BookingCardProps) => {
 
 				<Typography
 					fontWeight={300}
-					fontFamily={'Karla,sans-serif'}
+					variant='subtitle1'
 					style={{
 						display: 'flex',
 						verticalAlign: 'middle',
@@ -185,11 +185,7 @@ export const BookingCard = ({ booking }: BookingCardProps) => {
 				</Stack> */}
 				<Stack direction='row' flex={1} justifyContent='space-evenly'>
 					<Stack justifyContent={'space-between'} alignItems={'center'}>
-						<Typography
-							fontFamily={'Saira,sans-serif'}
-							fontWeight={600}
-							fontSize={16}
-							color={primary.properDark}>
+						<Typography variant='h6' fontWeight={600} fontSize={16} color={primary.properDark}>
 							{requiredHelper}
 						</Typography>
 						<Box>
@@ -200,12 +196,7 @@ export const BookingCard = ({ booking }: BookingCardProps) => {
 						</Typography>
 					</Stack>
 					<Stack justifyContent={'space-between'} alignItems={'center'}>
-						<Typography
-							fontFamily={'Saira,sans-serif'}
-							fontWeight={600}
-							mr={1}
-							fontSize={16}
-							color={primary.properDark}>
+						<Typography variant='h6' fontWeight={600} mr={1} fontSize={16} color={primary.properDark}>
 							{requiredTechnician}
 						</Typography>
 						<Box>
@@ -216,12 +207,7 @@ export const BookingCard = ({ booking }: BookingCardProps) => {
 						</Typography>
 					</Stack>
 					<Stack justifyContent={'space-between'} alignItems={'center'}>
-						<Typography
-							mr={1}
-							fontSize={16}
-							fontFamily={'Saira,sans-serif'}
-							fontWeight={600}
-							color={primary.properDark}>
+						<Typography mr={1} fontSize={16} variant='h6' fontWeight={600} color={primary.properDark}>
 							{requiredSupervisor}
 						</Typography>
 						<Box>

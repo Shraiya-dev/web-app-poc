@@ -45,7 +45,7 @@ const TutorialProvider = ({ children, pageStaticData }: any) => {
 	const initiate = useCallback(() => {
 		const step = localStorage.getItem('tutorialStep')
 		if (!step) {
-			localStorage.setItem('tutorialStep', TutorialSteps.DASHBOARD)
+			localStorage.setItem('tutorialStep', TutorialSteps.PROJECT_DETAILS)
 		}
 		setTutorialState(() => {
 			return {

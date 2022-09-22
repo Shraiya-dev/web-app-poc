@@ -31,7 +31,9 @@ export const BottomLayout = ({ ...props }) => {
 			}}>
 			<Stack direction={'row'} justifyContent={'space-between'} px={2}>
 				<BottomBarItem
-					icon={<DashboardIcon />}
+					icon={
+						<Box sx={{ height: 24, width: 24, p: 0.3 }} component='img' src='/assets/icons/dashboard.svg' />
+					}
 					path={
 						DASHBOARD
 						// // router?.pathname === PROJECT_DETAILS
@@ -55,13 +57,18 @@ export const BottomLayout = ({ ...props }) => {
 				/>
 
 				<BottomBarItem
-					icon={<BusinessIcon />}
+					icon={<Box sx={{ height: 24, width: 24 }} component='img' src='/assets/icons/construction.svg' />}
 					path={`/profile/details`}
 					title='Company Details'
 					route={PROFILE}
 				/>
 
-				<BottomBarItem icon={<PersonIcon />} path='/account' title='Profile' route={'/account'} />
+				<BottomBarItem
+					icon={<Box sx={{ height: 24, width: 24 }} component='img' src='/assets/icons/profile.svg' />}
+					path='/account'
+					title='Profile'
+					route={'/account'}
+				/>
 			</Stack>
 		</Box>
 	)

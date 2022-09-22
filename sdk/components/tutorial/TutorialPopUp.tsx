@@ -1,7 +1,7 @@
 import { KeyboardArrowRight, DoNotDisturb, CenterFocusStrong } from '@mui/icons-material'
 import { Card, Stack, Typography, Button, Box, Popover, PopoverOrigin, alpha } from '@mui/material'
 import next from 'next'
-import { FC, useEffect, useMemo, useRef } from 'react'
+import { FC, useEffect, useMemo, useRef, useState } from 'react'
 import { TutorialSteps } from 'sdk/types'
 interface Props {
 	open?: boolean
@@ -20,8 +20,9 @@ interface Position {
 	anchorOrigin?: PopoverOrigin
 	arrow?: 'top' | 'bottom'
 }
-
+const styles = ''
 export const TutorialPopUp: FC<Props> = ({ open = false, step, skip, next, anchor }) => {
+	const [oldStyle, setOldStyle] = useState('')
 	const {
 		anchorOrigin = {
 			horizontal: 'center',
@@ -67,8 +68,17 @@ export const TutorialPopUp: FC<Props> = ({ open = false, step, skip, next, ancho
 		}
 	}, [step])
 
-	if (anchor) anchor.style = 'background-color:#000000;color:#ffffff;z-index:9999999;position:relative;'
 	const cardRef = useRef<any>()
+
+	useEffect(() => {
+		if (anchor) {
+			setOldStyle(anchor.style)
+			anchor.style = 'background-color:#000000;color:#ffffff;z-index:9999999;position:relative;border-radius:2px;'
+		}
+		return () => {
+			if (anchor) anchor.style = oldStyle + ';color:#ffffff;'
+		}
+	}, [open, anchor, oldStyle])
 
 	return (
 		<>
@@ -91,7 +101,7 @@ export const TutorialPopUp: FC<Props> = ({ open = false, step, skip, next, ancho
 					sx: {
 						boxShadow: 'none',
 						backgroundColor: 'transparent',
-						// width: 'calc(100% - 24px)',
+						width: 'calc(100% - 24px)',
 						maxWidth: 500,
 					},
 				}}>

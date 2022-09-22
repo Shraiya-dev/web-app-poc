@@ -529,7 +529,7 @@ const ProjectInfo = ({ setProjectName }: any) => {
 								minWidth: '10em',
 								color: primary.properDark,
 							}}>
-							Update Project
+							Update Details
 						</LoadingButton>
 					</Stack>
 				</form>

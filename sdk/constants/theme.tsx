@@ -226,13 +226,18 @@ let themeDef = createTheme({
 	},
 	components: {
 		MuiTab: {
-			defaultProps: {
-				style: {
-					color: '#fff',
-					fontFamily: `'Saira', sans-serif`,
-					fontWeight: 400,
+			styleOverrides: {
+				root: {
+					color: '#ffffff',
 				},
 			},
+			// defaultProps: {
+			// 	style: {
+			// 		color: '#fff',
+			// 		fontFamily: `'Saira', sans-serif`,
+			// 		fontWeight: 400,
+			// 	},
+			// },
 		},
 		MuiInputBase: {
 			defaultProps: {
