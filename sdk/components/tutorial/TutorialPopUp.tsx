@@ -68,8 +68,7 @@ export const TutorialPopUp: FC<Props> = ({ open = false, step, skip, next, ancho
 	}, [step])
 
 	if (anchor) anchor.style = 'background-color:#000000;color:#ffffff;z-index:9999999;position:relative;'
-	const cardRef = useRef<HTMLDivElement>()
-	console.log()
+	const cardRef = useRef<any>()
 
 	return (
 		<>
