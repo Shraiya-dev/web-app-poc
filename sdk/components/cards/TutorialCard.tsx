@@ -18,7 +18,7 @@ export const TutorialCard = ({ step, skip, next }: { step?: TutorialSteps; skip?
 					}}>
 					<Stack spacing={1}>
 						<Stack direction='row' justifyContent='space-between' alignItems={'center'}>
-							<Typography variant='subtitle2' fontSize={10} color='primary.main'>
+							<Typography variant='h6' fontSize={10} color='primary.main'>
 								Dashboard
 							</Typography>
 							<Button
@@ -56,7 +56,8 @@ export const TutorialCard = ({ step, skip, next }: { step?: TutorialSteps; skip?
 							bottom: -10,
 							left: '6%',
 							transform: 'rotate(180deg)',
-						}}></Box>
+						}}
+					/>
 				</Card>
 			)
 		case TutorialSteps.PROJECT_DETAILS:
@@ -72,7 +73,7 @@ export const TutorialCard = ({ step, skip, next }: { step?: TutorialSteps; skip?
 					}}>
 					<Stack spacing={1}>
 						<Stack direction='row' justifyContent='space-between'>
-							<Typography variant='subtitle2' fontSize={10} color='primary.main'>
+							<Typography variant='h6' fontSize={10} color='primary.main'>
 								Add Project Details
 							</Typography>
 						</Stack>
@@ -84,7 +85,13 @@ export const TutorialCard = ({ step, skip, next }: { step?: TutorialSteps; skip?
 							<Button
 								startIcon={<DoNotDisturb fontSize='small' sx={{ height: 10 }} />}
 								size='small'
-								sx={{ p: 0, fontSize: 10, color: '#E58A51' }}
+								sx={{
+									p: 0,
+									fontSize: 10,
+									color: '#E58A51',
+									textDecoration: 'underline',
+									'>*': { mr: 0 },
+								}}
 								variant='text'
 								onClick={(e) => skip && skip()}>
 								Skip for Now
@@ -103,7 +110,8 @@ export const TutorialCard = ({ step, skip, next }: { step?: TutorialSteps; skip?
 							position: 'absolute',
 							top: -10,
 							left: '38%',
-						}}></Box>
+						}}
+					/>
 				</Card>
 			)
 		default:

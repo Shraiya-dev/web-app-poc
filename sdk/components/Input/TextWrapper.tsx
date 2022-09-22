@@ -8,14 +8,14 @@ export const TextWrapper = ({ label, toolTip, children, ...props }: any) => {
 			{label && (
 				<Box
 					sx={{
-						mb: 1.5,
+						mb: 1,
 
 						fontSize: 13,
 						fontWeight: 900,
 					}}
 					{...props}>
 					{label && (
-						<Typography fontSize={13} fontWeight={900} fontStyle={'normal'}>
+						<Typography variant='h6' fontSize={13} fontWeight={700} fontStyle={'normal'}>
 							{label}
 						</Typography>
 					)}

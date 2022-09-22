@@ -10,7 +10,9 @@ interface Props extends InputLabelProps {
 export const InputWrapper: FC<Props> = ({ label, helperText, fullWidth = false, children, sx }) => {
 	return (
 		<Box width={fullWidth ? '100%' : undefined}>
-			{label && <InputLabel sx={{ fontWeight: '700', ...sx }}>{label}</InputLabel>}
+			{label && (
+				<InputLabel sx={{ fontFamily: 'Saira, sans-serif', fontWeight: '700', ...sx }}>{label}</InputLabel>
+			)}
 			{children}
 			<FormHelperText>{helperText}</FormHelperText>
 		</Box>

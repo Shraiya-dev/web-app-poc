@@ -1,3 +1,4 @@
+import { Check, Close } from '@mui/icons-material'
 import { Button, Stack } from '@mui/material'
 import { primary, theme } from '../../../sdk'
 
@@ -6,6 +7,7 @@ export const CustomToggle = ({ ...props }) => {
 	return (
 		<Stack direction={'row'} spacing={2}>
 			<Button
+				startIcon={infoValues ? <Check /> : undefined}
 				sx={{
 					borderRadius: 2,
 					padding: 2,
@@ -29,6 +31,7 @@ export const CustomToggle = ({ ...props }) => {
 				Yes
 			</Button>
 			<Button
+				startIcon={!infoValues && infoValues !== undefined ? <Check /> : undefined}
 				sx={{
 					borderRadius: 2,
 					padding: 2,
