@@ -4,7 +4,7 @@ import PersonIcon from '@mui/icons-material/Person'
 import { Box, Stack } from '@mui/material'
 import BusinessIcon from '@mui/icons-material/Business'
 import { BottomBarItem } from 'sdk/components/MobileBottomBar'
-import { useContractorAuth } from 'sdk/providers'
+import { useContractorAuth, useTutorial } from 'sdk/providers'
 import { useRouter } from 'next/router'
 
 export const BottomLayout = ({ ...props }) => {
@@ -15,7 +15,6 @@ export const BottomLayout = ({ ...props }) => {
 	const BOOKING_DETAILS = '/bookings/[projectId]/[bookingId]/[tab]'
 	const DASHBOARD = '/dashboard'
 	const PROFILE = '/profile/[tab]'
-
 	const router = useRouter()
 
 	const toggleDrawer = () => {

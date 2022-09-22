@@ -1135,7 +1135,7 @@ export const Home = () => {
 									items={homePage.customerReview.cards.map((item, index) => {
 										return (
 											<Stack
-												key={item.by}
+												key={index}
 												py={5}
 												mx={2}
 												position='relative'

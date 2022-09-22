@@ -4,6 +4,7 @@ import { useRouter } from 'next/router'
 import { useMobile } from 'sdk/hooks'
 import Link from 'next/link'
 import { NavigationTabClicked } from 'sdk/analytics'
+import { useTutorial } from 'sdk/providers'
 
 export const BottomBarItem = ({ ...props }) => {
 	const router = useRouter()
@@ -22,8 +23,8 @@ export const BottomBarItem = ({ ...props }) => {
 			? 'Company Profile'
 			: 'Dashboard'
 
-	const { icon, path, title, route, toggleDrawer } = props
-
+	const { icon, path, title, route, toggleDrawer, ref } = props
+	const { anchor } = useTutorial()
 	const handleClick = () => {
 		NavigationTabClicked({
 			name: title,
@@ -37,6 +38,9 @@ export const BottomBarItem = ({ ...props }) => {
 			<a>
 				<ListItem
 					button
+					ref={(e) => {
+						if (title === 'Dashboard') anchor.current.DASHBOARD = e
+					}}
 					style={
 						{
 							// background: router.route === route ? primary.secButtonColor : '',

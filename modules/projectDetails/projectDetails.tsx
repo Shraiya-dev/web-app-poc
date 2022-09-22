@@ -8,7 +8,15 @@ import { useRouter } from 'next/router'
 import { FC, useEffect, useMemo } from 'react'
 import { TutorialBanner } from 'sdk/components/banner/TutorialBanner'
 import { BottomLayout } from 'sdk/layouts/BottomLayout'
-import { ButtonClicked, LinkButton, theme, useContractorAuth, useMobile } from '../../sdk'
+import {
+	ButtonClicked,
+	LinkButton,
+	theme,
+	TutorialProvider,
+	useContractorAuth,
+	useMobile,
+	useTutorial,
+} from '../../sdk'
 import { CustomTopBar } from '../../sdk/components/topBar/customTopBar'
 import { Bills } from '../bills'
 import { Dashboard } from '../dashboard'
@@ -30,7 +38,7 @@ export const ProjectDetails: FC<Props> = () => {
 		}
 		return false
 	}, [])
-
+	const { anchor } = useTutorial()
 	const tabList: { [key in string]: string | undefined } = useMemo(() => {
 		if (user?.isEnterprise) {
 			return {
@@ -150,6 +158,9 @@ export const ProjectDetails: FC<Props> = () => {
 							if (tabList[tab])
 								return (
 									<Tab
+										ref={(e) => {
+											if (tab === 'details') anchor.current.PROJECT_DETAILS = e
+										}}
 										key={tab}
 										sx={{
 											fontSize: '18px',

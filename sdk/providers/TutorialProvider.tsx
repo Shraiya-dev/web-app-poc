@@ -1,17 +1,26 @@
 import { FlashOffOutlined } from '@mui/icons-material'
 import { AlertColor, alpha, Backdrop, Box } from '@mui/material'
 import { useRouter } from 'next/router'
-import { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react'
+import { createContext, MutableRefObject, useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react'
 import { sendAnalytics } from 'sdk/analytics'
 import { TutorialCard } from 'sdk/components'
+import { TutorialPopUp } from 'sdk/components/tutorial/TutorialPopUp'
 import { TutorialSteps } from 'sdk/types'
 
 interface TutorialState {}
 
-interface TutorialProviderValue {}
+interface TutorialProviderValue {
+	anchor: MutableRefObject<{ [key in TutorialSteps]: HTMLAnchorElement | HTMLDivElement | null }>
+}
 const initialState: TutorialState = {}
 const TutorialContext = createContext<TutorialProviderValue>({
-	showSplash: (msg: string, sev: AlertColor) => null,
+	anchor: {
+		current: {
+			DASHBOARD: null,
+			COMPLETED: null,
+			PROJECT_DETAILS: null,
+		},
+	},
 })
 const { Provider, Consumer } = TutorialContext
 
@@ -26,10 +35,17 @@ const TutorialProvider = ({ children, pageStaticData }: any) => {
 	}>({
 		open: false,
 	})
+	const anchor = useRef<{ [key in TutorialSteps]: HTMLAnchorElement | null }>({
+		DASHBOARD: null,
+		COMPLETED: null,
+		PROJECT_DETAILS: null,
+	})
+
+	//initialize tutorial
 	const initiate = useCallback(() => {
 		const step = localStorage.getItem('tutorialStep')
 		if (!step) {
-			localStorage.setItem('tutorialStep', TutorialSteps.PROJECT_DETAILS)
+			localStorage.setItem('tutorialStep', TutorialSteps.DASHBOARD)
 		}
 		setTutorialState(() => {
 			return {
@@ -38,6 +54,7 @@ const TutorialProvider = ({ children, pageStaticData }: any) => {
 			}
 		})
 	}, [])
+
 	useEffect(() => {
 		if (tutorialState.currentStep && tutorialState.currentStep !== TutorialSteps.COMPLETED) {
 			sendAnalytics({
@@ -94,21 +111,29 @@ const TutorialProvider = ({ children, pageStaticData }: any) => {
 				currentStep: nextStep,
 			}
 		})
-	}, [router])
+	}, [router, tutorialState.currentStep])
 	useEffect(() => {
 		if (router?.pathname === '/projects/[projectId]/[tab]' && !sessionStorage.getItem('skippedForSessions')) {
-			initiate()
+			setTimeout(() => {
+				initiate()
+			}, 30)
 		}
 	}, [initiate, router])
-	const value: TutorialProviderValue = useMemo(() => ({}), [])
+
+	const value: TutorialProviderValue = useMemo(() => ({ anchor }), [anchor])
 	return (
 		<Provider value={value}>
 			{children}
-			<Backdrop open={tutorialState?.open} sx={{ p: 2, backgroundColor: `${alpha('#ffffff', 0.4)}` }}>
-				<Box sx={{ position: 'relative', width: '100%', maxWidth: 468, minHeight: '100vh' }}>
-					<TutorialCard step={tutorialState?.currentStep} skip={skip} next={next} />
-				</Box>
-			</Backdrop>
+			<Box sx={{ position: 'relative', width: '100%', maxWidth: 468, minHeight: '100vh' }}>
+				{/* <TutorialCard step={tutorialState?.currentStep} skip={skip} next={next} /> */}
+				<TutorialPopUp
+					open={tutorialState?.open}
+					anchor={anchor.current[tutorialState.currentStep as TutorialSteps]}
+					step={tutorialState.currentStep}
+					skip={skip}
+					next={next}
+				/>
+			</Box>
 		</Provider>
 	)
 }
