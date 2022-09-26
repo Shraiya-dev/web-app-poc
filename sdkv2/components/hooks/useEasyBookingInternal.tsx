@@ -55,23 +55,23 @@ export const useEasyBookingInternal = () => {
 				is: true,
 				then: Yup.number()
 					.required('Wage is required')
-					.min(0, 'Wage should be greater then 0')
-					.max(2000, 'Wage should be less then 2000'),
+					.min(300, 'Wage should be greater then Rs 300')
+					.max(2000, 'Wage should be less then Rs 2000'),
 			}),
 
 			technicianWage: Yup.number().when('isTechnician', {
 				is: true,
 				then: Yup.number()
 					.required('Wage is required')
-					.min(0, 'Wage should be greater then 0')
-					.max(2000, 'Wage should be less then 2000'),
+					.min(300, 'Wage should be greater then Rs 300')
+					.max(2000, 'Wage should be less then Rs 2000'),
 			}),
 			supervisorWage: Yup.number().when('isSupervisor', {
 				is: true,
 				then: Yup.number()
 					.required('Wage is required')
-					.min(0, 'Wage should be greater then 0')
-					.max(2000, 'Wage should be less then 2000'),
+					.min(300, 'Wage should be greater then Rs 300')
+					.max(2000, 'Wage should be less then Rs 2000'),
 			}),
 		}),
 

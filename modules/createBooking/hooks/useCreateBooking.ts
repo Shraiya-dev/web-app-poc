@@ -97,6 +97,10 @@ const useCreateBooking = () => {
 			// }
 			if (Number(values.helper) > 0 && Number(values.helperWages) === 0) {
 				errors.helperWages = 'Required'
+			} else if (Number(values.helper) < 300) {
+				errors.helperWages = 'Wage should be greater then Rs 300'
+			} else if (Number(values.helper) > 2000) {
+				errors.helperWages = 'Wage should be less then Rs 2000'
 			}
 
 			// if (Number(values.technician) === 0 && Number(values.technicianWages) > 0) {
@@ -104,6 +108,10 @@ const useCreateBooking = () => {
 			// }
 			if (Number(values.technician) > 0 && Number(values.technicianWages) === 0) {
 				errors.technicianWages = 'Required'
+			} else if (Number(values.technician) < 300) {
+				errors.technicianWages = 'Wage should be greater then Rs 300'
+			} else if (Number(values.technician) > 2000) {
+				errors.technicianWages = 'Wage should be less then Rs 2000'
 			}
 
 			// if (Number(values.supervisor) === 0 && Number(values.supervisorWages) > 0) {
@@ -111,6 +119,10 @@ const useCreateBooking = () => {
 			// }
 			if (Number(values.supervisor) > 0 && Number(values.supervisorWages) === 0) {
 				errors.supervisorWages = 'Required'
+			} else if (Number(values.supervisor) < 300) {
+				errors.supervisorWages = 'Wage should be greater then Rs 300'
+			} else if (Number(values.supervisor) > 2000) {
+				errors.supervisorWages = 'Wage should be less then Rs 2000'
 			}
 
 			return errors
