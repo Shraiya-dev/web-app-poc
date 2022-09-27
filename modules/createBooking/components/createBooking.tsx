@@ -1,21 +1,49 @@
+import {
+	Autocomplete,
+	Box,
+	Button,
+	Checkbox,
+	Container,
+	Grid,
+	InputAdornment,
+	ListSubheader,
+	Paper,
+	Stack,
+	styled,
+	TextField,
+	Typography,
+	useMediaQuery,
+	useTheme,
+} from '@mui/material'
+import FormControlLabel from '@mui/material/FormControlLabel'
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp'
-import { LoadingButton } from '@mui/lab'
-import { Box, Button, Container, Grid, Paper, Stack, styled, TextField, Typography } from '@mui/material'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
-import { useEffect, useState } from 'react'
-import Helper from '../../../public/assets/icons/helper.svg'
+import React, { useEffect, useState } from 'react'
+import {
+	allCityList,
+	ButtonClicked,
+	capitalize,
+	checkError,
+	InputWrapper,
+	primary,
+	theme,
+	useContractorAuth,
+	useFormikProps,
+	useMobile,
+} from 'sdk'
+import { TopBanner } from 'sdk/components/banner/formBanner'
 import BookingSvg from '../../../public/assets/icons/project.svg'
+import { jobTypeInfo, moreJobType } from '../utils'
+import ConfirmCancel from './confirmCancel'
+import Helper from '../../../public/assets/icons/helper.svg'
 import Supervisor from '../../../public/assets/icons/supervisor.svg'
 import Technician from '../../../public/assets/icons/technician.svg'
-import { checkError, InputWrapper, primary, theme, useContractorAuth, useSnackbar } from '../../../sdk'
-import { ButtonClicked } from '../../../sdk/analytics/analyticsWrapper'
-import { TopBanner } from '../../../sdk/components/banner/formBanner'
-import { useMobile } from '../../../sdk/hooks/useMobile'
-import useCreateBooking from '../hooks/useCreateBooking'
-import { jobTypeInfo, moreJobType } from '../utils/helperData'
-import ConfirmCancel from './confirmCancel'
+import { LoadingButton } from '@mui/lab'
+import { ListChildComponentProps, VariableSizeList } from 'react-window'
+import { useEasyBookingInternal } from 'sdkv2/components/hooks/useEasyBookingInternal'
+import { useCreateBooking } from '../hooks'
 
 const CustomBookingStyle = styled(Box)(({ theme }) => ({
 	'.main': {
@@ -128,127 +156,57 @@ const CustomBookingStyle = styled(Box)(({ theme }) => ({
 }))
 
 export const CreateBooking = () => {
-	const {
-		form,
-		step,
-		setStep,
-		handlePrev,
-		projectName,
-		setProjectName,
-		isSubmittable,
-		setIsSubmittable,
-		loading,
-		setLoading,
-	} = useCreateBooking()
-
-	const [isMore, setIsmore] = useState(false)
-	const [projectDurationInfo, setProjectDuration] = useState<string>()
-	const [selectedJob, setSelectedjob] = useState('')
-	const [shiftTiming, setShiftTiming] = useState('')
-
-	//const [isSubmittable, setIsSubmittable] = useState<boolean>(false)
-	//const [loading, setLoading] = useState<boolean>(false)
-
 	const [onCloseDialog, setOncloseDialog] = useState(false)
-
+	const [selectedJob, setSelectedjob] = useState('')
+	const [projectDurationInfo, setProjectDuration] = useState<string>()
+	const [isMore, setIsmore] = useState(false)
+	const router = useRouter()
 	const isMobile = useMobile()
 	const { user } = useContractorAuth()
-	const router = useRouter()
-	const { showSnackbar } = useSnackbar()
 
-	const fixTiming = `09:00 AM - 06:00 PM`
+	const { form, formikProps, isSubmittable, setIsSubmittable } = useCreateBooking()
 
 	const workerType = [
 		{
 			label: 'Helper',
 			icon: Helper,
 			name: 'helper',
-			wage: 'helperWages',
-			formvalue: form.values.helper,
-			wageformvalue: form.values.helperWages,
-			error: form.errors.helper,
+			isPresent: form.values.isHelper,
+			CheckboxName: 'isHelper',
+			wage: 'helperWage',
+			wageformvalue: form.values.helperWage,
+			error: form.errors.isHelper,
 		},
 		{
 			label: 'Technician',
 			icon: Technician,
+			isPresent: form.values.isTechnician,
 			name: 'technician',
-			wage: 'technicianWages',
-			formvalue: form.values.technician,
-			wageformvalue: form.values.technicianWages,
-			error: form.errors.technician,
+			CheckboxName: 'isTechnician',
+			wage: 'technicianWage',
+			wageformvalue: form.values.technicianWage,
+			error: form.errors.isTechnician,
 		},
 
 		{
 			label: 'Supervisor',
 			icon: Supervisor,
+			isPresent: form.values.isSupervisor,
+			CheckboxName: 'isSupervisor',
 			name: 'supervisor',
-			wage: 'supervisorWages',
-			formvalue: form.values.supervisor,
-			wageformvalue: form.values.supervisorWages,
-			error: form.errors.supervisor,
+			wage: 'supervisorWage',
+			wageformvalue: form.values.supervisorWage,
+			error: form.errors.isSupervisor,
 		},
 	]
 
-	useEffect(() => {
-		// let canSubmit: boolean =
-		// 	!!form.values.jobType ||
-		// 	!form.isValid ||
-		// 	!!form.values.BookingDuration ||
-		// 	!form.values.startTime ||
-		// 	!form.values.endTime ||
-		// 	form.values.startTime === 'none' ||
-		// 	form.values.endTime === 'none'
-
-		let canSubmit: boolean =
-			!!form.values.jobType &&
-			(!!form.values.helperWages || !!form.values.technicianWages || !!form.values.supervisorWages)
-		//  &&
-		// (form.values.tags.length > 0 ? true : false)
-		// &&
-		// !!form.values.BookingDuration
-
-		setIsSubmittable(canSubmit)
-	}, [form, isSubmittable])
-
+	const handleJobClick = (info: any) => {
+		form.setFieldValue('jobType', info)
+		setSelectedjob(info)
+	}
 	const handleMoreJobType = () => {
 		setIsmore((state) => !state)
 	}
-
-	// const handleProjectDuration = (info: any) => {
-	// 	setProjectDuration(info)
-	// 	form.setFieldValue('BookingDuration', info)
-	// }
-
-	const handleJobClick = (info: any) => {
-		form.setFieldValue('jobType', info)
-		form.setFieldValue('tags', [])
-		setSelectedjob(info)
-	}
-
-	const handleShiftTiming = (info: any) => {
-		form.setFieldValue('startTime', '09:00 AM')
-		form.setFieldValue('endTime', '06:00 PM')
-		setShiftTiming(info)
-	}
-
-	const getErrorString = () => {
-		return form.errors.helper ||
-			form.errors.technician ||
-			form.errors.supervisor ||
-			form.errors.helperWages ||
-			form.errors.technicianWages ||
-			form.errors.supervisorWages ? (
-			<Typography className='subInfoError'>
-				At least 1 technician, helper or supervisor is required with wages
-			</Typography>
-		) : (
-			''
-		)
-	}
-	// useEffect(() => {
-	// 	console.log(isSubmittable)
-	// }, [isSubmittable])
-
 	return (
 		<CustomBookingStyle>
 			<TopBanner
@@ -264,18 +222,16 @@ export const CreateBooking = () => {
 						url: router.asPath,
 					})
 				}}
-				visibleCloseIcon={step === 1}
-				linkHeader={projectName}
+				visibleCloseIcon={false}
+				linkHeader={''}
 				link={`/projects/${router.query.projectId}/bookings`}
 			/>
-
 			<Container className='main' maxWidth={'md'}>
 				<ConfirmCancel
 					onCloseDialog={onCloseDialog}
 					setOncloseDialog={setOncloseDialog}
 					header={'Leave Booking Heroes?'}
 				/>
-
 				<Box>
 					<form onSubmit={form.handleSubmit}>
 						<Stack spacing={5}>
@@ -293,11 +249,6 @@ export const CreateBooking = () => {
 															selectedJob === info?.value
 																? theme.palette.primary.light
 																: 'white',
-
-														// border:
-														// 	selectedJob === info?.value
-														// 		? `2px solid ${theme.palette.primary.main}`
-														// 		: `1px solid ${theme.palette.secondary.light}`,
 													}}>
 													<Box>
 														<Image src={info?.icon} />
@@ -378,71 +329,53 @@ export const CreateBooking = () => {
 								</Grid>
 							</InputWrapper>
 
-							{/* {form.values.jobType && (
-								<InputWrapper id='skills' label='Skills'>
-									<Typography className='subInfo'>
-										Skills you are looking for the selected trade
-									</Typography>
-									<Grid item xs={12} md={12}>
-										<Stack direction='row' flexWrap='wrap'>
-											{tags[form.values.jobType]?.map((item: any) => {
-												return (
-													<Chip
-														variant='outlined'
-														style={{
-															background: form.values.tags.includes(item)
-																? theme.palette.primary.light
-																: 'white',
-															color: form.values.tags.includes(item)
-																? primary.properDark
-																: '',
-
-															border: form.values.tags.includes(item)
-																? `2px solid ${theme.palette.primary.main}`
-																: ``,
-														}}
-														sx={{
-															mr: 1,
-															mb: 1,
-														}}
-														key={item}
-														label={item}
-														clickable
-														deleteIcon={<CancelIcon style={{ color: '#000' }} />}
-														onClick={
-															!form.values.tags.includes(item)
-																? () => {
-																		form.setFieldValue('tags', [
-																			...form.values.tags,
-																			item,
-																		])
-																  }
-																: undefined
-														}
-														onDelete={
-															form.values.tags.includes(item)
-																? () => {
-																		form.setFieldValue('tags', [
-																			...form.values.tags.filter(
-																				(val) => val !== item
-																			),
-																		])
-																  }
-																: undefined
-														}
-													/>
-												)
-											})}
-										</Stack>
-									</Grid>
-								</InputWrapper>
-							)} */}
+							{/* <Autocomplete
+								disableListWrap
+								ListboxComponent={ListboxComponent}
+								options={allCityList}
+								getOptionLabel={(options) => options.label}
+								isOptionEqualToValue={(opt, v) => v.value === opt?.value}
+								value={{
+									label: capitalize(form.values.location ?? ''),
+									value: form.values.location ?? '',
+								}}
+								onChange={(e, v) => {
+									form.setFieldValue('location', v?.value)
+								}}
+								groupBy={(option: { label: string; value: string }) => option.label[0].toUpperCase()}
+								renderInput={(params) => (
+									<TextField
+										error={formikProps('location').error}
+										helperText={formikProps('location').helperText}
+										placeholder='Select Location'
+										{...params}
+										sx={{
+											color: '#000 !important',
+											background: '#fff !important',
+										}}
+									/>
+								)}
+								sx={{
+									width: { xs: '100%', md: '50%' },
+									'& .MuiInputBase-root': {
+										color: '#000!important',
+									},
+									'& .MuiSvgIcon-root': {
+										color: '#000',
+									},
+									'& .MuiButtonBase-root': {
+										color: '#000',
+									},
+								}}
+								renderOption={(props, option) => [props, option.label] as React.ReactNode}
+								renderGroup={(params) => params as unknown as React.ReactNode}
+							/> */}
 
 							<InputWrapper
 								id='workerType'
 								label={`Heroes Required & Daily Wage`}
 								toolTip={'Daily wage per worker'}>
-								{getErrorString()}
+								{/* {getErrorString()} */}
 								<Grid container spacing={4}>
 									{workerType.map((info, index) => {
 										return (
@@ -453,7 +386,22 @@ export const CreateBooking = () => {
 												alignItems={'flex-start'}
 												display='flex'
 												spacing={2}>
-												<Grid container item xs={12} sm={12} md={2.5}>
+												<Grid container item xs={12} sm={12} md={4.5}>
+													<FormControlLabel
+														control={
+															<Checkbox
+																sx={{
+																	color: '#EFC430 ',
+																}}
+															/>
+														}
+														name={info.CheckboxName}
+														value={info.isPresent}
+														label={''}
+														onChange={() => {
+															form.setFieldValue(info.CheckboxName, !info.isPresent)
+														}}
+													/>
 													<Image src={info?.icon} style={{ float: 'left' }} />
 
 													<Typography
@@ -465,36 +413,20 @@ export const CreateBooking = () => {
 														{info?.label}
 													</Typography>
 												</Grid>
-												{/* <Grid item xs={12} sm={12} md={2.5}>
-													<TextField
-														// label={`${info?.label} Required`}
-														placeholder={`Enter ${info?.label}`}
-														id={info?.name}
-														name={info?.name}
-														value={info?.formvalue}
-														type='tel'
-														onChange={(e: any) => {
-															if (
-																e.target.value >= 0 &&
-																e.target.value <=
-																	(info?.name === 'supervisor' ? 50 : 500)
-															) {
-																form.setFieldValue(e.target.name, e.target.value)
-															}
-														}}
-														fullWidth
-														onBlur={form.handleBlur}
-														error={!!checkError(`${info?.name}`, form)}
-													/>
-												</Grid> */}
+
 												<Grid item xs={12} sm={12} md={4}>
 													<TextField
 														// label='Daily wage (Rs.)'
 														placeholder='Enter wage'
 														id={info?.wage}
 														name={info?.wage}
-														value={info?.wageformvalue > 0 ? info?.wageformvalue : ''}
+														value={
+															info?.wageformvalue && info?.wageformvalue > 0
+																? info?.wageformvalue
+																: ''
+														}
 														type='tel'
+														disabled={!info.isPresent}
 														onChange={(e: any) => {
 															if (e.target.value >= 0 && e.target.value <= 2000) {
 																form.setFieldValue(
@@ -503,14 +435,25 @@ export const CreateBooking = () => {
 																)
 															}
 														}}
+														InputProps={{
+															endAdornment: (
+																<InputAdornment position='end'>/day</InputAdornment>
+															),
+															startAdornment: (
+																<InputAdornment position='start'>
+																	<Typography
+																		sx={{
+																			color: '#57cca5 !important',
+																		}}>
+																		&#8377;
+																	</Typography>
+																</InputAdornment>
+															),
+														}}
 														fullWidth
 														onBlur={form.handleBlur}
-														error={!!checkError(`${info?.wage}`, form)}
-														// sx={{
-														// 	'& .MuiFormLabel-root': {
-														// 		color: theme.palette.primary.dark
-														// 	},
-														// }}
+														error={formikProps(info?.wage as any).error}
+														helperText={formikProps(info?.wage as any).helperText}
 													/>
 												</Grid>
 											</Grid>
@@ -518,150 +461,7 @@ export const CreateBooking = () => {
 									})}
 								</Grid>
 							</InputWrapper>
-
-							{/* <Box>
-										<InputWrapper id='overtime' label='Overtime Details'>
-											<Typography className='subInfo'>
-												This factor will be multiplied with daily wage to calculate overtime
-												wage
-											</Typography>
-											<Grid
-												container
-												alignItems={'flex-start'}
-												spacing={2}
-												style={{ marginBottom: 10 }}>
-												<Grid item xs={12} sm={12} md={4}>
-													<FormControl fullWidth>
-														<Select
-															labelId='overTimeFactor'
-															id='overTimeFactor'
-															name='overTimeFactor'
-															value={form.values.overTimeFactor}
-															onChange={form.handleChange}>
-															<MenuItem value={'none'}>Select Overtime Factor</MenuItem>
-															{getSelectOptions(overTimefactor)}
-														</Select>
-													</FormControl>
-												</Grid>
-											</Grid>
-										</InputWrapper>
-									</Box> */}
-
-							{/* <InputWrapper id='BookingDuration' label='Job Duration'>
-								<Grid container item rowGap={1}>
-									{projectDuration.map((info, index) => {
-										return (
-											<Button
-												className='borderCta'
-												key={index}
-												style={{
-													background:
-														projectDurationInfo === info?.value
-															? theme.palette.primary.light
-															: 'white',
-
-													color:
-														projectDurationInfo === info?.value
-															? primary.properDark
-															: primary.properDark,
-													marginRight: 10,
-													textTransform: 'none',
-													minWidth: 50,
-													boxShadow: 'none',
-													border:
-														projectDurationInfo === info?.value
-															? `2px solid ${theme.palette.primary.main}`
-															: '',
-												}}
-												onClick={() => handleProjectDuration(info?.value)}>
-												{info?.label}
-											</Button>
-										)
-									})}
-								</Grid>
-							</InputWrapper> */}
-
-							{/* <InputWrapper id='shiftTiming' label='Shift Timing'>
-								<Grid item container rowGap={1}>
-									<Button
-										className='borderCta'
-										style={{
-											background:
-												shiftTiming === 'default' ? theme.palette.primary.light : 'white',
-											border:
-												shiftTiming === 'default'
-													? `2px solid ${theme.palette.primary.main}`
-													: '',
-
-											color: 'black',
-											marginRight: 10,
-											minWidth: 50,
-											boxShadow: 'none',
-										}}
-										onClick={() => handleShiftTiming('default')}>
-										{fixTiming}
-									</Button>
-
-									<Button
-										className='borderCta'
-										style={{
-											background:
-												shiftTiming === 'Custom' ? theme.palette.primary.light : 'white',
-
-											border:
-												shiftTiming === 'Custom'
-													? `2px solid ${theme.palette.primary.main}`
-													: '',
-
-											height: 35,
-											width: 100,
-											color: primary.properDark,
-											boxShadow: 'none',
-										}}
-										onClick={() => handleShiftTiming('Custom')}>
-										Custom
-									</Button>
-								</Grid>
-
-								{shiftTiming === 'Custom' && (
-									<Grid container spacing={4} style={{ marginTop: 10 }}>
-										<Grid item xs={12} sm={12} md={6} lg={6}>
-											<CustomTimePicker
-												form={form}
-												error={!!checkError('startTime', form)}
-												labelId={'startTime'}
-												id={'startTime'}
-												name={'startTime'}
-												value={form.values.startTime}
-												timeOptions={'am'}
-												onChange={(e: any) => {
-													form.handleChange(e)
-												}}
-											/>
-										</Grid>
-										<Grid item xs={12} sm={12} md={6} lg={6}>
-											<CustomTimePicker
-												form={form}
-												error={!!checkError('endTime', form)}
-												labelId={'endTime'}
-												id={'endTime'}
-												name={'endTime'}
-												value={form.values.endTime}
-												timeOptions={'pm'}
-												onChange={(e: any) => {
-													form.handleChange(e)
-												}}
-											/>
-										</Grid>
-									</Grid>
-								)}
-							</InputWrapper>
-
-							<InputWrapper id='deployTime' label='Expected Time To Deployment'>
-								<Typography>14 days</Typography>
-							</InputWrapper>*/}
 						</Stack>
-
 						<Box className='stickyBottomBox'>
 							<Paper
 								className='bottomButton'
@@ -672,16 +472,16 @@ export const CreateBooking = () => {
 										className='loadingcta'
 										type='submit'
 										variant='contained'
-										loading={loading}
-										disabled={!isSubmittable}
+										loading={form.isSubmitting}
+										disabled={!form.isValid}
 										// onClick={() => handleNext()}
 										style={{
 											minWidth: '10rem',
 											marginRight: isMobile ? '' : '14%',
-											background: isSubmittable
+											background: form.isValid
 												? theme.palette.primary.main
 												: theme.palette.primary.dark,
-											color: '#000',
+											color: form.isSubmitting ? 'transparent' : '#000',
 										}}>
 										{'Create Booking'}
 									</LoadingButton>
@@ -694,3 +494,103 @@ export const CreateBooking = () => {
 		</CustomBookingStyle>
 	)
 }
+
+const LISTBOX_PADDING = 8 // px
+
+function renderRow(props: ListChildComponentProps) {
+	const { data, index, style } = props
+	const dataSet = data[index]
+	const inlineStyle = {
+		...style,
+		top: (style.top as number) + LISTBOX_PADDING,
+		color: '#000',
+	}
+
+	if (dataSet.hasOwnProperty('group')) {
+		return (
+			<ListSubheader key={dataSet.key} component='div' style={inlineStyle}>
+				{dataSet.group}
+			</ListSubheader>
+		)
+	}
+
+	return (
+		<Typography component='li' {...dataSet[0]} noWrap style={inlineStyle}>
+			{dataSet[1]}
+		</Typography>
+	)
+}
+
+const OuterElementContext = React.createContext({})
+
+const OuterElementType = React.forwardRef<HTMLDivElement>((props, ref) => {
+	const outerProps = React.useContext(OuterElementContext)
+	return <div ref={ref} {...props} {...outerProps} />
+})
+OuterElementType.displayName = 'OuterElementType'
+
+function useResetCache(data: any) {
+	const ref = React.useRef<VariableSizeList>(null)
+	React.useEffect(() => {
+		if (ref.current != null) {
+			ref.current.resetAfterIndex(0, true)
+		}
+	}, [data])
+	return ref
+}
+
+// Adapter for react-window
+const ListboxComponent = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLElement>>(function ListboxComponent(
+	props,
+	ref
+) {
+	const { children, ...other } = props
+	const itemData: React.ReactChild[] = []
+	;(children as React.ReactChild[]).forEach((item: React.ReactChild & { children?: React.ReactChild[] }) => {
+		itemData.push(item)
+		itemData.push(...(item.children || []))
+	})
+
+	const theme = useTheme()
+	const smUp = useMediaQuery(theme.breakpoints.up('sm'), {
+		noSsr: true,
+	})
+	const itemCount = itemData.length
+	const itemSize = smUp ? 36 : 48
+
+	const getChildSize = (child: React.ReactChild) => {
+		if (child.hasOwnProperty('group')) {
+			return 48
+		}
+
+		return itemSize
+	}
+
+	const getHeight = () => {
+		if (itemCount > 8) {
+			return 8 * itemSize
+		}
+		return itemData.map(getChildSize).reduce((a, b) => a + b, 0)
+	}
+
+	const gridRef = useResetCache(itemCount)
+
+	return (
+		<div ref={ref}>
+			<OuterElementContext.Provider value={other}>
+				<VariableSizeList
+					itemData={itemData}
+					height={getHeight() + 2 * LISTBOX_PADDING}
+					width='100%'
+					ref={gridRef}
+					outerElementType={OuterElementType}
+					innerElementType='ul'
+					itemSize={(index) => getChildSize(itemData[index])}
+					overscanCount={5}
+					itemCount={itemCount}>
+					{renderRow}
+				</VariableSizeList>
+			</OuterElementContext.Provider>
+		</div>
+	)
+})

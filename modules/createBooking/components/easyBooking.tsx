@@ -288,11 +288,6 @@ export const EasyBooking = () => {
 															selectedJob === info?.value
 																? theme.palette.primary.light
 																: 'white',
-
-														// border:
-														// 	selectedJob === info?.value
-														// 		? `2px solid ${theme.palette.primary.main}`
-														// 		: `1px solid ${theme.palette.secondary.light}`,
 													}}>
 													<Box>
 														<Image src={info?.icon} />
@@ -415,66 +410,6 @@ export const EasyBooking = () => {
 								renderGroup={(params) => params as unknown as React.ReactNode}
 							/>
 
-							{/* {form.values.jobType && (
-								<InputWrapper id='skills' label='Skills'>
-									<Typography className='subInfo'>
-										Skills you are looking for the selected trade
-									</Typography>
-									<Grid item xs={12} md={12}>
-										<Stack direction='row' flexWrap='wrap'>
-											{tags[form.values.jobType]?.map((item: any) => {
-												return (
-													<Chip
-														variant='outlined'
-														style={{
-															background: form.values.tags.includes(item)
-																? theme.palette.primary.light
-																: 'white',
-															color: form.values.tags.includes(item)
-																? primary.properDark
-																: '',
-
-															border: form.values.tags.includes(item)
-																? `2px solid ${theme.palette.primary.main}`
-																: ``,
-														}}
-														sx={{
-															mr: 1,
-															mb: 1,
-														}}
-														key={item}
-														label={item}
-														clickable
-														deleteIcon={<CancelIcon style={{ color: '#000' }} />}
-														onClick={
-															!form.values.tags.includes(item)
-																? () => {
-																		form.setFieldValue('tags', [
-																			...form.values.tags,
-																			item,
-																		])
-																  }
-																: undefined
-														}
-														onDelete={
-															form.values.tags.includes(item)
-																? () => {
-																		form.setFieldValue('tags', [
-																			...form.values.tags.filter(
-																				(val) => val !== item
-																			),
-																		])
-																  }
-																: undefined
-														}
-													/>
-												)
-											})}
-										</Stack>
-									</Grid>
-								</InputWrapper>
-							)} */}
-
 							<InputWrapper
 								id='workerType'
 								label={`Heroes Required & Daily Wage`}
@@ -517,28 +452,7 @@ export const EasyBooking = () => {
 														{info?.label}
 													</Typography>
 												</Grid>
-												{/* <Grid item xs={12} sm={12} md={2.5}>
-													<TextField
-														// label={`${info?.label} Required`}
-														placeholder={`Enter ${info?.label}`}
-														id={info?.name}
-														name={info?.name}
-														value={info?.formvalue}
-														type='tel'
-														onChange={(e: any) => {
-															if (
-																e.target.value >= 0 &&
-																e.target.value <=
-																	(info?.name === 'supervisor' ? 50 : 500)
-															) {
-																form.setFieldValue(e.target.name, e.target.value)
-															}
-														}}
-														fullWidth
-														onBlur={form.handleBlur}
-														error={!!checkError(`${info?.name}`, form)}
-													/>
-												</Grid> */}
+
 												<Grid item xs={12} sm={12} md={4}>
 													<TextField
 														// label='Daily wage (Rs.)'
@@ -577,12 +491,8 @@ export const EasyBooking = () => {
 														}}
 														fullWidth
 														onBlur={form.handleBlur}
-														error={!!checkError(`${info?.wage}`, form)}
-														// sx={{
-														// 	'& .MuiFormLabel-root': {
-														// 		color: theme.palette.primary.dark
-														// 	},
-														// }}
+														error={formikProps(info?.wage as any).error}
+														helperText={formikProps(info?.wage as any).helperText}
 													/>
 												</Grid>
 											</Grid>
@@ -590,40 +500,6 @@ export const EasyBooking = () => {
 									})}
 								</Grid>
 							</InputWrapper>
-
-							{/* <InputWrapper id='workDuration' label='Job Duration'>
-								<Grid container item rowGap={1}>
-									{projectDuration.map((info: any, index: any) => {
-										return (
-											<Button
-												className='borderCta'
-												key={index}
-												style={{
-													background:
-														projectDurationInfo === info?.value
-															? theme.palette.primary.light
-															: 'white',
-
-													color:
-														projectDurationInfo === info?.value
-															? primary.properDark
-															: primary.properDark,
-													marginRight: 10,
-													textTransform: 'none',
-													minWidth: 50,
-													boxShadow: 'none',
-													border:
-														projectDurationInfo === info?.value
-															? `2px solid ${theme.palette.primary.main}`
-															: '',
-												}}
-												onClick={() => handleProjectDuration(info?.value)}>
-												{info?.label}
-											</Button>
-										)
-									})}
-								</Grid>
-							</InputWrapper> */}
 						</Stack>
 						<Box className='stickyBottomBox'>
 							<Paper
@@ -636,12 +512,12 @@ export const EasyBooking = () => {
 										type='submit'
 										variant='contained'
 										loading={form.isSubmitting}
-										disabled={!isSubmittable}
+										disabled={!form.isValid}
 										// onClick={() => handleNext()}
 										style={{
 											minWidth: '10rem',
 											marginRight: isMobile ? '' : '14%',
-											background: isSubmittable
+											background: form.isValid
 												? theme.palette.primary.main
 												: theme.palette.primary.dark,
 											color: form.isSubmitting ? 'transparent' : '#000',
