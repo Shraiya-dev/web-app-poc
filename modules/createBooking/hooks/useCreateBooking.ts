@@ -1,7 +1,7 @@
 import { useFormik } from 'formik'
 import { useRouter } from 'next/router'
 import { useCallback, useEffect, useState } from 'react'
-import { JOB_TYPES, useContractorAuth, useSnackbar } from '../../../sdk'
+import { DefaultWageForWorker, JOB_TYPES, useContractorAuth, useSnackbar } from '../../../sdk'
 import { DataLayerPush } from '../../../sdk/analytics'
 import { sendAnalytics } from '../../../sdk/analytics/analyticsWrapper'
 import { createBooking, getProjectDetails } from '../apis'
@@ -11,13 +11,13 @@ interface CreateBookingForm {
 
 	StartDate: Date
 
-	helper: Number
-	supervisor: Number
-	technician: Number
+	helper: number
+	supervisor: number
+	technician: number
 
-	helperWages: Number
-	supervisorWages: Number
-	technicianWages: Number
+	helperWages: number
+	supervisorWages: number
+	technicianWages: number
 
 	overTimeFactor: string
 
@@ -64,9 +64,9 @@ const useCreateBooking = () => {
 			supervisor: 0,
 			technician: 0,
 
-			helperWages: 0,
-			supervisorWages: 0,
-			technicianWages: 0,
+			helperWages: DefaultWageForWorker.HELPER,
+			supervisorWages: DefaultWageForWorker.TECHNICIAN,
+			technicianWages: DefaultWageForWorker.SUPERVISOR,
 
 			overTimeFactor: 'none',
 

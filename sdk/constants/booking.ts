@@ -20,3 +20,9 @@ export const SkillTypeLabel: Partial<{
 	SUPERVISOR: 'Supervisor',
 	TECHNICIAN: 'Technician',
 }
+
+export const DefaultWageForWorker: { [key in WORKER_TYPES]: number } = {
+	HELPER: 600,
+	TECHNICIAN: 900,
+	SUPERVISOR: 1100,
+}

@@ -2,6 +2,7 @@ import { useFormik } from 'formik'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
 import { DataLayerPush } from 'sdk/analytics'
+import { DefaultWageForWorker } from 'sdk/constants'
 import { useFormikProps } from 'sdk/hooks'
 import { useContractorAuth } from 'sdk/providers'
 import * as Yup from 'yup'
@@ -34,9 +35,9 @@ export const useEasyBookingInternal = () => {
 			location: '',
 			jobType: 'none',
 			// workDuration: 'none',
-			helperWage: undefined,
-			technicianWage: undefined,
-			supervisorWage: undefined,
+			helperWage: DefaultWageForWorker.HELPER,
+			technicianWage: DefaultWageForWorker.TECHNICIAN,
+			supervisorWage: DefaultWageForWorker.SUPERVISOR,
 			isHelper: false,
 			isTechnician: false,
 			isSupervisor: false,

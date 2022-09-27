@@ -2,6 +2,7 @@ import { useFormik } from 'formik'
 import { useRouter } from 'next/router'
 import { useCallback, useEffect } from 'react'
 import { createCookieInHour, DataLayerPush, getCookie, sendAnalytics } from 'sdk/analytics'
+import { DefaultWageForWorker } from 'sdk/constants'
 import { useFormikProps } from 'sdk/hooks'
 import { useContractorAuth } from 'sdk/providers'
 import * as Yup from 'yup'
@@ -46,9 +47,9 @@ export const useEasyBooking = () => {
 		initialValues: {
 			location: '',
 			jobType: 'none',
-			helperWage: 500,
-			technicianWage: 700,
-			supervisorWage: 900,
+			helperWage: DefaultWageForWorker.HELPER,
+			technicianWage: DefaultWageForWorker.TECHNICIAN,
+			supervisorWage: DefaultWageForWorker.SUPERVISOR,
 			isHelper: false,
 			isTechnician: false,
 			isSupervisor: false,
