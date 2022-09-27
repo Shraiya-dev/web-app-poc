@@ -11,9 +11,9 @@ interface CreateBookingForm {
 
 	StartDate: Date
 
-	helper: number
-	supervisor: number
-	technician: number
+	helper: boolean
+	supervisor: boolean
+	technician: boolean
 
 	helperWages: number
 	supervisorWages: number
@@ -60,13 +60,13 @@ const useCreateBooking = () => {
 
 			StartDate: new Date(),
 
-			helper: 0,
-			supervisor: 0,
-			technician: 0,
+			helper: false,
+			supervisor: false,
+			technician: false,
 
 			helperWages: DefaultWageForWorker.HELPER,
-			supervisorWages: DefaultWageForWorker.TECHNICIAN,
-			technicianWages: DefaultWageForWorker.SUPERVISOR,
+			technicianWages: DefaultWageForWorker.TECHNICIAN,
+			supervisorWages: DefaultWageForWorker.SUPERVISOR,
 
 			overTimeFactor: 'none',
 
