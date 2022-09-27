@@ -1,152 +1,51 @@
+import axios from 'axios'
 import { useFormik } from 'formik'
 import { useRouter } from 'next/router'
-import { useCallback, useEffect, useState } from 'react'
-import { DefaultWageForWorker, JOB_TYPES, useContractorAuth, useSnackbar } from '../../../sdk'
-import { DataLayerPush } from '../../../sdk/analytics'
-import { sendAnalytics } from '../../../sdk/analytics/analyticsWrapper'
-import { createBooking, getProjectDetails } from '../apis'
+import { useState } from 'react'
+import { DataLayerPush, sendAnalytics } from 'sdk/analytics'
+import { DefaultWageForWorker } from 'sdk/constants'
+import { useFormikProps } from 'sdk/hooks'
+import { useContractorAuth, useSnackbar } from 'sdk/providers'
+import * as Yup from 'yup'
+import { createBooking } from '../apis'
 
-interface CreateBookingForm {
-	jobType: JOB_TYPES | ''
-
-	StartDate: Date
-
-	helper: boolean
-	supervisor: boolean
-	technician: boolean
-
-	helperWages: number
-	supervisorWages: number
-	technicianWages: number
-
-	overTimeFactor: string
-
-	// tags: Array<String>
-	startTime: string
-	endTime: string
-	shiftTime: string
-
-	state: string
-	city: string
-	siteAddress: string
-
-	name: string
-	company: string
-	companyEmail: string
-	phoneNumber: string
-}
-
-const useCreateBooking = () => {
-	const [step, setStep] = useState(1)
-
-	const { user } = useContractorAuth()
+export const useCreateBooking = () => {
 	const router = useRouter()
-	const [projectName, setProjectName] = useState('')
-	const projectId = router.query.projectId
-	const { showSnackbar } = useSnackbar()
-
 	const [isSubmittable, setIsSubmittable] = useState<boolean>(false)
-	const [loading, setLoading] = useState<boolean>(false)
+	const { createEasyBooking } = useContractorAuth()
+	const { showSnackbar } = useSnackbar()
+	const handleSubmit = async (values: any) => {
+		DataLayerPush({
+			event: 'booking_requirement',
+			helperWage: values.helperWage,
+			technicianWage: values.technicianWage,
+			supervisorWage: values.supervisorWage,
+		})
 
-	const handlePrev = () => {
-		if (step > 1) {
-			setStep((state) => state - 1)
-		}
-	}
-
-	const form = useFormik<CreateBookingForm>({
-		initialValues: {
-			jobType: '',
-
-			StartDate: new Date(),
-
-			helper: false,
-			supervisor: false,
-			technician: false,
-
-			helperWages: DefaultWageForWorker.HELPER,
-			technicianWages: DefaultWageForWorker.TECHNICIAN,
-			supervisorWages: DefaultWageForWorker.SUPERVISOR,
-
-			overTimeFactor: 'none',
-
-			// tags: [],
-			startTime: 'none',
-			endTime: 'none',
-			shiftTime: '',
-
-			state: 'none',
-			city: 'none',
-			siteAddress: '',
-
-			name: user?.name || '',
-			company: user?.companyName || '',
-			companyEmail: user?.email || '',
-			phoneNumber: user?.phoneNumber.slice(3) || '',
-		},
-		validate: (values) => {
-			const errors = <any>{}
-
-			if (!values.jobType) {
-				errors.jobType = 'Required'
-			}
-
-			//helper
-			// if (Number(values.helper) === 0 && Number(values.helperWages) > 0) {
-			// 	errors.helper = 'Required'
-			// }
-			if (Number(values.helper) > 0 && Number(values.helperWages) === 0) {
-				errors.helperWages = 'Required'
-			} else if (Number(values.helper) < 300) {
-				errors.helperWages = 'Wage should be greater then Rs 300'
-			} else if (Number(values.helper) > 2000) {
-				errors.helperWages = 'Wage should be less then Rs 2000'
-			}
-
-			// if (Number(values.technician) === 0 && Number(values.technicianWages) > 0) {
-			// 	errors.technician = 'Required'
-			// }
-			if (Number(values.technician) > 0 && Number(values.technicianWages) === 0) {
-				errors.technicianWages = 'Required'
-			} else if (Number(values.technician) < 300) {
-				errors.technicianWages = 'Wage should be greater then Rs 300'
-			} else if (Number(values.technician) > 2000) {
-				errors.technicianWages = 'Wage should be less then Rs 2000'
-			}
-
-			// if (Number(values.supervisor) === 0 && Number(values.supervisorWages) > 0) {
-			// 	errors.supervisor = 'Required'
-			// }
-			if (Number(values.supervisor) > 0 && Number(values.supervisorWages) === 0) {
-				errors.supervisorWages = 'Required'
-			} else if (Number(values.supervisor) < 300) {
-				errors.supervisorWages = 'Wage should be greater then Rs 300'
-			} else if (Number(values.supervisor) > 2000) {
-				errors.supervisorWages = 'Wage should be less then Rs 2000'
-			}
-
-			return errors
-		},
-		onSubmit: (values) => {
+		try {
 			const payload = {
-				//projectId: router?.query?.projectId,
 				jobType: values.jobType,
 				requirements: {
-					HELPER: {
-						count: Number(values.helper),
-						wage: Number(values.helperWages),
-					},
-					TECHNICIAN: {
-						count: Number(values.technician),
-						wage: Number(values.technicianWages),
-					},
-					SUPERVISOR: {
-						count: Number(values.supervisor),
-						wage: Number(values.supervisorWages),
-					},
+					HELPER: values.isHelper
+						? {
+								count: 0,
+								wage: values.helperWage,
+						  }
+						: undefined,
+					TECHNICIAN: values.isTechnician
+						? {
+								count: 0,
+								wage: values.technicianWage,
+						  }
+						: undefined,
+					SUPERVISOR: values.isSupervisor
+						? {
+								count: 0,
+								wage: values.supervisorWage,
+						  }
+						: undefined,
 				},
 			}
-			setLoading(true)
 			createBooking(payload, router?.query?.projectId)
 				.then((res) => {
 					if (res.status === 200) {
@@ -157,14 +56,7 @@ const useCreateBooking = () => {
 								values,
 							},
 						})
-						// ButtonClicked({
-						// 	action: 'Submit',
-						// 	page: 'Create Booking',
-						// 	projectId: router?.query?.projectId,
-						// 	url: router.asPath,
-						// })
-						// setIsSubmittable(false)
-						setLoading(false)
+
 						showSnackbar('Booking Created Successfully', 'success')
 						DataLayerPush({
 							event: 'worker_booked',
@@ -179,37 +71,61 @@ const useCreateBooking = () => {
 				.catch((error: any) => {
 					showSnackbar(error?.response?.data?.developerInfo, 'error')
 					console.log(error)
-					setLoading(false)
 				})
+		} catch (error) {
+			console.log(error)
+		}
+	}
+	const form = useFormik({
+		initialValues: {
+			// location: '',
+			jobType: 'none',
+			// workDuration: 'none',
+			helperWage: DefaultWageForWorker.HELPER,
+			technicianWage: DefaultWageForWorker.TECHNICIAN,
+			supervisorWage: DefaultWageForWorker.SUPERVISOR,
+			isHelper: false,
+			isTechnician: false,
+			isSupervisor: false,
+		},
+		validate: (values) => {
+			console.log(values)
+		},
+		validationSchema: Yup.object({
+			// location: Yup.string().required('Location is required'),
+			jobType: Yup.string().not(['none'], 'Job type is required'),
+			isHelper: Yup.boolean(),
+			isTechnician: Yup.boolean(),
+			isSupervisor: Yup.boolean(),
+			helperWage: Yup.number().when('isHelper', {
+				is: true,
+				then: Yup.number()
+					.required('Wage is required')
+					.min(300, 'Wage should be greater then Rs 300')
+					.max(2000, 'Wage should be less then Rs 2000'),
+			}),
+
+			technicianWage: Yup.number().when('isTechnician', {
+				is: true,
+				then: Yup.number()
+					.required('Wage is required')
+					.min(300, 'Wage should be greater then Rs 300')
+					.max(2000, 'Wage should be less then Rs 2000'),
+			}),
+			supervisorWage: Yup.number().when('isSupervisor', {
+				is: true,
+				then: Yup.number()
+					.required('Wage is required')
+					.min(300, 'Wage should be greater then Rs 300')
+					.max(2000, 'Wage should be less then Rs 2000'),
+			}),
+		}),
+
+		onSubmit: (values) => {
+			handleSubmit(values)
 		},
 	})
 
-	const getProjectInfo = useCallback(async () => {
-		if (!projectId) return
-		try {
-			const { data } = await getProjectDetails(projectId)
-			setProjectName(data?.payload?.project?.name)
-		} catch (error: any) {
-			showSnackbar(error?.response?.data?.developerInfo, 'error')
-		}
-	}, [router.query])
-
-	useEffect(() => {
-		getProjectInfo()
-	}, [getProjectInfo])
-
-	return {
-		form,
-		step,
-		setStep,
-		handlePrev,
-		projectName,
-		setProjectName,
-		isSubmittable,
-		setIsSubmittable,
-		loading,
-		setLoading,
-	}
+	const formikProps = useFormikProps(form)
+	return { form, formikProps, isSubmittable, setIsSubmittable }
 }
-
-export default useCreateBooking
