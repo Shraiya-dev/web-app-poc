@@ -1,30 +1,16 @@
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline'
-import {
-	Box,
-	Button,
-	CircularProgress,
-	Drawer,
-	Grid,
-	IconButton,
-	Paper,
-	Stack,
-	styled,
-	Typography,
-} from '@mui/material'
+import { Box, Button, CircularProgress, Grid, IconButton, Paper, Stack, styled, Typography } from '@mui/material'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
+import { useEffect } from 'react'
 import EmptyProject from '../../../public/assets/icons/emptyProject.png'
+import MenuIcon from '../../../public/assets/icons/MenuIcon.svg'
 import { BottomLayout, primary, theme, useContractorAuth, useMobile } from '../../../sdk'
 import { Analytic, clearCookie } from '../../../sdk/analytics'
 import { ButtonClicked, CardClicked, NavigationTabClicked } from '../../../sdk/analytics/analyticsWrapper'
 import { ProjectCard } from '../../../sdk/components/cards/ProjectCard'
 import { CustomTopBar } from '../../../sdk/components/topBar/customTopBar'
 import { useProjectDashboard } from '../hooks/useProjectDashboard'
-import MenuIcon from '../../../public/assets/icons/MenuIcon.svg'
-import logo from '../../../public/assets/icons/BrandLogo.svg'
-import LogoutIcon from '@mui/icons-material/Logout'
-import { ArrowBackIos } from '@mui/icons-material'
-import { useEffect } from 'react'
 
 const CustomProjectDashBoard = styled(Box)(({ theme }) => ({
 	padding: 4,

@@ -87,7 +87,7 @@ const ProjectInfo = ({ setProjectName }: any) => {
 				<Box mb={0}>
 					<Stack direction={'row'} justifyContent='space-between' alignItems='center'>
 						<Typography fontWeight={500} color='primary.main' fontSize={24} pb={2}>
-							Site
+							Construction Site
 						</Typography>
 						<Button
 							sx={{ fontSize: 10 }}
@@ -100,12 +100,12 @@ const ProjectInfo = ({ setProjectName }: any) => {
 								// })
 								setIsEditable(!isEditable)
 							}}>
-							Edit Project
+							Edit
 						</Button>
 					</Stack>
 					<Stack spacing={1.3}>
 						<TextWrapper id={'siteAddress'} label='Site Address'>
-							<Typography fontFamily={'Saira,sans-serif'} fontWeight={400}>
+							<Typography fontWeight={400}>
 								{projectInfo?.siteAddress}
 								<br />
 								{projectInfo?.city + ', ' + projectInfo?.state + ', ' + projectInfo?.pincode + ' '}
@@ -139,7 +139,7 @@ const ProjectInfo = ({ setProjectName }: any) => {
 						</TextWrapper>
 					</Stack>
 					<Typography variant='h3' color='primary.main' fontWeight={500} pb={2}>
-						Worker Benefits
+						Worker Suvidha
 					</Typography>
 					<Stack spacing={1}>
 						{/* <TextWrapper id='overTimeFactor' label='Over Time Wage'>
@@ -151,12 +151,12 @@ const ProjectInfo = ({ setProjectName }: any) => {
 						<TextWrapper id='esiAvailabe' label='Employee State Insurance (ESI)'>
 							{projectInfo?.benefits?.includes(JobBenefits?.INSURANCE) ? 'Yes' : 'No'}
 						</TextWrapper>
-						<TextWrapper id='isAccomodation' label='Accommodation'>
+						<TextWrapper id='isAccomodation' label='Rehne ki Suvidha'>
 							{projectInfo?.benefits?.includes(JobBenefits?.ACCOMODATION) ? 'Yes' : 'No'}
 						</TextWrapper>
 
 						{projectInfo?.benefits?.includes(JobBenefits?.ACCOMODATION) && (
-							<TextWrapper id='accomodationPhotos' label='Accommodation Photos'>
+							<TextWrapper id='accomodationPhotos' label='Rehne ki Photos'>
 								<Stack direction='row' overflow={'auto'}>
 									{projectInfo?.images?.accommodations?.map((url: any, index: any) => {
 										return (
@@ -190,12 +190,12 @@ const ProjectInfo = ({ setProjectName }: any) => {
 			) : (
 				<form onSubmit={form.handleSubmit}>
 					<Stack spacing={4}>
-						<InputWrapper id='projectName' label='Project Name'>
+						<InputWrapper id='projectName' label='Construction Site Name'>
 							<Grid container item xs={12} sm={12} md={6}>
 								<TextField
 									autoFocus
 									name='projectName'
-									placeholder='Enter project name'
+									placeholder='Enter construction Site Name'
 									fullWidth
 									value={form.values.projectName}
 									onChange={(e) => {
@@ -250,7 +250,7 @@ const ProjectInfo = ({ setProjectName }: any) => {
 							</Grid>
 						</InputWrapper>
 
-						<InputWrapper id='pinCode' label='Project Site Pincode'>
+						<InputWrapper id='pinCode' label=' Construction Site Pincode'>
 							<Grid container item xs={12} sm={12} md={6}>
 								<PinCodeField
 									name='pinCode'
@@ -384,15 +384,15 @@ const ProjectInfo = ({ setProjectName }: any) => {
 								</Select>
 							</Grid>
 						</InputWrapper> */}
-						<InputWrapper id='pfAvailable' label='Provident Fund (PF) available?'>
+						<InputWrapper id='pfAvailable' label='Provident Fund (PF) ka labh hai?'>
 							<CustomToggle name={'pfAvailable'} form={form} infoValues={form.values.pfAvailable} />
 						</InputWrapper>
 
-						<InputWrapper id='esiProvided' label='Employee State Insurance (ESI) provided?'>
+						<InputWrapper id='esiProvided' label='Employee State Insurance (ESI) ki suvidha hai?'>
 							<CustomToggle name={'esiProvided'} form={form} infoValues={form.values.esiProvided} />
 						</InputWrapper>
 
-						<InputWrapper id='accomodationProvided' label='Accommodation provided?'>
+						<InputWrapper id='accomodationProvided' label='Rehne ki suvidha hai?'>
 							<CustomToggle
 								name={'accomodationProvided'}
 								form={form}
@@ -488,7 +488,7 @@ const ProjectInfo = ({ setProjectName }: any) => {
 							</InputWrapper>
 						)}
 
-						<InputWrapper id='foodProvided' label='Food provided?'>
+						<InputWrapper id='foodProvided' label='Khane ki suvidha hai?'>
 							<CustomToggle name={'foodProvided'} form={form} infoValues={form.values.foodProvided} />
 						</InputWrapper>
 					</Stack>
@@ -497,10 +497,12 @@ const ProjectInfo = ({ setProjectName }: any) => {
 						direction={'row'}
 						justifyContent={'space-between'}
 						mt={4}
+						spacing={2}
 						sx={{
 							width: { xs: '100%', md: '50%' },
 						}}>
 						<Button
+							fullWidth
 							variant='outlined'
 							onClick={() => {
 								sendAnalytics({
@@ -517,6 +519,7 @@ const ProjectInfo = ({ setProjectName }: any) => {
 						</Button>
 
 						<LoadingButton
+							fullWidth
 							variant='contained'
 							onClick={() => {
 								ProjectUpdate(router.query.projectId)

@@ -163,7 +163,7 @@ const EditCompanyInfo = ({ ...props }) => {
 													size='small'
 													disabled={showGSTValidate}
 													onClick={getGSTDetail}>
-													Validate
+													Verify Karen
 												</LoadingButton>
 											</InputAdornment>
 										),

@@ -111,8 +111,7 @@ const CompanyDetails = () => {
 								paddingTop: 1,
 							}}>
 							<TutorialBanner sx={{ mx: -3, mb: 2 }}>
-								Validate GST details to stand out from other contractor job postings and get more
-								applications from Heroes.
+								Apna GST share karen aur baki contractors ke mukable zyada heroes ke phone number payen
 							</TutorialBanner>
 							<CompanyInfo />
 						</TabPanel>

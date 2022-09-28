@@ -32,172 +32,86 @@ export const BookingId = () => {
 				</Stack>
 			) : (
 				<CustomTopBar>
-					<Stack justifyContent={'flex-start'} width={1}>
-						<Stack direction={'row'} spacing={4} alignItems={'center'}>
-							<Stack direction={'row'} spacing={2}>
-								<Typography
-									sx={{
-										fontSize: 26,
-										fontWeight: 700,
-										color: theme.palette.secondary.main,
-										paddingRight: 1,
-									}}>
-									<ArrowBackIosNewIcon
-										onClick={() => router.push(`/projects/${router.query.projectId}/bookings`)}
-										sx={{
-											verticalAlign: 'middle',
-											color: '#fff',
-											fontSize: 24,
-											cursor: 'pointer',
-										}}
-									/>
-								</Typography>
-
-								<Image
-									src={JobTypeIcon[bookingSummary?.booking?.jobType || 'GYPSUM']}
-									width={24}
-									height={24}
-									style={{ verticalAlign: 'middle' }}
-									alt=''
-								/>
-								<Stack direction={'column'} spacing={1}>
-									<Stack direction={'column'}>
-										<Typography variant='h5' fontWeight={700} sx={{ verticalAlign: 'middle' }}>
-											{appliedWorkerCount ?? 0}{' '}
-											{JobTypeLabel[bookingSummary?.booking?.jobType || 'GYPSUM']}
-										</Typography>
-										<Typography
-											sx={{
-												fontSize: 12,
-												color: theme.palette.secondary.main,
-												fontFamily: 'Karla,sans-serif',
-												fontWeight: '500',
-											}}>
-											ID:&nbsp;{bookingSummary?.booking?.bookingId}
-										</Typography>
-									</Stack>
-
-									{/* <LinearProgress
-										color='error'
-										variant='determinate'
-										value={(appliedWorkerCount * 100) / total}
-										sx={{
-											height: '8px',
-											borderRadius: '10px',
-											background: '#EBEBEB',
-										}}
-									/> */}
-								</Stack>
-							</Stack>
-
-							{/* {!isMobile && bookingSummary?.booking?.bookingType === 'LIMITED_DISCOVERY' && (
-								<Button
-									href={`/bookings/${router.query.projectId}/${router.query.bookingId}/checkout`}
-									onClick={() => {
-										sendAnalytics({
-											name: 'getMoreApplication',
-											action: 'ButtonClick',
-											metaData: {
-												origin: 'Booking Detail view',
-											},
-										})
-									}}
-									sx={{ fontSize: '14px', fontWeight: 800, fontFamily: 'Karla,sans-serif' }}>
-									+ Get More Application
-								</Button>
-							)} */}
-							{/* <StatusChip
-								bookingState={bookingSummary?.booking?.status}
-								sx={{ verticalAlign: 'middle', marginTop: 1, marginLeft: 3 }}
-							/> */}
-						</Stack>
-
-						{/* <Typography
+					<Stack direction={'row'} spacing={2} alignItems='center'>
+						<ArrowBackIosNewIcon
+							onClick={() => router.push(`/projects/${router.query.projectId}/bookings`)}
 							sx={{
-								fontSize: 14,
-								color: theme.palette.secondary.main,
-								paddingLeft: 8,
+								verticalAlign: 'middle',
+								color: '#fff',
+								fontSize: 24,
+								cursor: 'pointer',
 							}}
-						>
-							ID:&nbsp;{bookingSummary?.booking?.bookingId}
-						</Typography> */}
+						/>
+
+						<Image
+							src={JobTypeIcon[bookingSummary?.booking?.jobType || 'GYPSUM']}
+							width={24}
+							height={24}
+							style={{ verticalAlign: 'middle' }}
+							alt=''
+						/>
+						<Stack direction={'column'} spacing={1}>
+							<Stack direction={'column'}>
+								<Typography variant='h5' fontWeight={700} sx={{ verticalAlign: 'middle' }}>
+									{JobTypeLabel[bookingSummary?.booking?.jobType || 'GYPSUM']}
+								</Typography>
+							</Stack>
+						</Stack>
 					</Stack>
 				</CustomTopBar>
 			)}
 
 			<TabContext value={router.query.tab as string}>
-				{/* {isMobile && bookingSummary?.booking?.bookingType === 'LIMITED_DISCOVERY' && (
-					<Box pt={2} pl={2}>
-						<Button
-							href={`/bookings/${router.query.projectId}/${router.query.bookingId}/checkout`}
-							size='small'
-							onClick={() => {
-								sendAnalytics({
-									name: 'getMoreApplication',
-									action: 'ButtonClick',
-									metaData: {
-										origin: 'Booking Detail view',
-									},
-								})
-							}}
-							sx={{ fontSize: '14px', fontWeight: 800, fontFamily: 'karla,sans-serif' }}>
-							+ Get More Application
-						</Button>
-					</Box>
-				)} */}
-
-				<Box sx={{ borderBottom: 1, borderColor: 'divider', margin: 3, marginBottom: 0, marginTop: 3 }}>
-					<Tabs
-						TabIndicatorProps={{
-							sx: {
-								height: '3px',
-							},
+				<Tabs
+					TabIndicatorProps={{
+						sx: {
+							height: '3px',
+						},
+					}}
+					value={router.query.tab as string}
+					onChange={handleTabSelection}>
+					<Tab
+						sx={{
+							fontSize: '18px',
+							textTransform: 'none',
+							fontFamily: 'Saira ,sans-serif',
+							fontWeight: 700,
 						}}
-						value={router.query.tab as string}
-						onChange={handleTabSelection}>
-						<Tab
-							sx={{
-								fontSize: '18px',
-								textTransform: 'none',
-								fontFamily: 'Saira ,sans-serif',
-								fontWeight: 700,
-							}}
-							value='track-workers'
-							label='Track Workers'
-							onClick={() => {
-								router.push(
-									`/bookings/${router?.query?.projectId}/${router?.query?.bookingId}/track-workers`
-								)
+						value='track-workers'
+						label='Workers'
+						onClick={() => {
+							router.push(
+								`/bookings/${router?.query?.projectId}/${router?.query?.bookingId}/track-workers`
+							)
 
-								HorizontalTabClicked({
-									name: 'Track Workers',
-									page: 'Booking',
-									bookingId: router?.query?.bookingId,
-									url: router.asPath,
-								})
-							}}
-						/>
-						<Tab
-							sx={{
-								fontSize: '18px',
-								textTransform: 'none',
-								fontFamily: 'Saira ,sans-serif',
-								fontWeight: 700,
-							}}
-							value='details'
-							label='Booking Details'
-							onClick={() => {
-								router.push(`/bookings/${router?.query?.projectId}/${router?.query?.bookingId}/details`)
-								HorizontalTabClicked({
-									name: 'Booking Details',
-									page: 'Booking',
-									bookingId: router?.query?.bookingId,
-									url: router.asPath,
-								})
-							}}
-						/>
-					</Tabs>
-				</Box>
+							HorizontalTabClicked({
+								name: 'Track Workers',
+								page: 'Booking',
+								bookingId: router?.query?.bookingId,
+								url: router.asPath,
+							})
+						}}
+					/>
+					<Tab
+						sx={{
+							fontSize: '18px',
+							textTransform: 'none',
+							fontFamily: 'Saira ,sans-serif',
+							fontWeight: 700,
+						}}
+						value='details'
+						label='Job Posting Details'
+						onClick={() => {
+							router.push(`/bookings/${router?.query?.projectId}/${router?.query?.bookingId}/details`)
+							HorizontalTabClicked({
+								name: 'Booking Details',
+								page: 'Booking',
+								bookingId: router?.query?.bookingId,
+								url: router.asPath,
+							})
+						}}
+					/>
+				</Tabs>
 				<TabPanel
 					value='track-workers'
 					sx={{

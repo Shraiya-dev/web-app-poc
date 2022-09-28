@@ -140,7 +140,7 @@ export const BookingCard = ({ booking }: BookingCardProps) => {
 							fontWeight={600}
 							fontFamily={'Saira,sans-serif'}
 							sx={{ verticalAlign: 'middle', margin: 1, color: primary.properDark }}>
-							{totalRequiredCount} {JobTypeLabel[booking?.booking?.jobType]} Applications
+							{JobTypeLabel[booking?.booking?.jobType]} Job Posting
 						</Typography>
 					</Box>
 					{/* <StatusChip bookingState={booking?.booking?.status} sx={{ verticalAlign: 'middle' }} /> */}
@@ -332,7 +332,7 @@ export const BookingCard = ({ booking }: BookingCardProps) => {
 										fontFamily: 'Saira,sans-serif',
 										fontWeight: 600,
 									}}>
-									View Applications
+									Heroes ko call karen
 								</Button>
 							</Link>
 						</Box>
