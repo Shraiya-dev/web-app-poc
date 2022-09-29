@@ -37,6 +37,14 @@ const AppEnvConfig: {
 		SERVER_URL: 'https://api.projecthero.in',
 		SEGMENT_KEY: 'THQyDjO2eB8m23i0XERwybAABIYsRNvw',
 		RAZOR_PAY_KEY: 'rzp_live_EjKSlAc9GcAw7S',
+		firebaseConfig: {
+			apiKey: 'AIzaSyAkvn8ca8PeLqU-ptHtTKAsEdqenw1f1fM',
+			authDomain: 'stage-web-app-b92ec.firebaseapp.com',
+			projectId: 'stage-web-app-b92ec',
+			storageBucket: 'stage-web-app-b92ec.appspot.com',
+			messagingSenderId: '34064197069',
+			appId: '1:34064197069:web:1df140c52abc1b2818d084',
+		},
 	},
 }
 export const envs = AppEnvConfig[NEXT_PUBLIC_APP_ENV as ENV_Types]

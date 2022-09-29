@@ -99,7 +99,9 @@ function MyApp({ Component, pageProps }: AppProps) {
 		setPageData(pageStaticData)
 	}, [pageStaticData])
 	useEffect(() => {
-		const perf = getPerformance(app)
+		if (process.env.NEXT_PUBLIC_APP_ENV === 'STAGE') {
+			const perf = getPerformance(app)
+		}
 	}, [])
 
 	useEffect(() => {
