@@ -202,20 +202,24 @@ const WorkerTracking = ({ handleRequiredTotal }: handleLength) => {
 							<CircularProgress size={50} />
 						</Stack>
 					) : jobCards.length === 0 ? (
-						<Stack flex={1} mt={20} direction={'column'} alignItems='center'>
-							<Typography
-								fontFamily={'Saira,sans-serif'}
-								fontWeight={700}
-								variant='h4'
-								color={primary.yellow}>
-								We have made your booking live on our Hero App
+						<Stack
+							flex={1}
+							mt={20}
+							spacing={1}
+							mx={'auto'}
+							maxWidth={'80%'}
+							direction={'column'}
+							alignItems='center'>
+							<Typography textAlign={'center'} variant='h6' color={primary.yellow}>
+								Aapki job post live ho chuki hai
 							</Typography>
 							<Typography
-								fontFamily={'Saira,sans-serif'}
-								fontWeight={700}
-								variant='h4'
-								color={primary.yellow}>
-								You will see the application as soon as any Hero applies!
+								textAlign={'center'}
+								variant='h6'
+								fontSize={12}
+								fontWeight={400}
+								color={'common.white'}>
+								Jaise hi heroes aapke job pe apply karte hai, unke phone numbers aapko yahaan dikhege
 							</Typography>
 						</Stack>
 					) : (

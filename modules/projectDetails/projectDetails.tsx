@@ -42,15 +42,15 @@ export const ProjectDetails: FC<Props> = () => {
 	const tabList: { [key in string]: string | undefined } = useMemo(() => {
 		if (user?.isEnterprise) {
 			return {
-				bookings: 'Bookings',
+				bookings: 'Job Postings',
 				'work-report': user?.isEnterprise ? 'Work Report' : undefined,
 				bills: user?.isEnterprise && projectDetails?.generateBills ? 'Bills' : undefined,
-				details: 'Project Details',
+				details: 'Construction Site Details',
 			}
 		} else {
 			return {
-				bookings: 'Bookings',
-				details: 'Project Details',
+				bookings: 'Job Postings',
+				details: 'Construction Site Details',
 			}
 		}
 	}, [projectDetails?.generateBills, user?.isEnterprise])
@@ -130,7 +130,7 @@ export const ProjectDetails: FC<Props> = () => {
 									url: router.asPath,
 								})
 							}}>
-							Post Job Now
+							Job Post Karen
 						</LinkButton>
 					)}
 				</Stack>
@@ -187,8 +187,8 @@ export const ProjectDetails: FC<Props> = () => {
 						position: 'relative',
 					}}>
 					<TutorialBanner>
-						All your job postings are here. Click on “View Applications” to see the phone numbers of Heroes
-						who applied to your job
+						Post ki gai aapki sari jobs yahaan dikhegi. &quot;Heroes ko call karen&quot; pe click karne par
+						jo bhi heroes ne apply kiya hai unke phone number aapko dikhege.
 					</TutorialBanner>
 					<Dashboard />
 				</TabPanel>
@@ -229,8 +229,8 @@ export const ProjectDetails: FC<Props> = () => {
 						position: 'relative',
 					}}>
 					<TutorialBanner>
-						Job postings with updated site details attract 70% more applications from Heroes. Update Details
-						now.
+						Site details wali job posting par 70% zyada heroes apply karte hain. Aapki site details abhi add
+						karen aur zyada heroes se baat karen.
 					</TutorialBanner>
 					<ProjectInfo setProjectName={setProjectName} />
 				</TabPanel>

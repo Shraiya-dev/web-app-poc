@@ -33,7 +33,7 @@ const PersonalAccount = () => {
 						</Typography>
 						{!isAccountEditable && (
 							<Button size='small' variant='contained' sx={{ fontSize: 10 }} onClick={handleEdit}>
-								Edit Profile
+								Edit
 							</Button>
 						)}
 					</Stack>
@@ -41,7 +41,8 @@ const PersonalAccount = () => {
 
 				<Stack m={3} mt={0}>
 					<TutorialBanner sx={{ mx: -3, mb: 2 }}>
-						Add your e-mail now and never lose access to your job postings & applications from Heroes.
+						Apna e-mail share karen taki aap kabhi bhi apni job posting aur heroes ke phone number wali
+						details gawae nhi.
 					</TutorialBanner>
 					<Box justifyContent={'flex-end'} display='flex' mb={-3} mt={2}></Box>
 

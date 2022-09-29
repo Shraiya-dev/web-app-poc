@@ -487,7 +487,7 @@ export const CreateProject = () => {
 								</InputWrapper>
 							)}
 
-							<InputWrapper id='foodProvided' label='Food provided?'>
+							<InputWrapper id='foodProvided' label='Khane ki suvidha hai?'>
 								<CustomToggle name={'foodProvided'} form={form} infoValues={form.values.foodProvided} />
 							</InputWrapper>
 						</Stack>

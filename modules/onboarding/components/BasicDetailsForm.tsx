@@ -91,7 +91,7 @@ export const BasicDetailsForm = () => {
 									style={{ float: 'left', padding: 0 }}
 									endIcon={<EditIcon />}
 									onClick={handleEdit}>
-									{'Edit Profile'}
+									{'Edit'}
 								</Button>
 							)}
 						</Typography>

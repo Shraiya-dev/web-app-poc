@@ -61,7 +61,7 @@ const BookingInfo = ({ ...props }: BookingInfo) => {
 
 	const CardChips = [
 		{
-			label: 'Accommodation',
+			label: 'Rehne ki Suvidha',
 			imgSrc: '/assets/icons/AccommodationIcon.svg',
 		},
 		{
@@ -69,7 +69,7 @@ const BookingInfo = ({ ...props }: BookingInfo) => {
 			imgSrc: '/assets/icons/PFIcon.svg',
 		},
 		{
-			label: 'Food',
+			label: 'Khane ki suvidha',
 			imgSrc: '/assets/icons/FoodIcon.svg',
 		},
 		{
@@ -93,7 +93,7 @@ const BookingInfo = ({ ...props }: BookingInfo) => {
 					<Box mb={0}>
 						<Stack direction={'column'} mb={6} spacing={3}>
 							<Typography variant='h4' fontWeight={700}>
-								Project Details
+								Construction Site
 							</Typography>
 							<Card
 								sx={{
@@ -113,7 +113,7 @@ const BookingInfo = ({ ...props }: BookingInfo) => {
 												onClick={() => {
 													router.push(`/projects/${bookingInfo?.project?.id}/details`)
 												}}>
-												Edit Project
+												Edit
 											</Button>
 										</Stack>
 										<Stack direction={'row'} alignItems={'flex-start'} spacing={0.5} width={'40%'}>
@@ -136,14 +136,13 @@ const BookingInfo = ({ ...props }: BookingInfo) => {
 									<Stack
 										direction={'row'}
 										flexWrap={'wrap'}
-										spacing={1.5}
 										mt={1}
 										sx={{
 											flexWrap: 'wrap',
 										}}>
 										{CardChips.map((x, index) => {
 											return (
-												<Box key={index}>
+												<Box key={index} sx={{ m: 0.5 }}>
 													<Chip
 														size='small'
 														avatar={<Avatar alt='img' src={x.imgSrc} />}
@@ -156,12 +155,8 @@ const BookingInfo = ({ ...props }: BookingInfo) => {
 								</CardContent>
 							</Card>
 						</Stack>
-						<Stack
-							spacing={5}
-							sx={{
-								p: { xs: 2, md: '' },
-							}}>
-							<TextWrapper id={'trade'} label='Trade'>
+						<Stack spacing={5}>
+							<TextWrapper id={'trade'} label='Job Category'>
 								{JobTypeLabel[bookingInfo?.booking?.jobType || 'GYPSUM']}
 							</TextWrapper>
 
@@ -172,26 +167,23 @@ const BookingInfo = ({ ...props }: BookingInfo) => {
 							)}
 
 							<TextWrapper id={'workerRequired'} label={`Workers Required & Daily Wage`}>
-								{workerType.map((item, index) => {
-									return (
-										<Stack key={index} direction={'row'} pb={1}>
-											<Box minWidth={50}>
-												<Icon sx={{ fontSize: 32, verticalAlign: 'middle' }}>
-													<Image src={item.icon} style={{ width: 32, height: 32 }} alt='' />
-												</Icon>
-											</Box>
-											<Box minWidth={100} sx={{ verticalAlign: 'middle' }} mt={0.8}>
-												{item?.label}
-											</Box>
-											{/* <Box minWidth={50} sx={{ verticalAlign: 'middle' }} mt={0.8}>
-												{item?.count ?? 0}
-											</Box> */}
-											<Box minWidth={20} sx={{ verticalAlign: 'middle' }} mt={0.8}>{`Rs. ${
-												item?.wage ?? 0
-											}`}</Box>
-										</Stack>
-									)
-								})}
+								<Stack spacing={1}>
+									{workerType.map((item, index) => {
+										return (
+											<Stack
+												key={index}
+												direction={'row'}
+												spacing={2}
+												flex={1}
+												alignItems='center'>
+												<Image src={item.icon} alt='' width={36} />
+												<Typography flex={1}>{item?.label}</Typography>
+
+												<Typography>{`Rs. ${item?.wage ?? '-'}`}</Typography>
+											</Stack>
+										)
+									})}
+								</Stack>
 							</TextWrapper>
 
 							{/* <TextWrapper id={'jobDuration'} label={`Job Duration`}>
