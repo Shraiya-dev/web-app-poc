@@ -147,7 +147,7 @@ export const Dashboard = () => {
 							{/* <Button onClick={handleBookingForm}>Book Heroes</Button> */}
 							<Link href={`/projects/${router?.query?.projectId}/bookings/create`} passHref>
 								<a>
-									<Button variant='contained'>Post Job Now</Button>
+									<Button variant='contained'>Job Post Karen</Button>
 								</a>
 							</Link>
 						</Stack>

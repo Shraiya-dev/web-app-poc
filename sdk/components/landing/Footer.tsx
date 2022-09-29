@@ -66,7 +66,7 @@ export const Footer = () => {
 											py: { xs: 1, md: 2 },
 											fontSize: { xs: 16, md: 20 },
 										}}>
-										Post Job Now
+										Job Post Karen
 									</LinkButton>
 								</Stack>
 							</Stack>
@@ -284,7 +284,7 @@ export const Footer = () => {
 								fontWeight: 500,
 								fontFamily: 'Karla ,sans-serif',
 							}}>
-							Post Job Now
+							Job Post Karen
 						</LinkButton>
 					</Stack>
 					<Stack direction={'column'} mt={6}>

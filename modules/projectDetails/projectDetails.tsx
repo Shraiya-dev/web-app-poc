@@ -130,7 +130,7 @@ export const ProjectDetails: FC<Props> = () => {
 									url: router.asPath,
 								})
 							}}>
-							Post Job Now
+							Job Post Karen
 						</LinkButton>
 					)}
 				</Stack>

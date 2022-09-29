@@ -182,7 +182,7 @@ const ProjectInfo = ({ setProjectName }: any) => {
 								</Stack>
 							</TextWrapper>
 						)}
-						<TextWrapper id='foodAvailable' label='Food'>
+						<TextWrapper id='foodAvailable' label='Khane ki suvidha'>
 							{projectInfo?.benefits?.includes(JobBenefits?.FOOD) ? 'Yes' : 'No'}
 						</TextWrapper>
 					</Stack>
