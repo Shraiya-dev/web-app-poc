@@ -309,6 +309,7 @@ let themeDef = createTheme({
 			styleOverrides: {
 				root: {
 					borderRadius: 30,
+					fontWeight: 700,
 					textTransform: 'inherit',
 				},
 
