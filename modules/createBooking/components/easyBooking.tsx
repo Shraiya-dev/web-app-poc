@@ -512,14 +512,25 @@ export const EasyBooking = () => {
 										type='submit'
 										variant='contained'
 										loading={form.isSubmitting}
-										disabled={!form.isValid}
+										disabled={
+											!form.isValid ||
+											!(
+												form.values.isHelper ||
+												form.values.isTechnician ||
+												form.values.isSupervisor
+											)
+										}
 										// onClick={() => handleNext()}
 										style={{
 											minWidth: '10rem',
 											marginRight: isMobile ? '' : '14%',
-											background: form.isValid
-												? theme.palette.primary.main
-												: theme.palette.primary.dark,
+											background:
+												form.isValid &&
+												(form.values.isHelper ||
+													form.values.isTechnician ||
+													form.values.isSupervisor)
+													? theme.palette.primary.main
+													: theme.palette.primary.dark,
 											color: form.isSubmitting ? 'transparent' : '#000',
 										}}>
 										{'Create Booking'}
