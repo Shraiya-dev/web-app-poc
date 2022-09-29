@@ -7,6 +7,10 @@ import { useRouter } from 'next/router'
 import Script from 'next/script'
 import { useEffect } from 'react'
 import { QueryClient, QueryClientProvider } from 'react-query'
+import { getPerformance } from 'firebase/performance'
+import { initializeApp } from 'firebase/app'
+const app = initializeApp(envs.firebaseConfig as any)
+
 import {
 	ContractorAuthProvider,
 	envs,
@@ -94,6 +98,10 @@ function MyApp({ Component, pageProps }: AppProps) {
 	useEffect(() => {
 		setPageData(pageStaticData)
 	}, [pageStaticData])
+	useEffect(() => {
+		const perf = getPerformance(app)
+	}, [])
+
 	useEffect(() => {
 		let origin = window.location.origin
 		switch (true) {
