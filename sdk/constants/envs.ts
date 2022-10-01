@@ -12,18 +12,20 @@ const AppEnvConfig: {
 		SERVER_URL: string
 		SEGMENT_KEY: string
 		RAZOR_PAY_KEY?: string
+		FALGSMITH_API_KEY: string
 		firebaseConfig?: FirebaseOptions
 	}
 } = {
 	DEV: {
 		SERVER_URL: 'https://dev-api.projecthero.in',
 		SEGMENT_KEY: 'vgfJ6TLq447xB45FZU3IQTtdeHSIQGvE',
+		FALGSMITH_API_KEY: 'V92Udh6jBfJozUAbMmAKUt',
 	},
 	STAGE: {
 		SERVER_URL: 'https://stage-api.projecthero.in',
-
 		SEGMENT_KEY: 'vgfJ6TLq447xB45FZU3IQTtdeHSIQGvE',
 		RAZOR_PAY_KEY: 'rzp_test_5Cq7IvEn1S6ykT',
+		FALGSMITH_API_KEY: 'GkNx53mXcKzwpgkcgYJcvc',
 		firebaseConfig: {
 			apiKey: 'AIzaSyAkvn8ca8PeLqU-ptHtTKAsEdqenw1f1fM',
 			authDomain: 'stage-web-app-b92ec.firebaseapp.com',
@@ -37,6 +39,7 @@ const AppEnvConfig: {
 		SERVER_URL: 'https://api.projecthero.in',
 		SEGMENT_KEY: 'THQyDjO2eB8m23i0XERwybAABIYsRNvw',
 		RAZOR_PAY_KEY: 'rzp_live_EjKSlAc9GcAw7S',
+		FALGSMITH_API_KEY: 'GkNx53mXcKzwpgkcgYJcvc',
 		firebaseConfig: {
 			apiKey: 'AIzaSyAkvn8ca8PeLqU-ptHtTKAsEdqenw1f1fM',
 			authDomain: 'stage-web-app-b92ec.firebaseapp.com',
