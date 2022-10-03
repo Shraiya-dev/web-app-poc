@@ -164,6 +164,10 @@ function MyApp({ Component, pageProps }: AppProps) {
 						identity: sessionId,
 						api: 'http://34.93.52.13:8080/api/v1/',
 						cacheFlags: true,
+						cacheOptions: {
+							ttl: 15 * 60 * 1000,
+							skipAPI: true,
+						},
 					}}>
 					<ThemeProvider theme={theme}>
 						<CssBaseline />

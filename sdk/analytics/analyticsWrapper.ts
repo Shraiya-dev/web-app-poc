@@ -68,7 +68,7 @@ const getFlags = () => {
 
 	if (typeof window !== 'undefined') {
 		const local = JSON.parse(localStorage.getItem('BULLET_TRAIN_DB') ?? '{}')
-		Object.keys(local.flags).forEach((key: string) => {
+		Object.keys(local?.flags ?? {}).forEach((key: string) => {
 			if (LiveFlags[key]) {
 				experiments = {
 					...experiments,
