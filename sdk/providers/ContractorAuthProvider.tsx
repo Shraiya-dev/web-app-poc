@@ -268,7 +268,6 @@ const ContractorAuthProvider: FC<ContractorAuthProviderProps> = ({ children, aut
 					document.cookie = `refreshToken = ${data.data?.refreshToken}`
 
 					localStorage.setItem('accessToken', data.data?.accessToken)
-					localStorage.setItem('uuid', data?.data?._id)
 					localStorage.setItem('phoneNumber', data.data?.phoneNumber)
 					localStorage.setItem('refreshToken', data.data?.refreshToken)
 					dispatch({
@@ -360,8 +359,6 @@ const ContractorAuthProvider: FC<ContractorAuthProviderProps> = ({ children, aut
 			}
 			try {
 				const { data } = await getCustomerDetails()
-				localStorage.setItem('uuid', data?.payload?.customerId)
-
 				dispatch({
 					accessToken: accessToken,
 					refreshToken: refreshToken,
