@@ -1,4 +1,5 @@
 import { NextRouter } from 'next/router'
+import { LiveFlags } from 'sdk/constants/flagsmith'
 import { PageStaticData } from 'sdk/types'
 import { Analytic } from './analytics'
 import { getUtmObject } from './helper'
@@ -62,13 +63,29 @@ const flattenJSON = (obj: any = {}, res: any = {}, extraKey: any = '') => {
 	}
 	return res
 }
+const getFlags = () => {
+	let experiments = {}
+
+	if (typeof window !== 'undefined') {
+		const local = JSON.parse(localStorage.getItem('BULLET_TRAIN_DB') ?? '{}')
+		Object.keys(local?.flags ?? {}).forEach((key: string) => {
+			if (LiveFlags[key]) {
+				experiments = {
+					...experiments,
+					[key]: local?.flags[key],
+				}
+			}
+		})
+	}
+	return experiments
+}
 export const ButtonClicked = ({ ...props }: ButtonClicked) => {
 	const utmInfo = getUtmObject()
 	if (utmInfo) {
 		const utmProp = { ...props, utmParams: utmInfo }
-		Analytic.track('Button Clicked', { utmProp, ...flattenJSON(utmProp) })
+		Analytic.track('Button Clicked', { utmProp, ...flattenJSON(utmProp), experiments: getFlags() })
 	} else {
-		Analytic.track('Button Clicked', { ...props, ...flattenJSON(props) })
+		Analytic.track('Button Clicked', { ...props, ...flattenJSON(props), experiments: getFlags() })
 	}
 }
 
@@ -76,9 +93,9 @@ export const CardClicked = ({ ...props }: CardClicked) => {
 	const utmInfo = getUtmObject()
 	if (utmInfo) {
 		const utmProp = { ...props, utmParams: utmInfo }
-		Analytic.track('Card Clicked', { utmProp, ...flattenJSON(utmProp) })
+		Analytic.track('Card Clicked', { utmProp, ...flattenJSON(utmProp), experiments: getFlags() })
 	} else {
-		Analytic.track('Card Clicked', { ...props, ...flattenJSON(props) })
+		Analytic.track('Card Clicked', { ...props, ...flattenJSON(props), experiments: getFlags() })
 	}
 }
 
@@ -86,9 +103,9 @@ export const HorizontalTabClicked = ({ ...props }: HorizontalTabClicked) => {
 	const utmInfo = getUtmObject()
 	if (utmInfo) {
 		const utmProp = { ...props, utmParams: utmInfo }
-		Analytic.track('HorizontalTab Clicked', { utmProp, ...flattenJSON(utmProp) })
+		Analytic.track('HorizontalTab Clicked', { utmProp, ...flattenJSON(utmProp), experiments: getFlags() })
 	} else {
-		Analytic.track('HorizontalTab Clicked', { ...props, ...flattenJSON(props) })
+		Analytic.track('HorizontalTab Clicked', { ...props, ...flattenJSON(props), experiments: getFlags() })
 	}
 }
 
@@ -96,20 +113,22 @@ export const NavigationTabClicked = ({ ...props }: NavigationTabClicked) => {
 	const utmInfo = getUtmObject()
 	if (utmInfo) {
 		const utmProp = { ...props, utmParams: utmInfo }
-		Analytic.track('NavigationTab Clicked', { utmProp, ...flattenJSON(utmProp) })
+		Analytic.track('NavigationTab Clicked', { utmProp, ...flattenJSON(utmProp), experiments: getFlags() })
 	} else {
-		Analytic.track('NavigationTab Clicked', { props, ...flattenJSON(props) })
+		Analytic.track('NavigationTab Clicked', { props, ...flattenJSON(props), experiments: getFlags() })
 	}
 }
 
 export const Identify = async (props?: Identify) => {
 	const utmInfo = getUtmObject()
+
 	if (props) {
 		const { customerId, ...rest } = props
-		Analytic.identify(customerId, { ...rest, utmParams: utmInfo })
+		Analytic.identify(customerId, { ...rest, utmParams: utmInfo, experiments: getFlags() })
 	} else {
 		Analytic.identify({
 			utmParams: utmInfo,
+			experiments: getFlags(),
 		})
 	}
 }
@@ -133,7 +152,8 @@ export const getDeviceType = () => (navigator && navigator.maxTouchPoints > 0 ? 
 export const NewAnalyticsPage = (router: NextRouter) => {
 	const { name } = getPageData()
 	const utmInfo = getUtmObject()
-	Analytic.page(name, { utmParams: utmInfo, deviceType: getDeviceType() })
+
+	Analytic.page(name, { utmParams: utmInfo, deviceType: getDeviceType(), experiments: getFlags() })
 }
 //Define a new event here
 const EventTypes = {
@@ -186,6 +206,7 @@ export const sendAnalytics = async (event: {
 }) => {
 	const utmInfo = getUtmObject()
 	const { name, action, metaData } = event
+
 	const payload = {
 		action: ActionTypes[action],
 		metaData: metaData,
@@ -193,6 +214,7 @@ export const sendAnalytics = async (event: {
 		page: getPageData().name,
 		url: document.location.pathname,
 		utmParams: utmInfo,
+		experiments: getFlags(),
 		deviceType: getDeviceType(),
 	}
 	return await Analytic.track(EventTypes[name], payload)
