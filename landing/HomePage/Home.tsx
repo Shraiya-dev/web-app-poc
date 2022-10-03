@@ -19,6 +19,7 @@ import {
 } from '@mui/material'
 import 'keen-slider/keen-slider.min.css'
 import { useKeenSlider } from 'keen-slider/react'
+import Image from 'next/image'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
 
@@ -254,14 +255,12 @@ export const Home = () => {
 									</Typography>
 								</Typography>
 								<Box
-									component='img'
 									onClick={() => setVideoPlayerPopper(true)}
 									sx={{
 										cursor: 'pointer',
-										width: 100,
-									}}
-									src={'/assets/landingv2/how-it-works.png'}
-								/>
+									}}>
+									<Image width={100} height={100} src={'/assets/landingv2/how-it-works.png'} />
+								</Box>
 							</Stack>
 						</Grid>
 					)}
@@ -403,11 +402,11 @@ export const Home = () => {
 										style={{ height: 50, maxWidth: 300 }}>
 										<Box className='keen-slider__slide number-slide1'>
 											<Stack direction='row' alignItems='center' spacing={2}>
-												<Box
-													component='img'
+												<Image
 													height={50}
 													width={50}
-													src={'/assets/landingv2/icons/user.svg'}></Box>
+													src={'/assets/landingv2/icons/user.svg'}
+												/>
 												<Typography>
 													<strong>4 Lac+</strong> construction workers ka network
 												</Typography>
@@ -415,11 +414,11 @@ export const Home = () => {
 										</Box>
 										<Box className='keen-slider__slide number-slide2'>
 											<Stack direction='row' alignItems='center' spacing={2}>
-												<Box
-													component='img'
+												<Image
 													height={50}
 													width={50}
-													src={'/assets/landingv2/icons/call.svg'}></Box>
+													src={'/assets/landingv2/icons/call.svg'}
+												/>
 												<Typography>
 													<strong>Best workers</strong> aapko seedhe call karenge
 												</Typography>
@@ -427,11 +426,7 @@ export const Home = () => {
 										</Box>
 										<Box className='keen-slider__slide number-slide3'>
 											<Stack direction='row' alignItems='center' spacing={2}>
-												<Box
-													component='img'
-													height={50}
-													width={50}
-													src={'/assets/landingv2/icons/hat.svg'}></Box>
+												<Image height={50} width={50} src={'/assets/landingv2/icons/hat.svg'} />
 												<Typography>
 													<strong>Apply karne wale workers</strong> ka number dashboard par
 													dekhen
@@ -838,6 +833,7 @@ export const Home = () => {
 										},
 										width: '100%',
 									}}
+									loading='lazy'
 								/>
 							</Box>
 						</Box>
@@ -997,11 +993,7 @@ export const Home = () => {
 										</Box>
 									</Stack>
 								</Grid>
-								<Grid item xs={12} md={6}>
-									{/* <Box>
-								<img src='/assets/landingv2/heroSection/heroAdvantage.svg' alt='' />
-							</Box> */}
-								</Grid>
+								<Grid item xs={12} md={6}></Grid>
 							</Grid>
 						</Box>
 					</Section>
@@ -1067,7 +1059,11 @@ export const Home = () => {
 												}}
 												target='_blank'
 												rel='noopener noreferrer'>
-												<img src='/assets/landingv2/heroSection/googlebutton.svg' alt='' />
+												<img
+													src='/assets/landingv2/heroSection/googlebutton.svg'
+													alt=''
+													loading='lazy'
+												/>
 											</a>
 										</Box>
 									</Stack>
@@ -1080,6 +1076,7 @@ export const Home = () => {
 												height={'100%'}
 												src='/assets/landingv2/heroSection/mobile2.svg'
 												alt=''
+												loading='lazy'
 											/>
 										</Box>
 										<Box
@@ -1094,6 +1091,7 @@ export const Home = () => {
 												height={'100%'}
 												src='/assets/landingv2/heroSection/mobile1.svg'
 												alt=''
+												loading='lazy'
 											/>
 										</Box>
 									</Stack>
@@ -1128,7 +1126,7 @@ export const Home = () => {
 								})}>
 								<Stack direction='row' justifyContent={'space-between'}>
 									{homePage.customerReview.heading}
-									<img className='helmet' src='/assets/icons/backgrounds/Helmet.svg' />
+									<img className='helmet' src='/assets/icons/backgrounds/Helmet.svg' loading='lazy' />
 								</Stack>
 								<CarouselV2
 									componentPerView={1}
@@ -1154,10 +1152,12 @@ export const Home = () => {
 													<img
 														className='leftQuote'
 														src='/assets/landingv2/icons/quoteup.svg'
+														loading='lazy'
 													/>
 													<img
 														className='rightQuote'
 														src='/assets/landingv2/icons/quotedown.svg'
+														loading='lazy'
 													/>
 
 													<Stack
@@ -1204,7 +1204,7 @@ export const Home = () => {
 									{homePage.customerReview.ImageList.map((val, index) => {
 										return (
 											<ListItem key={index}>
-												<img src={val.src} alt='' />
+												<img src={val.src} alt='' loading='lazy' />
 											</ListItem>
 										)
 									})}
