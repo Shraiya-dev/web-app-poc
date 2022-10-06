@@ -72,7 +72,7 @@ const getFlags = () => {
 			if (LiveFlags[key]) {
 				experiments = {
 					...experiments,
-					[key]: local?.flags[key],
+					[key]: local?.flags[key]?.value,
 				}
 			}
 		})

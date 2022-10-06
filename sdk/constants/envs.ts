@@ -44,7 +44,7 @@ const AppEnvConfig: {
 		SEGMENT_KEY: 'THQyDjO2eB8m23i0XERwybAABIYsRNvw',
 		RAZOR_PAY_KEY: 'rzp_live_EjKSlAc9GcAw7S',
 		FALGSMITH_SERVER_URL: 'https://config.projecthero.in/api/v1/',
-		FALGSMITH_API_KEY: 'GkNx53mXcKzwpgkcgYJcvc',
+		FALGSMITH_API_KEY: '7Jq5ju22nzcBbn7sJqvB8R',
 		firebaseConfig: {
 			apiKey: 'AIzaSyAkvn8ca8PeLqU-ptHtTKAsEdqenw1f1fM',
 			authDomain: 'stage-web-app-b92ec.firebaseapp.com',
