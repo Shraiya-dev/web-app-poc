@@ -5,7 +5,7 @@ import type { AppProps } from 'next/app'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import Script from 'next/script'
-import { useEffect } from 'react'
+import { useCallback, useEffect, useMemo } from 'react'
 import { QueryClient, QueryClientProvider } from 'react-query'
 import { getPerformance } from 'firebase/performance'
 import { initializeApp } from 'firebase/app'
@@ -14,6 +14,7 @@ const app = initializeApp(envs.firebaseConfig as any)
 import {
 	ContractorAuthProvider,
 	envs,
+	getUUID,
 	GlobalCssProvider,
 	Identify,
 	logOutService,
@@ -34,7 +35,8 @@ import { SplashProvider } from 'sdk/providers/SplashProvider'
 import { CssBaseline } from '@mui/material'
 import { PaymentProvider } from 'sdk/providers/PaymentProvider'
 import { createCookieInHour, getCookie } from '../sdk/analytics/helper'
-
+import flagsmith from 'flagsmith'
+import { FlagsmithProvider, useFlagsmith } from 'flagsmith/react'
 const queryClient = new QueryClient()
 
 //=====================initializing axios interceptor=======================
@@ -52,12 +54,12 @@ axios.interceptors.request.use(
 		return Promise.reject(error)
 	}
 )
-// replace console.* for disable log on production
-if (process.env.NODE_ENV === 'production') {
-	console.log = () => {}
-	console.error = () => {}
-	console.debug = () => {}
-}
+// // replace console.* for disable log on production
+// if (process.env.NODE_ENV === 'production') {
+// 	console.log = () => {}
+// 	console.error = () => {}
+// 	console.debug = () => {}
+// }
 let _retry = false
 axios.interceptors.response.use(
 	(response: AxiosResponse) => {
@@ -138,28 +140,51 @@ function MyApp({ Component, pageProps }: AppProps) {
 			NewAnalyticsPage(router)
 		}
 	}, [router])
+	const sessionId = useMemo(() => {
+		if (typeof window === 'undefined') return
+		const uuid = localStorage.getItem('uuid')
+		if (uuid) {
+			return localStorage.getItem('uuid') as string
+		} else {
+			const nUUID = getUUID()
+			localStorage.setItem('uuid', nUUID)
+			return nUUID
+		}
+	}, [])
 
 	return (
 		<>
 			<CommonHead />
 			{pageStaticData?.seo && <SEO {...pageStaticData.seo} />}
 			<QueryClientProvider client={queryClient}>
-				<ThemeProvider theme={theme}>
-					<CssBaseline />
-					<GlobalCssProvider>
-						<SnackbarProvider>
-							<SplashProvider>
-								<ContractorAuthProvider>
-									<TutorialProvider pageStaticData={pageStaticData}>
-										<PaymentProvider>
-											<Component {...pageProps} />
-										</PaymentProvider>
-									</TutorialProvider>
-								</ContractorAuthProvider>
-							</SplashProvider>
-						</SnackbarProvider>
-					</GlobalCssProvider>
-				</ThemeProvider>
+				<FlagsmithProvider
+					flagsmith={flagsmith}
+					options={{
+						environmentID: envs.FALGSMITH_API_KEY,
+						identity: sessionId,
+						api: envs.FALGSMITH_SERVER_URL,
+						cacheFlags: true,
+						cacheOptions: {
+							ttl: 15 * 60 * 1000,
+						},
+					}}>
+					<ThemeProvider theme={theme}>
+						<CssBaseline />
+						<GlobalCssProvider>
+							<SnackbarProvider>
+								<SplashProvider>
+									<ContractorAuthProvider>
+										<TutorialProvider pageStaticData={pageStaticData}>
+											<PaymentProvider>
+												<Component {...pageProps} />
+											</PaymentProvider>
+										</TutorialProvider>
+									</ContractorAuthProvider>
+								</SplashProvider>
+							</SnackbarProvider>
+						</GlobalCssProvider>
+					</ThemeProvider>
+				</FlagsmithProvider>
 			</QueryClientProvider>
 		</>
 	)

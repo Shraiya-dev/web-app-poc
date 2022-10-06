@@ -25,6 +25,7 @@ import { CUSTOMER_STATUS, CustomerDetails, ONBOARDING_STATUS, USER_LOGIN_TYPE, U
 import { useSnackbar } from './SnackbarProvider'
 import { LoginForm } from 'modules/auth/login/components/LoginForm'
 import { OTPVerification } from 'modules/auth/otp/components/OtpVerification'
+import { useFlags } from 'flagsmith/react'
 
 const LoadingUniqueString = 'loading...'
 interface AuthState {
@@ -179,6 +180,8 @@ const ContractorAuthProvider: FC<ContractorAuthProviderProps> = ({ children, aut
 	const [backdropProps, setBackdropProps] = useState({ open: false })
 	const [redirectingIn, setRedirectingIn] = useState(0)
 	const [otpMaxLimitReached, setOtpMaxLimitReached] = useState(false)
+	const flags = useFlags(['s_booking_creation_remove_default_wage'])
+
 	const requestOtp = useCallback(
 		async (phoneNumber: string) => {
 			dispatch({
@@ -356,7 +359,6 @@ const ContractorAuthProvider: FC<ContractorAuthProviderProps> = ({ children, aut
 			}
 			try {
 				const { data } = await getCustomerDetails()
-
 				dispatch({
 					accessToken: accessToken,
 					refreshToken: refreshToken,
@@ -376,7 +378,6 @@ const ContractorAuthProvider: FC<ContractorAuthProviderProps> = ({ children, aut
 						designation: data?.payload?.designation ?? '',
 					},
 				})
-
 				await Identify({
 					userType: 'customer',
 					customerId: data?.payload?._id ?? '',

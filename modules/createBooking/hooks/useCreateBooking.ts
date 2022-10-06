@@ -1,13 +1,15 @@
 import axios from 'axios'
 import { useFormik } from 'formik'
 import { useRouter } from 'next/router'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { DataLayerPush, sendAnalytics } from 'sdk/analytics'
 import { DefaultWageForWorker } from 'sdk/constants'
 import { useFormikProps } from 'sdk/hooks'
 import { useContractorAuth, useSnackbar } from 'sdk/providers'
 import * as Yup from 'yup'
 import { createBooking } from '../apis'
+import { useFlags } from 'flagsmith/react'
+import { LiveFlags } from 'sdk/constants/flagsmith'
 
 export const useCreateBooking = () => {
 	const router = useRouter()
@@ -76,14 +78,22 @@ export const useCreateBooking = () => {
 			console.log(error)
 		}
 	}
-	const form = useFormik({
+	const flags = useFlags([LiveFlags.s_booking_creation_remove_default_wage])
+	const form = useFormik<{
+		jobType: string
+		helperWage: string | number
+		technicianWage: string | number
+		supervisorWage: string | number
+		isHelper: boolean
+		isTechnician: boolean
+		isSupervisor: boolean
+	}>({
 		initialValues: {
 			// location: '',
 			jobType: 'none',
-			// workDuration: 'none',
-			helperWage: DefaultWageForWorker.HELPER,
-			technicianWage: DefaultWageForWorker.TECHNICIAN,
-			supervisorWage: DefaultWageForWorker.SUPERVISOR,
+			helperWage: '',
+			technicianWage: '',
+			supervisorWage: '',
 			isHelper: false,
 			isTechnician: false,
 			isSupervisor: false,
@@ -125,7 +135,25 @@ export const useCreateBooking = () => {
 			handleSubmit(values)
 		},
 	})
-
+	useEffect(() => {
+		form.setValues({
+			jobType: 'none',
+			helperWage: flags[LiveFlags.s_booking_creation_remove_default_wage]?.enabled
+				? DefaultWageForWorker[flags[LiveFlags.s_booking_creation_remove_default_wage]?.value as string].HELPER
+				: DefaultWageForWorker['T1'].HELPER,
+			technicianWage: flags[LiveFlags.s_booking_creation_remove_default_wage]?.enabled
+				? DefaultWageForWorker[flags[LiveFlags.s_booking_creation_remove_default_wage]?.value as string]
+						.TECHNICIAN
+				: DefaultWageForWorker['T1'].TECHNICIAN,
+			supervisorWage: flags[LiveFlags.s_booking_creation_remove_default_wage]?.enabled
+				? DefaultWageForWorker[flags[LiveFlags.s_booking_creation_remove_default_wage]?.value as string]
+						.SUPERVISOR
+				: DefaultWageForWorker['T1'].SUPERVISOR,
+			isHelper: false,
+			isTechnician: false,
+			isSupervisor: false,
+		})
+	}, [flags])
 	const formikProps = useFormikProps(form)
 	return { form, formikProps, isSubmittable, setIsSubmittable }
 }

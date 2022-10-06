@@ -1,11 +1,11 @@
 import { Button, CircularProgress, Grid, Stack, Typography } from '@mui/material'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import React, { useCallback, useState } from 'react'
-import { BookingCard, SearchField, theme, useMobile } from '../../sdk'
+import { useCallback, useState } from 'react'
+import { BookingCard, theme, useMobile } from '../../sdk'
+import { ButtonClicked } from '../../sdk/analytics/analyticsWrapper'
 import { FilterDrawer } from './components'
 import { useDashboard } from './hooks'
-import { ButtonClicked } from '../../sdk/analytics/analyticsWrapper'
 
 export const Dashboard = () => {
 	const { bookings, bookingStats, isLoading } = useDashboard()
