@@ -166,7 +166,6 @@ function MyApp({ Component, pageProps }: AppProps) {
 						cacheFlags: true,
 						cacheOptions: {
 							ttl: 15 * 60 * 1000,
-							skipAPI: true,
 						},
 					}}>
 					<ThemeProvider theme={theme}>
