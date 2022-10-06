@@ -162,7 +162,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 					options={{
 						environmentID: envs.FALGSMITH_API_KEY,
 						identity: sessionId,
-						api: 'http://34.93.52.13:8080/api/v1/',
+						api: envs.FALGSMITH_SERVER_URL,
 						cacheFlags: true,
 						cacheOptions: {
 							ttl: 15 * 60 * 1000,
@@ -208,7 +208,7 @@ const CommonHead = () => {
 
 				<meta name='msapplication-TileColor' content='#da532c' />
 				<meta name='theme-color' content='#333333' />
-				<meta
+				<metah
 					name='viewport'
 					content='width=device-width, initial-scale=1.0, maximum-scale=1.0,user-scalable=0'
 				/>
