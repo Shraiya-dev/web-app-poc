@@ -1,5 +1,6 @@
 import { BusinessRounded } from '@mui/icons-material'
 import { Avatar, Box, Card, Stack, Typography } from '@mui/material'
+import Image from 'next/image'
 import { FC } from 'react'
 import { JobTypeLabel } from 'sdk/constants'
 import { JOB_TYPES } from 'sdk/types'
@@ -15,11 +16,14 @@ export const WorkerCard: FC<Props> = ({ worker }) => {
 		<Card sx={{ flex: 1, display: 'flex', flexDirection: 'column', overflow: 'hidden', width: '100%' }}>
 			<Stack flex={1} direction='row' p={2} spacing={2}>
 				<Stack>
-					<img
-						style={{ width: 100, height: 100, borderRadius: '50%' }}
-						src={worker?.profileImage}
-						loading='lazy'
-					/>
+					<Box borderRadius={'50%'} width={100} height={100} overflow='hidden'>
+						<Image
+							width={100}
+							height={100}
+							src={'/assets/workerImages/' + worker?.profileImage}
+							loading='lazy'
+						/>
+					</Box>
 				</Stack>
 				<Stack flex={1} spacing={1}>
 					<Typography flex={1} display='flex' alignItems='center' variant='h4'>

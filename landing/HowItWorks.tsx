@@ -240,7 +240,7 @@ export const HowItWorks: FC<Props> = () => {
 							overflow: 'hidden',
 							borderRadius: '10px',
 						}}>
-						<Player poster='/assets/icons/videoPoster.png'>
+						<Player poster='/assets/icons/videoPoster.jpg'>
 							<source src='https://storage.googleapis.com/ph-assets/project/ProjectHero_V2_How_it_works.mp4' />
 							<BigPlayButton position={'center'} />
 						</Player>
@@ -331,7 +331,7 @@ export const HowItWorks: FC<Props> = () => {
 							overflow: 'hidden',
 							borderRadius: '10px',
 						}}>
-						<Player poster='/assets/icons/videoPoster.png'>
+						<Player poster='/assets/icons/videoPoster.jpg'>
 							<source src='https://storage.googleapis.com/ph-assets/project/ProjectHero_V2_How_it_works.mp4' />
 							<BigPlayButton position={'center'} />
 						</Player>

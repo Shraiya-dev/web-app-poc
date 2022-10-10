@@ -6,8 +6,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'GYPSUM',
 			skillType: 'HELPER',
 			experience: '8-15',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f80f2ad69716d1c9db963/profile/ypf3Ybv3y6-compressed.jpg',
+			profileImage: 'ypf3Ybv3y6-compressed.jpg',
 			rating: '3.8',
 		},
 		{
@@ -16,8 +15,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'GYPSUM',
 			skillType: 'TECHNICIAN',
 			experience: '2-5',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f8202ad69716d1c9deae8/profile/9HF5z2Mli5-compressed.jpg',
+			profileImage: '9HF5z2Mli5-compressed.jpg',
 			rating: '4.4',
 		},
 		{
@@ -26,8 +24,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'GYPSUM',
 			skillType: 'TECHNICIAN',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f823aad69716d1c9df4e1/profile/gD9RQk5d68-compressed.jpg',
+			profileImage: 'gD9RQk5d68-compressed.jpg',
 			rating: '3.9',
 		},
 		{
@@ -36,8 +33,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'GYPSUM',
 			skillType: 'TECHNICIAN',
 			experience: '5-8',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bebf07b533326018581729/profile/hPP5CH2Sp0-compressed.jpg',
+			profileImage: 'hPP5CH2Sp0-compressed.jpg',
 			rating: '4.8',
 		},
 		{
@@ -46,8 +42,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'GYPSUM',
 			skillType: 'SUPERVISOR',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61ee890ce364722999140bd6/profile/IJdx11J6gV-compressed.jpg',
+			profileImage: 'IJdx11J6gV-compressed.jpg',
 			rating: '3.6',
 		},
 		{
@@ -56,8 +51,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'GYPSUM',
 			skillType: 'HELPER',
 			experience: '2-5',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/621670e6246fa1e555386a05/profile/rQvOTQR5sJ-compressed.jpg',
+			profileImage: 'rQvOTQR5sJ-compressed.jpg',
 			rating: '4.7',
 		},
 		{
@@ -66,8 +60,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'GYPSUM',
 			skillType: 'TECHNICIAN',
 			experience: '2-5',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/62167353246fa1e55538d3a7/profile/KNi6wLkIdY-compressed.jpg',
+			profileImage: 'KNi6wLkIdY-compressed.jpg',
 			rating: '4.4',
 		},
 		{
@@ -76,8 +69,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'GYPSUM',
 			skillType: 'HELPER',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/621674b8246fa1e5553912bb/profile/y-Ekp4uCzB-compressed.jpg',
+			profileImage: 'y-Ekp4uCzB-compressed.jpg',
 			rating: '4.7',
 		},
 		{
@@ -86,8 +78,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'GYPSUM',
 			skillType: 'SUPERVISOR',
 			experience: '5-8',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/621674c4246fa1e555391514/profile/vBmjSSIe-Y-compressed.jpg',
+			profileImage: 'vBmjSSIe-Y-compressed.jpg',
 			rating: '4.8',
 		},
 		{
@@ -96,8 +87,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'GYPSUM',
 			skillType: 'TECHNICIAN',
 			experience: '8-15',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/625eb468d4fa2c1219459e8a/profile/fmjfAbkFMa-compressed.jpg',
+			profileImage: 'fmjfAbkFMa-compressed.jpg',
 			rating: '4.5',
 		},
 		{
@@ -106,8 +96,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'GYPSUM',
 			skillType: 'TECHNICIAN',
 			experience: '5-8',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/628e3b20bfcdae3b71c15d56/profile/gNodkq3Tqn-compressed.jpg',
+			profileImage: 'gNodkq3Tqn-compressed.jpg',
 			rating: '5.0',
 		},
 		{
@@ -116,8 +105,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'GYPSUM',
 			skillType: 'SUPERVISOR',
 			experience: '>15',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/62a8900df7575470b3396de8/profile/pQgvR50KQQ-compressed.jpg',
+			profileImage: 'pQgvR50KQQ-compressed.jpg',
 			rating: '4.4',
 		},
 		{
@@ -126,8 +114,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'GYPSUM',
 			skillType: 'HELPER',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/62a9c817f7575470b3b389ff/profile/2xnKVBsgQW-compressed.jpg',
+			profileImage: '2xnKVBsgQW-compressed.jpg',
 			rating: '4.0',
 		},
 		{
@@ -136,8 +123,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'GYPSUM',
 			skillType: 'TECHNICIAN',
 			experience: '5-8',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/62ac4015f7575470b3c2449d/profile/xJv-YoSCTE-compressed.jpg',
+			profileImage: 'xJv-YoSCTE-compressed.jpg',
 			rating: '4.9',
 		},
 		{
@@ -146,8 +132,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'GYPSUM',
 			skillType: 'TECHNICIAN',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/62be619fb705e3bfd350f6f7/profile/krXnog4rH7-compressed.jpg',
+			profileImage: 'krXnog4rH7-compressed.jpg',
 			rating: '4.4',
 		},
 		{
@@ -156,8 +141,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'GYPSUM',
 			skillType: 'TECHNICIAN',
 			experience: '2-5',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/62c80ac9b705e3bfd32d9b7e/profile/tIPk_LDbDH-compressed.jpg',
+			profileImage: 'tIPk_LDbDH-compressed.jpg',
 			rating: '4.5',
 		},
 		{
@@ -166,8 +150,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'GYPSUM',
 			skillType: 'TECHNICIAN',
 			experience: '8-15',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/62ceb2a0b705e3bfd3c8182d/profile/KCu94JyDra-compressed.jpg',
+			profileImage: 'KCu94JyDra-compressed.jpg',
 			rating: '3.8',
 		},
 		{
@@ -176,8 +159,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'GYPSUM',
 			skillType: 'TECHNICIAN',
 			experience: '8-15',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/62cecd24b705e3bfd3cab6ef/profile/h-xrLT7V28-compressed.jpg',
+			profileImage: 'h-xrLT7V28-compressed.jpg',
 			rating: '4.4',
 		},
 		{
@@ -186,8 +168,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'GYPSUM',
 			skillType: 'TECHNICIAN',
 			experience: '5-8',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/62cfb732b705e3bfd3dfb8e1/profile/Jeupy3TjZY-compressed.jpg',
+			profileImage: 'Jeupy3TjZY-compressed.jpg',
 			rating: '4.0',
 		},
 		{
@@ -196,8 +177,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'GYPSUM',
 			skillType: 'TECHNICIAN',
 			experience: '5-8',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/62cfcb21b705e3bfd3e1b322/profile/eVfVwJ8HsE-compressed.jpg',
+			profileImage: 'eVfVwJ8HsE-compressed.jpg',
 			rating: '4.7',
 		},
 		{
@@ -206,8 +186,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'GYPSUM',
 			skillType: 'TECHNICIAN',
 			experience: '5-8',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/62cfce09b705e3bfd3e203a5/profile/OjQNszKRRa-compressed.jpg',
+			profileImage: 'OjQNszKRRa-compressed.jpg',
 			rating: '4.9',
 		},
 		{
@@ -216,8 +195,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'GYPSUM',
 			skillType: 'TECHNICIAN',
 			experience: '2-5',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/62d1546eb705e3bfd30ce6aa/profile/ctXBddcXkp-compressed.jpg',
+			profileImage: 'ctXBddcXkp-compressed.jpg',
 			rating: '3.7',
 		},
 		{
@@ -226,8 +204,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'GYPSUM',
 			skillType: 'HELPER',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/62d68c65b705e3bfd38c93ef/profile/tRzqUp0jC9-compressed.jpg',
+			profileImage: 'tRzqUp0jC9-compressed.jpg',
 			rating: '3.9',
 		},
 		{
@@ -236,8 +213,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'GYPSUM',
 			skillType: 'TECHNICIAN',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/62d8cb6ab705e3bfd3c0a410/profile/wt_zAMwZKH-compressed.jpg',
+			profileImage: 'wt_zAMwZKH-compressed.jpg',
 			rating: '4.8',
 		},
 		{
@@ -246,8 +222,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'GYPSUM',
 			skillType: 'TECHNICIAN',
 			experience: '8-15',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/62d8fd31b705e3bfd3c60bfc/profile/6nD7KkwUV1-compressed.jpg',
+			profileImage: '6nD7KkwUV1-compressed.jpg',
 			rating: '4.1',
 		},
 		{
@@ -256,8 +231,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'GYPSUM',
 			skillType: 'TECHNICIAN',
 			experience: '2-5',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/62d912b1b705e3bfd3c8a218/profile/iXw_mnId5u-compressed.jpg',
+			profileImage: 'iXw_mnId5u-compressed.jpg',
 			rating: '4.8',
 		},
 		{
@@ -266,8 +240,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'GYPSUM',
 			skillType: 'HELPER',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/62d91426b705e3bfd3c8d2a4/profile/onwVcD0tx5-compressed.jpg',
+			profileImage: 'onwVcD0tx5-compressed.jpg',
 			rating: '4.6',
 		},
 		{
@@ -276,8 +249,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'GYPSUM',
 			skillType: 'TECHNICIAN',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/62da01ffb705e3bfd3dde09a/profile/rr_mIFcfPd-compressed.jpg',
+			profileImage: 'rr_mIFcfPd-compressed.jpg',
 			rating: '4.7',
 		},
 		{
@@ -286,8 +258,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'GYPSUM',
 			skillType: 'TECHNICIAN',
 			experience: '2-5',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/62da0a18b705e3bfd3deb2f9/profile/JhuEZTR7a7-compressed.jpg',
+			profileImage: 'JhuEZTR7a7-compressed.jpg',
 			rating: '4.4',
 		},
 		{
@@ -296,8 +267,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'GYPSUM',
 			skillType: 'HELPER',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/62da0c3eb705e3bfd3def191/profile/n_AGnuyCc2-compressed.jpg',
+			profileImage: 'n_AGnuyCc2-compressed.jpg',
 			rating: '5.0',
 		},
 		{
@@ -306,8 +276,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'GYPSUM',
 			skillType: 'TECHNICIAN',
 			experience: '2-5',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/62da1517b705e3bfd3e00578/profile/vq5BSKLerX-compressed.jpg',
+			profileImage: 'vq5BSKLerX-compressed.jpg',
 			rating: '3.9',
 		},
 		{
@@ -316,8 +285,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'GYPSUM',
 			skillType: 'TECHNICIAN',
 			experience: '2-5',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/62da647cb705e3bfd3e91838/profile/mpP19ZeGMU-compressed.jpg',
+			profileImage: 'mpP19ZeGMU-compressed.jpg',
 			rating: '4.2',
 		},
 		{
@@ -326,8 +294,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'GYPSUM',
 			skillType: 'HELPER',
 			experience: '2-5',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/62da6a14b705e3bfd3e9b07e/profile/m4rwvCuD-Q-compressed.jpg',
+			profileImage: 'm4rwvCuD-Q-compressed.jpg',
 			rating: '3.5',
 		},
 		{
@@ -336,8 +303,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'GYPSUM',
 			skillType: 'TECHNICIAN',
 			experience: '5-8',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/62da7ad5b705e3bfd3eb85ed/profile/d6wP9p61z6-compressed.jpg',
+			profileImage: 'd6wP9p61z6-compressed.jpg',
 			rating: '4.4',
 		},
 		{
@@ -346,8 +312,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'GYPSUM',
 			skillType: 'TECHNICIAN',
 			experience: '2-5',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/62da7c6fb705e3bfd3ebb081/profile/6U4ThtQ7nj-compressed.jpg',
+			profileImage: '6U4ThtQ7nj-compressed.jpg',
 			rating: '3.8',
 		},
 		{
@@ -356,8 +321,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'GYPSUM',
 			skillType: 'SUPERVISOR',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/62da7ccfb705e3bfd3ebbc4a/profile/L7bArtyzdg-compressed.jpg',
+			profileImage: 'L7bArtyzdg-compressed.jpg',
 			rating: '4.9',
 		},
 		{
@@ -366,8 +330,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'GYPSUM',
 			skillType: 'TECHNICIAN',
 			experience: '2-5',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/62da7dfeb705e3bfd3ec28c6/profile/b4aygkaGPS-compressed.jpg',
+			profileImage: 'b4aygkaGPS-compressed.jpg',
 			rating: '4.2',
 		},
 		{
@@ -376,8 +339,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'GYPSUM',
 			skillType: 'TECHNICIAN',
 			experience: '2-5',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/62da7ec6b705e3bfd3ec42b0/profile/BnJmgwVV8B-compressed.jpg',
+			profileImage: 'BnJmgwVV8B-compressed.jpg',
 			rating: '3.5',
 		},
 		{
@@ -386,8 +348,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'GYPSUM',
 			skillType: 'TECHNICIAN',
 			experience: '2-5',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/62da86f8b705e3bfd3ed2161/profile/9j7uZs5gk5-compressed.jpg',
+			profileImage: '9j7uZs5gk5-compressed.jpg',
 			rating: '4.0',
 		},
 		{
@@ -396,8 +357,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'GYPSUM',
 			skillType: 'HELPER',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/62da888db705e3bfd3ed66fb/profile/IK2I82EJrT-compressed.jpg',
+			profileImage: 'IK2I82EJrT-compressed.jpg',
 			rating: '4.8',
 		},
 		{
@@ -406,8 +366,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'GYPSUM',
 			skillType: 'TECHNICIAN',
 			experience: '5-8',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/62da9172b705e3bfd3ee93b7/profile/e5fTDAEa-w-compressed.jpg',
+			profileImage: 'e5fTDAEa-w-compressed.jpg',
 			rating: '4.1',
 		},
 		{
@@ -416,8 +375,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'GYPSUM',
 			skillType: 'TECHNICIAN',
 			experience: '2-5',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/62da9939b705e3bfd3ef5425/profile/VzfQjlL0-W-compressed.jpg',
+			profileImage: 'VzfQjlL0-W-compressed.jpg',
 			rating: '4.9',
 		},
 		{
@@ -426,8 +384,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'GYPSUM',
 			skillType: 'HELPER',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/62daa233b705e3bfd3f02a40/profile/XclpNDONsM-compressed.jpg',
+			profileImage: 'XclpNDONsM-compressed.jpg',
 			rating: '4.1',
 		},
 		{
@@ -436,8 +393,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'GYPSUM',
 			skillType: 'HELPER',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/62dbd0aeb705e3bfd30cef43/profile/Zn8BaUCzhE-compressed.jpg',
+			profileImage: 'Zn8BaUCzhE-compressed.jpg',
 			rating: '4.6',
 		},
 		{
@@ -446,8 +402,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'GYPSUM',
 			skillType: 'HELPER',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/62dbd2bfb705e3bfd30d2458/profile/6FFfWdQMEs-compressed.jpg',
+			profileImage: '6FFfWdQMEs-compressed.jpg',
 			rating: '3.8',
 		},
 		{
@@ -456,8 +411,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'GYPSUM',
 			skillType: 'TECHNICIAN',
 			experience: '2-5',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/62dbd837b705e3bfd30dce7e/profile/MReXXJLhjS-compressed.jpg',
+			profileImage: 'MReXXJLhjS-compressed.jpg',
 			rating: '4.7',
 		},
 		{
@@ -466,8 +420,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'GYPSUM',
 			skillType: 'TECHNICIAN',
 			experience: '2-5',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/62dbe064b705e3bfd30eafc1/profile/Jm7XZT-OYI-compressed.jpg',
+			profileImage: 'Jm7XZT-OYI-compressed.jpg',
 			rating: '4.2',
 		},
 		{
@@ -476,8 +429,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'GYPSUM',
 			skillType: 'HELPER',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/62dc02d3b705e3bfd311d21c/profile/iEHVFgOBDb-compressed.jpg',
+			profileImage: 'iEHVFgOBDb-compressed.jpg',
 			rating: '4.2',
 		},
 	],
@@ -488,8 +440,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'PAINTER',
 			skillType: 'TECHNICIAN',
 			experience: '8-15',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f7ff3ad69716d1c9d8c0c/profile/0QBPuMyDje-compressed.jpg',
+			profileImage: '0QBPuMyDje-compressed.jpg',
 			rating: '3.6',
 		},
 		{
@@ -497,8 +448,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			name: 'abdul meline',
 			jobType: 'PAINTER',
 			skillType: 'TECHNICIAN',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f804dad69716d1c9d9c17/profile/8RnTHA-K9k-compressed.jpg',
+			profileImage: '8RnTHA-K9k-compressed.jpg',
 			rating: '4.4',
 		},
 		{
@@ -507,8 +457,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'PAINTER',
 			skillType: 'HELPER',
 			experience: '2-5',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f8071ad69716d1c9da2cd/profile/hJjRzYgTMK-compressed.jpg',
+			profileImage: 'hJjRzYgTMK-compressed.jpg',
 			rating: '3.8',
 		},
 		{
@@ -517,8 +466,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'PAINTER',
 			skillType: 'HELPER',
 			experience: '2-5',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f8074ad69716d1c9da358/profile/eaDEf9TJGl-compressed.jpg',
+			profileImage: 'eaDEf9TJGl-compressed.jpg',
 			rating: '4.2',
 		},
 		{
@@ -527,8 +475,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'PAINTER',
 			skillType: 'TECHNICIAN',
 			experience: '2-5',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f8082ad69716d1c9da54a/profile/VdUP3MRhHK-compressed.jpg',
+			profileImage: 'VdUP3MRhHK-compressed.jpg',
 			rating: '4.9',
 		},
 		{
@@ -537,8 +484,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'PAINTER',
 			skillType: 'TECHNICIAN',
 			experience: '8-15',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f80afad69716d1c9dad3e/profile/XCCb-p2JS0-compressed.jpg',
+			profileImage: 'XCCb-p2JS0-compressed.jpg',
 			rating: '4.6',
 		},
 		{
@@ -547,8 +493,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'PAINTER',
 			skillType: 'HELPER',
 			experience: '>15',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f80c9ad69716d1c9db20f/profile/CEL2NB75a1-compressed.jpg',
+			profileImage: 'CEL2NB75a1-compressed.jpg',
 			rating: '4.2',
 		},
 		{
@@ -557,8 +502,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'PAINTER',
 			skillType: 'SUPERVISOR',
 			experience: '8-15',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f80c4ad69716d1c9db154/profile/2OOnOMR3pR-compressed.jpg',
+			profileImage: '2OOnOMR3pR-compressed.jpg',
 			rating: '4.9',
 		},
 		{
@@ -567,8 +511,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'PAINTER',
 			skillType: 'TECHNICIAN',
 			experience: '5-8',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f80d5ad69716d1c9db469/profile/ODvrJJQzTc-compressed.jpg',
+			profileImage: 'ODvrJJQzTc-compressed.jpg',
 			rating: '3.8',
 		},
 		{
@@ -577,8 +520,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'PAINTER',
 			skillType: 'TECHNICIAN',
 			experience: '2-5',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f80e1ad69716d1c9db666/profile/zJI7aduSvx-compressed.jpg',
+			profileImage: 'zJI7aduSvx-compressed.jpg',
 			rating: '4.8',
 		},
 		{
@@ -587,8 +529,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'PAINTER',
 			skillType: 'TECHNICIAN',
 			experience: '2-5',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f80f2ad69716d1c9db957/profile/V6OQUQ_AhT-compressed.jpg',
+			profileImage: 'V6OQUQ_AhT-compressed.jpg',
 			rating: '3.8',
 		},
 		{
@@ -597,8 +538,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'PAINTER',
 			skillType: 'SUPERVISOR',
 			experience: '>15',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f80f0ad69716d1c9db93f/profile/j0bg0F5PvG-compressed.jpg',
+			profileImage: 'j0bg0F5PvG-compressed.jpg',
 			rating: '4.5',
 		},
 		{
@@ -607,8 +547,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'PAINTER',
 			skillType: 'SUPERVISOR',
 			experience: '8-15',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f8112ad69716d1c9dbf28/profile/X5_H65QTaf-compressed.jpg',
+			profileImage: 'X5_H65QTaf-compressed.jpg',
 			rating: '5.0',
 		},
 		{
@@ -616,8 +555,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			name: 'raj kumar',
 			jobType: 'PAINTER',
 			skillType: 'TECHNICIAN',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f8125ad69716d1c9dc2df/profile/BW815gCPNJ-compressed.jpg',
+			profileImage: 'BW815gCPNJ-compressed.jpg',
 			rating: '4.1',
 		},
 		{
@@ -626,8 +564,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'PAINTER',
 			skillType: 'SUPERVISOR',
 			experience: '>15',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f8174ad69716d1c9dd147/profile/tOkXbSIxJr-compressed.jpg',
+			profileImage: 'tOkXbSIxJr-compressed.jpg',
 			rating: '4.2',
 		},
 		{
@@ -635,8 +572,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			name: 'rakesh',
 			jobType: 'PAINTER',
 			skillType: 'TECHNICIAN',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f8165ad69716d1c9dce5a/profile/0zeyDUub73-compressed.jpg',
+			profileImage: '0zeyDUub73-compressed.jpg',
 			rating: '3.8',
 		},
 		{
@@ -645,8 +581,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'PAINTER',
 			skillType: 'SUPERVISOR',
 			experience: '5-8',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f8170ad69716d1c9dd043/profile/iDK0PEJXPF-compressed.jpg',
+			profileImage: 'iDK0PEJXPF-compressed.jpg',
 			rating: '3.9',
 		},
 		{
@@ -655,8 +590,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'PAINTER',
 			skillType: 'TECHNICIAN',
 			experience: '5-8',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f8181ad69716d1c9dd357/profile/y30WcFvEK1-compressed.jpg',
+			profileImage: 'y30WcFvEK1-compressed.jpg',
 			rating: '4.4',
 		},
 		{
@@ -665,8 +599,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'PAINTER',
 			skillType: 'SUPERVISOR',
 			experience: '5-8',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f8199ad69716d1c9dd7e7/profile/nFL-s-FXXq-compressed.jpg',
+			profileImage: 'nFL-s-FXXq-compressed.jpg',
 			rating: '4.2',
 		},
 		{
@@ -675,8 +608,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'PAINTER',
 			skillType: 'SUPERVISOR',
 			experience: '8-15',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f81a5ad69716d1c9dda1c/profile/sLd4bCQHjl-compressed.jpg',
+			profileImage: 'sLd4bCQHjl-compressed.jpg',
 			rating: '4.8',
 		},
 		{
@@ -685,8 +617,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'PAINTER',
 			skillType: 'TECHNICIAN',
 			experience: '2-5',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f81acad69716d1c9ddb56/profile/oTi6O4Vg3X-compressed.jpg',
+			profileImage: 'oTi6O4Vg3X-compressed.jpg',
 			rating: '4.5',
 		},
 		{
@@ -695,8 +626,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'PAINTER',
 			skillType: 'TECHNICIAN',
 			experience: '5-8',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f81bfad69716d1c9dde98/profile/nMMf1sIUBR-compressed.jpg',
+			profileImage: 'nMMf1sIUBR-compressed.jpg',
 			rating: '4.6',
 		},
 		{
@@ -705,8 +635,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'PAINTER',
 			skillType: 'TECHNICIAN',
 			experience: '8-15',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f81d5ad69716d1c9de2d5/profile/puS6tc1Lg2-compressed.jpg',
+			profileImage: 'puS6tc1Lg2-compressed.jpg',
 			rating: '4.2',
 		},
 		{
@@ -715,8 +644,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'PAINTER',
 			skillType: 'HELPER',
 			experience: '8-15',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f81e0ad69716d1c9de4cf/profile/NHYhyhfryM-compressed.jpg',
+			profileImage: 'NHYhyhfryM-compressed.jpg',
 			rating: '4.6',
 		},
 		{
@@ -725,8 +653,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'PAINTER',
 			skillType: 'HELPER',
 			experience: '>15',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f8306ad69716d1c9e19a1/profile/S1yozjEwoW-compressed.jpg',
+			profileImage: 'S1yozjEwoW-compressed.jpg',
 			rating: '4.0',
 		},
 		{
@@ -735,8 +662,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'PAINTER',
 			skillType: 'TECHNICIAN',
 			experience: '>15',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f8321ad69716d1c9e1eae/profile/VkyZXT_gyS-compressed.jpg',
+			profileImage: 'VkyZXT_gyS-compressed.jpg',
 			rating: '4.5',
 		},
 		{
@@ -744,8 +670,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			name: 'suraj',
 			jobType: 'PAINTER',
 			skillType: 'TECHNICIAN',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f835aad69716d1c9e288d/profile/118BYHZDSZ-compressed.jpg',
+			profileImage: '118BYHZDSZ-compressed.jpg',
 			rating: '3.6',
 		},
 		{
@@ -754,8 +679,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'PAINTER',
 			skillType: 'SUPERVISOR',
 			experience: '8-15',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f837cad69716d1c9e2ed2/profile/HT_WSzpSU2-compressed.jpg',
+			profileImage: 'HT_WSzpSU2-compressed.jpg',
 			rating: '4.9',
 		},
 		{
@@ -764,8 +688,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'PAINTER',
 			skillType: 'SUPERVISOR',
 			experience: '>15',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f839cad69716d1c9e34bd/profile/H3lb3y3wHS-compressed.jpg',
+			profileImage: 'H3lb3y3wHS-compressed.jpg',
 			rating: '4.1',
 		},
 		{
@@ -774,8 +697,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'PAINTER',
 			skillType: 'TECHNICIAN',
 			experience: '2-5',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f83b2ad69716d1c9e38cf/profile/AeBCVDJuK9-compressed.jpg',
+			profileImage: 'AeBCVDJuK9-compressed.jpg',
 			rating: '4.5',
 		},
 		{
@@ -784,8 +706,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'PAINTER',
 			skillType: 'HELPER',
 			experience: '>15',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bebd12b53332601857e8ed/profile/50oA0PF6sw-compressed.jpg',
+			profileImage: '50oA0PF6sw-compressed.jpg',
 			rating: '4.7',
 		},
 		{
@@ -794,8 +715,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'PAINTER',
 			skillType: 'SUPERVISOR',
 			experience: '2-5',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bebd3fb53332601857effd/profile/rszAyftxC3-compressed.jpg',
+			profileImage: 'rszAyftxC3-compressed.jpg',
 			rating: '4.2',
 		},
 		{
@@ -804,8 +724,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'PAINTER',
 			skillType: 'SUPERVISOR',
 			experience: '>15',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bebd48b53332601857f187/profile/qfaqf1Fi75-compressed.jpg',
+			profileImage: 'qfaqf1Fi75-compressed.jpg',
 			rating: '4.4',
 		},
 		{
@@ -814,8 +733,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'PAINTER',
 			skillType: 'SUPERVISOR',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bebd4bb53332601857f29e/profile/90jba9IX5X-compressed.jpg',
+			profileImage: '90jba9IX5X-compressed.jpg',
 			rating: '4.0',
 		},
 		{
@@ -824,8 +742,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'PAINTER',
 			skillType: 'SUPERVISOR',
 			experience: '2-5',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bebd53b53332601857f3bc/profile/pNdl5-3lzp-compressed.jpg',
+			profileImage: 'pNdl5-3lzp-compressed.jpg',
 			rating: '4.9',
 		},
 		{
@@ -833,8 +750,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			name: 'rajkumar',
 			jobType: 'PAINTER',
 			skillType: 'TECHNICIAN',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bebdaeb5333260185803df/profile/fcNJYWNWyM-compressed.jpg',
+			profileImage: 'fcNJYWNWyM-compressed.jpg',
 			rating: '3.7',
 		},
 		{
@@ -843,8 +759,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'PAINTER',
 			skillType: 'HELPER',
 			experience: '2-5',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bebdfcb5333260185810c6/profile/ZEzRJITGDK-compressed.jpg',
+			profileImage: 'ZEzRJITGDK-compressed.jpg',
 			rating: '4.9',
 		},
 		{
@@ -853,8 +768,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'PAINTER',
 			skillType: 'TECHNICIAN',
 			experience: '2-5',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bebf19b5333260185819ef/profile/y4eYBAMFQU-compressed.jpg',
+			profileImage: 'y4eYBAMFQU-compressed.jpg',
 			rating: '4.1',
 		},
 		{
@@ -863,8 +777,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'PAINTER',
 			skillType: 'SUPERVISOR',
 			experience: '8-15',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bebf5eb53332601858260f/profile/pZjiYKKD2L-compressed.jpg',
+			profileImage: 'pZjiYKKD2L-compressed.jpg',
 			rating: '4.4',
 		},
 		{
@@ -873,8 +786,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'PAINTER',
 			skillType: 'SUPERVISOR',
 			experience: '8-15',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bebfaab5333260185832d5/profile/WJ85kq3k02-compressed.jpg',
+			profileImage: 'WJ85kq3k02-compressed.jpg',
 			rating: '4.9',
 		},
 		{
@@ -883,8 +795,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'PAINTER',
 			skillType: 'TECHNICIAN',
 			experience: '5-8',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bebfbeb5333260185835e5/profile/FF9bYHynKF-compressed.jpg',
+			profileImage: 'FF9bYHynKF-compressed.jpg',
 			rating: '3.8',
 		},
 		{
@@ -893,8 +804,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'PAINTER',
 			skillType: 'TECHNICIAN',
 			experience: '>15',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bebfdeb533326018583c18/profile/eLpxEDSWbF-compressed.jpg',
+			profileImage: 'eLpxEDSWbF-compressed.jpg',
 			rating: '4.6',
 		},
 		{
@@ -903,8 +813,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'PAINTER',
 			skillType: 'SUPERVISOR',
 			experience: '5-8',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bebff0b533326018583ea2/profile/PpJDjKnGbh-compressed.jpg',
+			profileImage: 'PpJDjKnGbh-compressed.jpg',
 			rating: '3.9',
 		},
 		{
@@ -913,8 +822,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'PAINTER',
 			skillType: 'TECHNICIAN',
 			experience: '>15',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bec006b5333260185842bd/profile/BO0G5SahY1-compressed.jpg',
+			profileImage: 'BO0G5SahY1-compressed.jpg',
 			rating: '4.8',
 		},
 		{
@@ -923,8 +831,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'PAINTER',
 			skillType: 'SUPERVISOR',
 			experience: '5-8',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bec021b53332601858472f/profile/CmLmTq2YVx-compressed.jpg',
+			profileImage: 'CmLmTq2YVx-compressed.jpg',
 			rating: '4.5',
 		},
 		{
@@ -933,8 +840,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'PAINTER',
 			skillType: 'TECHNICIAN',
 			experience: '5-8',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bec02bb533326018584902/profile/AWMS8C5NZN-compressed.jpg',
+			profileImage: 'AWMS8C5NZN-compressed.jpg',
 			rating: '4.3',
 		},
 		{
@@ -943,8 +849,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'PAINTER',
 			skillType: 'TECHNICIAN',
 			experience: '8-15',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bec035b533326018584ab5/profile/X9u0McMJQB-compressed.jpg',
+			profileImage: 'X9u0McMJQB-compressed.jpg',
 			rating: '4.7',
 		},
 		{
@@ -953,8 +858,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'PAINTER',
 			skillType: 'SUPERVISOR',
 			experience: '2-5',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bec036b533326018584aed/profile/AAb1-bJEqV-compressed.jpg',
+			profileImage: 'AAb1-bJEqV-compressed.jpg',
 			rating: '4.6',
 		},
 	],
@@ -965,8 +869,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'CARPENTER',
 			skillType: 'HELPER',
 			experience: '8-15',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f8004ad69716d1c9d8f17/profile/IKFfnRLQrL-compressed.jpg',
+			profileImage: 'IKFfnRLQrL-compressed.jpg',
 			rating: '3.8',
 		},
 		{
@@ -975,8 +878,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'CARPENTER',
 			skillType: 'HELPER',
 			experience: '>15',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f8020ad69716d1c9d9422/profile/UkOmXQma7v-compressed.jpg',
+			profileImage: 'UkOmXQma7v-compressed.jpg',
 			rating: '4.0',
 		},
 		{
@@ -985,8 +887,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'CARPENTER',
 			skillType: 'HELPER',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f802dad69716d1c9d9644/profile/ryZ6UDZ06d-compressed.jpg',
+			profileImage: 'ryZ6UDZ06d-compressed.jpg',
 			rating: '4.1',
 		},
 		{
@@ -995,8 +896,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'CARPENTER',
 			skillType: 'TECHNICIAN',
 			experience: '>15',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f8069ad69716d1c9da176/profile/DPmNulytXN-compressed.jpg',
+			profileImage: 'DPmNulytXN-compressed.jpg',
 			rating: '4.9',
 		},
 		{
@@ -1005,8 +905,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'CARPENTER',
 			skillType: 'SUPERVISOR',
 			experience: '8-15',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f80b5ad69716d1c9dae80/profile/CrnkHBK9NU-compressed.jpg',
+			profileImage: 'CrnkHBK9NU-compressed.jpg',
 			rating: '4.0',
 		},
 		{
@@ -1015,8 +914,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'CARPENTER',
 			skillType: 'TECHNICIAN',
 			experience: '2-5',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f80cdad69716d1c9db2a7/profile/ndkExx0DJF-compressed.jpg',
+			profileImage: 'ndkExx0DJF-compressed.jpg',
 			rating: '4.7',
 		},
 		{
@@ -1025,8 +923,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'CARPENTER',
 			skillType: 'SUPERVISOR',
 			experience: '5-8',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f8101ad69716d1c9dbc04/profile/igedddZKSV-compressed.jpg',
+			profileImage: 'igedddZKSV-compressed.jpg',
 			rating: '4.8',
 		},
 		{
@@ -1035,8 +932,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'CARPENTER',
 			skillType: 'TECHNICIAN',
 			experience: '5-8',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f816ead69716d1c9dcfe0/profile/L69yIZHTmD-compressed.jpg',
+			profileImage: 'L69yIZHTmD-compressed.jpg',
 			rating: '4.0',
 		},
 		{
@@ -1045,8 +941,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'CARPENTER',
 			skillType: 'TECHNICIAN',
 			experience: '5-8',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f8181ad69716d1c9dd37b/profile/uZXrprgScH-compressed.jpg',
+			profileImage: 'uZXrprgScH-compressed.jpg',
 			rating: '3.5',
 		},
 		{
@@ -1055,8 +950,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'CARPENTER',
 			skillType: 'TECHNICIAN',
 			experience: '8-15',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f8181ad69716d1c9dd39e/profile/Ej9iQO1RaV-compressed.jpg',
+			profileImage: 'Ej9iQO1RaV-compressed.jpg',
 			rating: '4.7',
 		},
 		{
@@ -1065,8 +959,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'CARPENTER',
 			skillType: 'TECHNICIAN',
 			experience: '5-8',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f8188ad69716d1c9dd49c/profile/4e1OnGkeLr-compressed.jpg',
+			profileImage: '4e1OnGkeLr-compressed.jpg',
 			rating: '4.6',
 		},
 		{
@@ -1075,8 +968,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'CARPENTER',
 			skillType: 'HELPER',
 			experience: '5-8',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f81c8ad69716d1c9de05f/profile/GGBHwc0Hd2-compressed.jpg',
+			profileImage: 'GGBHwc0Hd2-compressed.jpg',
 			rating: '3.7',
 		},
 		{
@@ -1085,8 +977,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'CARPENTER',
 			skillType: 'TECHNICIAN',
 			experience: '5-8',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f81cfad69716d1c9de16c/profile/ciUh1CKeJA-compressed.jpg',
+			profileImage: 'ciUh1CKeJA-compressed.jpg',
 			rating: '4.6',
 		},
 		{
@@ -1095,8 +986,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'CARPENTER',
 			skillType: 'TECHNICIAN',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f820dad69716d1c9dece2/profile/eGZcEXr3Wi-compressed.jpg',
+			profileImage: 'eGZcEXr3Wi-compressed.jpg',
 			rating: '3.5',
 		},
 		{
@@ -1105,8 +995,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'CARPENTER',
 			skillType: 'TECHNICIAN',
 			experience: '5-8',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f8236ad69716d1c9df410/profile/EcYA0mqCXy-compressed.jpg',
+			profileImage: 'EcYA0mqCXy-compressed.jpg',
 			rating: '4.3',
 		},
 		{
@@ -1115,8 +1004,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'CARPENTER',
 			skillType: 'HELPER',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f8258ad69716d1c9dfa3c/profile/aEVLx48i-T-compressed.jpg',
+			profileImage: 'aEVLx48i-T-compressed.jpg',
 			rating: '3.9',
 		},
 		{
@@ -1125,8 +1013,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'CARPENTER',
 			skillType: 'HELPER',
 			experience: '2-5',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f8281ad69716d1c9e0195/profile/jDp-LmQa26-compressed.jpg',
+			profileImage: 'jDp-LmQa26-compressed.jpg',
 			rating: '3.9',
 		},
 		{
@@ -1135,8 +1022,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'CARPENTER',
 			skillType: 'SUPERVISOR',
 			experience: '2-5',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f828ead69716d1c9e03ae/profile/Mg6C4ivcG8-compressed.jpg',
+			profileImage: 'Mg6C4ivcG8-compressed.jpg',
 			rating: '4.1',
 		},
 		{
@@ -1145,8 +1031,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'CARPENTER',
 			skillType: 'HELPER',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f82eead69716d1c9e1554/profile/fO3yZxt3DA-compressed.jpg',
+			profileImage: 'fO3yZxt3DA-compressed.jpg',
 			rating: '4.7',
 		},
 		{
@@ -1155,8 +1040,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'CARPENTER',
 			skillType: 'SUPERVISOR',
 			experience: '8-15',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f8387ad69716d1c9e30dd/profile/fOP_mBOgkI-compressed.jpg',
+			profileImage: 'fOP_mBOgkI-compressed.jpg',
 			rating: '4.5',
 		},
 		{
@@ -1165,8 +1049,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'CARPENTER',
 			skillType: 'SUPERVISOR',
 			experience: '2-5',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bebce8b53332601857e147/profile/xjs6poMe2S-compressed.jpg',
+			profileImage: 'xjs6poMe2S-compressed.jpg',
 			rating: '4.6',
 		},
 		{
@@ -1175,8 +1058,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'CARPENTER',
 			skillType: 'HELPER',
 			experience: '5-8',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bebd05b53332601857e5fb/profile/LQhGM5RzEW-compressed.jpg',
+			profileImage: 'LQhGM5RzEW-compressed.jpg',
 			rating: '3.9',
 		},
 		{
@@ -1185,8 +1067,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'CARPENTER',
 			skillType: 'SUPERVISOR',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bebd0eb53332601857e74e/profile/aWDNlrz1-o-compressed.jpg',
+			profileImage: 'aWDNlrz1-o-compressed.jpg',
 			rating: '4.0',
 		},
 		{
@@ -1195,8 +1076,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'CARPENTER',
 			skillType: 'HELPER',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bebd12b53332601857e916/profile/5T8Tvr32UA-compressed.jpg',
+			profileImage: '5T8Tvr32UA-compressed.jpg',
 			rating: '3.9',
 		},
 		{
@@ -1205,8 +1085,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'CARPENTER',
 			skillType: 'SUPERVISOR',
 			experience: '>15',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bebd35b53332601857ee30/profile/ZaL0s5zqhk-compressed.jpg',
+			profileImage: 'ZaL0s5zqhk-compressed.jpg',
 			rating: '4.3',
 		},
 		{
@@ -1215,8 +1094,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'CARPENTER',
 			skillType: 'SUPERVISOR',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bebd3ab53332601857ef72/profile/kx3g2wdeY1-compressed.jpg',
+			profileImage: 'kx3g2wdeY1-compressed.jpg',
 			rating: '3.5',
 		},
 		{
@@ -1225,8 +1103,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'CARPENTER',
 			skillType: 'SUPERVISOR',
 			experience: '5-8',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bebd3fb53332601857f009/profile/LuEbC9hoEq-compressed.jpg',
+			profileImage: 'LuEbC9hoEq-compressed.jpg',
 			rating: '4.1',
 		},
 		{
@@ -1235,8 +1112,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'CARPENTER',
 			skillType: 'TECHNICIAN',
 			experience: '8-15',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bebd52b53332601857f345/profile/kl9fMQgpvd-compressed.jpg',
+			profileImage: 'kl9fMQgpvd-compressed.jpg',
 			rating: '4.8',
 		},
 		{
@@ -1245,8 +1121,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'CARPENTER',
 			skillType: 'HELPER',
 			experience: '5-8',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bebd5eb53332601857f586/profile/OjgsqFCepk-compressed.jpg',
+			profileImage: 'OjgsqFCepk-compressed.jpg',
 			rating: '4.9',
 		},
 		{
@@ -1255,8 +1130,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'CARPENTER',
 			skillType: 'HELPER',
 			experience: '2-5',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bebd4ab53332601857f22f/profile/1r02p2krvg-compressed.jpg',
+			profileImage: '1r02p2krvg-compressed.jpg',
 			rating: '4.3',
 		},
 		{
@@ -1265,8 +1139,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'CARPENTER',
 			skillType: 'TECHNICIAN',
 			experience: '8-15',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bebd88b53332601857fd46/profile/sM-9Oxvw13-compressed.jpg',
+			profileImage: 'sM-9Oxvw13-compressed.jpg',
 			rating: '3.9',
 		},
 		{
@@ -1275,8 +1148,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'CARPENTER',
 			skillType: 'HELPER',
 			experience: '>15',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bebda1b5333260185800f0/profile/qTeltXWvC6-compressed.jpg',
+			profileImage: 'qTeltXWvC6-compressed.jpg',
 			rating: '4.1',
 		},
 		{
@@ -1285,8 +1157,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'CARPENTER',
 			skillType: 'SUPERVISOR',
 			experience: '>15',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bebdc9b5333260185807a8/profile/ocCDOcU7BX-compressed.jpg',
+			profileImage: 'ocCDOcU7BX-compressed.jpg',
 			rating: '3.7',
 		},
 		{
@@ -1295,8 +1166,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'CARPENTER',
 			skillType: 'SUPERVISOR',
 			experience: '2-5',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bebdd5b533326018580a6d/profile/lx0HTMvkAY-compressed.jpg',
+			profileImage: 'lx0HTMvkAY-compressed.jpg',
 			rating: '3.8',
 		},
 		{
@@ -1304,8 +1174,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			name: 'kaim',
 			jobType: 'CARPENTER',
 			skillType: 'TECHNICIAN',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bebf5cb533326018582561/profile/lHVQ7Hlxb8-compressed.jpg',
+			profileImage: 'lHVQ7Hlxb8-compressed.jpg',
 			rating: '4.2',
 		},
 		{
@@ -1314,8 +1183,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'CARPENTER',
 			skillType: 'SUPERVISOR',
 			experience: '>15',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bebf55b5333260185824ce/profile/QrIStM8hgz-compressed.jpg',
+			profileImage: 'QrIStM8hgz-compressed.jpg',
 			rating: '3.9',
 		},
 		{
@@ -1324,8 +1192,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'CARPENTER',
 			skillType: 'TECHNICIAN',
 			experience: '>15',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bebf60b5333260185826c2/profile/DWvHfrXt8A-compressed.jpg',
+			profileImage: 'DWvHfrXt8A-compressed.jpg',
 			rating: '3.6',
 		},
 		{
@@ -1334,8 +1201,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'CARPENTER',
 			skillType: 'TECHNICIAN',
 			experience: '2-5',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bebf67b533326018582776/profile/emQnagSMYr-compressed.jpg',
+			profileImage: 'emQnagSMYr-compressed.jpg',
 			rating: '4.1',
 		},
 		{
@@ -1344,8 +1210,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'CARPENTER',
 			skillType: 'TECHNICIAN',
 			experience: '2-5',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bebfe7b533326018583d66/profile/SCwAskhFed-compressed.jpg',
+			profileImage: 'SCwAskhFed-compressed.jpg',
 			rating: '4.3',
 		},
 		{
@@ -1353,8 +1218,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			name: 'birendar',
 			jobType: 'CARPENTER',
 			skillType: 'TECHNICIAN',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bebffdb533326018584182/profile/SdwHbmGRcG-compressed.jpg',
+			profileImage: 'SdwHbmGRcG-compressed.jpg',
 			rating: '3.8',
 		},
 		{
@@ -1363,8 +1227,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'CARPENTER',
 			skillType: 'TECHNICIAN',
 			experience: '2-5',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bec007b5333260185842dd/profile/dJtDTvUZ2A-compressed.jpg',
+			profileImage: 'dJtDTvUZ2A-compressed.jpg',
 			rating: '4.1',
 		},
 		{
@@ -1373,8 +1236,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'CARPENTER',
 			skillType: 'HELPER',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bec011b5333260185844aa/profile/A9htSY4lu6-compressed.jpg',
+			profileImage: 'A9htSY4lu6-compressed.jpg',
 			rating: '4.1',
 		},
 		{
@@ -1383,8 +1245,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'CARPENTER',
 			skillType: 'TECHNICIAN',
 			experience: '8-15',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bec019b5333260185845f9/profile/KeFhO80Nuk-compressed.jpg',
+			profileImage: 'KeFhO80Nuk-compressed.jpg',
 			rating: '4.8',
 		},
 		{
@@ -1393,8 +1254,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'CARPENTER',
 			skillType: 'SUPERVISOR',
 			experience: '2-5',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bec01ab53332601858466a/profile/yh7OFgkJIw-compressed.jpg',
+			profileImage: 'yh7OFgkJIw-compressed.jpg',
 			rating: '5.0',
 		},
 		{
@@ -1403,8 +1263,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'CARPENTER',
 			skillType: 'HELPER',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bec037b533326018584b62/profile/NRvTpEr5Ky-compressed.jpg',
+			profileImage: 'NRvTpEr5Ky-compressed.jpg',
 			rating: '4.2',
 		},
 		{
@@ -1413,8 +1272,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'CARPENTER',
 			skillType: 'HELPER',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bec06ab5333260185853d1/profile/zB1jvTXe-l-compressed.jpg',
+			profileImage: 'zB1jvTXe-l-compressed.jpg',
 			rating: '3.6',
 		},
 		{
@@ -1423,8 +1281,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'CARPENTER',
 			skillType: 'TECHNICIAN',
 			experience: '8-15',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bec06ab5333260185853ee/profile/o1gwc6Qrbs-compressed.jpg',
+			profileImage: 'o1gwc6Qrbs-compressed.jpg',
 			rating: '4.4',
 		},
 		{
@@ -1433,8 +1290,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'CARPENTER',
 			skillType: 'SUPERVISOR',
 			experience: '>15',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bec0feb533326018586d9d/profile/oGv3VS3puc-compressed.jpg',
+			profileImage: 'oGv3VS3puc-compressed.jpg',
 			rating: '4.3',
 		},
 	],
@@ -1445,8 +1301,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'ELECTRICAL',
 			skillType: 'HELPER',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f8002ad69716d1c9d8e7b/profile/3hz-nJhLfH-compressed.jpg',
+			profileImage: '3hz-nJhLfH-compressed.jpg',
 			rating: '4.6',
 		},
 		{
@@ -1455,8 +1310,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'ELECTRICAL',
 			skillType: 'TECHNICIAN',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f8006ad69716d1c9d8f45/profile/F5F3sW2n6H-compressed.jpg',
+			profileImage: 'F5F3sW2n6H-compressed.jpg',
 			rating: '3.9',
 		},
 		{
@@ -1465,8 +1319,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'ELECTRICAL',
 			skillType: 'TECHNICIAN',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f8029ad69716d1c9d95ac/profile/5NC_H0jTMt-compressed.jpg',
+			profileImage: '5NC_H0jTMt-compressed.jpg',
 			rating: '4.4',
 		},
 		{
@@ -1475,8 +1328,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'ELECTRICAL',
 			skillType: 'TECHNICIAN',
 			experience: '2-5',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f802bad69716d1c9d95eb/profile/kBKEm8GhDd-compressed.jpg',
+			profileImage: 'kBKEm8GhDd-compressed.jpg',
 			rating: '3.9',
 		},
 		{
@@ -1485,8 +1337,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'ELECTRICAL',
 			skillType: 'SUPERVISOR',
 			experience: '2-5',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f8042ad69716d1c9d9a5a/profile/g3HCjw3_8J-compressed.jpg',
+			profileImage: 'g3HCjw3_8J-compressed.jpg',
 			rating: '4.6',
 		},
 		{
@@ -1495,8 +1346,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'ELECTRICAL',
 			skillType: 'TECHNICIAN',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f8042ad69716d1c9d9a60/profile/QoRgDQoou8-compressed.jpg',
+			profileImage: 'QoRgDQoou8-compressed.jpg',
 			rating: '4.7',
 		},
 		{
@@ -1505,8 +1355,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'ELECTRICAL',
 			skillType: 'TECHNICIAN',
 			experience: '2-5',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f8071ad69716d1c9da2ef/profile/M_a-MXCH56-compressed.jpg',
+			profileImage: 'M_a-MXCH56-compressed.jpg',
 			rating: '3.7',
 		},
 		{
@@ -1515,8 +1364,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'ELECTRICAL',
 			skillType: 'HELPER',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f808aad69716d1c9da69c/profile/3uoX0KzpHc-compressed.jpg',
+			profileImage: '3uoX0KzpHc-compressed.jpg',
 			rating: '4.6',
 		},
 		{
@@ -1525,8 +1373,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'ELECTRICAL',
 			skillType: 'HELPER',
 			experience: '2-5',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f808dad69716d1c9da726/profile/G5aGhXGXUC-compressed.jpg',
+			profileImage: 'G5aGhXGXUC-compressed.jpg',
 			rating: '3.9',
 		},
 		{
@@ -1535,8 +1382,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'ELECTRICAL',
 			skillType: 'TECHNICIAN',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f8097ad69716d1c9da943/profile/vybuBJLCce-compressed.jpg',
+			profileImage: 'vybuBJLCce-compressed.jpg',
 			rating: '4.3',
 		},
 		{
@@ -1545,8 +1391,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'ELECTRICAL',
 			skillType: 'HELPER',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f8099ad69716d1c9da976/profile/pGObU02QNr-compressed.jpg',
+			profileImage: 'pGObU02QNr-compressed.jpg',
 			rating: '4.2',
 		},
 		{
@@ -1555,8 +1400,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'ELECTRICAL',
 			skillType: 'TECHNICIAN',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f809cad69716d1c9da9e3/profile/W4oHejf3BR-compressed.jpg',
+			profileImage: 'W4oHejf3BR-compressed.jpg',
 			rating: '4.0',
 		},
 		{
@@ -1565,8 +1409,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'ELECTRICAL',
 			skillType: 'TECHNICIAN',
 			experience: '2-5',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f80c6ad69716d1c9db1aa/profile/2vwOtQkFiS-compressed.jpg',
+			profileImage: '2vwOtQkFiS-compressed.jpg',
 			rating: '3.8',
 		},
 		{
@@ -1575,8 +1418,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'ELECTRICAL',
 			skillType: 'SUPERVISOR',
 			experience: '8-15',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f80eead69716d1c9db8d0/profile/DkA82nvlBE-compressed.jpg',
+			profileImage: 'DkA82nvlBE-compressed.jpg',
 			rating: '3.7',
 		},
 		{
@@ -1585,8 +1427,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'ELECTRICAL',
 			skillType: 'HELPER',
 			experience: '>15',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f80dfad69716d1c9db5e4/profile/aH0jKb6ACJ-compressed.jpg',
+			profileImage: 'aH0jKb6ACJ-compressed.jpg',
 			rating: '4.7',
 		},
 		{
@@ -1595,8 +1436,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'ELECTRICAL',
 			skillType: 'SUPERVISOR',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f8105ad69716d1c9dbd08/profile/d6o9ePIo1z-compressed.jpg',
+			profileImage: 'd6o9ePIo1z-compressed.jpg',
 			rating: '4.0',
 		},
 		{
@@ -1605,8 +1445,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'ELECTRICAL',
 			skillType: 'TECHNICIAN',
 			experience: '5-8',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f815bad69716d1c9dcc6a/profile/I5WkfnyeUg-compressed.jpg',
+			profileImage: 'I5WkfnyeUg-compressed.jpg',
 			rating: '4.4',
 		},
 		{
@@ -1615,8 +1454,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'ELECTRICAL',
 			skillType: 'HELPER',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f8149ad69716d1c9dc95e/profile/7flf8XdDgh-compressed.jpg',
+			profileImage: '7flf8XdDgh-compressed.jpg',
 			rating: '4.1',
 		},
 		{
@@ -1625,8 +1463,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'ELECTRICAL',
 			skillType: 'TECHNICIAN',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f814cad69716d1c9dc9dd/profile/B8y_6FotSm-compressed.jpg',
+			profileImage: 'B8y_6FotSm-compressed.jpg',
 			rating: '3.7',
 		},
 		{
@@ -1635,8 +1472,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'ELECTRICAL',
 			skillType: 'TECHNICIAN',
 			experience: '>15',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f816aad69716d1c9dcf63/profile/guHb9Mcuj3-compressed.jpg',
+			profileImage: 'guHb9Mcuj3-compressed.jpg',
 			rating: '3.6',
 		},
 		{
@@ -1645,8 +1481,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'ELECTRICAL',
 			skillType: 'TECHNICIAN',
 			experience: '2-5',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f8176ad69716d1c9dd15c/profile/dEtMnegBpc-compressed.jpg',
+			profileImage: 'dEtMnegBpc-compressed.jpg',
 			rating: '3.6',
 		},
 		{
@@ -1655,8 +1490,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'ELECTRICAL',
 			skillType: 'TECHNICIAN',
 			experience: '5-8',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f8172ad69716d1c9dd096/profile/bfQSkBdJ2e-compressed.jpg',
+			profileImage: 'bfQSkBdJ2e-compressed.jpg',
 			rating: '5.0',
 		},
 		{
@@ -1665,8 +1499,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'ELECTRICAL',
 			skillType: 'TECHNICIAN',
 			experience: '2-5',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f818ead69716d1c9dd5b2/profile/OosXC40pQB-compressed.jpg',
+			profileImage: 'OosXC40pQB-compressed.jpg',
 			rating: '4.1',
 		},
 		{
@@ -1675,8 +1508,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'ELECTRICAL',
 			skillType: 'SUPERVISOR',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f81a1ad69716d1c9dd93c/profile/c3x6wRtLZ2-compressed.jpg',
+			profileImage: 'c3x6wRtLZ2-compressed.jpg',
 			rating: '3.6',
 		},
 		{
@@ -1685,8 +1517,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'ELECTRICAL',
 			skillType: 'TECHNICIAN',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f81aead69716d1c9ddb96/profile/8kQt99a_4_-compressed.jpg',
+			profileImage: '8kQt99a_4_-compressed.jpg',
 			rating: '4.3',
 		},
 		{
@@ -1695,8 +1526,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'ELECTRICAL',
 			skillType: 'TECHNICIAN',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f81aead69716d1c9ddb88/profile/BVGjwevppF-compressed.jpg',
+			profileImage: 'BVGjwevppF-compressed.jpg',
 			rating: '4.8',
 		},
 		{
@@ -1705,8 +1535,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'ELECTRICAL',
 			skillType: 'HELPER',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f81c6ad69716d1c9de023/profile/njnj93d-Bp-compressed.jpg',
+			profileImage: 'njnj93d-Bp-compressed.jpg',
 			rating: '3.7',
 		},
 		{
@@ -1715,8 +1544,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'ELECTRICAL',
 			skillType: 'TECHNICIAN',
 			experience: '5-8',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f81b4ad69716d1c9ddca4/profile/X21xFBTdsJ-compressed.jpg',
+			profileImage: 'X21xFBTdsJ-compressed.jpg',
 			rating: '4.2',
 		},
 		{
@@ -1725,8 +1553,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'ELECTRICAL',
 			skillType: 'HELPER',
 			experience: '2-5',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f81ebad69716d1c9de6af/profile/tyHCIuJw3s-compressed.jpg',
+			profileImage: 'tyHCIuJw3s-compressed.jpg',
 			rating: '3.7',
 		},
 		{
@@ -1735,8 +1562,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'ELECTRICAL',
 			skillType: 'TECHNICIAN',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f81edad69716d1c9de6c5/profile/CTGIzQGZsO-compressed.jpg',
+			profileImage: 'CTGIzQGZsO-compressed.jpg',
 			rating: '3.6',
 		},
 		{
@@ -1745,8 +1571,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'ELECTRICAL',
 			skillType: 'HELPER',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f821ead69716d1c9defd6/profile/PikyvWKtsK-compressed.jpg',
+			profileImage: 'PikyvWKtsK-compressed.jpg',
 			rating: '4.7',
 		},
 		{
@@ -1755,8 +1580,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'ELECTRICAL',
 			skillType: 'TECHNICIAN',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f8245ad69716d1c9df6ce/profile/jheplgXtp6-compressed.jpg',
+			profileImage: 'jheplgXtp6-compressed.jpg',
 			rating: '3.8',
 		},
 		{
@@ -1765,8 +1589,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'ELECTRICAL',
 			skillType: 'TECHNICIAN',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f826aad69716d1c9dfd8a/profile/di_43Tj_Lh-compressed.jpg',
+			profileImage: 'di_43Tj_Lh-compressed.jpg',
 			rating: '4.5',
 		},
 		{
@@ -1775,8 +1598,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'ELECTRICAL',
 			skillType: 'HELPER',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f8281ad69716d1c9e015d/profile/f4D1_ZtKRA-compressed.jpg',
+			profileImage: 'f4D1_ZtKRA-compressed.jpg',
 			rating: '4.6',
 		},
 		{
@@ -1785,8 +1607,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'ELECTRICAL',
 			skillType: 'TECHNICIAN',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f828ead69716d1c9e03a7/profile/u5lFnrddZg-compressed.jpg',
+			profileImage: 'u5lFnrddZg-compressed.jpg',
 			rating: '4.5',
 		},
 		{
@@ -1795,8 +1616,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'ELECTRICAL',
 			skillType: 'TECHNICIAN',
 			experience: '2-5',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f82ecad69716d1c9e1505/profile/GS4efM0Eo9-compressed.jpg',
+			profileImage: 'GS4efM0Eo9-compressed.jpg',
 			rating: '4.5',
 		},
 		{
@@ -1805,8 +1625,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'ELECTRICAL',
 			skillType: 'TECHNICIAN',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f82f5ad69716d1c9e1645/profile/IxfOcqz-Hy-compressed.jpg',
+			profileImage: 'IxfOcqz-Hy-compressed.jpg',
 			rating: '3.6',
 		},
 		{
@@ -1815,8 +1634,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'ELECTRICAL',
 			skillType: 'TECHNICIAN',
 			experience: '2-5',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f82f5ad69716d1c9e1695/profile/zU0Swxm9N_-compressed.jpg',
+			profileImage: 'zU0Swxm9N_-compressed.jpg',
 			rating: '4.0',
 		},
 		{
@@ -1825,8 +1643,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'ELECTRICAL',
 			skillType: 'SUPERVISOR',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f8313ad69716d1c9e1c07/profile/BV1fQXpPOe-compressed.jpg',
+			profileImage: 'BV1fQXpPOe-compressed.jpg',
 			rating: '4.6',
 		},
 		{
@@ -1835,8 +1652,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'ELECTRICAL',
 			skillType: 'TECHNICIAN',
 			experience: '2-5',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f8337ad69716d1c9e2289/profile/_74Fbv8fq1-compressed.jpg',
+			profileImage: '_74Fbv8fq1-compressed.jpg',
 			rating: '4.3',
 		},
 		{
@@ -1845,8 +1661,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'ELECTRICAL',
 			skillType: 'TECHNICIAN',
 			experience: '5-8',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f832aad69716d1c9e201a/profile/YgJFzd3r8Y-compressed.jpg',
+			profileImage: 'YgJFzd3r8Y-compressed.jpg',
 			rating: '3.6',
 		},
 		{
@@ -1855,8 +1670,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'ELECTRICAL',
 			skillType: 'TECHNICIAN',
 			experience: '2-5',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f832cad69716d1c9e208d/profile/vJZruj0X76-compressed.jpg',
+			profileImage: 'vJZruj0X76-compressed.jpg',
 			rating: '3.6',
 		},
 		{
@@ -1865,8 +1679,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'ELECTRICAL',
 			skillType: 'HELPER',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f835aad69716d1c9e2882/profile/38F06RLIGe-compressed.jpg',
+			profileImage: '38F06RLIGe-compressed.jpg',
 			rating: '4.8',
 		},
 		{
@@ -1875,8 +1688,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'ELECTRICAL',
 			skillType: 'HELPER',
 			experience: '2-5',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f835aad69716d1c9e28ab/profile/CM2qAZJwfJ-compressed.jpg',
+			profileImage: 'CM2qAZJwfJ-compressed.jpg',
 			rating: '4.0',
 		},
 		{
@@ -1885,8 +1697,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'ELECTRICAL',
 			skillType: 'TECHNICIAN',
 			experience: '5-8',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f8390ad69716d1c9e323e/profile/Jtvins_gRO-compressed.jpg',
+			profileImage: 'Jtvins_gRO-compressed.jpg',
 			rating: '5.0',
 		},
 		{
@@ -1895,8 +1706,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'ELECTRICAL',
 			skillType: 'HELPER',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bebccfb53332601857dd7e/profile/X3rghu4-25-compressed.jpg',
+			profileImage: 'X3rghu4-25-compressed.jpg',
 			rating: '4.9',
 		},
 		{
@@ -1905,8 +1715,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'ELECTRICAL',
 			skillType: 'TECHNICIAN',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bebcf2b53332601857e325/profile/2Nf3AMsa8P-compressed.jpg',
+			profileImage: '2Nf3AMsa8P-compressed.jpg',
 			rating: '4.7',
 		},
 		{
@@ -1915,8 +1724,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'ELECTRICAL',
 			skillType: 'TECHNICIAN',
 			experience: '2-5',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bebd09b53332601857e741/profile/QCUyg74s6d-compressed.jpg',
+			profileImage: 'QCUyg74s6d-compressed.jpg',
 			rating: '3.8',
 		},
 	],
@@ -1927,8 +1735,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'MASON',
 			skillType: 'SUPERVISOR',
 			experience: '8-15',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f803ead69716d1c9d9987/profile/9WxY1JQRXi-compressed.jpg',
+			profileImage: '9WxY1JQRXi-compressed.jpg',
 			rating: '4.7',
 		},
 		{
@@ -1936,8 +1743,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			name: 'dinesh',
 			jobType: 'MASON',
 			skillType: 'TECHNICIAN',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f8033ad69716d1c9d9791/profile/47MDOLVfL9-compressed.jpg',
+			profileImage: '47MDOLVfL9-compressed.jpg',
 			rating: '3.6',
 		},
 		{
@@ -1946,8 +1752,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'MASON',
 			skillType: 'HELPER',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f808fad69716d1c9da771/profile/rJbGwkagmf-compressed.jpg',
+			profileImage: 'rJbGwkagmf-compressed.jpg',
 			rating: '4.3',
 		},
 		{
@@ -1956,8 +1761,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'MASON',
 			skillType: 'TECHNICIAN',
 			experience: '>15',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f809cad69716d1c9daa0b/profile/1J2dC0xWX7-compressed.jpg',
+			profileImage: '1J2dC0xWX7-compressed.jpg',
 			rating: '3.6',
 		},
 		{
@@ -1966,8 +1770,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'MASON',
 			skillType: 'TECHNICIAN',
 			experience: '2-5',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f80c9ad69716d1c9db219/profile/KQJyiTkzzD-compressed.jpg',
+			profileImage: 'KQJyiTkzzD-compressed.jpg',
 			rating: '5.0',
 		},
 		{
@@ -1976,8 +1779,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'MASON',
 			skillType: 'TECHNICIAN',
 			experience: '2-5',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f811cad69716d1c9dc118/profile/YMWpnIm-JG-compressed.jpg',
+			profileImage: 'YMWpnIm-JG-compressed.jpg',
 			rating: '4.1',
 		},
 		{
@@ -1986,8 +1788,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'MASON',
 			skillType: 'HELPER',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f8147ad69716d1c9dc8f4/profile/yLPjUJvoZ--compressed.jpg',
+			profileImage: 'yLPjUJvoZ--compressed.jpg',
 			rating: '4.9',
 		},
 		{
@@ -1996,8 +1797,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'MASON',
 			skillType: 'SUPERVISOR',
 			experience: '5-8',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f8163ad69716d1c9dcdf4/profile/Cb0F0v0OJn-compressed.jpg',
+			profileImage: 'Cb0F0v0OJn-compressed.jpg',
 			rating: '4.2',
 		},
 		{
@@ -2006,8 +1806,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'MASON',
 			skillType: 'TECHNICIAN',
 			experience: '8-15',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f818cad69716d1c9dd592/profile/DLsrTHH8kZ-compressed.jpg',
+			profileImage: 'DLsrTHH8kZ-compressed.jpg',
 			rating: '4.4',
 		},
 		{
@@ -2016,8 +1815,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'MASON',
 			skillType: 'SUPERVISOR',
 			experience: '>15',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f8236ad69716d1c9df446/profile/3Q8tkTQnpp-compressed.jpg',
+			profileImage: '3Q8tkTQnpp-compressed.jpg',
 			rating: '3.6',
 		},
 		{
@@ -2026,8 +1824,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'MASON',
 			skillType: 'TECHNICIAN',
 			experience: '>15',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f824ead69716d1c9df85d/profile/ZdXgZohZki-compressed.jpg',
+			profileImage: 'ZdXgZohZki-compressed.jpg',
 			rating: '4.1',
 		},
 		{
@@ -2036,8 +1833,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'MASON',
 			skillType: 'SUPERVISOR',
 			experience: '>15',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f8286ad69716d1c9e022c/profile/8N1u2jZQNo-compressed.jpg',
+			profileImage: '8N1u2jZQNo-compressed.jpg',
 			rating: '3.5',
 		},
 		{
@@ -2046,8 +1842,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'MASON',
 			skillType: 'SUPERVISOR',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f8290ad69716d1c9e044a/profile/Q9qx4lrdlU-compressed.jpg',
+			profileImage: 'Q9qx4lrdlU-compressed.jpg',
 			rating: '3.8',
 		},
 		{
@@ -2056,8 +1851,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'MASON',
 			skillType: 'HELPER',
 			experience: '5-8',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f8295ad69716d1c9e04f4/profile/HHrUO7-Mng-compressed.jpg',
+			profileImage: 'HHrUO7-Mng-compressed.jpg',
 			rating: '3.8',
 		},
 		{
@@ -2066,8 +1860,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'MASON',
 			skillType: 'TECHNICIAN',
 			experience: '8-15',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f8358ad69716d1c9e283e/profile/WLKki16eBy-compressed.jpg',
+			profileImage: 'WLKki16eBy-compressed.jpg',
 			rating: '3.8',
 		},
 		{
@@ -2076,8 +1869,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'MASON',
 			skillType: 'TECHNICIAN',
 			experience: '2-5',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bebcfdb53332601857e500/profile/dB34ZxpdUj-compressed.jpg',
+			profileImage: 'dB34ZxpdUj-compressed.jpg',
 			rating: '3.8',
 		},
 		{
@@ -2085,8 +1877,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			name: 'ramnatan chauhan',
 			jobType: 'MASON',
 			skillType: 'TECHNICIAN',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bebd2fb53332601857ed6d/profile/uitFkHsaWQ-compressed.jpg',
+			profileImage: 'uitFkHsaWQ-compressed.jpg',
 			rating: '3.9',
 		},
 		{
@@ -2095,8 +1886,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'MASON',
 			skillType: 'TECHNICIAN',
 			experience: '8-15',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bebd35b53332601857ee27/profile/Yt1dDc0A2T-compressed.jpg',
+			profileImage: 'Yt1dDc0A2T-compressed.jpg',
 			rating: '4.8',
 		},
 		{
@@ -2105,8 +1895,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'MASON',
 			skillType: 'TECHNICIAN',
 			experience: '5-8',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bebd2eb53332601857ed44/profile/rySSFiaroy-compressed.jpg',
+			profileImage: 'rySSFiaroy-compressed.jpg',
 			rating: '4.1',
 		},
 		{
@@ -2115,8 +1904,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'MASON',
 			skillType: 'HELPER',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bebd41b53332601857f0d8/profile/R3l9__lGHG-compressed.jpg',
+			profileImage: 'R3l9__lGHG-compressed.jpg',
 			rating: '3.7',
 		},
 		{
@@ -2124,8 +1912,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			name: 'roshan ali',
 			jobType: 'MASON',
 			skillType: 'TECHNICIAN',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bebdc1b5333260185806a3/profile/8-stNzQXkL-compressed.jpg',
+			profileImage: '8-stNzQXkL-compressed.jpg',
 			rating: '3.9',
 		},
 		{
@@ -2134,8 +1921,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'MASON',
 			skillType: 'SUPERVISOR',
 			experience: '8-15',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bebdb8b533326018580563/profile/VU2ftle4lP-compressed.jpg',
+			profileImage: 'VU2ftle4lP-compressed.jpg',
 			rating: '4.4',
 		},
 		{
@@ -2144,8 +1930,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'MASON',
 			skillType: 'TECHNICIAN',
 			experience: '2-5',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bebde9b533326018580d91/profile/0T3wUAC0O_-compressed.jpg',
+			profileImage: '0T3wUAC0O_-compressed.jpg',
 			rating: '4.8',
 		},
 		{
@@ -2154,8 +1939,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'MASON',
 			skillType: 'TECHNICIAN',
 			experience: '8-15',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bebe02b533326018581151/profile/TLhHetkuMz-compressed.jpg',
+			profileImage: 'TLhHetkuMz-compressed.jpg',
 			rating: '3.7',
 		},
 		{
@@ -2164,8 +1948,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'MASON',
 			skillType: 'TECHNICIAN',
 			experience: '>15',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bebf5eb53332601858261b/profile/M_gwGvErYS-compressed.jpg',
+			profileImage: 'M_gwGvErYS-compressed.jpg',
 			rating: '3.9',
 		},
 		{
@@ -2174,8 +1957,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'MASON',
 			skillType: 'TECHNICIAN',
 			experience: '8-15',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bebf98b533326018582fae/profile/G211DX0YF_-compressed.jpg',
+			profileImage: 'G211DX0YF_-compressed.jpg',
 			rating: '4.1',
 		},
 		{
@@ -2184,8 +1966,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'MASON',
 			skillType: 'HELPER',
 			experience: '8-15',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bebf99b53332601858303d/profile/kkPRzEOfbB-compressed.jpg',
+			profileImage: 'kkPRzEOfbB-compressed.jpg',
 			rating: '4.8',
 		},
 		{
@@ -2194,8 +1975,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'MASON',
 			skillType: 'HELPER',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bebffbb5333260185840db/profile/AtEVYn_d76-compressed.jpg',
+			profileImage: 'AtEVYn_d76-compressed.jpg',
 			rating: '4.5',
 		},
 		{
@@ -2203,8 +1983,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			name: 'dhanjay kewat',
 			jobType: 'MASON',
 			skillType: 'HELPER',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bec000b533326018584207/profile/klEDoYcjBZ-compressed.jpg',
+			profileImage: 'klEDoYcjBZ-compressed.jpg',
 			rating: '4.0',
 		},
 		{
@@ -2213,8 +1992,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'MASON',
 			skillType: 'SUPERVISOR',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bec0deb533326018586803/profile/oTWRjvgovE-compressed.jpg',
+			profileImage: 'oTWRjvgovE-compressed.jpg',
 			rating: '4.6',
 		},
 		{
@@ -2223,8 +2001,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'MASON',
 			skillType: 'HELPER',
 			experience: '>15',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bec0e7b53332601858690f/profile/r5Jwb7faCj-compressed.jpg',
+			profileImage: 'r5Jwb7faCj-compressed.jpg',
 			rating: '3.6',
 		},
 		{
@@ -2233,8 +2010,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'MASON',
 			skillType: 'HELPER',
 			experience: '5-8',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bec186b53332601858848e/profile/ab-2KEqH1p-compressed.jpg',
+			profileImage: 'ab-2KEqH1p-compressed.jpg',
 			rating: '4.4',
 		},
 		{
@@ -2243,8 +2019,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'MASON',
 			skillType: 'HELPER',
 			experience: '8-15',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bec311b533326018588c72/profile/ZK7iotr3VI-compressed.jpg',
+			profileImage: 'ZK7iotr3VI-compressed.jpg',
 			rating: '3.9',
 		},
 		{
@@ -2253,8 +2028,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'MASON',
 			skillType: 'TECHNICIAN',
 			experience: '2-5',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61c2187f9e3efa2e24b97b32/profile/gJupCNYmxI-compressed.jpg',
+			profileImage: 'gJupCNYmxI-compressed.jpg',
 			rating: '4.8',
 		},
 		{
@@ -2262,8 +2036,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			name: 'anand',
 			jobType: 'MASON',
 			skillType: 'TECHNICIAN',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61ee88a3e36472299913f89d/profile/4xbllEL8Fq-compressed.jpg',
+			profileImage: '4xbllEL8Fq-compressed.jpg',
 			rating: '3.5',
 		},
 		{
@@ -2272,8 +2045,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'MASON',
 			skillType: 'TECHNICIAN',
 			experience: '8-15',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61ee88bae36472299913fd01/profile/sbk0BqGL_A-compressed.jpg',
+			profileImage: 'sbk0BqGL_A-compressed.jpg',
 			rating: '3.7',
 		},
 		{
@@ -2282,8 +2054,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'MASON',
 			skillType: 'TECHNICIAN',
 			experience: '8-15',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61ee88b8e36472299913fc7f/profile/qQt4rR_YAw-compressed.jpg',
+			profileImage: 'qQt4rR_YAw-compressed.jpg',
 			rating: '4.5',
 		},
 		{
@@ -2292,8 +2063,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'MASON',
 			skillType: 'TECHNICIAN',
 			experience: '2-5',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61ee88f4e364722999140753/profile/wfikQZ6j-O-compressed.jpg',
+			profileImage: 'wfikQZ6j-O-compressed.jpg',
 			rating: '5.0',
 		},
 		{
@@ -2302,8 +2072,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'MASON',
 			skillType: 'TECHNICIAN',
 			experience: '5-8',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61ee88f6e3647229991407b1/profile/Nm2BfsM3k7-compressed.jpg',
+			profileImage: 'Nm2BfsM3k7-compressed.jpg',
 			rating: '4.2',
 		},
 		{
@@ -2312,8 +2081,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'MASON',
 			skillType: 'SUPERVISOR',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61ee8900e36472299914098c/profile/zDt3-Jzz20-compressed.jpg',
+			profileImage: 'zDt3-Jzz20-compressed.jpg',
 			rating: '4.4',
 		},
 		{
@@ -2322,8 +2090,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'MASON',
 			skillType: 'HELPER',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61ee8915e364722999140d78/profile/pxiSd2rmqd-compressed.jpg',
+			profileImage: 'pxiSd2rmqd-compressed.jpg',
 			rating: '3.9',
 		},
 		{
@@ -2332,8 +2099,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'MASON',
 			skillType: 'TECHNICIAN',
 			experience: '2-5',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61ee8a80e364722999143b77/profile/KhJXYTzvUV-compressed.jpg',
+			profileImage: 'KhJXYTzvUV-compressed.jpg',
 			rating: '4.6',
 		},
 		{
@@ -2342,8 +2108,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'MASON',
 			skillType: 'TECHNICIAN',
 			experience: '8-15',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61ee8b0ee3647229991454cd/profile/--4ISDhpGy-compressed.jpg',
+			profileImage: '--4ISDhpGy-compressed.jpg',
 			rating: '3.9',
 		},
 		{
@@ -2352,8 +2117,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'MASON',
 			skillType: 'TECHNICIAN',
 			experience: '5-8',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61ee8b1ce3647229991456fd/profile/_A09dHp4kA-compressed.jpg',
+			profileImage: '_A09dHp4kA-compressed.jpg',
 			rating: '3.6',
 		},
 		{
@@ -2362,8 +2126,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'MASON',
 			skillType: 'SUPERVISOR',
 			experience: '>15',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61ee8b22e364722999145853/profile/w01YS_4h3--compressed.jpg',
+			profileImage: 'w01YS_4h3--compressed.jpg',
 			rating: '4.3',
 		},
 		{
@@ -2371,8 +2134,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			name: 'vishal',
 			jobType: 'MASON',
 			skillType: 'TECHNICIAN',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61ee8b5ae3647229991461ce/profile/-jEDjO6_qX-compressed.jpg',
+			profileImage: '-jEDjO6_qX-compressed.jpg',
 			rating: '3.6',
 		},
 		{
@@ -2381,8 +2143,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'MASON',
 			skillType: 'TECHNICIAN',
 			experience: '5-8',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/62167023246fa1e555384786/profile/whyuu-WOyI-compressed.jpg',
+			profileImage: 'whyuu-WOyI-compressed.jpg',
 			rating: '4.8',
 		},
 		{
@@ -2391,8 +2152,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'MASON',
 			skillType: 'TECHNICIAN',
 			experience: '2-5',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/62167024246fa1e5553847f9/profile/EI9R677cyl-compressed.jpg',
+			profileImage: 'EI9R677cyl-compressed.jpg',
 			rating: '4.6',
 		},
 	],
@@ -2403,8 +2163,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'BAR_BENDER',
 			skillType: 'HELPER',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f80afad69716d1c9dad49/profile/p2LnP7gwM8-compressed.jpg',
+			profileImage: 'p2LnP7gwM8-compressed.jpg',
 			rating: '3.8',
 		},
 		{
@@ -2413,8 +2172,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'BAR_BENDER',
 			skillType: 'TECHNICIAN',
 			experience: '2-5',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f80b1ad69716d1c9dad98/profile/YutfGbSLi0-compressed.jpg',
+			profileImage: 'YutfGbSLi0-compressed.jpg',
 			rating: '4.4',
 		},
 		{
@@ -2423,8 +2181,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'BAR_BENDER',
 			skillType: 'HELPER',
 			experience: '5-8',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f80baad69716d1c9daf57/profile/5GMFBccQAb-compressed.jpg',
+			profileImage: '5GMFBccQAb-compressed.jpg',
 			rating: '4.8',
 		},
 		{
@@ -2433,8 +2190,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'BAR_BENDER',
 			skillType: 'TECHNICIAN',
 			experience: '2-5',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f8145ad69716d1c9dc8bd/profile/JZ-fTp-itb-compressed.jpg',
+			profileImage: 'JZ-fTp-itb-compressed.jpg',
 			rating: '5.0',
 		},
 		{
@@ -2443,8 +2199,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'BAR_BENDER',
 			skillType: 'TECHNICIAN',
 			experience: '8-15',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f8179ad69716d1c9dd1d1/profile/_gJrUSaYpJ-compressed.jpg',
+			profileImage: '_gJrUSaYpJ-compressed.jpg',
 			rating: '4.4',
 		},
 		{
@@ -2453,8 +2208,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'BAR_BENDER',
 			skillType: 'TECHNICIAN',
 			experience: '2-5',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f8185ad69716d1c9dd423/profile/2X2V9Z80a2-compressed.jpg',
+			profileImage: '2X2V9Z80a2-compressed.jpg',
 			rating: '4.8',
 		},
 		{
@@ -2463,8 +2217,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'BAR_BENDER',
 			skillType: 'TECHNICIAN',
 			experience: '2-5',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f81a5ad69716d1c9dd9eb/profile/YW9myQIAM5-compressed.jpg',
+			profileImage: 'YW9myQIAM5-compressed.jpg',
 			rating: '3.9',
 		},
 		{
@@ -2473,8 +2226,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'BAR_BENDER',
 			skillType: 'HELPER',
 			experience: '8-15',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f81fead69716d1c9de9e0/profile/g_jp1opQAh-compressed.jpg',
+			profileImage: 'g_jp1opQAh-compressed.jpg',
 			rating: '4.0',
 		},
 		{
@@ -2483,8 +2235,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'BAR_BENDER',
 			skillType: 'HELPER',
 			experience: '5-8',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f827ead69716d1c9e00f3/profile/g7x3OvzSKs-compressed.jpg',
+			profileImage: 'g7x3OvzSKs-compressed.jpg',
 			rating: '4.1',
 		},
 		{
@@ -2493,8 +2244,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'BAR_BENDER',
 			skillType: 'TECHNICIAN',
 			experience: '>15',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f8321ad69716d1c9e1e7d/profile/4IpZgVCYMU-compressed.jpg',
+			profileImage: '4IpZgVCYMU-compressed.jpg',
 			rating: '3.7',
 		},
 		{
@@ -2503,8 +2253,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'BAR_BENDER',
 			skillType: 'TECHNICIAN',
 			experience: '2-5',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f8344ad69716d1c9e24a0/profile/XMymrBecgK-compressed.jpg',
+			profileImage: 'XMymrBecgK-compressed.jpg',
 			rating: '4.3',
 		},
 		{
@@ -2513,8 +2262,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'BAR_BENDER',
 			skillType: 'HELPER',
 			experience: '2-5',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f839aad69716d1c9e342f/profile/pK05UYuxus-compressed.jpg',
+			profileImage: 'pK05UYuxus-compressed.jpg',
 			rating: '4.3',
 		},
 		{
@@ -2523,8 +2271,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'BAR_BENDER',
 			skillType: 'HELPER',
 			experience: '>15',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bebcd1b53332601857de21/profile/7v2jl2hdDD-compressed.jpg',
+			profileImage: '7v2jl2hdDD-compressed.jpg',
 			rating: '4.8',
 		},
 		{
@@ -2533,8 +2280,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'BAR_BENDER',
 			skillType: 'TECHNICIAN',
 			experience: '5-8',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bebd12b53332601857e8fb/profile/HIbxmrk2A9-compressed.jpg',
+			profileImage: 'HIbxmrk2A9-compressed.jpg',
 			rating: '4.1',
 		},
 		{
@@ -2543,8 +2289,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'BAR_BENDER',
 			skillType: 'HELPER',
 			experience: '2-5',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bebd25b53332601857ec27/profile/mG6NaXwypy-compressed.jpg',
+			profileImage: 'mG6NaXwypy-compressed.jpg',
 			rating: '4.9',
 		},
 		{
@@ -2553,8 +2298,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'BAR_BENDER',
 			skillType: 'SUPERVISOR',
 			experience: '8-15',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bebd97b53332601857ff4e/profile/y4DKRJH2Kc-compressed.jpg',
+			profileImage: 'y4DKRJH2Kc-compressed.jpg',
 			rating: '4.7',
 		},
 		{
@@ -2563,8 +2307,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'BAR_BENDER',
 			skillType: 'SUPERVISOR',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bebda4b5333260185801e7/profile/xaMLjwsUy4-compressed.jpg',
+			profileImage: 'xaMLjwsUy4-compressed.jpg',
 			rating: '4.0',
 		},
 		{
@@ -2573,8 +2316,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'BAR_BENDER',
 			skillType: 'TECHNICIAN',
 			experience: '2-5',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bebf11b5333260185818de/profile/0LKODlu-IF-compressed.jpg',
+			profileImage: '0LKODlu-IF-compressed.jpg',
 			rating: '4.7',
 		},
 		{
@@ -2583,8 +2325,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'BAR_BENDER',
 			skillType: 'TECHNICIAN',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bebf56b5333260185824f5/profile/T0O4STPR0l-compressed.jpg',
+			profileImage: 'T0O4STPR0l-compressed.jpg',
 			rating: '3.8',
 		},
 		{
@@ -2593,8 +2334,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'BAR_BENDER',
 			skillType: 'TECHNICIAN',
 			experience: '8-15',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bebf87b533326018582d33/profile/Yv86kJIJDq-compressed.jpg',
+			profileImage: 'Yv86kJIJDq-compressed.jpg',
 			rating: '4.1',
 		},
 		{
@@ -2603,8 +2343,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'BAR_BENDER',
 			skillType: 'HELPER',
 			experience: '2-5',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bebf8fb533326018582e68/profile/b_E_XRpFzT-compressed.jpg',
+			profileImage: 'b_E_XRpFzT-compressed.jpg',
 			rating: '4.0',
 		},
 		{
@@ -2613,8 +2352,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'BAR_BENDER',
 			skillType: 'HELPER',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bec009b533326018584399/profile/kjRmuqx9ho-compressed.jpg',
+			profileImage: 'kjRmuqx9ho-compressed.jpg',
 			rating: '4.9',
 		},
 		{
@@ -2623,8 +2361,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'BAR_BENDER',
 			skillType: 'TECHNICIAN',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bec011b5333260185844a2/profile/TanEKD5x3Y-compressed.jpg',
+			profileImage: 'TanEKD5x3Y-compressed.jpg',
 			rating: '4.1',
 		},
 		{
@@ -2633,8 +2370,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'BAR_BENDER',
 			skillType: 'TECHNICIAN',
 			experience: '5-8',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bec072b533326018585505/profile/xyS3vva6LV-compressed.jpg',
+			profileImage: 'xyS3vva6LV-compressed.jpg',
 			rating: '4.5',
 		},
 		{
@@ -2643,8 +2379,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'BAR_BENDER',
 			skillType: 'TECHNICIAN',
 			experience: '2-5',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bec072b5333260185854fd/profile/91JOuT5085-compressed.jpg',
+			profileImage: '91JOuT5085-compressed.jpg',
 			rating: '3.7',
 		},
 		{
@@ -2653,8 +2388,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'BAR_BENDER',
 			skillType: 'TECHNICIAN',
 			experience: '5-8',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bec075b53332601858561d/profile/0G7uOL1FgM-compressed.jpg',
+			profileImage: '0G7uOL1FgM-compressed.jpg',
 			rating: '3.9',
 		},
 		{
@@ -2663,8 +2397,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'BAR_BENDER',
 			skillType: 'SUPERVISOR',
 			experience: '2-5',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bec07bb533326018585678/profile/UMuwGYAC_N-compressed.jpg',
+			profileImage: 'UMuwGYAC_N-compressed.jpg',
 			rating: '4.3',
 		},
 		{
@@ -2673,8 +2406,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'BAR_BENDER',
 			skillType: 'TECHNICIAN',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bec072b533326018585525/profile/tSuA4HvWMm-compressed.jpg',
+			profileImage: 'tSuA4HvWMm-compressed.jpg',
 			rating: '3.7',
 		},
 		{
@@ -2683,8 +2415,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'BAR_BENDER',
 			skillType: 'HELPER',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bec074b53332601858559e/profile/Hdzg-hS1pg-compressed.jpg',
+			profileImage: 'Hdzg-hS1pg-compressed.jpg',
 			rating: '3.9',
 		},
 		{
@@ -2693,8 +2424,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'BAR_BENDER',
 			skillType: 'TECHNICIAN',
 			experience: '2-5',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bec075b5333260185855e7/profile/l99PbLUNr3-compressed.jpg',
+			profileImage: 'l99PbLUNr3-compressed.jpg',
 			rating: '3.5',
 		},
 		{
@@ -2703,8 +2433,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'BAR_BENDER',
 			skillType: 'SUPERVISOR',
 			experience: '8-15',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bec09db533326018585d1d/profile/nwIGF88oJl-compressed.jpg',
+			profileImage: 'nwIGF88oJl-compressed.jpg',
 			rating: '3.9',
 		},
 		{
@@ -2713,8 +2442,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'BAR_BENDER',
 			skillType: 'SUPERVISOR',
 			experience: '>15',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bec0ddb5333260185867a6/profile/-a2aaqDKit-compressed.jpg',
+			profileImage: '-a2aaqDKit-compressed.jpg',
 			rating: '4.1',
 		},
 		{
@@ -2723,8 +2451,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'BAR_BENDER',
 			skillType: 'SUPERVISOR',
 			experience: '2-5',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bec307b533326018588ac9/profile/acm54eF-Pm-compressed.jpg',
+			profileImage: 'acm54eF-Pm-compressed.jpg',
 			rating: '5.0',
 		},
 		{
@@ -2733,8 +2460,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'BAR_BENDER',
 			skillType: 'TECHNICIAN',
 			experience: '>15',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61c218909e3efa2e24b97e28/profile/sl1xBXFxEC-compressed.jpg',
+			profileImage: 'sl1xBXFxEC-compressed.jpg',
 			rating: '4.6',
 		},
 		{
@@ -2743,8 +2469,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'BAR_BENDER',
 			skillType: 'TECHNICIAN',
 			experience: '5-8',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61dffd40e204734b7a6fd13a/profile/0q5HpcgTV2-compressed.jpg',
+			profileImage: '0q5HpcgTV2-compressed.jpg',
 			rating: '4.4',
 		},
 		{
@@ -2753,8 +2478,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'BAR_BENDER',
 			skillType: 'TECHNICIAN',
 			experience: '2-5',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61dffd40e204734b7a6fd13b/profile/qVOECu3dXm-compressed.jpg',
+			profileImage: 'qVOECu3dXm-compressed.jpg',
 			rating: '5.0',
 		},
 		{
@@ -2763,8 +2487,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'BAR_BENDER',
 			skillType: 'TECHNICIAN',
 			experience: '2-5',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61ee8552e36472299913b7ad/profile/zMpLR59cBP-compressed.jpg',
+			profileImage: 'zMpLR59cBP-compressed.jpg',
 			rating: '4.4',
 		},
 		{
@@ -2773,8 +2496,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'BAR_BENDER',
 			skillType: 'SUPERVISOR',
 			experience: '>15',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61ee871ce36472299913cb97/profile/D9HbXgwogR-compressed.jpg',
+			profileImage: 'D9HbXgwogR-compressed.jpg',
 			rating: '3.7',
 		},
 		{
@@ -2783,8 +2505,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'BAR_BENDER',
 			skillType: 'HELPER',
 			experience: '5-8',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61ee88ade36472299913faa1/profile/uf-ZxvyDgD-compressed.jpg',
+			profileImage: 'uf-ZxvyDgD-compressed.jpg',
 			rating: '3.5',
 		},
 		{
@@ -2793,8 +2514,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'BAR_BENDER',
 			skillType: 'HELPER',
 			experience: '>15',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61ee89c1e364722999141a42/profile/Cch7QzCHMV-compressed.jpg',
+			profileImage: 'Cch7QzCHMV-compressed.jpg',
 			rating: '4.4',
 		},
 		{
@@ -2803,8 +2523,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'BAR_BENDER',
 			skillType: 'TECHNICIAN',
 			experience: '2-5',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61ee89d7e364722999141e5f/profile/VJdUhhol-M-compressed.jpg',
+			profileImage: 'VJdUhhol-M-compressed.jpg',
 			rating: '4.7',
 		},
 		{
@@ -2813,8 +2532,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'BAR_BENDER',
 			skillType: 'HELPER',
 			experience: '2-5',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/62166ff6246fa1e555383f8d/profile/LHq22aMWh3-compressed.jpg',
+			profileImage: 'LHq22aMWh3-compressed.jpg',
 			rating: '4.7',
 		},
 		{
@@ -2823,8 +2541,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'BAR_BENDER',
 			skillType: 'TECHNICIAN',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/62167031246fa1e555384a36/profile/4CZIj2GOo8-compressed.jpg',
+			profileImage: '4CZIj2GOo8-compressed.jpg',
 			rating: '5.0',
 		},
 		{
@@ -2833,8 +2550,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'BAR_BENDER',
 			skillType: 'TECHNICIAN',
 			experience: '5-8',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/621670fb246fa1e555386dc6/profile/oCInPCmM5y-compressed.jpg',
+			profileImage: 'oCInPCmM5y-compressed.jpg',
 			rating: '4.7',
 		},
 		{
@@ -2843,8 +2559,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'BAR_BENDER',
 			skillType: 'HELPER',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/62167159246fa1e555387cf0/profile/AiedZ8Zrzp-compressed.jpg',
+			profileImage: 'AiedZ8Zrzp-compressed.jpg',
 			rating: '4.0',
 		},
 		{
@@ -2853,8 +2568,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'BAR_BENDER',
 			skillType: 'HELPER',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/62167176246fa1e555388199/profile/DfimqwbMaa-compressed.jpg',
+			profileImage: 'DfimqwbMaa-compressed.jpg',
 			rating: '3.6',
 		},
 		{
@@ -2863,8 +2577,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'BAR_BENDER',
 			skillType: 'TECHNICIAN',
 			experience: '8-15',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/621671a2246fa1e555388912/profile/GZo1mMk-O1-compressed.jpg',
+			profileImage: 'GZo1mMk-O1-compressed.jpg',
 			rating: '4.5',
 		},
 		{
@@ -2873,8 +2586,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'BAR_BENDER',
 			skillType: 'HELPER',
 			experience: '8-15',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/6216722e246fa1e55538a1ec/profile/mVBOLQb2AX-compressed.jpg',
+			profileImage: 'mVBOLQb2AX-compressed.jpg',
 			rating: '4.0',
 		},
 	],
@@ -2885,8 +2597,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'SHUTTERING_CARPENTER',
 			skillType: 'TECHNICIAN',
 			experience: '5-8',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f8011ad69716d1c9d9175/profile/w0WpD55X7Q-compressed.jpg',
+			profileImage: 'w0WpD55X7Q-compressed.jpg',
 			rating: '4.5',
 		},
 		{
@@ -2895,8 +2606,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'SHUTTERING_CARPENTER',
 			skillType: 'SUPERVISOR',
 			experience: '5-8',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f8080ad69716d1c9da4f0/profile/ZLmymzdGod-compressed.jpg',
+			profileImage: 'ZLmymzdGod-compressed.jpg',
 			rating: '4.0',
 		},
 		{
@@ -2905,8 +2615,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'SHUTTERING_CARPENTER',
 			skillType: 'TECHNICIAN',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f8099ad69716d1c9da952/profile/Vwc15JHgRg-compressed.jpg',
+			profileImage: 'Vwc15JHgRg-compressed.jpg',
 			rating: '4.2',
 		},
 		{
@@ -2915,8 +2624,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'SHUTTERING_CARPENTER',
 			skillType: 'SUPERVISOR',
 			experience: '>15',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f80eead69716d1c9db88d/profile/5hgPf6IVmg-compressed.jpg',
+			profileImage: '5hgPf6IVmg-compressed.jpg',
 			rating: '4.1',
 		},
 		{
@@ -2925,8 +2633,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'SHUTTERING_CARPENTER',
 			skillType: 'TECHNICIAN',
 			experience: '2-5',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f8123ad69716d1c9dc283/profile/yKWhEHt559-compressed.jpg',
+			profileImage: 'yKWhEHt559-compressed.jpg',
 			rating: '4.4',
 		},
 		{
@@ -2935,8 +2642,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'SHUTTERING_CARPENTER',
 			skillType: 'SUPERVISOR',
 			experience: '5-8',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f8149ad69716d1c9dc951/profile/VkzOq8ibWS-compressed.jpg',
+			profileImage: 'VkzOq8ibWS-compressed.jpg',
 			rating: '3.9',
 		},
 		{
@@ -2945,8 +2651,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'SHUTTERING_CARPENTER',
 			skillType: 'HELPER',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f81a3ad69716d1c9dd9d1/profile/bu_OOHgoTQ-compressed.jpg',
+			profileImage: 'bu_OOHgoTQ-compressed.jpg',
 			rating: '4.1',
 		},
 		{
@@ -2955,8 +2660,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'SHUTTERING_CARPENTER',
 			skillType: 'TECHNICIAN',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f81c1ad69716d1c9ddf1a/profile/qBaDCLljyq-compressed.jpg',
+			profileImage: 'qBaDCLljyq-compressed.jpg',
 			rating: '4.3',
 		},
 		{
@@ -2965,8 +2669,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'SHUTTERING_CARPENTER',
 			skillType: 'SUPERVISOR',
 			experience: '5-8',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f81c8ad69716d1c9de02e/profile/jRD4GdhVg2-compressed.jpg',
+			profileImage: 'jRD4GdhVg2-compressed.jpg',
 			rating: '4.0',
 		},
 		{
@@ -2975,8 +2678,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'SHUTTERING_CARPENTER',
 			skillType: 'SUPERVISOR',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f8250ad69716d1c9df8b2/profile/umRSpXJYg5-compressed.jpg',
+			profileImage: 'umRSpXJYg5-compressed.jpg',
 			rating: '4.8',
 		},
 		{
@@ -2985,8 +2687,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'SHUTTERING_CARPENTER',
 			skillType: 'TECHNICIAN',
 			experience: '2-5',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f8256ad69716d1c9df9e0/profile/YgqZ5qRTRY-compressed.jpg',
+			profileImage: 'YgqZ5qRTRY-compressed.jpg',
 			rating: '3.9',
 		},
 		{
@@ -2995,8 +2696,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'SHUTTERING_CARPENTER',
 			skillType: 'HELPER',
 			experience: '>15',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f8261ad69716d1c9dfc07/profile/8GF0L71hVs-compressed.jpg',
+			profileImage: '8GF0L71hVs-compressed.jpg',
 			rating: '3.9',
 		},
 		{
@@ -3005,8 +2705,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'SHUTTERING_CARPENTER',
 			skillType: 'SUPERVISOR',
 			experience: '8-15',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f825fad69716d1c9dfbc1/profile/rFt4_MEntd-compressed.jpg',
+			profileImage: 'rFt4_MEntd-compressed.jpg',
 			rating: '4.8',
 		},
 		{
@@ -3015,8 +2714,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'SHUTTERING_CARPENTER',
 			skillType: 'SUPERVISOR',
 			experience: '>15',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f8293ad69716d1c9e046c/profile/m83BmBL36h-compressed.jpg',
+			profileImage: 'm83BmBL36h-compressed.jpg',
 			rating: '4.1',
 		},
 		{
@@ -3025,8 +2723,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'SHUTTERING_CARPENTER',
 			skillType: 'TECHNICIAN',
 			experience: '8-15',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f8297ad69716d1c9e0546/profile/r5_Nlh2uJc-compressed.jpg',
+			profileImage: 'r5_Nlh2uJc-compressed.jpg',
 			rating: '4.7',
 		},
 		{
@@ -3035,8 +2732,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'SHUTTERING_CARPENTER',
 			skillType: 'TECHNICIAN',
 			experience: '2-5',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f82eead69716d1c9e1521/profile/PECNlIz3Um-compressed.jpg',
+			profileImage: 'PECNlIz3Um-compressed.jpg',
 			rating: '3.6',
 		},
 		{
@@ -3045,8 +2741,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'SHUTTERING_CARPENTER',
 			skillType: 'TECHNICIAN',
 			experience: '2-5',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f8310ad69716d1c9e1b68/profile/YwQrI2P0zy-compressed.jpg',
+			profileImage: 'YwQrI2P0zy-compressed.jpg',
 			rating: '3.8',
 		},
 		{
@@ -3055,8 +2750,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'SHUTTERING_CARPENTER',
 			skillType: 'TECHNICIAN',
 			experience: '>15',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f8315ad69716d1c9e1c4f/profile/hzQX7w-O2F-compressed.jpg',
+			profileImage: 'hzQX7w-O2F-compressed.jpg',
 			rating: '4.9',
 		},
 		{
@@ -3065,8 +2759,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'SHUTTERING_CARPENTER',
 			skillType: 'HELPER',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f8374ad69716d1c9e2d41/profile/AUOjDOxa9X-compressed.jpg',
+			profileImage: 'AUOjDOxa9X-compressed.jpg',
 			rating: '4.9',
 		},
 		{
@@ -3075,8 +2768,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'SHUTTERING_CARPENTER',
 			skillType: 'SUPERVISOR',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bebcf2b53332601857e31a/profile/aKiCAdx5j1-compressed.jpg',
+			profileImage: 'aKiCAdx5j1-compressed.jpg',
 			rating: '4.8',
 		},
 		{
@@ -3085,8 +2777,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'SHUTTERING_CARPENTER',
 			skillType: 'SUPERVISOR',
 			experience: '>15',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bebfccb53332601858394e/profile/bmqsXmYrhU-compressed.jpg',
+			profileImage: 'bmqsXmYrhU-compressed.jpg',
 			rating: '3.7',
 		},
 		{
@@ -3095,8 +2786,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'SHUTTERING_CARPENTER',
 			skillType: 'TECHNICIAN',
 			experience: '2-5',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bebfd5b533326018583abd/profile/xBWXkzAOWg-compressed.jpg',
+			profileImage: 'xBWXkzAOWg-compressed.jpg',
 			rating: '3.7',
 		},
 		{
@@ -3105,8 +2795,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'SHUTTERING_CARPENTER',
 			skillType: 'HELPER',
 			experience: '2-5',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bec02eb5333260185849df/profile/QjQiCcCZ5--compressed.jpg',
+			profileImage: 'QjQiCcCZ5--compressed.jpg',
 			rating: '3.7',
 		},
 		{
@@ -3115,8 +2804,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'SHUTTERING_CARPENTER',
 			skillType: 'SUPERVISOR',
 			experience: '5-8',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bec0ceb53332601858658c/profile/3iQbZuSIME-compressed.jpg',
+			profileImage: '3iQbZuSIME-compressed.jpg',
 			rating: '4.9',
 		},
 		{
@@ -3125,8 +2813,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'SHUTTERING_CARPENTER',
 			skillType: 'SUPERVISOR',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bec198b5333260185887cc/profile/cR3QajIz9J-compressed.jpg',
+			profileImage: 'cR3QajIz9J-compressed.jpg',
 			rating: '3.8',
 		},
 		{
@@ -3135,8 +2822,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'SHUTTERING_CARPENTER',
 			skillType: 'SUPERVISOR',
 			experience: '>15',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bec31bb533326018588e69/profile/fKhK5l7H06-compressed.jpg',
+			profileImage: 'fKhK5l7H06-compressed.jpg',
 			rating: '4.3',
 		},
 		{
@@ -3144,8 +2830,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			name: 'chandr shekhar yadav',
 			jobType: 'SHUTTERING_CARPENTER',
 			skillType: 'TECHNICIAN',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61c2187d9e3efa2e24b97a79/profile/TgCUGcA-qO-compressed.jpg',
+			profileImage: 'TgCUGcA-qO-compressed.jpg',
 			rating: '4.7',
 		},
 		{
@@ -3154,8 +2839,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'SHUTTERING_CARPENTER',
 			skillType: 'TECHNICIAN',
 			experience: '2-5',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61c2187f9e3efa2e24b97b07/profile/4ID-q2WFWL-compressed.jpg',
+			profileImage: '4ID-q2WFWL-compressed.jpg',
 			rating: '4.6',
 		},
 		{
@@ -3164,8 +2848,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'SHUTTERING_CARPENTER',
 			skillType: 'TECHNICIAN',
 			experience: '>15',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61c2187f9e3efa2e24b97b06/profile/vnaLYGIfId-compressed.jpg',
+			profileImage: 'vnaLYGIfId-compressed.jpg',
 			rating: '4.2',
 		},
 		{
@@ -3174,8 +2857,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'SHUTTERING_CARPENTER',
 			skillType: 'SUPERVISOR',
 			experience: '8-15',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61c218829e3efa2e24b97be5/profile/iyQsnGnL-z-compressed.jpg',
+			profileImage: 'iyQsnGnL-z-compressed.jpg',
 			rating: '4.3',
 		},
 		{
@@ -3183,8 +2865,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			name: 'bhrigunath',
 			jobType: 'SHUTTERING_CARPENTER',
 			skillType: 'TECHNICIAN',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61c2187d9e3efa2e24b97a8a/profile/IpSjUno1Js-compressed.jpg',
+			profileImage: 'IpSjUno1Js-compressed.jpg',
 			rating: '3.9',
 		},
 		{
@@ -3192,8 +2873,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			name: 'manish mani tripathi',
 			jobType: 'SHUTTERING_CARPENTER',
 			skillType: 'TECHNICIAN',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61c218809e3efa2e24b97b6a/profile/hW5w6MLnqk-compressed.jpg',
+			profileImage: 'hW5w6MLnqk-compressed.jpg',
 			rating: '4.8',
 		},
 		{
@@ -3202,8 +2882,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'SHUTTERING_CARPENTER',
 			skillType: 'TECHNICIAN',
 			experience: '8-15',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61c218869e3efa2e24b97c51/profile/xZwA_-cz-z-compressed.jpg',
+			profileImage: 'xZwA_-cz-z-compressed.jpg',
 			rating: '4.8',
 		},
 		{
@@ -3212,8 +2891,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'SHUTTERING_CARPENTER',
 			skillType: 'TECHNICIAN',
 			experience: '2-5',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61c2188b9e3efa2e24b97ce7/profile/6dq5ob3CQe-compressed.jpg',
+			profileImage: '6dq5ob3CQe-compressed.jpg',
 			rating: '4.9',
 		},
 		{
@@ -3221,8 +2899,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			name: 'sugreev kumar kuswhaha',
 			jobType: 'SHUTTERING_CARPENTER',
 			skillType: 'TECHNICIAN',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61dfbc3316618f0c2250d1a3/profile/B64o1l13Do-compressed.jpg',
+			profileImage: 'B64o1l13Do-compressed.jpg',
 			rating: '4.0',
 		},
 		{
@@ -3230,8 +2907,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			name: 'ram nihor',
 			jobType: 'SHUTTERING_CARPENTER',
 			skillType: 'TECHNICIAN',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61e7f3da0305713784379c5c/profile/624AhlQcfQ-compressed.jpg',
+			profileImage: '624AhlQcfQ-compressed.jpg',
 			rating: '4.0',
 		},
 		{
@@ -3240,8 +2916,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'SHUTTERING_CARPENTER',
 			skillType: 'TECHNICIAN',
 			experience: '2-5',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61ee886be36472299913eea2/profile/w_QZihvIsg-compressed.jpg',
+			profileImage: 'w_QZihvIsg-compressed.jpg',
 			rating: '4.6',
 		},
 		{
@@ -3250,8 +2925,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'SHUTTERING_CARPENTER',
 			skillType: 'SUPERVISOR',
 			experience: '8-15',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61ee8895e36472299913f619/profile/QVrF6ro4bQ-compressed.jpg',
+			profileImage: 'QVrF6ro4bQ-compressed.jpg',
 			rating: '3.7',
 		},
 		{
@@ -3260,8 +2934,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'SHUTTERING_CARPENTER',
 			skillType: 'SUPERVISOR',
 			experience: '2-5',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61ee8884e36472299913f30b/profile/OJUSuslaU3-compressed.jpg',
+			profileImage: 'OJUSuslaU3-compressed.jpg',
 			rating: '4.2',
 		},
 		{
@@ -3270,8 +2943,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'SHUTTERING_CARPENTER',
 			skillType: 'SUPERVISOR',
 			experience: '5-8',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61ee89fce364722999142528/profile/kmfTKwhTSg-compressed.jpg',
+			profileImage: 'kmfTKwhTSg-compressed.jpg',
 			rating: '4.6',
 		},
 		{
@@ -3280,8 +2952,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'SHUTTERING_CARPENTER',
 			skillType: 'SUPERVISOR',
 			experience: '8-15',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61ee8b06e364722999145331/profile/97FVBGd_Ko-compressed.jpg',
+			profileImage: '97FVBGd_Ko-compressed.jpg',
 			rating: '3.5',
 		},
 		{
@@ -3290,8 +2961,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'SHUTTERING_CARPENTER',
 			skillType: 'TECHNICIAN',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/6201547f1cd872067d8ee912/profile/43oNmHkisW-compressed.jpg',
+			profileImage: '43oNmHkisW-compressed.jpg',
 			rating: '3.9',
 		},
 		{
@@ -3299,8 +2969,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			name: 'ram ashish',
 			jobType: 'SHUTTERING_CARPENTER',
 			skillType: 'TECHNICIAN',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/62049f37a5dc3e3d30ec3c5e/profile/NIJFwQpMgI-compressed.jpg',
+			profileImage: 'NIJFwQpMgI-compressed.jpg',
 			rating: '4.4',
 		},
 		{
@@ -3309,8 +2978,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'SHUTTERING_CARPENTER',
 			skillType: 'TECHNICIAN',
 			experience: '2-5',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/6209067aae046d223278b8f0/profile/-YcsuQZmpz-compressed.jpg',
+			profileImage: '-YcsuQZmpz-compressed.jpg',
 			rating: '4.3',
 		},
 		{
@@ -3319,8 +2987,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'SHUTTERING_CARPENTER',
 			skillType: 'SUPERVISOR',
 			experience: '5-8',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/62109ac490c46564c601a6fa/profile/4g3425Yde6-compressed.jpg',
+			profileImage: '4g3425Yde6-compressed.jpg',
 			rating: '4.7',
 		},
 		{
@@ -3329,8 +2996,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'SHUTTERING_CARPENTER',
 			skillType: 'SUPERVISOR',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/62166ffd246fa1e555384108/profile/dkHQTNZRTP-compressed.jpg',
+			profileImage: 'dkHQTNZRTP-compressed.jpg',
 			rating: '5.0',
 		},
 		{
@@ -3339,8 +3005,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'SHUTTERING_CARPENTER',
 			skillType: 'TECHNICIAN',
 			experience: '2-5',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/621670ff246fa1e555386ea5/profile/LHHICvEwzg-compressed.jpg',
+			profileImage: 'LHHICvEwzg-compressed.jpg',
 			rating: '4.6',
 		},
 		{
@@ -3349,8 +3014,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'SHUTTERING_CARPENTER',
 			skillType: 'SUPERVISOR',
 			experience: '2-5',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/6216712c246fa1e555387679/profile/qlUA6HsaqT-compressed.jpg',
+			profileImage: 'qlUA6HsaqT-compressed.jpg',
 			rating: '3.7',
 		},
 	],
@@ -3361,8 +3025,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'WELDER_FITTER',
 			skillType: 'TECHNICIAN',
 			experience: '5-8',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f7ffead69716d1c9d8dba/profile/KfXQGeKrXG-compressed.jpg',
+			profileImage: 'KfXQGeKrXG-compressed.jpg',
 			rating: '4.4',
 		},
 		{
@@ -3371,8 +3034,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'WELDER_FITTER',
 			skillType: 'HELPER',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f8033ad69716d1c9d9792/profile/YDYXrahKzg-compressed.jpg',
+			profileImage: 'YDYXrahKzg-compressed.jpg',
 			rating: '4.6',
 		},
 		{
@@ -3380,8 +3042,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			name: 'deepak chauhan',
 			jobType: 'WELDER_FITTER',
 			skillType: 'TECHNICIAN',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f8035ad69716d1c9d97d8/profile/EZ8eiILEVY-compressed.jpg',
+			profileImage: 'EZ8eiILEVY-compressed.jpg',
 			rating: '4.3',
 		},
 		{
@@ -3390,8 +3051,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'WELDER_FITTER',
 			skillType: 'TECHNICIAN',
 			experience: '>15',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f803aad69716d1c9d989b/profile/-A-G-eakWw-compressed.jpg',
+			profileImage: '-A-G-eakWw-compressed.jpg',
 			rating: '4.3',
 		},
 		{
@@ -3400,8 +3060,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'WELDER_FITTER',
 			skillType: 'TECHNICIAN',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f804bad69716d1c9d9bc4/profile/NprXB6tSDK-compressed.jpg',
+			profileImage: 'NprXB6tSDK-compressed.jpg',
 			rating: '4.1',
 		},
 		{
@@ -3410,8 +3069,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'WELDER_FITTER',
 			skillType: 'TECHNICIAN',
 			experience: '2-5',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f8082ad69716d1c9da51e/profile/3jR-4W1xBq-compressed.jpg',
+			profileImage: '3jR-4W1xBq-compressed.jpg',
 			rating: '3.8',
 		},
 		{
@@ -3420,8 +3078,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'WELDER_FITTER',
 			skillType: 'SUPERVISOR',
 			experience: '2-5',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f80a0ad69716d1c9daab7/profile/6ED3GZZPFL-compressed.jpg',
+			profileImage: '6ED3GZZPFL-compressed.jpg',
 			rating: '3.6',
 		},
 		{
@@ -3430,8 +3087,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'WELDER_FITTER',
 			skillType: 'TECHNICIAN',
 			experience: '2-5',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f80baad69716d1c9daf23/profile/WGGrxJELgD-compressed.jpg',
+			profileImage: 'WGGrxJELgD-compressed.jpg',
 			rating: '3.7',
 		},
 		{
@@ -3440,8 +3096,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'WELDER_FITTER',
 			skillType: 'HELPER',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f80ebad69716d1c9db85b/profile/JswNlGe1Uk-compressed.jpg',
+			profileImage: 'JswNlGe1Uk-compressed.jpg',
 			rating: '4.6',
 		},
 		{
@@ -3450,8 +3105,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'WELDER_FITTER',
 			skillType: 'TECHNICIAN',
 			experience: '2-5',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f80f0ad69716d1c9db8e5/profile/Ymmftz6TB8-compressed.jpg',
+			profileImage: 'Ymmftz6TB8-compressed.jpg',
 			rating: '3.8',
 		},
 		{
@@ -3460,8 +3114,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'WELDER_FITTER',
 			skillType: 'HELPER',
 			experience: '>15',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f80faad69716d1c9dbaee/profile/DqohXH-OSf-compressed.jpg',
+			profileImage: 'DqohXH-OSf-compressed.jpg',
 			rating: '3.9',
 		},
 		{
@@ -3470,8 +3123,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'WELDER_FITTER',
 			skillType: 'TECHNICIAN',
 			experience: '2-5',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f8103ad69716d1c9dbc66/profile/HpFJ995nsU-compressed.jpg',
+			profileImage: 'HpFJ995nsU-compressed.jpg',
 			rating: '4.2',
 		},
 		{
@@ -3480,8 +3132,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'WELDER_FITTER',
 			skillType: 'SUPERVISOR',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f810ead69716d1c9dbeac/profile/3zuZgnS33C-compressed.jpg',
+			profileImage: '3zuZgnS33C-compressed.jpg',
 			rating: '4.8',
 		},
 		{
@@ -3490,8 +3141,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'WELDER_FITTER',
 			skillType: 'TECHNICIAN',
 			experience: '5-8',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f8174ad69716d1c9dd103/profile/DD4_fXJxCG-compressed.jpg',
+			profileImage: 'DD4_fXJxCG-compressed.jpg',
 			rating: '3.6',
 		},
 		{
@@ -3500,8 +3150,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'WELDER_FITTER',
 			skillType: 'TECHNICIAN',
 			experience: '5-8',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f8194ad69716d1c9dd6fa/profile/kvUBepCkci-compressed.jpg',
+			profileImage: 'kvUBepCkci-compressed.jpg',
 			rating: '3.6',
 		},
 		{
@@ -3510,8 +3159,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'WELDER_FITTER',
 			skillType: 'TECHNICIAN',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f81acad69716d1c9ddb5c/profile/PSYhToSV-S-compressed.jpg',
+			profileImage: 'PSYhToSV-S-compressed.jpg',
 			rating: '3.7',
 		},
 		{
@@ -3520,8 +3168,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'WELDER_FITTER',
 			skillType: 'TECHNICIAN',
 			experience: '5-8',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f81b9ad69716d1c9dddc6/profile/AzNeK81Gjy-compressed.jpg',
+			profileImage: 'AzNeK81Gjy-compressed.jpg',
 			rating: '4.2',
 		},
 		{
@@ -3530,8 +3177,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'WELDER_FITTER',
 			skillType: 'TECHNICIAN',
 			experience: '5-8',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f81bdad69716d1c9dde94/profile/AqJEFTlg1L-compressed.jpg',
+			profileImage: 'AqJEFTlg1L-compressed.jpg',
 			rating: '3.8',
 		},
 		{
@@ -3540,8 +3186,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'WELDER_FITTER',
 			skillType: 'TECHNICIAN',
 			experience: '2-5',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f81dead69716d1c9de432/profile/rF9rBz6mio-compressed.jpg',
+			profileImage: 'rF9rBz6mio-compressed.jpg',
 			rating: '3.7',
 		},
 		{
@@ -3550,8 +3195,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'WELDER_FITTER',
 			skillType: 'HELPER',
 			experience: '2-5',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f81f8ad69716d1c9de8ed/profile/fE5clBHcwW-compressed.jpg',
+			profileImage: 'fE5clBHcwW-compressed.jpg',
 			rating: '5.0',
 		},
 		{
@@ -3560,8 +3204,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'WELDER_FITTER',
 			skillType: 'TECHNICIAN',
 			experience: '5-8',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f81fcad69716d1c9de982/profile/tyU3XtZA8a-compressed.jpg',
+			profileImage: 'tyU3XtZA8a-compressed.jpg',
 			rating: '3.6',
 		},
 		{
@@ -3570,8 +3213,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'WELDER_FITTER',
 			skillType: 'HELPER',
 			experience: '2-5',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f81fead69716d1c9de9f9/profile/jLwoNX668Z-compressed.jpg',
+			profileImage: 'jLwoNX668Z-compressed.jpg',
 			rating: '3.8',
 		},
 		{
@@ -3579,8 +3221,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			name: 'amit chauhan',
 			jobType: 'WELDER_FITTER',
 			skillType: 'TECHNICIAN',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f81f5ad69716d1c9de87c/profile/FysPET-d3l-compressed.jpg',
+			profileImage: 'FysPET-d3l-compressed.jpg',
 			rating: '4.2',
 		},
 		{
@@ -3589,8 +3230,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'WELDER_FITTER',
 			skillType: 'SUPERVISOR',
 			experience: '5-8',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f8241ad69716d1c9df63b/profile/tKUpmqxnsn-compressed.jpg',
+			profileImage: 'tKUpmqxnsn-compressed.jpg',
 			rating: '4.2',
 		},
 		{
@@ -3599,8 +3239,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'WELDER_FITTER',
 			skillType: 'TECHNICIAN',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f8261ad69716d1c9dfc15/profile/3tG7uyIz8e-compressed.jpg',
+			profileImage: '3tG7uyIz8e-compressed.jpg',
 			rating: '4.3',
 		},
 		{
@@ -3608,8 +3247,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			name: 'mohammad israel',
 			jobType: 'WELDER_FITTER',
 			skillType: 'TECHNICIAN',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f82aead69716d1c9e0974/profile/bbEL5rIGPe-compressed.jpg',
+			profileImage: 'bbEL5rIGPe-compressed.jpg',
 			rating: '4.9',
 		},
 		{
@@ -3618,8 +3256,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'WELDER_FITTER',
 			skillType: 'HELPER',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f82b5ad69716d1c9e0aab/profile/Q9Ee-x679I-compressed.jpg',
+			profileImage: 'Q9Ee-x679I-compressed.jpg',
 			rating: '4.9',
 		},
 		{
@@ -3628,8 +3265,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'WELDER_FITTER',
 			skillType: 'TECHNICIAN',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f82f7ad69716d1c9e16ab/profile/SEL_IR5gYQ-compressed.jpg',
+			profileImage: 'SEL_IR5gYQ-compressed.jpg',
 			rating: '5.0',
 		},
 		{
@@ -3638,8 +3274,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'WELDER_FITTER',
 			skillType: 'HELPER',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f82fdad69716d1c9e1816/profile/PRn4R27RjD-compressed.jpg',
+			profileImage: 'PRn4R27RjD-compressed.jpg',
 			rating: '4.4',
 		},
 		{
@@ -3648,8 +3283,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'WELDER_FITTER',
 			skillType: 'HELPER',
 			experience: '5-8',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f8306ad69716d1c9e199e/profile/orXvVzBF7x-compressed.jpg',
+			profileImage: 'orXvVzBF7x-compressed.jpg',
 			rating: '4.9',
 		},
 		{
@@ -3658,8 +3292,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'WELDER_FITTER',
 			skillType: 'TECHNICIAN',
 			experience: '2-5',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f8317ad69716d1c9e1c85/profile/KS-BxQLw5p-compressed.jpg',
+			profileImage: 'KS-BxQLw5p-compressed.jpg',
 			rating: '4.8',
 		},
 		{
@@ -3668,8 +3301,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'WELDER_FITTER',
 			skillType: 'TECHNICIAN',
 			experience: '2-5',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f831fad69716d1c9e1e26/profile/pVxJikcTj4-compressed.jpg',
+			profileImage: 'pVxJikcTj4-compressed.jpg',
 			rating: '4.9',
 		},
 		{
@@ -3678,8 +3310,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'WELDER_FITTER',
 			skillType: 'SUPERVISOR',
 			experience: '2-5',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f832cad69716d1c9e2099/profile/zadbu1zXy--compressed.jpg',
+			profileImage: 'zadbu1zXy--compressed.jpg',
 			rating: '4.5',
 		},
 		{
@@ -3688,8 +3319,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'WELDER_FITTER',
 			skillType: 'HELPER',
 			experience: '2-5',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f8354ad69716d1c9e277a/profile/CiZ2VsT03Y-compressed.jpg',
+			profileImage: 'CiZ2VsT03Y-compressed.jpg',
 			rating: '3.7',
 		},
 		{
@@ -3698,8 +3328,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'WELDER_FITTER',
 			skillType: 'TECHNICIAN',
 			experience: '>15',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f836bad69716d1c9e2bd5/profile/dBopS6j9Cy-compressed.jpg',
+			profileImage: 'dBopS6j9Cy-compressed.jpg',
 			rating: '3.7',
 		},
 		{
@@ -3708,8 +3337,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'WELDER_FITTER',
 			skillType: 'TECHNICIAN',
 			experience: '5-8',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f8374ad69716d1c9e2d4f/profile/FIEmb6n2sX-compressed.jpg',
+			profileImage: 'FIEmb6n2sX-compressed.jpg',
 			rating: '4.4',
 		},
 		{
@@ -3717,8 +3345,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			name: 'dharmendra',
 			jobType: 'WELDER_FITTER',
 			skillType: 'TECHNICIAN',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f8360ad69716d1c9e29c0/profile/rY2rWdqGTH-compressed.jpg',
+			profileImage: 'rY2rWdqGTH-compressed.jpg',
 			rating: '4.4',
 		},
 		{
@@ -3727,8 +3354,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'WELDER_FITTER',
 			skillType: 'SUPERVISOR',
 			experience: '2-5',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f83a9ad69716d1c9e373f/profile/oFcd9rsYEA-compressed.jpg',
+			profileImage: 'oFcd9rsYEA-compressed.jpg',
 			rating: '3.8',
 		},
 		{
@@ -3736,8 +3362,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			name: 'vindhya cal yadav',
 			jobType: 'WELDER_FITTER',
 			skillType: 'TECHNICIAN',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bebccab53332601857dcec/profile/sKhSOj8JyJ-compressed.jpg',
+			profileImage: 'sKhSOj8JyJ-compressed.jpg',
 			rating: '4.9',
 		},
 		{
@@ -3745,8 +3370,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			name: 'aaditya sharma',
 			jobType: 'WELDER_FITTER',
 			skillType: 'TECHNICIAN',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bebccfb53332601857dd85/profile/TgLghSwdXY-compressed.jpg',
+			profileImage: 'TgLghSwdXY-compressed.jpg',
 			rating: '3.7',
 		},
 		{
@@ -3755,8 +3379,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'WELDER_FITTER',
 			skillType: 'TECHNICIAN',
 			experience: '8-15',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bebcd0b53332601857ddcf/profile/F567k_HK8K-compressed.jpg',
+			profileImage: 'F567k_HK8K-compressed.jpg',
 			rating: '3.7',
 		},
 		{
@@ -3765,8 +3388,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'WELDER_FITTER',
 			skillType: 'TECHNICIAN',
 			experience: '5-8',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bebcd0b53332601857ddd8/profile/Rfv9-CCFHg-compressed.jpg',
+			profileImage: 'Rfv9-CCFHg-compressed.jpg',
 			rating: '5.0',
 		},
 		{
@@ -3774,8 +3396,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			name: 'vashudev',
 			jobType: 'WELDER_FITTER',
 			skillType: 'TECHNICIAN',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bebce8b53332601857e167/profile/546ndTCGr9-compressed.jpg',
+			profileImage: '546ndTCGr9-compressed.jpg',
 			rating: '3.8',
 		},
 		{
@@ -3784,8 +3405,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'WELDER_FITTER',
 			skillType: 'HELPER',
 			experience: '8-15',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bebcfbb53332601857e47b/profile/cYHu3yERJH-compressed.jpg',
+			profileImage: 'cYHu3yERJH-compressed.jpg',
 			rating: '3.9',
 		},
 		{
@@ -3794,8 +3414,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'WELDER_FITTER',
 			skillType: 'TECHNICIAN',
 			experience: '5-8',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bebd09b53332601857e73e/profile/Y0vVALtIW4-compressed.jpg',
+			profileImage: 'Y0vVALtIW4-compressed.jpg',
 			rating: '4.7',
 		},
 		{
@@ -3804,8 +3423,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'WELDER_FITTER',
 			skillType: 'TECHNICIAN',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bebd0eb53332601857e79b/profile/ucLjf4DLCC-compressed.jpg',
+			profileImage: 'ucLjf4DLCC-compressed.jpg',
 			rating: '4.8',
 		},
 		{
@@ -3814,8 +3432,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'WELDER_FITTER',
 			skillType: 'HELPER',
 			experience: '2-5',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bebd6ab53332601857f7ea/profile/zQXrqUy7xe-compressed.jpg',
+			profileImage: 'zQXrqUy7xe-compressed.jpg',
 			rating: '4.3',
 		},
 		{
@@ -3824,8 +3441,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'WELDER_FITTER',
 			skillType: 'HELPER',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bebd98b53332601857ff9b/profile/IwHNjghLf5-compressed.jpg',
+			profileImage: 'IwHNjghLf5-compressed.jpg',
 			rating: '3.9',
 		},
 	],
@@ -3836,8 +3452,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'GENERAL_HELPER',
 			skillType: 'SUPERVISOR',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f8056ad69716d1c9d9df3/profile/ZaiONEhkZ8-compressed.jpg',
+			profileImage: 'ZaiONEhkZ8-compressed.jpg',
 			rating: '3.9',
 		},
 		{
@@ -3845,8 +3460,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			name: 'amarnath',
 			jobType: 'GENERAL_HELPER',
 			skillType: 'HELPER',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f807cad69716d1c9da437/profile/Af6mSfHPWk-compressed.jpg',
+			profileImage: 'Af6mSfHPWk-compressed.jpg',
 			rating: '4.8',
 		},
 		{
@@ -3855,8 +3469,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'GENERAL_HELPER',
 			skillType: 'HELPER',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f80fdad69716d1c9dbb58/profile/5YMkWjQHpY-compressed.jpg',
+			profileImage: '5YMkWjQHpY-compressed.jpg',
 			rating: '4.9',
 		},
 		{
@@ -3864,8 +3477,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			name: 'rupesh rajbhar',
 			jobType: 'GENERAL_HELPER',
 			skillType: 'HELPER',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f80ffad69716d1c9dbb9e/profile/pLm1rBQsdx-compressed.jpg',
+			profileImage: 'pLm1rBQsdx-compressed.jpg',
 			rating: '4.3',
 		},
 		{
@@ -3874,8 +3486,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'GENERAL_HELPER',
 			skillType: 'HELPER',
 			experience: '2-5',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f8218ad69716d1c9deee7/profile/YSDRsx_kSm-compressed.jpg',
+			profileImage: 'YSDRsx_kSm-compressed.jpg',
 			rating: '4.2',
 		},
 		{
@@ -3883,8 +3494,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			name: 'durgesh gupta',
 			jobType: 'GENERAL_HELPER',
 			skillType: 'HELPER',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f8234ad69716d1c9df3d8/profile/fnuIwk_yzl-compressed.jpg',
+			profileImage: 'fnuIwk_yzl-compressed.jpg',
 			rating: '4.0',
 		},
 		{
@@ -3892,8 +3502,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			name: 'saddam ansari',
 			jobType: 'GENERAL_HELPER',
 			skillType: 'HELPER',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f8310ad69716d1c9e1b77/profile/36qCk5Sw0X-compressed.jpg',
+			profileImage: '36qCk5Sw0X-compressed.jpg',
 			rating: '3.7',
 		},
 		{
@@ -3902,8 +3511,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'GENERAL_HELPER',
 			skillType: 'HELPER',
 			experience: '2-5',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f837ead69716d1c9e2f22/profile/ytcGiYG37h-compressed.jpg',
+			profileImage: 'ytcGiYG37h-compressed.jpg',
 			rating: '4.1',
 		},
 		{
@@ -3912,8 +3520,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'GENERAL_HELPER',
 			skillType: 'SUPERVISOR',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bebcceb53332601857dd67/profile/3N5UnaZVEI-compressed.jpg',
+			profileImage: '3N5UnaZVEI-compressed.jpg',
 			rating: '4.3',
 		},
 		{
@@ -3921,8 +3528,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			name: 'pintu',
 			jobType: 'GENERAL_HELPER',
 			skillType: 'HELPER',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bebcffb53332601857e5bf/profile/6JnGcAa2Q9-compressed.jpg',
+			profileImage: '6JnGcAa2Q9-compressed.jpg',
 			rating: '4.2',
 		},
 		{
@@ -3931,8 +3537,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'GENERAL_HELPER',
 			skillType: 'HELPER',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bebd68b53332601857f71f/profile/9ZTOOoxRRe-compressed.jpg',
+			profileImage: '9ZTOOoxRRe-compressed.jpg',
 			rating: '4.1',
 		},
 		{
@@ -3940,8 +3545,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			name: 'dinanath yadav',
 			jobType: 'GENERAL_HELPER',
 			skillType: 'HELPER',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bebd91b53332601857fe90/profile/ml7644rOYa-compressed.jpg',
+			profileImage: 'ml7644rOYa-compressed.jpg',
 			rating: '4.5',
 		},
 		{
@@ -3949,8 +3553,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			name: 'mohit yadav',
 			jobType: 'GENERAL_HELPER',
 			skillType: 'HELPER',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bebda5b533326018580278/profile/XZn5vF5fCh-compressed.jpg',
+			profileImage: 'XZn5vF5fCh-compressed.jpg',
 			rating: '3.5',
 		},
 		{
@@ -3959,8 +3562,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'GENERAL_HELPER',
 			skillType: 'HELPER',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bebddfb533326018580c04/profile/V5p8RDOCkM-compressed.jpg',
+			profileImage: 'V5p8RDOCkM-compressed.jpg',
 			rating: '5.0',
 		},
 		{
@@ -3968,8 +3570,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			name: 'amit',
 			jobType: 'GENERAL_HELPER',
 			skillType: 'HELPER',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bebde6b533326018580c90/profile/-MkwNosSIi-compressed.jpg',
+			profileImage: '-MkwNosSIi-compressed.jpg',
 			rating: '4.9',
 		},
 		{
@@ -3978,8 +3579,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'GENERAL_HELPER',
 			skillType: 'HELPER',
 			experience: '2-5',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bebdeab533326018580deb/profile/Tw1xwjlxVI-compressed.jpg',
+			profileImage: 'Tw1xwjlxVI-compressed.jpg',
 			rating: '3.7',
 		},
 		{
@@ -3988,8 +3588,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'GENERAL_HELPER',
 			skillType: 'HELPER',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bebefab53332601858150b/profile/GaWwEiOzx2-compressed.jpg',
+			profileImage: 'GaWwEiOzx2-compressed.jpg',
 			rating: '4.4',
 		},
 		{
@@ -3998,8 +3597,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'GENERAL_HELPER',
 			skillType: 'HELPER',
 			experience: '2-5',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bebf05b53332601858168b/profile/R_8fYM19yS-compressed.jpg',
+			profileImage: 'R_8fYM19yS-compressed.jpg',
 			rating: '4.3',
 		},
 		{
@@ -4008,8 +3606,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'GENERAL_HELPER',
 			skillType: 'SUPERVISOR',
 			experience: '2-5',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bebf4ab53332601858225c/profile/yQe2vfQUHp-compressed.jpg',
+			profileImage: 'yQe2vfQUHp-compressed.jpg',
 			rating: '3.6',
 		},
 		{
@@ -4017,8 +3614,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			name: 'sandip',
 			jobType: 'GENERAL_HELPER',
 			skillType: 'HELPER',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bebf5cb53332601858256c/profile/GjUzZ7-UPG-compressed.jpg',
+			profileImage: 'GjUzZ7-UPG-compressed.jpg',
 			rating: '4.3',
 		},
 		{
@@ -4026,8 +3622,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			name: 'jugul parasad',
 			jobType: 'GENERAL_HELPER',
 			skillType: 'HELPER',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bebf5db5333260185825c9/profile/SHFwouqKP--compressed.jpg',
+			profileImage: 'SHFwouqKP--compressed.jpg',
 			rating: '4.5',
 		},
 		{
@@ -4036,8 +3631,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'GENERAL_HELPER',
 			skillType: 'HELPER',
 			experience: '2-5',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bebf90b533326018582ea7/profile/vyU-Yw6O3W-compressed.jpg',
+			profileImage: 'vyU-Yw6O3W-compressed.jpg',
 			rating: '4.5',
 		},
 		{
@@ -4046,8 +3640,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'GENERAL_HELPER',
 			skillType: 'SUPERVISOR',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bebfb4b53332601858343e/profile/NhZvSmsn1I-compressed.jpg',
+			profileImage: 'NhZvSmsn1I-compressed.jpg',
 			rating: '4.3',
 		},
 		{
@@ -4056,8 +3649,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'GENERAL_HELPER',
 			skillType: 'HELPER',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bebff0b533326018583ebf/profile/IK9PMrKj_h-compressed.jpg',
+			profileImage: 'IK9PMrKj_h-compressed.jpg',
 			rating: '3.8',
 		},
 		{
@@ -4065,8 +3657,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			name: 'vijay mall kevat',
 			jobType: 'GENERAL_HELPER',
 			skillType: 'HELPER',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bec008b533326018584375/profile/U5idUziQ8o-compressed.jpg',
+			profileImage: 'U5idUziQ8o-compressed.jpg',
 			rating: '4.9',
 		},
 		{
@@ -4075,8 +3666,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'GENERAL_HELPER',
 			skillType: 'HELPER',
 			experience: '5-8',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bec025b533326018584891/profile/VuXDGPBxjd-compressed.jpg',
+			profileImage: 'VuXDGPBxjd-compressed.jpg',
 			rating: '4.6',
 		},
 		{
@@ -4084,8 +3674,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			name: 'bharat',
 			jobType: 'GENERAL_HELPER',
 			skillType: 'HELPER',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bec035b533326018584a97/profile/clLiQ2zVBe-compressed.jpg',
+			profileImage: 'clLiQ2zVBe-compressed.jpg',
 			rating: '3.6',
 		},
 		{
@@ -4093,8 +3682,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			name: 'okil kumar',
 			jobType: 'GENERAL_HELPER',
 			skillType: 'HELPER',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bec043b533326018584d84/profile/OZVvBTgVmV-compressed.jpg',
+			profileImage: 'OZVvBTgVmV-compressed.jpg',
 			rating: '3.9',
 		},
 		{
@@ -4103,8 +3691,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'GENERAL_HELPER',
 			skillType: 'HELPER',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bec069b533326018585378/profile/Yko7a49JeH-compressed.jpg',
+			profileImage: 'Yko7a49JeH-compressed.jpg',
 			rating: '3.8',
 		},
 		{
@@ -4113,8 +3700,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'GENERAL_HELPER',
 			skillType: 'HELPER',
 			experience: '2-5',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bec06cb53332601858548f/profile/VONeN8bkzY-compressed.jpg',
+			profileImage: 'VONeN8bkzY-compressed.jpg',
 			rating: '4.5',
 		},
 		{
@@ -4123,8 +3709,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'GENERAL_HELPER',
 			skillType: 'HELPER',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bec0ddb5333260185867b3/profile/App89mjTzW-compressed.jpg',
+			profileImage: 'App89mjTzW-compressed.jpg',
 			rating: '5.0',
 		},
 		{
@@ -4133,8 +3718,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'GENERAL_HELPER',
 			skillType: 'HELPER',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bec0e0b533326018586879/profile/cf8wOttKuf-compressed.jpg',
+			profileImage: 'cf8wOttKuf-compressed.jpg',
 			rating: '3.8',
 		},
 		{
@@ -4143,8 +3727,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'GENERAL_HELPER',
 			skillType: 'TECHNICIAN',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bec136b5333260185876a1/profile/LFefBNGWD_-compressed.jpg',
+			profileImage: 'LFefBNGWD_-compressed.jpg',
 			rating: '4.9',
 		},
 		{
@@ -4153,8 +3736,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'GENERAL_HELPER',
 			skillType: 'SUPERVISOR',
 			experience: '5-8',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61c218849e3efa2e24b97c1b/profile/YwVKPfBLcT-compressed.jpg',
+			profileImage: 'YwVKPfBLcT-compressed.jpg',
 			rating: '4.4',
 		},
 		{
@@ -4163,8 +3745,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'GENERAL_HELPER',
 			skillType: 'TECHNICIAN',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61c2188c9e3efa2e24b97d00/profile/1sj4143bMH-compressed.jpg',
+			profileImage: '1sj4143bMH-compressed.jpg',
 			rating: '3.6',
 		},
 		{
@@ -4173,8 +3754,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'GENERAL_HELPER',
 			skillType: 'HELPER',
 			experience: '5-8',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61c218909e3efa2e24b97e3f/profile/yApeqXZkS2-compressed.jpg',
+			profileImage: 'yApeqXZkS2-compressed.jpg',
 			rating: '4.9',
 		},
 		{
@@ -4183,8 +3763,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'GENERAL_HELPER',
 			skillType: 'HELPER',
 			experience: '2-5',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61ee86ebe36472299913c28c/profile/IkGb4EaNWl-compressed.jpg',
+			profileImage: 'IkGb4EaNWl-compressed.jpg',
 			rating: '4.6',
 		},
 		{
@@ -4193,8 +3772,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'GENERAL_HELPER',
 			skillType: 'SUPERVISOR',
 			experience: '5-8',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61ee86dae36472299913bf53/profile/_peL95FPcG-compressed.jpg',
+			profileImage: '_peL95FPcG-compressed.jpg',
 			rating: '3.9',
 		},
 		{
@@ -4203,8 +3781,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'GENERAL_HELPER',
 			skillType: 'HELPER',
 			experience: '2-5',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61ee8746e36472299913d1df/profile/PDda_CSsq6-compressed.jpg',
+			profileImage: 'PDda_CSsq6-compressed.jpg',
 			rating: '3.9',
 		},
 		{
@@ -4213,8 +3790,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'GENERAL_HELPER',
 			skillType: 'SUPERVISOR',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61ee87a4e36472299913db9e/profile/wAgfK1vaLq-compressed.jpg',
+			profileImage: 'wAgfK1vaLq-compressed.jpg',
 			rating: '4.7',
 		},
 		{
@@ -4223,8 +3799,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'GENERAL_HELPER',
 			skillType: 'HELPER',
 			experience: '5-8',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61ee88a8e36472299913f99a/profile/TQ4ckA4T6I-compressed.jpg',
+			profileImage: 'TQ4ckA4T6I-compressed.jpg',
 			rating: '4.8',
 		},
 		{
@@ -4233,8 +3808,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'GENERAL_HELPER',
 			skillType: 'HELPER',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61ee88b1e36472299913fb57/profile/6btnhB_zdT-compressed.jpg',
+			profileImage: '6btnhB_zdT-compressed.jpg',
 			rating: '3.9',
 		},
 		{
@@ -4243,8 +3817,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'GENERAL_HELPER',
 			skillType: 'HELPER',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61ee88dde36472299914031e/profile/ufXFftW2MM-compressed.jpg',
+			profileImage: 'ufXFftW2MM-compressed.jpg',
 			rating: '3.9',
 		},
 		{
@@ -4253,8 +3826,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'GENERAL_HELPER',
 			skillType: 'SUPERVISOR',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61ee8981e364722999140f05/profile/wvThTwzf-R-compressed.jpg',
+			profileImage: 'wvThTwzf-R-compressed.jpg',
 			rating: '3.7',
 		},
 		{
@@ -4263,8 +3835,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'GENERAL_HELPER',
 			skillType: 'HELPER',
 			experience: '2-5',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61ee8996e3647229991412dc/profile/OjCWAOM4Im-compressed.jpg',
+			profileImage: 'OjCWAOM4Im-compressed.jpg',
 			rating: '4.6',
 		},
 		{
@@ -4273,8 +3844,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'GENERAL_HELPER',
 			skillType: 'TECHNICIAN',
 			experience: '2-5',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61ee89c9e364722999141b88/profile/f8duP1-JUA-compressed.jpg',
+			profileImage: 'f8duP1-JUA-compressed.jpg',
 			rating: '3.6',
 		},
 		{
@@ -4283,8 +3853,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'GENERAL_HELPER',
 			skillType: 'TECHNICIAN',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61ee8a27e364722999142d0a/profile/sMQLb02L1L-compressed.jpg',
+			profileImage: 'sMQLb02L1L-compressed.jpg',
 			rating: '4.9',
 		},
 		{
@@ -4293,8 +3862,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'GENERAL_HELPER',
 			skillType: 'TECHNICIAN',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61ee8ab9e3647229991445b7/profile/LvymLm9HbF-compressed.jpg',
+			profileImage: 'LvymLm9HbF-compressed.jpg',
 			rating: '3.6',
 		},
 	],
@@ -4305,8 +3873,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'HVAC',
 			skillType: 'TECHNICIAN',
 			experience: '5-8',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f8042ad69716d1c9d9a3e/profile/bPYrbSVlFG-compressed.jpg',
+			profileImage: 'bPYrbSVlFG-compressed.jpg',
 			rating: '3.5',
 		},
 		{
@@ -4315,8 +3882,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'HVAC',
 			skillType: 'TECHNICIAN',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f80e1ad69716d1c9db62b/profile/lfA_iz2edi-compressed.jpg',
+			profileImage: 'lfA_iz2edi-compressed.jpg',
 			rating: '4.0',
 		},
 		{
@@ -4325,8 +3891,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'HVAC',
 			skillType: 'TECHNICIAN',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f82b9ad69716d1c9e0baa/profile/w6GRNPeCin-compressed.jpg',
+			profileImage: 'w6GRNPeCin-compressed.jpg',
 			rating: '4.6',
 		},
 		{
@@ -4335,8 +3900,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'HVAC',
 			skillType: 'TECHNICIAN',
 			experience: '2-5',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bebd39b53332601857ef38/profile/9WQrvt4FP7-compressed.jpg',
+			profileImage: '9WQrvt4FP7-compressed.jpg',
 			rating: '4.4',
 		},
 		{
@@ -4345,8 +3909,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'HVAC',
 			skillType: 'SUPERVISOR',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bebd60b53332601857f658/profile/AzflR2-QhB-compressed.jpg',
+			profileImage: 'AzflR2-QhB-compressed.jpg',
 			rating: '4.8',
 		},
 		{
@@ -4355,8 +3918,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'HVAC',
 			skillType: 'SUPERVISOR',
 			experience: '5-8',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bebdf9b533326018580fee/profile/GEneI26Qzn-compressed.jpg',
+			profileImage: 'GEneI26Qzn-compressed.jpg',
 			rating: '4.0',
 		},
 		{
@@ -4365,8 +3927,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'HVAC',
 			skillType: 'HELPER',
 			experience: '2-5',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bec0ebb533326018586aa7/profile/VYcPNT17ly-compressed.jpg',
+			profileImage: 'VYcPNT17ly-compressed.jpg',
 			rating: '4.0',
 		},
 		{
@@ -4375,8 +3936,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'HVAC',
 			skillType: 'TECHNICIAN',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bec12db533326018587529/profile/hrr9f1BVvX-compressed.jpg',
+			profileImage: 'hrr9f1BVvX-compressed.jpg',
 			rating: '3.9',
 		},
 		{
@@ -4385,8 +3945,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'HVAC',
 			skillType: 'SUPERVISOR',
 			experience: '2-5',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bec356b53332601858980d/profile/o3SszoZ7Ru-compressed.jpg',
+			profileImage: 'o3SszoZ7Ru-compressed.jpg',
 			rating: '3.7',
 		},
 		{
@@ -4395,8 +3954,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'HVAC',
 			skillType: 'HELPER',
 			experience: '5-8',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61ee86e3e36472299913c11a/profile/T_CR9E86Xn-compressed.jpg',
+			profileImage: 'T_CR9E86Xn-compressed.jpg',
 			rating: '3.7',
 		},
 		{
@@ -4405,8 +3963,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'HVAC',
 			skillType: 'TECHNICIAN',
 			experience: '5-8',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61ee878ae36472299913d69a/profile/FmaEkN5fqs-compressed.jpg',
+			profileImage: 'FmaEkN5fqs-compressed.jpg',
 			rating: '3.7',
 		},
 		{
@@ -4415,8 +3972,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'HVAC',
 			skillType: 'TECHNICIAN',
 			experience: '5-8',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61ee887fe36472299913f22b/profile/k24MIBKJqJ-compressed.jpg',
+			profileImage: 'k24MIBKJqJ-compressed.jpg',
 			rating: '4.7',
 		},
 		{
@@ -4425,8 +3981,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'HVAC',
 			skillType: 'HELPER',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61ee89f5e3647229991423f2/profile/qetOE9PS95-compressed.jpg',
+			profileImage: 'qetOE9PS95-compressed.jpg',
 			rating: '4.4',
 		},
 		{
@@ -4435,8 +3990,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'HVAC',
 			skillType: 'TECHNICIAN',
 			experience: '2-5',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/62166ff9246fa1e555383ff6/profile/vYsPGuUrhc-compressed.jpg',
+			profileImage: 'vYsPGuUrhc-compressed.jpg',
 			rating: '3.9',
 		},
 		{
@@ -4445,8 +3999,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'HVAC',
 			skillType: 'TECHNICIAN',
 			experience: '2-5',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/6216738b246fa1e55538dd5c/profile/PIT21w4Qh--compressed.jpg',
+			profileImage: 'PIT21w4Qh--compressed.jpg',
 			rating: '4.3',
 		},
 		{
@@ -4455,8 +4008,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'HVAC',
 			skillType: 'TECHNICIAN',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/6216749b246fa1e555390dd1/profile/URernZf8yH-compressed.jpg',
+			profileImage: 'URernZf8yH-compressed.jpg',
 			rating: '4.1',
 		},
 		{
@@ -4465,8 +4017,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'HVAC',
 			skillType: 'TECHNICIAN',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/6216824f246fa1e55539445f/profile/e7Kp2C05aI-compressed.jpg',
+			profileImage: 'e7Kp2C05aI-compressed.jpg',
 			rating: '4.4',
 		},
 		{
@@ -4475,8 +4026,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'HVAC',
 			skillType: 'HELPER',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/625b9fecd4fa2c1219784b9c/profile/BXwcZ8YF6W-compressed.jpg',
+			profileImage: 'BXwcZ8YF6W-compressed.jpg',
 			rating: '4.0',
 		},
 		{
@@ -4485,8 +4035,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'HVAC',
 			skillType: 'SUPERVISOR',
 			experience: '2-5',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/627e3760bfcdae3b719254bd/profile/ySVgSrOf34-compressed.jpg',
+			profileImage: 'ySVgSrOf34-compressed.jpg',
 			rating: '4.6',
 		},
 		{
@@ -4495,8 +4044,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'HVAC',
 			skillType: 'TECHNICIAN',
 			experience: '2-5',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/62942304cc0205c15a0ef923/profile/6VcksZA1YU-compressed.jpg',
+			profileImage: '6VcksZA1YU-compressed.jpg',
 			rating: '4.4',
 		},
 		{
@@ -4505,8 +4053,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'HVAC',
 			skillType: 'SUPERVISOR',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/629a18c4cc0205c15ac9a537/profile/RMz8ZQBAhk-compressed.jpg',
+			profileImage: 'RMz8ZQBAhk-compressed.jpg',
 			rating: '3.7',
 		},
 		{
@@ -4515,8 +4062,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'HVAC',
 			skillType: 'HELPER',
 			experience: '2-5',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/629b2b5bcc0205c15a19ead8/profile/NrM8fr8HGp-compressed.jpg',
+			profileImage: 'NrM8fr8HGp-compressed.jpg',
 			rating: '4.2',
 		},
 		{
@@ -4525,8 +4071,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'HVAC',
 			skillType: 'HELPER',
 			experience: '2-5',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/629b2c12cc0205c15a1ac6e4/profile/ctnXByYEYZ-compressed.jpg',
+			profileImage: 'ctnXByYEYZ-compressed.jpg',
 			rating: '4.9',
 		},
 		{
@@ -4535,8 +4080,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'HVAC',
 			skillType: 'SUPERVISOR',
 			experience: '2-5',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/629b33dacc0205c15a246883/profile/ijlMJfwolU-compressed.jpg',
+			profileImage: 'ijlMJfwolU-compressed.jpg',
 			rating: '4.9',
 		},
 		{
@@ -4545,8 +4089,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'HVAC',
 			skillType: 'TECHNICIAN',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/629ee950cc0205c15a9bdd80/profile/OSqf92v6PE-compressed.jpg',
+			profileImage: 'OSqf92v6PE-compressed.jpg',
 			rating: '3.8',
 		},
 		{
@@ -4555,8 +4098,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'HVAC',
 			skillType: 'SUPERVISOR',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/629ef19acc0205c15aa71fd9/profile/ZprNcN120m-compressed.jpg',
+			profileImage: 'ZprNcN120m-compressed.jpg',
 			rating: '4.2',
 		},
 		{
@@ -4565,8 +4107,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'HVAC',
 			skillType: 'HELPER',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/62a01787cc0205c15a09500c/profile/T82Xk3fT09-compressed.jpg',
+			profileImage: 'T82Xk3fT09-compressed.jpg',
 			rating: '4.2',
 		},
 		{
@@ -4575,8 +4116,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'HVAC',
 			skillType: 'SUPERVISOR',
 			experience: '5-8',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/62a16856cc0205c15a94dd88/profile/_e7QAMbCbi-compressed.jpg',
+			profileImage: '_e7QAMbCbi-compressed.jpg',
 			rating: '3.6',
 		},
 		{
@@ -4585,8 +4125,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'HVAC',
 			skillType: 'HELPER',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/62a1c627cc0205c15a0c69ca/profile/_g7Zfq2IfP-compressed.jpg',
+			profileImage: '_g7Zfq2IfP-compressed.jpg',
 			rating: '4.1',
 		},
 		{
@@ -4595,8 +4134,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'HVAC',
 			skillType: 'TECHNICIAN',
 			experience: '8-15',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/62a6a7f5cc0205c15ac39202/profile/NdpBsw_vp6-compressed.jpg',
+			profileImage: 'NdpBsw_vp6-compressed.jpg',
 			rating: '5.0',
 		},
 		{
@@ -4605,8 +4143,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'HVAC',
 			skillType: 'SUPERVISOR',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/62a6b87ccc0205c15ad8f9be/profile/d_im87NXf1-compressed.jpg',
+			profileImage: 'd_im87NXf1-compressed.jpg',
 			rating: '4.0',
 		},
 		{
@@ -4615,8 +4152,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'HVAC',
 			skillType: 'TECHNICIAN',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/62a82cd6f7575470b3aec2a7/profile/Og94h96x3C-compressed.jpg',
+			profileImage: 'Og94h96x3C-compressed.jpg',
 			rating: '4.2',
 		},
 		{
@@ -4625,8 +4161,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'HVAC',
 			skillType: 'HELPER',
 			experience: '2-5',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/62a8b6c0f7575470b36c08f6/profile/xfjMSfsRom-compressed.jpg',
+			profileImage: 'xfjMSfsRom-compressed.jpg',
 			rating: '4.5',
 		},
 		{
@@ -4635,8 +4170,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'HVAC',
 			skillType: 'TECHNICIAN',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/62a94241f7575470b305948b/profile/QrzfD0rzoN-compressed.jpg',
+			profileImage: 'QrzfD0rzoN-compressed.jpg',
 			rating: '3.9',
 		},
 		{
@@ -4645,8 +4179,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'HVAC',
 			skillType: 'HELPER',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/62aa8467f7575470b389be96/profile/PuTBXZztc9-compressed.jpg',
+			profileImage: 'PuTBXZztc9-compressed.jpg',
 			rating: '3.8',
 		},
 		{
@@ -4655,8 +4188,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'HVAC',
 			skillType: 'SUPERVISOR',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/62aaa522f7575470b3ae79d8/profile/NZUuAgyIbp-compressed.jpg',
+			profileImage: 'NZUuAgyIbp-compressed.jpg',
 			rating: '4.6',
 		},
 		{
@@ -4665,8 +4197,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'HVAC',
 			skillType: 'HELPER',
 			experience: '5-8',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/62aae80bf7575470b30a1710/profile/UTAAf73SP2-compressed.jpg',
+			profileImage: 'UTAAf73SP2-compressed.jpg',
 			rating: '4.3',
 		},
 		{
@@ -4675,8 +4206,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'HVAC',
 			skillType: 'TECHNICIAN',
 			experience: '8-15',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/62a9c4c0f7575470b3aee475/profile/V_SeEV5Ago-compressed.jpg',
+			profileImage: 'V_SeEV5Ago-compressed.jpg',
 			rating: '4.7',
 		},
 		{
@@ -4685,8 +4215,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'HVAC',
 			skillType: 'TECHNICIAN',
 			experience: '2-5',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/62bda528b705e3bfd341b379/profile/cROfBMStEG-compressed.jpg',
+			profileImage: 'cROfBMStEG-compressed.jpg',
 			rating: '4.3',
 		},
 		{
@@ -4695,8 +4224,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'HVAC',
 			skillType: 'TECHNICIAN',
 			experience: '5-8',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/62bffc43b705e3bfd376b170/profile/GcCLyQlyba-compressed.jpg',
+			profileImage: 'GcCLyQlyba-compressed.jpg',
 			rating: '3.9',
 		},
 		{
@@ -4705,8 +4233,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'HVAC',
 			skillType: 'SUPERVISOR',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/62c6674bb705e3bfd3068040/profile/C5ybTYPL-E-compressed.jpg',
+			profileImage: 'C5ybTYPL-E-compressed.jpg',
 			rating: '3.6',
 		},
 		{
@@ -4715,8 +4242,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'HVAC',
 			skillType: 'TECHNICIAN',
 			experience: '5-8',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/62ca3e34b705e3bfd35f7411/profile/xYaZEd2cLZ-compressed.jpg',
+			profileImage: 'xYaZEd2cLZ-compressed.jpg',
 			rating: '3.9',
 		},
 		{
@@ -4725,8 +4251,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'HVAC',
 			skillType: 'TECHNICIAN',
 			experience: '2-5',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/62ccefa9b705e3bfd39e0e35/profile/F5h82dEKoh-compressed.jpg',
+			profileImage: 'F5h82dEKoh-compressed.jpg',
 			rating: '4.0',
 		},
 		{
@@ -4735,8 +4260,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'HVAC',
 			skillType: 'TECHNICIAN',
 			experience: '2-5',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/62ce23f4b705e3bfd3b96119/profile/FpZsRiqRBa-compressed.jpg',
+			profileImage: 'FpZsRiqRBa-compressed.jpg',
 			rating: '4.2',
 		},
 		{
@@ -4745,8 +4269,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'HVAC',
 			skillType: 'SUPERVISOR',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/62ce8970b705e3bfd3c372d4/profile/gmkfr2L8H0-compressed.jpg',
+			profileImage: 'gmkfr2L8H0-compressed.jpg',
 			rating: '3.7',
 		},
 		{
@@ -4755,8 +4278,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'HVAC',
 			skillType: 'SUPERVISOR',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/62cfc174b705e3bfd3e0b0f7/profile/6WBm_Kir-s-compressed.jpg',
+			profileImage: '6WBm_Kir-s-compressed.jpg',
 			rating: '4.7',
 		},
 		{
@@ -4765,8 +4287,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'HVAC',
 			skillType: 'TECHNICIAN',
 			experience: '5-8',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/62cffd69b705e3bfd3e894e4/profile/Z72GBQb6G9-compressed.jpg',
+			profileImage: 'Z72GBQb6G9-compressed.jpg',
 			rating: '4.3',
 		},
 		{
@@ -4775,8 +4296,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'HVAC',
 			skillType: 'TECHNICIAN',
 			experience: '2-5',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/62d0064db705e3bfd3ea6db0/profile/TBW906BJjw-compressed.jpg',
+			profileImage: 'TBW906BJjw-compressed.jpg',
 			rating: '3.5',
 		},
 	],
@@ -4787,8 +4307,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'PLUMBING',
 			skillType: 'TECHNICIAN',
 			experience: '2-5',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f801aad69716d1c9d92bb/profile/5Zl7y28ILs-compressed.jpg',
+			profileImage: '5Zl7y28ILs-compressed.jpg',
 			rating: '4.3',
 		},
 		{
@@ -4797,8 +4316,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'PLUMBING',
 			skillType: 'HELPER',
 			experience: '2-5',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f802bad69716d1c9d9615/profile/88aKzmFcMS-compressed.jpg',
+			profileImage: '88aKzmFcMS-compressed.jpg',
 			rating: '3.7',
 		},
 		{
@@ -4807,8 +4325,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'PLUMBING',
 			skillType: 'TECHNICIAN',
 			experience: '2-5',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f809cad69716d1c9da9ba/profile/xxAKW8-Qlc-compressed.jpg',
+			profileImage: 'xxAKW8-Qlc-compressed.jpg',
 			rating: '4.7',
 		},
 		{
@@ -4817,8 +4334,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'PLUMBING',
 			skillType: 'TECHNICIAN',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f80f4ad69716d1c9db9d7/profile/HNPpdiyfNK-compressed.jpg',
+			profileImage: 'HNPpdiyfNK-compressed.jpg',
 			rating: '3.7',
 		},
 		{
@@ -4827,8 +4343,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'PLUMBING',
 			skillType: 'TECHNICIAN',
 			experience: '2-5',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f8101ad69716d1c9dbc36/profile/vbOBcGsk2G-compressed.jpg',
+			profileImage: 'vbOBcGsk2G-compressed.jpg',
 			rating: '4.4',
 		},
 		{
@@ -4837,8 +4352,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'PLUMBING',
 			skillType: 'TECHNICIAN',
 			experience: '2-5',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f8279ad69716d1c9e0041/profile/M8LRUPMXLV-compressed.jpg',
+			profileImage: 'M8LRUPMXLV-compressed.jpg',
 			rating: '4.0',
 		},
 		{
@@ -4847,8 +4361,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'PLUMBING',
 			skillType: 'TECHNICIAN',
 			experience: '2-5',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f8334ad69716d1c9e21e1/profile/qMi2NNUAjU-compressed.jpg',
+			profileImage: 'qMi2NNUAjU-compressed.jpg',
 			rating: '4.8',
 		},
 		{
@@ -4857,8 +4370,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'PLUMBING',
 			skillType: 'TECHNICIAN',
 			experience: '5-8',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f835aad69716d1c9e2899/profile/F1toZ99K3--compressed.jpg',
+			profileImage: 'F1toZ99K3--compressed.jpg',
 			rating: '3.8',
 		},
 		{
@@ -4867,8 +4379,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'PLUMBING',
 			skillType: 'SUPERVISOR',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f83a0ad69716d1c9e35a7/profile/AU_3RoFJ4--compressed.jpg',
+			profileImage: 'AU_3RoFJ4--compressed.jpg',
 			rating: '4.1',
 		},
 		{
@@ -4877,8 +4388,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'PLUMBING',
 			skillType: 'TECHNICIAN',
 			experience: '5-8',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bebd10b53332601857e852/profile/0wj0Jewk2W-compressed.jpg',
+			profileImage: '0wj0Jewk2W-compressed.jpg',
 			rating: '4.2',
 		},
 		{
@@ -4887,8 +4397,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'PLUMBING',
 			skillType: 'TECHNICIAN',
 			experience: '8-15',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bebd79b53332601857fa3b/profile/0rY_hgZRqi-compressed.jpg',
+			profileImage: '0rY_hgZRqi-compressed.jpg',
 			rating: '4.4',
 		},
 		{
@@ -4897,8 +4406,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'PLUMBING',
 			skillType: 'TECHNICIAN',
 			experience: '8-15',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bebd84b53332601857fbfd/profile/wme7COZwE8-compressed.jpg',
+			profileImage: 'wme7COZwE8-compressed.jpg',
 			rating: '4.2',
 		},
 		{
@@ -4907,8 +4415,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'PLUMBING',
 			skillType: 'SUPERVISOR',
 			experience: '5-8',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bebdacb533326018580315/profile/M7ERyfbiHW-compressed.jpg',
+			profileImage: 'M7ERyfbiHW-compressed.jpg',
 			rating: '4.0',
 		},
 		{
@@ -4917,8 +4424,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'PLUMBING',
 			skillType: 'TECHNICIAN',
 			experience: '2-5',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bebdcbb533326018580837/profile/b67OjB1p7I-compressed.jpg',
+			profileImage: 'b67OjB1p7I-compressed.jpg',
 			rating: '3.6',
 		},
 		{
@@ -4927,8 +4433,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'PLUMBING',
 			skillType: 'TECHNICIAN',
 			experience: '8-15',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bebdfbb5333260185810ab/profile/CCvm2dd41M-compressed.jpg',
+			profileImage: 'CCvm2dd41M-compressed.jpg',
 			rating: '4.3',
 		},
 		{
@@ -4937,8 +4442,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'PLUMBING',
 			skillType: 'TECHNICIAN',
 			experience: '>15',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bec007b53332601858430d/profile/Wfd-CYGAXH-compressed.jpg',
+			profileImage: 'Wfd-CYGAXH-compressed.jpg',
 			rating: '4.8',
 		},
 		{
@@ -4947,8 +4451,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'PLUMBING',
 			skillType: 'SUPERVISOR',
 			experience: '8-15',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bec035b533326018584a82/profile/Zxf_VEH-69-compressed.jpg',
+			profileImage: 'Zxf_VEH-69-compressed.jpg',
 			rating: '4.0',
 		},
 		{
@@ -4957,8 +4460,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'PLUMBING',
 			skillType: 'TECHNICIAN',
 			experience: '>15',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bec118b53332601858718c/profile/divZ5CFq_7-compressed.jpg',
+			profileImage: 'divZ5CFq_7-compressed.jpg',
 			rating: '4.0',
 		},
 		{
@@ -4967,8 +4469,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'PLUMBING',
 			skillType: 'HELPER',
 			experience: '>15',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61ee86bfe36472299913ba8a/profile/XlbOdWDS02-compressed.jpg',
+			profileImage: 'XlbOdWDS02-compressed.jpg',
 			rating: '4.2',
 		},
 		{
@@ -4977,8 +4478,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'PLUMBING',
 			skillType: 'TECHNICIAN',
 			experience: '2-5',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61ee86d6e36472299913be7c/profile/gtYM2nisf0-compressed.jpg',
+			profileImage: 'gtYM2nisf0-compressed.jpg',
 			rating: '4.1',
 		},
 		{
@@ -4987,8 +4487,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'PLUMBING',
 			skillType: 'SUPERVISOR',
 			experience: '5-8',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61ee86d8e36472299913bee2/profile/uiyg4YvsV_-compressed.jpg',
+			profileImage: 'uiyg4YvsV_-compressed.jpg',
 			rating: '4.6',
 		},
 		{
@@ -4997,8 +4496,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'PLUMBING',
 			skillType: 'TECHNICIAN',
 			experience: '5-8',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61ee86fee36472299913c628/profile/aPylXw4ix1-compressed.jpg',
+			profileImage: 'aPylXw4ix1-compressed.jpg',
 			rating: '4.7',
 		},
 		{
@@ -5007,8 +4505,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'PLUMBING',
 			skillType: 'HELPER',
 			experience: '8-15',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61ee877fe36472299913d4a5/profile/aiDEZ1MugP-compressed.jpg',
+			profileImage: 'aiDEZ1MugP-compressed.jpg',
 			rating: '4.6',
 		},
 		{
@@ -5017,8 +4514,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'PLUMBING',
 			skillType: 'TECHNICIAN',
 			experience: '>15',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61ee8797e36472299913d95d/profile/w5D5sC9k6L-compressed.jpg',
+			profileImage: 'w5D5sC9k6L-compressed.jpg',
 			rating: '4.6',
 		},
 		{
@@ -5027,8 +4523,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'PLUMBING',
 			skillType: 'HELPER',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61ee89c3e364722999141a76/profile/NdflrYbRIh-compressed.jpg',
+			profileImage: 'NdflrYbRIh-compressed.jpg',
 			rating: '3.6',
 		},
 		{
@@ -5037,8 +4532,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'PLUMBING',
 			skillType: 'TECHNICIAN',
 			experience: '2-5',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61ee8a50e36472299914335e/profile/oCdAczrnm5-compressed.jpg',
+			profileImage: 'oCdAczrnm5-compressed.jpg',
 			rating: '4.1',
 		},
 		{
@@ -5047,8 +4541,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'PLUMBING',
 			skillType: 'HELPER',
 			experience: '>15',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61ee8ad0e36472299914499b/profile/NJTbYi4qW_-compressed.jpg',
+			profileImage: 'NJTbYi4qW_-compressed.jpg',
 			rating: '4.0',
 		},
 		{
@@ -5057,8 +4550,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'PLUMBING',
 			skillType: 'TECHNICIAN',
 			experience: '2-5',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61ee8b21e36472299914581a/profile/3OZL4EwWT2-compressed.jpg',
+			profileImage: '3OZL4EwWT2-compressed.jpg',
 			rating: '4.5',
 		},
 		{
@@ -5067,8 +4559,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'PLUMBING',
 			skillType: 'TECHNICIAN',
 			experience: '2-5',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/6216707e246fa1e5553857b7/profile/jve76mzBzh-compressed.jpg',
+			profileImage: 'jve76mzBzh-compressed.jpg',
 			rating: '3.5',
 		},
 		{
@@ -5077,8 +4568,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'PLUMBING',
 			skillType: 'TECHNICIAN',
 			experience: '5-8',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/621671bd246fa1e555388e07/profile/ryM7691Xlc-compressed.jpg',
+			profileImage: 'ryM7691Xlc-compressed.jpg',
 			rating: '3.8',
 		},
 		{
@@ -5087,8 +4577,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'PLUMBING',
 			skillType: 'TECHNICIAN',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/62167430246fa1e55538faeb/profile/rcH23XtB6c-compressed.jpg',
+			profileImage: 'rcH23XtB6c-compressed.jpg',
 			rating: '4.1',
 		},
 		{
@@ -5097,8 +4586,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'PLUMBING',
 			skillType: 'HELPER',
 			experience: '8-15',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/62168267246fa1e5553947ee/profile/ifC2xLsWvh-compressed.jpg',
+			profileImage: 'ifC2xLsWvh-compressed.jpg',
 			rating: '3.6',
 		},
 		{
@@ -5107,8 +4595,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'PLUMBING',
 			skillType: 'HELPER',
 			experience: '>15',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/62653f3a71d5547f85b0c6bf/profile/n9DjeJ_FS--compressed.jpg',
+			profileImage: 'n9DjeJ_FS--compressed.jpg',
 			rating: '4.1',
 		},
 		{
@@ -5117,8 +4604,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'PLUMBING',
 			skillType: 'HELPER',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/6270a3a3bfcdae3b71342523/profile/hj_JgMPiqa-compressed.jpg',
+			profileImage: 'hj_JgMPiqa-compressed.jpg',
 			rating: '3.9',
 		},
 		{
@@ -5127,8 +4613,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'PLUMBING',
 			skillType: 'TECHNICIAN',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/627871a7bfcdae3b71609c26/profile/y89DZOgNIP-compressed.jpg',
+			profileImage: 'y89DZOgNIP-compressed.jpg',
 			rating: '4.8',
 		},
 		{
@@ -5137,8 +4622,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'PLUMBING',
 			skillType: 'HELPER',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/62832e99bfcdae3b71f28d04/profile/jagUluMOjK-compressed.jpg',
+			profileImage: 'jagUluMOjK-compressed.jpg',
 			rating: '3.9',
 		},
 		{
@@ -5147,8 +4631,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'PLUMBING',
 			skillType: 'HELPER',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/6280bec5bfcdae3b71cda1a1/profile/TewKncmnLB-compressed.jpg',
+			profileImage: 'TewKncmnLB-compressed.jpg',
 			rating: '4.1',
 		},
 		{
@@ -5157,8 +4640,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'PLUMBING',
 			skillType: 'HELPER',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/6286e3edbfcdae3b71c4ad36/profile/5kH_0aK5s_-compressed.jpg',
+			profileImage: '5kH_0aK5s_-compressed.jpg',
 			rating: '4.4',
 		},
 		{
@@ -5167,8 +4649,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'PLUMBING',
 			skillType: 'TECHNICIAN',
 			experience: '2-5',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/628c644dbfcdae3b71680c41/profile/S7DDe7epcv-compressed.jpg',
+			profileImage: 'S7DDe7epcv-compressed.jpg',
 			rating: '3.8',
 		},
 		{
@@ -5177,8 +4658,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'PLUMBING',
 			skillType: 'SUPERVISOR',
 			experience: '5-8',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/6290c3f0bfcdae3b710d66d2/profile/Gf4dpkykLG-compressed.jpg',
+			profileImage: 'Gf4dpkykLG-compressed.jpg',
 			rating: '4.8',
 		},
 		{
@@ -5187,8 +4667,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'PLUMBING',
 			skillType: 'TECHNICIAN',
 			experience: '8-15',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/6291afd4cc0205c15a105a39/profile/YNI1GMPb39-compressed.jpg',
+			profileImage: 'YNI1GMPb39-compressed.jpg',
 			rating: '3.7',
 		},
 		{
@@ -5197,8 +4676,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'PLUMBING',
 			skillType: 'TECHNICIAN',
 			experience: '5-8',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/6294492fcc0205c15a3c2a4b/profile/hLTp-N02Nj-compressed.jpg',
+			profileImage: 'hLTp-N02Nj-compressed.jpg',
 			rating: '3.6',
 		},
 		{
@@ -5207,8 +4685,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'PLUMBING',
 			skillType: 'TECHNICIAN',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/6294c38ccc0205c15af77d5c/profile/oevQKbv_bC-compressed.jpg',
+			profileImage: 'oevQKbv_bC-compressed.jpg',
 			rating: '4.2',
 		},
 		{
@@ -5217,8 +4694,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'PLUMBING',
 			skillType: 'TECHNICIAN',
 			experience: '2-5',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/629ae230cc0205c15ab6ecd1/profile/jyVaZPyW6p-compressed.jpg',
+			profileImage: 'jyVaZPyW6p-compressed.jpg',
 			rating: '4.5',
 		},
 		{
@@ -5227,8 +4703,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'PLUMBING',
 			skillType: 'SUPERVISOR',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/6299be41cc0205c15a4a4845/profile/NfRtCjEHay-compressed.jpg',
+			profileImage: 'NfRtCjEHay-compressed.jpg',
 			rating: '3.8',
 		},
 		{
@@ -5237,8 +4712,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'PLUMBING',
 			skillType: 'HELPER',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/6299bf18cc0205c15a4b8691/profile/nmNd--PUj7-compressed.jpg',
+			profileImage: 'nmNd--PUj7-compressed.jpg',
 			rating: '4.0',
 		},
 		{
@@ -5247,8 +4721,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'PLUMBING',
 			skillType: 'HELPER',
 			experience: '2-5',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/629a18afcc0205c15ac98ba2/profile/9spL0lqY8D-compressed.jpg',
+			profileImage: '9spL0lqY8D-compressed.jpg',
 			rating: '4.6',
 		},
 		{
@@ -5257,8 +4730,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'PLUMBING',
 			skillType: 'HELPER',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/629ac40bcc0205c15a945d55/profile/3ufMJ8iA45-compressed.jpg',
+			profileImage: '3ufMJ8iA45-compressed.jpg',
 			rating: '3.6',
 		},
 	],
@@ -5269,8 +4741,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'ALUMINIUM_FABRICATOR',
 			skillType: 'HELPER',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f8018ad69716d1c9d925e/profile/HV_Fj9fhwY-compressed.jpg',
+			profileImage: 'HV_Fj9fhwY-compressed.jpg',
 			rating: '3.5',
 		},
 		{
@@ -5279,8 +4750,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'ALUMINIUM_FABRICATOR',
 			skillType: 'HELPER',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f80d1ad69716d1c9db38b/profile/CQ3ZefD0nv-compressed.jpg',
+			profileImage: 'CQ3ZefD0nv-compressed.jpg',
 			rating: '4.5',
 		},
 		{
@@ -5289,8 +4759,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'ALUMINIUM_FABRICATOR',
 			skillType: 'TECHNICIAN',
 			experience: '8-15',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f813dad69716d1c9dc6ef/profile/cYlW0Z22ba-compressed.jpg',
+			profileImage: 'cYlW0Z22ba-compressed.jpg',
 			rating: '4.3',
 		},
 		{
@@ -5299,8 +4768,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'ALUMINIUM_FABRICATOR',
 			skillType: 'HELPER',
 			experience: '8-15',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f818ead69716d1c9dd5db/profile/O7qOn4ITvO-compressed.jpg',
+			profileImage: 'O7qOn4ITvO-compressed.jpg',
 			rating: '3.7',
 		},
 		{
@@ -5309,8 +4777,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'ALUMINIUM_FABRICATOR',
 			skillType: 'HELPER',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f81b4ad69716d1c9ddcf2/profile/dBg-GlrAoo-compressed.jpg',
+			profileImage: 'dBg-GlrAoo-compressed.jpg',
 			rating: '4.1',
 		},
 		{
@@ -5319,8 +4786,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'ALUMINIUM_FABRICATOR',
 			skillType: 'TECHNICIAN',
 			experience: '5-8',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f82eaad69716d1c9e144d/profile/g1XkPz9USX-compressed.jpg',
+			profileImage: 'g1XkPz9USX-compressed.jpg',
 			rating: '4.3',
 		},
 		{
@@ -5329,8 +4795,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'ALUMINIUM_FABRICATOR',
 			skillType: 'HELPER',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f82fbad69716d1c9e1783/profile/epF5gn38So-compressed.jpg',
+			profileImage: 'epF5gn38So-compressed.jpg',
 			rating: '4.1',
 		},
 		{
@@ -5339,8 +4804,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'ALUMINIUM_FABRICATOR',
 			skillType: 'HELPER',
 			experience: '2-5',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f8363ad69716d1c9e2a1f/profile/2AP6NIo7kU-compressed.jpg',
+			profileImage: '2AP6NIo7kU-compressed.jpg',
 			rating: '4.2',
 		},
 		{
@@ -5349,8 +4813,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'ALUMINIUM_FABRICATOR',
 			skillType: 'TECHNICIAN',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bebcdab53332601857df4b/profile/vL38kcv4It-compressed.jpg',
+			profileImage: 'vL38kcv4It-compressed.jpg',
 			rating: '4.7',
 		},
 		{
@@ -5359,8 +4822,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'ALUMINIUM_FABRICATOR',
 			skillType: 'SUPERVISOR',
 			experience: '5-8',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bebd7cb53332601857fb0a/profile/npVGWQt2BH-compressed.jpg',
+			profileImage: 'npVGWQt2BH-compressed.jpg',
 			rating: '4.4',
 		},
 		{
@@ -5369,8 +4831,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'ALUMINIUM_FABRICATOR',
 			skillType: 'SUPERVISOR',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bebdd2b533326018580918/profile/936K4UGFMc-compressed.jpg',
+			profileImage: '936K4UGFMc-compressed.jpg',
 			rating: '5.0',
 		},
 		{
@@ -5379,8 +4840,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'ALUMINIUM_FABRICATOR',
 			skillType: 'HELPER',
 			experience: '>15',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bebdf2b533326018580f02/profile/VTLChBSn-O-compressed.jpg',
+			profileImage: 'VTLChBSn-O-compressed.jpg',
 			rating: '4.3',
 		},
 		{
@@ -5389,8 +4849,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'ALUMINIUM_FABRICATOR',
 			skillType: 'TECHNICIAN',
 			experience: '>15',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bebf56b5333260185824f2/profile/qUvDeT70jK-compressed.jpg',
+			profileImage: 'qUvDeT70jK-compressed.jpg',
 			rating: '4.2',
 		},
 		{
@@ -5399,8 +4858,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'ALUMINIUM_FABRICATOR',
 			skillType: 'HELPER',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bec02eb533326018584a02/profile/fVJAYym6v3-compressed.jpg',
+			profileImage: 'fVJAYym6v3-compressed.jpg',
 			rating: '4.7',
 		},
 		{
@@ -5409,8 +4867,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'ALUMINIUM_FABRICATOR',
 			skillType: 'HELPER',
 			experience: '2-5',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bec089b5333260185859c6/profile/Yd7IFXKXFU-compressed.jpg',
+			profileImage: 'Yd7IFXKXFU-compressed.jpg',
 			rating: '4.0',
 		},
 		{
@@ -5419,8 +4876,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'ALUMINIUM_FABRICATOR',
 			skillType: 'SUPERVISOR',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bec091b533326018585aba/profile/DPnITKou21-compressed.jpg',
+			profileImage: 'DPnITKou21-compressed.jpg',
 			rating: '4.1',
 		},
 		{
@@ -5429,8 +4885,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'ALUMINIUM_FABRICATOR',
 			skillType: 'HELPER',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bec0b1b5333260185860be/profile/_KLQmDA9SU-compressed.jpg',
+			profileImage: '_KLQmDA9SU-compressed.jpg',
 			rating: '4.0',
 		},
 		{
@@ -5439,8 +4894,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'ALUMINIUM_FABRICATOR',
 			skillType: 'HELPER',
 			experience: '>15',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bec142b533326018587937/profile/cWYm_USzpc-compressed.jpg',
+			profileImage: 'cWYm_USzpc-compressed.jpg',
 			rating: '4.2',
 		},
 		{
@@ -5449,8 +4903,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'ALUMINIUM_FABRICATOR',
 			skillType: 'HELPER',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bec166b533326018587f11/profile/a8pr_4WxC7-compressed.jpg',
+			profileImage: 'a8pr_4WxC7-compressed.jpg',
 			rating: '3.7',
 		},
 		{
@@ -5459,8 +4912,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'ALUMINIUM_FABRICATOR',
 			skillType: 'HELPER',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bec179b533326018588222/profile/qM-jArmkpt-compressed.jpg',
+			profileImage: 'qM-jArmkpt-compressed.jpg',
 			rating: '3.7',
 		},
 		{
@@ -5469,8 +4921,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'ALUMINIUM_FABRICATOR',
 			skillType: 'TECHNICIAN',
 			experience: '2-5',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bec342b5333260185894c3/profile/eg3ko-03ej-compressed.jpg',
+			profileImage: 'eg3ko-03ej-compressed.jpg',
 			rating: '3.9',
 		},
 		{
@@ -5479,8 +4930,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'ALUMINIUM_FABRICATOR',
 			skillType: 'TECHNICIAN',
 			experience: '5-8',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61c218809e3efa2e24b97b67/profile/zDnxwypXcO-compressed.jpg',
+			profileImage: 'zDnxwypXcO-compressed.jpg',
 			rating: '4.3',
 		},
 		{
@@ -5489,8 +4939,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'ALUMINIUM_FABRICATOR',
 			skillType: 'TECHNICIAN',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61ee86e7e36472299913c1e6/profile/ORB7-3bL8h-compressed.jpg',
+			profileImage: 'ORB7-3bL8h-compressed.jpg',
 			rating: '3.8',
 		},
 		{
@@ -5499,8 +4948,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'ALUMINIUM_FABRICATOR',
 			skillType: 'HELPER',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61ee86fae36472299913c545/profile/4U7aXC1Qbo-compressed.jpg',
+			profileImage: '4U7aXC1Qbo-compressed.jpg',
 			rating: '4.9',
 		},
 		{
@@ -5509,8 +4957,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'ALUMINIUM_FABRICATOR',
 			skillType: 'SUPERVISOR',
 			experience: '2-5',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61ee870ce36472299913c8c4/profile/qzitJ042Hn-compressed.jpg',
+			profileImage: 'qzitJ042Hn-compressed.jpg',
 			rating: '4.6',
 		},
 		{
@@ -5519,8 +4966,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'ALUMINIUM_FABRICATOR',
 			skillType: 'TECHNICIAN',
 			experience: '>15',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61ee89a3e364722999141544/profile/o7cVand6FA-compressed.jpg',
+			profileImage: 'o7cVand6FA-compressed.jpg',
 			rating: '4.7',
 		},
 		{
@@ -5529,8 +4975,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'ALUMINIUM_FABRICATOR',
 			skillType: 'TECHNICIAN',
 			experience: '2-5',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61ee89c1e364722999141a12/profile/-6F9enuElI-compressed.jpg',
+			profileImage: '-6F9enuElI-compressed.jpg',
 			rating: '4.0',
 		},
 		{
@@ -5539,8 +4984,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'ALUMINIUM_FABRICATOR',
 			skillType: 'TECHNICIAN',
 			experience: '2-5',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61ee89e6e36472299914212c/profile/4Bkqvkiar2-compressed.jpg',
+			profileImage: '4Bkqvkiar2-compressed.jpg',
 			rating: '4.2',
 		},
 		{
@@ -5549,8 +4993,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'ALUMINIUM_FABRICATOR',
 			skillType: 'TECHNICIAN',
 			experience: '>15',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61ee8a3ce364722999142fda/profile/875panLRAO-compressed.jpg',
+			profileImage: '875panLRAO-compressed.jpg',
 			rating: '3.7',
 		},
 		{
@@ -5559,8 +5002,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'ALUMINIUM_FABRICATOR',
 			skillType: 'TECHNICIAN',
 			experience: '8-15',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61ee8a40e36472299914306d/profile/ytFoYu0tY6-compressed.jpg',
+			profileImage: 'ytFoYu0tY6-compressed.jpg',
 			rating: '4.2',
 		},
 		{
@@ -5569,8 +5011,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'ALUMINIUM_FABRICATOR',
 			skillType: 'TECHNICIAN',
 			experience: '>15',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61ee8b0ce36472299914546d/profile/LEug0EjPyS-compressed.jpg',
+			profileImage: 'LEug0EjPyS-compressed.jpg',
 			rating: '4.7',
 		},
 		{
@@ -5579,8 +5020,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'ALUMINIUM_FABRICATOR',
 			skillType: 'TECHNICIAN',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61ee8b1be3647229991456f5/profile/7JkEJFKyn6-compressed.jpg',
+			profileImage: '7JkEJFKyn6-compressed.jpg',
 			rating: '4.6',
 		},
 		{
@@ -5589,8 +5029,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'ALUMINIUM_FABRICATOR',
 			skillType: 'HELPER',
 			experience: '>15',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61ee8b52e364722999146051/profile/Gg4aXXBDQf-compressed.jpg',
+			profileImage: 'Gg4aXXBDQf-compressed.jpg',
 			rating: '3.7',
 		},
 		{
@@ -5599,8 +5038,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'ALUMINIUM_FABRICATOR',
 			skillType: 'SUPERVISOR',
 			experience: '5-8',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61ee8b6ce364722999146516/profile/WTq9cS5MM0-compressed.jpg',
+			profileImage: 'WTq9cS5MM0-compressed.jpg',
 			rating: '4.1',
 		},
 		{
@@ -5609,8 +5047,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'ALUMINIUM_FABRICATOR',
 			skillType: 'TECHNICIAN',
 			experience: '2-5',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/62167045246fa1e555384db1/profile/45aTezJoMR-compressed.jpg',
+			profileImage: '45aTezJoMR-compressed.jpg',
 			rating: '4.5',
 		},
 		{
@@ -5619,8 +5056,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'ALUMINIUM_FABRICATOR',
 			skillType: 'HELPER',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/621673e0246fa1e55538ecb7/profile/4otwtRol1f-compressed.jpg',
+			profileImage: '4otwtRol1f-compressed.jpg',
 			rating: '3.6',
 		},
 		{
@@ -5629,8 +5065,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'ALUMINIUM_FABRICATOR',
 			skillType: 'SUPERVISOR',
 			experience: '8-15',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/62167400246fa1e55538f2a4/profile/Vym1WadZXO-compressed.jpg',
+			profileImage: 'Vym1WadZXO-compressed.jpg',
 			rating: '3.5',
 		},
 		{
@@ -5639,8 +5074,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'ALUMINIUM_FABRICATOR',
 			skillType: 'SUPERVISOR',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/62167433246fa1e55538fb3b/profile/1g74pVVt_9-compressed.jpg',
+			profileImage: '1g74pVVt_9-compressed.jpg',
 			rating: '4.7',
 		},
 		{
@@ -5649,8 +5083,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'ALUMINIUM_FABRICATOR',
 			skillType: 'TECHNICIAN',
 			experience: '2-5',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/62167494246fa1e555390c8b/profile/yuMB9WDO6I-compressed.jpg',
+			profileImage: 'yuMB9WDO6I-compressed.jpg',
 			rating: '4.6',
 		},
 		{
@@ -5659,8 +5092,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'ALUMINIUM_FABRICATOR',
 			skillType: 'SUPERVISOR',
 			experience: '5-8',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/621681d4246fa1e555392ee5/profile/FPHfyxTVA2-compressed.jpg',
+			profileImage: 'FPHfyxTVA2-compressed.jpg',
 			rating: '4.7',
 		},
 		{
@@ -5669,8 +5101,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'ALUMINIUM_FABRICATOR',
 			skillType: 'TECHNICIAN',
 			experience: '2-5',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/62168244246fa1e555394283/profile/oO9WofewmT-compressed.jpg',
+			profileImage: 'oO9WofewmT-compressed.jpg',
 			rating: '3.9',
 		},
 		{
@@ -5679,8 +5110,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'ALUMINIUM_FABRICATOR',
 			skillType: 'TECHNICIAN',
 			experience: '8-15',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/6251572191e8807fe4150974/profile/sFmShVTJbA-compressed.jpg',
+			profileImage: 'sFmShVTJbA-compressed.jpg',
 			rating: '4.5',
 		},
 		{
@@ -5689,8 +5119,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'ALUMINIUM_FABRICATOR',
 			skillType: 'TECHNICIAN',
 			experience: '8-15',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/6274e38dbfcdae3b7179d46c/profile/evnZywo0BX-compressed.jpg',
+			profileImage: 'evnZywo0BX-compressed.jpg',
 			rating: '3.8',
 		},
 		{
@@ -5699,8 +5128,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'ALUMINIUM_FABRICATOR',
 			skillType: 'TECHNICIAN',
 			experience: '>15',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/62820c99bfcdae3b7170cfca/profile/0m8gyzkvnw-compressed.jpg',
+			profileImage: '0m8gyzkvnw-compressed.jpg',
 			rating: '3.9',
 		},
 		{
@@ -5709,8 +5137,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'ALUMINIUM_FABRICATOR',
 			skillType: 'TECHNICIAN',
 			experience: '2-5',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/62833178bfcdae3b71f6594d/profile/plI3WFzLz7-compressed.jpg',
+			profileImage: 'plI3WFzLz7-compressed.jpg',
 			rating: '4.8',
 		},
 		{
@@ -5719,8 +5146,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'ALUMINIUM_FABRICATOR',
 			skillType: 'HELPER',
 			experience: '2-5',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/6284bca0bfcdae3b7113ee1f/profile/Twz4ZZKtEj-compressed.jpg',
+			profileImage: 'Twz4ZZKtEj-compressed.jpg',
 			rating: '3.9',
 		},
 		{
@@ -5729,8 +5155,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'ALUMINIUM_FABRICATOR',
 			skillType: 'HELPER',
 			experience: '8-15',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/628c67f8bfcdae3b716cc8d5/profile/t8cw43G6_5-compressed.jpg',
+			profileImage: 't8cw43G6_5-compressed.jpg',
 			rating: '4.8',
 		},
 		{
@@ -5739,8 +5164,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'ALUMINIUM_FABRICATOR',
 			skillType: 'SUPERVISOR',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/628f122abfcdae3b71ca99c1/profile/NpIiBeK7O3-compressed.jpg',
+			profileImage: 'NpIiBeK7O3-compressed.jpg',
 			rating: '4.8',
 		},
 	],
@@ -5751,8 +5175,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'STONE_TILE_MARBLE_LAYER',
 			skillType: 'HELPER',
 			experience: '5-8',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f8000ad69716d1c9d8e1f/profile/h23VxmMgKW-compressed.jpg',
+			profileImage: 'h23VxmMgKW-compressed.jpg',
 			rating: '3.6',
 		},
 		{
@@ -5761,8 +5184,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'STONE_TILE_MARBLE_LAYER',
 			skillType: 'HELPER',
 			experience: '2-5',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f8011ad69716d1c9d9133/profile/HEe5gCsHeH-compressed.jpg',
+			profileImage: 'HEe5gCsHeH-compressed.jpg',
 			rating: '4.4',
 		},
 		{
@@ -5771,8 +5193,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'STONE_TILE_MARBLE_LAYER',
 			skillType: 'HELPER',
 			experience: '5-8',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f8063ad69716d1c9da002/profile/CyKHZP3NHU-compressed.jpg',
+			profileImage: 'CyKHZP3NHU-compressed.jpg',
 			rating: '4.3',
 		},
 		{
@@ -5781,8 +5202,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'STONE_TILE_MARBLE_LAYER',
 			skillType: 'HELPER',
 			experience: '2-5',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f80eaad69716d1c9db7fb/profile/DhlZoSZEwt-compressed.jpg',
+			profileImage: 'DhlZoSZEwt-compressed.jpg',
 			rating: '4.0',
 		},
 		{
@@ -5791,8 +5211,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'STONE_TILE_MARBLE_LAYER',
 			skillType: 'TECHNICIAN',
 			experience: '2-5',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f80f4ad69716d1c9db9c3/profile/cd5QDSNyY8-compressed.jpg',
+			profileImage: 'cd5QDSNyY8-compressed.jpg',
 			rating: '4.4',
 		},
 		{
@@ -5801,8 +5220,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'STONE_TILE_MARBLE_LAYER',
 			skillType: 'SUPERVISOR',
 			experience: '>15',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f812bad69716d1c9dc402/profile/b3ign53YNh-compressed.jpg',
+			profileImage: 'b3ign53YNh-compressed.jpg',
 			rating: '3.8',
 		},
 		{
@@ -5811,8 +5229,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'STONE_TILE_MARBLE_LAYER',
 			skillType: 'HELPER',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f812bad69716d1c9dc406/profile/fMGkpQIpK8-compressed.jpg',
+			profileImage: 'fMGkpQIpK8-compressed.jpg',
 			rating: '3.6',
 		},
 		{
@@ -5821,8 +5238,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'STONE_TILE_MARBLE_LAYER',
 			skillType: 'HELPER',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f815bad69716d1c9dcc77/profile/8WzTx2JkuP-compressed.jpg',
+			profileImage: '8WzTx2JkuP-compressed.jpg',
 			rating: '3.5',
 		},
 		{
@@ -5831,8 +5247,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'STONE_TILE_MARBLE_LAYER',
 			skillType: 'SUPERVISOR',
 			experience: '>15',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f81fcad69716d1c9de9b1/profile/W3y203jZRQ-compressed.jpg',
+			profileImage: 'W3y203jZRQ-compressed.jpg',
 			rating: '4.1',
 		},
 		{
@@ -5841,8 +5256,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'STONE_TILE_MARBLE_LAYER',
 			skillType: 'HELPER',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f8213ad69716d1c9dedcf/profile/hZU6e1jqHv-compressed.jpg',
+			profileImage: 'hZU6e1jqHv-compressed.jpg',
 			rating: '4.5',
 		},
 		{
@@ -5851,8 +5265,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'STONE_TILE_MARBLE_LAYER',
 			skillType: 'HELPER',
 			experience: '2-5',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f8248ad69716d1c9df75a/profile/CLB_Vu_lTo-compressed.jpg',
+			profileImage: 'CLB_Vu_lTo-compressed.jpg',
 			rating: '3.8',
 		},
 		{
@@ -5861,8 +5274,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'STONE_TILE_MARBLE_LAYER',
 			skillType: 'HELPER',
 			experience: '8-15',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f8264ad69716d1c9dfc56/profile/GQgM5lmOjJ-compressed.jpg',
+			profileImage: 'GQgM5lmOjJ-compressed.jpg',
 			rating: '3.8',
 		},
 		{
@@ -5871,8 +5283,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'STONE_TILE_MARBLE_LAYER',
 			skillType: 'TECHNICIAN',
 			experience: '5-8',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f82acad69716d1c9e093c/profile/QUN9LpwWau-compressed.jpg',
+			profileImage: 'QUN9LpwWau-compressed.jpg',
 			rating: '3.6',
 		},
 		{
@@ -5881,8 +5292,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'STONE_TILE_MARBLE_LAYER',
 			skillType: 'TECHNICIAN',
 			experience: '>15',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f82c3ad69716d1c9e0d89/profile/d6PGu6jw8U-compressed.jpg',
+			profileImage: 'd6PGu6jw8U-compressed.jpg',
 			rating: '4.3',
 		},
 		{
@@ -5891,8 +5301,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'STONE_TILE_MARBLE_LAYER',
 			skillType: 'HELPER',
 			experience: '>15',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/619f82d5ad69716d1c9e10a8/profile/pzUXLryEvA-compressed.jpg',
+			profileImage: 'pzUXLryEvA-compressed.jpg',
 			rating: '4.5',
 		},
 		{
@@ -5901,8 +5310,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'STONE_TILE_MARBLE_LAYER',
 			skillType: 'HELPER',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bebce9b53332601857e18c/profile/L2y_tHpc4O-compressed.jpg',
+			profileImage: 'L2y_tHpc4O-compressed.jpg',
 			rating: '4.2',
 		},
 		{
@@ -5911,8 +5319,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'STONE_TILE_MARBLE_LAYER',
 			skillType: 'SUPERVISOR',
 			experience: '5-8',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bebd11b53332601857e898/profile/yXSyPYHnum-compressed.jpg',
+			profileImage: 'yXSyPYHnum-compressed.jpg',
 			rating: '4.6',
 		},
 		{
@@ -5921,8 +5328,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'STONE_TILE_MARBLE_LAYER',
 			skillType: 'SUPERVISOR',
 			experience: '>15',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bebd1ab53332601857ea34/profile/Cl5HZr_RyF-compressed.jpg',
+			profileImage: 'Cl5HZr_RyF-compressed.jpg',
 			rating: '4.9',
 		},
 		{
@@ -5931,8 +5337,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'STONE_TILE_MARBLE_LAYER',
 			skillType: 'TECHNICIAN',
 			experience: '8-15',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bebd49b53332601857f1ca/profile/hjflr5151b-compressed.jpg',
+			profileImage: 'hjflr5151b-compressed.jpg',
 			rating: '3.9',
 		},
 		{
@@ -5941,8 +5346,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'STONE_TILE_MARBLE_LAYER',
 			skillType: 'TECHNICIAN',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bebdc3b533326018580720/profile/H92YGkFqta-compressed.jpg',
+			profileImage: 'H92YGkFqta-compressed.jpg',
 			rating: '4.5',
 		},
 		{
@@ -5951,8 +5355,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'STONE_TILE_MARBLE_LAYER',
 			skillType: 'HELPER',
 			experience: '8-15',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bebf07b533326018581715/profile/aVBDDNsYYJ-compressed.jpg',
+			profileImage: 'aVBDDNsYYJ-compressed.jpg',
 			rating: '4.3',
 		},
 		{
@@ -5961,8 +5364,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'STONE_TILE_MARBLE_LAYER',
 			skillType: 'HELPER',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bebf06b533326018581701/profile/_yGOgyKhUr-compressed.jpg',
+			profileImage: '_yGOgyKhUr-compressed.jpg',
 			rating: '3.7',
 		},
 		{
@@ -5971,8 +5373,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'STONE_TILE_MARBLE_LAYER',
 			skillType: 'SUPERVISOR',
 			experience: '>15',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bebf23b533326018581bc7/profile/0DrwWkzg-4-compressed.jpg',
+			profileImage: '0DrwWkzg-4-compressed.jpg',
 			rating: '3.7',
 		},
 		{
@@ -5981,8 +5382,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'STONE_TILE_MARBLE_LAYER',
 			skillType: 'TECHNICIAN',
 			experience: '8-15',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bebfbfb53332601858366b/profile/pchfM4hgx6-compressed.jpg',
+			profileImage: 'pchfM4hgx6-compressed.jpg',
 			rating: '3.6',
 		},
 		{
@@ -5991,8 +5391,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'STONE_TILE_MARBLE_LAYER',
 			skillType: 'HELPER',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bebfe6b533326018583d2a/profile/aDP-EH0cKN-compressed.jpg',
+			profileImage: 'aDP-EH0cKN-compressed.jpg',
 			rating: '4.2',
 		},
 		{
@@ -6001,8 +5400,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'STONE_TILE_MARBLE_LAYER',
 			skillType: 'TECHNICIAN',
 			experience: '5-8',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bec0b0b533326018586064/profile/m5elXhEK-_-compressed.jpg',
+			profileImage: 'm5elXhEK-_-compressed.jpg',
 			rating: '4.1',
 		},
 		{
@@ -6011,8 +5409,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'STONE_TILE_MARBLE_LAYER',
 			skillType: 'SUPERVISOR',
 			experience: '2-5',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bec0ceb533326018586577/profile/eDhvIF5T12-compressed.jpg',
+			profileImage: 'eDhvIF5T12-compressed.jpg',
 			rating: '4.8',
 		},
 		{
@@ -6021,8 +5418,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'STONE_TILE_MARBLE_LAYER',
 			skillType: 'TECHNICIAN',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bec0deb533326018586802/profile/Z-FZONQFSC-compressed.jpg',
+			profileImage: 'Z-FZONQFSC-compressed.jpg',
 			rating: '4.8',
 		},
 		{
@@ -6031,8 +5427,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'STONE_TILE_MARBLE_LAYER',
 			skillType: 'HELPER',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bec105b533326018586e61/profile/NsnuH0h7d6-compressed.jpg',
+			profileImage: 'NsnuH0h7d6-compressed.jpg',
 			rating: '4.6',
 		},
 		{
@@ -6041,8 +5436,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'STONE_TILE_MARBLE_LAYER',
 			skillType: 'TECHNICIAN',
 			experience: '>15',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bec142b53332601858790d/profile/lI-MM6yKi2-compressed.jpg',
+			profileImage: 'lI-MM6yKi2-compressed.jpg',
 			rating: '4.6',
 		},
 		{
@@ -6051,8 +5445,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'STONE_TILE_MARBLE_LAYER',
 			skillType: 'HELPER',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bec307b533326018588aca/profile/t3RdgRIc2U-compressed.jpg',
+			profileImage: 't3RdgRIc2U-compressed.jpg',
 			rating: '4.4',
 		},
 		{
@@ -6061,8 +5454,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'STONE_TILE_MARBLE_LAYER',
 			skillType: 'SUPERVISOR',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bec30fb533326018588bdb/profile/olcQIIgXSI-compressed.jpg',
+			profileImage: 'olcQIIgXSI-compressed.jpg',
 			rating: '4.7',
 		},
 		{
@@ -6071,8 +5463,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'STONE_TILE_MARBLE_LAYER',
 			skillType: 'SUPERVISOR',
 			experience: '2-5',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61bec34cb533326018589665/profile/8l1wl2OZTC-compressed.jpg',
+			profileImage: '8l1wl2OZTC-compressed.jpg',
 			rating: '4.6',
 		},
 		{
@@ -6081,8 +5472,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'STONE_TILE_MARBLE_LAYER',
 			skillType: 'HELPER',
 			experience: '>15',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61ee86c1e36472299913bae1/profile/QCGjuIbE1D-compressed.jpg',
+			profileImage: 'QCGjuIbE1D-compressed.jpg',
 			rating: '3.8',
 		},
 		{
@@ -6091,8 +5481,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'STONE_TILE_MARBLE_LAYER',
 			skillType: 'HELPER',
 			experience: '5-8',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61ee86e7e36472299913c1bb/profile/HyrWqKmYxu-compressed.jpg',
+			profileImage: 'HyrWqKmYxu-compressed.jpg',
 			rating: '4.2',
 		},
 		{
@@ -6101,8 +5490,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'STONE_TILE_MARBLE_LAYER',
 			skillType: 'HELPER',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61ee8701e36472299913c68d/profile/yizJbCoQ0s-compressed.jpg',
+			profileImage: 'yizJbCoQ0s-compressed.jpg',
 			rating: '3.5',
 		},
 		{
@@ -6111,8 +5499,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'STONE_TILE_MARBLE_LAYER',
 			skillType: 'TECHNICIAN',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61ee8707e36472299913c7c3/profile/WDQMuLWLpp-compressed.jpg',
+			profileImage: 'WDQMuLWLpp-compressed.jpg',
 			rating: '4.4',
 		},
 		{
@@ -6121,8 +5508,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'STONE_TILE_MARBLE_LAYER',
 			skillType: 'HELPER',
 			experience: '>15',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61ee871de36472299913cbf1/profile/BXzwOf1yBk-compressed.jpg',
+			profileImage: 'BXzwOf1yBk-compressed.jpg',
 			rating: '3.6',
 		},
 		{
@@ -6131,8 +5517,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'STONE_TILE_MARBLE_LAYER',
 			skillType: 'SUPERVISOR',
 			experience: '2-5',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61ee8743e36472299913d164/profile/Um4DhSzHDk-compressed.jpg',
+			profileImage: 'Um4DhSzHDk-compressed.jpg',
 			rating: '3.9',
 		},
 		{
@@ -6141,8 +5526,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'STONE_TILE_MARBLE_LAYER',
 			skillType: 'TECHNICIAN',
 			experience: '2-5',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61ee87ade36472299913dd5a/profile/P7N6gg0tSK-compressed.jpg',
+			profileImage: 'P7N6gg0tSK-compressed.jpg',
 			rating: '3.5',
 		},
 		{
@@ -6151,8 +5535,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'STONE_TILE_MARBLE_LAYER',
 			skillType: 'SUPERVISOR',
 			experience: '>15',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61ee8886e36472299913f346/profile/mGgp8a0Kx3-compressed.jpg',
+			profileImage: 'mGgp8a0Kx3-compressed.jpg',
 			rating: '3.8',
 		},
 		{
@@ -6161,8 +5544,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'STONE_TILE_MARBLE_LAYER',
 			skillType: 'HELPER',
 			experience: '>15',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61ee88c9e36472299913ffa9/profile/gk0MX4la5v-compressed.jpg',
+			profileImage: 'gk0MX4la5v-compressed.jpg',
 			rating: '4.8',
 		},
 		{
@@ -6171,8 +5553,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'STONE_TILE_MARBLE_LAYER',
 			skillType: 'TECHNICIAN',
 			experience: '>15',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61ee88dbe3647229991402b2/profile/JjEwmbBq7x-compressed.jpg',
+			profileImage: 'JjEwmbBq7x-compressed.jpg',
 			rating: '4.2',
 		},
 		{
@@ -6181,8 +5562,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'STONE_TILE_MARBLE_LAYER',
 			skillType: 'SUPERVISOR',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61ee8905e364722999140a7c/profile/yi8_oUI-BY-compressed.jpg',
+			profileImage: 'yi8_oUI-BY-compressed.jpg',
 			rating: '4.8',
 		},
 		{
@@ -6191,8 +5571,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'STONE_TILE_MARBLE_LAYER',
 			skillType: 'HELPER',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61ee89b1e364722999141763/profile/YE_Us6deDs-compressed.jpg',
+			profileImage: 'YE_Us6deDs-compressed.jpg',
 			rating: '4.7',
 		},
 		{
@@ -6201,8 +5580,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'STONE_TILE_MARBLE_LAYER',
 			skillType: 'TECHNICIAN',
 			experience: '8-15',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61ee89b9e3647229991418e6/profile/wHoZj3nXIE-compressed.jpg',
+			profileImage: 'wHoZj3nXIE-compressed.jpg',
 			rating: '4.0',
 		},
 		{
@@ -6211,8 +5589,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'STONE_TILE_MARBLE_LAYER',
 			skillType: 'TECHNICIAN',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61ee89d4e364722999141d8f/profile/_Ba8iU0Hh9-compressed.jpg',
+			profileImage: '_Ba8iU0Hh9-compressed.jpg',
 			rating: '4.4',
 		},
 		{
@@ -6221,8 +5598,7 @@ export const HeroDiscoveryMetaData: { [key in string]: any[] } = {
 			jobType: 'STONE_TILE_MARBLE_LAYER',
 			skillType: 'HELPER',
 			experience: '0-2',
-			profileImage:
-				'https://storage.googleapis.com/ph-workers-compressed/61ee89d7e364722999141e84/profile/cFIFyJvn4t-compressed.jpg',
+			profileImage: 'cFIFyJvn4t-compressed.jpg',
 			rating: '4.9',
 		},
 	],

@@ -221,7 +221,7 @@ export const Home = () => {
 							width: '100%',
 							overflow: 'hidden',
 						}}>
-						<Player poster='/assets/icons/videoPoster.png'>
+						<Player poster='/assets/icons/videoPoster.jpg'>
 							<source src={externalLinks.howItWorksVideoLink} />
 							<BigPlayButton position={'center'} />
 						</Player>
@@ -330,7 +330,7 @@ export const Home = () => {
 									width: '80%',
 									overflow: 'hidden',
 								}}>
-								<Player poster='/assets/icons/videoPoster.png'>
+								<Player poster='/assets/icons/videoPoster.jpg'>
 									<source src={externalLinks.howItWorksVideoLink} />
 									<BigPlayButton position={'center'} />
 								</Player>

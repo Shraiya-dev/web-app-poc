@@ -844,7 +844,15 @@ export const CheckoutCard: FC = () => {
 							<Box width={'30px'} height={'30px'}>
 								<img height={'100%'} width={'100%'} src='/assets/icons/phone_small.svg' />
 							</Box>
-							<Typography ml={1} color='#000'>
+							<Typography
+								ml={1}
+								color='#000'
+								onClick={() => {
+									sendAnalytics({
+										action: 'ButtonClick',
+										name: 'callProjectHeroSupport',
+									})
+								}}>
 								+91-9151003513
 							</Typography>
 						</Stack>
