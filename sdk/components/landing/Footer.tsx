@@ -156,6 +156,12 @@ export const Footer = () => {
 										href='mailto:marketing@projecthero.in'
 										variant='subtitle2'
 										color={'#fff'}
+										onClick={() => {
+											sendAnalytics({
+												action: 'ButtonClick',
+												name: 'mailProjectHeroSupport',
+											})
+										}}
 										fontSize={{ md: '18px', xs: '16px' }}
 										fontFamily={'Karla,sans-serif'}
 										fontWeight={700}>
@@ -171,6 +177,12 @@ export const Footer = () => {
 										color={'#fff'}
 										fontSize={{ md: '18px', xs: '16px' }}
 										fontFamily={'Karla,sans-serif'}
+										onClick={() => {
+											sendAnalytics({
+												action: 'ButtonClick',
+												name: 'callProjectHeroSupport',
+											})
+										}}
 										fontWeight={700}>
 										+91-9151003513
 									</Typography>
@@ -316,6 +328,12 @@ export const Footer = () => {
 							<Typography
 								component='a'
 								href='mailto:marketing@projecthero.in'
+								onClick={() => {
+									sendAnalytics({
+										action: 'ButtonClick',
+										name: 'mailProjectHeroSupport',
+									})
+								}}
 								variant='subtitle2'
 								color={'#fff'}
 								fontSize={{ md: '18px', xs: '16px' }}
@@ -333,6 +351,12 @@ export const Footer = () => {
 								color={'#fff'}
 								fontSize={{ md: '18px', xs: '16px' }}
 								fontFamily={'Karla,sans-serif'}
+								onClick={() => {
+									sendAnalytics({
+										action: 'ButtonClick',
+										name: 'callProjectHeroSupport',
+									})
+								}}
 								fontWeight={700}>
 								+91-9151003513
 							</Typography>

@@ -11,7 +11,7 @@ import { primary, theme } from '../constants'
 import { useMobile } from '../hooks/useMobile'
 import { useContractorAuth } from '../providers'
 import { Analytic } from '../analytics'
-import { NavigationTabClicked } from '../analytics/analyticsWrapper'
+import { NavigationTabClicked, sendAnalytics } from '../analytics/analyticsWrapper'
 import BusinessIcon from '@mui/icons-material/Business'
 import { clearCookie } from '../analytics/helper'
 import { ArrowBackIos } from '@mui/icons-material'
@@ -141,6 +141,12 @@ const ContractorDashboardLayout = ({ children }: any) => {
 								<img height={25} src='/assets/icons/phone.svg' />
 								<Typography
 									component={'a'}
+									onClick={() => {
+										sendAnalytics({
+											action: 'ButtonClick',
+											name: 'callProjectHeroSupport',
+										})
+									}}
 									href='tel:+91-9151003513'
 									fontFamily={'Karla,sans-serif'}
 									fontWeight={700}>

@@ -74,7 +74,16 @@ export const Navbar = () => {
 											alt='Project hero'
 											// style={{ marginTop: 5 }}
 										/>
-										<Typography variant='subtitle2' color={'#fff'} fontWeight={700}>
+										<Typography
+											variant='subtitle2'
+											onClick={() => {
+												sendAnalytics({
+													action: 'ButtonClick',
+													name: 'callProjectHeroSupport',
+												})
+											}}
+											color={'#fff'}
+											fontWeight={700}>
 											+91-9151003513
 										</Typography>
 									</Stack>
@@ -144,7 +153,16 @@ export const Navbar = () => {
 															alt=''
 														/>
 													</Box>
-													<Typography variant='subtitle2' color={'#fff'} fontWeight={700}>
+													<Typography
+														variant='subtitle2'
+														onClick={() => {
+															sendAnalytics({
+																action: 'ButtonClick',
+																name: 'callProjectHeroSupport',
+															})
+														}}
+														color={'#fff'}
+														fontWeight={700}>
 														+91-9151003513
 													</Typography>
 												</Stack>
@@ -260,7 +278,16 @@ export const Navbar = () => {
 															alt=''
 														/>
 													</Box>
-													<Typography variant='subtitle2' color={'#fff'} fontWeight={700}>
+													<Typography
+														variant='subtitle2'
+														onClick={() => {
+															sendAnalytics({
+																action: 'ButtonClick',
+																name: 'mailProjectHeroSupport',
+															})
+														}}
+														color={'#fff'}
+														fontWeight={700}>
 														marketing@projecthero.in
 													</Typography>
 												</Stack>
@@ -273,7 +300,16 @@ export const Navbar = () => {
 															alt=''
 														/>
 													</Box>
-													<Typography variant='subtitle2' color={'#fff'} fontWeight={700}>
+													<Typography
+														variant='subtitle2'
+														onClick={() => {
+															sendAnalytics({
+																action: 'ButtonClick',
+																name: 'callProjectHeroSupport',
+															})
+														}}
+														color={'#fff'}
+														fontWeight={700}>
 														+91-9151003513
 													</Typography>
 												</Stack>

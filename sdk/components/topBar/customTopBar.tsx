@@ -6,6 +6,7 @@ import { useContractorAuth } from '../../providers'
 
 const APP_BAR_BG_COLOR = primary.darkGrey
 import MenuIcon from 'public/assets/icons/MenuIcon.svg'
+import { sendAnalytics } from 'sdk/analytics'
 
 const CustomAppBar = styled(Box)(() => ({
 	minHeight: 84,
@@ -58,6 +59,12 @@ export const CustomTopBar: FC<Props> = ({ children, sideMenu = false }) => {
 					<Typography
 						component='a'
 						href='mailto:marketing@projecthero.in'
+						onClick={() => {
+							sendAnalytics({
+								action: 'ButtonClick',
+								name: 'mailProjectHeroSupport',
+							})
+						}}
 						fontFamily={'Karla,sans-serif'}
 						fontWeight={700}>
 						marketing@projecthero.in
@@ -69,6 +76,12 @@ export const CustomTopBar: FC<Props> = ({ children, sideMenu = false }) => {
 						component='a'
 						href='tel:+91 9151003513'
 						fontFamily={'Karla,sans-serif'}
+						onClick={() => {
+							sendAnalytics({
+								action: 'ButtonClick',
+								name: 'callProjectHeroSupport',
+							})
+						}}
 						fontWeight={700}>
 						+91-9151003513
 					</Typography>

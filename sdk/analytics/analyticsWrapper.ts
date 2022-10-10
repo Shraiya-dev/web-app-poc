@@ -187,6 +187,8 @@ const EventTypes = {
 	tutorialInteraction: 'Tutorial Interaction',
 	tutorialImpression: 'Tutorial Impression',
 	updateProject: 'Update Project',
+	callProjectHeroSupport: 'Call Project Hero Support',
+	mailProjectHeroSupport: 'Mail Project Hero Support',
 }
 
 //Define a new action type here if needed
