@@ -175,9 +175,9 @@ function MyApp({ Component, pageProps }: AppProps) {
 								<SplashProvider>
 									<ContractorAuthProvider>
 										<TutorialProvider pageStaticData={pageStaticData}>
-											<PaymentProvider>
-												<Component {...pageProps} />
-											</PaymentProvider>
+											{/* <PaymentProvider> */}
+											<Component {...pageProps} />
+											{/* </PaymentProvider> */}
 										</TutorialProvider>
 									</ContractorAuthProvider>
 								</SplashProvider>
