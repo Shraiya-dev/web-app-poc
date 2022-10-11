@@ -111,7 +111,7 @@ const PublicPages = [
 	'/KhulaManch',
 	'/how-it-works',
 	'/blog',
-	'call/[phoneNumber]',
+	'/call/[phoneNumber]',
 	'/blog/[blogId]',
 ]
 interface ContractorAuthProviderProps {
