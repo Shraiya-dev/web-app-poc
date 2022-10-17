@@ -33,9 +33,9 @@ interface AuthState {
 	phoneNumber: null | string
 	accessToken: null | string
 	refreshToken: null | string
-	isRegister: false | Boolean
-	isSideBarToggle: false | boolean
-	isWhatsAppOptIn: true | boolean
+	isRegister: boolean
+	isSideBarToggle: boolean
+	isWhatsAppOptIn: boolean
 }
 
 interface emailOtpPayload {
@@ -111,7 +111,7 @@ const PublicPages = [
 	'/KhulaManch',
 	'/how-it-works',
 	'/blog',
-	'/call/[phoneNumber]',
+	'/job-card/connect',
 	'/blog/[blogId]',
 ]
 interface ContractorAuthProviderProps {
@@ -215,6 +215,7 @@ const ContractorAuthProvider: FC<ContractorAuthProviderProps> = ({ children, aut
 				customerStatus,
 				designation,
 				linkedOrganisation,
+				whatsappOptedIn,
 			} = data.payload
 			dispatch({
 				user: {
@@ -230,7 +231,9 @@ const ContractorAuthProvider: FC<ContractorAuthProviderProps> = ({ children, aut
 					hasProjects: data?.payload?.hasProjects ?? false,
 					customerStatus: customerStatus ?? CUSTOMER_STATUS?.REGISTERED,
 					designation: designation ?? '',
+					whatsappOptedIn: whatsappOptedIn ?? false,
 				},
+				isWhatsAppOptIn: whatsappOptedIn ?? true,
 			})
 
 			if (getCookie('isUTMParamIdentified') !== '') {
@@ -262,7 +265,13 @@ const ContractorAuthProvider: FC<ContractorAuthProviderProps> = ({ children, aut
 	const verifyOtp = useCallback(
 		async (phoneNumber: string, otp: string) => {
 			try {
-				const { data } = await loginService(phoneNumber, USER_TYPE.CONTRACTOR, USER_LOGIN_TYPE.OTP, otp)
+				const { data } = await loginService(
+					phoneNumber,
+					USER_TYPE.CONTRACTOR,
+					USER_LOGIN_TYPE.OTP,
+					otp,
+					state.isWhatsAppOptIn
+				)
 				if (data?.success) {
 					document.cookie = `accessToken = ${data.data?.accessToken}`
 					document.cookie = `phoneNumber = ${data.data?.phoneNumber}`
@@ -377,7 +386,9 @@ const ContractorAuthProvider: FC<ContractorAuthProviderProps> = ({ children, aut
 						hasProjects: data?.payload?.hasProjects ?? false,
 						customerStatus: data?.payload?.customerStatus ?? CUSTOMER_STATUS.REGISTERED,
 						designation: data?.payload?.designation ?? '',
+						whatsappOptedIn: data?.payload?.whatsappOptedIn ?? false,
 					},
+					isWhatsAppOptIn: data?.payload?.whatsappOptedIn ?? true,
 				})
 				await Identify({
 					userType: 'customer',

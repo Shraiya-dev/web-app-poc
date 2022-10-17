@@ -10,6 +10,7 @@ export const loginService = async (
 	ut: USER_TYPE,
 	ult: USER_LOGIN_TYPE,
 	otp?: string,
+	isWhatsAppOptIn?: boolean,
 	accessToken?: string
 ) => {
 	const payload = {
@@ -19,6 +20,7 @@ export const loginService = async (
 			phoneNumberRaw: phoneNumber,
 			otp: otp,
 			accessToken: accessToken,
+			whatsappOptedIn: !!isWhatsAppOptIn,
 		},
 	}
 	return axios.post('/login', payload)

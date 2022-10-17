@@ -27,4 +27,5 @@ export interface CustomerDetails {
 	hasProjects?: boolean
 	designation: DESIGNATION
 	organisationRole: string
+	whatsappOptedIn?: boolean
 }
