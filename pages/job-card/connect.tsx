@@ -3,11 +3,12 @@ import { NextPage } from 'next'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { useCallback, useEffect } from 'react'
-import { LandingLayout, useSnackbar } from 'sdk'
+import { LandingLayout, useContractorAuth, useSnackbar } from 'sdk'
 
 const Page: NextPage = () => {
 	const router = useRouter()
 	const { showSnackbar } = useSnackbar()
+	const { user } = useContractorAuth()
 	const getContactDetails = useCallback(
 		async (token: string) => {
 			try {
@@ -17,15 +18,19 @@ const Page: NextPage = () => {
 					window.location.replace('tel:+91' + phoneNumber)
 					return
 				}
-				if (typeof window !== 'undefined') {
+				if (typeof window !== 'undefined' && user) {
 					router.replace(redirectUrl)
+					return
 				}
+
+				showSnackbar('Unauthorized', 'error')
+				router.replace('/')
 			} catch (error: any) {
 				showSnackbar(error?.response?.data?.developerInfo, 'error')
 				router.replace('/')
 			}
 		},
-		[router, showSnackbar]
+		[router, showSnackbar, user]
 	)
 	useEffect(() => {
 		if (router.isReady) {
