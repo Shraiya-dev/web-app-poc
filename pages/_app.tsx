@@ -1,16 +1,17 @@
 /* eslint-disable @next/next/next-script-for-ga */
 import { ThemeProvider } from '@mui/material/styles'
 import axios, { AxiosError, AxiosResponse } from 'axios'
+import { initializeApp } from 'firebase/app'
+import { getPerformance } from 'firebase/performance'
 import type { AppProps } from 'next/app'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import Script from 'next/script'
-import { useCallback, useEffect, useMemo } from 'react'
+import { useEffect, useMemo } from 'react'
 import { QueryClient, QueryClientProvider } from 'react-query'
-import { getPerformance } from 'firebase/performance'
-import { initializeApp } from 'firebase/app'
 const app = initializeApp(envs.firebaseConfig as any)
 
+import { SplashProvider } from 'sdk/providers/SplashProvider'
 import {
 	ContractorAuthProvider,
 	envs,
@@ -30,13 +31,11 @@ import {
 } from '../sdk'
 import { Analytic } from '../sdk/analytics/analytics'
 import '../sdk/styles/onlyCssWeNeed.css'
-import { SplashProvider } from 'sdk/providers/SplashProvider'
 
 import { CssBaseline } from '@mui/material'
-import { PaymentProvider } from 'sdk/providers/PaymentProvider'
-import { createCookieInHour, getCookie } from '../sdk/analytics/helper'
 import flagsmith from 'flagsmith'
-import { FlagsmithProvider, useFlagsmith } from 'flagsmith/react'
+import { FlagsmithProvider } from 'flagsmith/react'
+import { createCookieInHour, getCookie } from '../sdk/analytics/helper'
 const queryClient = new QueryClient()
 
 //=====================initializing axios interceptor=======================

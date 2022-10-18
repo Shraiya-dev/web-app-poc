@@ -322,7 +322,7 @@ const ContractorAuthProvider: FC<ContractorAuthProviderProps> = ({ children, aut
 			}
 			//return await loginService(phoneNumber, USER_TYPE.CONTRACTOR, USER_LOGIN_TYPE.OTP, otp)
 		},
-		[showSnackbar]
+		[showSnackbar, state.isWhatsAppOptIn]
 	)
 
 	const updateIsRegUser = useCallback(async (isRegister: boolean) => {
@@ -545,6 +545,10 @@ const ContractorAuthProvider: FC<ContractorAuthProviderProps> = ({ children, aut
 							'/onboarding',
 						].every((item) => !router.pathname.includes(item))
 					) {
+						if (router.query.redirectBackTo) {
+							router.replace(router.query.redirectBackTo as string)
+							return
+						}
 						router.replace(redirectRoute)
 						return
 					}
@@ -560,10 +564,6 @@ const ContractorAuthProvider: FC<ContractorAuthProviderProps> = ({ children, aut
 		dispatch({
 			isWhatsAppOptIn: !state.isWhatsAppOptIn,
 		})
-	}, [state])
-
-	useEffect(() => {
-		console.log(state.isWhatsAppOptIn)
 	}, [state])
 
 	const [isDialogOpen, setIsDialogOpen] = useState<boolean>(false)
@@ -600,11 +600,10 @@ const ContractorAuthProvider: FC<ContractorAuthProviderProps> = ({ children, aut
 	// 	setActiveStepValue(value)
 	// }, [router])
 	useEffect(() => {
-		if (router.query.login) {
+		if (router.query.redirectBackTo) {
 			setIsDialogOpen(true)
-			delete router.query.login
 		}
-	}, [router.query.login])
+	}, [router.query.redirectBackTo])
 	const authProviderValue: AuthProviderValue = useMemo(
 		() => ({
 			...state,
