@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { useRouter } from 'next/router'
 import { useCallback, useEffect, useState } from 'react'
-import { BookingPreview, JobCard, useSnackbar, WORKER_APPLICATION_STATUS } from '../../../sdk'
+import { BookingPreview, JobCard, sendAnalytics, useSnackbar, WORKER_APPLICATION_STATUS } from '../../../sdk'
 import { getBookingDetails, getWorkerDetails } from '../apis'
 
 interface FilterForm {
@@ -47,7 +47,18 @@ export const useBookingId = () => {
 			showSnackbar(error?.response?.data?.developerInfo, 'error')
 		}
 	}, [router.query.bookingId])
-
+	useEffect(() => {
+		if (!router.isReady) return
+		if (router.query.source === 'whatsapp') {
+			sendAnalytics({
+				name: 'viewJobDashboardClicked',
+				action: 'ButtonClick',
+				metaData: { ...router.query },
+			})
+			delete router.query.source
+			delete router.query.customerId
+		}
+	}, [router])
 	const getJobCards = useCallback(
 		async (pageNumber) => {
 			const { bookingId, projectId, ...rest } = router.query

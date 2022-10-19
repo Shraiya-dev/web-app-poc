@@ -50,7 +50,7 @@ export const logOutService = (login?: boolean) => {
 	localStorage.clear()
 	if (window.location.pathname !== `/`) {
 		const nsp = new URLSearchParams({
-			redirectBackTo: window.location.pathname,
+			redirectBackTo: window.location.pathname + window.location.search,
 		})
 		if (shouldRedirect !== window.location.pathname) {
 			sessionStorage.setItem('shouldRedirect', window.location.pathname + window.location.search)

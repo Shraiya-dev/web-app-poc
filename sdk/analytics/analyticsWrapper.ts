@@ -189,6 +189,7 @@ const EventTypes = {
 	updateProject: 'Update Project',
 	callProjectHeroSupport: 'Call Project Hero Support',
 	mailProjectHeroSupport: 'Mail Project Hero Support',
+	viewJobDashboardClicked: 'ViewJobDashboard Clicked',
 }
 
 //Define a new action type here if needed
