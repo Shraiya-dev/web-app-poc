@@ -53,7 +53,7 @@ export const logOutService = (login?: boolean) => {
 			redirectBackTo: window.location.pathname,
 		})
 		if (shouldRedirect !== window.location.pathname) {
-			sessionStorage.setItem('shouldRedirect', window.location.pathname)
+			sessionStorage.setItem('shouldRedirect', window.location.pathname + window.location.search)
 			window.location.href = `/?${login ? nsp.toString() : ''}`
 			return
 		}
