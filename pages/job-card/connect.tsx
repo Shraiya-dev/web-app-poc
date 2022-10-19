@@ -18,7 +18,7 @@ const Page: NextPage = () => {
 					window.location.replace('tel:+91' + phoneNumber)
 					return
 				}
-				if (typeof window !== 'undefined' && user) {
+				if (typeof window !== 'undefined') {
 					router.replace(redirectUrl)
 					return
 				}
@@ -30,7 +30,7 @@ const Page: NextPage = () => {
 				router.replace('/')
 			}
 		},
-		[router, showSnackbar, user]
+		[router, showSnackbar]
 	)
 	useEffect(() => {
 		if (router.isReady) {

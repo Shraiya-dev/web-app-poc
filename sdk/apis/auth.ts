@@ -46,18 +46,11 @@ export const updateProfile = async (payload: any) => {
 }
 
 export const logOutService = (login?: boolean) => {
-	const shouldRedirect = sessionStorage.getItem('shouldRedirect')
 	localStorage.clear()
 	if (window.location.pathname !== `/`) {
 		const nsp = new URLSearchParams({
 			redirectBackTo: window.location.pathname + window.location.search,
 		})
-		if (shouldRedirect !== window.location.pathname) {
-			sessionStorage.setItem('shouldRedirect', window.location.pathname + window.location.search)
-			window.location.href = `/?${login ? nsp.toString() : ''}`
-			return
-		}
-		nsp.set('redirectBackTo', '/dashboard')
 		window.location.href = `/?${login ? nsp.toString() : ''}`
 		return
 	}
