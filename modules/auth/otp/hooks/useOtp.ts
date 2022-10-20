@@ -99,7 +99,11 @@ const useOtp = () => {
 								})
 							}
 							if (!discoveryBookingFromCookie) {
-								router.push('/dashboard')
+								if (router.query.redirectBackTo) {
+									router.push(router.query.redirectBackTo as string)
+								} else {
+									router.push('/dashboard')
+								}
 							}
 							setLoading(false)
 						} else {

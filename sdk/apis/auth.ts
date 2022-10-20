@@ -10,6 +10,7 @@ export const loginService = async (
 	ut: USER_TYPE,
 	ult: USER_LOGIN_TYPE,
 	otp?: string,
+	isWhatsAppOptIn?: boolean,
 	accessToken?: string
 ) => {
 	const payload = {
@@ -19,6 +20,7 @@ export const loginService = async (
 			phoneNumberRaw: phoneNumber,
 			otp: otp,
 			accessToken: accessToken,
+			whatsappOptedIn: !!isWhatsAppOptIn,
 		},
 	}
 	return axios.post('/login', payload)
@@ -45,9 +47,12 @@ export const updateProfile = async (payload: any) => {
 
 export const logOutService = (login?: boolean) => {
 	localStorage.clear()
-
 	if (window.location.pathname !== `/`) {
-		window.location.href = `/?${login ? 'login=true' : ''}`
+		const nsp = new URLSearchParams({
+			redirectBackTo: window.location.pathname + window.location.search,
+		})
+		window.location.href = `/?${login ? nsp.toString() : ''}`
+		return
 	}
 }
 
