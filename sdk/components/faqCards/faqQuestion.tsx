@@ -12,7 +12,7 @@ interface Props {
 
 const questions = [
 	{
-		question: 'How to book Heroes?',
+		question: 'How to book ProjectHeros?',
 		answer: 'Vitae congue eu consequat ac felis placerat vestibulum lectus mauris ultrices. Cursus sit amet dictum sit amet justo donec enim diam porttitor lacus luctus accumsan tortor posuere.',
 	},
 	{
@@ -20,7 +20,7 @@ const questions = [
 		answer: 'Vitae congue eu consequat ac felis placerat vestibulum lectus mauris ultrices. Cursus sit amet dictum sit amet justo donec enim diam porttitor lacus luctus accumsan tortor posuere.',
 	},
 	{
-		question: 'How Heroes are hired?',
+		question: 'How ProjectHeros are hired?',
 		answer: 'Vitae congue eu consequat ac felis placerat vestibulum lectus mauris ultrices. Cursus sit amet dictum sit amet justo donec enim diam porttitor lacus luctus accumsan tortor posuere.',
 	},
 	{

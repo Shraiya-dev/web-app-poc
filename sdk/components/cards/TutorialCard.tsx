@@ -33,7 +33,7 @@ export const TutorialCard = ({ step, skip, next }: { step?: TutorialSteps; skip?
 						</Stack>
 						<Typography variant='subtitle2' color='common.white'>
 							All your job postings are here. Click on “View Applications” to see the phone numbers of
-							Heroes who applied to your job
+							ProjectHeros who applied to your job
 						</Typography>
 						<Stack direction='row' justifyContent='space-between'>
 							<Button
@@ -78,8 +78,8 @@ export const TutorialCard = ({ step, skip, next }: { step?: TutorialSteps; skip?
 							</Typography>
 						</Stack>
 						<Typography variant='subtitle2' color='common.white'>
-							Job postings with updated site details attract 70% more applications from Heroes. Update
-							Details now.
+							Job postings with updated site details attract 70% more applications from ProjectHeros.
+							Update Details now.
 						</Typography>
 						<Stack direction='row' justifyContent='space-between'>
 							<Button

@@ -111,7 +111,7 @@ export const CreateBookingCard: FC<Props> = () => {
 										<Typography variant='inherit' component='span' color='primary.main'>
 											Job Post Karen
 										</Typography>{' '}
-										aur Heroes ka number payen!
+										aur ProjectHeros ka number payen!
 									</Typography>
 									<BookingStepper step={step} />
 								</>
@@ -128,8 +128,8 @@ export const CreateBookingCard: FC<Props> = () => {
 										textAlign='center'
 										alignItems='center'
 										justifyContent={'center'}>
-										Go to the contractor dashboard to view the phone numbers of all the Heroes who
-										have applied to your job posting.
+										Go to the contractor dashboard to view the phone numbers of all the ProjectHeros
+										who have applied to your job posting.
 									</Typography>
 								</Stack>
 								<LinkButton

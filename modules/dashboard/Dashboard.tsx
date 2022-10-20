@@ -126,7 +126,7 @@ export const Dashboard = () => {
 											url: router.asPath,
 										})
 									}}>
-									Book Heroes
+									Book ProjectHeros
 								</Button>
 							</a>
 						</Link>
@@ -142,9 +142,9 @@ export const Dashboard = () => {
 					{bookings.totalBookings === 0 ? (
 						<Stack flex={1} mt={20} direction={'column'} spacing={4} alignItems='center'>
 							<Typography variant='h4' color={theme.palette.primary.main}>
-								No Jobs found. Create a Job to hire Heroes.
+								No Jobs found. Create a Job to hire ProjectHeros.
 							</Typography>
-							{/* <Button onClick={handleBookingForm}>Book Heroes</Button> */}
+							{/* <Button onClick={handleBookingForm}>Book ProjectHeros</Button> */}
 							<Link href={`/projects/${router?.query?.projectId}/bookings/create`} passHref>
 								<a>
 									<Button variant='contained'>Job Post Karen</Button>

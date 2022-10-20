@@ -93,8 +93,8 @@ export const FAQPage = {
 								<li>
 									<strong>Support Top-Up</strong>
 									<br />
-									Project Hero provides an online Project Manager for all the Heroes deployed at your
-									project site. The Project manager ensures timely delivery of the weekly targets
+									Project Hero provides an online Project Manager for all the ProjectHeros deployed at
+									your project site. The Project manager ensures timely delivery of the weekly targets
 									provided by you. He also does random site audits* every month to ensure that work is
 									being done in time. For more details, please check out our <PlanLink /> page on the
 									website.

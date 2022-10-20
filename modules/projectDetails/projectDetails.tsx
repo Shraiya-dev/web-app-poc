@@ -187,8 +187,8 @@ export const ProjectDetails: FC<Props> = () => {
 						position: 'relative',
 					}}>
 					<TutorialBanner>
-						Post ki gai aapki sari jobs yahaan dikhegi. &quot;Heroes ko call karen&quot; pe click karne par
-						jo bhi heroes ne apply kiya hai unke phone number aapko dikhege.
+						Post ki gai aapki sari jobs yahaan dikhegi. &quot;ProjectHeros ko call karen&quot; pe click
+						karne par jo bhi heroes ne apply kiya hai unke phone number aapko dikhege.
 					</TutorialBanner>
 					<Dashboard />
 				</TabPanel>

@@ -41,7 +41,7 @@ export const TutorialPopUp: FC<Props> = ({ open = false, step, skip, next, ancho
 					arrow: 'bottom',
 					content: {
 						description: `All your job postings are here. Click on “View Applications” to see the phone numbers of
-                        Heroes who applied to your job.`,
+                        ProjectHeros who applied to your job.`,
 						heading: `Dashboard`,
 						mainCta: 'next',
 					},

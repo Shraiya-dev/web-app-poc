@@ -248,8 +248,8 @@ export const EasyBooking = () => {
 	return (
 		<CustomBookingStyle>
 			<TopBanner
-				header={`Book Heroes`}
-				subHeader={`Book Heroes for the project `}
+				header={`Book ProjectHeros`}
+				subHeader={`Book ProjectHeros for the project `}
 				bannerSvg={BookingSvg}
 				onClick={() => {
 					setOncloseDialog(true)
@@ -269,7 +269,7 @@ export const EasyBooking = () => {
 				<ConfirmCancel
 					onCloseDialog={onCloseDialog}
 					setOncloseDialog={setOncloseDialog}
-					header={'Leave Booking Heroes?'}
+					header={'Leave Booking ProjectHeros?'}
 				/>
 				<Box>
 					<form onSubmit={form.handleSubmit}>
@@ -412,7 +412,7 @@ export const EasyBooking = () => {
 
 							<InputWrapper
 								id='workerType'
-								label={`Heroes Required & Daily Wage`}
+								label={`ProjectHeros Required & Daily Wage`}
 								toolTip={'Daily wage per worker'}>
 								{/* {getErrorString()} */}
 								<Grid container spacing={4}>

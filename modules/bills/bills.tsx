@@ -571,7 +571,7 @@ export const Bills = () => {
 														fontWeight={400}
 														variant='caption'
 														noWrap>
-														Heroes
+														ProjectHeros
 													</Typography>
 													<Typography color='#000' fontWeight={400} variant='caption' noWrap>
 														{item?.heroCount ?? 'NA'}
@@ -740,7 +740,7 @@ const TableHeaderList: { label: String; sx?: any }[] = [
 		sx: { position: 'sticky', left: '0 !important', top: 0, background: '#f2f9fb', zIndex: 10 },
 	},
 	{ label: 'Total Payable' },
-	{ label: 'Heroes' },
+	{ label: 'ProjectHeros' },
 	{ label: 'Base Wage' },
 	{ label: 'OT Wage' },
 	{ label: 'Gross Wage' },
