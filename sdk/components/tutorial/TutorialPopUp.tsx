@@ -55,7 +55,7 @@ export const TutorialPopUp: FC<Props> = ({ open = false, step, skip, next, ancho
 					arrow: 'top',
 
 					content: {
-						description: `Site details wali job posting par 70% zyada heroes apply karte hain. Aapki site details abhi add karen aur zyada heroes se baat karen.`,
+						description: `Site details wali job posting par 70% zyada projectheros apply karte hain. Aapki site details abhi add karen aur zyada projectheros se baat karen.`,
 						heading: `Construction site ki details add karen`,
 						mainCta: 'Add Details',
 						skip: true,

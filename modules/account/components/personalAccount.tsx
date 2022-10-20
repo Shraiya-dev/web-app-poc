@@ -41,8 +41,8 @@ const PersonalAccount = () => {
 
 				<Stack m={3} mt={0}>
 					<TutorialBanner sx={{ mx: -3, mb: 2 }}>
-						Apna e-mail share karen taki aap kabhi bhi apni job posting aur heroes ke phone number wali
-						details gawae nhi.
+						Apna e-mail share karen taki aap kabhi bhi apni job posting aur projectheros ke phone number
+						wali details gawae nhi.
 					</TutorialBanner>
 					<Box justifyContent={'flex-end'} display='flex' mb={-3} mt={2}></Box>
 
