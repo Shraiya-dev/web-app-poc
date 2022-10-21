@@ -74,14 +74,15 @@ const CarouselData = [
 	{
 		index: '03',
 		title: 'Job Posting Goes Live',
-		details: 'Congratulations! your job posting has gone live on our app for ProjectHeros.',
+		details: 'Congratulations! your job posting has gone live on our app for projectheroes.',
 		imgSrc: '/assets/landingv2/icons/layer.svg',
 		bgColor: '#383838',
 	},
 	{
 		index: '04',
-		title: 'ProjectHeros start applying to your job',
-		details: 'ProjectHeros start noticing your job on their app and start applying to your job with in 15 minutes.',
+		title: 'ProjectHeroes start applying to your job',
+		details:
+			'ProjectHeroes start noticing your job on their app and start applying to your job with in 15 minutes.',
 		imgSrc: '/assets/landingv2/icons/Helmet.svg',
 		bgColor: '#383838',
 	},
@@ -117,7 +118,7 @@ const AnalyticsData = [
 		data: '20k+',
 	},
 	{
-		name: 'Skilled Heros Available',
+		name: 'Skilled ProjectHeroes Available',
 		data: '4 Lakh',
 	},
 ]
@@ -130,12 +131,12 @@ const profileDescription = [
 	},
 	{
 		heading: 'Hassle Free Hiring',
-		subHeading: 'Get phone number of all the ProjectHeros who have applied to your booking',
+		subHeading: 'Get phone number of all the ProjectHeroes who have applied to your booking',
 		imgSrc: '/assets/landingv2/heroSection/magnifineGlass.svg',
 	},
 	{
-		heading: 'Skilled & Trained ProjectHeros',
-		subHeading: 'ProjectHeros go through strict skill evaluation process & scored',
+		heading: 'Skilled & Trained ProjectHeroes',
+		subHeading: 'ProjectHeroes go through strict skill evaluation process & scored',
 		imgSrc: '/assets/landingv2/heroSection/helmet.svg',
 	},
 ]

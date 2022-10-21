@@ -1,6 +1,6 @@
 export const footer = {
 	brandImage: '/assets/landing/ph-logo-light.svg',
-	tagLine: 'Your Hero is Ready',
+	tagLine: 'Your ProjectHeroes are Ready',
 	support: 'In case of any concern contact: marketing@projecthero.in',
 	textColor: 'common.white',
 	navLinks: [

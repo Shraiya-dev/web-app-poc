@@ -90,7 +90,7 @@ export const BillDetails = () => {
 								<DateStack date={billDetailsResponse?.displayDate} />
 								<Stack ml={2}>
 									<Typography fontFamily={'Saira,sans-serif'} fontWeight={700} variant='h5'>
-										ProjectHeros Bills
+										ProjectHeroes Bills
 									</Typography>
 									<Typography
 										fontFamily={'Karla,sans-serif'}
@@ -336,7 +336,7 @@ export const BillDetails = () => {
 														variant='caption'
 														color={primary.properDark}
 														noWrap>
-														ProjectHeros
+														ProjectHeroes
 													</Typography>
 												</TableCell>
 												<TableCell></TableCell>
@@ -512,7 +512,7 @@ export const BillDetails = () => {
 								<DateStack date={billDetailsResponse?.displayDate} />
 								<Stack ml={2}>
 									<Typography variant='h4' fontWeight={700}>
-										ProjectHeros Bills
+										ProjectHeroes Bills
 									</Typography>
 									<Typography variant='caption' color='grey.600' fontWeight={500}>
 										{projectDetails?.name}

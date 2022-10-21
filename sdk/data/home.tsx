@@ -64,8 +64,8 @@ export const homePage = {
 							03
 						</Typography>
 					),
-					heading: 'Skilled & Trained ProjectHeros',
-					desc: 'ProjectHeros go through strict skill evaluation process & scored',
+					heading: 'Skilled & Trained ProjectHeroes',
+					desc: 'ProjectHeroes go through strict skill evaluation process & scored',
 				},
 				{
 					index: (
@@ -83,7 +83,7 @@ export const homePage = {
 							04
 						</Typography>
 					),
-					heading: 'Eager to Work ProjectHeros',
+					heading: 'Eager to Work ProjectHeroes',
 					desc: 'Largest pool of ready to work projectheroes available',
 				},
 			],
@@ -137,18 +137,18 @@ export const homePage = {
 					fontFamily: ' Karla,sans-serif',
 					fontSize: { md: '24px', xs: '16px' },
 				}}>
-				Designed for our Heros who apply to jobs <br /> posted by you
+				Designed for our ProjectHeroes who apply to jobs <br /> posted by you
 			</Typography>
 		),
 		list: [
 			{
-				item: 'ProjectHeros apply to unlimited jobs posted by YOU!',
+				item: 'ProjectHeroes apply to unlimited jobs posted by YOU!',
 			},
 			{
-				item: 'ProjectHeros can track their Provident Fund(PF) balance on App	',
+				item: 'ProjectHeroes can track their Provident Fund(PF) balance on App	',
 			},
 			{
-				item: 'ProjectHeros can track their attendance & income directly on app',
+				item: 'ProjectHeroes can track their attendance & income directly on app',
 			},
 			{
 				item: 'Heores get insurance for upto 3 lakhs in just Rs 9 per day',
@@ -609,7 +609,7 @@ export const homePage = {
 		backgroundColor: '#F2F7FF',
 		appImage: '/assets/landing/heroAppposter.png',
 		heading: 'Project Hero App',
-		description: 'Designed for our ProjectHeros who apply to jobs posted by you',
+		description: 'Designed for our ProjectHeroes who apply to jobs posted by you',
 		bulletPointIcon: <StarBorder color='primary' />,
 		bulletPoints: [
 			'Apply to unlimited jobs available from verified contractors',
