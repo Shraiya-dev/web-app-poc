@@ -151,7 +151,7 @@ export const homePage = {
 				item: 'ProjectHeroes can track their attendance & income directly on app',
 			},
 			{
-				item: 'Heores get insurance for upto 3 lakhs in just Rs 9 per day',
+				item: 'ProjectHeroes get insurance for upto 3 lakhs in just Rs 9 per day',
 			},
 		],
 	},

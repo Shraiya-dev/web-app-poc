@@ -348,10 +348,7 @@ export const HowItWorks: FC<Props> = () => {
 					{AnalyticsData.map((value, index) => {
 						return (
 							<Grid key={index} item xs={6} sm={3} md={3}>
-								<Stack
-									direction={'column'}
-									spacing={{ xs: 0.5, md: 3 }}
-									alignItems={{ xs: 'flex-start', md: 'center' }}>
+								<Stack direction={'column'} spacing={{ xs: 0.5, md: 3 }} alignItems={'center'}>
 									<Typography
 										className='font-Saira'
 										fontWeight={600}
@@ -362,6 +359,7 @@ export const HowItWorks: FC<Props> = () => {
 									<Typography
 										className='font-Karla'
 										fontWeight={400}
+										textAlign='center'
 										sx={{
 											fontSize: { xs: '12px', md: '24px' },
 										}}>
