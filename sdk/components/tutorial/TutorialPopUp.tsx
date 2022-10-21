@@ -41,7 +41,7 @@ export const TutorialPopUp: FC<Props> = ({ open = false, step, skip, next, ancho
 					arrow: 'bottom',
 					content: {
 						description: `All your job postings are here. Click on “View Applications” to see the phone numbers of
-                        Heroes who applied to your job.`,
+                        ProjectHeroes who applied to your job.`,
 						heading: `Dashboard`,
 						mainCta: 'next',
 					},
@@ -55,7 +55,7 @@ export const TutorialPopUp: FC<Props> = ({ open = false, step, skip, next, ancho
 					arrow: 'top',
 
 					content: {
-						description: `Site details wali job posting par 70% zyada heroes apply karte hain. Aapki site details abhi add karen aur zyada heroes se baat karen.`,
+						description: `Site details wali job posting par 70% zyada projectheroes apply karte hain. Aapki site details abhi add karen aur zyada projectheroes se baat karen.`,
 						heading: `Construction site ki details add karen`,
 						mainCta: 'Add Details',
 						skip: true,

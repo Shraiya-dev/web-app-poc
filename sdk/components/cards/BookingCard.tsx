@@ -332,7 +332,7 @@ export const BookingCard = ({ booking }: BookingCardProps) => {
 										fontFamily: 'Saira,sans-serif',
 										fontWeight: 600,
 									}}>
-									Heroes ko call karen
+									ProjectHeroes ko call karen
 								</Button>
 							</Link>
 						</Box>

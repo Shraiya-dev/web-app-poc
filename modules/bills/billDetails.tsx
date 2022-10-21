@@ -90,7 +90,7 @@ export const BillDetails = () => {
 								<DateStack date={billDetailsResponse?.displayDate} />
 								<Stack ml={2}>
 									<Typography fontFamily={'Saira,sans-serif'} fontWeight={700} variant='h5'>
-										Heroes Bills
+										ProjectHeroes Bills
 									</Typography>
 									<Typography
 										fontFamily={'Karla,sans-serif'}
@@ -195,7 +195,7 @@ export const BillDetails = () => {
 								minRows={4}
 								maxRows={4}
 								sx={{ backgroundColor: 'common.white', borderRadius: 2 }}
-								placeholder='Tell us the heroes names and issues with their attendances. We will raise a ticket and our customer support team will resolve it. '
+								placeholder='Tell us the projectheroes names and issues with their attendances. We will raise a ticket and our customer support team will resolve it. '
 							/>
 							<Stack direction='row' spacing={1.5} justifyContent='flex-end'>
 								<Button
@@ -336,7 +336,7 @@ export const BillDetails = () => {
 														variant='caption'
 														color={primary.properDark}
 														noWrap>
-														Heroes
+														ProjectHeroes
 													</Typography>
 												</TableCell>
 												<TableCell></TableCell>
@@ -512,7 +512,7 @@ export const BillDetails = () => {
 								<DateStack date={billDetailsResponse?.displayDate} />
 								<Stack ml={2}>
 									<Typography variant='h4' fontWeight={700}>
-										Heroes Bills
+										ProjectHeroes Bills
 									</Typography>
 									<Typography variant='caption' color='grey.600' fontWeight={500}>
 										{projectDetails?.name}

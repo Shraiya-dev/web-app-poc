@@ -185,7 +185,7 @@ export const ProjectCard = ({ ...props }) => {
 						background: `${theme.palette.primary.light} !important`,
 						color: '#000 !important',
 					}}>
-					Book Heroes
+					Book ProjectHeroes
 				</Button>
 				{/* <Button fullWidth className='cta'>
 					Manage Attendance

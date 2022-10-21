@@ -74,14 +74,15 @@ const CarouselData = [
 	{
 		index: '03',
 		title: 'Job Posting Goes Live',
-		details: 'Congratulations! your job posting has gone live on our app for Heroes.',
+		details: 'Congratulations! your job posting has gone live on our app for projectheroes.',
 		imgSrc: '/assets/landingv2/icons/layer.svg',
 		bgColor: '#383838',
 	},
 	{
 		index: '04',
-		title: 'Heroes start applying to your job',
-		details: 'Heroes start noticing your job on their app and start applying to your job with in 15 minutes.',
+		title: 'ProjectHeroes start applying to your job',
+		details:
+			'ProjectHeroes start noticing your job on their app and start applying to your job with in 15 minutes.',
 		imgSrc: '/assets/landingv2/icons/Helmet.svg',
 		bgColor: '#383838',
 	},
@@ -117,7 +118,7 @@ const AnalyticsData = [
 		data: '20k+',
 	},
 	{
-		name: 'Skilled Heros Available',
+		name: 'Skilled ProjectHeroes Available',
 		data: '4 Lakh',
 	},
 ]
@@ -130,12 +131,12 @@ const profileDescription = [
 	},
 	{
 		heading: 'Hassle Free Hiring',
-		subHeading: 'Get phone number of all the Heroes who have applied to your booking',
+		subHeading: 'Get phone number of all the ProjectHeroes who have applied to your booking',
 		imgSrc: '/assets/landingv2/heroSection/magnifineGlass.svg',
 	},
 	{
-		heading: 'Skilled & Trained Heroes',
-		subHeading: 'Heroes go through strict skill evaluation process & scored',
+		heading: 'Skilled & Trained ProjectHeroes',
+		subHeading: 'ProjectHeroes go through strict skill evaluation process & scored',
 		imgSrc: '/assets/landingv2/heroSection/helmet.svg',
 	},
 ]
@@ -347,10 +348,7 @@ export const HowItWorks: FC<Props> = () => {
 					{AnalyticsData.map((value, index) => {
 						return (
 							<Grid key={index} item xs={6} sm={3} md={3}>
-								<Stack
-									direction={'column'}
-									spacing={{ xs: 0.5, md: 3 }}
-									alignItems={{ xs: 'flex-start', md: 'center' }}>
+								<Stack direction={'column'} spacing={{ xs: 0.5, md: 3 }} alignItems={'center'}>
 									<Typography
 										className='font-Saira'
 										fontWeight={600}
@@ -361,6 +359,7 @@ export const HowItWorks: FC<Props> = () => {
 									<Typography
 										className='font-Karla'
 										fontWeight={400}
+										textAlign='center'
 										sx={{
 											fontSize: { xs: '12px', md: '24px' },
 										}}>

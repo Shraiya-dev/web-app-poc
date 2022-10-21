@@ -12,7 +12,7 @@ export const PlansPageData = {
 			benefits: [
 				{
 					icon: '/assets/landing/plans/setting.png',
-					text: 'Skilled & Trained Heroes',
+					text: 'Skilled & Trained ProjectHeroes',
 					marginLeft: '0px',
 				},
 				{
@@ -83,12 +83,12 @@ export const PlansPageData = {
 					title: "You'll have access to",
 					points: [
 						'Get Target Applications in 5 days*',
-						"Get Hero's Phone Number",
+						'Get ProjectHeroes Phone Number',
 						'Get Complete Profile*',
-						'Connect with Hero directly',
+						'Connect with projectheroes directly',
 						'Ideal for 5-10 workers requirement',
 						'Call directly & negotiate salaries',
-						'Bring Heroes to your Project Site',
+						'Bring ProjectHeroes to your Project Site',
 						'Lifetime Usage of Contractor Web App',
 						'Track Daily Wages & Attendance ',
 						'Daily Wage Report ',
@@ -107,14 +107,14 @@ export const PlansPageData = {
 					discount: 40,
 					tagLine: 'Doorstep Delivery',
 					description:
-						'We take care of selecting, shortlisting & dispatching Heroes directly to your Project Site',
+						'We take care of selecting, shortlisting & dispatching ProjectHeroes directly to your Project Site',
 				},
 				body: {
 					title: "You'll have access to",
 					points: [
 						'Delivery in 12* days',
 						'Delivered directly to your Project Site',
-						'Skilled & Trained Heroes',
+						'Skilled & Trained ProjectHeroes',
 						'No Question Asked Refund for 30 Day period',
 						'Full Refund* if Hero leaves within 30 days',
 						'Shortlisted by Project Hero',
@@ -134,7 +134,7 @@ export const PlansPageData = {
 					price: 1250,
 					per: 'Hero',
 					discount: 30,
-					tagLine: 'Unlimited Heros',
+					tagLine: 'Unlimited ProjectHeroes',
 					description: 'We ensure the replacement of the workers, if any workers leaves due to any reason.',
 				},
 				body: {

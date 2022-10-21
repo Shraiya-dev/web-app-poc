@@ -10,7 +10,7 @@ import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace'
 
 const intro = [
 	{
-		label: 'Book trained Heroes online',
+		label: 'Book trained ProjectHeroes online',
 	},
 	{
 		label: 'Supervise from your device',
@@ -22,7 +22,7 @@ const intro = [
 		label: 'Increase Profit',
 	},
 	{
-		label: '40,000+ Verified Heroes',
+		label: '40,000+ Verified ProjectHeroes',
 	},
 ]
 
@@ -113,7 +113,7 @@ export const OnboardingLayout = ({ children, helmet = true, ...props }: any) => 
 			<Navbar />
 			<ConfirmationDialog
 				title={'Leave without creating account?'}
-				caption={'You’ll not be able to book Heroes'}
+				caption={'You’ll not be able to book ProjectHeroes'}
 				open={dialogProps}
 				cancel={() => {
 					setDialogProps((p) => !p)

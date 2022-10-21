@@ -15,7 +15,7 @@ export const ApproveConfirmationDialog = ({ cancel, confirm, date, open }: Appro
 					Approve work report of {date}?
 				</Typography>
 				<Typography mt={1} color='grey.A700' variant='body2'>
-					Heroes bills will be generated based on approved work report
+					ProjectHeroes bills will be generated based on approved work report
 				</Typography>
 				<Stack direction='row' spacing={1} justifyContent='flex-end' mt={3}>
 					<Button variant='outlined' sx={{ backgroundColor: 'common.white' }} onClick={cancel}>

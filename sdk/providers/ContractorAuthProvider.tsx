@@ -704,8 +704,8 @@ const ContractorAuthProvider: FC<ContractorAuthProviderProps> = ({ children, aut
 							You have successfully posted your Job.
 						</Typography>
 						<Typography variant='body2' textAlign={'center'}>
-							You will start receiving Hero Applications in few minutes. Check your contractor dashboard
-							to get Hero&apos;s phone number.
+							You will start receiving projectheroes Applications in few minutes. Check your contractor
+							dashboard to get projectheroes phone number.
 						</Typography>
 						<Typography color='primary.main' variant='caption' textAlign={'center'}>
 							Redirecting to dashboard in 00:0{redirectingIn}

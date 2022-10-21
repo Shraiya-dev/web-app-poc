@@ -172,7 +172,7 @@ export const ProjectDashboard = () => {
 												/>
 											</Stack>
 											<Typography textAlign={'center'} color={primary.properDark} fontSize={14}>
-												Add a new project to book Heroes
+												Add a new project to book ProjectHeroes
 											</Typography>
 										</Stack>
 

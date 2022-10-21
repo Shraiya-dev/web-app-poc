@@ -210,8 +210,8 @@ export const CreateBooking = () => {
 	return (
 		<CustomBookingStyle>
 			<TopBanner
-				header={`Book Heroes`}
-				subHeader={`Book Heroes for the project `}
+				header={`Book ProjectHeroes`}
+				subHeader={`Book ProjectHeroes for the project `}
 				bannerSvg={BookingSvg}
 				onClick={() => {
 					setOncloseDialog(true)
@@ -230,7 +230,7 @@ export const CreateBooking = () => {
 				<ConfirmCancel
 					onCloseDialog={onCloseDialog}
 					setOncloseDialog={setOncloseDialog}
-					header={'Leave Booking Heroes?'}
+					header={'Leave Booking ProjectHeroes?'}
 				/>
 				<Box>
 					<form onSubmit={form.handleSubmit}>
@@ -373,7 +373,7 @@ export const CreateBooking = () => {
 
 							<InputWrapper
 								id='workerType'
-								label={`Heroes Required & Daily Wage`}
+								label={`ProjectHeroes Required & Daily Wage`}
 								toolTip={'Daily wage per worker'}>
 								{/* {getErrorString()} */}
 								<Grid container spacing={4}>
