@@ -188,7 +188,7 @@ export const ProjectDetails: FC<Props> = () => {
 					}}>
 					<TutorialBanner>
 						Post ki gai aapki sari jobs yahaan dikhegi. &quot;ProjectHeros ko call karen&quot; pe click
-						karne par jo bhi projectheros ne apply kiya hai unke phone number aapko dikhege.
+						karne par jo bhi projectheroes ne apply kiya hai unke phone number aapko dikhege.
 					</TutorialBanner>
 					<Dashboard />
 				</TabPanel>
@@ -229,8 +229,8 @@ export const ProjectDetails: FC<Props> = () => {
 						position: 'relative',
 					}}>
 					<TutorialBanner>
-						Site details wali job posting par 70% zyada projectheros apply karte hain. Aapki site details
-						abhi add karen aur zyada projectheros se baat karen.
+						Site details wali job posting par 70% zyada projectheroes apply karte hain. Aapki site details
+						abhi add karen aur zyada projectheroes se baat karen.
 					</TutorialBanner>
 					<ProjectInfo setProjectName={setProjectName} />
 				</TabPanel>

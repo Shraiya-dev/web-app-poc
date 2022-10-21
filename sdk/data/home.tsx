@@ -74,7 +74,7 @@ export const homePage = {
 						</Typography>
 					),
 					heading: 'Hassle Free Hiring Process',
-					desc: 'Get phone numbers of projectheros as soon as your booking goes live',
+					desc: 'Get phone numbers of projectheroes as soon as your booking goes live',
 				},
 
 				{
@@ -84,7 +84,7 @@ export const homePage = {
 						</Typography>
 					),
 					heading: 'Eager to Work ProjectHeros',
-					desc: 'Largest pool of ready to work projectheros available',
+					desc: 'Largest pool of ready to work projectheroes available',
 				},
 			],
 		},

@@ -219,7 +219,7 @@ const WorkerTracking = ({ handleRequiredTotal }: handleLength) => {
 								fontSize={12}
 								fontWeight={400}
 								color={'common.white'}>
-								Jaise hi projectheros aapke job pe apply karte hai, unke phone numbers aapko yahaan
+								Jaise hi projectheroes aapke job pe apply karte hai, unke phone numbers aapko yahaan
 								dikhege
 							</Typography>
 						</Stack>
