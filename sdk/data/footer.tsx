@@ -13,10 +13,10 @@ export const footer = {
 			link: '/contact-us',
 		},
 
-		{
-			label: 'Refund Policy',
-			link: '/refund-policy',
-		},
+		// {
+		// 	label: 'Refund Policy',
+		// 	link: '/refund-policy',
+		// },
 		{
 			label: 'Terms and Conditions',
 			link: '/tnc',
