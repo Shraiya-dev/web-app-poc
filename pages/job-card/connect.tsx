@@ -10,26 +10,26 @@ const Page: NextPage = () => {
 	const { showSnackbar } = useSnackbar()
 	const { user } = useContractorAuth()
 	const getContactDetails = useCallback(async (token: string) => {
-		window.location.replace('tel:+91' + '9151003513')
+		// window.location.replace('tel:+91' + '9151003513')
 
-		// try {
-		// 	const { data } = await axios.get(`/gateway/customer-api/job-card/connect?token=${token}`)
-		// 	const { phoneNumber, redirectUrl } = data?.payload
-		// 	if (phoneNumber && typeof window !== 'undefined') {
-		// 		window.location.replace('tel:+91' + phoneNumber)
-		// 		return
-		// 	}
-		// 	if (typeof window !== 'undefined') {
-		// 		router.replace(redirectUrl)
-		// 		return
-		// 	}
+		try {
+			const { data } = await axios.get(`/gateway/customer-api/job-card/connect?token=${token}`)
+			const { phoneNumber, redirectUrl } = data?.payload
+			if (phoneNumber && typeof window !== 'undefined') {
+				window.location.replace('tel:+91' + phoneNumber)
+				return
+			}
+			if (typeof window !== 'undefined') {
+				router.replace(redirectUrl)
+				return
+			}
 
-		// 	showSnackbar('Unauthorized', 'error')
-		// 	router.replace('/')
-		// } catch (error: any) {
-		// 	showSnackbar(error?.response?.data?.developerInfo, 'error')
-		// 	router.replace('/')
-		// }
+			showSnackbar('Unauthorized', 'error')
+			router.replace('/')
+		} catch (error: any) {
+			showSnackbar(error?.response?.data?.developerInfo, 'error')
+			router.replace('/')
+		}
 	}, [])
 	useEffect(() => {
 		if (router.isReady) {
