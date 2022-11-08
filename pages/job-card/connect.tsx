@@ -16,7 +16,7 @@ const Page: NextPage = () => {
 			const { data } = await axios.get(`/gateway/customer-api/job-card/connect?token=${token}`)
 			const { phoneNumber, redirectUrl } = data?.payload
 			if (phoneNumber && typeof window !== 'undefined') {
-				window.location.replace('tel:+91' + phoneNumber)
+				window.location.replace('tel:' + phoneNumber)
 				return
 			}
 			if (typeof window !== 'undefined') {
