@@ -9,7 +9,7 @@ const PrivacyPolicy: NextPage = () => {
 				<Section>
 					<h1 className='page-title'>Privacy Policy</h1>
 					<p>
-						Project Hero app is a commercial app by HardHat Technologies Private Limited. This page is used
+						ProjectHero app is a commercial app by HardHat Technologies Private Limited. This page is used
 						to inform visitors regarding our policies with the collection, use, and disclosure of Personal
 						Information for anyone using the app and website of ProjectHero.
 					</p>

@@ -505,7 +505,7 @@ export const Home = () => {
 										<Typography display='inline' fontSize={'inherit'} color='primary.main'>
 											badhiya naukari dhondhne k liye
 										</Typography>{' '}
-										Hero app download karein!
+										ProjectHero app download karein!
 									</Typography>
 									<Box mt={3}>
 										<LinkButton
