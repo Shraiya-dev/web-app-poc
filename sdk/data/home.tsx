@@ -608,7 +608,7 @@ export const homePage = {
 	phApp: {
 		backgroundColor: '#F2F7FF',
 		appImage: '/assets/landing/heroAppposter.png',
-		heading: 'Project Hero App',
+		heading: 'ProjectHero App',
 		description: 'Designed for our ProjectHeroes who apply to jobs posted by you',
 		bulletPointIcon: <StarBorder color='primary' />,
 		bulletPoints: [
