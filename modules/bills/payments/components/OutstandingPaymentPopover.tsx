@@ -161,7 +161,7 @@ export const OutstandingPaymentPopover = ({
 	const makePayment = async () => {
 		var options = {
 			key: envs.RAZOR_PAY_KEY,
-			name: 'Project Hero',
+			name: 'ProjectHero',
 			currency: 'INR',
 			amount: originalSelected ? payAmount * 100 : customAmount ? parseInt(customAmount) * 100 : payAmount * 100,
 			order_id: order?.orderId,

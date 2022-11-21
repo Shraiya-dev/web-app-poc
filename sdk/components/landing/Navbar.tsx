@@ -60,7 +60,7 @@ export const Navbar = () => {
 										component='img'
 										src={navbar.brandImage}
 										width={120}
-										alt='Project hero'
+										alt='ProjectHero'
 										// style={{ marginTop: 5 }}
 									/>
 								</Link>
@@ -71,7 +71,7 @@ export const Navbar = () => {
 											component='img'
 											src='/assets/icons/phone.svg'
 											width={23}
-											alt='Project hero'
+											alt='ProjectHero'
 											// style={{ marginTop: 5 }}
 										/>
 										<Typography
@@ -96,7 +96,7 @@ export const Navbar = () => {
 											component='img'
 											src='/assets/icons/phone.svg'
 											width={23}
-											alt='Project hero'
+											alt='ProjectHero'
 											// style={{ marginTop: 5 }}
 										/>
 										<Typography variant='subtitle2' color={'#fff'} fontWeight={700}>

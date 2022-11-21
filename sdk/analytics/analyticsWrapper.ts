@@ -187,8 +187,8 @@ const EventTypes = {
 	tutorialInteraction: 'Tutorial Interaction',
 	tutorialImpression: 'Tutorial Impression',
 	updateProject: 'Update Project',
-	callProjectHeroSupport: 'Call Project Hero Support',
-	mailProjectHeroSupport: 'Mail Project Hero Support',
+	callProjectHeroSupport: 'Call ProjectHero Support',
+	mailProjectHeroSupport: 'Mail ProjectHero Support',
 	viewJobDashboardClicked: 'ViewJobDashboard Clicked',
 }
 

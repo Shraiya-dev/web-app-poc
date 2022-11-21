@@ -78,7 +78,7 @@ export const BlogCard: FC<Props> = ({ view }: Props) => {
 									<CardMedia
 										component='img'
 										image={imgSrc}
-										alt='project hero'
+										alt='ProjectHero'
 										sx={{
 											height: { md: '336px', xs: '100%' },
 											width: { md: '346px', xs: '100%' },
@@ -254,7 +254,7 @@ export const BlogCard: FC<Props> = ({ view }: Props) => {
 														borderRadius: '8.3557px',
 													}}
 													image={imgSrc}
-													alt='project hero'
+													alt='ProjectHero'
 												/>
 											</Card>
 										) : (

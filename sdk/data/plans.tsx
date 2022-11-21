@@ -38,7 +38,7 @@ export const PlansPageData = {
 				text: 'Book Now!',
 			},
 			support: {
-				text: 'Project Hero Expert will call once you give your booking requirement',
+				text: 'ProjectHero Expert will call once you give your booking requirement',
 				icon: '/assets/landing/plans/certificate.svg',
 				background: '#ffffff',
 				backgroundColor:
@@ -51,7 +51,7 @@ export const PlansPageData = {
 		},
 	},
 	planSection: {
-		heading: 'Project Hero Plans',
+		heading: 'ProjectHero Plans',
 		subtitle: 'Plans suitable for any type of Hero requirement',
 		plans: [
 			{
@@ -117,7 +117,7 @@ export const PlansPageData = {
 						'Skilled & Trained ProjectHeroes',
 						'No Question Asked Refund for 30 Day period',
 						'Full Refund* if Hero leaves within 30 days',
-						'Shortlisted by Project Hero',
+						'Shortlisted by ProjectHero',
 						'Ideal for 10 workers or more',
 						'Lifetime Usage of Contractor Web App',
 						'Track Daily Wages & Attendance ',

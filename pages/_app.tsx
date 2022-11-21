@@ -194,7 +194,7 @@ const CommonHead = () => {
 		<>
 			<Script src='https://checkout.razorpay.com/v1/checkout.js' />
 			<Head>
-				<title>Project hero</title>
+				<title>ProjectHero</title>
 				{/* eslint-disable-next-line @next/next/next-script-for-ga */}
 				{/* Facebook Pixel Code  */}
 				<link rel='apple-touch-icon' sizes='180x180' href='/apple-touch-icon.png' />

@@ -135,7 +135,7 @@ const Page: NextPage = () => {
 									borderRadius: '8.3557px',
 								}}
 								image={blogData?.Allblogs[blogId]?.imgSrc}
-								alt='project hero'
+								alt='ProjectHero'
 							/>
 							<Stack>
 								<CardContent
@@ -238,7 +238,7 @@ const Page: NextPage = () => {
 															borderRadius: '8.3557px',
 														}}
 														image={imgSrc}
-														alt='project hero'
+														alt='ProjectHero'
 													/>
 												</Card>
 											) : (
@@ -249,7 +249,7 @@ const Page: NextPage = () => {
 														width='380'
 														sx={{ borderRadius: '8.3557px' }}
 														image={imgSrc}
-														alt='project hero'
+														alt='ProjectHero'
 													/>
 													<CardContent>
 														<Stack direction='row'>

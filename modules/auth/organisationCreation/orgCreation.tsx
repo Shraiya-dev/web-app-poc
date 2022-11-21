@@ -57,7 +57,7 @@ export const OrgCreationForm = () => {
 							<Typography className='headerInfo'>Tell us about your company </Typography>
 							<Typography className='info'>
 								Create a company profile where you can see other members of your company who’re using
-								Project Hero. You can also manage them and assign projects later on.{' '}
+								ProjectHero. You can also manage them and assign projects later on.{' '}
 							</Typography>
 							<Stack spacing={3}>
 								<InputWrapper id='companyName' label='Company Name'>
@@ -225,7 +225,7 @@ export const OrgCreationForm = () => {
 						<Stack spacing={4}>
 							<Typography color='secondary.main'>
 								Company <span style={{ fontWeight: 700 }}>{orgDetails?.companyName}</span> already
-								exists on Project Hero for the GSTIN{' '}
+								exists on ProjectHero for the GSTIN{' '}
 								<span style={{ fontWeight: 700 }}>{orgDetails?.GSTIN} </span> you provided
 							</Typography>
 							{orgDetails?.contactDetails ? (
@@ -238,7 +238,7 @@ export const OrgCreationForm = () => {
 								</Typography>
 							) : (
 								<Typography color='error.main'>
-									Please ask <span style={{ fontWeight: 700 }}>Project Hero admin</span> to add you to
+									Please ask <span style={{ fontWeight: 700 }}>ProjectHero admin</span> to add you to
 									the company account
 								</Typography>
 							)}
