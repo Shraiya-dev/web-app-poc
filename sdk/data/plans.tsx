@@ -85,7 +85,7 @@ export const PlansPageData = {
 						'Get Target Applications in 5 days*',
 						'Get ProjectHeroes Phone Number',
 						'Get Complete Profile*',
-						'Connect with projectheroes directly',
+						'Connect with ProjectHeroes directly',
 						'Ideal for 5-10 workers requirement',
 						'Call directly & negotiate salaries',
 						'Bring ProjectHeroes to your Project Site',

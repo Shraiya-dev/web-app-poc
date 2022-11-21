@@ -195,7 +195,7 @@ export const BillDetails = () => {
 								minRows={4}
 								maxRows={4}
 								sx={{ backgroundColor: 'common.white', borderRadius: 2 }}
-								placeholder='Tell us the projectheroes names and issues with their attendances. We will raise a ticket and our customer support team will resolve it. '
+								placeholder='Tell us the ProjectHeroes names and issues with their attendances. We will raise a ticket and our customer support team will resolve it. '
 							/>
 							<Stack direction='row' spacing={1.5} justifyContent='flex-end'>
 								<Button
