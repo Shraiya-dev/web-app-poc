@@ -410,7 +410,7 @@ const BlogList = {
 							<Box component={'br'} />
 							You can also subscribe to the various available online job scam alert services, which will
 							keep you updated on the matter. It is highly recommended that contractors better stick with
-							known and legitimate platforms like Project Hero to gather their workforce in the
+							known and legitimate platforms like ProjectHero to gather their workforce in the
 							construction industry. This will significantly reduce the chance of falling prey to the
 							hands of a construction workforce supplier scammer.
 						</Typography>
@@ -454,9 +454,9 @@ const BlogList = {
 						construction work marketplace is by applying the three methods mentioned earlier. The best
 						possible way to be safe from these fraudulent activities would be to avoid unknown sources and
 						stick with reliable ones. For instance, contractors can make use of the services provided by
-						Project Hero for hiring new recruits. As a well-established and reliable platform, contractors
+						ProjectHero for hiring new recruits. As a well-established and reliable platform, contractors
 						can easily get their potential workforce in the Indian construction industry through Project
-						Hero. With more than 4 lac trained, authentic and willing workers, Project Hero is connecting
+						Hero. With more than 4 lac trained, authentic and willing workers, ProjectHero is connecting
 						legit contractors and workers within the industry, and this way, you can stay safe from any fake
 						job posting scams. This way, you can definitely secure yourself from being scammed by fake jobs
 						and easily identify a job scam portal when you come across it.
@@ -590,7 +590,7 @@ const BlogList = {
 					<Box component={'br'} />
 					Suppose your contractor business is based in India, and you want to hire efficient and sufficient
 					workers for your projects. In that case, you can take the help of the largest online construction
-					workforce marketplace provided by Project Hero. By availing of the services of this platform,
+					workforce marketplace provided by ProjectHero. By availing of the services of this platform,
 					alongside other modern solutions, you will not only be able to reduce construction cost margin up to
 					20 to 30% of the project cost. Still, you will also enhance the overall work experience.
 				</Typography>
@@ -710,7 +710,7 @@ const BlogList = {
 							construction labour supplier. This is why you must utilise all the sources and portals for
 							this task and avoid being rooted. In the recent era of the internet, everything is possible,
 							and so is hiring skilled labourers willing to take up jobs. For example, with the help of
-							the platform that Project Hero provides, you can simply enter your requirements for hire and
+							the platform that ProjectHero provides, you can simply enter your requirements for hire and
 							search from a pool of more than 4 lac workers for your project easily and efficiently.
 						</Typography>
 					</Stack>
@@ -726,7 +726,7 @@ const BlogList = {
 					Starting in this sector can be quite challenging.
 					<Box component={'br'} />
 					However, you can properly utilise available resources to enhance your reach and be a better labour
-					supplier. For example, you can take the help of Project Hero, which connects potential contractors
+					supplier. For example, you can take the help of ProjectHero, which connects potential contractors
 					with trained and skilled workers across India and eases up the difficulty of the overall contractor
 					work.
 				</Typography>
@@ -918,7 +918,7 @@ const BlogList = {
 					construction in India and need to build a perfect team of workers with a “ready to go” mentality,
 					then look no further. You can take help from the{' '}
 					<Box component={'a'} href={`projecthero.in`}>
-						Project Hero website,
+						ProjectHero website,
 					</Box>{' '}
 					the largest construction marketplace in India, currently helping to connect various kinds of
 					contractors with a giant pool of talented workforce, ranging from more than 4 lacs in number. The
@@ -940,7 +940,7 @@ const BlogList = {
 					construction worker is one of them. In order to finish a construction project on time against tight
 					deadlines, a proper and reliable construction workforce is necessary. And this growing problem in
 					the industry has presented scope for new and advanced solutions, like the one offered through the
-					platform of Project Hero.
+					platform of ProjectHero.
 					<Box component={'br'} />
 					The construction industry used to claim about 3.2% of the workforce back in 1983 but grew at a
 					massive speed and accounted for 10.6 % in the 2011 to 2012 period in India, thanks to the huge
@@ -992,29 +992,28 @@ const BlogList = {
 					</Stack>
 				</Stack>
 				<Typography fontWeight={700}>
-					How is Project Hero Revolutionising the Construction Workforce Industry?
+					How is ProjectHero Revolutionising the Construction Workforce Industry?
 				</Typography>
 				<Typography>
-					To keep up with the growing need for an adequate and skilled construction workforce, Project Hero is
+					To keep up with the growing need for an adequate and skilled construction workforce, ProjectHero is
 					actively offering its services to solve this crisis and ease up this aspect of the construction
-					business. Project Hero presents a massive online platform in terms of a construction workforce
+					business. ProjectHero presents a massive online platform in terms of a construction workforce
 					marketplace. The bridge between potential contractors and reliable workers is narrowed down to
 					benefit both parties. This online work marketplace is the largest in India for labourers within the
 					construction sector. They have tons of features, benefits and a huge contact of legitimate workers,
 					the count exceeding the 4 lac mark in quantity. Apart from their huge offering of construction
-					workforce across India, Project Hero also puts efforts into managing further progress for
-					contractors so that they can easily monitor how the construction workers working under them are
-					performing.
+					workforce across India, ProjectHero also puts efforts into managing further progress for contractors
+					so that they can easily monitor how the construction workers working under them are performing.
 					<Box component={'br'} />
-					Project Hero has established a reliable network, which successfully provides a one-stop solution for
+					ProjectHero has established a reliable network, which successfully provides a one-stop solution for
 					contractors in terms of hiring construction workers. Through an amazingly simple yet adequate
 					procedure on the platform, interested individuals can post their booking and will soon be connected
 					with their potential workforce in no time!
 				</Typography>
-				<Typography fontWeight={700}>The Features of Project Hero</Typography>
+				<Typography fontWeight={700}>The Features of ProjectHero</Typography>
 				<Typography>
-					Project Hero is the best place to post about construction work online and connect with numerous
-					employees across India. Here are some of Project Hero’s key features:
+					ProjectHero is the best place to post about construction work online and connect with numerous
+					employees across India. Here are some of ProjectHero’s key features:
 				</Typography>
 				<Stack sx={{ px: { xs: 0, md: 1 } }} spacing={2}>
 					<ol>
@@ -1022,7 +1021,7 @@ const BlogList = {
 							<Typography fontWeight={700}>
 								Authentic Profiles-
 								<Typography display='inline'>
-									When going with Project Hero, you can rest assured that only 100% authentic and
+									When going with ProjectHero, you can rest assured that only 100% authentic and
 									verified profiles are applied to your booking. The platform doesn’t allow any
 									profile of an unverified construction worker. This way, you can save a ton of time
 									by avoiding unnecessary problems like fake construction worker jobs created by
@@ -1034,7 +1033,7 @@ const BlogList = {
 							<Typography fontWeight={700}>
 								Straight-Forward Hiring Procedure-{' '}
 								<Typography display='inline'>
-									You can post your booking on Project Hero within a few clicks by providing the
+									You can post your booking on ProjectHero within a few clicks by providing the
 									essential details of the labour construction work. The booking process is simple,
 									and you can post your booking of online construction jobs within seconds.
 								</Typography>
@@ -1044,8 +1043,8 @@ const BlogList = {
 							<Typography fontWeight={700}>
 								Proper Trained and Skilled Workers-{' '}
 								<Typography display='inline'>
-									Project Hero ensures that its pool of workforce is all trained and skilled at the
-									job by evaluating them through a series of skill assessment procedures and a scoring
+									ProjectHero ensures that its pool of workforce is all trained and skilled at the job
+									by evaluating them through a series of skill assessment procedures and a scoring
 									system.
 								</Typography>
 							</Typography>
@@ -1054,7 +1053,7 @@ const BlogList = {
 							<Typography fontWeight={700}>
 								Active and Interested Workforce-{' '}
 								<Typography display='inline'>
-									By hiring through Project Hero, you will only be matched up with active workers who
+									By hiring through ProjectHero, you will only be matched up with active workers who
 									are eager for labour construction work and ready to take up the job.
 								</Typography>
 							</Typography>
@@ -1063,7 +1062,7 @@ const BlogList = {
 							<Typography fontWeight={700}>
 								24x7 Customer Support-{' '}
 								<Typography display='inline'>
-									Project Hero offers a brilliantly stable and sufficient customer support system that
+									ProjectHero offers a brilliantly stable and sufficient customer support system that
 									runs 24x7 to assist and resolve queries of the users.
 								</Typography>
 							</Typography>
@@ -1084,7 +1083,7 @@ const BlogList = {
 								Simple Refund Process-
 								<Typography display='inline'>
 									{' '}
-									Project Hero offers an easy return policy, as long as it is acceptable under the
+									ProjectHero offers an easy return policy, as long as it is acceptable under the
 									terms and conditions of the company’s Return Policy.
 								</Typography>
 							</Typography>
@@ -1102,15 +1101,15 @@ const BlogList = {
 						</li>
 					</ol>
 				</Stack>
-				<Typography fontWeight={700}>How to Make a Booking on Project Hero?</Typography>
+				<Typography fontWeight={700}>How to Make a Booking on ProjectHero?</Typography>
 				<Typography>
 					As a contractor, you will not have to worry about spending most of your time in the labour
-					construction worker hiring procedure when choosing Project Hero. Here are the simple steps through
+					construction worker hiring procedure when choosing ProjectHero. Here are the simple steps through
 					which you can get your booking on the platform completed within minutes:
 				</Typography>
 				<Box>
 					<Typography>
-						1. Visit the official Project Hero website at https://www.projecthero.in/
+						1. Visit the official ProjectHero website at https://www.projecthero.in/
 						<Box component={'br'} />
 						2. On the main page, you will find the booking form, which you will have to fill
 						<Box component={'br'} />
@@ -1129,14 +1128,14 @@ const BlogList = {
 					details, negotiate wages and hire them directly.
 				</Typography>
 
-				<Typography fontWeight={700}>What is the Project Hero Contractor Website?</Typography>
+				<Typography fontWeight={700}>What is the ProjectHero Contractor Website?</Typography>
 				<Stack direction={'column'}>
 					<Typography>
 						As a contractor, you can easily create multiple projects by the job location and make multiple
 						bookings for the respective projects. To do so, you must register an account on the platform and
 						log in through the contractor&apos;s website. This will not only simplify your hiring procedure
 						but will also ease your job in terms of management. Here are the following facilities you can
-						enjoy through the Project Hero contractor website:
+						enjoy through the ProjectHero contractor website:
 					</Typography>
 					<Typography>
 						● Use the “one-click” simplified payment method to pay your workers
@@ -1147,34 +1146,34 @@ const BlogList = {
 					</Typography>
 				</Stack>
 				<Typography fontWeight={700}>
-					Is Project Hero the Proper Choice to Reach Out to Your Potential Workforce?
+					Is ProjectHero the Proper Choice to Reach Out to Your Potential Workforce?
 				</Typography>
 				<Typography>
 					As a contractor, the hiring process of labour for construction work can take out a lot of time off
 					your schedule, and there is no guarantee on the quality of workers you would be getting. However,
 					the job of hiring a legit workforce from the construction labourer network workers within India can
-					be efficiently done through Project Hero.
+					be efficiently done through ProjectHero.
 					<Box component={'br'} /> <Box component={'br'} />
 					Currently, there is a scarcity of hard-working and experienced labourers. You will also face many
 					delays and fake promises from middlemen, who would just waste your time or scam your money and offer
-					fake construction labourer jobs to workers. Whereas with Project Hero, you will not have to face
-					such hurdles, as not only will the platform simplify your hiring procedure, but it will also provide
-					you with many benefits.
+					fake construction labourer jobs to workers. Whereas with ProjectHero, you will not have to face such
+					hurdles, as not only will the platform simplify your hiring procedure, but it will also provide you
+					with many benefits.
 					<Box component={'br'} /> <Box component={'br'} />
 					The platform will connect you to more than 4 lacs of willing-to-work candidates who are all verified
 					and have the skills required for the job. The booking procedure is very easy. There are no middlemen
 					as you can directly contact and hire the applicants. You can simply monitor their work and wages
 					through the contractor website, the first 15 applications are free of cost, and you can avail of
-					easy refunds and much more. All of these make Project Hero the best online construction work posting
+					easy refunds and much more. All of these make ProjectHero the best online construction work posting
 					site for reaching professional workers in this field.
 				</Typography>
 				<Typography fontWeight={700}>Conclusion</Typography>
 				<Typography>
 					The platform is definitely changing the Indian construction business through its online labour
-					marketplace model. There are many reasons to go with Project Hero, as it is the most reliable and
+					marketplace model. There are many reasons to go with ProjectHero, as it is the most reliable and
 					organised method to meet your potential workforce under the same roof and is worth investing in. It
 					is not just beneficial to your duty as a contractor but also to the project with the quality of work
-					that will be done. Many new workers are signing up with Project Hero to apply for the various online
+					that will be done. Many new workers are signing up with ProjectHero to apply for the various online
 					marketplace jobs available on the platform.
 				</Typography>
 			</Stack>
@@ -1354,12 +1353,12 @@ const BlogList = {
 					using high-tech gear to efficient computer software, the industry is becoming more reliable and well
 					organised. As the construction industry tech space grows, the availability of numerous resources
 					keeps popping up to ease some of the major hurdles when doing business in the construction industry.
-					As a part of the growing construction tech space, Project Hero is solving the problem related to the
+					As a part of the growing construction tech space, ProjectHero is solving the problem related to the
 					unavailability of skilled and capable labourers in India through its revolutionary workforce
-					marketplace business model. Project Hero offers more than 4 lac eager-to-work and organised
-					labourers across India for all types of contractors. As the largest construction marketplace in the
-					country, the main aim of Project Hero is to connect potential construction contractors in India with
-					coherent workers as effectively as possible.
+					marketplace business model. ProjectHero offers more than 4 lac eager-to-work and organised labourers
+					across India for all types of contractors. As the largest construction marketplace in the country,
+					the main aim of ProjectHero is to connect potential construction contractors in India with coherent
+					workers as effectively as possible.
 				</Typography>
 				<Typography fontWeight={700}>Conclusion:</Typography>
 				<Typography>
@@ -1682,7 +1681,7 @@ const BlogList = {
 					must hire the right professionals for the job and not leave room for compromise in the build
 					quality. This goes the same for contractors relying on older methods to reach the possible
 					workforce. By availing of the largest workforce marketplace in India within the construction sector
-					provided by Project Hero, contractors can enhance their business and work quality beyond new limits.
+					provided by ProjectHero, contractors can enhance their business and work quality beyond new limits.
 					<Box component={'br'} />
 					We hope that this article was able to establish the proper builder vs contractor aspect and helped
 					potential customers with construction projects lined up to understand the primary difference between
@@ -1766,9 +1765,9 @@ export const blogData: any = {
 		},
 		{
 			id: 6,
-			title: 'Project Hero - The Best Online Construction Labour Marketplace?',
+			title: 'ProjectHero - The Best Online Construction Labour Marketplace?',
 			description:
-				'The phenomenal development in the construction industry presents many opportunities in this sector. Even though there are some major hurdles that are negatively impacting its growth, like the issue of decline in the availability of organised construction labourer networks, the sector is successfully tackling them with the help of new technological advancements. There are various roles associated with the industry, each of which has its specific importance and responsibilities, and the role of a construction worker is one of them. In order to finish a construction project on time against tight deadlines, a proper and reliable construction workforce is necessary. And this growing problem in the industry has presented scope for new and advanced solutions, like the one offered through the platform of Project Hero.',
+				'The phenomenal development in the construction industry presents many opportunities in this sector. Even though there are some major hurdles that are negatively impacting its growth, like the issue of decline in the availability of organised construction labourer networks, the sector is successfully tackling them with the help of new technological advancements. There are various roles associated with the industry, each of which has its specific importance and responsibilities, and the role of a construction worker is one of them. In order to finish a construction project on time against tight deadlines, a proper and reliable construction workforce is necessary. And this growing problem in the industry has presented scope for new and advanced solutions, like the one offered through the platform of ProjectHero.',
 			details: BlogList.blog7,
 			imgSrc: '/assets/landingv2/heroSection/Project_Hero_The Best Online_Construction_Labour_Marketplace.jpg',
 			isPopular: true,

@@ -163,7 +163,7 @@ export const AboutUs: FC<Props> = () => {
 								style={{
 									color: theme.palette.primary.main,
 								}}>
-								Project Hero?
+								ProjectHero?
 							</span>
 						</Typography>
 						<Paper

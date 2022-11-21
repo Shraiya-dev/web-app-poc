@@ -14,13 +14,13 @@ const RefundPolicy: NextPage = () => {
 					<ul>
 						<li>
 							<Typography>
-								If any projectheroes gets churned with in 7 days of deployment, Project Hero will do free of cost
-								replacement, or will give discount/refund
+								If any projectheroes gets churned with in 7 days of deployment, ProjectHero will do free
+								of cost replacement, or will give discount/refund
 							</Typography>
 						</li>
 						<li>
 							<Typography>
-								In case of no replacement from 7 days of churn, Project Hero will do, No Questions
+								In case of no replacement from 7 days of churn, ProjectHero will do, No Questions
 								Asked&apos; Refund
 							</Typography>
 						</li>

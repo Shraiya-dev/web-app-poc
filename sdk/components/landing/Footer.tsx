@@ -37,7 +37,7 @@ export const Footer = () => {
 										src={footer.brandImage}
 										width={isMobile ? 150 : 300}
 										height={isMobile ? 50 : 140}
-										alt='Project hero'
+										alt='ProjectHero'
 									/>
 								</HyperLink>
 
@@ -198,7 +198,7 @@ export const Footer = () => {
 										src={footer.brandImage}
 										width={isMobile ? 100 : 200}
 										height={isMobile ? 30 : 70}
-										alt='Project hero'
+										alt='ProjectHero'
 									/>
 								</HyperLink>
 							) : (
@@ -265,7 +265,7 @@ export const Footer = () => {
 									src={footer.brandImage}
 									width={isMobile ? 150 : 300}
 									height={isMobile ? 50 : 140}
-									alt='Project hero'
+									alt='ProjectHero'
 								/>
 							</HyperLink>
 

@@ -52,25 +52,25 @@ export const FAQPage = {
 		faq: {
 			[FAQTypes.Pricing]: [
 				{
-					question: 'How much does Project Hero charge?',
+					question: 'How much does ProjectHero charge?',
 					answer: (
 						<>
 							<ol>
 								<li>
 									<strong>Discovery Plan</strong>
 									<br />
-									Project Hero would charge basis the number of worker applicants on your job posting.
+									ProjectHero would charge basis the number of worker applicants on your job posting.
 									We have 3 packages under the discovery Plan. For more details, please check out our{' '}
 									<PlanLink /> page on the website. As soon as you complete your bookings, you will
 									get real-time details of all the workers who have applied for your job. You can
 									directly contact these workers, negotiate prices and call them to your project site.
-									Project Hero won’t be responsible for any commitments made by workers in this plan.
+									ProjectHero won’t be responsible for any commitments made by workers in this plan.
 									<br /> <br />
 								</li>
 								<li>
 									<strong>Fulfilment Plan</strong>
 									<br />
-									This is our bestseller plan, where Project Hero does all the work for you and takes
+									This is our bestseller plan, where ProjectHero does all the work for you and takes
 									complete ownership of selecting, shortlisting, and delivering workers directly to
 									your project site. This plan gives you a hassle-free experience of getting your
 									construction workforce right at your doorstep. You don’t have to worry about their
@@ -84,8 +84,8 @@ export const FAQPage = {
 									<strong>Retention Top-Up</strong>
 									<br />
 									This plan is provided as an extra feature to our fulfillment plan. At a monthly
-									price per worker, Project Hero provides a replacement guarantee for your entire
-									workforce. If any worker leaves your project site due to any reason, Project Hero
+									price per worker, ProjectHero provides a replacement guarantee for your entire
+									workforce. If any worker leaves your project site due to any reason, ProjectHero
 									gives you the benefit of replacing that worker asap! For more details, please check
 									out our <PlanLink /> page on the website.
 									<br /> <br />
@@ -93,11 +93,11 @@ export const FAQPage = {
 								<li>
 									<strong>Support Top-Up</strong>
 									<br />
-									Project Hero provides an online Project Manager for all the ProjectHeroes deployed
-									at your project site. The Project manager ensures timely delivery of the weekly
-									targets provided by you. He also does random site audits* every month to ensure that
-									work is being done in time. For more details, please check out our <PlanLink /> page
-									on the website.
+									ProjectHero provides an online Project Manager for all the ProjectHeroes deployed at
+									your project site. The Project manager ensures timely delivery of the weekly targets
+									provided by you. He also does random site audits* every month to ensure that work is
+									being done in time. For more details, please check out our <PlanLink /> page on the
+									website.
 									<br /> <br />
 								</li>
 							</ol>
@@ -107,7 +107,7 @@ export const FAQPage = {
 			],
 			[FAQTypes.WorkerSalaries]: [
 				{
-					question: 'Do I need to pay worker salaries apart from Project Hero charges?',
+					question: 'Do I need to pay worker salaries apart from ProjectHero charges?',
 					answer: (
 						<>
 							Yes! Don’t bother yourself in processing payments of each worker on an individual basis. You
@@ -121,7 +121,7 @@ export const FAQPage = {
 					question: 'What salary do I need to pay the workers?',
 					answer: (
 						<>
-							Project Hero is a construction workforce marketplace. We are just a medium between
+							ProjectHero is a construction workforce marketplace. We are just a medium between
 							contractors and workers. Contractors are free to mention any daily salary at which you want
 							the workers during the time of booking.
 							<br />
@@ -154,7 +154,7 @@ export const FAQPage = {
 					question: 'Do you also charge commission on worker salary?',
 					answer: (
 						<>
-							No. Project Hero doesn’t charge any commission on the daily salary given by you to the
+							No. ProjectHero doesn’t charge any commission on the daily salary given by you to the
 							workers via our contractor web app.
 						</>
 					),
@@ -232,7 +232,7 @@ export const FAQPage = {
 						<>
 							Please click on <BookWorkerLink /> and log in to our contractor web app. After successful
 							registration of your organization profile, please create a booking on our web app. Our
-							Project Hero expert will reach out to you within 2 hours of booking received and will verify
+							ProjectHero expert will reach out to you within 2 hours of booking received and will verify
 							booking details. Once verification & payment is done, we make your booking live and soon you
 							start noticing worker applications on your contractor web app.
 							<br />
@@ -257,7 +257,7 @@ export const FAQPage = {
 					answer: (
 						<>
 							Please click on <BookWorkerLink /> and log in to our contractor web app. After successful
-							registration with Project Hero, please create a booking on our web app. Our Project Hero
+							registration with ProjectHero, please create a booking on our web app. Our ProjectHero
 							expert will reach out to you within 2 hours of booking received and will verify booking
 							details and will ask for your selected plan.
 							<br />
@@ -271,7 +271,7 @@ export const FAQPage = {
 					answer: (
 						<>
 							Please click on <BookWorkerLink /> and log in to our contractor web app. After successful
-							registration with Project Hero, please create a booking on our web app. Our Project Hero
+							registration with ProjectHero, please create a booking on our web app. Our ProjectHero
 							expert will reach out to you within 2 hours of booking received and will verify booking
 							details and will ask for your selected plan.
 							<br />
@@ -283,7 +283,7 @@ export const FAQPage = {
 			],
 			[FAQTypes.DeliveryTimelines]: [
 				{
-					question: `In how many days does Project Hero delivers the guaranteed job applicants, If I opt for the Discovery plan?`,
+					question: `In how many days does ProjectHero delivers the guaranteed job applicants, If I opt for the Discovery plan?`,
 					answer: (
 						<>
 							You can check the profile of the job applicants as soon as your booking goes live and
@@ -294,12 +294,12 @@ export const FAQPage = {
 					),
 				},
 				{
-					question: `In how many days does Project Hero delivers workers, If I opt for the Fulfilment plan?`,
+					question: `In how many days does ProjectHero delivers workers, If I opt for the Fulfilment plan?`,
 					answer: (
 						<>
-							Project Hero promises to deliver the workers in 12 days of your booking going live. Please
-							note that our Project Hero Expert will be in touch with you daily to give you regular
-							updates about your booking progress.
+							ProjectHero promises to deliver the workers in 12 days of your booking going live. Please
+							note that our ProjectHero Expert will be in touch with you daily to give you regular updates
+							about your booking progress.
 							<br />
 							You can also track workers in real time on your contractor web app and check how workers are
 							moving from <strong>Applicant stage</strong> to Ready for <strong>Dispatch stage.</strong>
@@ -318,7 +318,7 @@ export const FAQPage = {
 					),
 				},
 				{
-					question: `In how many days does Project Hero delivers workers, If I opt for the Fulfilment plan?`,
+					question: `In how many days does ProjectHero delivers workers, If I opt for the Fulfilment plan?`,
 					answer: (
 						<>
 							We provide 7 days no questions asked refund policy in our Fulfilment plan. However, if you

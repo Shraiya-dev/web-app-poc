@@ -51,6 +51,8 @@ const EditCompanyInfo = ({ ...props }) => {
 			companyName: form.values.companyName,
 			GSTIN: form.values.GSTIN.toUpperCase(),
 			// GstinCertificate: form.values.GSTINDocuments[0],
+			doesNotHaveGstin: false,
+			_removeFields: {},
 		}
 		const orgId = user?.organisationId
 

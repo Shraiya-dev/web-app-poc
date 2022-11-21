@@ -1,11 +1,11 @@
 export const AboutUsPage = {
 	bannerSection: {
 		backgroundImage: '/assets/landing/about-us/banner.png',
-		heading: "We're Project Hero",
+		heading: "We're ProjectHero",
 		subHeading: 'Bigger, Better & Faster',
-		description: `Project Hero is India's largest tech-enabled construction workforce marketplace. We are a product first company which provide trained and efficient laborers in the 10+ 
+		description: `ProjectHero is India's largest tech-enabled construction workforce marketplace. We are a product first company which provide trained and efficient laborers in the 10+ 
         categories (3 skill-levels) to the contractors, sub-contractors and real-estate companies in India. We are working with top real-estate contractors and our workers are deployed 
-        across 50+ different project sites in India. Project Hero is founded by IIT Roorkee 
+        across 50+ different project sites in India. ProjectHero is founded by IIT Roorkee 
         graduates who have been serial entrepreneurs in the real-estate Industry`,
 	},
 	whoWhatWhySection: {
@@ -17,7 +17,7 @@ export const AboutUsPage = {
 			},
 			{
 				title: 'What we do',
-				description: `Project Hero is building the largest tech-enabled workforce marketplace. We are building a Product first company that bridges the gap between Contractors, sub- Contractors, real estate companies, and a Skilled workforce.`,
+				description: `ProjectHero is building the largest tech-enabled workforce marketplace. We are building a Product first company that bridges the gap between Contractors, sub- Contractors, real estate companies, and a Skilled workforce.`,
 			},
 			{
 				title: 'Why we do it',

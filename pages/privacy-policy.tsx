@@ -59,7 +59,7 @@ const PrivacyPolicy: NextPage = () => {
 						with them.
 					</p>
 					<p>
-						Project Hero&apos;s mission is to provide the youth of India with quality construction jobs. We
+						ProjectHero&apos;s mission is to provide the youth of India with quality construction jobs. We
 						are committed to be transparent about the data we collect about you, how it is used and with
 						whom it is shared.
 					</p>
@@ -228,13 +228,13 @@ const PrivacyPolicy: NextPage = () => {
 					<h3>No Impersonation or False Information to be Provided</h3>
 					<p>
 						You have to use your actual name on the Platform, you are required to input your correct phone
-						number to use our Services. You will be getting a job based on your Project Hero account. You
+						number to use our Services. You will be getting a job based on your ProjectHero account. You
 						will not falsely represent yourself as another person or representative of another person to use
 						our Services. You will not lie about your details, for any reason.
 					</p>
 					<h3>Changes to this Privacy policy</h3>
 					<p>
-						Project Hero has the discretion to update this privacy policy at any time. We encourage Users to
+						ProjectHero has the discretion to update this privacy policy at any time. We encourage Users to
 						frequently check this page for any changes to stay informed about how we are helping to protect
 						the personal information we collect. You acknowledge and agree that it is your responsibility to
 						review this privacy policy periodically and become aware of modifications.

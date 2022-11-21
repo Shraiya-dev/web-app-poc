@@ -24,7 +24,7 @@ export const homePage = {
 					fontSize={{ md: '32px', xs: '18px' }}
 					fontWeight={500}>
 					Why you should hire <br /> your construction worker <br /> from{' '}
-					<span style={{ color: 'yellow' }}>Project Hero</span>
+					<span style={{ color: 'yellow' }}>ProjectHero</span>
 				</Typography>
 			),
 			buttonText: { text: 'Job Post Karen', link: '/#book-worker' },
@@ -98,7 +98,7 @@ export const homePage = {
 				fontSize={{ md: '32px', xs: '16px' }}
 				fontFamily={'Saira, sans-serif'}
 				fontWeight={600}>
-				Project Hero <span style={{ color: '#000' }}>Advantages</span>
+				ProjectHero <span style={{ color: '#000' }}>Advantages</span>
 			</Typography>
 		),
 		subHeading: (
@@ -125,7 +125,7 @@ export const homePage = {
 					fontWeight: 600,
 					fontSize: { md: '32px', xs: '24px' },
 				}}>
-				Project Hero <span style={{ color: '#fff' }}>App</span>{' '}
+				ProjectHero <span style={{ color: '#fff' }}>App</span>{' '}
 			</Typography>
 		),
 		desc: (
@@ -183,9 +183,9 @@ export const homePage = {
 				testimonial: (
 					<>
 						I am a small contractor who was looking to hire 5 masons. I was struggling to get the masons on
-						time. But, when I booked workers on Project Hero, I was impressed by the vast inventory they
+						time. But, when I booked workers on ProjectHero, I was impressed by the vast inventory they
 						have! I can get as many worker applications as I want and I only need to pay for what I am
-						consuming. Project Hero has changed the construction workforce hiring ecosystem!
+						consuming. ProjectHero has changed the construction workforce hiring ecosystem!
 					</>
 				),
 				by: 'Yogesh Yadav, Contractor, Jabalpur',
@@ -195,9 +195,9 @@ export const homePage = {
 				testimonial: (
 					<>
 						I was building a commercial project and was unable to get shuttering carpenters! I saw the
-						Project Hero ad and booked 30 target applications. Within 1 hour, workers started applying to my
+						ProjectHero ad and booked 30 target applications. Within 1 hour, workers started applying to my
 						booking. I gave a call to all the workers and hired 5 of them! The workers are professional and
-						skilled. I am very happy with Project Hero.
+						skilled. I am very happy with ProjectHero.
 					</>
 				),
 				by: 'Anil Dubey, Contractor, Delhi',
@@ -206,7 +206,7 @@ export const homePage = {
 				cardImageSrc: '/assets/landingv2/heroSection/customer.png',
 				testimonial: (
 					<>
-						Project Hero has given a new way of hiring. Now whenever I want a construction workforce, I just
+						ProjectHero has given a new way of hiring. Now whenever I want a construction workforce, I just
 						go to Projecthero.in and book workers based on the number of target applications. I call,
 						negotiate, and hire them asap! The workers are skilled, and they are eager to work. This system
 						of hiring is the BEST!
@@ -520,22 +520,22 @@ export const homePage = {
 		carouselContent: [
 			{
 				title: 'GECPL, Registered in Mumbai',
-				description: `We have used Project Hero to meet our requirements 
+				description: `We have used ProjectHero to meet our requirements 
 				for a skilled Bar-bending and Shuttering team of about 
-				30 workers at our BEL Project in Bangalore. We traditionally used labor contractors but have also tried hiring from some new age startups. The LC’s are unreliable at best and the blue collar hiring companies don’t have the labor needed in construction. With Project Hero, we had the team at our 
+				30 workers at our BEL Project in Bangalore. We traditionally used labor contractors but have also tried hiring from some new age startups. The LC’s are unreliable at best and the blue collar hiring companies don’t have the labor needed in construction. With ProjectHero, we had the team at our 
 				site on the 4th day.`,
 			},
 			{
 				title: `Eleganz Interiors `,
-				description: `We are one of the largest interior Fit-out companies in India and require skilled and unskilled workers in bulk. Earlier, we used to hire via labor contractors but the labor quality and reliability was a major issue. Project Hero met our requirement with a full stack solution - from sourcing, training, interviews to final deployment and worker management. Would recommend`,
+				description: `We are one of the largest interior Fit-out companies in India and require skilled and unskilled workers in bulk. Earlier, we used to hire via labor contractors but the labor quality and reliability was a major issue. ProjectHero met our requirement with a full stack solution - from sourcing, training, interviews to final deployment and worker management. Would recommend`,
 			},
 			// {
 			// 	title: 'Eleganz Interiors ',
-			// 	description: `We are one of the largest interior Fit-out companies in India and require skilled and unskilled workers in bulk. Earlier, we used to hire via labor contractors but the labor quality and reliability was a major issue. Project Hero met our requirement with a full stack solution - from sourcing, training, interviews to final deployment and worker management. Would recommend`,
+			// 	description: `We are one of the largest interior Fit-out companies in India and require skilled and unskilled workers in bulk. Earlier, we used to hire via labor contractors but the labor quality and reliability was a major issue. ProjectHero met our requirement with a full stack solution - from sourcing, training, interviews to final deployment and worker management. Would recommend`,
 			// },
 			// {
 			// 	title: 'Eleganz Interiors ',
-			// 	description: `We are one of the largest interior Fit-out companies in India and require skilled and unskilled workers in bulk. Earlier, we used to hire via labor contractors but the labor quality and reliability was a major issue. Project Hero met our requirement with a full stack solution - from sourcing, training, interviews to final deployment and worker management. Would recommend`,
+			// 	description: `We are one of the largest interior Fit-out companies in India and require skilled and unskilled workers in bulk. Earlier, we used to hire via labor contractors but the labor quality and reliability was a major issue. ProjectHero met our requirement with a full stack solution - from sourcing, training, interviews to final deployment and worker management. Would recommend`,
 			// },
 		],
 	},

@@ -189,7 +189,7 @@ export const HowItWorks: FC<Props> = () => {
 						fontFamily='Karla ,sans-serif'
 						fontWeight={500}
 						marginTop={{ md: '15px', xs: '0px' }}>
-						See how the Project Hero platform works
+						See how the ProjectHero platform works
 					</Typography>
 				</Stack>
 				<Stack
@@ -299,7 +299,7 @@ export const HowItWorks: FC<Props> = () => {
 					</Typography>
 
 					<Typography className='font-Karla' variant='h3'>
-						See how the Project Hero platform works
+						See how the ProjectHero platform works
 					</Typography>
 				</Stack>
 				<Stack

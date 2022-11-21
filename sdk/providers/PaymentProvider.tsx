@@ -12,7 +12,7 @@ type ResponseRazorPayType = {
 	razorpay_signature: string
 }
 const constants = {
-	name: 'Project Hero',
+	name: 'ProjectHero',
 	currency: 'INR',
 	description: 'Contractor Payment',
 }

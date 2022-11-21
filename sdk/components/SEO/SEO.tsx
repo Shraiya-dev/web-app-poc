@@ -8,7 +8,7 @@ export interface Props {
 export const SEO: FC<Props> = ({ children, description, title }) => {
 	return (
 		<Head>
-			<title>{title} | Project Hero</title>
+			<title>{title} | ProjectHero</title>
 			<meta name='description' content={description} />
 			{children}
 		</Head>
