@@ -74,7 +74,7 @@ const CarouselData = [
 	{
 		index: '03',
 		title: 'Job Posting Goes Live',
-		details: 'Congratulations! your job posting has gone live on our app for projectheroes.',
+		details: 'Congratulations! your job posting has gone live on our app for ProjectHeroes.',
 		imgSrc: '/assets/landingv2/icons/layer.svg',
 		bgColor: '#383838',
 	},

@@ -111,7 +111,7 @@ const CompanyDetails = () => {
 								paddingTop: 1,
 							}}>
 							<TutorialBanner sx={{ mx: -3, mb: 2 }}>
-								Apna GST share karen aur baki contractors ke mukable zyada projectheroes ke phone number
+								Apna GST share karen aur baki contractors ke mukable zyada ProjectHeroes ke phone number
 								payen
 							</TutorialBanner>
 							<CompanyInfo />

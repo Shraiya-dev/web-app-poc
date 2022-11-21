@@ -230,7 +230,7 @@ export const WorkReportDetails = () => {
 										minRows={4}
 										maxRows={4}
 										sx={{ backgroundColor: 'common.white', borderRadius: 2 }}
-										placeholder='Tell us the projectheroes names and issues with their attendances. We willl raise a ticket and our customer support team will resolve it. '
+										placeholder='Tell us the ProjectHeroes names and issues with their attendances. We willl raise a ticket and our customer support team will resolve it. '
 									/>
 									<Stack direction='row' spacing={1.5} justifyContent='flex-end'>
 										<Button
@@ -569,7 +569,7 @@ export const WorkReportDetails = () => {
 											borderRadius: 2,
 											border: '1px solid grey',
 										}}
-										placeholder='Tell us the projectheroes names and issues with their attendances. '
+										placeholder='Tell us the ProjectHeroes names and issues with their attendances. '
 									/>
 									<Stack direction='row' spacing={1.5} justifyContent='flex-end' pt={2}>
 										<Button
