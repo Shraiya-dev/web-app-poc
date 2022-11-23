@@ -1,6 +1,7 @@
 import { BarChart, Settings, Share, StarBorder } from '@mui/icons-material'
 import { Typography } from '@mui/material'
 import { landingTheme } from 'sdk/constants/landingTheme'
+import { PHSupport } from './externalLinks'
 
 export const homePage = {
 	heroSection: {},
@@ -648,7 +649,7 @@ export const homePage = {
 				label: 'General Queries',
 				email: 'marketing@projecthero.in',
 			},
-			contactAction: { label: 'Inquiries', phone: '+91 9151003513' },
+			contactAction: { label: 'Inquiries', phone: `+91 ${PHSupport.phoneNumber}` },
 		},
 	},
 }

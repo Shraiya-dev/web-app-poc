@@ -129,8 +129,6 @@ export const Home = () => {
 							},
 							border: '2px solid #000000',
 							borderRightWidth: '1px',
-							// backgroundColor: userType === 'CONTRACTOR' ? undefined : primary.darkGrey,
-
 							flexDirection: 'column',
 							color: userType === 'CONTRACTOR' ? '#000000' : '#000000',
 						}}>

@@ -9,3 +9,7 @@ export const externalLinks = {
 	howItWorksVideoLink:
 		'https://storage.googleapis.com/ph-assets/project/ProjectHero_V2_How_it_works_Final_Update_5.mp4',
 }
+
+export const PHSupport  = {
+	phoneNumber:'9151003537'
+}

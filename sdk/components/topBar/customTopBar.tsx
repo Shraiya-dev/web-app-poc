@@ -7,6 +7,7 @@ import { useContractorAuth } from '../../providers'
 const APP_BAR_BG_COLOR = primary.darkGrey
 import MenuIcon from 'public/assets/icons/MenuIcon.svg'
 import { sendAnalytics } from 'sdk/analytics'
+import { PHSupport } from 'sdk/data'
 
 const CustomAppBar = styled(Box)(() => ({
 	minHeight: 84,
@@ -74,7 +75,7 @@ export const CustomTopBar: FC<Props> = ({ children, sideMenu = false }) => {
 					<img height={25} src='/assets/icons/phone.svg' />
 					<Typography
 						component='a'
-						href='tel:+91 9151003513'
+						href={`tel:+91 ${PHSupport.phoneNumber}`}
 						fontFamily={'Karla,sans-serif'}
 						onClick={() => {
 							sendAnalytics({
@@ -83,7 +84,7 @@ export const CustomTopBar: FC<Props> = ({ children, sideMenu = false }) => {
 							})
 						}}
 						fontWeight={700}>
-						+91-9151003513
+						+91-{PHSupport.phoneNumber}
 					</Typography>
 				</Stack>
 			</Stack>

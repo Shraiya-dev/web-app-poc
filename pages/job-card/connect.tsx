@@ -10,7 +10,6 @@ const Page: NextPage = () => {
 	const { showSnackbar } = useSnackbar()
 	const { user } = useContractorAuth()
 	const getContactDetails = useCallback(async (token: string) => {
-		// window.location.replace('tel:+91' + '9151003513')
 
 		try {
 			const { data } = await axios.get(`/gateway/customer-api/job-card/connect?token=${token}`)
