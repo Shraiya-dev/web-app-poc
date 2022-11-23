@@ -39,6 +39,7 @@ import { StepIconProps } from '@mui/material/StepIcon'
 import CheckCircleIcon from '@mui/icons-material/CheckCircle'
 import AdjustOutlinedIcon from '@mui/icons-material/AdjustOutlined'
 import RadioButtonUncheckedIcon from '@mui/icons-material/RadioButtonUnchecked'
+import { PHSupport } from 'sdk/data'
 
 const ProfileCardData = [
 	{
@@ -853,7 +854,7 @@ export const CheckoutCard: FC = () => {
 										name: 'callProjectHeroSupport',
 									})
 								}}>
-								+91-9151003513
+								+91-{PHSupport.phoneNumber}
 							</Typography>
 						</Stack>
 					</Stack>

@@ -15,6 +15,7 @@ import { NavigationTabClicked, sendAnalytics } from '../analytics/analyticsWrapp
 import BusinessIcon from '@mui/icons-material/Business'
 import { clearCookie } from '../analytics/helper'
 import { ArrowBackIos } from '@mui/icons-material'
+import { PHSupport } from 'sdk/data'
 
 //always update when you change the app bar height into the onlyCssWeNeed file
 
@@ -147,10 +148,10 @@ const ContractorDashboardLayout = ({ children }: any) => {
 											name: 'callProjectHeroSupport',
 										})
 									}}
-									href='tel:+91-9151003513'
+									href={`tel:+91-${PHSupport.phoneNumber}`}
 									fontFamily={'Karla,sans-serif'}
 									fontWeight={700}>
-									+91 9151003513
+									+91 {PHSupport.phoneNumber}
 								</Typography>
 							</Stack>
 						</Stack>

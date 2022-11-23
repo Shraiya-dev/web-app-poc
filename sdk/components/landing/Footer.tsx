@@ -4,7 +4,7 @@ import { useRouter } from 'next/router'
 import { DataLayerPush, getCookie } from 'sdk/analytics'
 import { ButtonClicked, sendAnalytics } from 'sdk/analytics/analyticsWrapper'
 import { AppStoreImage } from 'sdk/constants'
-import { externalLinks, footer } from 'sdk/data'
+import { externalLinks, footer, PHSupport } from 'sdk/data'
 import { useMobile } from 'sdk/hooks'
 import { HyperLink } from '../atomic'
 import { LinkButton } from '../button'
@@ -172,7 +172,7 @@ export const Footer = () => {
 									<img src='/assets/landingv2/heroSection/phone.svg' />
 									<Typography
 										component='a'
-										href='tel:+91 9151003513'
+										href={`tel:+91 ${PHSupport.phoneNumber}`}
 										variant='subtitle2'
 										color={'#fff'}
 										fontSize={{ md: '18px', xs: '16px' }}
@@ -184,7 +184,7 @@ export const Footer = () => {
 											})
 										}}
 										fontWeight={700}>
-										+91-9151003513
+										+91-{PHSupport.phoneNumber}
 									</Typography>
 								</Stack>
 							</Stack>
@@ -346,7 +346,7 @@ export const Footer = () => {
 							<img src='/assets/landingv2/heroSection/phone.svg' />
 							<Typography
 								component='a'
-								href='tel:+91 9151003513'
+								href={`tel:+91 ${PHSupport.phoneNumber}`}
 								variant='subtitle2'
 								color={'#fff'}
 								fontSize={{ md: '18px', xs: '16px' }}
@@ -358,7 +358,7 @@ export const Footer = () => {
 									})
 								}}
 								fontWeight={700}>
-								+91-9151003513
+								+91-{PHSupport.phoneNumber}
 							</Typography>
 						</Stack>
 					</Stack>

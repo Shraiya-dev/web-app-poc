@@ -1,3 +1,5 @@
+import { PHSupport } from './externalLinks'
+
 export const contactUsSection = {
 	title: (
 		<>
@@ -15,6 +17,6 @@ export const contactUsSection = {
 			label: 'General Queries',
 			email: 'marketing@projecthero.in',
 		},
-		contactAction: { label: 'Inquiries', phone: '+91 9151003513' },
+		contactAction: { label: 'Inquiries', phone: `+91 ${PHSupport.phoneNumber}` },
 	},
 }

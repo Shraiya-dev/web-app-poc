@@ -1,5 +1,6 @@
 import { ReactNode } from 'react'
 import DashboardRoundedIcon from '@mui/icons-material/DashboardRounded'
+import { PHSupport } from './externalLinks'
 
 interface Navbar {
 	brandImage: string
@@ -37,9 +38,9 @@ export const navbar: Navbar = {
 		},
 		{
 			type: 'button_link',
-			label: '+91-9151003513',
+			label: `+91-${PHSupport.phoneNumber}`,
 			icon: <img src={'/assets/landingv2/phone.svg'} />,
-			link: 'tel:+91-9151003513',
+			link: `tel:+91-${PHSupport.phoneNumber}`,
 		},
 
 		{

@@ -22,7 +22,7 @@ import { useRouter } from 'next/router'
 import { useEffect, useReducer, useState } from 'react'
 import { DataLayerPush, LinkButton, primary, useContractorAuth } from 'sdk'
 import { sendAnalytics } from 'sdk/analytics/analyticsWrapper'
-import { navbar } from 'sdk/data'
+import { navbar, PHSupport } from 'sdk/data'
 import DashboardRoundedIcon from '@mui/icons-material/DashboardRounded'
 import Link from 'next/link'
 
@@ -84,27 +84,12 @@ export const Navbar = () => {
 											}}
 											color={'#fff'}
 											fontWeight={700}>
-											+91-9151003513
+											+91-{PHSupport.phoneNumber}
 										</Typography>
 									</Stack>
 								</Link>
 							</Stack>
 							<Stack direction={'row'} justifyContent={'flex-end'} alignItems={'center'} spacing={2.5}>
-								{/* <Link href='/' passHref>
-									<Stack direction='row' alignItems={'center'} spacing={1}>
-										<Box
-											component='img'
-											src='/assets/icons/phone.svg'
-											width={23}
-											alt='ProjectHero'
-											// style={{ marginTop: 5 }}
-										/>
-										<Typography variant='subtitle2' color={'#fff'} fontWeight={700}>
-											+91-9151003513
-										</Typography>
-									</Stack>
-								</Link> */}
-
 								<IconButton
 									sx={(theme) => ({
 										display: 'none',
@@ -163,7 +148,7 @@ export const Navbar = () => {
 														}}
 														color={'#fff'}
 														fontWeight={700}>
-														+91-9151003513
+														+91-{PHSupport.phoneNumber}
 													</Typography>
 												</Stack>
 												<Box width={28} height={28}>
@@ -310,7 +295,7 @@ export const Navbar = () => {
 														}}
 														color={'#fff'}
 														fontWeight={700}>
-														+91-9151003513
+														+91-{PHSupport.phoneNumber}
 													</Typography>
 												</Stack>
 											</Stack>
