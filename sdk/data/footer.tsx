@@ -1,6 +1,6 @@
 export const footer = {
 	brandImage: '/assets/landing/ph-logo-light.svg',
-	tagLine: 'Your ProjectHeroes are Ready',
+	tagLine: 'Your ProjectHeroes is Ready',
 	support: 'In case of any concern contact: marketing@projecthero.in',
 	textColor: 'common.white',
 	navLinks: [
@@ -12,11 +12,10 @@ export const footer = {
 			label: 'Contact Us',
 			link: '/contact-us',
 		},
-
-		// {
-		// 	label: 'Refund Policy',
-		// 	link: '/refund-policy',
-		// },
+		{
+			label: 'Refund Policy',
+			link: '/refund-policy',
+		},
 		{
 			label: 'Terms and Conditions',
 			link: '/tnc',

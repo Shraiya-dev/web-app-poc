@@ -180,7 +180,6 @@ export const Navbar = () => {
 													<LinkButton
 														variant='text'
 														color='info'
-														startIcon={<img src={'/assets/landingv2/user.svg'} />}
 														sx={(theme) => ({
 															mx: 2,
 															mt: 2,
@@ -201,8 +200,9 @@ export const Navbar = () => {
 														sx={{
 															my: 2,
 															background: '#f7f7f7',
-															border: '1px solid #4c4c4c',
+															border: '1px dashed #4c4c4c',
 															zIndex: '0',
+															mx: 2,
 														}}
 													/>
 												</>
@@ -254,7 +254,7 @@ export const Navbar = () => {
 													marketing@projecthero.in
 												</Typography>
 											</Stack> */}
-												<Stack direction={'row'} spacing={1}>
+												{/* <Stack direction={'row'} spacing={1}>
 													<Box height={23} width={23}>
 														<img
 															height={'100%'}
@@ -297,7 +297,7 @@ export const Navbar = () => {
 														fontWeight={700}>
 														+91-{PHSupport.phoneNumber}
 													</Typography>
-												</Stack>
+												</Stack> */}
 											</Stack>
 										</List>
 									</Drawer>

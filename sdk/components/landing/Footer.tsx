@@ -48,7 +48,7 @@ export const Footer = () => {
 										fontSize={{ xs: '20px', md: '24px' }}>
 										{footer.tagLine}
 									</Typography>
-									<LinkButton
+									{/* <LinkButton
 										href='/#book-worker'
 										onClick={() => {
 											DataLayerPush({ event: 'book_hero_home_footer' })
@@ -67,20 +67,14 @@ export const Footer = () => {
 											fontSize: { xs: 16, md: 20 },
 										}}>
 										Job Post Karen
-									</LinkButton>
+									</LinkButton> */}
 								</Stack>
 							</Stack>
-							<Stack mt={'40px'} direction={'column'} alignItems={'flex-start'} width={'100%'}>
-								<Typography
-									color={'#fff'}
-									sx={{
-										fontFamily: 'Karla ,sans-serif',
-										fontSize: { xs: '16px', md: '24px' },
-										fontWeight: 400,
-									}}>
-									Download Now!
-								</Typography>
+							<Stack mt={'40px'} direction={'row'} alignItems={'flex-start'} width={'100%'}>
 								<Box mt={'20px'} sx={{ cursor: 'pointer' }}>
+									<Typography variant='h5' fontSize={'16px'} color={'#fff'}>
+										Contractor App
+									</Typography>
 									<a
 										href={
 											externalLinks.heroApp +
@@ -97,7 +91,45 @@ export const Footer = () => {
 										}}
 										target='_blank'
 										rel='noopener noreferrer'>
-										<img src='/assets/landingv2/heroSection/googlebutton.svg' alt='' />
+										<Box
+											component={'img'}
+											height={44}
+											width={152}
+											mt={'8px'}
+											src='/assets/landingv2/heroSection/googlebutton.svg'
+											alt=''
+										/>
+									</a>
+								</Box>
+								<Divider orientation='vertical' color='#fff' sx={{ px: { md: '19px' } }} />
+								<Box mt={'20px'} sx={{ cursor: 'pointer' }}>
+									<Typography variant='h5' fontSize={'16px'} color={'#fff'}>
+										Worker App
+									</Typography>
+									<a
+										href={
+											externalLinks.heroApp +
+											(getCookie('utmParams') || externalLinks.fixUtmForApp)
+										}
+										onClick={() => {
+											sendAnalytics({
+												name: 'heroAppPlayStore',
+												action: 'ButtonClick',
+												metaData: {
+													origin: 'Footer',
+												},
+											})
+										}}
+										target='_blank'
+										rel='noopener noreferrer'>
+										<Box
+											component={'img'}
+											height={44}
+											width={152}
+											mt={'8px'}
+											src='/assets/landingv2/heroSection/googlebutton.svg'
+											alt=''
+										/>
 									</a>
 								</Box>
 							</Stack>
@@ -236,11 +268,11 @@ export const Footer = () => {
 											<InstagramIcon sx={{ color: '#fff' }} />
 										</a>
 									</IconButton>
-									{/* <IconButton>
-											<a href='' target='blank'>
-												<TwitterIcon sx={{ color: '#fff' }} />
-											</a>
-										</IconButton> */}
+									<IconButton>
+										<a href='' target='blank'>
+											<TwitterIcon sx={{ color: '#fff' }} />
+										</a>
+									</IconButton>
 									<IconButton>
 										<a href={externalLinks.linkedIn} target='blank'>
 											<LinkedInIcon sx={{ color: '#fff' }} />
@@ -276,7 +308,7 @@ export const Footer = () => {
 							</Stack>
 						</Box>
 					</Stack>
-					<Stack direction={'row'} justifyContent={'flex-start'} mt={4}>
+					{/* <Stack direction={'row'} justifyContent={'flex-start'} mt={4}>
 						<LinkButton
 							href='/#book-worker'
 							onClick={() => {
@@ -298,7 +330,7 @@ export const Footer = () => {
 							}}>
 							Job Post Karen
 						</LinkButton>
-					</Stack>
+					</Stack> */}
 					<Stack direction={'column'} mt={6}>
 						<Typography
 							color={'#fff'}
@@ -362,48 +394,75 @@ export const Footer = () => {
 							</Typography>
 						</Stack>
 					</Stack>
-					<Stack direction={'column'} alignItems='flex-start' mt={8}>
-						<Typography
-							color={'#fff'}
-							sx={{
-								fontFamily: 'Karla ,sans-serif',
-								fontSize: { xs: '16px', md: '24px' },
-								fontWeight: 400,
-							}}>
-							Download Now!
-						</Typography>
-						<Box mt={'20px'} sx={{ cursor: 'pointer', width: '45%' }}>
+					<Stack mt={'40px'} direction={'row'} alignItems={'flex-start'} width={'100%'}>
+						<Box mt={'20px'} sx={{ cursor: 'pointer' }}>
+							<Typography variant='h5' fontSize={'16px'} color={'#fff'}>
+								Contractor App
+							</Typography>
 							<a
 								href={externalLinks.heroApp + (getCookie('utmParams') || externalLinks.fixUtmForApp)}
 								onClick={() => {
-									ButtonClicked({
-										page: document.title,
-										action: 'App store link',
-										url: router.asPath,
+									sendAnalytics({
+										name: 'heroAppPlayStore',
+										action: 'ButtonClick',
+										metaData: {
+											origin: 'Footer',
+										},
 									})
 								}}
 								target='_blank'
 								rel='noopener noreferrer'>
-								<img
-									height={'100%'}
-									width={'100%'}
+								<Box
+									component={'img'}
+									height={44}
+									width={152}
+									mt={'8px'}
+									src='/assets/landingv2/heroSection/googlebutton.svg'
+									alt=''
+								/>
+							</a>
+						</Box>
+						<Divider orientation='vertical' sx={{ mx: '16px', border: '0.5px solid #fff' }} />
+						<Box mt={'20px'} sx={{ cursor: 'pointer' }}>
+							<Typography variant='h5' fontSize={'16px'} color={'#fff'}>
+								Worker App
+							</Typography>
+							<a
+								href={externalLinks.heroApp + (getCookie('utmParams') || externalLinks.fixUtmForApp)}
+								onClick={() => {
+									sendAnalytics({
+										name: 'heroAppPlayStore',
+										action: 'ButtonClick',
+										metaData: {
+											origin: 'Footer',
+										},
+									})
+								}}
+								target='_blank'
+								rel='noopener noreferrer'>
+								<Box
+									component={'img'}
+									height={44}
+									width={152}
+									mt={'8px'}
 									src='/assets/landingv2/heroSection/googlebutton.svg'
 									alt=''
 								/>
 							</a>
 						</Box>
 					</Stack>
-					<Stack direction={'row'} mt={6}>
+					<Divider sx={{ border: '1px dashed #fff', my: '24px' }} />
+					<Stack direction={'row'}>
 						<IconButton>
 							<a href={externalLinks.instaGram} target='blank'>
 								<InstagramIcon sx={{ color: '#fff' }} />
 							</a>
 						</IconButton>
-						{/* <IconButton>
+						<IconButton>
 							<a href='' target='blank'>
 								<TwitterIcon sx={{ color: '#fff' }} />
 							</a>
-						</IconButton> */}
+						</IconButton>
 						<IconButton>
 							<a href={externalLinks.linkedIn} target='blank'>
 								<LinkedInIcon sx={{ color: '#fff' }} />
