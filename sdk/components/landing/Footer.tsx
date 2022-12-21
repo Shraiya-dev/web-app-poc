@@ -400,10 +400,12 @@ export const Footer = () => {
 								Contractor App
 							</Typography>
 							<a
-								href={externalLinks.heroApp + (getCookie('utmParams') || externalLinks.fixUtmForApp)}
+								href={
+									externalLinks.contractorApp + (getCookie('utmParams') || externalLinks.fixUtmForApp)
+								}
 								onClick={() => {
 									sendAnalytics({
-										name: 'heroAppPlayStore',
+										name: 'contractorAppPlayStore',
 										action: 'ButtonClick',
 										metaData: {
 											origin: 'Footer',

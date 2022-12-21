@@ -171,6 +171,7 @@ export const Navbar = () => {
 														borderRadius: '20px !important',
 														mx: 2,
 														mt: 5,
+														width: '100%',
 													})}
 													href={'/dashboard'}>
 													Dashboard
@@ -186,6 +187,8 @@ export const Navbar = () => {
 															fontWeight: 700,
 															color: 'common.white',
 															whiteSpace: 'nowrap',
+															width: '100%',
+															justifyContent: 'flex-start',
 														})}
 														onClick={() => {
 															sendAnalytics({
@@ -199,8 +202,8 @@ export const Navbar = () => {
 													<Divider
 														sx={{
 															my: 2,
-															background: '#f7f7f7',
-															border: '1px dashed #4c4c4c',
+															background: 'transparent',
+															borderTop: '2px dashed #ffffff',
 															zIndex: '0',
 															mx: 2,
 														}}
@@ -241,63 +244,6 @@ export const Navbar = () => {
 														}
 													})}
 												</Stack>
-												{/* <Stack direction={'row'} spacing={1}>
-												<Box height={23} width={23}>
-													<img
-														height={'100%'}
-														width={'100%'}
-														src='/assets/icons/mail.svg'
-														alt=''
-													/>
-												</Box>
-												<Typography variant='subtitle2' color={'#fff'} fontWeight={700}>
-													marketing@projecthero.in
-												</Typography>
-											</Stack> */}
-												{/* <Stack direction={'row'} spacing={1}>
-													<Box height={23} width={23}>
-														<img
-															height={'100%'}
-															width={'100%'}
-															src='/assets/icons/mail.svg'
-															alt=''
-														/>
-													</Box>
-													<Typography
-														variant='subtitle2'
-														onClick={() => {
-															sendAnalytics({
-																action: 'ButtonClick',
-																name: 'mailProjectHeroSupport',
-															})
-														}}
-														color={'#fff'}
-														fontWeight={700}>
-														marketing@projecthero.in
-													</Typography>
-												</Stack>
-												<Stack direction={'row'} spacing={1}>
-													<Box height={23} width={23}>
-														<img
-															height={'100%'}
-															width={'100%'}
-															src='/assets/icons/phone.svg'
-															alt=''
-														/>
-													</Box>
-													<Typography
-														variant='subtitle2'
-														onClick={() => {
-															sendAnalytics({
-																action: 'ButtonClick',
-																name: 'callProjectHeroSupport',
-															})
-														}}
-														color={'#fff'}
-														fontWeight={700}>
-														+91-{PHSupport.phoneNumber}
-													</Typography>
-												</Stack> */}
 											</Stack>
 										</List>
 									</Drawer>
@@ -551,6 +497,27 @@ export const Navbar = () => {
 								}
 							})}
 						</NavWrapper>
+
+						{!user && (
+							<LinkButton
+								variant='contained'
+								color='primary'
+								sx={(theme) => ({
+									px: 4,
+									[theme.breakpoints.down('md')]: {
+										display: 'none',
+									},
+								})}
+								onClick={() => {
+									sendAnalytics({
+										name: 'navbarLogin',
+										action: 'ButtonClick',
+									})
+									openLoginDialog()
+								}}>
+								Login
+							</LinkButton>
+						)}
 					</Toolbar>
 				</Container>
 			</AppBar>
