@@ -132,7 +132,7 @@ export const Home = () => {
 											name: 'contractorAppPlayStore',
 											action: 'ButtonClick',
 											metaData: {
-												origin: 'Footer',
+												origin: 'home',
 											},
 										})
 									}}
@@ -157,7 +157,7 @@ export const Home = () => {
 									name: 'contractorAppPlayStore',
 									action: 'ButtonClick',
 									metaData: {
-										origin: 'Footer',
+										origin: 'home',
 									},
 								})
 							}}
@@ -201,7 +201,7 @@ export const Home = () => {
 									name: 'heroAppPlayStore',
 									action: 'ButtonClick',
 									metaData: {
-										origin: 'Footer',
+										origin: 'home',
 									},
 								})
 							}}
@@ -294,7 +294,7 @@ export const Home = () => {
 											name: 'heroAppPlayStore',
 											action: 'ButtonClick',
 											metaData: {
-												origin: 'Footer',
+												origin: 'home',
 											},
 										})
 									}}
