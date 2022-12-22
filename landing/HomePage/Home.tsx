@@ -2,27 +2,28 @@ import { Box, Stack, Typography } from '@mui/material'
 import { useState, useEffect } from 'react'
 import { Section, externalLinks, getCookie, sendAnalytics } from 'sdk'
 
-const workerImages = [
-	'/assets/landingv3/worker-01.png',
-	'/assets/landingv3/worker-02.png',
-	'/assets/landingv3/worker-03.png',
-	'/assets/landingv3/worker-04.png',
-	'/assets/landingv3/worker-05.png',
-]
+// const workerImages = [
+// 	'/assets/landingv3/worker-01.png',
+// 	'/assets/landingv3/worker-02.png',
+// 	'/assets/landingv3/worker-03.png',
+// 	'/assets/landingv3/worker-04.png',
+// 	'/assets/landingv3/worker-05.png',
+// ]
 
-const contractorImages = [
-	'/assets/landingv3/contractor-01.png',
-	'/assets/landingv3/contractor-02.png',
-	'/assets/landingv3/contractor-03.png',
-	'/assets/landingv3/contractor-04.png',
-	'/assets/landingv3/contractor-05.png',
-]
+// const contractorImages = [
+// 	'/assets/landingv3/contractor-01.png',
+// 	'/assets/landingv3/contractor-02.png',
+// 	'/assets/landingv3/contractor-03.png',
+// 	'/assets/landingv3/contractor-04.png',
+// 	'/assets/landingv3/contractor-05.png',
+// ]
+
 export const Home = () => {
-	const [counter, setCounter] = useState(0)
-	useEffect(() => {
-		const interval = setInterval(() => setCounter((p) => (p + 1) % 5), 3000)
-		return () => clearInterval(interval)
-	}, [])
+	// const [counter, setCounter] = useState(0)
+	// useEffect(() => {
+	// 	const interval = setInterval(() => setCounter((p) => (p + 1) % 5), 3000)
+	// 	return () => clearInterval(interval)
+	// }, [])
 
 	return (
 		<>
@@ -164,10 +165,11 @@ export const Home = () => {
 							target='_blank'
 							rel='noopener noreferrer'>
 							<Box
+								ml={{ xs: '-20px', md: 0 }}
 								width={{ xs: 151, md: 352 }}
 								height={{ xs: 320, md: 745 }}
 								sx={{
-									backgroundImage: `url(${contractorImages[counter]})`,
+									backgroundImage: `url(${'/assets/landingv3/workerChaiye.gif'})`,
 									backgroundSize: 'contain',
 									transition: 'all ease  0.3s',
 								}}
@@ -184,9 +186,8 @@ export const Home = () => {
 					},
 					backgroundSize: { md: '100%' },
 					backgroundPositionX: { xs: '-150px', md: '-150px' },
-					backgroundPositionY: { md: '-200px' },
 					py: { xs: 10, md: 20 },
-					pb: { md: 40 },
+					pb: { md: 10 },
 				}}>
 				<Stack>
 					<Stack
@@ -211,7 +212,7 @@ export const Home = () => {
 								width={{ xs: 151, md: 352 }}
 								height={{ xs: 320, md: 745 }}
 								sx={{
-									backgroundImage: `url(${workerImages[counter]})`,
+									backgroundImage: `url(${'/assets/landingv3/naukriChaiye.gif'})`,
 									backgroundSize: 'contain',
 									transition: 'all ease  0.3s',
 								}}
@@ -280,7 +281,7 @@ export const Home = () => {
 										fontSize={{ xs: '12px', md: '25.5px' }}
 										fontWeight={'800'}
 										ml={{ xs: '4px', md: '8.5px' }}
-										mr={{ xs: 4, md: 40 }}>
+										mr={{ xs: 4, md: 30 }}>
 										ProjectHero Worker App
 									</Typography>
 								</Stack>

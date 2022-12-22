@@ -1,12 +1,11 @@
 export const externalLinks = {
 	fixUtmForApp:
 		'utm_source=website&utm_medium=website&utm_campaign=website_app_install&utm_content=app_install&utm_term=app_install',
-	heroApp: 'https://play.google.com/store/apps/details?id=com.projecthero.android&',
-	contractorApp: 'https://play.google.com/store/apps/details?id=com.projecthero.android&',
-
+	heroApp: 'https://projecthero.page.link/contowrk',
+	contractorApp: 'https://projectherocontractor.page.link/wrktocon',
 	instaGram: 'https://www.instagram.com/projectheroworkers/?hl=en',
-	youtube: 'https://www.youtube.com/channel/UCHlSIBRIUwMken0qGPtVE-g/videos',
-	facebook: 'https://business.facebook.com/ondemandlabour/?business_id=183447649994401',
+	youtube: 'https://www.youtube.com/@ProjectHeroconstruction1021',
+	facebook: 'https://www.facebook.com/ondemandlabour',
 	linkedIn: 'https://www.linkedin.com/company/ProjectHeroes/	',
 	howItWorksVideoLink:
 		'https://storage.googleapis.com/ph-assets/project/ProjectHero_V2_How_it_works_Final_Update_5.mp4',
