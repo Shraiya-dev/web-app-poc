@@ -146,7 +146,7 @@ const TnC: NextPage = () => {
 							</p>
 							<p>
 								For more detail, please review our{' '}
-								<a href='/refunds-policy'>
+								<a href='/refund-policy'>
 									<strong>Refund Policy</strong>
 								</a>
 								.
