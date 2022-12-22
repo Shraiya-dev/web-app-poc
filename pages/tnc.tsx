@@ -13,10 +13,10 @@ const TnC: NextPage = () => {
 							<h3>OVERVIEW</h3>
 							<p>
 								This website is operated by <strong>Hard Hat Technologies Pvt Ltd.</strong>Throughout
-								the site, the terms “we”, “us” and “our” refer to Hard
-								<strong> Hat Technologies Pvt Ltd. Hard Hat Technologies Pvt Ltd </strong>offers this
-								website, including all information, tools and services available from this site to you,
-								the user, conditioned upon your acceptance of all terms, conditions, policies and
+								the site, the terms “we”, “us” and “our” refer to{' '}
+								<strong>Hard Hat Technologies Pvt Ltd. Hard Hat Technologies Pvt Ltd </strong>offers
+								this website, including all information, tools and services available from this site to
+								you, the user, conditioned upon your acceptance of all terms, conditions, policies and
 								notices stated here.
 							</p>
 							<p>
@@ -147,7 +147,7 @@ const TnC: NextPage = () => {
 							<p>
 								For more detail, please review our{' '}
 								<a href='/refunds-policy'>
-									<strong>Returns Policy</strong>
+									<strong>Refund Policy</strong>
 								</a>
 								.
 							</p>

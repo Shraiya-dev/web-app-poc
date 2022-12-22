@@ -13,6 +13,7 @@ import InstagramIcon from '@mui/icons-material/Instagram'
 import FacebookIcon from '@mui/icons-material/Facebook'
 import TwitterIcon from '@mui/icons-material/Twitter'
 import LinkedInIcon from '@mui/icons-material/LinkedIn'
+import YouTubeIcon from '@mui/icons-material/YouTube'
 
 export const Footer = () => {
 	const isMobile = useMobile()
@@ -101,7 +102,10 @@ export const Footer = () => {
 										/>
 									</a>
 								</Box>
-								<Divider orientation='vertical' color='#fff' sx={{ px: { md: '19px' } }} />
+								<Divider
+									orientation='vertical'
+									sx={{ mx: '16px', border: '0.1px solid #fff', height: 80, mt: '20px' }}
+								/>
 								<Box mt={'20px'} sx={{ cursor: 'pointer' }}>
 									<Typography variant='h5' fontSize={'16px'} color={'#fff'}>
 										Worker App
@@ -149,9 +153,8 @@ export const Footer = () => {
 								fontFamily={'Karla ,sans-serif'}
 								fontWeight={500}
 								fontSize={{ xs: '16px', md: '18px' }}>
-								Please feel free to reach out to our
-								<Box component={'br'} /> customer support from 9 Am-6 PM on <Box component={'br'} />
-								weekdays.
+								Please feel free to reach out to our customer
+								<Box component={'br'} /> support from 9 AM - 6 PM on weekdays.
 							</Typography>
 							{/* {isMobile && (
 						<Grid container direction={'row'} flexWrap={'wrap'}>
@@ -269,8 +272,8 @@ export const Footer = () => {
 										</a>
 									</IconButton>
 									<IconButton>
-										<a href='' target='blank'>
-											<TwitterIcon sx={{ color: '#fff' }} />
+										<a href={externalLinks.youtube} target='blank'>
+											<YouTubeIcon sx={{ color: '#fff' }} />
 										</a>
 									</IconButton>
 									<IconButton>
@@ -350,7 +353,7 @@ export const Footer = () => {
 								fontFamily={'Karla ,sans-serif'}
 								fontWeight={500}
 								fontSize={{ xs: '16px', md: '18px' }}>
-								Please feel free to reach out to our customer support from 9 Am-6 PM on weekdays.
+								Please feel free to reach out to our customer support from 9 AM - 6 PM on weekdays.
 							</Typography>
 						</Box>
 					</Stack>
@@ -424,7 +427,10 @@ export const Footer = () => {
 								/>
 							</a>
 						</Box>
-						<Divider orientation='vertical' sx={{ mx: '16px', border: '0.5px solid #fff' }} />
+						<Divider
+							orientation='vertical'
+							sx={{ mx: '16px', border: '0.1px solid #fff', height: 80, mt: '20px' }}
+						/>
 						<Box mt={'20px'} sx={{ cursor: 'pointer' }}>
 							<Typography variant='h5' fontSize={'16px'} color={'#fff'}>
 								Worker App
@@ -461,8 +467,8 @@ export const Footer = () => {
 							</a>
 						</IconButton>
 						<IconButton>
-							<a href='' target='blank'>
-								<TwitterIcon sx={{ color: '#fff' }} />
+							<a href={externalLinks.youtube} target='blank'>
+								<YouTubeIcon sx={{ color: '#fff' }} />
 							</a>
 						</IconButton>
 						<IconButton>

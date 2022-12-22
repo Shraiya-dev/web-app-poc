@@ -64,30 +64,6 @@ export const Navbar = () => {
 										// style={{ marginTop: 5 }}
 									/>
 								</Link>
-
-								<Link href='/' passHref>
-									<Stack direction='row' alignItems={'center'} spacing={1}>
-										<Box
-											component='img'
-											src='/assets/icons/phone.svg'
-											width={23}
-											alt='ProjectHero'
-											// style={{ marginTop: 5 }}
-										/>
-										<Typography
-											variant='subtitle2'
-											onClick={() => {
-												sendAnalytics({
-													action: 'ButtonClick',
-													name: 'callProjectHeroSupport',
-												})
-											}}
-											color={'#fff'}
-											fontWeight={700}>
-											+91-{PHSupport.phoneNumber}
-										</Typography>
-									</Stack>
-								</Link>
 							</Stack>
 							<Stack direction={'row'} justifyContent={'flex-end'} alignItems={'center'} spacing={2.5}>
 								<IconButton
@@ -258,6 +234,29 @@ export const Navbar = () => {
 							}}
 							spacing={{ xs: 0, md: 2 }}
 							alignItems='center'>
+							<Link href='/' passHref>
+								<Stack direction='row' alignItems={'center'} spacing={1} mr={1}>
+									<Box
+										component='img'
+										src='/assets/icons/phone.svg'
+										width={23}
+										alt='ProjectHero'
+										// style={{ marginTop: 5 }}
+									/>
+									<Typography
+										variant='subtitle2'
+										onClick={() => {
+											sendAnalytics({
+												action: 'ButtonClick',
+												name: 'callProjectHeroSupport',
+											})
+										}}
+										color={'#fff'}
+										fontWeight={700}>
+										+91-{PHSupport.phoneNumber}
+									</Typography>
+								</Stack>
+							</Link>
 							{navbar.navLinks.map((navItem, i) => {
 								if (navItem.type === 'button_link') {
 									if (navItem.label === 'Login') {
@@ -504,6 +503,7 @@ export const Navbar = () => {
 								color='primary'
 								sx={(theme) => ({
 									px: 4,
+									ml: 2,
 									[theme.breakpoints.down('md')]: {
 										display: 'none',
 									},
