@@ -1,8 +1,8 @@
 export const externalLinks = {
 	fixUtmForApp:
 		'utm_source=website&utm_medium=website&utm_campaign=website_app_install&utm_content=app_install&utm_term=app_install',
-	heroApp: 'https://projecthero.page.link/contowrk',
-	contractorApp: 'https://projectherocontractor.page.link/wrktocon',
+	heroApp: 'https://projecthero.page.link/contowrk?',
+	contractorApp: 'https://projectherocontractor.page.link/wrktocon?',
 	instaGram: 'https://www.instagram.com/projectheroworkers/?hl=en',
 	youtube: 'https://www.youtube.com/@ProjectHeroconstruction1021',
 	facebook: 'https://www.facebook.com/ondemandlabour',
