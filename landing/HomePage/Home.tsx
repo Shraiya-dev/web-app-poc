@@ -1,30 +1,9 @@
 import { Box, Stack, Typography } from '@mui/material'
-import { useState, useEffect } from 'react'
+import { useDeviceSelectors } from 'react-device-detect'
 import { Section, externalLinks, getCookie, sendAnalytics } from 'sdk'
 
-// const workerImages = [
-// 	'/assets/landingv3/worker-01.png',
-// 	'/assets/landingv3/worker-02.png',
-// 	'/assets/landingv3/worker-03.png',
-// 	'/assets/landingv3/worker-04.png',
-// 	'/assets/landingv3/worker-05.png',
-// ]
-
-// const contractorImages = [
-// 	'/assets/landingv3/contractor-01.png',
-// 	'/assets/landingv3/contractor-02.png',
-// 	'/assets/landingv3/contractor-03.png',
-// 	'/assets/landingv3/contractor-04.png',
-// 	'/assets/landingv3/contractor-05.png',
-// ]
-
 export const Home = () => {
-	// const [counter, setCounter] = useState(0)
-	// useEffect(() => {
-	// 	const interval = setInterval(() => setCounter((p) => (p + 1) % 5), 3000)
-	// 	return () => clearInterval(interval)
-	// }, [])
-
+	const [{ isMobile }] = useDeviceSelectors(window.navigator.userAgent)
 	return (
 		<>
 			<Section
@@ -125,7 +104,9 @@ export const Home = () => {
 								<Stack
 									component={'a'}
 									href={
-										externalLinks.contractorApp +
+										(isMobile
+											? externalLinks.contractorDeepLinkApp
+											: externalLinks.contractorPlayStoreApp) +
 										(getCookie('utmParams') || externalLinks.fixUtmForApp)
 									}
 									onClick={() => {
@@ -152,7 +133,12 @@ export const Home = () => {
 						</Stack>
 						<Stack
 							component={'a'}
-							href={externalLinks.contractorApp + (getCookie('utmParams') || externalLinks.fixUtmForApp)}
+							href={
+								(isMobile
+									? externalLinks.contractorDeepLinkApp
+									: externalLinks.contractorPlayStoreApp) +
+								+(getCookie('utmParams') || externalLinks.fixUtmForApp)
+							}
 							onClick={() => {
 								sendAnalytics({
 									name: 'contractorAppPlayStore',
@@ -196,7 +182,10 @@ export const Home = () => {
 						spacing={2}>
 						<Stack
 							component={'a'}
-							href={externalLinks.heroApp + (getCookie('utmParams') || externalLinks.fixUtmForApp)}
+							href={
+								(isMobile ? externalLinks.heroDeepLinkApp : externalLinks.heroPlayStoreApp) +
+								(getCookie('utmParams') || externalLinks.fixUtmForApp)
+							}
 							onClick={() => {
 								sendAnalytics({
 									name: 'heroAppPlayStore',
@@ -288,7 +277,8 @@ export const Home = () => {
 								<Stack
 									component={'a'}
 									href={
-										externalLinks.heroApp + (getCookie('utmParams') || externalLinks.fixUtmForApp)
+										(isMobile ? externalLinks.heroDeepLinkApp : externalLinks.heroPlayStoreApp) +
+										(getCookie('utmParams') || externalLinks.fixUtmForApp)
 									}
 									onClick={() => {
 										sendAnalytics({

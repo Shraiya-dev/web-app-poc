@@ -1,43 +1,43 @@
-import { Stack, Box, Typography, Button, Divider, Grid, IconButton } from '@mui/material'
-import Image from 'next/image'
-import { useRouter } from 'next/router'
-import { DataLayerPush, getCookie } from 'sdk/analytics'
-import { ButtonClicked, sendAnalytics } from 'sdk/analytics/analyticsWrapper'
-import { AppStoreImage } from 'sdk/constants'
-import { externalLinks, footer, PHSupport } from 'sdk/data'
-import { useMobile } from 'sdk/hooks'
-import { HyperLink } from '../atomic'
-import { LinkButton } from '../button'
-import { Section, SectionProps } from './Section'
-import InstagramIcon from '@mui/icons-material/Instagram'
 import FacebookIcon from '@mui/icons-material/Facebook'
-import TwitterIcon from '@mui/icons-material/Twitter'
+import InstagramIcon from '@mui/icons-material/Instagram'
 import LinkedInIcon from '@mui/icons-material/LinkedIn'
 import YouTubeIcon from '@mui/icons-material/YouTube'
+import { Box, Divider, IconButton, Stack, Typography } from '@mui/material'
+import Image from 'next/image'
+import { useRouter } from 'next/router'
+import { getCookie } from 'sdk/analytics'
+import { ButtonClicked, sendAnalytics } from 'sdk/analytics/analyticsWrapper'
+import { PHSupport, externalLinks, footer } from 'sdk/data'
+import { useMobile } from 'sdk/hooks'
+import { HyperLink } from '../atomic'
+import { Section } from './Section'
+import { useDeviceSelectors } from 'react-device-detect'
 
 export const Footer = () => {
-	const isMobile = useMobile()
+	const [{ isMobile }] = useDeviceSelectors(window.navigator.userAgent)
+
+	const isUIMobile = useMobile()
 	const router = useRouter()
 	return (
 		<Section backgroundColor='#000000'>
-			{!isMobile ? (
+			{!isUIMobile ? (
 				<>
 					<Stack
 						direction={'row'}
 						spacing={2}
-						pt={isMobile ? 2 : 1}
+						pt={isUIMobile ? 2 : 1}
 						justifyContent={'space-between'}
 						alignItems={'center'}>
 						<Stack
-							direction={isMobile ? 'row' : 'column'}
+							direction={isUIMobile ? 'row' : 'column'}
 							justifyContent='space-between'
 							alignItems={'center'}>
 							<Stack direction={'column'}>
 								<HyperLink href='/'>
 									<Image
 										src={footer.brandImage}
-										width={isMobile ? 150 : 300}
-										height={isMobile ? 50 : 140}
+										width={isUIMobile ? 150 : 300}
+										height={isUIMobile ? 50 : 140}
 										alt='ProjectHero'
 									/>
 								</HyperLink>
@@ -78,12 +78,14 @@ export const Footer = () => {
 									</Typography>
 									<a
 										href={
-											externalLinks.heroApp +
+											(isMobile
+												? externalLinks.contractorDeepLinkApp
+												: externalLinks.contractorPlayStoreApp) +
 											(getCookie('utmParams') || externalLinks.fixUtmForApp)
 										}
 										onClick={() => {
 											sendAnalytics({
-												name: 'heroAppPlayStore',
+												name: 'contractorAppPlayStore',
 												action: 'ButtonClick',
 												metaData: {
 													origin: 'Footer',
@@ -112,7 +114,9 @@ export const Footer = () => {
 									</Typography>
 									<a
 										href={
-											externalLinks.heroApp +
+											(isMobile
+												? externalLinks.heroDeepLinkApp
+												: externalLinks.heroPlayStoreApp) +
 											(getCookie('utmParams') || externalLinks.fixUtmForApp)
 										}
 										onClick={() => {
@@ -227,12 +231,12 @@ export const Footer = () => {
 					</Stack>
 					<Stack direction={'row'} justifyContent='space-between' alignItems={'center'} mt={8}>
 						<Box>
-							{isMobile ? (
+							{isUIMobile ? (
 								<HyperLink href='/'>
 									<Image
 										src={footer.brandImage}
-										width={isMobile ? 100 : 200}
-										height={isMobile ? 30 : 70}
+										width={isUIMobile ? 100 : 200}
+										height={isUIMobile ? 30 : 70}
 										alt='ProjectHero'
 									/>
 								</HyperLink>
@@ -298,14 +302,14 @@ export const Footer = () => {
 							<HyperLink href='/'>
 								<Image
 									src={footer.brandImage}
-									width={isMobile ? 150 : 300}
-									height={isMobile ? 50 : 140}
+									width={isUIMobile ? 150 : 300}
+									height={isUIMobile ? 50 : 140}
 									alt='ProjectHero'
 								/>
 							</HyperLink>
 
 							<Stack flex={1} direction='column' alignItems='flex-start' spacing={4}>
-								<Typography variant={isMobile ? 'h4' : 'h3'} color={footer.textColor}>
+								<Typography variant={isUIMobile ? 'h4' : 'h3'} color={footer.textColor}>
 									{footer.tagLine}
 								</Typography>
 							</Stack>
@@ -404,7 +408,10 @@ export const Footer = () => {
 							</Typography>
 							<a
 								href={
-									externalLinks.contractorApp + (getCookie('utmParams') || externalLinks.fixUtmForApp)
+									(isMobile
+										? externalLinks.contractorDeepLinkApp
+										: externalLinks.contractorPlayStoreApp) +
+									(getCookie('utmParams') || externalLinks.fixUtmForApp)
 								}
 								onClick={() => {
 									sendAnalytics({
@@ -436,7 +443,12 @@ export const Footer = () => {
 								Worker App
 							</Typography>
 							<a
-								href={externalLinks.heroApp + (getCookie('utmParams') || externalLinks.fixUtmForApp)}
+								href={
+									(isMobile
+										? externalLinks.contractorDeepLinkApp
+										: externalLinks.contractorPlayStoreApp) +
+									(getCookie('utmParams') || externalLinks.fixUtmForApp)
+								}
 								onClick={() => {
 									sendAnalytics({
 										name: 'heroAppPlayStore',
