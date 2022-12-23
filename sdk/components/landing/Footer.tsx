@@ -5,8 +5,6 @@ import YouTubeIcon from '@mui/icons-material/YouTube'
 import { Box, Divider, IconButton, Stack, Typography } from '@mui/material'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
-import { useMemo } from 'react'
-import { getSelectorsByUserAgent } from 'react-device-detect'
 import { getCookie } from 'sdk/analytics'
 import { ButtonClicked, sendAnalytics } from 'sdk/analytics/analyticsWrapper'
 import { PHSupport, externalLinks, footer } from 'sdk/data'
@@ -15,10 +13,7 @@ import { HyperLink } from '../atomic'
 import { Section } from './Section'
 
 export const Footer = () => {
-	const { isMobile } = useMemo(() => {
-		if (typeof window === 'undefined') return { isMobile: false }
-		return getSelectorsByUserAgent(window.navigator.userAgent)
-	}, [])
+	const isMobile = useMobile()
 
 	const isUIMobile = useMobile()
 	const router = useRouter()
@@ -319,29 +314,6 @@ export const Footer = () => {
 							</Stack>
 						</Box>
 					</Stack>
-					{/* <Stack direction={'row'} justifyContent={'flex-start'} mt={4}>
-						<LinkButton
-							href='/#book-worker'
-							onClick={() => {
-								DataLayerPush({ event: 'book_workers_now_footer' })
-								sendAnalytics({
-									name: 'postJobNow',
-									action: 'ButtonClick',
-									metaData: {
-										origin: 'Footer',
-									},
-								})
-							}}
-							variant='contained'
-							sx={{
-								fontSize: { md: '20px', xs: '14px' },
-								p: '8px 40px',
-								fontWeight: 500,
-								fontFamily: 'Karla ,sans-serif',
-							}}>
-							Job Post Karen
-						</LinkButton>
-					</Stack> */}
 					<Stack direction={'column'} mt={6}>
 						<Typography
 							color={'#fff'}
@@ -448,9 +420,7 @@ export const Footer = () => {
 							</Typography>
 							<a
 								href={
-									(isMobile
-										? externalLinks.contractorDeepLinkApp
-										: externalLinks.contractorPlayStoreApp) +
+									(isMobile ? externalLinks.heroDeepLinkApp : externalLinks.heroPlayStoreApp) +
 									(getCookie('utmParams') || externalLinks.fixUtmForApp)
 								}
 								onClick={() => {

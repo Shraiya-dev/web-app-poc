@@ -4,7 +4,15 @@ import { Box, Button, Checkbox, FormControlLabel, Stack, styled, Typography } fr
 import { useRouter } from 'next/router'
 import { useEffect, useMemo, useState } from 'react'
 import { InputWrapper } from 'sdkv2/components'
-import { checkError, externalLinks, getCookie, primary, sendAnalytics, useContractorAuth } from '../../../../sdk'
+import {
+	checkError,
+	externalLinks,
+	getCookie,
+	primary,
+	sendAnalytics,
+	useContractorAuth,
+	useMobile,
+} from '../../../../sdk'
 import { PhoneField } from '../../../../sdk/components/Input/PhoneField'
 import useLogin from '../hooks/useLogin'
 import { getSelectorsByUserAgent, useDeviceSelectors } from 'react-device-detect'
@@ -45,10 +53,8 @@ export const LoginForm = ({ ...props }) => {
 	const { isOtpSent, setIsOtpSent, fromHome } = props
 	const [isDiscoveryBooking, setIsDiscoveryBooking] = useState<boolean>(false)
 	const { handleWhatsApp, isWhatsAppOptIn } = useContractorAuth()
-	const { isMobile } = useMemo(() => {
-		if (typeof window === 'undefined') return { isMobile: false }
-		return getSelectorsByUserAgent(window.navigator.userAgent)
-	}, [])
+	const isMobile = useMobile()
+
 	const router = useRouter()
 
 	useEffect(() => {

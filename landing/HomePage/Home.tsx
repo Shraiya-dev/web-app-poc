@@ -1,13 +1,8 @@
 import { Box, Stack, Typography } from '@mui/material'
-import { useMemo } from 'react'
-import { getSelectorsByUserAgent, useDeviceSelectors } from 'react-device-detect'
-import { Section, externalLinks, getCookie, sendAnalytics } from 'sdk'
+import { Section, externalLinks, getCookie, sendAnalytics, useMobile } from 'sdk'
 
 export const Home = () => {
-	const { isMobile } = useMemo(() => {
-		if (typeof window === 'undefined') return { isMobile: false }
-		return getSelectorsByUserAgent(window.navigator.userAgent)
-	}, [])
+	const isMobile = useMobile()
 	return (
 		<>
 			<Section
@@ -141,7 +136,7 @@ export const Home = () => {
 								(isMobile
 									? externalLinks.contractorDeepLinkApp
 									: externalLinks.contractorPlayStoreApp) +
-								+(getCookie('utmParams') || externalLinks.fixUtmForApp)
+								(getCookie('utmParams') || externalLinks.fixUtmForApp)
 							}
 							onClick={() => {
 								sendAnalytics({

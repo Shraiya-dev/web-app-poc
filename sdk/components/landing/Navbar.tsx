@@ -59,7 +59,7 @@ export const Navbar = () => {
 									<Box
 										component='img'
 										src={navbar.brandImage}
-										width={120}
+										width={150}
 										alt='ProjectHero'
 										// style={{ marginTop: 5 }}
 									/>
@@ -116,6 +116,9 @@ export const Navbar = () => {
 													</Box>
 													<Typography
 														variant='subtitle2'
+														sx={{
+															fontSize: 18,
+														}}
 														onClick={() => {
 															sendAnalytics({
 																action: 'ButtonClick',
@@ -147,6 +150,7 @@ export const Navbar = () => {
 														borderRadius: '20px !important',
 														mx: 2,
 														mt: 5,
+														fontSize: 18,
 														width: '100%',
 													})}
 													href={'/dashboard'}>
@@ -164,6 +168,7 @@ export const Navbar = () => {
 															color: 'common.white',
 															whiteSpace: 'nowrap',
 															width: '100%',
+															fontSize: 18,
 															justifyContent: 'flex-start',
 														})}
 														onClick={() => {
@@ -212,6 +217,7 @@ export const Navbar = () => {
 																		fontWeight: 700,
 																		color: '#fff',
 																		textAlign: 'left',
+																		fontSize: 18,
 																	})}
 																	size='small'>
 																	{val.label}
@@ -251,6 +257,9 @@ export const Navbar = () => {
 												name: 'callProjectHeroSupport',
 											})
 										}}
+										sx={{
+											fontSize: 18,
+										}}
 										color={'#fff'}
 										fontWeight={700}>
 										+91-{PHSupport.phoneNumber}
@@ -268,6 +277,7 @@ export const Navbar = () => {
 													startIcon={navItem?.icon}
 													sx={(theme) => ({
 														fontWeight: 700,
+														fontSize: 18,
 														color: 'common.white',
 														[theme.breakpoints.down('md')]: { display: 'none' },
 														whiteSpace: 'nowrap',
@@ -296,6 +306,7 @@ export const Navbar = () => {
 													startIcon={navItem?.icon}
 													sx={(theme) => ({
 														fontWeight: 700,
+														fontSize: 18,
 														color: primary.properDark,
 														[theme.breakpoints.down('md')]: { display: 'none' },
 														whiteSpace: 'nowrap',
@@ -319,6 +330,8 @@ export const Navbar = () => {
 												startIcon={navItem?.icon}
 												sx={(theme) => ({
 													fontWeight: 700,
+													fontSize: 18,
+
 													color: 'common.white',
 													[theme.breakpoints.down('md')]: { display: 'none' },
 													whiteSpace: 'nowrap',
@@ -345,6 +358,8 @@ export const Navbar = () => {
 											color='secondary'
 											sx={(theme) => ({
 												fontWeight: 700,
+												fontSize: 18,
+
 												[theme.breakpoints.down('md')]: {
 													display: 'none',
 												},
@@ -469,7 +484,7 @@ export const Navbar = () => {
 													metaData: { origin: 'navbar' },
 												})
 											}}
-											sx={{ fontWeight: 700, borderRadius: '8px !important' }}
+											sx={{ fontWeight: 700, fontSize: 18, borderRadius: '8px !important' }}
 											size='small'>
 											{navItem.label}
 										</LinkButton>
@@ -483,6 +498,7 @@ export const Navbar = () => {
 											fullWidth
 											sx={(theme) => ({
 												fontWeight: 700,
+												fontSize: 18,
 												color: 'common.white',
 												[theme.breakpoints.down('md')]: { display: 'none' },
 											})}
@@ -504,6 +520,7 @@ export const Navbar = () => {
 								sx={(theme) => ({
 									px: 4,
 									ml: 2,
+									fontSize: 18,
 									[theme.breakpoints.down('md')]: {
 										display: 'none',
 									},
