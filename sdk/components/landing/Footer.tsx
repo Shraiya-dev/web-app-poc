@@ -5,16 +5,20 @@ import YouTubeIcon from '@mui/icons-material/YouTube'
 import { Box, Divider, IconButton, Stack, Typography } from '@mui/material'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
+import { useMemo } from 'react'
+import { getSelectorsByUserAgent } from 'react-device-detect'
 import { getCookie } from 'sdk/analytics'
 import { ButtonClicked, sendAnalytics } from 'sdk/analytics/analyticsWrapper'
 import { PHSupport, externalLinks, footer } from 'sdk/data'
 import { useMobile } from 'sdk/hooks'
 import { HyperLink } from '../atomic'
 import { Section } from './Section'
-import { useDeviceSelectors } from 'react-device-detect'
 
 export const Footer = () => {
-	const [{ isMobile }] = useDeviceSelectors(window.navigator.userAgent)
+	const { isMobile } = useMemo(() => {
+		if (typeof window === 'undefined') return { isMobile: false }
+		return getSelectorsByUserAgent(window.navigator.userAgent)
+	}, [])
 
 	const isUIMobile = useMobile()
 	const router = useRouter()

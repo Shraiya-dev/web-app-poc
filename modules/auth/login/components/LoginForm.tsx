@@ -2,12 +2,12 @@ import LoadingButton from '@mui/lab/LoadingButton'
 import { Box, Button, Checkbox, FormControlLabel, Stack, styled, Typography } from '@mui/material'
 
 import { useRouter } from 'next/router'
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { InputWrapper } from 'sdkv2/components'
 import { checkError, externalLinks, getCookie, primary, sendAnalytics, useContractorAuth } from '../../../../sdk'
 import { PhoneField } from '../../../../sdk/components/Input/PhoneField'
 import useLogin from '../hooks/useLogin'
-import { useDeviceSelectors } from 'react-device-detect'
+import { getSelectorsByUserAgent, useDeviceSelectors } from 'react-device-detect'
 
 const CustomLoginStyles = styled(Box)(({ theme }) => ({
 	display: 'flex',
@@ -45,7 +45,10 @@ export const LoginForm = ({ ...props }) => {
 	const { isOtpSent, setIsOtpSent, fromHome } = props
 	const [isDiscoveryBooking, setIsDiscoveryBooking] = useState<boolean>(false)
 	const { handleWhatsApp, isWhatsAppOptIn } = useContractorAuth()
-	const [{ isMobile }] = useDeviceSelectors(window.navigator.userAgent)
+	const { isMobile } = useMemo(() => {
+		if (typeof window === 'undefined') return { isMobile: false }
+		return getSelectorsByUserAgent(window.navigator.userAgent)
+	}, [])
 	const router = useRouter()
 
 	useEffect(() => {

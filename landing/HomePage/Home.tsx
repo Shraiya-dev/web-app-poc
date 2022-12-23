@@ -1,9 +1,13 @@
 import { Box, Stack, Typography } from '@mui/material'
-import { useDeviceSelectors } from 'react-device-detect'
+import { useMemo } from 'react'
+import { getSelectorsByUserAgent, useDeviceSelectors } from 'react-device-detect'
 import { Section, externalLinks, getCookie, sendAnalytics } from 'sdk'
 
 export const Home = () => {
-	const [{ isMobile }] = useDeviceSelectors(window.navigator.userAgent)
+	const { isMobile } = useMemo(() => {
+		if (typeof window === 'undefined') return { isMobile: false }
+		return getSelectorsByUserAgent(window.navigator.userAgent)
+	}, [])
 	return (
 		<>
 			<Section
