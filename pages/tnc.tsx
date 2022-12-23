@@ -1,4 +1,5 @@
 import { GetStaticProps, NextPage } from 'next'
+import Link from 'next/link'
 import { LandingLayout, Section } from 'sdk'
 import { staticRenderingProvider } from 'sdk/utils/nextHelper'
 
@@ -146,9 +147,11 @@ const TnC: NextPage = () => {
 							</p>
 							<p>
 								For more detail, please review our{' '}
-								<a href='/refund-policy'>
-									<strong>Refund Policy</strong>
-								</a>
+								<Link href='/refund-policy' passHref>
+									<a>
+										<strong>Refund Policy</strong>
+									</a>
+								</Link>
 								.
 							</p>
 							<h3>SECTION 7 - OPTIONAL TOOLS</h3>
