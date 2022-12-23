@@ -7,6 +7,7 @@ import { InputWrapper } from 'sdkv2/components'
 import { checkError, externalLinks, getCookie, primary, sendAnalytics, useContractorAuth } from '../../../../sdk'
 import { PhoneField } from '../../../../sdk/components/Input/PhoneField'
 import useLogin from '../hooks/useLogin'
+import { useDeviceSelectors } from 'react-device-detect'
 
 const CustomLoginStyles = styled(Box)(({ theme }) => ({
 	display: 'flex',
@@ -44,7 +45,7 @@ export const LoginForm = ({ ...props }) => {
 	const { isOtpSent, setIsOtpSent, fromHome } = props
 	const [isDiscoveryBooking, setIsDiscoveryBooking] = useState<boolean>(false)
 	const { handleWhatsApp, isWhatsAppOptIn } = useContractorAuth()
-
+	const [{ isMobile }] = useDeviceSelectors(window.navigator.userAgent)
 	const router = useRouter()
 
 	useEffect(() => {
@@ -139,7 +140,12 @@ export const LoginForm = ({ ...props }) => {
 							{isRegister ? `Already have an account?` : `Don't have an account?`}
 						</Typography>
 						<a
-							href={externalLinks.contractorApp + (getCookie('utmParams') || externalLinks.fixUtmForApp)}
+							href={
+								(isMobile
+									? externalLinks.contractorDeepLinkApp
+									: externalLinks.contractorPlayStoreApp) +
+								(getCookie('utmParams') || externalLinks.fixUtmForApp)
+							}
 							onClick={() => {
 								sendAnalytics({
 									name: 'contractorAppPlayStore',
