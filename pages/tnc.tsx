@@ -1,4 +1,5 @@
 import { GetStaticProps, NextPage } from 'next'
+import Link from 'next/link'
 import { LandingLayout, Section } from 'sdk'
 import { staticRenderingProvider } from 'sdk/utils/nextHelper'
 
@@ -13,10 +14,10 @@ const TnC: NextPage = () => {
 							<h3>OVERVIEW</h3>
 							<p>
 								This website is operated by <strong>Hard Hat Technologies Pvt Ltd.</strong>Throughout
-								the site, the terms “we”, “us” and “our” refer to Hard
-								<strong> Hat Technologies Pvt Ltd. Hard Hat Technologies Pvt Ltd </strong>offers this
-								website, including all information, tools and services available from this site to you,
-								the user, conditioned upon your acceptance of all terms, conditions, policies and
+								the site, the terms “we”, “us” and “our” refer to{' '}
+								<strong>Hard Hat Technologies Pvt Ltd. Hard Hat Technologies Pvt Ltd </strong>offers
+								this website, including all information, tools and services available from this site to
+								you, the user, conditioned upon your acceptance of all terms, conditions, policies and
 								notices stated here.
 							</p>
 							<p>
@@ -146,9 +147,11 @@ const TnC: NextPage = () => {
 							</p>
 							<p>
 								For more detail, please review our{' '}
-								<a href='/refunds-policy'>
-									<strong>Returns Policy</strong>
-								</a>
+								<Link href='/refund-policy' passHref>
+									<a>
+										<strong>Refund Policy</strong>
+									</a>
+								</Link>
 								.
 							</p>
 							<h3>SECTION 7 - OPTIONAL TOOLS</h3>

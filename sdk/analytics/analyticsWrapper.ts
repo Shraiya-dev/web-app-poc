@@ -163,6 +163,8 @@ const EventTypes = {
 
 	CreateEasyBookWorker: 'Create Easy Book Worker',
 	heroAppPlayStore: 'Open HeroApp Play Store',
+	contractorAppPlayStore: 'Open contractorApp Play Store',
+
 	howItWorks: 'How It Works',
 	requestPhoneOtp: 'Request Phone OTP',
 	verifiedPhoneOtp: 'verified Phone OTP',

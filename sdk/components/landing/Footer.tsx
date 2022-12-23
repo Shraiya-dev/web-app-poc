@@ -1,42 +1,42 @@
-import { Stack, Box, Typography, Button, Divider, Grid, IconButton } from '@mui/material'
+import FacebookIcon from '@mui/icons-material/Facebook'
+import InstagramIcon from '@mui/icons-material/Instagram'
+import LinkedInIcon from '@mui/icons-material/LinkedIn'
+import YouTubeIcon from '@mui/icons-material/YouTube'
+import { Box, Divider, IconButton, Stack, Typography } from '@mui/material'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
-import { DataLayerPush, getCookie } from 'sdk/analytics'
+import { getCookie } from 'sdk/analytics'
 import { ButtonClicked, sendAnalytics } from 'sdk/analytics/analyticsWrapper'
-import { AppStoreImage } from 'sdk/constants'
-import { externalLinks, footer, PHSupport } from 'sdk/data'
+import { PHSupport, externalLinks, footer } from 'sdk/data'
 import { useMobile } from 'sdk/hooks'
 import { HyperLink } from '../atomic'
-import { LinkButton } from '../button'
-import { Section, SectionProps } from './Section'
-import InstagramIcon from '@mui/icons-material/Instagram'
-import FacebookIcon from '@mui/icons-material/Facebook'
-import TwitterIcon from '@mui/icons-material/Twitter'
-import LinkedInIcon from '@mui/icons-material/LinkedIn'
+import { Section } from './Section'
 
 export const Footer = () => {
 	const isMobile = useMobile()
+
+	const isUIMobile = useMobile()
 	const router = useRouter()
 	return (
 		<Section backgroundColor='#000000'>
-			{!isMobile ? (
+			{!isUIMobile ? (
 				<>
 					<Stack
 						direction={'row'}
 						spacing={2}
-						pt={isMobile ? 2 : 1}
+						pt={isUIMobile ? 2 : 1}
 						justifyContent={'space-between'}
 						alignItems={'center'}>
 						<Stack
-							direction={isMobile ? 'row' : 'column'}
+							direction={isUIMobile ? 'row' : 'column'}
 							justifyContent='space-between'
 							alignItems={'center'}>
 							<Stack direction={'column'}>
 								<HyperLink href='/'>
 									<Image
 										src={footer.brandImage}
-										width={isMobile ? 150 : 300}
-										height={isMobile ? 50 : 140}
+										width={isUIMobile ? 150 : 300}
+										height={isUIMobile ? 50 : 140}
 										alt='ProjectHero'
 									/>
 								</HyperLink>
@@ -48,7 +48,7 @@ export const Footer = () => {
 										fontSize={{ xs: '20px', md: '24px' }}>
 										{footer.tagLine}
 									</Typography>
-									<LinkButton
+									{/* <LinkButton
 										href='/#book-worker'
 										onClick={() => {
 											DataLayerPush({ event: 'book_hero_home_footer' })
@@ -67,23 +67,55 @@ export const Footer = () => {
 											fontSize: { xs: 16, md: 20 },
 										}}>
 										Job Post Karen
-									</LinkButton>
+									</LinkButton> */}
 								</Stack>
 							</Stack>
-							<Stack mt={'40px'} direction={'column'} alignItems={'flex-start'} width={'100%'}>
-								<Typography
-									color={'#fff'}
-									sx={{
-										fontFamily: 'Karla ,sans-serif',
-										fontSize: { xs: '16px', md: '24px' },
-										fontWeight: 400,
-									}}>
-									Download Now!
-								</Typography>
+							<Stack mt={'40px'} direction={'row'} alignItems={'flex-start'} width={'100%'}>
 								<Box mt={'20px'} sx={{ cursor: 'pointer' }}>
+									<Typography variant='h5' fontSize={'16px'} color={'#fff'}>
+										Contractor App
+									</Typography>
 									<a
 										href={
-											externalLinks.heroApp +
+											(isMobile
+												? externalLinks.contractorDeepLinkApp
+												: externalLinks.contractorPlayStoreApp) +
+											(getCookie('utmParams') || externalLinks.fixUtmForApp)
+										}
+										onClick={() => {
+											sendAnalytics({
+												name: 'contractorAppPlayStore',
+												action: 'ButtonClick',
+												metaData: {
+													origin: 'Footer',
+												},
+											})
+										}}
+										target='_blank'
+										rel='noopener noreferrer'>
+										<Box
+											component={'img'}
+											height={44}
+											width={152}
+											mt={'8px'}
+											src='/assets/landingv2/heroSection/googlebutton.svg'
+											alt=''
+										/>
+									</a>
+								</Box>
+								<Divider
+									orientation='vertical'
+									sx={{ mx: '16px', border: '0.1px solid #fff', height: 80, mt: '20px' }}
+								/>
+								<Box mt={'20px'} sx={{ cursor: 'pointer' }}>
+									<Typography variant='h5' fontSize={'16px'} color={'#fff'}>
+										Worker App
+									</Typography>
+									<a
+										href={
+											(isMobile
+												? externalLinks.heroDeepLinkApp
+												: externalLinks.heroPlayStoreApp) +
 											(getCookie('utmParams') || externalLinks.fixUtmForApp)
 										}
 										onClick={() => {
@@ -97,7 +129,14 @@ export const Footer = () => {
 										}}
 										target='_blank'
 										rel='noopener noreferrer'>
-										<img src='/assets/landingv2/heroSection/googlebutton.svg' alt='' />
+										<Box
+											component={'img'}
+											height={44}
+											width={152}
+											mt={'8px'}
+											src='/assets/landingv2/heroSection/googlebutton.svg'
+											alt=''
+										/>
 									</a>
 								</Box>
 							</Stack>
@@ -117,9 +156,8 @@ export const Footer = () => {
 								fontFamily={'Karla ,sans-serif'}
 								fontWeight={500}
 								fontSize={{ xs: '16px', md: '18px' }}>
-								Please feel free to reach out to our
-								<Box component={'br'} /> customer support from 9 Am-6 PM on <Box component={'br'} />
-								weekdays.
+								Please feel free to reach out to our customer
+								<Box component={'br'} /> support from 9 AM - 6 PM on weekdays.
 							</Typography>
 							{/* {isMobile && (
 						<Grid container direction={'row'} flexWrap={'wrap'}>
@@ -192,12 +230,12 @@ export const Footer = () => {
 					</Stack>
 					<Stack direction={'row'} justifyContent='space-between' alignItems={'center'} mt={8}>
 						<Box>
-							{isMobile ? (
+							{isUIMobile ? (
 								<HyperLink href='/'>
 									<Image
 										src={footer.brandImage}
-										width={isMobile ? 100 : 200}
-										height={isMobile ? 30 : 70}
+										width={isUIMobile ? 100 : 200}
+										height={isUIMobile ? 30 : 70}
 										alt='ProjectHero'
 									/>
 								</HyperLink>
@@ -236,11 +274,11 @@ export const Footer = () => {
 											<InstagramIcon sx={{ color: '#fff' }} />
 										</a>
 									</IconButton>
-									{/* <IconButton>
-											<a href='' target='blank'>
-												<TwitterIcon sx={{ color: '#fff' }} />
-											</a>
-										</IconButton> */}
+									<IconButton>
+										<a href={externalLinks.youtube} target='blank'>
+											<YouTubeIcon sx={{ color: '#fff' }} />
+										</a>
+									</IconButton>
 									<IconButton>
 										<a href={externalLinks.linkedIn} target='blank'>
 											<LinkedInIcon sx={{ color: '#fff' }} />
@@ -263,41 +301,18 @@ export const Footer = () => {
 							<HyperLink href='/'>
 								<Image
 									src={footer.brandImage}
-									width={isMobile ? 150 : 300}
-									height={isMobile ? 50 : 140}
+									width={isUIMobile ? 150 : 300}
+									height={isUIMobile ? 50 : 140}
 									alt='ProjectHero'
 								/>
 							</HyperLink>
 
 							<Stack flex={1} direction='column' alignItems='flex-start' spacing={4}>
-								<Typography variant={isMobile ? 'h4' : 'h3'} color={footer.textColor}>
+								<Typography variant={isUIMobile ? 'h4' : 'h3'} color={footer.textColor}>
 									{footer.tagLine}
 								</Typography>
 							</Stack>
 						</Box>
-					</Stack>
-					<Stack direction={'row'} justifyContent={'flex-start'} mt={4}>
-						<LinkButton
-							href='/#book-worker'
-							onClick={() => {
-								DataLayerPush({ event: 'book_workers_now_footer' })
-								sendAnalytics({
-									name: 'postJobNow',
-									action: 'ButtonClick',
-									metaData: {
-										origin: 'Footer',
-									},
-								})
-							}}
-							variant='contained'
-							sx={{
-								fontSize: { md: '20px', xs: '14px' },
-								p: '8px 40px',
-								fontWeight: 500,
-								fontFamily: 'Karla ,sans-serif',
-							}}>
-							Job Post Karen
-						</LinkButton>
 					</Stack>
 					<Stack direction={'column'} mt={6}>
 						<Typography
@@ -318,7 +333,7 @@ export const Footer = () => {
 								fontFamily={'Karla ,sans-serif'}
 								fontWeight={500}
 								fontSize={{ xs: '16px', md: '18px' }}>
-								Please feel free to reach out to our customer support from 9 Am-6 PM on weekdays.
+								Please feel free to reach out to our customer support from 9 AM - 6 PM on weekdays.
 							</Typography>
 						</Box>
 					</Stack>
@@ -362,48 +377,86 @@ export const Footer = () => {
 							</Typography>
 						</Stack>
 					</Stack>
-					<Stack direction={'column'} alignItems='flex-start' mt={8}>
-						<Typography
-							color={'#fff'}
-							sx={{
-								fontFamily: 'Karla ,sans-serif',
-								fontSize: { xs: '16px', md: '24px' },
-								fontWeight: 400,
-							}}>
-							Download Now!
-						</Typography>
-						<Box mt={'20px'} sx={{ cursor: 'pointer', width: '45%' }}>
+					<Stack mt={'40px'} direction={'row'} alignItems={'flex-start'} width={'100%'}>
+						<Box mt={'20px'} sx={{ cursor: 'pointer' }}>
+							<Typography variant='h5' fontSize={'16px'} color={'#fff'}>
+								Contractor App
+							</Typography>
 							<a
-								href={externalLinks.heroApp + (getCookie('utmParams') || externalLinks.fixUtmForApp)}
+								href={
+									(isMobile
+										? externalLinks.contractorDeepLinkApp
+										: externalLinks.contractorPlayStoreApp) +
+									(getCookie('utmParams') || externalLinks.fixUtmForApp)
+								}
 								onClick={() => {
-									ButtonClicked({
-										page: document.title,
-										action: 'App store link',
-										url: router.asPath,
+									sendAnalytics({
+										name: 'contractorAppPlayStore',
+										action: 'ButtonClick',
+										metaData: {
+											origin: 'Footer',
+										},
 									})
 								}}
 								target='_blank'
 								rel='noopener noreferrer'>
-								<img
-									height={'100%'}
-									width={'100%'}
+								<Box
+									component={'img'}
+									height={44}
+									width={152}
+									mt={'8px'}
+									src='/assets/landingv2/heroSection/googlebutton.svg'
+									alt=''
+								/>
+							</a>
+						</Box>
+						<Divider
+							orientation='vertical'
+							sx={{ mx: '16px', border: '0.1px solid #fff', height: 80, mt: '20px' }}
+						/>
+						<Box mt={'20px'} sx={{ cursor: 'pointer' }}>
+							<Typography variant='h5' fontSize={'16px'} color={'#fff'}>
+								Worker App
+							</Typography>
+							<a
+								href={
+									(isMobile ? externalLinks.heroDeepLinkApp : externalLinks.heroPlayStoreApp) +
+									(getCookie('utmParams') || externalLinks.fixUtmForApp)
+								}
+								onClick={() => {
+									sendAnalytics({
+										name: 'heroAppPlayStore',
+										action: 'ButtonClick',
+										metaData: {
+											origin: 'Footer',
+										},
+									})
+								}}
+								target='_blank'
+								rel='noopener noreferrer'>
+								<Box
+									component={'img'}
+									height={44}
+									width={152}
+									mt={'8px'}
 									src='/assets/landingv2/heroSection/googlebutton.svg'
 									alt=''
 								/>
 							</a>
 						</Box>
 					</Stack>
-					<Stack direction={'row'} mt={6}>
+					<Divider sx={{ border: '1px dashed #fff', my: '24px' }} />
+					<Stack direction={'row'}>
 						<IconButton>
 							<a href={externalLinks.instaGram} target='blank'>
 								<InstagramIcon sx={{ color: '#fff' }} />
 							</a>
 						</IconButton>
-						{/* <IconButton>
-							<a href='' target='blank'>
-								<TwitterIcon sx={{ color: '#fff' }} />
+						<IconButton>
+							<a href={externalLinks.youtube} target='blank'>
+								<YouTubeIcon sx={{ color: '#fff' }} />
 							</a>
-						</IconButton> */}
+						</IconButton>
 						<IconButton>
 							<a href={externalLinks.linkedIn} target='blank'>
 								<LinkedInIcon sx={{ color: '#fff' }} />

@@ -2,11 +2,20 @@ import LoadingButton from '@mui/lab/LoadingButton'
 import { Box, Button, Checkbox, FormControlLabel, Stack, styled, Typography } from '@mui/material'
 
 import { useRouter } from 'next/router'
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { InputWrapper } from 'sdkv2/components'
-import { checkError, getCookie, primary, useContractorAuth } from '../../../../sdk'
+import {
+	checkError,
+	externalLinks,
+	getCookie,
+	primary,
+	sendAnalytics,
+	useContractorAuth,
+	useMobile,
+} from '../../../../sdk'
 import { PhoneField } from '../../../../sdk/components/Input/PhoneField'
 import useLogin from '../hooks/useLogin'
+import { getSelectorsByUserAgent, useDeviceSelectors } from 'react-device-detect'
 
 const CustomLoginStyles = styled(Box)(({ theme }) => ({
 	display: 'flex',
@@ -44,6 +53,7 @@ export const LoginForm = ({ ...props }) => {
 	const { isOtpSent, setIsOtpSent, fromHome } = props
 	const [isDiscoveryBooking, setIsDiscoveryBooking] = useState<boolean>(false)
 	const { handleWhatsApp, isWhatsAppOptIn } = useContractorAuth()
+	const isMobile = useMobile()
 
 	const router = useRouter()
 
@@ -135,22 +145,36 @@ export const LoginForm = ({ ...props }) => {
 					</LoadingButton>
 
 					<Stack className='register' direction={'row'} style={{ cursor: 'pointer' }}>
-						<Typography color={primary?.properDark}>
+						<Typography color={primary?.properDark} mr={1}>
 							{isRegister ? `Already have an account?` : `Don't have an account?`}
 						</Typography>
-						<Button
-							onClick={handleLogin}
-							variant='text'
-							//disabled={!form.isValid}
-							style={{
-								textDecoration: 'underline',
-								cursor: 'pointer',
-								color: 'primary.main',
-								padding: 0,
-								fontSize: 14,
-							}}>
-							{isRegister ? 'Login' : 'Register'}
-						</Button>
+						<a
+							href={
+								(isMobile
+									? externalLinks.contractorDeepLinkApp
+									: externalLinks.contractorPlayStoreApp) +
+								(getCookie('utmParams') || externalLinks.fixUtmForApp)
+							}
+							onClick={() => {
+								sendAnalytics({
+									name: 'contractorAppPlayStore',
+									action: 'ButtonClick',
+									metaData: {
+										origin: 'Login Dialog',
+									},
+								})
+							}}
+							target='_blank'
+							rel='noopener noreferrer'>
+							<Box
+								color={'primary.main'}
+								sx={{
+									textDecoration: 'underline',
+									fontSize: 14,
+								}}>
+								Download App
+							</Box>
+						</a>
 					</Stack>
 				</Stack>
 			</CustomLoginStyles>

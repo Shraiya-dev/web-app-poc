@@ -71,11 +71,10 @@ const WorkerTracking = ({ handleRequiredTotal }: handleLength) => {
 	]
 
 	const workerCardStatusFilterOptions: { label: string; value: WORKER_APPLICATION_STATUS }[] = [
-		{ label: `Could not connect`, value: WORKER_APPLICATION_STATUS.COULD_NOT_CONNECT },
+		{ label: `To Review`, value: WORKER_APPLICATION_STATUS.TO_REVIEW },
 		{ label: `Hired`, value: WORKER_APPLICATION_STATUS.HIRED },
-		{ label: `In progress`, value: WORKER_APPLICATION_STATUS.IN_PROGRESS },
+		{ label: `Shortlisted`, value: WORKER_APPLICATION_STATUS.SHORTLISTED },
 		{ label: `Rejected`, value: WORKER_APPLICATION_STATUS.REJECTED },
-		{ label: `Work Started`, value: WORKER_APPLICATION_STATUS.WORK_STARTED },
 	]
 
 	useEffect(() => {

@@ -109,7 +109,7 @@ export const useBookingId = () => {
 
 			try {
 				const res = await axios.post(
-					`/gateway/customer-api/projects/${projectId}/bookings/${bookingId}/job-cards/${jobCard?.jobCardId}/contractor-feedback`,
+					`/gateway/customer-api/projects/${projectId}/bookings/${bookingId}/job-cards/${jobCard?.jobCardId}/job-card-status`,
 					{ code: value }
 				)
 				let pageNumber = `${Number(router.query.pageNumber) > 0 ? Number(router.query.pageNumber) - 1 : '0'}`

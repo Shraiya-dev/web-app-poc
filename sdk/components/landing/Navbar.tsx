@@ -59,34 +59,10 @@ export const Navbar = () => {
 									<Box
 										component='img'
 										src={navbar.brandImage}
-										width={120}
+										width={150}
 										alt='ProjectHero'
 										// style={{ marginTop: 5 }}
 									/>
-								</Link>
-
-								<Link href='/' passHref>
-									<Stack direction='row' alignItems={'center'} spacing={1}>
-										<Box
-											component='img'
-											src='/assets/icons/phone.svg'
-											width={23}
-											alt='ProjectHero'
-											// style={{ marginTop: 5 }}
-										/>
-										<Typography
-											variant='subtitle2'
-											onClick={() => {
-												sendAnalytics({
-													action: 'ButtonClick',
-													name: 'callProjectHeroSupport',
-												})
-											}}
-											color={'#fff'}
-											fontWeight={700}>
-											+91-{PHSupport.phoneNumber}
-										</Typography>
-									</Stack>
 								</Link>
 							</Stack>
 							<Stack direction={'row'} justifyContent={'flex-end'} alignItems={'center'} spacing={2.5}>
@@ -140,6 +116,9 @@ export const Navbar = () => {
 													</Box>
 													<Typography
 														variant='subtitle2'
+														sx={{
+															fontSize: 18,
+														}}
 														onClick={() => {
 															sendAnalytics({
 																action: 'ButtonClick',
@@ -171,6 +150,8 @@ export const Navbar = () => {
 														borderRadius: '20px !important',
 														mx: 2,
 														mt: 5,
+														fontSize: 18,
+														width: '100%',
 													})}
 													href={'/dashboard'}>
 													Dashboard
@@ -180,13 +161,15 @@ export const Navbar = () => {
 													<LinkButton
 														variant='text'
 														color='info'
-														startIcon={<img src={'/assets/landingv2/user.svg'} />}
 														sx={(theme) => ({
 															mx: 2,
 															mt: 2,
 															fontWeight: 700,
 															color: 'common.white',
 															whiteSpace: 'nowrap',
+															width: '100%',
+															fontSize: 18,
+															justifyContent: 'flex-start',
 														})}
 														onClick={() => {
 															sendAnalytics({
@@ -200,9 +183,10 @@ export const Navbar = () => {
 													<Divider
 														sx={{
 															my: 2,
-															background: '#f7f7f7',
-															border: '1px solid #4c4c4c',
+															background: 'transparent',
+															borderTop: '2px dashed #ffffff',
 															zIndex: '0',
+															mx: 2,
 														}}
 													/>
 												</>
@@ -233,6 +217,7 @@ export const Navbar = () => {
 																		fontWeight: 700,
 																		color: '#fff',
 																		textAlign: 'left',
+																		fontSize: 18,
 																	})}
 																	size='small'>
 																	{val.label}
@@ -240,63 +225,6 @@ export const Navbar = () => {
 															)
 														}
 													})}
-												</Stack>
-												{/* <Stack direction={'row'} spacing={1}>
-												<Box height={23} width={23}>
-													<img
-														height={'100%'}
-														width={'100%'}
-														src='/assets/icons/mail.svg'
-														alt=''
-													/>
-												</Box>
-												<Typography variant='subtitle2' color={'#fff'} fontWeight={700}>
-													marketing@projecthero.in
-												</Typography>
-											</Stack> */}
-												<Stack direction={'row'} spacing={1}>
-													<Box height={23} width={23}>
-														<img
-															height={'100%'}
-															width={'100%'}
-															src='/assets/icons/mail.svg'
-															alt=''
-														/>
-													</Box>
-													<Typography
-														variant='subtitle2'
-														onClick={() => {
-															sendAnalytics({
-																action: 'ButtonClick',
-																name: 'mailProjectHeroSupport',
-															})
-														}}
-														color={'#fff'}
-														fontWeight={700}>
-														marketing@projecthero.in
-													</Typography>
-												</Stack>
-												<Stack direction={'row'} spacing={1}>
-													<Box height={23} width={23}>
-														<img
-															height={'100%'}
-															width={'100%'}
-															src='/assets/icons/phone.svg'
-															alt=''
-														/>
-													</Box>
-													<Typography
-														variant='subtitle2'
-														onClick={() => {
-															sendAnalytics({
-																action: 'ButtonClick',
-																name: 'callProjectHeroSupport',
-															})
-														}}
-														color={'#fff'}
-														fontWeight={700}>
-														+91-{PHSupport.phoneNumber}
-													</Typography>
 												</Stack>
 											</Stack>
 										</List>
@@ -312,6 +240,32 @@ export const Navbar = () => {
 							}}
 							spacing={{ xs: 0, md: 2 }}
 							alignItems='center'>
+							<Link href='/' passHref>
+								<Stack direction='row' alignItems={'center'} spacing={1} mr={1}>
+									<Box
+										component='img'
+										src='/assets/icons/phone.svg'
+										width={23}
+										alt='ProjectHero'
+										// style={{ marginTop: 5 }}
+									/>
+									<Typography
+										variant='subtitle2'
+										onClick={() => {
+											sendAnalytics({
+												action: 'ButtonClick',
+												name: 'callProjectHeroSupport',
+											})
+										}}
+										sx={{
+											fontSize: 18,
+										}}
+										color={'#fff'}
+										fontWeight={700}>
+										+91-{PHSupport.phoneNumber}
+									</Typography>
+								</Stack>
+							</Link>
 							{navbar.navLinks.map((navItem, i) => {
 								if (navItem.type === 'button_link') {
 									if (navItem.label === 'Login') {
@@ -323,6 +277,7 @@ export const Navbar = () => {
 													startIcon={navItem?.icon}
 													sx={(theme) => ({
 														fontWeight: 700,
+														fontSize: 18,
 														color: 'common.white',
 														[theme.breakpoints.down('md')]: { display: 'none' },
 														whiteSpace: 'nowrap',
@@ -351,6 +306,7 @@ export const Navbar = () => {
 													startIcon={navItem?.icon}
 													sx={(theme) => ({
 														fontWeight: 700,
+														fontSize: 18,
 														color: primary.properDark,
 														[theme.breakpoints.down('md')]: { display: 'none' },
 														whiteSpace: 'nowrap',
@@ -374,6 +330,8 @@ export const Navbar = () => {
 												startIcon={navItem?.icon}
 												sx={(theme) => ({
 													fontWeight: 700,
+													fontSize: 18,
+
 													color: 'common.white',
 													[theme.breakpoints.down('md')]: { display: 'none' },
 													whiteSpace: 'nowrap',
@@ -400,6 +358,8 @@ export const Navbar = () => {
 											color='secondary'
 											sx={(theme) => ({
 												fontWeight: 700,
+												fontSize: 18,
+
 												[theme.breakpoints.down('md')]: {
 													display: 'none',
 												},
@@ -524,7 +484,7 @@ export const Navbar = () => {
 													metaData: { origin: 'navbar' },
 												})
 											}}
-											sx={{ fontWeight: 700, borderRadius: '8px !important' }}
+											sx={{ fontWeight: 700, fontSize: 18, borderRadius: '8px !important' }}
 											size='small'>
 											{navItem.label}
 										</LinkButton>
@@ -538,6 +498,7 @@ export const Navbar = () => {
 											fullWidth
 											sx={(theme) => ({
 												fontWeight: 700,
+												fontSize: 18,
 												color: 'common.white',
 												[theme.breakpoints.down('md')]: { display: 'none' },
 											})}
@@ -551,6 +512,29 @@ export const Navbar = () => {
 								}
 							})}
 						</NavWrapper>
+
+						{!user && (
+							<LinkButton
+								variant='contained'
+								color='primary'
+								sx={(theme) => ({
+									px: 4,
+									ml: 2,
+									fontSize: 18,
+									[theme.breakpoints.down('md')]: {
+										display: 'none',
+									},
+								})}
+								onClick={() => {
+									sendAnalytics({
+										name: 'navbarLogin',
+										action: 'ButtonClick',
+									})
+									openLoginDialog()
+								}}>
+								Login
+							</LinkButton>
+						)}
 					</Toolbar>
 				</Container>
 			</AppBar>

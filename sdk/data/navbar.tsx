@@ -21,11 +21,11 @@ export const navbar: Navbar = {
 			label: 'Home',
 			link: '/',
 		},
-		{
-			type: 'text_link',
-			label: 'How it works?',
-			link: '/how-it-works',
-		},
+		// {
+		// 	type: 'text_link',
+		// 	label: 'How it works?',
+		// 	link: '/how-it-works',
+		// },
 		// {
 		// 	type: 'text_link',
 		// 	label: 'About us',
@@ -43,12 +43,12 @@ export const navbar: Navbar = {
 			link: `tel:+91-${PHSupport.phoneNumber}`,
 		},
 
-		{
-			type: 'button_link',
-			label: 'Login',
-			icon: <img src={'/assets/landingv2/user.svg'} />,
-			link: '/',
-		},
+		// {
+		// 	type: 'button_link',
+		// 	label: 'Login',
+		// 	icon: <img src={'/assets/landingv2/user.svg'} />,
+		// 	link: '/',
+		// },
 
 		{
 			type: 'button_link',

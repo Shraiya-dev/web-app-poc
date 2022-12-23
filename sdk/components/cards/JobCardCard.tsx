@@ -17,21 +17,15 @@ interface JobCardCardProps {
 }
 
 const ApplicationStatusColorMap: { [key in WORKER_APPLICATION_STATUS]: string } = {
-	[WORKER_APPLICATION_STATUS.COULD_NOT_CONNECT]: '#F69E5433',
-	[WORKER_APPLICATION_STATUS.WORK_STARTED]: '#EFC41A4D',
+	[WORKER_APPLICATION_STATUS.SHORTLISTED]: '#F69E5433',
+	[WORKER_APPLICATION_STATUS.TO_REVIEW]: '#EFC41A4D',
 	[WORKER_APPLICATION_STATUS.HIRED]: '#0FAF7F33',
 	[WORKER_APPLICATION_STATUS.REJECTED]: '#EA5A4D33',
-	[WORKER_APPLICATION_STATUS.INCORRECT_PROFILE]: '#EA5A4D33',
-	[WORKER_APPLICATION_STATUS.IN_PROGRESS]: '#F69E5433',
 }
 const ApplicationStatusOptions: { label: string; value: WORKER_APPLICATION_STATUS }[] = [
 	{
-		label: WorkerApplicationStatusLabel[WORKER_APPLICATION_STATUS.COULD_NOT_CONNECT],
-		value: WORKER_APPLICATION_STATUS.COULD_NOT_CONNECT,
-	},
-	{
-		label: WorkerApplicationStatusLabel[WORKER_APPLICATION_STATUS.WORK_STARTED],
-		value: WORKER_APPLICATION_STATUS.WORK_STARTED,
+		label: WorkerApplicationStatusLabel[WORKER_APPLICATION_STATUS.SHORTLISTED],
+		value: WORKER_APPLICATION_STATUS.SHORTLISTED,
 	},
 	{
 		label: WorkerApplicationStatusLabel[WORKER_APPLICATION_STATUS.HIRED],
@@ -42,19 +36,16 @@ const ApplicationStatusOptions: { label: string; value: WORKER_APPLICATION_STATU
 		value: WORKER_APPLICATION_STATUS.REJECTED,
 	},
 	{
-		label: WorkerApplicationStatusLabel[WORKER_APPLICATION_STATUS.INCORRECT_PROFILE],
-		value: WORKER_APPLICATION_STATUS.INCORRECT_PROFILE,
-	},
-	{
-		label: WorkerApplicationStatusLabel[WORKER_APPLICATION_STATUS.IN_PROGRESS],
-		value: WORKER_APPLICATION_STATUS.IN_PROGRESS,
+		label: WorkerApplicationStatusLabel[WORKER_APPLICATION_STATUS.TO_REVIEW],
+		value: WORKER_APPLICATION_STATUS.TO_REVIEW,
 	},
 ]
 
 export const JobCardCard = ({ jobCard, updateJobCard }: JobCardCardProps) => {
 	const [ConfirmationDialogProps, setConfirmationDialogProps] = useState({
-		title: 'Incorrect Profile?',
-		caption: 'We will replace this card with another suitable worker',
+		title: 'Rejection Confirmation',
+		caption:
+			'Aap reject karna chahte hai? Aap ye aage jaake waapsa badal nahi paayenge aur na hi kabhi iss worker se contact kar paayenge.',
 		open: false,
 		confirm: () => {},
 	})
@@ -128,7 +119,7 @@ export const JobCardCard = ({ jobCard, updateJobCard }: JobCardCardProps) => {
 												jobCard,
 											},
 										})
-										if (value === WORKER_APPLICATION_STATUS.INCORRECT_PROFILE) {
+										if (value === WORKER_APPLICATION_STATUS.REJECTED) {
 											setConfirmationDialogProps((p) => ({
 												...p,
 												open: true,
@@ -139,12 +130,7 @@ export const JobCardCard = ({ jobCard, updateJobCard }: JobCardCardProps) => {
 										}
 									}}
 									sx={{
-										backgroundColor: jobCard.contractorFeedbackCode
-											? ApplicationStatusColorMap[
-													jobCard.contractorFeedbackCode ??
-														WORKER_APPLICATION_STATUS.COULD_NOT_CONNECT
-											  ]
-											: '#0000000D',
+										backgroundColor: '#0000000D',
 										borderRadius: 30,
 										'>div': {
 											color: '#000000',
@@ -153,20 +139,10 @@ export const JobCardCard = ({ jobCard, updateJobCard }: JobCardCardProps) => {
 											py: 1,
 										},
 										'&:hover': {
-											backgroundColor: jobCard.contractorFeedbackCode
-												? ApplicationStatusColorMap[
-														jobCard.contractorFeedbackCode ??
-															WORKER_APPLICATION_STATUS.COULD_NOT_CONNECT
-												  ]
-												: '#0000000D',
+											backgroundColor: '#0000000D',
 										},
 										'&.Mui-focused': {
-											backgroundColor: jobCard.contractorFeedbackCode
-												? ApplicationStatusColorMap[
-														jobCard.contractorFeedbackCode ??
-															WORKER_APPLICATION_STATUS.COULD_NOT_CONNECT
-												  ]
-												: '#0000000D',
+											backgroundColor: '#0000000D',
 										},
 									}}
 									emptyState={{ label: 'Select Status', value: 'none' }}
