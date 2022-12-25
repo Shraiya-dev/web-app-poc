@@ -1,4 +1,5 @@
 import { Avatar, CircularProgress, Icon, Paper, Stack, Typography } from '@mui/material'
+import axios from 'axios'
 import Image from 'next/image'
 import { useState } from 'react'
 import { sendAnalytics } from 'sdk/analytics'
@@ -6,7 +7,7 @@ import { Dropdown } from 'sdkv2/components'
 import ExperienceIcon from '../../../public/assets/icons/experience.svg'
 import LocationIcon from '../../../public/assets/icons/location.svg'
 import WorkerIcon from '../../../public/assets/icons/workerIcon.svg'
-import { primary, WorkerApplicationStatusLabel, WorkerTypeLabel } from '../../constants'
+import { WorkerApplicationStatusLabel, WorkerTypeLabel, primary } from '../../constants'
 import { JobCard, WORKER_APPLICATION_STATUS } from '../../types'
 import { LinkButton } from '../button'
 import { ConfirmationDialog } from '../dialogs'
@@ -40,6 +41,23 @@ const ApplicationStatusOptions: { label: string; value: WORKER_APPLICATION_STATU
 		value: WORKER_APPLICATION_STATUS.TO_REVIEW,
 	},
 ]
+
+export enum TriggerCallType {
+	CHAT_ON_WHATSAPP = 'CHAT_ON_WHATSAPP',
+	PHONE_CALL = 'PHONE_CALL',
+}
+export const interactWithWorker = async ({
+	jobCardId,
+	triggerCallType,
+}: {
+	jobCardId: string
+	triggerCallType: string
+}) => {
+	const payload = {
+		triggerCallType,
+	}
+	return axios.post(`/gateway/customer-api/job-card/${jobCardId}/trigger-call`, payload)
+}
 
 export const JobCardCard = ({ jobCard, updateJobCard }: JobCardCardProps) => {
 	const [ConfirmationDialogProps, setConfirmationDialogProps] = useState({
@@ -199,6 +217,10 @@ export const JobCardCard = ({ jobCard, updateJobCard }: JobCardCardProps) => {
 									metaData: {
 										phoneNumber: jobCard?.phoneNumber,
 									},
+								})
+								interactWithWorker({
+									jobCardId: jobCard?.jobCardId,
+									triggerCallType: TriggerCallType.PHONE_CALL,
 								})
 							}}>
 							Call {jobCard?.phoneNumber ?? ' 	'}
