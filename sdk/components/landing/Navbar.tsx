@@ -158,7 +158,7 @@ export const Navbar = () => {
 												</Button>
 											) : (
 												<>
-													<LinkButton
+													{/* <LinkButton
 														variant='text'
 														color='info'
 														sx={(theme) => ({
@@ -179,8 +179,8 @@ export const Navbar = () => {
 															openLoginDialog()
 														}}>
 														Login
-													</LinkButton>
-													<Divider
+													</LinkButton> */}
+													{/* <Divider
 														sx={{
 															my: 2,
 															background: 'transparent',
@@ -188,7 +188,7 @@ export const Navbar = () => {
 															zIndex: '0',
 															mx: 2,
 														}}
-													/>
+													/> */}
 												</>
 											)}
 
@@ -242,13 +242,7 @@ export const Navbar = () => {
 							alignItems='center'>
 							<Link href='/' passHref>
 								<Stack direction='row' alignItems={'center'} spacing={1} mr={1}>
-									<Box
-										component='img'
-										src='/assets/icons/phone.svg'
-										width={23}
-										alt='ProjectHero'
-										// style={{ marginTop: 5 }}
-									/>
+									<Box component='img' src='/assets/icons/phone.svg' width={23} alt='ProjectHero' />
 									<Typography
 										variant='subtitle2'
 										onClick={() => {
@@ -268,36 +262,7 @@ export const Navbar = () => {
 							</Link>
 							{navbar.navLinks.map((navItem, i) => {
 								if (navItem.type === 'button_link') {
-									if (navItem.label === 'Login') {
-										return (
-											!user && (
-												<LinkButton
-													variant='text'
-													key={i}
-													startIcon={navItem?.icon}
-													sx={(theme) => ({
-														fontWeight: 700,
-														fontSize: 18,
-														color: 'common.white',
-														[theme.breakpoints.down('md')]: { display: 'none' },
-														whiteSpace: 'nowrap',
-													})}
-													onClick={() => {
-														if (navItem.label === 'Login') {
-															sendAnalytics({
-																name: 'navbarLogin',
-																action: 'ButtonClick',
-															})
-															openLoginDialog()
-														}
-													}}
-													href={navItem.link}
-													className={router.pathname === navItem.link ? 'active' : ''}>
-													{navItem.label}
-												</LinkButton>
-											)
-										)
-									} else if (navItem.label === 'Dashboard') {
+									if (navItem.label === 'Dashboard') {
 										return (
 											!!user && (
 												<Button
@@ -469,26 +434,6 @@ export const Navbar = () => {
 											</Menu>
 										</Button>
 									)
-								} else if (navItem.type === 'primary_button') {
-									return (
-										<LinkButton
-											href='/login'
-											key={i}
-											variant='outlined'
-											color='primary'
-											onClick={() => {
-												DataLayerPush({ event: 'book_worker_home_header' })
-												sendAnalytics({
-													name: 'BookWorker',
-													action: 'ButtonClick',
-													metaData: { origin: 'navbar' },
-												})
-											}}
-											sx={{ fontWeight: 700, fontSize: 18, borderRadius: '8px !important' }}
-											size='small'>
-											{navItem.label}
-										</LinkButton>
-									)
 								} else if (navItem.type === 'text_link') {
 									return (
 										<LinkButton
@@ -512,29 +457,6 @@ export const Navbar = () => {
 								}
 							})}
 						</NavWrapper>
-
-						{!user && (
-							<LinkButton
-								variant='contained'
-								color='primary'
-								sx={(theme) => ({
-									px: 4,
-									ml: 2,
-									fontSize: 18,
-									[theme.breakpoints.down('md')]: {
-										display: 'none',
-									},
-								})}
-								onClick={() => {
-									sendAnalytics({
-										name: 'navbarLogin',
-										action: 'ButtonClick',
-									})
-									openLoginDialog()
-								}}>
-								Login
-							</LinkButton>
-						)}
 					</Toolbar>
 				</Container>
 			</AppBar>
