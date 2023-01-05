@@ -39,7 +39,12 @@ export const Navbar = () => {
 
 	return (
 		<>
-			<AppBar position='fixed' elevation={0}>
+			<AppBar
+				position='fixed'
+				elevation={0}
+				sx={(theme) => ({
+					backgroundColor: theme.palette.appBar.primary,
+				})}>
 				<Container disableGutters>
 					<Toolbar sx={{ justifyContent: 'space-between', zIndex: 12 }} disableGutters>
 						<Stack
