@@ -12,8 +12,8 @@ export const Home = () => {
 						md: `url(${'/assets/landingv3/web-bg-top.png'}), url(${'/assets/landingv3/web-bg-bottom.png'})`,
 					},
 					backgroundSize: { xs: '120vw', md: '90%' },
-					backgroundPositionX: { xs: '80%,40%', md: '40%,40%' },
-					backgroundPositionY: { xs: '0vw,120vw', md: '-112px,75%' },
+					backgroundPositionX: { xs: '80%,40%', md: '64%,40%' },
+					backgroundPositionY: { xs: '0vw,120vw', md: '-55px,78%' },
 					backgroundRepeat: 'no-repeat',
 					alignItems: 'center',
 					display: 'flex',
@@ -151,7 +151,7 @@ export const Home = () => {
 						/>
 					</Stack>
 				</Stack>
-				<Stack mt={{ md: 20 }} alignItems={'center'}>
+				<Stack mt={{ md: 20 }} mb={{ md: 20 }} alignItems={'center'}>
 					<Stack
 						direction={'row'}
 						maxWidth={{ xs: '100%', md: '85%' }}
