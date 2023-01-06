@@ -13,41 +13,15 @@ export const Home = () => {
 					},
 					backgroundSize: { xs: '120vw', md: '90%' },
 					backgroundPositionX: { xs: '80%,40%', md: '40%,40%' },
-					backgroundPositionY: { xs: '0vw,120vw', md: '-150px,75%' },
+					backgroundPositionY: { xs: '0vw,120vw', md: '-112px,75%' },
 					backgroundRepeat: 'no-repeat',
 					alignItems: 'center',
 					display: 'flex',
 					flexDirection: 'column',
+					pt: { xs: 4, md: 10 },
 				}}>
-				<Stack direction='row' sx={{ maxWidth: { xs: '100%', md: '60%' }, alignSelf: 'center' }} spacing={2}>
-					<Stack
-						component={'a'}
-						href={
-							(isMobile ? externalLinks.heroDeepLinkApp : externalLinks.heroPlayStoreApp) +
-							(getCookie('utmParams') || externalLinks.fixUtmForApp)
-						}
-						onClick={() => {
-							sendAnalytics({
-								name: 'heroAppPlayStore',
-								action: 'ButtonClick',
-								metaData: {
-									origin: 'home',
-								},
-							})
-						}}
-						target='_blank'
-						rel='noopener noreferrer'>
-						<Box
-							width={{ xs: 151, md: 352 }}
-							height={{ xs: 320, md: 745 }}
-							sx={{
-								backgroundImage: `url(${'/assets/landingv3/naukriChaiye.gif'})`,
-								backgroundSize: 'contain',
-								transition: 'all ease  0.3s',
-							}}
-						/>
-					</Stack>
-					<Stack pl={{ xs: '14px', md: '37px' }}>
+				<Stack direction='row' sx={{ maxWidth: { xs: '100%', md: '72%' }, alignSelf: 'center' }} spacing={2}>
+					<Stack pr={{ xs: '14px', md: '37px' }}>
 						<Typography
 							variant='h1'
 							pl={{ xs: 1, md: 0 }}
@@ -59,7 +33,7 @@ export const Home = () => {
 							mt={{ xs: '24px', md: '62px' }}
 							spacing={{ xs: 0, md: 1.5 }}
 							pl={{ xs: 1, md: 0 }}
-							pr={{ xs: 0, md: '40px' }}>
+							pr={{ xs: 0, md: 0 }}>
 							<Stack direction={'row'} alignItems={'flex-start'} spacing={{ xs: 0.8, md: 2 }}>
 								<Box
 									component={'img'}
@@ -149,14 +123,71 @@ export const Home = () => {
 							</Typography>
 						</Stack>
 					</Stack>
+					<Stack
+						component={'a'}
+						href={
+							(isMobile ? externalLinks.heroDeepLinkApp : externalLinks.heroPlayStoreApp) +
+							(getCookie('utmParams') || externalLinks.fixUtmForApp)
+						}
+						onClick={() => {
+							sendAnalytics({
+								name: 'heroAppPlayStore',
+								action: 'ButtonClick',
+								metaData: {
+									origin: 'home',
+								},
+							})
+						}}
+						target='_blank'
+						rel='noopener noreferrer'>
+						<Box
+							width={{ xs: 151, md: 352 }}
+							height={{ xs: 320, md: 745 }}
+							sx={{
+								backgroundImage: `url(${'/assets/landingv3/naukriChaiye.gif'})`,
+								backgroundSize: 'contain',
+								transition: 'all ease  0.3s',
+							}}
+						/>
+					</Stack>
 				</Stack>
-				<Stack alignItems={'center'}>
+				<Stack mt={{ md: 20 }} alignItems={'center'}>
 					<Stack
 						direction={'row'}
-						maxWidth={{ xs: '100%', md: '60%' }}
+						maxWidth={{ xs: '100%', md: '85%' }}
 						mt={{ xs: '38px', md: '60px' }}
 						spacing={2}>
-						<Stack pt={{ xs: '21px', md: '39px' }} pr={{ xs: 0, md: '37px' }}>
+						<Stack
+							component={'a'}
+							href={
+								(isMobile
+									? externalLinks.contractorDeepLinkApp
+									: externalLinks.contractorPlayStoreApp) +
+								(getCookie('utmParams') || externalLinks.fixUtmForApp)
+							}
+							onClick={() => {
+								sendAnalytics({
+									name: 'contractorAppPlayStore',
+									action: 'ButtonClick',
+									metaData: {
+										origin: 'home',
+									},
+								})
+							}}
+							target='_blank'
+							rel='noopener noreferrer'>
+							<Box
+								ml={{ xs: 0, md: 0 }}
+								width={{ xs: 151, md: 352 }}
+								height={{ xs: 320, md: 745 }}
+								sx={{
+									backgroundImage: `url(${'/assets/landingv3/workerChaiye.gif'})`,
+									backgroundSize: 'contain',
+									transition: 'all ease  0.3s',
+								}}
+							/>
+						</Stack>
+						<Stack pt={{ xs: '21px', md: '39px' }} pl={{ xs: 0, md: '37px' }}>
 							<Typography
 								variant='h1'
 								pl={{ xs: 1, md: 0 }}
@@ -252,36 +283,6 @@ export const Home = () => {
 									/>
 								</Stack>
 							</Stack>
-						</Stack>
-						<Stack
-							component={'a'}
-							href={
-								(isMobile
-									? externalLinks.contractorDeepLinkApp
-									: externalLinks.contractorPlayStoreApp) +
-								(getCookie('utmParams') || externalLinks.fixUtmForApp)
-							}
-							onClick={() => {
-								sendAnalytics({
-									name: 'contractorAppPlayStore',
-									action: 'ButtonClick',
-									metaData: {
-										origin: 'home',
-									},
-								})
-							}}
-							target='_blank'
-							rel='noopener noreferrer'>
-							<Box
-								ml={{ xs: '-20px', md: 0 }}
-								width={{ xs: 151, md: 352 }}
-								height={{ xs: 320, md: 745 }}
-								sx={{
-									backgroundImage: `url(${'/assets/landingv3/workerChaiye.gif'})`,
-									backgroundSize: 'contain',
-									transition: 'all ease  0.3s',
-								}}
-							/>
 						</Stack>
 					</Stack>
 				</Stack>
