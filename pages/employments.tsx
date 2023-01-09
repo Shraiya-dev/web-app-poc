@@ -1,18 +1,31 @@
-import { Box, Button, Chip, Stack, Typography } from '@mui/material'
+import { Box, Button, FormControlLabel, InputBase, Radio, RadioGroup, Stack, Typography } from '@mui/material'
+import axios from 'axios'
 import { GetStaticProps, NextPage } from 'next'
-import Link from 'next/link'
+import { useRouter } from 'next/router'
+import animationData from 'public/assets/lottie/successCheckLottie.json'
 import { useCallback, useEffect, useState } from 'react'
+import Lottie from 'react-lottie'
 import { externalLinks, getCookie, LandingLayout, Section, sendAnalytics, useSnackbar } from 'sdk'
 import { staticRenderingProvider } from 'sdk/utils/nextHelper'
-import Lottie from 'react-lottie'
-import animationData from 'public/assets/lottie/successCheckLottie.json'
-import axios from 'axios'
-import { useRouter } from 'next/router'
-import { WorkerReferencesStatus } from './employments'
 
-const Endorsements: NextPage = () => {
+export enum PastEmployerDesignation {
+	COMPANY_OWNER = 'COMPANY_OWNER',
+	SITE_ENGINEER = 'SITE_ENGINEER',
+	SUPERVISOR = 'SUPERVISOR',
+	PROJECT_MANAGER = 'PROJECT_MANAGER',
+	OTHERS = 'OTHERS',
+}
+
+export enum WorkerReferencesStatus {
+	REJECTED = 'REJECTED',
+	ACCEPTED = 'ACCEPTED',
+}
+
+const Employments: NextPage = () => {
 	const [isPushti, setIsPushti] = useState<string | undefined>(undefined)
-	const [steps, setSteps] = useState(0)
+	const [work, setWork] = useState<string | undefined>(undefined)
+	const [otherWork, setOtherWork] = useState<string>('')
+	const [steps, setSteps] = useState<number>(0)
 	const [token, setToken] = useState<string | undefined>()
 	const [details, setDetails] = useState()
 	const { showSnackbar } = useSnackbar()
@@ -22,6 +35,10 @@ const Endorsements: NextPage = () => {
 		try {
 			const { data, status } = await axios.put('/gateway/worker-api/references/guarantee', {
 				status: isPushti,
+				additionalDetails: {
+					pastEmployerDesignation: work,
+					customDesignation: otherWork,
+				},
 				token: token,
 			})
 			if (status === 200) {
@@ -31,7 +48,7 @@ const Endorsements: NextPage = () => {
 		} catch (error) {
 			showSnackbar('Something went wrong!', 'error')
 		}
-	}, [isPushti])
+	}, [isPushti, work, otherWork])
 
 	const getDetails = useCallback(async () => {
 		try {
@@ -58,7 +75,7 @@ const Endorsements: NextPage = () => {
 									Sunil ji,
 								</Typography>
 								<Typography fontWeight={'300'} sx={{ color: 'common.white' }} mt={'19px'}>
-									Humare app pe Rambalak Kewat ne bataya ke aap unhe jaante hai.
+									Humare app pe Rambalak Kewat ne bataya ke unhone aapke saath kaam kiya hua hai.
 								</Typography>
 							</Stack>
 							<Stack sx={{ ml: '25px', maxWidth: '60%' }}>
@@ -110,6 +127,74 @@ const Endorsements: NextPage = () => {
 									})}
 								</Stack>
 							</Stack>
+							{isPushti === WorkerReferencesStatus.ACCEPTED && (
+								<Stack
+									sx={{
+										ml: '25px',
+										maxWidth: '60%',
+										my: '26px',
+									}}>
+									<Typography
+										variant='h6'
+										mb={'17px'}
+										fontWeight={'500'}
+										sx={{ color: 'common.white' }}>
+										Aap kya kaam karte hai?
+									</Typography>
+									<RadioGroup
+										onChange={(val) => {
+											setWork(val.target.value)
+										}}>
+										{[
+											{ label: 'Company Owner', value: PastEmployerDesignation.COMPANY_OWNER },
+											{ label: 'Site Engineer', value: PastEmployerDesignation.SITE_ENGINEER },
+											{ label: 'Supervisor/Foreman', value: PastEmployerDesignation.SUPERVISOR },
+											{
+												label: 'Project Manager',
+												value: PastEmployerDesignation.PROJECT_MANAGER,
+											},
+											{ label: 'Others', value: PastEmployerDesignation.OTHERS },
+										].map((item, index) => {
+											return (
+												<FormControlLabel
+													key={index}
+													sx={{ color: 'common.white' }}
+													value={item.value}
+													control={
+														<Radio
+															sx={{ color: 'common.white' }}
+															checkedIcon={
+																<Box
+																	component={'img'}
+																	src={'/assets/svgs/radioChecked.svg'}
+																/>
+															}
+														/>
+													}
+													label={item.label}
+												/>
+											)
+										})}
+									</RadioGroup>
+									{work === PastEmployerDesignation.OTHERS && (
+										<InputBase
+											value={otherWork}
+											onChange={(e) => {
+												setOtherWork(e.target.value)
+											}}
+											sx={{
+												marginTop: 1,
+												border: '1px solid #EFC41A',
+												color: 'common.white',
+												borderRadius: 1,
+												height: 50,
+												fontSize: '18px',
+												padding: 2,
+											}}
+										/>
+									)}
+								</Stack>
+							)}
 							<Button
 								sx={{
 									m: '16px',
@@ -122,7 +207,7 @@ const Endorsements: NextPage = () => {
 								onClick={() => {
 									handleSubmit()
 									sendAnalytics({
-										name: 'submitEndorsement',
+										name: 'submitEmployment',
 										action: 'ButtonClick',
 										metaData: {
 											Status: isPushti ? 'Confirmed' : 'Rejected',
@@ -174,12 +259,12 @@ const Endorsements: NextPage = () => {
 								mt={'64px'}
 								width={300}
 								height={323}
-								src={'/assets/endrosmentImages/endrosment.png'}
+								src={'/assets/endrosmentImages/employment.png'}
 							/>
 							<Stack
 								component={'a'}
 								href={
-									externalLinks.heroDeepLinkApp +
+									externalLinks.contractorDeepLinkApp +
 									(getCookie('utmParams') || externalLinks.fixUtmForApp)
 								}
 								onClick={() => {
@@ -187,7 +272,7 @@ const Endorsements: NextPage = () => {
 										name: 'applicationInstall',
 										action: 'ButtonClick',
 										metaData: {
-											Location: 'EndorsementScreen',
+											Location: 'EmploymentScreen',
 										},
 									})
 								}}
@@ -196,7 +281,7 @@ const Endorsements: NextPage = () => {
 								alignItems={'center'}
 								mt={'56px'}>
 								<Typography variant='h6' fontWeight={'700'} sx={{ color: 'common.white', mb: '5px' }}>
-									ऐप डाउनलोड करें
+									App Download Karein
 								</Typography>
 								<Box
 									component={'img'}
@@ -214,7 +299,7 @@ const Endorsements: NextPage = () => {
 	)
 }
 
-export default Endorsements
+export default Employments
 
-const pageUrl = '/endorsements'
+const pageUrl = '/employments'
 export const getStaticProps: GetStaticProps = staticRenderingProvider(pageUrl).getStaticProps

@@ -114,6 +114,7 @@ const PublicPages = [
 	'/job-card/connect',
 	'/blog/[blogId]',
 	'/endorsements',
+	'/employments',
 ]
 interface ContractorAuthProviderProps {
 	authState?: AuthState

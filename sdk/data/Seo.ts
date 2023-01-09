@@ -61,6 +61,7 @@ const PageStaticData: { [key in string]: PageStaticData } = {
 	},
 	'/contact-us': { pageName: 'Contact Us', seo: { title: 'Contact Us', description: 'Contact Us' } },
 	'/endorsements': { pageName: 'Endorsements', seo: { title: 'Endorsements', description: 'Endorsements' } },
+	'/employments': { pageName: 'Employments', seo: { title: 'Employments', description: 'Employments' } },
 	'/worker/[workerId]': {
 		pageName: 'Worker Details',
 		seo: { title: 'Worker Details', description: 'Worker Details' },
