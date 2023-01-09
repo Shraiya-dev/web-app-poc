@@ -192,6 +192,9 @@ const EventTypes = {
 	callProjectHeroSupport: 'Call ProjectHero Support',
 	mailProjectHeroSupport: 'Mail ProjectHero Support',
 	viewJobDashboardClicked: 'ViewJobDashboard Clicked',
+	submitEndorsement: 'SubmitEndorsement Pressed',
+	applicationInstall: 'ApplicationInstall Pressed',
+	submitEmployment: 'SubmitEmployment Pressed',
 }
 
 //Define a new action type here if needed

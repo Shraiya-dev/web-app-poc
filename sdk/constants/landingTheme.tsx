@@ -28,6 +28,9 @@ declare module '@mui/material/styles' {
 			white: string
 			blue: string
 		}
+		appBar: {
+			primary: string
+		}
 	}
 	interface PaletteOptions {
 		base: {
@@ -49,6 +52,9 @@ declare module '@mui/material/styles' {
 		textCTA: {
 			white: string
 			blue: string
+		}
+		appBar: {
+			primary: string
 		}
 	}
 }
@@ -72,6 +78,9 @@ const colorPalette = {
 	textCTA: {
 		white: 'white',
 		blue: '#36B5EC',
+	},
+	appBar: {
+		primary: '#101010',
 	},
 }
 export const primary = {
@@ -208,6 +217,7 @@ let themeDef = createTheme({
 		button: colorPalette.button,
 		textCTA: colorPalette.textCTA,
 		tonalOffset: 0.3,
+		appBar: colorPalette.appBar,
 	},
 
 	breakpoints: {
