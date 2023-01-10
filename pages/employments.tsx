@@ -92,7 +92,7 @@ const Employments: NextPage = () => {
 							</Stack>
 							<Stack
 								sx={{
-									minHeight: 350,
+									maxHeight: 350,
 									backgroundColor: '#222222',
 									mt: '12px',
 									px: '16px',
@@ -109,7 +109,7 @@ const Employments: NextPage = () => {
 									sx={{ mt: '12px', borderRadius: '12px' }}
 								/>
 							</Stack>
-							<Stack sx={{ ml: '25px', maxWidth: '60%' }}>
+							<Stack sx={{ ml: '25px', maxWidth: '80%' }}>
 								<Typography variant='h6' fontWeight={'500'} mt={'21px'} sx={{ color: 'common.white' }}>
 									Kya aap is baat ki pushti karte hai?
 								</Typography>
