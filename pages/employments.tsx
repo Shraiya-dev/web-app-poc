@@ -21,48 +21,59 @@ export enum WorkerReferencesStatus {
 	ACCEPTED = 'ACCEPTED',
 }
 
+export interface IDetails {
+	workerId: string
+	referenceId: string
+	referenceType: string
+	workerName: string
+	referenceeName: string
+	imgUrl: string
+}
+
 const Employments: NextPage = () => {
-	const [isPushti, setIsPushti] = useState<string | undefined>(undefined)
+	const [isGuaranteed, setIsGuaranteed] = useState<string | undefined>(undefined)
 	const [work, setWork] = useState<string | undefined>(undefined)
 	const [otherWork, setOtherWork] = useState<string>('')
 	const [steps, setSteps] = useState<number>(0)
 	const [token, setToken] = useState<string | undefined>()
-	const [details, setDetails] = useState()
+	const [details, setDetails] = useState<IDetails | undefined>(undefined)
 	const { showSnackbar } = useSnackbar()
 	const router = useRouter()
 
 	const handleSubmit = useCallback(async () => {
 		try {
 			const { data, status } = await axios.put('/gateway/worker-api/references/guarantee', {
-				status: isPushti,
+				status: isGuaranteed,
 				additionalDetails: {
 					pastEmployerDesignation: work,
 					customDesignation: otherWork,
 				},
 				token: token,
 			})
-			if (status === 200) {
+			if (status === 204) {
 				setSteps(1)
 				setTimeout(() => setSteps(2), 3000)
 			}
 		} catch (error) {
 			showSnackbar('Something went wrong!', 'error')
 		}
-	}, [isPushti, work, otherWork])
+	}, [isGuaranteed, work, otherWork])
 
-	const getDetails = useCallback(async () => {
+	const getDetails = useCallback(async (token) => {
 		try {
-			const { data } = await axios.get('')
+			const { data } = await axios.get(`/gateway/worker-api/references/guarantee?token=${token}`)
 			setDetails(data?.payload)
 		} catch (error) {
 			showSnackbar('Something went wrong!', 'error')
 		}
-	}, [token])
+	}, [])
 
 	useEffect(() => {
-		setToken(router.query.token as string)
-		getDetails()
-	}, [])
+		if (router.isReady) {
+			setToken(router.query.token as string)
+			getDetails(router.query.token)
+		}
+	}, [router.isReady])
 
 	return (
 		<>
@@ -72,11 +83,31 @@ const Employments: NextPage = () => {
 						<Stack>
 							<Stack mx={'25px'}>
 								<Typography variant='h5' sx={{ color: 'common.white' }} mt={'26px'}>
-									Sunil ji,
+									{details?.referenceeName} ji,
 								</Typography>
 								<Typography fontWeight={'300'} sx={{ color: 'common.white' }} mt={'19px'}>
-									Humare app pe Rambalak Kewat ne bataya ke unhone aapke saath kaam kiya hua hai.
+									Humare app pe {details?.workerName} ne bataya ke unhone aapke saath kaam kiya hua
+									hai.
 								</Typography>
+							</Stack>
+							<Stack
+								sx={{
+									minHeight: 350,
+									backgroundColor: '#222222',
+									mt: '12px',
+									px: '16px',
+									py: '20px',
+									borderTop: '1px dashed #fff',
+									borderBottom: '1px dashed #fff',
+								}}>
+								<Typography variant='h6' fontWeight={'700'} sx={{ color: 'common.white', ml: '10px' }}>
+									{details?.workerName.split(' ')[0]} ki Profile
+								</Typography>
+								<Box
+									component={'img'}
+									src={details?.imgUrl}
+									sx={{ mt: '12px', borderRadius: '12px' }}
+								/>
 							</Stack>
 							<Stack sx={{ ml: '25px', maxWidth: '60%' }}>
 								<Typography variant='h6' fontWeight={'500'} mt={'21px'} sx={{ color: 'common.white' }}>
@@ -94,7 +125,7 @@ const Employments: NextPage = () => {
 										{ label: 'Yes', value: WorkerReferencesStatus.ACCEPTED },
 										{ label: 'No', value: WorkerReferencesStatus.REJECTED },
 									].map((item, index) => {
-										return item.value === isPushti ? (
+										return item.value === isGuaranteed ? (
 											<Button
 												sx={{
 													width: '118px',
@@ -119,7 +150,7 @@ const Employments: NextPage = () => {
 												key={index}
 												variant='outlined'
 												onClick={() => {
-													setIsPushti(item.value)
+													setIsGuaranteed(item.value)
 												}}>
 												{item.label}
 											</Button>
@@ -127,7 +158,7 @@ const Employments: NextPage = () => {
 									})}
 								</Stack>
 							</Stack>
-							{isPushti === WorkerReferencesStatus.ACCEPTED && (
+							{isGuaranteed === WorkerReferencesStatus.ACCEPTED && (
 								<Stack
 									sx={{
 										ml: '25px',
@@ -202,6 +233,7 @@ const Employments: NextPage = () => {
 									fontWeight: '700',
 									fontSize: '16px',
 									bottom: 0,
+									mt: '44px',
 								}}
 								variant='contained'
 								onClick={() => {
@@ -210,7 +242,7 @@ const Employments: NextPage = () => {
 										name: 'submitEmployment',
 										action: 'ButtonClick',
 										metaData: {
-											Status: isPushti ? 'Confirmed' : 'Rejected',
+											Status: isGuaranteed ? 'Confirmed' : 'Rejected',
 										},
 									})
 								}}>
