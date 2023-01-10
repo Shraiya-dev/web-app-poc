@@ -58,10 +58,10 @@ const Endorsements: NextPage = () => {
 						<Stack>
 							<Stack mx={'25px'}>
 								<Typography variant='h5' sx={{ color: 'common.white' }} mt={'26px'}>
-									Sunil ji,
+									{details?.referenceeName} ji,
 								</Typography>
 								<Typography fontWeight={'300'} sx={{ color: 'common.white' }} mt={'19px'}>
-									Humare app pe Rambalak Kewat ne bataya ke aap unhe jaante hai.
+									Humare app pe {details?.workerName} ne bataya ke aap unhe jaante hai.
 								</Typography>
 							</Stack>
 							<Stack
