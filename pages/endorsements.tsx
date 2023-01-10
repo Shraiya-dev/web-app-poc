@@ -8,44 +8,47 @@ import Lottie from 'react-lottie'
 import animationData from 'public/assets/lottie/successCheckLottie.json'
 import axios from 'axios'
 import { useRouter } from 'next/router'
-import { WorkerReferencesStatus } from './employments'
+import { IDetails, WorkerReferencesStatus } from './employments'
 
 const Endorsements: NextPage = () => {
-	const [isPushti, setIsPushti] = useState<string | undefined>(undefined)
+	const [isGuaranteed, setIsGuaranteed] = useState<string | undefined>(undefined)
 	const [steps, setSteps] = useState(0)
 	const [token, setToken] = useState<string | undefined>()
-	const [details, setDetails] = useState()
+	const [details, setDetails] = useState<IDetails | undefined>(undefined)
 	const { showSnackbar } = useSnackbar()
 	const router = useRouter()
 
 	const handleSubmit = useCallback(async () => {
 		try {
 			const { data, status } = await axios.put('/gateway/worker-api/references/guarantee', {
-				status: isPushti,
+				status: isGuaranteed,
+				additionalDetails: {},
 				token: token,
 			})
-			if (status === 200) {
+			if (status === 204) {
 				setSteps(1)
 				setTimeout(() => setSteps(2), 3000)
 			}
 		} catch (error) {
 			showSnackbar('Something went wrong!', 'error')
 		}
-	}, [isPushti])
+	}, [isGuaranteed])
 
-	const getDetails = useCallback(async () => {
+	const getDetails = useCallback(async (token) => {
 		try {
-			const { data } = await axios.get('')
+			const { data } = await axios.get(`/gateway/worker-api/references/guarantee?token=${token}`)
 			setDetails(data?.payload)
 		} catch (error) {
 			showSnackbar('Something went wrong!', 'error')
 		}
-	}, [token])
+	}, [])
 
 	useEffect(() => {
-		setToken(router.query.token as string)
-		getDetails()
-	}, [])
+		if (router.isReady) {
+			setToken(router.query.token as string)
+			getDetails(router.query.token)
+		}
+	}, [router.isReady])
 
 	return (
 		<>
@@ -60,6 +63,25 @@ const Endorsements: NextPage = () => {
 								<Typography fontWeight={'300'} sx={{ color: 'common.white' }} mt={'19px'}>
 									Humare app pe Rambalak Kewat ne bataya ke aap unhe jaante hai.
 								</Typography>
+							</Stack>
+							<Stack
+								sx={{
+									minHeight: 350,
+									backgroundColor: '#222222',
+									mt: '12px',
+									px: '16px',
+									py: '20px',
+									borderTop: '1px dashed #fff',
+									borderBottom: '1px dashed #fff',
+								}}>
+								<Typography variant='h6' fontWeight={'700'} sx={{ color: 'common.white', ml: '10px' }}>
+									{details?.workerName.split(' ')[0]} ki Profile
+								</Typography>
+								<Box
+									component={'img'}
+									src={details?.imgUrl}
+									sx={{ mt: '12px', borderRadius: '12px' }}
+								/>
 							</Stack>
 							<Stack sx={{ ml: '25px', maxWidth: '60%' }}>
 								<Typography variant='h6' fontWeight={'500'} mt={'21px'} sx={{ color: 'common.white' }}>
@@ -77,7 +99,7 @@ const Endorsements: NextPage = () => {
 										{ label: 'Yes', value: WorkerReferencesStatus.ACCEPTED },
 										{ label: 'No', value: WorkerReferencesStatus.REJECTED },
 									].map((item, index) => {
-										return item.value === isPushti ? (
+										return item.value === isGuaranteed ? (
 											<Button
 												sx={{
 													width: '118px',
@@ -102,7 +124,7 @@ const Endorsements: NextPage = () => {
 												key={index}
 												variant='outlined'
 												onClick={() => {
-													setIsPushti(item.value)
+													setIsGuaranteed(item.value)
 												}}>
 												{item.label}
 											</Button>
@@ -117,6 +139,7 @@ const Endorsements: NextPage = () => {
 									fontWeight: '700',
 									fontSize: '16px',
 									bottom: 0,
+									mt: '44px',
 								}}
 								variant='contained'
 								onClick={() => {
@@ -125,7 +148,7 @@ const Endorsements: NextPage = () => {
 										name: 'submitEndorsement',
 										action: 'ButtonClick',
 										metaData: {
-											Status: isPushti ? 'Confirmed' : 'Rejected',
+											Status: isGuaranteed ? 'Confirmed' : 'Rejected',
 										},
 									})
 								}}>
