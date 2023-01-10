@@ -165,11 +165,7 @@ const Employments: NextPage = () => {
 										maxWidth: '60%',
 										my: '26px',
 									}}>
-									<Typography
-										variant='h6'
-										mb={'17px'}
-										fontWeight={'500'}
-										sx={{ color: 'common.white' }}>
+									<Typography variant='h6' fontWeight={'500'} sx={{ color: 'common.white' }}>
 										Aap kya kaam karte hai?
 									</Typography>
 									<RadioGroup
@@ -189,11 +185,16 @@ const Employments: NextPage = () => {
 											return (
 												<FormControlLabel
 													key={index}
-													sx={{ color: 'common.white' }}
+													sx={{ color: 'common.white', mt: '17px', ml: '0px' }}
 													value={item.value}
 													control={
 														<Radio
-															sx={{ color: 'common.white' }}
+															sx={{
+																color: 'common.white',
+																height: 25,
+																width: 25,
+																mr: '10px',
+															}}
 															checkedIcon={
 																<Box
 																	component={'img'}
