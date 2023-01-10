@@ -24,6 +24,9 @@ declare module '@mui/material/styles' {
 			white: string
 			blue: string
 		}
+		appBar: {
+			primary: string
+		}
 	}
 	interface PaletteOptions {
 		base: {
@@ -45,6 +48,9 @@ declare module '@mui/material/styles' {
 		textCTA: {
 			white: string
 			blue: string
+		}
+		appBar: {
+			primary: string
 		}
 	}
 }
@@ -68,6 +74,9 @@ const colorPalette = {
 	textCTA: {
 		white: 'white',
 		blue: '#36B5EC',
+	},
+	appBar: {
+		primary: '#101010',
 	},
 }
 
@@ -186,7 +195,6 @@ let themeDef = createTheme({
 			default: '#2e2e2e', // background color
 			paper: '#fff', // cards background
 		},
-
 		grey: {
 			'50': alpha('#061F48', 0.5),
 			'100': alpha('#061F48', 0.1),
@@ -213,6 +221,7 @@ let themeDef = createTheme({
 		button: colorPalette.button,
 		textCTA: colorPalette.textCTA,
 		tonalOffset: 0.3,
+		appBar: colorPalette.appBar,
 	},
 
 	breakpoints: {
