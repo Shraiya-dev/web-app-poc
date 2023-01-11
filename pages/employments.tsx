@@ -80,175 +80,195 @@ const Employments: NextPage = () => {
 			<LandingLayout>
 				<Section backgroundColor='#000000' sx={{ p: 0 }}>
 					{steps === 0 ? (
-						<Stack>
-							<Stack mx={'25px'}>
-								<Typography variant='h5' sx={{ color: 'common.white' }} mt={'26px'}>
-									{details?.referenceeName} ji,
-								</Typography>
-								<Typography fontWeight={'300'} sx={{ color: 'common.white' }} mt={'19px'}>
-									Humare app pe {details?.workerName} ne bataya ke unhone aapke saath kaam kiya hua
-									hai.
-								</Typography>
-							</Stack>
-							<Stack
-								sx={{
-									maxHeight: 350,
-									backgroundColor: '#222222',
-									mt: '12px',
-									px: '16px',
-									py: '20px',
-									borderTop: '1px dashed #fff',
-									borderBottom: '1px dashed #fff',
-								}}>
-								<Typography variant='h6' fontWeight={'700'} sx={{ color: 'common.white', ml: '10px' }}>
-									{details?.workerName.split(' ')[0]} ki Profile
-								</Typography>
-								<Box
-									component={'img'}
-									src={details?.imgUrl}
-									sx={{ mt: '12px', borderRadius: '12px' }}
-								/>
-							</Stack>
-							<Stack sx={{ ml: '25px', maxWidth: '80%' }}>
-								<Typography variant='h6' fontWeight={'500'} mt={'21px'} sx={{ color: 'common.white' }}>
-									Kya aap is baat ki pushti karte hai?
-								</Typography>
+						<Stack sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' } }}>
+							<Stack sx={{ width: { xs: '100%', md: '50%' } }}>
+								<Stack mx={'25px'}>
+									<Typography variant='h5' sx={{ color: 'common.white' }} mt={'26px'}>
+										{details?.referenceeName} ji,
+									</Typography>
+									<Typography fontWeight={'300'} sx={{ color: 'common.white' }} mt={'19px'}>
+										Humare app pe {details?.workerName} ne bataya ke unhone aapke saath kaam kiya
+										hua hai.
+									</Typography>
+								</Stack>
 								<Stack
 									sx={{
-										display: 'flex',
-										flexDirection: 'row',
-										justifyContent: 'space-between',
-										maxWidth: '85%',
-										mt: '14px',
+										maxHeight: 350,
+										backgroundColor: '#222222',
+										mt: '12px',
+										px: '16px',
+										py: '20px',
+										borderTop: '1px dashed #fff',
+										borderBottom: '1px dashed #fff',
 									}}>
-									{[
-										{ label: 'Yes', value: WorkerReferencesStatus.ACCEPTED },
-										{ label: 'No', value: WorkerReferencesStatus.REJECTED },
-									].map((item, index) => {
-										return item.value === isGuaranteed ? (
-											<Button
-												sx={{
-													width: '118px',
-													height: '42px',
-													fontWeight: '700',
-													fontSize: '16px',
-												}}
-												key={index}
-												variant='contained'>
-												{item.label}
-											</Button>
-										) : (
-											<Button
-												sx={{
-													width: '118px',
-													height: '42px',
-													fontWeight: '700',
-													fontSize: '16px',
-													color: 'common.white',
-													borderColor: 'common.white',
-												}}
-												key={index}
-												variant='outlined'
-												onClick={() => {
-													setIsGuaranteed(item.value)
-												}}>
-												{item.label}
-											</Button>
-										)
-									})}
+									<Typography
+										variant='h6'
+										fontWeight={'700'}
+										sx={{ color: 'common.white', ml: '10px' }}>
+										{details?.workerName.split(' ')[0]} ki Profile
+									</Typography>
+									<Box
+										component={'img'}
+										src={details?.imgUrl}
+										sx={{ mt: '12px', borderRadius: '12px', maxHeight: 275 }}
+									/>
 								</Stack>
 							</Stack>
-							{isGuaranteed === WorkerReferencesStatus.ACCEPTED && (
-								<Stack
-									sx={{
-										ml: '25px',
-										maxWidth: '60%',
-										my: '26px',
-									}}>
-									<Typography variant='h6' fontWeight={'500'} sx={{ color: 'common.white' }}>
-										Aap kya kaam karte hai?
+							<Stack sx={{ width: { xs: '100%', md: '50%' } }}>
+								<Stack sx={{ ml: '25px', maxWidth: '80%' }}>
+									<Typography
+										variant='h6'
+										fontWeight={'500'}
+										mt={'21px'}
+										sx={{ color: 'common.white' }}>
+										Kya aap is baat ki pushti karte hai?
 									</Typography>
-									<RadioGroup
-										onChange={(val) => {
-											setWork(val.target.value)
+									<Stack
+										sx={{
+											display: 'flex',
+											flexDirection: 'row',
+											justifyContent: 'space-between',
+											maxWidth: '85%',
+											mt: '14px',
 										}}>
 										{[
-											{ label: 'Company Owner', value: PastEmployerDesignation.COMPANY_OWNER },
-											{ label: 'Site Engineer', value: PastEmployerDesignation.SITE_ENGINEER },
-											{ label: 'Supervisor/Foreman', value: PastEmployerDesignation.SUPERVISOR },
-											{
-												label: 'Project Manager',
-												value: PastEmployerDesignation.PROJECT_MANAGER,
-											},
-											{ label: 'Others', value: PastEmployerDesignation.OTHERS },
+											{ label: 'Yes', value: WorkerReferencesStatus.ACCEPTED },
+											{ label: 'No', value: WorkerReferencesStatus.REJECTED },
 										].map((item, index) => {
-											return (
-												<FormControlLabel
+											return item.value === isGuaranteed ? (
+												<Button
+													sx={{
+														width: '118px',
+														height: '42px',
+														fontWeight: '700',
+														fontSize: '16px',
+													}}
 													key={index}
-													sx={{ color: 'common.white', mt: '17px', ml: '0px' }}
-													value={item.value}
-													control={
-														<Radio
-															sx={{
-																color: 'common.white',
-																height: 25,
-																width: 25,
-																mr: '10px',
-															}}
-															checkedIcon={
-																<Box
-																	component={'img'}
-																	src={'/assets/svgs/radioChecked.svg'}
-																/>
-															}
-														/>
-													}
-													label={item.label}
-												/>
+													variant='contained'>
+													{item.label}
+												</Button>
+											) : (
+												<Button
+													sx={{
+														width: '118px',
+														height: '42px',
+														fontWeight: '700',
+														fontSize: '16px',
+														color: 'common.white',
+														borderColor: 'common.white',
+													}}
+													key={index}
+													variant='outlined'
+													onClick={() => {
+														setIsGuaranteed(item.value)
+													}}>
+													{item.label}
+												</Button>
 											)
 										})}
-									</RadioGroup>
-									{work === PastEmployerDesignation.OTHERS && (
-										<InputBase
-											value={otherWork}
-											onChange={(e) => {
-												setOtherWork(e.target.value)
-											}}
-											sx={{
-												marginTop: 1,
-												border: '1px solid #EFC41A',
-												color: 'common.white',
-												borderRadius: 1,
-												height: 50,
-												fontSize: '18px',
-												padding: 2,
-											}}
-										/>
-									)}
+									</Stack>
 								</Stack>
-							)}
-							<Button
-								sx={{
-									m: '16px',
-									height: '48px',
-									fontWeight: '700',
-									fontSize: '16px',
-									bottom: 0,
-									mt: '44px',
-								}}
-								variant='contained'
-								onClick={() => {
-									handleSubmit()
-									sendAnalytics({
-										name: 'submitEmployment',
-										action: 'ButtonClick',
-										metaData: {
-											Status: isGuaranteed ? 'Confirmed' : 'Rejected',
-										},
-									})
-								}}>
-								{'Submit'}
-							</Button>
+								{isGuaranteed === WorkerReferencesStatus.ACCEPTED && (
+									<Stack
+										sx={{
+											ml: '25px',
+											maxWidth: '60%',
+											my: '26px',
+										}}>
+										<Typography variant='h6' fontWeight={'500'} sx={{ color: 'common.white' }}>
+											Aap kya kaam karte hai?
+										</Typography>
+										<RadioGroup
+											onChange={(val) => {
+												setWork(val.target.value)
+											}}>
+											{[
+												{
+													label: 'Company Owner',
+													value: PastEmployerDesignation.COMPANY_OWNER,
+												},
+												{
+													label: 'Site Engineer',
+													value: PastEmployerDesignation.SITE_ENGINEER,
+												},
+												{
+													label: 'Supervisor/Foreman',
+													value: PastEmployerDesignation.SUPERVISOR,
+												},
+												{
+													label: 'Project Manager',
+													value: PastEmployerDesignation.PROJECT_MANAGER,
+												},
+												{ label: 'Others', value: PastEmployerDesignation.OTHERS },
+											].map((item, index) => {
+												return (
+													<FormControlLabel
+														key={index}
+														sx={{ color: 'common.white', mt: '17px', ml: '0px' }}
+														value={item.value}
+														control={
+															<Radio
+																sx={{
+																	color: 'common.white',
+																	height: 25,
+																	width: 25,
+																	mr: '10px',
+																}}
+																checkedIcon={
+																	<Box
+																		component={'img'}
+																		src={'/assets/svgs/radioChecked.svg'}
+																	/>
+																}
+															/>
+														}
+														label={item.label}
+													/>
+												)
+											})}
+										</RadioGroup>
+										{work === PastEmployerDesignation.OTHERS && (
+											<InputBase
+												value={otherWork}
+												onChange={(e) => {
+													setOtherWork(e.target.value)
+												}}
+												sx={{
+													marginTop: 1,
+													border: '1px solid #EFC41A',
+													color: 'common.white',
+													borderRadius: 1,
+													height: 50,
+													fontSize: '18px',
+													padding: 2,
+												}}
+											/>
+										)}
+									</Stack>
+								)}
+								<Button
+									sx={{
+										m: '16px',
+										height: '48px',
+										fontWeight: '700',
+										fontSize: '16px',
+										bottom: 0,
+										mt: '44px',
+									}}
+									variant='contained'
+									onClick={() => {
+										handleSubmit()
+										sendAnalytics({
+											name: 'submitEmployment',
+											action: 'ButtonClick',
+											metaData: {
+												Status: isGuaranteed ? 'Confirmed' : 'Rejected',
+											},
+										})
+									}}>
+									{'Submit'}
+								</Button>
+							</Stack>
 						</Stack>
 					) : steps === 1 ? (
 						<Stack sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
