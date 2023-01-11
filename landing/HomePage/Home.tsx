@@ -11,14 +11,14 @@ export const Home = () => {
 						xs: `url(${'/assets/landingv3/mob-bg-top.png'}), url(${'/assets/landingv3/mob-bg-bottom.png'})`,
 						md: `url(${'/assets/landingv3/web-bg-top.png'}), url(${'/assets/landingv3/web-bg-bottom.png'})`,
 					},
-					backgroundSize: { xs: '120vw', md: '90%' },
-					backgroundPositionX: { xs: '80%,40%', md: '64%,40%' },
-					backgroundPositionY: { xs: '0vw,120vw', md: '-55px,78%' },
+					backgroundSize: { xs: '120vw', md: '100%' },
+					backgroundPositionX: { xs: '80%,40%', md: '64%,125%' },
+					backgroundPositionY: { xs: '15vw,130vw', md: '-60px,80%' },
 					backgroundRepeat: 'no-repeat',
 					alignItems: 'center',
 					display: 'flex',
 					flexDirection: 'column',
-					pt: { xs: 4, md: 10 },
+					pt: { xs: 4, md: 15 },
 				}}>
 				<Stack direction='row' sx={{ maxWidth: { xs: '100%', md: '72%' }, alignSelf: 'center' }} spacing={2}>
 					<Stack pr={{ xs: '14px', md: '37px' }}>
@@ -151,7 +151,7 @@ export const Home = () => {
 						/>
 					</Stack>
 				</Stack>
-				<Stack mt={{ md: 20 }} mb={{ md: 20 }} alignItems={'center'}>
+				<Stack mt={{ xs:2, md: 35 }} mb={{ md: 40 }} alignItems={'center'}>
 					<Stack
 						direction={'row'}
 						maxWidth={{ xs: '100%', md: '85%' }}
@@ -298,7 +298,7 @@ export const Home = () => {
 					<Typography
 						variant='h6'
 						fontSize={{ xs: '22px', md: '40px' }}
-						sx={{ maxWidth: { xs: '100%', md: '60%' } }}
+						sx={{ maxWidth: { xs: '100%', md: '80%' } }}
 						textAlign={'center'}>
 						India’s Largest & Most Trusted Construction Platform
 					</Typography>
