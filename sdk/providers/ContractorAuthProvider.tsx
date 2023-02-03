@@ -597,15 +597,6 @@ const ContractorAuthProvider: FC<ContractorAuthProviderProps> = ({ children, aut
 		}
 	}, [state.user])
 
-	// const handleActiveStepValue = useCallback(() => {
-	// 	let value = router.query.bookingformStep ?? 0
-	// 	setActiveStepValue(value)
-	// }, [router])
-	useEffect(() => {
-		if (router.query.redirectBackTo) {
-			setIsDialogOpen(true)
-		}
-	}, [router.query.redirectBackTo])
 	const authProviderValue: AuthProviderValue = useMemo(
 		() => ({
 			...state,
@@ -644,57 +635,6 @@ const ContractorAuthProvider: FC<ContractorAuthProviderProps> = ({ children, aut
 	return (
 		<Provider value={authProviderValue}>
 			{children}
-
-			<Dialog
-				onClose={openLoginDialog}
-				fullWidth={true}
-				maxWidth={'xs'}
-				open={isDialogOpen}
-				sx={{
-					'& .MuiPaper-root': {
-						borderRadius: '16px',
-						width: { xs: '100%', md: '100%' },
-					},
-					margin: 'auto',
-					padding: '10px',
-					'& .MuiPaper-elevation': {
-						margin: { xs: '0px' },
-						padding: { xs: 0 },
-					},
-				}}>
-				<DialogContent
-					sx={{
-						paddingX: { md: 4, xs: 0 },
-					}}>
-					<Stack direction={'row'} justifyContent={'flex-start'}>
-						<IconButton onClick={openLoginDialog}>
-							<CloseIcon sx={{ color: '#000' }} />
-						</IconButton>
-					</Stack>
-
-					<Paper
-						elevation={0}
-						sx={{
-							px: { md: 0, xs: 0 },
-						}}>
-						{!isOtpSent ? (
-							<LoginForm isOtpSent={isOtpSent} setIsOtpSent={setIsOtpSent} fromHome={true} />
-						) : (
-							<OTPVerification isOtpSent={isOtpSent} setIsOtpSent={setIsOtpSent} fromHome={true} />
-						)}
-					</Paper>
-
-					{/* <Stack>
-						<Button
-							onClick={() => {
-								setIsRegister(true)
-							}}>
-							Register
-						</Button>
-					</Stack> */}
-				</DialogContent>
-			</Dialog>
-
 			<Backdrop {...backdropProps}>
 				{startRedirecting && <CircularProgress />}
 				<Dialog
