@@ -15,7 +15,7 @@ export const contactUsSection = {
     us a call or drop us an email, we're here to help.`,
 		mailAction: {
 			label: 'General Queries',
-			email: 'marketing@projecthero.in',
+			email: 'help@projecthero.in',
 		},
 		contactAction: { label: 'Inquiries', phone: `+91 ${PHSupport.phoneNumber}` },
 	},
