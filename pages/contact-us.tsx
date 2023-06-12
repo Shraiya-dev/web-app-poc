@@ -12,10 +12,10 @@ const ContactUs: NextPage = () => {
 						Contact Details
 					</Typography>
 					<Typography variant='h6'>
-						<strong>Address : </strong> 837/1 7th Main, 2nd Cross, Indiranagar 2nd Stage, Bangalore - 560038
+						<strong>Address : </strong> ProjectHero, BHIVE Workspace, 467-468, Krishna Temple Road, Indiranagar, Bangalore - 560038
 					</Typography>
 					<Typography variant='h6'>
-						<strong>Contact Number : </strong> <a href='tel:+918035097085'>+91 8035097085</a>
+						<strong>Contact Number : </strong> <a href='tel:+918061174206'>+91 8061174206</a>
 					</Typography>
 					<Typography variant='h6'>
 						<strong>Email : </strong> <a href='mailto:help@projecthero.in'>help@projecthero.in</a>
