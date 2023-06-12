@@ -132,7 +132,7 @@ export const Navbar = () => {
 														}}
 														color={'#fff'}
 														fontWeight={700}>
-														+91-{PHSupport.phoneNumber}
+														{PHSupport.phoneNumber}
 													</Typography>
 												</Stack>
 												<Box width={28} height={28}>
@@ -261,7 +261,7 @@ export const Navbar = () => {
 										}}
 										color={'#fff'}
 										fontWeight={700}>
-										+91-{PHSupport.phoneNumber}
+										{PHSupport.phoneNumber}
 									</Typography>
 								</Stack>
 							</Link>

@@ -854,7 +854,7 @@ export const CheckoutCard: FC = () => {
 										name: 'callProjectHeroSupport',
 									})
 								}}>
-								+91-{PHSupport.phoneNumber}
+								{PHSupport.phoneNumber}
 							</Typography>
 						</Stack>
 					</Stack>

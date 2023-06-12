@@ -84,7 +84,7 @@ export const CustomTopBar: FC<Props> = ({ children, sideMenu = false }) => {
 							})
 						}}
 						fontWeight={700}>
-						+91-{PHSupport.phoneNumber}
+						{PHSupport.phoneNumber}
 					</Typography>
 				</Stack>
 			</Stack>

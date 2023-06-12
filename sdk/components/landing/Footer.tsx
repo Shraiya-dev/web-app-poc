@@ -222,7 +222,7 @@ export const Footer = () => {
 											})
 										}}
 										fontWeight={700}>
-										+91-{PHSupport.phoneNumber}
+										{PHSupport.phoneNumber}
 									</Typography>
 								</Stack>
 							</Stack>
@@ -373,7 +373,7 @@ export const Footer = () => {
 									})
 								}}
 								fontWeight={700}>
-								+91-{PHSupport.phoneNumber}
+								{PHSupport.phoneNumber}
 							</Typography>
 						</Stack>
 					</Stack>
