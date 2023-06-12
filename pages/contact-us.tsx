@@ -15,7 +15,7 @@ const ContactUs: NextPage = () => {
 						<strong>Address : </strong> ProjectHero, BHIVE Workspace, 467-468, Krishna Temple Road, Indiranagar, Bangalore - 560038
 					</Typography>
 					<Typography variant='h6'>
-						<strong>Contact Number : </strong> <a href='tel:+918061174206'>+91 8061174206</a>
+						<strong>Contact Number : </strong> <a href='tel:08061174206'> 08061174206</a>
 					</Typography>
 					<Typography variant='h6'>
 						<strong>Email : </strong> <a href='mailto:help@projecthero.in'>help@projecthero.in</a>
