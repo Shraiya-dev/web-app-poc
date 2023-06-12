@@ -59,7 +59,7 @@ export const CustomTopBar: FC<Props> = ({ children, sideMenu = false }) => {
 					<img height={25} src='/assets/icons/mail.svg' />
 					<Typography
 						component='a'
-						href='mailto:marketing@projecthero.in'
+						href='mailto:help@projecthero.in'
 						onClick={() => {
 							sendAnalytics({
 								action: 'ButtonClick',
