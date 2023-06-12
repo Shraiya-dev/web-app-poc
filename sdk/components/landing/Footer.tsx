@@ -191,7 +191,7 @@ export const Footer = () => {
 									<img src='/assets/landingv2/heroSection/mail.svg' />
 									<Typography
 										component='a'
-										href='mailto:marketing@projecthero.in'
+										href='mailto:help@projecthero.in'
 										variant='subtitle2'
 										color={'#fff'}
 										onClick={() => {
@@ -203,7 +203,7 @@ export const Footer = () => {
 										fontSize={{ md: '18px', xs: '16px' }}
 										fontFamily={'Karla,sans-serif'}
 										fontWeight={700}>
-										marketing@projecthero.in
+										help@projecthero.in
 									</Typography>
 								</Stack>
 								<Stack direction={'row'} alignItems={'center'} spacing={2}>
