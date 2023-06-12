@@ -132,10 +132,10 @@ const ContractorDashboardLayout = ({ children }: any) => {
 								<img height={25} src='/assets/icons/mail.svg' />
 								<Typography
 									component={'a'}
-									href='mailto:marketing@projecthero.in'
+									href='mailto:help@projecthero.in'
 									fontFamily={'Karla,sans-serif'}
 									fontWeight={700}>
-									marketing@projecthero.in
+									help@projecthero.in
 								</Typography>
 							</Stack>
 							<Stack direction={'row'} spacing={1.3} alignItems={'center'}>
