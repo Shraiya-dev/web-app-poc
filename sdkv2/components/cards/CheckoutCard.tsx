@@ -838,7 +838,7 @@ export const CheckoutCard: FC = () => {
 								<img height={'100%'} width={'100%'} src='/assets/icons/mail.svg' />
 							</Box>
 							<Typography ml={1} color='#000'>
-								marketing@projecthero.in
+								help@projecthero.in
 							</Typography>
 						</Stack>
 						<Stack direction='row' alignItems='center'>
