@@ -14,5 +14,5 @@ export const externalLinks = {
 }
 
 export const PHSupport = {
-	phoneNumber: '9151003537',
+	phoneNumber: '+918061174206',
 }
