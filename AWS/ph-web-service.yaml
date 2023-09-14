@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    run: ph-web
+  name: ph-web
+  namespace: default
+spec:
+  ports:
+  - nodePort: 31614
+    port: 80
+    protocol: TCP
+    targetPort: 3000
+  selector:
+    app: ph-web
+  sessionAffinity: None
+  type: NodePort
