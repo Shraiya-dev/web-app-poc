@@ -62,9 +62,7 @@ jobs:
         env:
          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
         run: |-                                                                    
-          cd kustomization/overlays/staging/AWS
-          #sed -i 's|image:.*|image: '"$ECR_REGISTRY/$REPOSITORY:$IMAGE_TAG"'|' warfront-deployment.yaml
+          cd AWS
           kubectl apply -f .
-          #sed -i 's|image:.*|image: '"$REGISTRY/$REPOSITORY:$IMAGE_TAG"'|' warfront-deployment.yaml
           kubectl rollout status deployment/$DEPLOYMENT_NAME
           kubectl get services -o wide           
