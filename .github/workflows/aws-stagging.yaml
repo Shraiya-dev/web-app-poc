@@ -62,7 +62,7 @@ jobs:
         env:
          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
         run: |-                                                                    
-          cd AWS 
+          cd AWS  
           kubectl apply -f .
           kubectl rollout status deployment/$DEPLOYMENT_NAME
           kubectl get services -o wide           
