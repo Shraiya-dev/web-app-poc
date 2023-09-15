@@ -13,6 +13,7 @@ env:
   AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
   AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
   DEPLOYMENT_NAME: ph-web
+  NEXT_PUBLIC_APP_ENV: STAGE
 
 jobs:
   build-and-deploy:
@@ -40,7 +41,7 @@ jobs:
            IMAGE_TAG: ph-web
            
         run: |
-            docker build -t $REGISTRY/$REPOSITORY:$IMAGE_TAG .
+            docker build --build-arg NEXT_PUBLIC_APP_ENV="$NEXT_PUBLIC_APP_ENV" -t $REGISTRY/$REPOSITORY:$IMAGE_TAG .
             docker push $REGISTRY/$REPOSITORY:$IMAGE_TAG
             
 
