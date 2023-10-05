@@ -5,6 +5,7 @@ metadata:
     app: ph-web
   name: ph-web
   namespace: default
+
 spec:
   progressDeadlineSeconds: 600
   replicas: 1
@@ -24,7 +25,7 @@ spec:
         app: ph-web
     spec:
       containers:
-      - image: 393010183048.dkr.ecr.ap-south-2.amazonaws.com/in-project-hero-ecr-repo-staging:ph-web
+      - image: 393010183048.dkr.ecr.ap-south-1.amazonaws.com/in-project-hero-ecr-repo-prod/ph-web:ph-web
         imagePullPolicy: Always
         livenessProbe:
           failureThreshold: 3
@@ -34,7 +35,7 @@ spec:
             scheme: HTTP
           periodSeconds: 10
           successThreshold: 1
-          timeoutSeconds: 20
+          timeoutSeconds: 10
         name: ph-web
         ports:
         - containerPort: 8080
