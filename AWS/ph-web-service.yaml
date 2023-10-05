@@ -3,15 +3,14 @@ kind: Service
 metadata:
   labels:
     run: ph-web
-  name: ph-web
+  name: ph-web-service
   namespace: default
 spec:
   ports:
-  - nodePort: 31614
+  - nodePort: 30304
     port: 80
     protocol: TCP
     targetPort: 3000
   selector:
     app: ph-web
-  sessionAffinity: None
   type: NodePort
