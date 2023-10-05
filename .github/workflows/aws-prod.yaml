@@ -36,7 +36,7 @@ jobs:
       - name: Login to Amazon ECR
         id: login-ecr-prod-repo
         uses: aws-actions/amazon-ecr-login@v1
-         with:
+        with:
            registry: ${{ secrets.AWS_ECR_REGISTRY_PROD }}
       
       - name: Build, tag, and push docker image to Amazon ECR
